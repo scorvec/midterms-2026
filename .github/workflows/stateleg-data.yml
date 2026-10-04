@@ -31,7 +31,7 @@ jobs:
           python-version: "3.11"
           cache: pip
       - name: Install dependencies
-        run: pip install -r requirements.txt geopandas==1.1.1 pyogrio==0.11.1 shapely==2.1.1 pyarrow
+        run: pip install -r requirements.txt geopandas==1.1.1 pyogrio==0.11.1 shapely==2.1.1 pyarrow pyyaml
       - name: Restore raw cache
         uses: actions/cache/restore@v4
         with:
@@ -46,9 +46,15 @@ jobs:
             probe) python -m midterms.stateleg_probe ;;
             build) python -m midterms.stateleg_build ;;
             wiki)  python -m midterms.stateleg_wiki ;;
-            all)   python -m midterms.stateleg_build && python -m midterms.stateleg_wiki ;;
+            all)   python -m midterms.stateleg_build; rc=$?; python -m midterms.cd_lean_build || rc=1; exit $rc ;;
+            cd)    python -m midterms.cd_lean_build ;;
             *) python -m midterms.$STEP ;;
           esac
+      - name: Drop large downloads before caching (slim extracts are kept)
+        if: always()
+        run: |
+          find data/raw/stateleg -type f \( -name '*.csv' -o -name '*.zip' \) -size +40M -print -delete || true
+          du -sh data/raw/stateleg || true
       - name: Save raw cache
         if: always()
         uses: actions/cache/save@v4
@@ -56,11 +62,11 @@ jobs:
           path: data/raw/stateleg
           key: stateleg-raw-${{ github.run_id }}
       - name: Commit derived tables
-        if: ${{ env.STEP != 'probe' }}
+        if: ${{ always() && env.STEP != 'probe' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data/static/stateleg || true
+          git add -A data/static/stateleg data/static/cd_lean_2026.csv data/static/qc_cd.json 2>/dev/null || git add -A data/static/stateleg || true
           if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
           du -sh data/static/stateleg
           git commit -q -m "state-leg derived tables ($STEP)"
