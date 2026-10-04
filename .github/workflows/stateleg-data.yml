@@ -48,6 +48,7 @@ jobs:
             wiki)  python -m midterms.stateleg_wiki ;;
             all)   rc=0; python -m midterms.stateleg_build || rc=$?; python -m midterms.cd_lean_build || rc=1; exit $rc ;;
             cd)    python -m midterms.cd_lean_build ;;
+            *:*) python -m midterms.${STEP%%:*} $(echo "${STEP#*:}" | tr ',' ' ') ;;
             *) python -m midterms.$STEP ;;
           esac
       - name: Drop large downloads before caching (slim extracts are kept)

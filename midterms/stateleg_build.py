@@ -467,11 +467,11 @@ def build_klarner():
     k["pz"] = k["partyz"].str.lower().map({"d": "D", "r": "R"}).fillna("O")
     k["inc"] = k["exper"].astype(str).str.lower().str.startswith("inc")
     k["won"] = k["outcome"].astype(str).str.lower().str.startswith("w")
-    keys = ["year", "sab", "sen", "dno", "dname", "dtype", "dseats", "eseats", "etype", "redist", "regime", "flot", "nest", "month"]
+    keys = ["year", "sab", "sen", "dno", "dname", "ddez", "geopost", "mmdpost", "specpost", "dtype", "dseats", "eseats", "etype", "redist", "regime", "flot", "nest", "month"]
     for c in keys:
         if c not in k: k[c] = ""
         k[c] = k[c].fillna("").astype(str)
-    agg = k.groupby(keys).apply(lambda q: pd.Series({
+    agg = k.groupby(keys)[["pz", "vote", "won", "inc", "cand"]].apply(lambda q: pd.Series({
         "d_votes": q.loc[q.pz == "D", "vote"].sum(), "r_votes": q.loc[q.pz == "R", "vote"].sum(), "o_votes": q.loc[q.pz == "O", "vote"].sum(),
         "n_d": int((q.pz == "D").sum()), "n_r": int((q.pz == "R").sum()), "n_o": int((q.pz == "O").sum()),
         "w_d": int((q.won & (q.pz == "D")).sum()), "w_r": int((q.won & (q.pz == "R")).sum()), "w_o": int((q.won & (q.pz == "O")).sum()),
