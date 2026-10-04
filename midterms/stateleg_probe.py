@@ -1,65 +1,71 @@
 """One-off probe (state-leg branch): list the files of the source datasets and print headers, so the builder can be
 written against the real layouts. Runs in GitHub Actions only.   python -m midterms.stateleg_probe"""
-import io, json, sys, zipfile, gzip, urllib.request, urllib.parse
+import io, json, sys, zipfile, urllib.request
+from pathlib import Path
+import pandas as pd
 from .fetch import open_url, report
 
 DV = "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/{}"
-SETS = {"medsl2024_state": "DODOBJ", "medsl2024_pres": "XDJYKC", "medsl2022_state": "OAARCY", "medsl2020": "OKL2K1",
-        "medsl2018": "ZFXEJU", "klarner": "FJOGJB"}
+SETS = {"m2024": "NYTPDU", "m2022": "UYQIEP", "m2020": "NT66Z3", "m2018": "NVQYMG", "vest2016": "NH5S2I", "vest2020": "K7760H"}
+RAW = Path("data/raw/stateleg"); RAW.mkdir(parents=True, exist_ok=True)
 
 
 def files(doi):
     j = json.loads(open_url(DV.format(doi)))
-    out = []
-    for f in j["data"]["latestVersion"]["files"]:
-        d = f["dataFile"]; out.append((d["id"], f.get("directoryLabel", ""), d.get("filename"), d.get("filesize"), d.get("originalFileFormat", d.get("contentType"))))
-    return j["data"]["latestVersion"].get("versionNumber"), out
+    return [(f["dataFile"]["id"], f.get("directoryLabel", ""), f["dataFile"].get("filename"), f["dataFile"].get("filesize")) for f in j["data"]["latestVersion"]["files"]]
 
 
-def head(fid, n=4000, tab=False):
-    url = f"https://dataverse.harvard.edu/api/access/datafile/{fid}" + ("?format=original" if tab else "")
-    req = urllib.request.Request(url, headers={"User-Agent": "scorvec.com midterm model (+https://scorvec.com/midterms/about.html)", "Range": f"bytes=0-{n}"})
-    with urllib.request.urlopen(req, timeout=120) as r: return r.read(n + 1), r.headers.get("Content-Type"), r.status
+def dl(fid, name):
+    p = RAW / "probe" / name
+    if not p.exists():
+        p.parent.mkdir(parents=True, exist_ok=True); p.write_bytes(open_url(f"https://dataverse.harvard.edu/api/access/datafile/{fid}?format=original", timeout=600))
+    return p
+
+
+def show_state_file(p):
+    if p.suffix == ".zip":
+        z = zipfile.ZipFile(p); print("   zip:", z.namelist()[:10]); n = [x for x in z.namelist() if x.endswith(".csv")][0]; df = pd.read_csv(z.open(n), dtype=str, low_memory=False)
+    else: df = pd.read_csv(p, dtype=str, low_memory=False)
+    print("   cols:", list(df.columns)); print(df.head(3).to_string()[:1500])
+    off = df["office"].value_counts(); print("   offices:", off.head(25).to_dict())
+    for o in off.index:
+        if any(k in o.upper() for k in ("STATE HOUSE", "STATE SENATE", "STATE REP", "ASSEMBLY", "LEGISL", "GENERAL COURT")):
+            q = df[df.office == o]; print(f"   {o}: {len(q)} rows, districts {q['district'].nunique()}: {sorted(q['district'].unique())[:12]}; magnitude {q['magnitude'].value_counts().to_dict() if 'magnitude' in q else ''}")
+            print("   modes:", q["mode"].value_counts().head(8).to_dict() if "mode" in q else "", "| party:", q["party_simplified"].value_counts().to_dict() if "party_simplified" in q else "")
+    pr = df[df.office.str.upper().str.contains("PRESIDENT", na=False)]
+    if len(pr): print("   president rows", len(pr), "district values", pr["district"].value_counts().head(5).to_dict(), "modes", pr["mode"].value_counts().head(6).to_dict())
 
 
 def main():
-    allf = {}
+    L = {}
     for k, doi in SETS.items():
         try:
-            v, fs = files(doi); allf[k] = fs
-            print(f"\n== {k} {doi} v{v}: {len(fs)} files")
-            for f in fs[:400]: print("  ", f)
+            fs = files(doi); L[k] = fs; print(f"\n== {k} {doi}: {len(fs)} files")
+            for f in fs[:120]: print("  ", f)
         except Exception as e: print(k, "FAILED", e)
-    # search VEST datasets
-    for q in ("VEST 2024 precinct", "Voting and Election Science Team 2024", "VEST 2020 precinct", "VEST 2016 precinct", "2024 Precinct-Level Election Results"):
+    for k in ("m2024", "m2022"):
+        for st in ("NH", "MI"):
+            hit = [f for f in L.get(k, []) if (f[2] or "").upper().split("-")[0].split("_")[0].split(".")[0] == st or (f[1] or "").upper() == st]
+            hit = hit or [f for f in L.get(k, []) if f"_{st.lower()}" in (f[2] or "").lower() or (f[2] or "").lower().startswith(st.lower())]
+            print(f"\n== {k} {st}: candidates {hit[:4]}")
+            if hit:
+                try: show_state_file(dl(hit[0][0], f"{k}_{hit[0][2]}"))
+                except Exception as e: print("   failed", e)
+    # Klarner
+    for fid, nm in ((10273089, "203slers_uoa_cham_year20230810.tab"), (10273085, "127_slers_1967to2022.tab")):
         try:
-            j = json.loads(open_url("https://dataverse.harvard.edu/api/search?type=dataset&per_page=15&q=" + urllib.parse.quote(q)))
-            print(f"\n== search {q!r}")
-            for it in j["data"]["items"]: print("  ", it.get("global_id"), "|", it.get("name"), "|", it.get("published_at"))
-        except Exception as e: print("search failed", e)
-    # headers of a few files
-    want = [("medsl2024_state", "nh"), ("medsl2024_pres", "nh"), ("medsl2024_state", "mi"), ("medsl2022_state", "mi"), ("medsl2020", "nh"), ("medsl2018", "nh"), ("klarner", "")]
-    for k, st in want:
-        for fid, d, name, size, fmt in allf.get(k, []):
-            nm = (name or "").lower()
-            if st and not (nm.startswith(st + "_") or f"_{st}_" in nm or f"_{st}." in nm or nm.startswith(st + ".") or f"/{st}" in nm or nm.startswith(st)): continue
-            try:
-                b, ct, status = head(fid, 6000, tab=str(fmt).startswith("text/") is False)
-                print(f"\n== head {k} {name} ({size} B, {fmt}, {ct}, http {status})")
-                if b[:2] == b"PK": print("  (zip; range read not decodable)")
-                elif b[:2] == b"\x1f\x8b": print("  (gzip)"); 
-                else: print(b[:3000].decode("utf-8", "replace"))
-            except Exception as e: print("head failed", name, e)
-            break
-    # TIGER listings
-    for y in (2018, 2022, 2024, 2025):
-        for lay in ("SLDU", "SLDL"):
-            try:
-                h = open_url(f"https://www2.census.gov/geo/tiger/TIGER{y}/{lay}/").decode()
-                import re
-                fs = re.findall(r'href="(tl_[^"]+_(26|27|55|04|42|33|37)_[^"]+\.zip)"', h)
-                print(f"TIGER{y} {lay}:", sorted(set(f for f, _ in fs)))
-            except Exception as e: print("tiger", y, lay, e)
+            p = dl(fid, nm); df = pd.read_csv(p, sep=None, engine="python", nrows=200000 if "127" in nm else None, dtype=str) if "127" not in nm else pd.read_csv(p, sep="\t", dtype=str, low_memory=False)
+            print(f"\n== klarner {nm}: {len(df)} rows; cols {list(df.columns)}"); print(df.head(5).to_string()[:3000])
+            if "127" in nm:
+                for c in df.columns:
+                    if df[c].nunique() < 40: print("   ", c, df[c].value_counts().head(15).to_dict())
+                q = df[(df.iloc[:, :].astype(str).apply(lambda r: "2022" in r.values, axis=1))].head(3) if False else None
+                for col in ("year", "sab"):
+                    if col in df: print(col, df[col].value_counts().sort_index().tail(10).to_dict())
+                if "sab" in df and "year" in df: print(df[(df["sab"] == "NH") & (df["year"] == "2022")].head(12).to_string()[:3000]); print(df[(df["sab"] == "AZ") & (df["year"] == "2022")].head(8).to_string()[:2000])
+            else:
+                print(df[df.iloc[:, 0].isin(["MI", "WI", "MN", "PA", "AZ", "NH", "NC"])].tail(20).to_string()[:3000] if len(df) else "")
+        except Exception as e: print("klarner failed", nm, e)
     report()
 
 
