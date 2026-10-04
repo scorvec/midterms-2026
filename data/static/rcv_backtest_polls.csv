@@ -1,0 +1,11 @@
+race,pollster,end,how,actual,a_mixed,a1_first,a2_party_sum,b,b_sd
+ME 2018 US House 2,Emerson College,2018-10-29,transfer,1.02,1.0,1.0,1.0,1.01,1.0
+ME 2018 US House 2,NYT Upshot/Siena College,2018-10-18,final,1.02,0.0,,0.0,0.0,0.0
+ME 2018 US House 2,Global Strategy Group (D),2018-10-12,final,1.02,6.0,,6.0,6.0,0.0
+ME 2018 US House 2,Pan Atlantic Research,2018-10-07,transfer,1.02,0.0,0.0,0.0,0.03,2.99
+ME 2022 US House 2,SurveyUSA,2022-11-02,transfer,6.0,3.0,3.0,3.0,2.8,2.22
+ME 2022 US House 2,Pan Atlantic Research,2022-10-15,transfer,6.0,8.0,8.0,8.0,7.8,2.22
+AK 2022 special US House,Alaska Survey Research,2022-07-25,final,2.78,0.5,11.0,-18.0,-10.0,0.0
+AK 2022 US House,Dittman Research,2022-11-03,final,9.37,19.33,23.0,0.0,12.0,0.0
+AK 2022 US House,Alaska Survey Research,2022-10-22,final,9.37,20.33,23.0,2.0,14.0,0.0
+AK 2024 US House,Cygnal (R),2024-10-16,final,-2.39,-4.3,-4.6,-6.2,-4.2,0.0

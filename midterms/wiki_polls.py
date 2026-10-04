@@ -150,7 +150,8 @@ def poll_tables(html: str, year: int, dem_names=(), rep_names=()):
     """All poll tables on a page -> rows (pollster, end_date, n, dem, rep, margin, dem_name, rep_name, table_idx)."""
     out = []
     # editors' quote typos (rowspan='2" on the FL special page, 2026-09-19) crash read_html -> normalise span values
-    html = re.sub(r"""(row|col)span=['"](\d+)['"]""", r'\1span="\2"', html)
+    # and stray characters after the number (rowspan="3;" on the 2018 Maine House page)
+    html = re.sub(r"""(row|col)span=['"](\d+)[^'"\d>]*['"]""", r'\1span="\2"', html)
     try: tables = pd.read_html(io.StringIO(html))
     except ValueError as e:
         print(f"  !! poll_tables: page did not parse ({str(e)[:80]}) - zero polls from it"); return pd.DataFrame()
@@ -171,7 +172,10 @@ def poll_tables(html: str, year: int, dem_names=(), rep_names=()):
             if end is None: continue
             pol = re.sub(r"\[.*?\]", "", str(r[[c for c in cols if "Poll source" in c or "Pollster" in c][0]]))
             pol = _committee_tag(pol)
-            out.append({"table": ti, "pollster": pol[:60], "end_date": end, "n": _num(r[scol[0]]) if scol else np.nan, "cands": vals})
+            # the table's "Other" share (rcv.py: candidates the poll did not name still transfer in a ranked-choice count)
+            oth = [_num(r[c]) for c in cols if "Other" in c]; oth = [v for v in oth if not np.isnan(v)]
+            out.append({"table": ti, "pollster": pol[:60], "end_date": end, "n": _num(r[scol[0]]) if scol else np.nan, "cands": vals,
+                        "other_col": sum(oth) if oth else np.nan})
     return out
 
 
@@ -226,14 +230,21 @@ def senate_polls(state_abbr: str, year=2026, special=False, dem=None, rep=None, 
         if _norm(k) in full: return full[_norm(k)]
         c = by_sur.get(_surname(k), []); return c[0] if len(c) == 1 else None
     res = []
+    from . import rcv as RC
+    # ranked-choice race with more than the two finalists on the ballot (Maine's 2026 Senate ballot has two names: nothing transfers)
+    rcv_on = RC.applies("governor" if "gubernatorial" in title else "senate", state_abbr) and len([n for n, _ in (ballot or []) if n]) > 2
     if ballot:
         keep = []
         for p in rows:
             c = {k: v for k, v in p["cands"].items() if "Generic" not in k}
+            if rcv_on:                                 # ranked-choice round tables: the round number is a column, not a candidate
+                rnd = [int(c.pop(k)) for k in list(c) if RC.ROUND_KEY.match(k)]
+                p = {**p, "round": rnd[0] if rnd else None}
             if not c or any(who(k) is None for k in c): meta["dropped_hypothetical"] += 1; continue
             keep.append((p, {who(k)[0]: v for k, v in c.items()}))
         shares = {}
         for p, c in keep:
+            if (p.get("round") or 1) > 1: continue     # later RCV rounds would inflate the finalists' typical share
             for n, v in c.items(): shares.setdefault(n, []).append(v)
         majors = [n for n, v in shares.items() if np.mean(v) >= 10]
         meta["majors"] = majors
@@ -247,6 +258,9 @@ def senate_polls(state_abbr: str, year=2026, special=False, dem=None, rep=None, 
         score = {n: np.mean([c[n] for c in full]) if full else np.mean(shares[n]) for n in opp}
         ch = max(opp, key=lambda n: score[n])
         meta.update(challenger=ch, challenger_party=party[ch][0], republican=rep_n)
+        if rcv_on:                                     # one row per survey: its final round, or its first round after transfers
+            res = RC.wiki_surveys(keep, ch, rep_n, party, state_abbr, special, meta)
+            keep = []
         for p, c in keep:
             if not all(n in c for n in majors): meta["dropped_partial"] += 1; continue
             res.append({"state": state_abbr, "special": special, "pollster": p["pollster"], "end_date": p["end_date"], "n": p["n"], "dem": c[ch], "rep": c[rep_n], "margin": c[ch] - c[rep_n],

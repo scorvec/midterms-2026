@@ -1,0 +1,31 @@
+race,final,final_kind,eliminated,party,type,r1_share,to_nonrep,to_rep,exhausted,r1_rep,r1_nonrep,final_margin
+AK 2022 special US House,"Palin, Sarah (REP) v Peltola, Mary S. (DEM)",DR,"Begich, Nick",REP,R,28.53,0.2874,0.5028,0.2098,31.27,40.19,2.78
+AK 2022 US House,"Palin, Sarah (REP) v Peltola, Mary S. (DEM)",DR,"Bye, Chris",LIB,O,1.89,0.2525,0.4802,0.2673,25.82,48.66,9.37
+AK 2022 US House,"Palin, Sarah (REP) v Peltola, Mary S. (DEM)",DR,"Begich, Nick",REP,R,23.62,0.1159,0.6678,0.2163,25.82,48.66,9.37
+AK 2022 US Senate,"Murkowski, Lisa (REP) v Tshibaka, Kelly C. (REP)",RR,"Kelley, Buzz A.",REP,R,3.26,,,0.3522,86.01,0.0,
+AK 2022 US Senate,"Murkowski, Lisa (REP) v Tshibaka, Kelly C. (REP)",RR,"Chesbro, Patricia R.",DEM,D,10.73,,,0.2176,86.01,0.0,
+AK 2024 US House,"Begich, Nick (REP) v Peltola, Mary S. (DEM)",DR,"Hafner, Eric",DEM,D,1.08,0.4055,0.1396,0.4549,48.49,46.42,-2.39
+AK 2024 US House,"Begich, Nick (REP) v Peltola, Mary S. (DEM)",DR,"Howe, John Wayne",AIP,R,4.01,0.1964,0.3473,0.4563,48.49,46.42,-2.39
+AK 2022 State House 11,"Coulombe, Julie (REP) v Featherly, Walter T. (NON)",OR,"Bieling, Ross P.",REP,R,15.46,0.0683,0.57,0.3617,39.12,45.42,-1.46
+AK 2022 State House 15,"McKay, Thomas W. ""Tom"" (REP) v Wells, Denny (DEM)",DR,"Eibeck, David",REP,R,14.32,0.0875,0.6202,0.2923,39.09,46.59,-0.12
+AK 2022 State House 18,"Groh, Cliff (DEM) v Nelson, David (REP)",DR,"Franks, Lyn D.",DEM,D,20.97,0.6734,0.0923,0.2342,43.79,35.24,3.64
+AK 2022 State House 28,"Menard, Steve (REP) v Sumner, Jesse M. (REP)",RR,"Wright, Jessica",REP,R,14.52,,,0.4525,63.82,0.0,
+AK 2022 State House 28,"Menard, Steve (REP) v Sumner, Jesse M. (REP)",RR,"Allen, Rachel M.",REP,R,21.66,,,0.385,63.82,0.0,
+AK 2022 State House 30,"Holmes, Doyle E. (REP) v McCabe, Kevin J. (REP)",RR,"Mindiola, L. Joy",DEM,D,20.18,,,0.6414,79.82,0.0,
+AK 2022 State House 31,"Dibert, Maxine L. (DEM) v LeBon, Barton S. (REP)",DR,"Nash, Kelly",REP,R,21.57,0.1016,0.533,0.3654,29.47,48.95,10.17
+AK 2022 State House 34,"Hopkins, Grier H. (DEM) v Tomaszewski, Frank J. (REP)",DR,"DeMars, Nate",REP,R,7.94,0.0427,0.6792,0.2782,49.01,43.05,-11.02
+AK 2022 State Senate D,"Babcock, Tuckerman (REP) v Bjorkman, Jesse J. (REP)",RR,"Cizek, Andy",NON,O,11.76,,,0.5551,88.24,0.0,
+AK 2022 State Senate E,"Giessel, Cathy (REP) v Holland, Roger (REP)",RR,"Cacy, Roselynn",DEM,D,33.04,,,0.5207,66.96,0.0,
+AK 2022 State Senate N,"Wilson, David S. (REP) v Wright, Stephen (REP)",RR,"Clayton, Scott D.",REP,R,25.82,,,0.3685,74.18,0.0,
+AK 2024 State House 6,"Johnson, Brent (NON) v Vance, Sarah L. (REP)",OR,"Slaughter, Dawson R.",REP,R,9.45,0.1716,0.2551,0.5733,47.02,43.53,-4.28
+AK 2024 State House 28,"Menard, Steve (REP) v Moore, Elexie (REP)",RR,"Wright, Jessica",REP,R,26.04,,,0.6236,73.96,0.0,
+AK 2024 State House 36,"Kowalski, Brandon P. ""Putuuqti"" (DEM) v Schwanke, Rebecca A. (REP)",DR,"Fields, James",LIB,O,5.58,0.1466,0.2343,0.6191,35.71,33.06,-10.25
+AK 2024 State House 36,"Kowalski, Brandon P. ""Putuuqti"" (DEM) v Schwanke, Rebecca A. (REP)",DR,"Goode, Pamela",REP,R,25.65,0.0563,0.3336,0.6101,35.71,33.06,-10.25
+AK 2024 State House 38,"Jimmie, Nellie D. ""Unangik"" (DEM) v McCormick, C.J. (DEM)",DD,"Sosa, Victoria B.",DEM,D,5.14,,,0.4484,0.0,68.8,
+AK 2024 State House 38,"Jimmie, Nellie D. ""Unangik"" (DEM) v McCormick, C.J. (DEM)",DD,"Keppel, Willy",VET,O,26.06,,,0.5746,0.0,68.8,
+AK 2024 State House 40,"Burke, Robyn ""Niayuq"" (DEM) v Chase, Saima ""Ikrik"" (DEM)",DD,"Baker, Thomas C. ""Ikaaq""",UND,O,24.42,,,0.6635,0.0,75.58,
+AK 2024 State Senate D,"Bjorkman, Jesse J. (REP) v Carpenter, Ben (REP)",RR,"Wegener, Tina",DEM,D,11.37,,,0.6384,88.63,0.0,
+AK 2024 State Senate F,"Kaufman, James D. (REP) v Park, Janice L. (DEM)",DR,"Borbridge, Harold",REP,R,6.96,0.0735,0.4206,0.5059,48.06,44.99,-5.49
+AK 2024 State Senate L,"Goecker, Jared D. (REP) v Merrick, Kelly R. (REP)",RR,"Hammermeister, Lee E.",DEM,D,14.16,,,0.6242,85.84,0.0,
+ME 2018 US House 2,"Golden, Jared F. (DEM) v Poliquin, Bruce (REP)",DR,"Bond, Tiffany L. + Hoar, William R.S.",NON,O,8.11,0.4446,0.204,0.3514,46.41,45.48,1.02
+ME 2022 US House 2,"Golden, Jared Forrest (DEM) v Poliquin, Bruce (REP)",DR,"Bond, Tiffany + Write-in",NON,O,6.97,0.5471,0.2214,0.2315,44.65,48.38,6.0

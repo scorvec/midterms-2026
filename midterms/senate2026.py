@@ -4,7 +4,7 @@ each race page, prior refit on 326 races 2006-2024 (0.80 E, 0.76 lean, 10.4 inc,
 """
 import re, sys, numpy as np, pandas as pd
 from . import poll_overrides as PO
-from . import wiki_polls as W, model as M
+from . import wiki_polls as W, model as M, rcv as RC
 from .run2026 import GROUP_B_HISP, GROUP_B_ASIAN, CUBAN_WEIGHT, HISP_GROUPS
 
 # Prior refit 2026-09-19 on 326 contested Senate races 2006-2024 (research/senate_prior_refit.py: MIT results, lean =
@@ -132,9 +132,10 @@ def ind_money(state):
     return (float(gi.iloc[0]) if len(gi) else float("nan"), float(gr.iloc[0]) if len(gr) else float("nan"))
 
 
-def blend_race(mu_prior, psd, pm, ne, vm):
-    """Precision blend of one race's prior with its poll average (shared by run() and backtest_all.live_senate)."""
-    wp, wq = 1 / psd ** 2, (1.0 / (POLL_SD ** 2 * vm / ne + race_sys() ** 2) if ne == ne else 0.0)
+def blend_race(mu_prior, psd, pm, ne, vm, extra_sys=0.0):
+    """Precision blend of one race's prior with its poll average (shared by run() and backtest_all.live_senate). extra_sys: a further
+    race-level poll error added in quadrature (the ranked-choice transfer uncertainty, rcv.race_sd)."""
+    wp, wq = 1 / psd ** 2, (1.0 / (POLL_SD ** 2 * vm / ne + race_sys() ** 2 + extra_sys ** 2) if ne == ne else 0.0)
     return (wp * mu_prior + wq * (pm if pm == pm else 0)) / (wp + wq), float(np.sqrt(1 / (wp + wq)))
 
 
@@ -192,6 +193,8 @@ def run(E, asof=None, n=20000, seed=11, nat_z=None):
         # specials (the only Senate races there) had been skipped entirely, so a feed-only poll of either never reached the model
         if (R["state"] == r["state"]).sum() == 1:
             man = M.manual_race_polls(r["state"], "senate", p if not p.empty else None, names=(meta.get("challenger") or r["dem_nom"], meta.get("republican") or r["rep_nom"]))
+            if RC.applies("senate", r["state"]) and isinstance(r["ballot"], list) and len(r["ballot"]) > 2:     # ranked choice: feed rows
+                man = RC.convert_rows(man, RC.other_type_of(r["ballot"], (meta.get("challenger") or r["dem_nom"], meta.get("republican") or r["rep_nom"])))
             if len(man): p = pd.concat([p, man], ignore_index=True) if not p.empty else man
         if not p.empty:
             p = p[~p["dem_name"].str.contains("Generic", case=False) & ~p["rep_name"].str.contains("Generic", case=False)]
@@ -216,12 +219,16 @@ def run(E, asof=None, n=20000, seed=11, nat_z=None):
                 else:
                     prior_note = f"independent, no Democrat, NOT funded (${mi/1e6:.2f}M vs ${mr/1e6:.2f}M): no shift"
                 psd = float(np.hypot(PRIOR_SD, IND_SHIFT_SD))
-        if M.ROBUST_NU and not p.empty: mu, sd = M.robust_blend(mu_prior, psd, p, asof, POLL_SD, race_sys(), M.ROBUST_NU)   # robust Student-t race blend
-        else: mu, sd = blend_race(mu_prior, psd, pm, ne, vm)
+        # ranked choice (midterms/rcv.py): polls are final-round margins; the transfer-rate uncertainty of converted first rounds is a
+        # race-level poll error on top of race_sys()
+        rcv_on = RC.applies("senate", r["state"]); rsd = RC.race_sd(p, asof) if rcv_on and not p.empty else 0.0
+        if M.ROBUST_NU and not p.empty: mu, sd = M.robust_blend(mu_prior, psd, p, asof, POLL_SD, float(np.hypot(race_sys(), rsd)), M.ROBUST_NU)   # robust Student-t race blend
+        else: mu, sd = blend_race(mu_prior, psd, pm, ne, vm, rsd)
         # heating-oil shift is in generic-ballot points: it reaches a Senate race at NAT_SLOPE, as E does (governors use their own
         # slope b[3]; until 2026-10-03 the Senate took it at full strength)
         mu = mu + NAT_SLOPE * M.heating_oil_shift("state").get(r["state"], 0.0) * (1.0 if meta.get("challenger_party", "D") in ("D", "I") else 0.0)
-        rows.append({**r.to_dict(), "challenger": meta["challenger"], "challenger_party": meta["challenger_party"], "republican": meta.get("republican"), "prior_note": prior_note, "poll_margin": pm, "n_eff": ne, "n_polls": np_, "mu_prior": mu_prior, "group_shift": gl["group_shift"], "h_load": gl["h_load"], "c_load": gl["c_load"], "a_load": gl["a_load"], "wnc_z": gl["wnc_z"], "mu": mu, "sd": sd, "newest_poll": (p["end_date"].max().date().isoformat() if not p.empty else None)})
+        rows.append({**r.to_dict(), "challenger": meta["challenger"], "challenger_party": meta["challenger_party"], "republican": meta.get("republican"), "prior_note": prior_note, "poll_margin": pm, "n_eff": ne, "n_polls": np_, "mu_prior": mu_prior, "group_shift": gl["group_shift"], "h_load": gl["h_load"], "c_load": gl["c_load"], "a_load": gl["a_load"], "wnc_z": gl["wnc_z"], "mu": mu, "sd": sd, "newest_poll": (p["end_date"].max().date().isoformat() if not p.empty else None),
+                     "rcv": RC.NOTE if rcv_on else "", "rcv_sd": rsd})
     S = pd.DataFrame(rows)
     mg = simulate_senate(S, n=n, seed=seed, nat_z=nat_z); d = mg > 0
     d_up = (S["inc_party"] == "D").sum(); r_up = (S["inc_party"] == "R").sum()

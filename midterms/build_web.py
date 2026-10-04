@@ -10,7 +10,7 @@ national shock moves every seat one for one (x NAT_SLOPE in the Senate). The shi
 """
 from pathlib import Path
 import json, datetime as dt, numpy as np, pandas as pd, io, re
-from . import model as M, run2026 as H, senate2026 as SN
+from . import model as M, run2026 as H, senate2026 as SN, rcv as RC
 
 GRID_LO, GRID_HI, GRID_STEP = -10.0, 14.0, 0.5
 
@@ -63,7 +63,8 @@ def main():
     for i, r in s.iterrows():
         house["seats"].append({"seat": r["seat"], "state": r["state"], "cd": int(r["seat"].split("-")[1]), "member": None if pd.isna(r.get("member")) else str(r["member"]), "inc": int(r["inc"]), "open": bool(r["open"]),
                                "cook_pvi": float(r["cook_pvi"]), "mu": round(float(r["mu"]), 2), "n_polls": (0 if pd.isna(r.get("n")) else int(r["n"])), "poll_margin": (None if pd.isna(r.get("poll_margin")) else round(float(r["poll_margin"]), 1)), "rating": None if pd.isna(r.get("rating_mean")) else round(float(r["rating_mean"]), 2),
-                               "money_d": None if pd.isna(r.get("money_d")) else round(float(r["money_d"])), "money_r": None if pd.isna(r.get("money_r")) else round(float(r["money_r"])), "p": [round(float(x), 3) for x in pgrid[i]]})
+                               "money_d": None if pd.isna(r.get("money_d")) else round(float(r["money_d"])), "money_r": None if pd.isna(r.get("money_r")) else round(float(r["money_r"])), "p": [round(float(x), 3) for x in pgrid[i]],
+                               **({"rcv": RC.house_note(r)} if RC.applies("house", r["seat"]) else {})})
     M.RECORD_OFFICE = "senate"
     SS, smg, sout = SN.run(E_now, nat_z=ZS)
     sen = {"E0": E0, "E_now": E_now, "nat_slope": SN.NAT_SLOPE, "now": {"p51plus": round(sout["p_dem_51plus"], 3), "p_r_lose": round(sout["p_r_lose"], 3), "mean": round(sout["dem_seats_mean"], 1)}, "now_d": SN.NOW_D, "now_r": SN.NOW_R, "d_up": sout["d_up"], "r_up": sout["r_up"], "races": [], "dist": {}}
@@ -87,7 +88,8 @@ def main():
     for i, r in SS.iterrows():
         sen["races"].append({"state": r["state"], "special": bool(r["special"]), "incumbent": r["incumbent"], "inc_party": r["inc_party"], "inc": round(float(r["inc"]), 2), "cook_pvi": None if pd.isna(r["cook_pvi"]) else float(r["cook_pvi"]),
                              "dem": r["challenger"] or r["dem_nom"], "dem_party": r["challenger_party"] or "D", "rep": r.get("republican") or r["rep_nom"], "n_polls": int(r["n_polls"]), "poll_margin": None if pd.isna(r["poll_margin"]) else round(float(r["poll_margin"]), 1), "newest_poll": r["newest_poll"],
-                             "mu": round(float(r["mu"]), 2), "sd": round(float(r["sd"]), 2), "mu_prior": round(float(r["mu_prior"]), 1), "prior_note": r.get("prior_note") or "", "cook": r.get("rat_Cook"), "sabato": r.get("rat_Sabato"), "p": [round(float(x), 3) for x in spgrid[i]]})
+                             "mu": round(float(r["mu"]), 2), "sd": round(float(r["sd"]), 2), "mu_prior": round(float(r["mu_prior"]), 1), "prior_note": r.get("prior_note") or "", "cook": r.get("rat_Cook"), "sabato": r.get("rat_Sabato"), "p": [round(float(x), 3) for x in spgrid[i]],
+                             **({"rcv": r["rcv"], "rcv_sd": round(float(r.get("rcv_sd") or 0), 2)} if r.get("rcv") else {})})
     polls = None
     if gm:
         polls = {"generic_now": gm["generic"]["diag"]["now"], "bias": BIAS, "mood": MOOD, "generic_trend": gm["generic"]["trend"], "approval_trend": gm["approval"]["trend"], "generic_band": gm["generic"].get("band"), "approval_band": gm["approval"].get("band"),
@@ -110,7 +112,8 @@ def main():
         gp = np.stack([((gmg + (e - E_now) * slope) > 0).mean(0) for e in GRID], 1)
         for i, r in GS.iterrows():
             gov["races"].append({"state": r.state, "governor": r.governor, "inc_party": r.inc_party, "inc": int(r.inc), "dem": r.dem, "rep": r.rep, "lean": r.lean, "n_polls": int(r.n_polls),
-                                 "poll_margin": None if pd.isna(r.poll_margin) else round(float(r.poll_margin), 1), "mu": round(float(r.mu), 2), "p": [round(float(x), 3) for x in gp[i]]})
+                                 "poll_margin": None if pd.isna(r.poll_margin) else round(float(r.poll_margin), 1), "mu": round(float(r.mu), 2), "p": [round(float(x), 3) for x in gp[i]],
+                                 **({"rcv": r.rcv, "rcv_sd": round(float(r.rcv_sd or 0), 2)} if getattr(r, "rcv", "") else {})})
         out["governor"] = gov
     except Exception as ex:
         print("governors skipped:", str(ex)[:120])

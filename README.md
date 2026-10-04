@@ -66,6 +66,7 @@ Committed inputs (`data/static/`) and their sources:
 | `fec_june30_{2018,2022,2026}.csv`, `fec_senate_june30_2026.csv`, `fec_reports_2026.csv`, `fec_nominees_2026.csv` | candidate fundraising through June 30 | FEC / OpenFEC (public domain); `fec_money.py` |
 | `house_national_vote_1946.csv` | national House vote by party since 1946 | Wikipedia election pages (CC BY-SA 4.0) |
 | `national_mood_fit.json` | fitted coefficients only: the national-vote error s(L) (and the unused directional and approval variants), the cycles used and the late-movement slope | our fit to the generic-ballot average vs the House vote, 15 cycles 1996-2024 (538 / ABC News averages and poll archives, HuffPost Pollster archives, Gallup approval). The underlying table is not distributed; `python -m midterms.national_mood --refit` rebuilds the fit from a local copy |
+| `rcv_transfers.csv`, `rcv_rates.json`, `rcv_backtest_results.csv`, `rcv_backtest_polls.csv` | ranked-choice transfers: one row per eliminated candidate (party type, first-round share, share of its ballots reaching each finalist or exhausted), the fitted rates, and the leave-one-race-out backtests | official round-by-round tabulations of the Maine Secretary of State (2nd district 2018, 2022) and the State of Alaska Division of Elections (August 2022 special general, 2022 and 2024 general elections), public records; `python -m midterms.rcv --fetch` downloads them once into `data/raw/rcv/` and rebuilds the tables, `--backtest` reruns the test |
 
 `web/data/districts_2026.topo.json` (district shapes) is built by `district_shapes.py` from Census 2020 cartographic
 block groups and the 120th-Congress block equivalency files (public domain).
@@ -120,6 +121,14 @@ python -m midterms.weekly --daily      # ~10-15 min; writes web/data/
 python -m http.server -d web           # then open the printed address
 ```
 
+## Ranked-choice races
+
+Maine (U.S. Senate and House; not governor, which the Maine Constitution keeps plurality) and Alaska (U.S. Senate, House and
+governor) count ranked ballots. In those races (`midterms/rcv.py`, `RCV_RACES_2026`) a poll's own final round is used as the
+poll, and a first-round-only poll is converted to an expected final-round margin with transfer rates measured on the official
+tabulations above; the spread of those rates across past counts is added to the race's polling uncertainty. Backtest and
+numbers: `web/about.html#rcv`. `MIDTERMS_RCV=off` restores the previous handling.
+
 ## Heating-oil adjustment
 
 A judgment term, not backtested: the rise in retail heating oil over the past year, times each district's (state's)
@@ -130,5 +139,6 @@ last published week is held (the page says which week).
 
 ## Credits
 
-Model and code: Shawn Corvec. Poll data belong to their pollsters. See `web/about.html` ("Sources and credits") for the
+Model and code: Shawn Corvec. Poll data belong to their pollsters. Ranked-choice transfer rates are derived from the Maine
+Secretary of State's and the State of Alaska Division of Elections' official ranked-choice tabulations. See `web/about.html` ("Sources and credits") for the
 full list. Not affiliated with or endorsed by any of the sources.

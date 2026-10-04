@@ -51,8 +51,8 @@ DAILY_FROM = "2026-06-01"
 LAG_DAYS = 3
 RECORD_MAX_LAG = 14           # a record more than 14 days after the end date is catalogue backfill, not the release (see docstring)
 METHOD_FILES = ["model.py", "run2026.py", "senate2026.py", "gov2026.py", "generic.py", "money.py", "build_web.py", "wiki_polls.py",
-                "race_poll_calibration.py", "backfill.py", "national_mood.py", "heating_oil.py", "names.py"]
-METHOD_DATA = ["data/static/national_mood_fit.json"]      # fitted inputs whose change is a methodology change too (2026-10-03): the
+                "race_poll_calibration.py", "backfill.py", "national_mood.py", "heating_oil.py", "names.py", "rcv.py"]
+METHOD_DATA = ["data/static/national_mood_fit.json", "data/static/rcv_rates.json"]      # fitted inputs whose change is a methodology change too (2026-10-03): the
                                                         # national-mood fit is deterministic from this table + national_mood.py
 
 
@@ -288,6 +288,8 @@ def _install():
     pa, rb = M.poll_average, M.robust_blend
     M.poll_average = lambda polls, asof, *a, **k: pa(_filter(polls), asof, *a, **k)
     M.robust_blend = lambda mu_prior, prior_sd, polls, asof, *a, **k: rb(mu_prior, prior_sd, _filter(polls), asof, *a, **k)
+    from . import rcv as RC
+    rs = RC.race_sd; RC.race_sd = lambda polls, *a, **k: rs(_filter(polls), *a, **k)     # ranked-choice transfer sd: released polls only
     W.senate_polls = _memo_df(W.senate_polls); W.governor_polls = _memo_df(W.governor_polls)
     GV.race_polls = _memo_df(GV.race_polls); GV.history = _memo_df(GV.history); GV.races = _memo_df(GV.races)
     SN.races = _memo_df(SN.races); SN.state_loadings = _memo_df(SN.state_loadings)

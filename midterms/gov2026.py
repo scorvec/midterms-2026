@@ -13,7 +13,7 @@ import io, json, re, urllib.request
 from pathlib import Path
 import numpy as np, pandas as pd
 from . import poll_overrides as PO
-from . import model as M, wiki_polls as W
+from . import model as M, wiki_polls as W, rcv as RC
 ROOT = Path(__file__).resolve().parents[1]
 TWO_YEAR = {"NH", "VT"}
 POLL_SD, POLL_SYS = M.SEN_POLL_SD, M.SEN_POLL_SYS
@@ -125,6 +125,18 @@ def race_polls(R, refresh=True):
             if pty == "D" and (d is None or pct > d): d, dn = pct, a["choice"]
             elif pty == "R" and (r_ is None or pct > r_): r_, rn = pct, a["choice"]
         if d is None or r_ is None: continue
+        if RC.applies("governor", st):
+            # ranked choice (midterms/rcv.py, 2026-10-04): a two-name entry is a final-round version; a full field is converted with the
+            # transfer rates measured on past tabulations - replaces the party sum below, which moved EVERY eliminated Republican's vote
+            # to the Republican finalist (in past Alaska counts ~49 % went there, ~12 % to the other finalist, ~39 % exhausted)
+            cv = RC.votehub_answers([(a.get("choice"), a.get("pct")) for a in p.get("answers") or []], lambda c: party.get(_sur(c)))
+            if cv is None: continue
+            d, r_, mg_, dn, rn, oth_, how, rsd = cv
+            out.append({"seat": st, "pollster": str(p.get("pollster")) + {"DEM": " (D)", "REP": " (R)"}.get(p.get("partisan"), ""),
+                        "start_date": p.get("start_date") or p["end_date"], "end_date": p["end_date"], "dem": d, "rep": r_, "margin": mg_,
+                        "dem_name": dn, "rep_name": rn, "und": max(0.0, 100 - sum(float(a.get("pct") or 0) for a in p.get("answers") or [])),
+                        "other": oth_, "n": p.get("sample_size"), "grade": 1.5, "rcv": how, "rcv_sd": rsd})
+            continue
         if st == "AK":        # top-four + ranked choice: the first-round R (and D) vote is split, the final round consolidates it
             d = sum(float(a.get("pct") or 0) for a in p.get("answers") or [] if party.get(_sur(a.get("choice"))) == "D")
             r_ = sum(float(a.get("pct") or 0) for a in p.get("answers") or [] if party.get(_sur(a.get("choice"))) == "R")
@@ -148,8 +160,10 @@ def race_polls(R, refresh=True):
         # versions of one survey (same pollster, dates and matchup; a partisan tag on only some versions - TIPP MI 5/23 RV tagged REP,
         # LV not - is applied to the survey)
         df["pbase"] = df["pollster"].str.replace(r"\s*\((?:D|R)\)$", "", regex=True)
+        df = RC.prefer_final(df, ["seat", "pbase", "start_date", "end_date"])    # ranked choice: a final round is not averaged with round one
         key = ["seat", "pbase", "start_date", "end_date", "dem_name", "rep_name"]
         agg = {c: "first" for c in df.columns if c not in key}; agg.update({k: "mean" for k in ("dem", "rep", "margin", "und", "other")}); agg["n"] = "max"
+        if "rcv_sd" in df: agg["rcv_sd"] = "mean"
         agg["pollster"] = lambda x: max(x, key=len)                    # the tagged spelling if any version carries one
         nv = len(df); df = df.groupby(key, as_index=False, sort=False).agg(agg).drop(columns="pbase")
         if nv > len(df): print(f"  governor VoteHub: {nv} entries -> {len(df)} surveys (versions averaged)")
@@ -204,6 +218,7 @@ def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
         if len(q) and r.state != "AK": q = q[(q.dem_name.map(_sur) == _sur(dn)) & (q.rep_name.map(_sur) == _sur(rn))]
         if len(q): q = PO.apply(q, r.state, "governor")       # exact figures for rounded scraped copies (manual exact=1)
         man = M.manual_race_polls(r.state, "governor", q if len(q) else None, names=(dn, rn))
+        if RC.applies("governor", r.state): man = RC.convert_rows(man, RC.other_type_of(r.cands, (dn, rn)))
         if len(man): q = pd.concat([q, man], ignore_index=True)
         if len(q): q = M.collapse_versions(q.assign(_race=r.state), "_race").drop(columns="_race")       # one survey, one row
         inc = (1.0 if r.inc_party == "D" else -1.0 if r.inc_party == "R" else 0.0) if r.inc_running else 0.0
@@ -220,13 +235,17 @@ def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
         wp, wq = 1 / sd ** 2, (1.0 / (POLL_SD ** 2 * vm / ne + sys_r ** 2) if ne == ne else 0.0)
         mu = (wp * mu_prior + wq * (pm if pm == pm else 0)) / (wp + wq)
         sd_r = float(np.sqrt(1 / (wp + wq)))
-        if M.ROBUST_NU and len(qq): mu, sd_r = M.robust_blend(mu_prior, sd, qq, asof, POLL_SD, sys_r, M.ROBUST_NU)
+        rcv_on = RC.applies("governor", r.state); rsd = RC.race_sd(qq, asof) if rcv_on and len(qq) else 0.0   # ranked-choice transfer sd
+        if rsd > 0:
+            wq = 1.0 / (POLL_SD ** 2 * vm / ne + sys_r ** 2 + rsd ** 2) if ne == ne else 0.0
+            mu = (wp * mu_prior + wq * (pm if pm == pm else 0)) / (wp + wq); sd_r = float(np.sqrt(1 / (wp + wq)))
+        if M.ROBUST_NU and len(qq): mu, sd_r = M.robust_blend(mu_prior, sd, qq, asof, POLL_SD, float(np.hypot(sys_r, rsd)), M.ROBUST_NU)
         mu = mu + b[3] * heat.get(r.state, 0.0)
         rows.append({"state": r.state, "governor": r.governor, "inc_party": r.inc_party, "inc": inc, "dem": dn, "rep": rn, "lean": round(r.lean, 1),
                      "n_polls": int(len(qq)) if len(qq) else 0, "poll_margin": pm, "mu_prior": mu_prior, "mu": mu, "sd": sd_r,
                      "h_load": gscale * G.h_load.get(r.state, 0.0), "c_load": gscale * G.c_load.get(r.state, 0.0), "a_load": gscale * G.a_load.get(r.state, 0.0), "wnc_z": G.wnc_z.get(r.state, 0.0),
                      "group_shift": gscale * G.group_shift.get(r.state, 0.0),
-                     "newest_poll": q.end_date.max().date().isoformat() if len(q) else None})
+                     "newest_poll": q.end_date.max().date().isoformat() if len(q) else None, "rcv": RC.NOTE if rcv_on else "", "rcv_sd": rsd})
     S = pd.DataFrame(rows)
     # governors ride the national tide at b[3], not the Senate's 0.8: rescale the shared-draw simulation
     Sx = S.assign(elast=b[3] / SN.NAT_SLOPE)
