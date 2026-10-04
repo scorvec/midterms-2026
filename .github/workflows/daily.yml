@@ -1,0 +1,149 @@
+name: daily forecast
+
+# Polls are released mostly Wed-Fri, 10:00-17:00 New York time; 94 % are out by 21:00. The run starts at 02:30 UTC
+# (22:30 EDT / 21:30 EST). Scheduled runs can start late when GitHub is busy.
+on:
+  schedule:
+    - cron: "30 2 * * *"
+  workflow_dispatch:
+    inputs:
+      force_publish:
+        description: "Publish even if the publish gate holds (a polled race lost its polls, poll counts fell)"
+        type: boolean
+        default: false
+      weekly_report:
+        description: "Write the weekly change report today (it is written on Mondays anyway)"
+        type: boolean
+        default: false
+      fec_refresh:
+        description: "Re-pull June 30 fundraising from the OpenFEC API first (one-time input; needs the OPENFEC_API_KEY secret)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-forecast
+  cancel-in-progress: false
+
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PYTHONUNBUFFERED: "1"
+      TZ: America/New_York            # "today" = the New York date (the run's asof and snapshot names)
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # data/raw (fixed public downloads, UF/FL early-vote snapshots, registration files) and data/cache (Wikipedia page
+      # cache, the reconstructed history) carry over between runs. A rolling key: every run saves a new entry and restores
+      # the newest. Losing it only costs time (bootstrap re-downloads, the backfill rebuilds in ~10 min) - except the
+      # day-by-day diagnostic snapshots (FL statistics files, UF counts), which nothing in the forecast needs.
+      - name: Restore data cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            data/raw
+            data/cache
+          key: midterms-data-${{ github.run_id }}
+          restore-keys: midterms-data-
+
+      - name: Fetch fixed public inputs (only what is missing)
+        run: python -m midterms.bootstrap
+
+      - name: Refresh FEC fundraising (manual only)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.fec_refresh }}
+        env:
+          OPENFEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
+        run: python -m midterms.fec_money 2026
+
+      - name: Daily run
+        id: run
+        env:
+          MIDTERMS_FORCE_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.force_publish) && '1' || '0' }}
+        run: |
+          set +e
+          if [ "${{ github.event_name == 'workflow_dispatch' && inputs.weekly_report }}" = "true" ]; then
+            python -m midterms.weekly
+          else
+            python -m midterms.weekly --daily
+          fi
+          rc=$?
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          if [ "$rc" = "3" ]; then
+            echo "::warning::publish gate held - outputs not committed (rerun with force_publish to override)"
+          elif [ "$rc" != "0" ]; then
+            exit "$rc"
+          fi
+
+      - name: Save data cache
+        if: ${{ always() && steps.run.outcome != 'cancelled' }}
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            data/raw
+            data/cache
+          key: midterms-data-${{ github.run_id }}
+
+      # Snapshot the outputs, then on each attempt resync to the newest main, restore the snapshot, commit and push (no
+      # rebase, no merge of stale trees). The poll records in data/state are committed even when the publish is held.
+      - name: Commit outputs
+        if: ${{ steps.run.outcome == 'success' }}
+        env:
+          HELD: ${{ steps.run.outputs.rc == '3' }}
+        run: |
+          set -uo pipefail
+          paths="data/state"
+          if [ "$HELD" != "true" ]; then
+            paths="$paths web/data/model.json web/data/summary.json web/data/polls.json web/data/race_history.json web/data/whatif.json web/data/history reports"
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          SNAP=$(mktemp -d)
+          git add -A -- $paths
+          git diff --staged --name-only -z | tar cf "$SNAP/outs.tar" --null -T -
+          git reset -q
+          asof=$(python -c "import json; print(json.load(open('web/data/model.json'))['asof'])" 2>/dev/null || date +%F)
+          for i in 1 2 3 4 5; do
+            if ! timeout 120 git fetch -q origin main; then echo "fetch $i failed"; sleep 5; continue; fi
+            git reset -q --hard origin/main
+            tar xf "$SNAP/outs.tar"
+            git add -A -- $paths
+            if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "Daily forecast $asof"
+            if timeout 180 git push -q origin HEAD:main; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push $i rejected; resyncing and retrying"; sleep $((i * 5))
+          done
+          echo "::error::push failed after 5 attempts"; exit 1
+
+      - name: Upload diagnostics
+        if: ${{ always() && steps.run.outcome != 'cancelled' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagnostics-${{ github.run_id }}
+          retention-days: 30
+          if-no-files-found: ignore
+          path: |
+            web/data/pollster_deltas.json
+            web/data/registration.json
+            data/cache/pa_early_pace.csv
+            data/cache/registration_*.csv
+            data/cache/pollster_quality_2026.csv
+            data/cache/house2026_polls_rejected.csv
+
+      - name: Fail when the publish was held
+        if: ${{ steps.run.outputs.rc == '3' }}
+        run: |
+          echo "::error::publish gate held; see the 'Daily run' log"; exit 1

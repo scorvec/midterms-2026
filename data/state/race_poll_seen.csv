@@ -1,0 +1,807 @@
+office,seat,pollster,end,rec,kind
+house,AL-2,Tulchin Research (D),2026-08-31,2026-09-25,polls.json:first
+house,AL-2,DCCC (D),2026-07-30,2026-09-25,polls.json:first
+house,AL-2,Impact Research (D),2026-06-25,2026-09-25,polls.json:first
+house,AZ-2,GBAO (D),2026-08-24,2026-09-25,polls.json:first
+house,AZ-2,Peak Insights (R),2026-08-20,2026-09-25,polls.json:first
+house,AZ-2,GBAO (D),2026-06-15,2026-09-25,polls.json:first
+house,AZ-6,Normington Petts (D),2026-06-11,2026-09-25,polls.json:first
+house,AR-2,Hendrix College,2026-08-13,2026-09-25,polls.json:first
+house,AR-2,2040 Strategy Group (D),2026-05-08,2026-09-25,polls.json:first
+house,CA-1,SurveyUSA,2026-09-20,2026-09-25,polls.json:first
+house,CA-22,Tulchin Research (D),2026-06-21,2026-09-25,polls.json:first
+house,CA-48,SurveyUSA,2026-09-01,2026-09-25,polls.json:first
+house,CO-3,Keating Research (D),2026-07-23,2026-09-25,polls.json:first
+house,CO-5,Global Strategy Group (D),2026-07-21,2026-09-25,polls.json:first
+house,CO-8,McLaughlin and Associates (R),2026-09-17,2026-09-25,polls.json:first
+house,FL-8,Inquire LLC (R),2026-07-29,2026-09-25,polls.json:first
+house,FL-8,Public Policy Polling (D),2026-07-18,2026-09-25,polls.json:first
+house,FL-9,SEA Polling (D),2026-08-30,2026-09-25,polls.json:first
+house,FL-11,MDW Communications (D),2026-07-29,2026-09-25,polls.json:first
+house,FL-13,Hart Research Associates (D),2026-08-27,2026-09-25,polls.json:first
+house,FL-13,"Fabrizio, Lee & Associates (R)",2026-08-06,2026-09-25,polls.json:first
+house,FL-13,GQR (D),2026-08-06,2026-09-25,polls.json:first
+house,FL-13,Public Policy Polling (D),2026-05-20,2026-09-25,polls.json:first
+house,FL-13,"Fabrizio, Lee & Associates",2026-07-22,2026-09-25,polls.json:first
+house,FL-14,St. Pete Polls,2026-07-15,2026-09-25,polls.json:first
+house,FL-16,Sea Polling,2026-08-29,2026-09-25,polls.json:first
+house,FL-22,Tulchin Research (D),2026-08-31,2026-09-25,polls.json:first
+house,FL-22,Tavern Research (D),2026-08-12,2026-09-25,polls.json:first
+house,FL-25,Beacon Insights,2026-05-02,2026-09-25,polls.json:first
+house,FL-27,Tulchin Research (D),2026-09-13,2026-09-25,polls.json:first
+house,FL-27,Bendixen & Amandi International (D),2026-08-30,2026-09-25,polls.json:first
+house,GA-7,20/20 Insight (D),2026-08-26,2026-09-25,polls.json:first
+house,GA-11,Miller Consulting Services,2026-09-11,2026-09-25,polls.json:first
+house,ID-1,Change Research (D),2026-07-30,2026-09-25,polls.json:first
+house,ID-1,SurveyUSA,2026-07-14,2026-09-25,polls.json:first
+house,ID-1,SurveyUSA (I),2026-07-14,2026-09-25,polls.json:first
+house,IL-4,Independent Center Voice,2026-08-01,2026-09-25,polls.json:first
+house,IL-4,The Bullfinch Group,2026-08-04,2026-09-25,polls.json:first
+house,IN-5,Impact Research (D),2026-07-20,2026-09-25,polls.json:first
+house,IA-1,The Bullfinch Group/Independent Center,2026-07-16,2026-09-25,polls.json:first
+house,IA-2,Global Strategy Group (D),2026-07-19,2026-09-25,polls.json:first
+house,KY-6,Lake Research Partners(D),2026-08-23,2026-09-25,polls.json:first
+house,KY-6,DCCC (D),2026-07-30,2026-09-25,polls.json:first
+house,KY-6,GQR (D),2026-06-28,2026-09-25,polls.json:first
+house,ME-1,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+house,ME-2,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+house,ME-2,Impact Research (D),2026-09-12,2026-09-25,polls.json:first
+house,ME-2,DCCC Targeting Team (D),2026-08-13,2026-09-25,polls.json:first
+house,ME-2,Tulchin Research (D),2026-07-16,2026-09-25,polls.json:first
+house,MD-1,Z to A Research (D),2026-07-27,2026-09-25,polls.json:first
+house,MI-4,GBAO (D),2026-09-16,2026-09-25,polls.json:first
+house,MI-4,GBAO (D),2026-06-01,2026-09-25,polls.json:first
+house,MI-7,Global Strategy Group (D),2026-08-13,2026-09-25,polls.json:first
+house,MI-7,Data for Progress (D),2026-06-30,2026-09-25,polls.json:first
+house,MI-10,Global Strategy Group (D),2026-08-13,2026-09-25,polls.json:first
+house,MN-1,GBAO Strategies (D),2026-09-21,2026-09-25,polls.json:first
+house,MN-2,Impact Research (D),2026-09-13,2026-09-25,polls.json:first
+house,MN-2,Harper Polling (R),2026-06-21,2026-09-25,polls.json:first
+house,MO-2,FM3 Research (D),2026-05-31,2026-09-25,polls.json:first
+house,MO-2,Remington Research Group,2026-09-15,2026-09-25,polls.json:first
+house,MT-1,Public Policy Polling (D),2026-09-10,2026-09-25,polls.json:first
+house,MT-1,Rutgers University Eagleton Institute of Politics,2026-09-07,2026-09-25,polls.json:first
+house,MT-1,Impact Research (D),2026-06-25,2026-09-25,polls.json:first
+house,MT-1,Upswing Research (D),2026-05-05,2026-09-25,polls.json:first
+house,MT-2,Rutgers University Eagleton Institute of Politics,2026-09-07,2026-09-25,polls.json:first
+house,NE-1,Global Strategy Group (D),2026-09-03,2026-09-25,polls.json:first
+house,NE-1,Tavern Research (D),2026-05-19,2026-09-25,polls.json:first
+house,NE-1,Zenith Research (D),2026-05-11,2026-09-25,polls.json:first
+house,NE-2,SurveyUSA,2026-09-13,2026-09-25,polls.json:first
+house,NV-2,GBAO (D),2026-09-03,2026-09-25,polls.json:first
+house,NV-2,Strategies 360,2026-08-26,2026-09-25,polls.json:first
+house,NV-2,Wedgewood Polls,2026-07-12,2026-09-25,polls.json:first
+house,NH-1,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+house,NH-2,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+house,NH-2,Saint Anselm College,2026-08-18,2026-09-25,polls.json:first
+house,NH-2,Saint Anselm College,2026-06-25,2026-09-25,polls.json:first
+house,NJ-7,StimSight Research,2026-09-12,2026-09-25,polls.json:first
+house,NJ-7,Z to A Research,2026-05-26,2026-09-25,polls.json:first
+house,NM-2,SurveyUSA,2026-09-02,2026-09-25,polls.json:first
+house,NY-17,co/efficient (R),2026-07-22,2026-09-25,polls.json:first
+house,NY-17,FM3 Research (D),2026-07-01,2026-09-25,polls.json:first
+house,NY-18,Global Strategy Group (D),2026-07-26,2026-09-25,polls.json:first
+house,NY-21,Public Policy Polling (D),2026-09-10,2026-09-25,polls.json:first
+house,NY-21,Impact Research (D),2026-09-02,2026-09-25,polls.json:first
+house,NY-21,J.L. Partners,2026-08-17,2026-09-25,polls.json:first
+house,NY-21,SurveyUSA,2026-08-08,2026-09-25,polls.json:first
+house,NY-21,Impact Research (D),2026-05-31,2026-09-25,polls.json:first
+house,NC-1,GBAO (D),2026-09-11,2026-09-25,polls.json:first
+house,NC-1,GQR (D),2026-06-28,2026-09-25,polls.json:first
+house,NC-1,co/efficient (R),2026-04-29,2026-09-25,polls.json:first
+house,NC-3,Tulchin Research (D),2026-08-02,2026-09-25,polls.json:first
+house,NC-7,Public Policy Polling (D),2026-08-20,2026-09-25,polls.json:first
+house,NC-9,Lake Research Partners (D),2026-09-03,2026-09-25,polls.json:first
+house,NC-11,Public Policy Polling (D),2026-09-11,2026-09-25,polls.json:first
+house,OH-1,Quantus Insights,2026-08-24,2026-09-25,polls.json:first
+house,OH-7,Bedrock Polling (D),2026-08-10,2026-09-25,polls.json:first
+house,OH-7,co/efficient (R),2026-08-06,2026-09-25,polls.json:first
+house,OH-7,Tavern Research (D),2026-08-05,2026-09-25,polls.json:first
+house,OH-7,co/efficient (R),2026-07-30,2026-09-25,polls.json:first
+house,OH-7,GBAO (D),2026-06-20,2026-09-25,polls.json:first
+house,OH-7,Unknown (Reported by NOTUS) (R),2026-07-30,2026-09-25,polls.json:first
+house,OH-10,Global Strategy Group (D),2026-07-23,2026-09-25,polls.json:first
+house,OH-10,FM3 Research (D),2026-07-12,2026-09-25,polls.json:first
+house,OH-15,Hart Research (D),2026-08-09,2026-09-25,polls.json:first
+house,OH-15,Hart Research (D),2026-06-25,2026-09-25,polls.json:first
+house,OK-5,GBAO,2026-09-20,2026-09-25,polls.json:first
+house,PA-1,Public Opinion Strategies (R),2026-09-14,2026-09-25,polls.json:first
+house,PA-1,GQR (D),2026-08-23,2026-09-25,polls.json:first
+house,PA-1,Global Strategy Group (D),2026-08-09,2026-09-25,polls.json:first
+house,PA-7,Franklin & Marshall College,2026-09-20,2026-09-25,polls.json:first
+house,PA-7,GBAO (D),2026-07-02,2026-09-25,polls.json:first
+house,PA-8,Lake Research Partners (D),2026-06-23,2026-09-25,polls.json:first
+house,PA-8,Impact Research (D),2026-06-11,2026-09-25,polls.json:first
+house,PA-10,Franklin & Marshall College,2026-09-20,2026-09-25,polls.json:first
+house,SC-1,Public Policy Polling (D),2026-09-10,2026-09-25,polls.json:first
+house,SC-1,GQR (D),2026-07-22,2026-09-25,polls.json:first
+house,SC-7,Blueprint Polling (D),2026-07-28,2026-09-25,polls.json:first
+house,TN-5,Impact Research (D),2026-08-24,2026-09-25,polls.json:first
+house,TN-9,Hart Research Associates (D),2026-09-03,2026-09-25,polls.json:first
+house,TX-15,Public Policy Research/Texas Southern University,2026-08-22,2026-09-25,polls.json:first
+house,TX-15,Normington Petts (D),2026-07-27,2026-09-25,polls.json:first
+house,TX-15,Applecart (D),2026-05-25,2026-09-25,polls.json:first
+house,TX-15,Texas Southern University Barbara Jordan Public Policy Research and Survey Center,2026-07-30,2026-09-25,polls.json:first
+house,TX-15,TSU,2026-07-30,2026-09-25,polls.json:first
+house,TX-28,Public Policy Research/Texas Southern University,2026-08-22,2026-09-25,polls.json:first
+house,TX-28,Pulse Science Decision (R),2026-06-23,2026-09-25,polls.json:first
+house,TX-28,Texas Southern University Barbara Jordan Public Policy Research and Survey Center,2026-07-30,2026-09-25,polls.json:first
+house,TX-28,TSU,2026-07-30,2026-09-25,polls.json:first
+house,TX-34,Public Policy Research/Texas Southern University,2026-08-22,2026-09-25,polls.json:first
+house,TX-34,Ragnar Research Partners (R),2026-06-16,2026-09-25,polls.json:first
+house,TX-34,co/efficient (R),2026-04-29,2026-09-25,polls.json:first
+house,TX-34,Texas Southern University Barbara Jordan Public Policy Research and Survey Center,2026-07-30,2026-09-25,polls.json:first
+house,TX-34,TSU,2026-07-30,2026-09-25,polls.json:first
+house,TX-35,Normington Petts (D),2026-08-31,2026-09-25,polls.json:first
+house,UT-2,Crosby for Congress (D),2026-09-10,2026-09-25,polls.json:first
+house,VT-1,University of New Hampshire,2026-07-20,2026-09-25,polls.json:first
+house,VT-1,University of New Hampshire,2026-06-23,2026-09-25,polls.json:first
+house,VT-1,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+house,VA-1,DCCC Targeting Team (D),2026-09-17,2026-09-25,polls.json:first
+house,VA-2,Tulchin Research (D),2026-07-13,2026-09-25,polls.json:first
+house,VA-5,Expedition Strategies (D),2026-08-01,2026-09-25,polls.json:first
+house,WA-3,Emerson College,2026-07-10,2026-09-25,polls.json:first
+house,WA-3,co/efficient (R),2026-04-29,2026-09-25,polls.json:first
+house,WA-3,Voter Sciences (R),2026-08-20,2026-09-25,polls.json:first
+house,WA-5,Tavern Research (D),2026-05-25,2026-09-25,polls.json:first
+house,WI-1,Impact Research (D),2026-08-09,2026-09-25,polls.json:first
+house,WI-3,FM3 Research (D),2026-06-25,2026-09-25,polls.json:first
+house,WI-3,Impact Research (D),2026-05-31,2026-09-25,polls.json:first
+house,WI-6,Tavern Research (D),2026-05-28,2026-09-25,polls.json:first
+senate,AL,yes. every kid.,2026-07-11,2026-09-25,polls.json:first
+senate,AK,Fabrizio Ward (R)/ Impact Research (D),2026-09-11,2026-09-25,polls.json:first
+senate,AK,Data for Progress (D),2026-08-04,2026-09-25,polls.json:first
+senate,AK,co/efficient (R),2026-09-17,2026-09-25,polls.json:first
+senate,AK,Rasmussen Reports (R),2026-09-14,2026-09-25,polls.json:first
+senate,AK,Alaska Survey Research,2026-09-12,2026-09-25,polls.json:first
+senate,AK,Alaska Survey Research,2026-08-23,2026-09-25,polls.json:first
+senate,AK,Alaska Survey Research,2026-08-05,2026-09-25,polls.json:first
+senate,AK,New York Times/Siena University,2026-06-29,2026-09-25,polls.json:first
+senate,AK,Alaska Survey Research,2026-06-07,2026-09-25,polls.json:first
+senate,AK,Alaska Survey Research,2026-05-17,2026-09-25,polls.json:first
+senate,AK,AARP,2026-09-11,2026-09-25,polls.json:first
+senate,AR,J.L. Partners,2026-08-18,2026-09-25,polls.json:first
+senate,AR,Hendrix College,2026-08-12,2026-09-25,polls.json:first
+senate,AR,2040 Strategy Group (D),2026-07-25,2026-09-25,polls.json:first
+senate,FL,Stetson University,2026-09-21,2026-09-25,polls.json:first
+senate,FL,InsiderAdvantage (R),2026-09-21,2026-09-25,polls.json:first
+senate,FL,St. Pete Polls,2026-09-17,2026-09-25,polls.json:first
+senate,FL,Quantus Insights (R),2026-09-10,2026-09-25,polls.json:first
+senate,FL,Change Research (D),2026-09-09,2026-09-25,polls.json:first
+senate,FL,University of North Florida,2026-07-17,2026-09-25,polls.json:first
+senate,GA,YouGov,2026-09-18,2026-09-25,polls.json:first
+senate,GA,Quantus Insights (R),2026-09-16,2026-09-25,polls.json:first
+senate,GA,Rasmussen Reports (R),2026-09-14,2026-09-25,polls.json:first
+senate,GA,Trafalgar Group (R),2026-09-12,2026-09-25,polls.json:first
+senate,GA,InsiderAdvantage (R),2026-08-17,2026-09-25,polls.json:first
+senate,GA,Fabrizio Ward (R)/Impact Research (D),2026-07-16,2026-09-25,polls.json:first
+senate,GA,Wick,2026-06-30,2026-09-25,polls.json:first
+senate,GA,Beacon Research (D)/ Shaw & Co. Research (R),2026-06-27,2026-09-25,polls.json:first
+senate,GA,Big Data (R),2026-09-22,2026-09-25,polls.json:first
+senate,GA,InsiderAdvantage (R),2026-09-23,2026-09-25,polls.json:first
+senate,ID,Advanced Targeting Research,2026-09-16,2026-09-25,polls.json:first
+senate,ID,Peak Insights (R),2026-08-13,2026-09-25,polls.json:first
+senate,ID,The Bullfinch Group,2026-08-07,2026-09-25,polls.json:first
+senate,ID,Change Research (D),2026-07-30,2026-09-25,polls.json:first
+senate,ID,The Bullfinch Group,2026-06-01,2026-09-25,polls.json:first
+senate,IA,Marist College,2026-09-20,2026-09-25,polls.json:first
+senate,IA,Trafalgar Group (R),2026-09-18,2026-09-25,polls.json:first
+senate,IA,co/efficient (R),2026-09-16,2026-09-25,polls.json:first
+senate,IA,Cygnal (R),2026-09-11,2026-09-25,polls.json:first
+senate,IA,Rasmussen Reports (R),2026-09-10,2026-09-25,polls.json:first
+senate,IA,YouGov,2026-09-08,2026-09-25,polls.json:first
+senate,IA,Emerson College,2026-09-01,2026-09-25,polls.json:first
+senate,IA,Global Strategy Group (D),2026-08-31,2026-09-25,polls.json:first
+senate,IA,Wedgewood Polls,2026-08-29,2026-09-25,polls.json:first
+senate,IA,Abacus Data,2026-08-28,2026-09-25,polls.json:first
+senate,IA,Suffolk University,2026-08-23,2026-09-25,polls.json:first
+senate,IA,Emerson College,2026-08-04,2026-09-25,polls.json:first
+senate,IA,Beacon Research (D)/ Shaw & Co. Research (R),2026-06-27,2026-09-25,polls.json:first
+senate,IA,New York Times/Siena University,2026-06-27,2026-09-25,polls.json:first
+senate,IA,Cygnal (R),2026-06-19,2026-09-25,polls.json:first
+senate,IA,Global Strategy Group (D),2026-06-11,2026-09-25,polls.json:first
+senate,IA,Public Policy Polling (D),2026-06-04,2026-09-25,polls.json:first
+senate,KS,Wedgewood Polls,2026-09-24,2026-09-25,polls.json:first
+senate,KS,Emerson College,2026-09-16,2026-09-25,polls.json:first
+senate,KS,co/efficient (R),2026-09-10,2026-09-25,polls.json:first
+senate,KS,Global Strategy Group (D),2026-08-16,2026-09-25,polls.json:first
+senate,KS,Public Policy Polling (D),2026-08-08,2026-09-25,polls.json:first
+senate,KS,GBAO (D),2026-07-13,2026-09-25,polls.json:first
+senate,KY,Global Strategy Group (D),2026-08-27,2026-09-25,polls.json:first
+senate,LA,Hart Research Associates (D),2026-09-19,2026-09-25,polls.json:first
+senate,LA,Public Policy Polling (D),2026-07-22,2026-09-25,polls.json:first
+senate,ME,New York Times/Siena University,2026-09-22,2026-09-25,polls.json:first
+senate,ME,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+senate,ME,Quantus Insights (R),2026-09-15,2026-09-25,polls.json:first
+senate,ME,University of Massachusetts/YouGov,2026-09-14,2026-09-25,polls.json:first
+senate,ME,Rasmussen Reports (R),2026-09-10,2026-09-25,polls.json:first
+senate,ME,YouGov,2026-09-08,2026-09-25,polls.json:first
+senate,ME,SSRS,2026-09-06,2026-09-25,polls.json:first
+senate,ME,Abacus Data,2026-08-28,2026-09-25,polls.json:first
+senate,ME,Beacon Research (D)/ Shaw & Co. Research (R),2026-08-10,2026-09-25,polls.json:first
+senate,ME,Hart Research (D),2026-08-01,2026-09-25,polls.json:first
+senate,ME,University of New Hampshire,2026-07-20,2026-09-25,polls.json:first
+senate,ME,Z to A Research (D),2026-07-08,2026-09-25,polls.json:first
+senate,ME,Public Policy Polling (D),2026-07-07,2026-09-25,polls.json:first
+senate,ME,Wedgewood Polls (D),2026-07-06,2026-09-25,polls.json:first
+senate,MA,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+senate,MA,University of New Hampshire,2026-08-24,2026-09-25,polls.json:first
+senate,MA,UMass Amherst/YouGov,2026-08-12,2026-09-25,polls.json:first
+senate,MA,University of New Hampshire,2026-06-23,2026-09-25,polls.json:first
+senate,MA,Suffolk University,2026-06-12,2026-09-25,polls.json:first
+senate,MI,co/efficient (R),2026-09-23,2026-09-25,polls.json:first
+senate,MI,New York Times/Siena University,2026-09-22,2026-09-25,polls.json:first
+senate,MI,Suffolk University,2026-09-20,2026-09-25,polls.json:first
+senate,MI,InsiderAdvantage (R),2026-09-17,2026-09-25,polls.json:first
+senate,MI,Emerson College,2026-09-14,2026-09-25,polls.json:first
+senate,MI,The Washington Post/SSPG,2026-09-14,2026-09-25,polls.json:first
+senate,MI,Trafalgar Group (R),2026-09-09,2026-09-25,polls.json:first
+senate,MI,SSRS,2026-09-06,2026-09-25,polls.json:first
+senate,MI,Glengariff Group,2026-09-03,2026-09-25,polls.json:first
+senate,MI,Abacus Data,2026-08-28,2026-09-25,polls.json:first
+senate,MI,EPIC-MRA,2026-08-28,2026-09-25,polls.json:first
+senate,MI,Michigan State University/YouGov,2026-08-20,2026-09-25,polls.json:first
+senate,MI,Susquehanna Polling & Research (R),2026-08-17,2026-09-25,polls.json:first
+senate,MI,Fabrizio Ward (R)/ Impact Research (D),2026-08-11,2026-09-25,polls.json:first
+senate,MI,TIPP Insights (R),2026-08-10,2026-09-25,polls.json:first
+senate,MI,GBAO (D),2026-08-10,2026-09-25,polls.json:first
+senate,MI,Beacon Research (D)/ Shaw & Co. Research (R),2026-08-10,2026-09-25,polls.json:first
+senate,MI,EPIC-MRA,2026-07-31,2026-09-25,polls.json:first
+senate,MI,SoCal Strategies (R),2026-07-30,2026-09-25,polls.json:first
+senate,MI,Mitchell Research & Communications,2026-07-29,2026-09-25,polls.json:first
+senate,MI,Glengariff Group,2026-07-24,2026-09-25,polls.json:first
+senate,MI,Quantus Insights (R),2026-06-30,2026-09-25,polls.json:first
+senate,MI,Data for Progress (D),2026-06-22,2026-09-25,polls.json:first
+senate,MI,Zenith Research (D),2026-06-14,2026-09-25,polls.json:first
+senate,MI,Mitchell Research & Communications,2026-06-13,2026-09-25,polls.json:first
+senate,MI,Tulchin Research (D),2026-06-04,2026-09-25,polls.json:first
+senate,MI,TIPP Insights (R),2026-05-23,2026-09-25,polls.json:first
+senate,MI,Mitchell Research,2026-05-07,2026-09-25,polls.json:first
+senate,MI,Glengariff Group,2026-05-01,2026-09-25,polls.json:first
+senate,MI,Rasmussen (R),2026-09-22,2026-09-25,polls.json:first
+senate,MI,Torchlight Strategies,2026-09-19,2026-09-25,polls.json:first
+senate,MI,Mitchell Research & Communications,2026-08-29,2026-09-25,polls.json:first
+senate,MN,co/efficient (R),2026-09-15,2026-09-25,polls.json:first
+senate,MN,Quantus Insights (R),2026-09-10,2026-09-25,polls.json:first
+senate,MN,KSTP/SurveyUSA,2026-09-14,2026-09-25,polls.json:first
+senate,MN,TIPP Insights (R),2026-09-02,2026-09-25,polls.json:first
+senate,MN,Deep Root Analytics (R),2026-08-18,2026-09-25,polls.json:first
+senate,MN,KTSP/SurveyUSA,2026-08-17,2026-09-25,polls.json:first
+senate,MN,Impact Research (D),2026-05-28,2026-09-25,polls.json:first
+senate,MS,Data for Progress (D),2026-08-15,2026-09-25,polls.json:first
+senate,MT,Quantus Insights (R),2026-09-15,2026-09-25,polls.json:first
+senate,MT,Aspect Strategic,2026-09-15,2026-09-25,polls.json:first
+senate,MT,Rutgers University Eagleton Institute of Politics,2026-09-07,2026-09-25,polls.json:first
+senate,MT,Peak Insights,2026-08-25,2026-09-25,polls.json:first
+senate,MT,Hart Research (D),2026-08-04,2026-09-25,polls.json:first
+senate,MT,Tavern Research (D),2026-07-27,2026-09-25,polls.json:first
+senate,MT,GQR (D),2026-07-26,2026-09-25,polls.json:first
+senate,MT,Bullfinch Group (R),2026-07-16,2026-09-25,polls.json:first
+senate,MT,GrayHouse (R),2026-06-24,2026-09-25,polls.json:first
+senate,MT,Hart Research (D),2026-06-24,2026-09-25,polls.json:first
+senate,MT,Tavern Research (D),2026-06-19,2026-09-25,polls.json:first
+senate,MT,Public Opinion Strategies (R),2026-06-11,2026-09-25,polls.json:first
+senate,NE,Wedgewood Polls,2026-09-16,2026-09-25,polls.json:first
+senate,NE,SurveyUSA,2026-09-13,2026-09-25,polls.json:first
+senate,NE,GBAO (D),2026-09-08,2026-09-25,polls.json:first
+senate,NE,Impact Research (D),2026-08-13,2026-09-25,polls.json:first
+senate,NE,GBAO (D),2026-07-20,2026-09-25,polls.json:first
+senate,NE,Tavern Research (D),2026-05-11,2026-09-25,polls.json:first
+senate,NH,New York Times/Siena University,2026-09-22,2026-09-25,polls.json:first
+senate,NH,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+senate,NH,InsiderAdvantage (R),2026-09-17,2026-09-25,polls.json:first
+senate,NH,co/efficient (R),2026-09-11,2026-09-25,polls.json:first
+senate,NH,Rasmussen Reports (R),2026-09-10,2026-09-25,polls.json:first
+senate,NH,"Fabrizio, Lee, & Associates (R)",2026-08-30,2026-09-25,polls.json:first
+senate,NH,University of New Hampshire,2026-08-24,2026-09-25,polls.json:first
+senate,NH,Saint Anselm College,2026-08-18,2026-09-25,polls.json:first
+senate,NH,Peak Insights (R),2026-06-27,2026-09-25,polls.json:first
+senate,NH,Saint Anselm College,2026-06-25,2026-09-25,polls.json:first
+senate,NH,University of New Hampshire,2026-06-23,2026-09-25,polls.json:first
+senate,NM,Research & Polling Inc.,2026-08-28,2026-09-25,polls.json:first
+senate,NC,Quantus Insights (R),2026-09-22,2026-09-25,polls.json:first
+senate,NC,YouGov,2026-09-18,2026-09-25,polls.json:first
+senate,NC,InsiderAdvantage (R),2026-09-17,2026-09-25,polls.json:first
+senate,NC,High Point University,2026-09-16,2026-09-25,polls.json:first
+senate,NC,Harper Polling (R),2026-09-15,2026-09-25,polls.json:first
+senate,NC,The Trafalgar Group (R),2026-09-10,2026-09-25,polls.json:first
+senate,NC,East Carolina University,2026-09-03,2026-09-25,polls.json:first
+senate,NC,Elon University/YouGov,2026-08-31,2026-09-25,polls.json:first
+senate,NC,High Point University/YouGov,2026-08-12,2026-09-25,polls.json:first
+senate,NC,Harper Polling (R),2026-08-10,2026-09-25,polls.json:first
+senate,NC,Change Research (D),2026-08-06,2026-09-25,polls.json:first
+senate,NC,Change Research (D),2026-08-01,2026-09-25,polls.json:first
+senate,NC,Elon University/YouGov,2026-07-31,2026-09-25,polls.json:first
+senate,NC,Beacon Research (D)/ Shaw & Co. Research (R),2026-07-27,2026-09-25,polls.json:first
+senate,NC,Public Policy Polling (D),2026-07-11,2026-09-25,polls.json:first
+senate,NC,New York Times/Siena University,2026-06-27,2026-09-25,polls.json:first
+senate,NC,Catawba College/YouGov,2026-06-10,2026-09-25,polls.json:first
+senate,NC,Harper Polling (R),2026-05-11,2026-09-25,polls.json:first
+senate,NC,Change Research (D),2026-05-08,2026-09-25,polls.json:first
+senate,NC,Rasmussen (R),2026-09-22,2026-09-25,polls.json:first
+senate,NC,Opinion Diagnostics,2026-09-20,2026-09-25,polls.json:first
+senate,OH,Quantus Insights (R),2026-09-23,2026-09-25,polls.json:first
+senate,OH,Trafalgar Group (R),2026-09-16,2026-09-25,polls.json:first
+senate,OH,Bowling Green State University/YouGov,2026-09-10,2026-09-25,polls.json:first
+senate,OH,InsiderAdvantage (R),2026-09-09,2026-09-25,polls.json:first
+senate,OH,Abacus Data,2026-08-28,2026-09-25,polls.json:first
+senate,OH,Wedgewood Polls,2026-08-13,2026-09-25,polls.json:first
+senate,OH,Beacon Research (D)/ Shaw & Co. Research (R),2026-08-10,2026-09-25,polls.json:first
+senate,OH,Tulchin Research (D),2026-08-04,2026-09-25,polls.json:first
+senate,OH,New York Times/Siena University,2026-06-28,2026-09-25,polls.json:first
+senate,OH,Fabrizio Ward (R)/ Impact Research (D),2026-06-16,2026-09-25,polls.json:first
+senate,OH,Tulchin Research (D),2026-06-04,2026-09-25,polls.json:first
+senate,OH,Beacon Research (D)/ Shaw & Co. Research (R),2026-06-01,2026-09-25,polls.json:first
+senate,OK,CHS & Associates,2026-08-06,2026-09-25,polls.json:first
+senate,RI,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+senate,RI,University of New Hampshire,2026-08-24,2026-09-25,polls.json:first
+senate,RI,University of New Hampshire,2026-06-23,2026-09-25,polls.json:first
+senate,SC,InsiderAdvantage (R),2026-09-09,2026-09-25,polls.json:first
+senate,SC,Abacus Data,2026-08-28,2026-09-25,polls.json:first
+senate,SC,Impact Research (D),2026-08-24,2026-09-25,polls.json:first
+senate,SC,Impact Research (D),2026-08-22,2026-09-25,polls.json:first
+senate,SC,Impact Research (D),2026-06-22,2026-09-25,polls.json:first
+senate,SC,Rasmussen (R),2026-09-14,2026-09-25,polls.json:first
+senate,SC,Rasmussen (R),2026-09-24,2026-09-25,polls.json:first
+senate,SD,Public Policy Polling (D),2026-09-09,2026-09-25,polls.json:first
+senate,SD,Impact Research (D),2026-08-17,2026-09-25,polls.json:first
+senate,SD,Public Opinion Strategies (R),2026-07-09,2026-09-25,polls.json:first
+senate,SD,Public Policy Polling (D),2026-05-30,2026-09-25,polls.json:first
+senate,TN,Targoz Market Research,2026-08-26,2026-09-25,polls.json:first
+senate,TX,Texas Public Opinion Research,2026-09-22,2026-09-25,polls.json:first
+senate,TX,Marist University,2026-09-20,2026-09-25,polls.json:first
+senate,TX,Texas Southern University,2026-09-19,2026-09-25,polls.json:first
+senate,TX,Trafalgar Group (R),2026-09-17,2026-09-25,polls.json:first
+senate,TX,Emerson College,2026-09-14,2026-09-25,polls.json:first
+senate,TX,SoCal Strategies,2026-09-13,2026-09-25,polls.json:first
+senate,TX,ReconMR/Siena University,2026-09-11,2026-09-25,polls.json:first
+senate,TX,Mason-Dixon,2026-09-10,2026-09-25,polls.json:first
+senate,TX,InsiderAdvantage,2026-09-09,2026-09-25,polls.json:first
+senate,TX,Univision/YouGov,2026-09-04,2026-09-25,polls.json:first
+senate,TX,Fabrizio Ward (R)/ Impact Research (D),2026-09-01,2026-09-25,polls.json:first
+senate,TX,Overton Insights (R),2026-08-26,2026-09-25,polls.json:first
+senate,TX,Texas Public Opinion Research (D),2026-08-24,2026-09-25,polls.json:first
+senate,TX,University of Texas/Texas Politics Project,2026-08-13,2026-09-25,polls.json:first
+senate,TX,Emerson College,2026-08-10,2026-09-25,polls.json:first
+senate,TX,Wedgewood Polls,2026-07-31,2026-09-25,polls.json:first
+senate,TX,YouGov Blue (D),2026-07-31,2026-09-25,polls.json:first
+senate,TX,Texas A&M University/ReconMR/Siena University,2026-07-30,2026-09-25,polls.json:first
+senate,TX,Texas Southern University,2026-07-30,2026-09-25,polls.json:first
+senate,TX,Beacon Research (D)/ Shaw & Co. Research (R),2026-07-27,2026-09-25,polls.json:first
+senate,TX,Texas Public Opinion Research (D),2026-07-17,2026-09-25,polls.json:first
+senate,TX,A2 Insights,2026-06-28,2026-09-25,polls.json:first
+senate,TX,New York Times/Siena University,2026-06-27,2026-09-25,polls.json:first
+senate,TX,SoCal Strategies (R),2026-06-21,2026-09-25,polls.json:first
+senate,TX,University of Texas/Texas Politics Project,2026-06-12,2026-09-25,polls.json:first
+senate,TX,Quantus Insights,2026-06-04,2026-09-25,polls.json:first
+senate,TX,Texas A&M University/ReconMR/Siena University,2026-06-04,2026-09-25,polls.json:first
+senate,TX,Texas Public Opinion Research (D),2026-05-28,2026-09-25,polls.json:first
+senate,TX,Public Policy Polling (D),2026-05-23,2026-09-25,polls.json:first
+senate,TX,Texas Southern University,2026-05-06,2026-09-25,polls.json:first
+senate,TX,TPP,2026-08-13,2026-09-25,polls.json:first
+senate,TX,TSU,2026-08-22,2026-09-25,polls.json:first
+senate,TX,Slightshot,2026-08-24,2026-09-25,polls.json:first
+senate,TX,AARP,2026-09-01,2026-09-25,polls.json:first
+senate,TX,Barbara Jordan Public Policy Research and Survey Center,2026-09-19,2026-09-25,polls.json:first
+senate,TX,Slingshot Strategies,2026-08-24,2026-09-25,polls.json:first
+senate,TX,Slingshot Strategies,2026-09-22,2026-09-25,polls.json:first
+senate,TX,"GOP internal via Quorum Report [State Senate District 9 (Tarrant County / Fort Worth), projected statewide]",2026-09-15,2026-09-25,polls.json:first
+senate,VA,The Public Sentiment Institute,2026-06-16,2026-09-25,polls.json:first
+senate,VA,The Public Sentiment Institute/ Virginia Project (R),2026-05-05,2026-09-25,polls.json:first
+governor,AL,yes. every kid.,2026-07-11,2026-09-25,polls.json:first
+governor,AK,"Fabrizio, Lee & Associates/Impact Research",2026-09-11,2026-09-25,polls.json:first
+governor,AK,co/efficient (R),2026-09-17,2026-09-25,polls.json:first
+governor,AK,AARP,2026-09-11,2026-09-25,polls.json:first
+governor,AZ,Noble Predictive Insights,2026-05-07,2026-09-25,polls.json:first
+governor,AZ,"Fabrizio, Lee & Associates/Impact Research",2026-07-28,2026-09-25,polls.json:first
+governor,AZ,The Tarrance Group,2026-07-30,2026-09-25,polls.json:first
+governor,AZ,Stealth Analytics,2026-08-13,2026-09-25,polls.json:first
+governor,AZ,Noble Predictive Insights,2026-08-13,2026-09-25,polls.json:first
+governor,AZ,NextGen Polling,2026-08-19,2026-09-25,polls.json:first
+governor,AZ,Kreate Strategies (R),2026-08-16,2026-09-25,polls.json:first
+governor,AZ,Quantus Insights,2026-08-17,2026-09-25,polls.json:first
+governor,AZ,HighGround,2026-08-18,2026-09-25,polls.json:first
+governor,AZ,Grayhouse (R),2026-08-11,2026-09-25,polls.json:first
+governor,AR,Hendrix College,2026-08-12,2026-09-25,polls.json:first
+governor,CA,Kreate Strategies,2026-06-17,2026-09-25,polls.json:first
+governor,CA,UC Berkeley Institute of Governmental Studies,2026-08-09,2026-09-25,polls.json:first
+governor,CA,SurveyUSA,2026-09-20,2026-09-25,polls.json:first
+governor,CA,UC Berkeley Institute of Governmental Studies,2026-09-20,2026-09-25,polls.json:first
+governor,CA,University of California Berkeley Jack Citrin Center for Public Opinion Research/Verasight/TrueDot,2026-09-16,2026-09-25,polls.json:first
+governor,CA,PPIC,2026-09-10,2026-09-25,polls.json:first
+governor,CA,PPIC,2026-07-06,2026-09-25,polls.json:first
+governor,CA,CEPP,2026-05-26,2026-09-25,polls.json:first
+governor,CA,Berkeley IGS,2026-05-24,2026-09-25,polls.json:first
+governor,CA,Wolfson (R),2026-08-16,2026-09-25,polls.json:first
+governor,CA,University of California Berkeley Institute of Governmental Studies,2026-09-20,2026-09-25,polls.json:first
+governor,CT,University of New Hampshire,2026-06-23,2026-09-25,polls.json:first
+governor,CT,GreatBlue Research,2026-07-26,2026-09-25,polls.json:first
+governor,CT,University of New Hampshire,2026-08-24,2026-09-25,polls.json:first
+governor,CT,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+governor,CT,co/efficient ,2026-09-17,2026-09-25,polls.json:first
+governor,CT,Quinnipiac University Polling Institute,2026-09-14,2026-09-25,polls.json:first
+governor,CT,GreatBlue Research,2026-09-08,2026-09-25,polls.json:first
+governor,CT,Sacred Heart University/WFSB/CT Insider,2026-07-26,2026-09-25,polls.json:first
+governor,FL,Cherry Communications (R),2026-05-09,2026-09-25,polls.json:first
+governor,FL,Change Research,2026-05-16,2026-09-25,polls.json:first
+governor,FL,University of North Florida,2026-07-17,2026-09-25,polls.json:first
+governor,FL,Targoz Market Research,2026-07-26,2026-09-25,polls.json:first
+governor,FL,Change Research,2026-09-09,2026-09-25,polls.json:first
+governor,FL,St. Pete Polls,2026-09-17,2026-09-25,polls.json:first
+governor,FL,Stetson University Center for Public Opinion Research,2026-09-21,2026-09-25,polls.json:first
+governor,FL,Hart Research Associates (D),2026-08-13,2026-09-25,polls.json:first
+governor,FL,Change Research (D),2026-07-11,2026-09-25,polls.json:first
+governor,GA,Concord Public Opinion Partners (D),2026-06-02,2026-09-25,polls.json:first
+governor,GA,Beacon Research/Shaw & Co. Research,2026-06-27,2026-09-25,polls.json:first
+governor,GA,Wick,2026-06-30,2026-09-25,polls.json:first
+governor,GA,"Fabrizio, Lee & Associates/Impact Research",2026-07-16,2026-09-25,polls.json:first
+governor,GA,Quantus Insights,2026-08-01,2026-09-25,polls.json:first
+governor,GA,InsiderAdvantage,2026-08-17,2026-09-25,polls.json:first
+governor,GA,Big Data Poll,2026-09-23,2026-09-25,polls.json:first
+governor,GA,InsiderAdvantage,2026-09-23,2026-09-25,polls.json:first
+governor,GA,YouGov,2026-09-18,2026-09-25,polls.json:first
+governor,GA,Rasmussen Reports (R),2026-09-14,2026-09-25,polls.json:first
+governor,GA,State Navigate,2026-07-13,2026-09-25,polls.json:first
+governor,ID,Advanced Targeting Research,2026-09-16,2026-09-25,polls.json:first
+governor,ID,Change Research (I),2026-07-30,2026-09-25,polls.json:first
+governor,IA,Cygnal (R),2026-06-19,2026-09-25,polls.json:first
+governor,IA,The New York Times/Siena University,2026-06-17,2026-09-25,polls.json:first
+governor,IA,Beacon Research/Shaw & Co. Research,2026-06-27,2026-09-25,polls.json:first
+governor,IA,Emerson College,2026-08-04,2026-09-25,polls.json:first
+governor,IA,Suffolk University,2026-08-23,2026-09-25,polls.json:first
+governor,IA,YouGov,2026-09-08,2026-09-25,polls.json:first
+governor,IA,Wedgewood Polls,2026-08-29,2026-09-25,polls.json:first
+governor,IA,Emerson College,2026-09-01,2026-09-25,polls.json:first
+governor,IA,co/efficient (R),2026-09-16,2026-09-25,polls.json:first
+governor,IA,Marist University,2026-09-20,2026-09-25,polls.json:first
+governor,IA,Cygnal (R),2026-09-11,2026-09-25,polls.json:first
+governor,IA,New York Times/ Siena University,2026-06-27,2026-09-25,polls.json:first
+governor,KS,Emerson College,2026-09-16,2026-09-25,polls.json:first
+governor,KS,Wedgewood Polls,2026-09-24,2026-09-25,polls.json:first
+governor,KS,co/efficient (R),2026-09-10,2026-09-25,polls.json:first
+governor,KS,Global Strategy Group (D),2026-08-16,2026-09-25,polls.json:first
+governor,ME,The New York Times/Siena University,2026-06-26,2026-09-25,polls.json:first
+governor,ME,Beacon Research/Shaw & Co. Research,2026-06-27,2026-09-25,polls.json:first
+governor,ME,University of New Hampshire,2026-07-20,2026-09-25,polls.json:first
+governor,ME,Beacon Research/Shaw & Co. Research,2026-08-10,2026-09-25,polls.json:first
+governor,ME,YouGov,2026-09-08,2026-09-25,polls.json:first
+governor,ME,University of Massachusetts Lowell Center for Public Opinion/YouGov,2026-09-14,2026-09-25,polls.json:first
+governor,ME,The New York Times/Siena University,2026-09-22,2026-09-25,polls.json:first
+governor,ME,SSRS,2026-09-06,2026-09-25,polls.json:first
+governor,ME,UNH,2026-09-21,2026-09-25,polls.json:first
+governor,MD,Zenith Research (D),2026-08-03,2026-09-25,polls.json:first
+governor,MA,Suffolk University,2026-06-12,2026-09-25,polls.json:first
+governor,MA,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+governor,MA,University of New Hampshire,2026-08-24,2026-09-25,polls.json:first
+governor,MA,UMass Amherst/YouGov,2026-08-12,2026-09-25,polls.json:first
+governor,MA,University of New Hampshire,2026-06-23,2026-09-25,polls.json:first
+governor,MA,Polity Research Consulting,2026-05-07,2026-09-25,polls.json:first
+governor,MI,TIPP Insights,2026-05-23,2026-09-25,polls.json:first
+governor,MI,TIPP Insights (R),2026-05-23,2026-09-25,polls.json:first
+governor,MI,"Glengariff Group, Inc.",2026-07-24,2026-09-25,polls.json:first
+governor,MI,EPIC-MRA,2026-07-31,2026-09-25,polls.json:first
+governor,MI,Mitchell Research & Communications,2026-07-29,2026-09-25,polls.json:first
+governor,MI,Beacon Research/Shaw & Co. Research,2026-08-10,2026-09-25,polls.json:first
+governor,MI,"Fabrizio, Lee & Associates/Impact Research",2026-08-11,2026-09-25,polls.json:first
+governor,MI,EPIC-MRA,2026-08-28,2026-09-25,polls.json:first
+governor,MI,Michigan State University Institute for Public Policy and Social Research/YouGov,2026-08-20,2026-09-25,polls.json:first
+governor,MI,The Washington Post/George Mason University School of Policy and Government,2026-09-14,2026-09-25,polls.json:first
+governor,MI,Emerson College,2026-09-14,2026-09-25,polls.json:first
+governor,MI,Suffolk University,2026-09-20,2026-09-25,polls.json:first
+governor,MI,co/efficient,2026-09-23,2026-09-25,polls.json:first
+governor,MI,The New York Times/Siena University,2026-09-22,2026-09-25,polls.json:first
+governor,MI,SSRS,2026-09-06,2026-09-25,polls.json:first
+governor,MI,Glengariff Group,2026-09-03,2026-09-25,polls.json:first
+governor,MI,TIPP Insights (R),2026-08-10,2026-09-25,polls.json:first
+governor,MI,Mitchell Research,2026-06-13,2026-09-25,polls.json:first
+governor,MI,Torchlight Strategies,2026-09-19,2026-09-25,polls.json:first
+governor,MN,"Mason-Dixon Polling & Research, Inc.",2026-06-10,2026-09-25,polls.json:first
+governor,MN,SurveyUSA,2026-08-17,2026-09-25,polls.json:first
+governor,MN,SurveyUSA,2026-09-14,2026-09-25,polls.json:first
+governor,MN,co/efficient (R),2026-09-15,2026-09-25,polls.json:first
+governor,MN,TIPP Insights,2026-09-02,2026-09-25,polls.json:first
+governor,NE,Wedgewood Polls,2026-09-16,2026-09-25,polls.json:first
+governor,NE,Public Policy Polling (D),2026-09-02,2026-09-25,polls.json:first
+governor,NE,SurveyUSA,2026-09-13,2026-09-25,polls.json:first
+governor,NE,Lake Research Partners (D),2026-04-29,2026-09-25,polls.json:first
+governor,NV,Emerson College,2026-09-08,2026-09-25,polls.json:first
+governor,NV,Tarrance Group (R),2026-07-29,2026-09-25,polls.json:first
+governor,NV,Public Policy Polling (D),2026-07-16,2026-09-25,polls.json:first
+governor,NV,Wedgewood Polls (D),2026-07-12,2026-09-25,polls.json:first
+governor,NV,Grassroots Targeting (R),2026-07-06,2026-09-25,polls.json:first
+governor,NV,Public Opinion Strategies (R),2026-06-29,2026-09-25,polls.json:first
+governor,NV,Global Strategy Group (D),2026-05-11,2026-09-25,polls.json:first
+governor,NV,PPP (D),2026-09-15,2026-09-25,polls.json:first
+governor,NH,Saint Anselm,2026-06-25,2026-09-25,polls.json:first
+governor,NH,University of New Hampshire,2026-06-23,2026-09-25,polls.json:first
+governor,NH,Saint Anselm College Survey Center,2026-08-18,2026-09-25,polls.json:first
+governor,NH,University of New Hampshire,2026-08-24,2026-09-25,polls.json:first
+governor,NH,co/efficient,2026-09-11,2026-09-25,polls.json:first
+governor,NH,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+governor,NH,The New York Times/Siena University,2026-09-22,2026-09-25,polls.json:first
+governor,NM,Research & Polling Inc.,2026-08-28,2026-09-25,polls.json:first
+governor,NM,McLaughlin & Associates (R),2026-07-15,2026-09-25,polls.json:first
+governor,NM,BSP,2026-08-07,2026-09-25,polls.json:first
+governor,NM,Research & Polling,2026-08-28,2026-09-25,polls.json:first
+governor,NY,Siena College,2026-06-26,2026-09-25,polls.json:first
+governor,NY,Siena University,2026-04-30,2026-09-25,polls.json:first
+governor,NY,Pollfinity,2026-06-14,2026-09-25,polls.json:first
+governor,NY,Siena University,2026-06-23,2026-09-25,polls.json:first
+governor,NY,co/efficient,2026-07-02,2026-09-25,polls.json:first
+governor,NY,Red Oak Strategic (R),2026-07-12,2026-09-25,polls.json:first
+governor,NY,Siena University,2026-08-06,2026-09-25,polls.json:first
+governor,NY,Concord Public Opinion Partners (D),2026-08-21,2026-09-25,polls.json:first
+governor,NY,Quinnipiac University,2026-09-20,2026-09-25,polls.json:first
+governor,NY,Siena College,2026-09-17,2026-09-25,polls.json:first
+governor,NY,McLaughlin & Associates (R),2026-08-31,2026-09-25,polls.json:first
+governor,NY,Moxie Strategies,2026-07-28,2026-09-25,polls.json:first
+governor,OH,Beacon Research/Shaw & Co. Research,2026-06-01,2026-09-25,polls.json:first
+governor,OH,Fabrizio Ward/Impact Research,2026-06-16,2026-09-25,polls.json:first
+governor,OH,The New York Times/Siena University,2026-06-28,2026-09-25,polls.json:first
+governor,OH,Beacon Research/Shaw & Co. Research,2026-08-10,2026-09-25,polls.json:first
+governor,OH,Wedgewood Polls,2026-08-13,2026-09-25,polls.json:first
+governor,OH,Bowling Green State University/YouGov,2026-09-10,2026-09-25,polls.json:first
+governor,OH,Tulchin Research (D),2026-08-04,2026-09-25,polls.json:first
+governor,OH,Tulchin Research (D),2026-06-04,2026-09-25,polls.json:first
+governor,OR,DHM Research,2026-09-11,2026-09-25,polls.json:first
+governor,OR,Public Opinion Strategies (R),2026-06-24,2026-09-25,polls.json:first
+governor,OR,Hoffman Research Group (R),2026-05-12,2026-09-25,polls.json:first
+governor,PA,Bravo Group,2026-05-24,2026-09-25,polls.json:first
+governor,PA,Franklin & Marshall College Center for Opinion Research,2026-06-14,2026-09-25,polls.json:first
+governor,PA,MAD Global Strategy,2026-06-11,2026-09-25,polls.json:first
+governor,PA,Bravo Group,2026-07-24,2026-09-25,polls.json:first
+governor,PA,National Public Affairs (R),2026-07-30,2026-09-25,polls.json:first
+governor,PA,The New York Times/Siena University,2026-08-21,2026-09-25,polls.json:first
+governor,PA,Franklin & Marshall College,2026-08-23,2026-09-25,polls.json:first
+governor,PA,Bravo Group,2026-08-22,2026-09-25,polls.json:first
+governor,PA,The New York Times/Siena University,2026-09-22,2026-09-25,polls.json:first
+governor,PA,PennLive,2026-08-22,2026-09-25,polls.json:first
+governor,PA,Quinnipiac University,2026-07-13,2026-09-25,polls.json:first
+governor,PA,PennLive,2026-06-25,2026-09-25,polls.json:first
+governor,PA,PennLive,2026-05-24,2026-09-25,polls.json:first
+governor,RI,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+governor,RI,University of New Hampshire,2026-08-24,2026-09-25,polls.json:first
+governor,RI,Emerson College/WPRI-TV,2026-08-22,2026-09-25,polls.json:first
+governor,RI,University of New Hampshire,2026-06-23,2026-09-25,polls.json:first
+governor,SC,Public Policy Polling (D),2026-07-17,2026-09-25,polls.json:first
+governor,SC,Hart Research (D),2026-08-15,2026-09-25,polls.json:first
+governor,TN,Targoz Market Research,2026-08-26,2026-09-25,polls.json:first
+governor,TN,TargetSmart (D),2026-09-12,2026-09-25,polls.json:first
+governor,TX,ReconMR/Siena University,2026-06-04,2026-09-25,polls.json:first
+governor,TX,Texas Southern University Barbara Jordan Public Policy Research and Survey Center,2026-05-06,2026-09-25,polls.json:first
+governor,TX,Public Policy Polling (D),2026-05-23,2026-09-25,polls.json:first
+governor,TX,Slingshot Strategies,2026-05-28,2026-09-25,polls.json:first
+governor,TX,Texas Politics Project at the University of Texas/YouGov,2026-06-12,2026-09-25,polls.json:first
+governor,TX,SoCal Strategies (R),2026-06-21,2026-09-25,polls.json:first
+governor,TX,The New York Times/Siena University,2026-06-27,2026-09-25,polls.json:first
+governor,TX,Slingshot Strategies,2026-07-17,2026-09-25,polls.json:first
+governor,TX,Beacon Research/Shaw & Co. Research,2026-07-27,2026-09-25,polls.json:first
+governor,TX,Wedgewood Polls,2026-07-31,2026-09-25,polls.json:first
+governor,TX,Texas Southern University Barbara Jordan Public Policy Research and Survey Center,2026-07-30,2026-09-25,polls.json:first
+governor,TX,The Texas Politics Project at the University of Texas at Austin/YouGov,2026-08-13,2026-09-25,polls.json:first
+governor,TX,ReconMR/Siena University,2026-07-30,2026-09-25,polls.json:first
+governor,TX,Cygnal (R),2026-07-31,2026-09-25,polls.json:first
+governor,TX,Emerson College,2026-08-10,2026-09-25,polls.json:first
+governor,TX,Slingshot Strategies,2026-08-24,2026-09-25,polls.json:first
+governor,TX,YouGov,2026-09-04,2026-09-25,polls.json:first
+governor,TX,Fabrizio Ward/Impact Research,2026-09-01,2026-09-25,polls.json:first
+governor,TX,Emerson College,2026-09-14,2026-09-25,polls.json:first
+governor,TX,ReconMR/Siena University,2026-09-11,2026-09-25,polls.json:first
+governor,TX,Texas Southern University Barbara Jordan Public Policy Research and Survey Center,2026-09-19,2026-09-25,polls.json:first
+governor,TX,Slingshot Strategies,2026-09-22,2026-09-25,polls.json:first
+governor,TX,Marist University,2026-09-20,2026-09-25,polls.json:first
+governor,TX,SoCal Strategies (R),2026-09-13,2026-09-25,polls.json:first
+governor,TX,Mason-Dixon,2026-09-10,2026-09-25,polls.json:first
+governor,TX,Overton Insights (R),2026-08-26,2026-09-25,polls.json:first
+governor,TX,Texas Public Opinion Research,2026-08-24,2026-09-25,polls.json:first
+governor,TX,GBAO (D),2026-08-09,2026-09-25,polls.json:first
+governor,TX,Texas Public Opinion Research,2026-07-17,2026-09-25,polls.json:first
+governor,TX,Quantus Insights (R),2026-06-04,2026-09-25,polls.json:first
+governor,TX,Texas Public Opinion Research,2026-05-28,2026-09-25,polls.json:first
+governor,TX,TPP,2026-08-13,2026-09-25,polls.json:first
+governor,TX,TSU,2026-08-22,2026-09-25,polls.json:first
+governor,TX,Slightshot,2026-08-24,2026-09-25,polls.json:first
+governor,TX,TSU,2026-09-19,2026-09-25,polls.json:first
+governor,TX,TPOR,2026-09-22,2026-09-25,polls.json:first
+governor,TX,"GOP internal via Quorum Report [State Senate District 9 (Tarrant County / Fort Worth), projected statewide]",2026-09-15,2026-09-25,polls.json:first
+governor,VT,University of New Hampshire,2026-06-23,2026-09-25,polls.json:first
+governor,VT,University of New Hampshire,2026-07-20,2026-09-25,polls.json:first
+governor,VT,University of New Hampshire,2026-09-21,2026-09-25,polls.json:first
+governor,WI,RMG Research,2026-07-24,2026-09-25,polls.json:first
+governor,WI,GBAO Strategies (D),2026-08-03,2026-09-25,polls.json:first
+governor,WI,Platform Communications,2026-08-13,2026-09-25,polls.json:first
+governor,WI,TIPP Insights (R),2026-08-18,2026-09-25,polls.json:first
+governor,WI,Marquette University Law School,2026-08-20,2026-09-25,polls.json:first
+house,CA-48,Lake Research Partners (D),2026-07-14,2026-09-26,polls.json
+house,MN-1,GBAO (D),2026-09-21,2026-09-26,polls.json
+house,NH-2,St. Anselm,2026-06-25,2026-09-26,polls.json
+house,NH-2,St. Anselm,2026-08-18,2026-09-26,polls.json
+senate,AK,Trafalgar Group (R),2026-09-24,2026-09-26,polls.json
+senate,GA,Big Data Poll (R),2026-09-23,2026-09-26,polls.json
+senate,IA,InsiderAdvantage (R),2026-09-23,2026-09-26,polls.json
+senate,IA,Marist University,2026-09-20,2026-09-26,polls.json
+senate,ME,InsiderAdvantage (R),2026-09-23,2026-09-26,polls.json
+senate,MI,Big Data Poll (R),2026-09-24,2026-09-26,polls.json
+senate,MI,Torchlight Strategies (R),2026-09-19,2026-09-26,polls.json
+senate,NH,Trafalgar Group (R),2026-09-25,2026-09-26,polls.json
+senate,NH,St. Anselm,2026-06-25,2026-09-26,polls.json
+senate,NH,St. Anselm,2026-08-18,2026-09-26,polls.json
+senate,OH,Rasmussen Reports (R),2026-09-23,2026-09-26,polls.json
+senate,SC,Trafalgar Group (R),2026-09-25,2026-09-26,polls.json
+senate,TX,Texas Public Opinion Research (D),2026-09-22,2026-09-26,polls.json
+senate,TX,Barbara Jordan Public Policy Research and Survey Center,2026-05-06,2026-09-26,polls.json
+senate,TX,Barbara Jordan Public Policy Research and Survey Center,2026-07-30,2026-09-26,polls.json
+senate,TX,Slingshot Strategies,2026-05-28,2026-09-26,polls.json
+senate,TX,Slingshot Strategies,2026-07-17,2026-09-26,polls.json
+senate,TX,YouGov,2026-06-12,2026-09-26,polls.json
+senate,TX,YouGov,2026-08-13,2026-09-26,polls.json
+governor,AZ,NextGenP,2026-08-19,2026-09-26,polls.json
+governor,CA,University of California Berkeley Institute of Governmental Studies,2026-08-09,2026-09-26,polls.json
+governor,FL,Kaplan Strategies,2026-06-09,2026-09-26,polls.json
+governor,MI,Torchlight Strategies (R),2026-09-19,2026-09-26,polls.json
+governor,MI,Mitchell Research & Communications,2026-05-07,2026-09-26,polls.json
+governor,NV,Grassroots Targeting (R),2026-07-16,2026-09-26,polls.json
+governor,NH,St. Anselm,2026-06-25,2026-09-26,polls.json
+governor,NH,St. Anselm,2026-08-18,2026-09-26,polls.json
+governor,NM,BSP Research,2026-08-07,2026-09-26,polls.json
+governor,PA,Bravo Group,2026-06-25,2026-09-26,polls.json
+senate,IA,Big Data Poll(R),2026-09-26,2026-09-27,polls.json
+senate,IA,Big Data (R),2026-09-22,2026-09-27,polls.json
+senate,NH,Trafalgar Group (R),2026-09-27,2026-09-27,polls.json
+senate,TX,Big Data,2026-09-26,2026-09-27,polls.json
+governor,TX,Big Data Poll,2026-09-26,2026-09-27,polls.json
+house,MO-2,Remington Research Group (R),2026-09-15,2026-09-28,polls.json
+house,MT-1,American Pulse,2026-09-24,2026-09-28,polls.json
+house,NY-23,Public Policy Polling (D),2026-09-23,2026-09-28,polls.json
+house,OH-15,Hart Research Associates,2026-09-24,2026-09-28,polls.json
+house,UT-2,Crosby for Congress (D),2026-09-23,2026-09-28,polls.json
+house,VT-1,Braun Research/Vermont Public,2026-09-21,2026-09-28,polls.json
+senate,MI,GBAO,2026-09-22,2026-09-28,polls.json
+senate,MT,American Pulse,2026-09-24,2026-09-28,polls.json
+senate,NE,GBAO,2026-07-26,2026-09-28,polls.json
+senate,NC,Fabrizio Ward (R)/ Impact Research (D),2026-09-20,2026-09-28,polls.json
+senate,NC,AARP,2026-09-20,2026-09-28,polls.json
+senate,TX,Stratus Intelligence (R),2026-09-24,2026-09-28,polls.json
+governor,FL,Change Research ,2026-09-28,2026-09-28,polls.json
+governor,TX,Stratus Intelligence (R),2026-09-24,2026-09-28,polls.json
+governor,VT,Braun Research/Vermont Public,2026-09-21,2026-09-28,polls.json
+house,MT-1,American Pulse Research & Polling,2026-09-24,2026-09-29,polls.json
+house,OH-9,DCCC,2026-09-23,2026-09-29,polls.json
+house,OH-15,Hart Research Associates (D),2026-09-24,2026-09-29,polls.json
+house,WI-1,DCCC Targeting and Analytics Department (D),2026-09-23,2026-09-29,polls.json
+senate,FL,Change Research (D),2026-09-27,2026-09-29,polls.json
+senate,MA,MassINC,2026-09-22,2026-09-29,polls.json
+senate,MI,GBAO (D),2026-09-22,2026-09-29,polls.json
+senate,MI,Cygnal/Beacon,2026-09-21,2026-09-29,polls.json
+senate,MN,InsiderAdvantage (R),2026-09-29,2026-09-29,polls.json
+senate,OH,Big Data Poll (R),2026-09-27,2026-09-29,polls.json
+senate,OH,Marist University,2026-09-27,2026-09-29,polls.json
+senate,TX,Pulse Decision Science (R),2026-09-27,2026-09-29,polls.json
+senate,TX,Big Data Poll,2026-09-26,2026-09-29,polls.json
+governor,FL,Change Research,2026-09-27,2026-09-29,polls.json
+governor,MA,MassINC,2026-09-22,2026-09-29,polls.json
+governor,MI,Cygnal/Beacon Research,2026-09-21,2026-09-29,polls.json
+governor,NE,Lake Research Partners (D),2026-09-14,2026-09-29,polls.json
+governor,OH,Marist University,2026-09-27,2026-09-29,polls.json
+governor,OH,Suffolk University,2026-09-27,2026-09-29,polls.json
+governor,OH,Big Data Poll,2026-09-27,2026-09-29,polls.json
+governor,RI,Opinion Diagnostics,2026-09-25,2026-09-29,polls.json
+house,FL-16,Sea Polling (D),2026-08-29,2026-09-30,polls.json
+house,MT-1,Impact Research (D),2026-09-23,2026-09-30,polls.json
+house,OH-9,DCCC Analytics Department (D),2026-09-23,2026-09-30,polls.json
+house,OH-15,Hart Research (D),2026-09-24,2026-09-30,polls.json
+house,TX-9,PPP (D),2026-09-19,2026-09-30,polls.json
+house,WI-1,DCCC Analytics Department (D),2026-09-23,2026-09-30,polls.json
+senate,IA,Quantus Insights (R),2026-09-29,2026-09-30,polls.json
+senate,ME,co/efficient (R),2026-09-30,2026-09-30,polls.json
+senate,MA,MassINC Polling Group,2026-09-22,2026-09-30,polls.json
+senate,MI,Beacon Research (D)/ Shaw & Co. Research (R),2026-09-28,2026-09-30,polls.json
+senate,MI,Marist University,2026-09-27,2026-09-30,polls.json
+senate,MI,Cygnal (R)/Beacon Research (D),2026-09-21,2026-09-30,polls.json
+senate,MT,Aspect Strategic (I),2026-09-15,2026-09-30,polls.json
+senate,NC,Catawba College,2026-09-15,2026-09-30,polls.json
+senate,NC,Big Data (R),2026-09-29,2026-09-30,polls.json
+senate,OH,Suffolk University,2026-09-27,2026-09-30,polls.json
+senate,SD,Zenith (I),2026-09-27,2026-09-30,polls.json
+senate,SD,Lake Research,2026-09-30,2026-09-30,polls.json
+senate,TX,Rasmussen Reports,2026-09-29,2026-09-30,polls.json
+governor,ME,co/efficient,2026-09-30,2026-09-30,polls.json
+governor,MA,MassINC Polling Group,2026-09-22,2026-09-30,polls.json
+governor,MI,Marist University,2026-09-27,2026-09-30,polls.json
+governor,OR,DHM Research (R),2026-09-11,2026-09-30,polls.json
+governor,OR,DHM Research,2026-09-27,2026-09-30,polls.json
+governor,RI,Opinion Diagnostics (I),2026-09-25,2026-09-30,polls.json
+governor,SD,Lake Research,2026-09-30,2026-09-30,polls.json
+governor,WI,Marquette University,2026-09-23,2026-09-30,polls.json
+house,NY-17,Emerson College,2026-09-29,2026-10-01,polls.json
+house,NY-23,Cygnal,2026-09-21,2026-10-01,polls.json
+house,SD-1,Lake Research Partners (D),2026-08-30,2026-10-01,polls.json
+house,TX-10,Change Research (D),2026-09-22,2026-10-01,polls.json
+house,TX-15,"Normington, Petts & Associates (D)",2026-09-28,2026-10-01,polls.json
+house,UT-1,Lighthouse Research,2026-09-10,2026-10-01,polls.json
+house,UT-2,Lighthouse Research,2026-09-24,2026-10-01,polls.json
+house,UT-3,Lighthouse Research,2026-09-15,2026-10-01,polls.json
+house,UT-4,Lighthouse Research,2026-09-17,2026-10-01,polls.json
+house,VA-1,The Washington Post/SSPG,2026-09-28,2026-10-01,polls.json
+house,VA-5,The Washington Post/SSPG,2026-09-28,2026-10-01,polls.json
+house,VA-5,Expedition Strategies (D),2026-09-24,2026-10-01,polls.json
+house,WA-3,DHM Research,2026-09-27,2026-10-01,polls.json
+senate,AL,RMG Research (R),2026-09-25,2026-10-01,polls.json
+senate,IA,Beacon Research (D)/ Shaw & Co. Research (R),2026-09-28,2026-10-01,polls.json
+senate,ME,Wedgewood Polls,2026-10-01,2026-10-01,polls.json
+senate,ME,Fabrizio Ward (R)/ Impact Research (D),2026-09-22,2026-10-01,polls.json
+senate,MI,Trafalgar Group (R),2026-09-30,2026-10-01,polls.json
+senate,NC,Catawba College/YouGov,2026-09-15,2026-10-01,polls.json
+senate,OH,InsiderAdvantage (R),2026-09-29,2026-10-01,polls.json
+senate,SD,Zenith Research (I),2026-09-27,2026-10-01,polls.json
+senate,TX,Rasmussen Reports (R),2026-09-29,2026-10-01,polls.json
+senate,TX,Beacon Research (D)/ Shaw & Co. Research (R),2026-09-28,2026-10-01,polls.json
+governor,AL,RMG Research (R),2026-09-25,2026-10-01,polls.json
+governor,AK,Cygnal (R),2026-09-27,2026-10-01,polls.json
+governor,IA,Beacon Research (D)/ Shaw & Co. Research (R),2026-09-28,2026-10-01,polls.json
+governor,KS,GSG (D),2026-09-16,2026-10-01,polls.json
+governor,ME,Fabrizio Ward/Impact Research,2026-09-22,2026-10-01,polls.json
+governor,MI,Beacon Research/Shaw & Co. Research,2026-09-28,2026-10-01,polls.json
+governor,MN,TIPP Insights (R),2026-09-02,2026-10-01,polls.json
+governor,PA,Bravo,2026-09-22,2026-10-01,polls.json
+governor,TX,Beacon Research (D)/ Shaw & Co. Research (R),2026-09-28,2026-10-01,polls.json
+governor,WI,Marquette University Law School,2026-09-23,2026-10-01,polls.json
+house,IL-4,Independent Center Voice,2026-08-04,2026-10-02,polls.json
+house,KY-6,GQR (D),2026-09-30,2026-10-02,polls.json
+house,ME-2,Tulchin Research (D),2026-09-30,2026-10-02,polls.json
+house,NY-17,McLaughlin & Associates (R),2026-09-30,2026-10-02,polls.json
+house,NY-23,Cygnal (R),2026-09-21,2026-10-02,polls.json
+house,SC-1,co/efficient,2026-10-01,2026-10-02,polls.json
+house,TX-15,Normington Petts (D),2026-09-28,2026-10-02,polls.json
+house,VA-6,co/efficient,2026-09-30,2026-10-02,polls.json
+senate,AK,Quantus Insights (R),2026-09-30,2026-10-02,polls.json
+senate,ID,Peak Insights (R),2026-09-30,2026-10-02,polls.json
+senate,IA,Rasmussen Reports (R),2026-09-30,2026-10-02,polls.json
+senate,KS,Trafalgar Group (R),2026-10-01,2026-10-02,polls.json
+senate,KS,Global Strategy Group (D),2026-09-16,2026-10-02,polls.json
+senate,ME,Trafalgar Group (R),2026-10-01,2026-10-02,polls.json
+senate,ME,CBS News/YouGov,2026-10-01,2026-10-02,polls.json
+senate,MN,Big Data Poll,2026-09-30,2026-10-02,polls.json
+senate,NE,co/efficient (R),2026-09-30,2026-10-02,polls.json
+senate,NC,Big Data Poll,2026-09-29,2026-10-02,polls.json
+senate,SC,InsiderAdvantage (R),2026-09-29,2026-10-02,polls.json
+senate,SD,Lake Research Partners (D),2026-08-30,2026-10-02,polls.json
+governor,IA,Beacon Research/Shaw & Co. Research,2026-09-28,2026-10-02,polls.json
+governor,KS,Global Strategy Group (D),2026-09-16,2026-10-02,polls.json
+governor,ME,"Fabrizio, Lee & Associates/Impact Research",2026-09-22,2026-10-02,polls.json
+governor,ME,University of New Hampshire,2026-09-21,2026-10-02,polls.json
+governor,ME,YouGov,2026-10-01,2026-10-02,polls.json
+governor,NE,co/efficient (R),2026-09-30,2026-10-02,polls.json
+governor,PA,Bravo Group,2026-09-22,2026-10-02,polls.json
+governor,TX,Beacon Research/Shaw & Co. Research,2026-09-28,2026-10-02,polls.json
+house,KY-6,Lake Research Partners (D),2026-08-23,2026-10-03,polls.json
+house,SC-1,co/efficient (R),2026-10-01,2026-10-03,polls.json
+house,VA-6,co/efficient (R),2026-09-30,2026-10-03,polls.json
+house,WA-3,DHM Research,2026-07-10,2026-10-03,polls.json
+house,WI-1,Impact Research (D),2026-10-01,2026-10-03,polls.json
+senate,AK,New York Times/Siena University,2026-10-01,2026-10-03,polls.json
+senate,GA,Wedgewood,2026-10-03,2026-10-03,polls.json
+senate,IA,New York Times/Siena University,2026-10-01,2026-10-03,polls.json
+senate,KS,New York Times/Siena University,2026-09-30,2026-10-03,polls.json
+senate,OH,New York Times/Siena University,2026-10-01,2026-10-03,polls.json
+senate,TX,New York Times/Siena University,2026-09-30,2026-10-03,polls.json
+governor,AK,Siena,2026-09-30,2026-10-03,polls.json
+governor,GA,Wedgewood,2026-10-03,2026-10-03,polls.json
+governor,IA,New York Times/Siena University,2026-10-01,2026-10-03,polls.json
+governor,KS,New York Times/Siena University,2026-09-30,2026-10-03,polls.json
+governor,ME,CBS/YouGov,2026-10-01,2026-10-03,polls.json
+governor,OH,The New York Times/Siena University,2026-10-01,2026-10-03,polls.json
+governor,TX,New York Times/Siena University,2026-10-01,2026-10-03,polls.json
+senate,GA,Wedgewood Polls,2026-10-03,2026-10-04,polls.json
+senate,MN,Big Data Poll (R),2026-09-30,2026-10-04,polls.json
+governor,GA,Wedgewood Polls,2026-10-03,2026-10-04,polls.json
+governor,OH,New York Times/Siena University,2026-10-01,2026-10-04,polls.json
+senate,TX,Marist Poll,2026-09-20,2026-09-22,manual
+governor,TX,Marist Poll,2026-09-20,2026-09-22,manual
+senate,NC,Catawba College,2026-09-15,2026-09-30,manual
+senate,MI,Trafalgar Group,2026-09-30,2026-10-01,manual
+senate,KS,Trafalgar Group,2026-10-01,2026-10-02,manual
+senate,TX,GOP internal via Quorum Report,2026-09-15,2026-09-22,manual
+governor,TX,GOP internal via Quorum Report,2026-09-15,2026-09-22,manual
+house,CA-48,Lake Research Partners,2026-07-14,2026-10-04,polls.json
+governor,NV,Grassroots Targeting,2026-07-16,2026-10-04,polls.json

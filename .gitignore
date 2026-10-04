@@ -1,0 +1,15 @@
+# downloads and intermediate files: rebuilt by the workflow (see midterms/bootstrap.py)
+data/raw/
+data/cache/
+# diagnostics that are not published
+web/data/pollster_deltas.json
+web/data/registration.json
+web/data/county.json
+# local
+logs/
+*.log
+.env
+*.key
+__pycache__/
+*.pyc
+.DS_Store
