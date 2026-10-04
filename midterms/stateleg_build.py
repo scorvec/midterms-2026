@@ -74,6 +74,8 @@ def stream(url, dest: Path):
                 shutil.copyfileobj(r, f, 1 << 22)
             break
         except Exception as e:
+            if "format=original" in url and "400" in str(e):         # files Dataverse never ingested have no "original" form
+                url = url.replace("?format=original", ""); continue
             if k == 3: raise
             print(f"  retry {url[:90]} ({str(e)[:60]})"); import time; time.sleep(20 * (k + 1))
     tmp.rename(dest); count(url, dest.stat().st_size)
@@ -140,8 +142,10 @@ def medsl_load(p: Path, st: str) -> pd.DataFrame:
         df = pd.read_parquet(slim)
     else:
         parts = []
-        for ch in pd.read_csv(p, dtype=str, low_memory=False, chunksize=400_000, usecols=lambda c: c.lower() in COLS):
-            ch.columns = [c.lower() for c in ch.columns]
+        with open(p, encoding="utf-8", errors="replace") as fh: first = fh.readline()
+        sep = "\t" if first.count("\t") > first.count(",") else ","
+        for ch in pd.read_csv(p, dtype=str, low_memory=False, chunksize=400_000, sep=sep, usecols=lambda c: c.lower().strip('"') in COLS):
+            ch.columns = [c.lower().strip('"') for c in ch.columns]
             if "state_po" in ch: ch = ch[ch["state_po"] == st]
             parts.append(ch[_keep_office(ch["office"])])
         df = pd.concat(parts, ignore_index=True); df.to_parquet(slim)
@@ -457,7 +461,8 @@ def build_klarner():
     k = pd.read_csv(src, dtype=str, low_memory=False)
     for c in ("etype", "partyz", "exper", "outcome", "dtype", "flot", "nest"):
         if c in k: print(f"  klarner {c}: {k[c].value_counts().head(12).to_dict()}")
-    k["year"] = pd.to_numeric(k["year"], errors="coerce"); k = k[k["year"] >= 1972]
+    k["year"] = pd.to_numeric(k["year"], errors="coerce"); k = k[(k["year"] >= 1972) & (k["etype"].astype(str) == "g")]
+    k["year"] = k["year"].astype(int).astype(str)
     k["vote"] = pd.to_numeric(k["vote"], errors="coerce").fillna(0)
     k["pz"] = k["partyz"].str.lower().map({"d": "D", "r": "R"}).fillna("O")
     k["inc"] = k["exper"].astype(str).str.lower().str.startswith("inc")
@@ -474,7 +479,7 @@ def build_klarner():
         "top_d": q.loc[q.pz == "D", "vote"].max() if (q.pz == "D").any() else 0.0, "top_r": q.loc[q.pz == "R", "vote"].max() if (q.pz == "R").any() else 0.0,
         "names_inc": ";".join(q.loc[q.inc, "cand"].astype(str).str[:40])})).reset_index()
     print(f"  klarner aggregated: {len(agg)} district-elections; target-state 2018/2022 sample:")
-    print(agg[agg["sab"].isin(["MN", "NH", "AZ"]) & agg["year"].isin([2022])].head(15).to_string()[:3000])
+    print(agg[agg["sab"].isin(["MN", "NH", "AZ"]) & agg["year"].isin(["2022"])].head(15).to_string()[:3000])
     agg.to_csv(OUT / "klarner.csv.gz", index=False, compression="gzip")
 
 
