@@ -121,5 +121,43 @@ def lean_for(pollster: str, tag: str, cal: dict) -> float:
     return prior
 
 
+def pollster_shared_sd(before=None, types=("House-G", "Sen-G", "Gov-G"), boot=0, seed=1):
+    """tau (pts): sd of the pollster-race error a pollster's polls share within one race (model.POLLSTER_SHARED_ERROR), from 538
+    raw_polls (generals, even years, last 61 days, D v R; cycles < `before` only when given). Error = poll margin - result, minus
+    the pollster / sponsor lean the model removes (lean_for with calibration(before)); one row per poll and race. For every pair
+    of polls in a race, h = (e_i - e_j)^2 / 2 - (v_i + v_j) / 2 with v the binomial sampling variance of the margin. Same pollster
+    (538 pollster_rating_id): E[h] = own non-sampling variance + time drift; different pollsters: the same + tau^2. So tau^2 =
+    mean h (different) - mean h (same), compared within race x gap bin (0-3, 4-7, 8-14, 15-30, 31-61 days apart: drift cancels)
+    and weighted by the number of same-pollster pairs. boot > 0 also returns a race-bootstrap se of tau^2."""
+    d = pd.read_csv(ROOT / "data" / "raw" / "538repo" / "raw_polls.csv", low_memory=False)
+    d = d[d["type_simple"].isin(types) & (d["cycle"] % 2 == 0) & d["cand1_party"].isin(["DEM", "REP"]) & d["cand2_party"].isin(["DEM", "REP"])
+          & (d["cand1_party"] != d["cand2_party"])].copy()
+    if before is not None: d = d[d["cycle"] < before]
+    dem = np.where(d["cand1_party"] == "DEM", d["cand1_pct"], d["cand2_pct"]) / 100; rep = np.where(d["cand1_party"] == "DEM", d["cand2_pct"], d["cand1_pct"]) / 100
+    d["err"] = (d["margin_poll"] - d["margin_actual"]) * np.where(d["cand1_party"] == "DEM", 1, -1)
+    d["v"] = 1e4 * (dem + rep - (dem - rep) ** 2) / d["samplesize"]
+    d = d.dropna(subset=["err", "v"])
+    d = d.groupby(["race_id", "poll_id"], as_index=False).agg(pollster=("pollster", "first"), pid=("pollster_rating_id", "first"),
+                                                              partisan=("partisan", "first"), err=("err", "mean"), v=("v", "mean"), tte=("time_to_election", "first"))
+    cal = calibration(before=before)
+    d["e"] = d["err"] - [lean_for(p, {"DEM": "D", "REP": "R"}.get(t, ""), cal) for p, t in zip(d["pollster"], d["partisan"])]
+    rows = []
+    for r, g in d.groupby("race_id"):
+        if len(g) < 3: continue
+        e, v, p, t = g["e"].values, g["v"].values, g["pid"].values, g["tte"].values
+        i, j = np.triu_indices(len(g), 1)
+        rows.append(pd.DataFrame({"race": r, "same": p[i] == p[j], "gap": np.abs(t[i] - t[j]), "h": (e[i] - e[j]) ** 2 / 2 - (v[i] + v[j]) / 2}))
+    P = pd.concat(rows); P["gb"] = pd.cut(P["gap"], [-1, 3, 7, 14, 30, 61])
+    A = P.groupby(["race", "gb", "same"], observed=True)["h"].agg(["sum", "size"]).unstack("same").dropna()
+    def est(A):
+        dd = A[("sum", False)] / A[("size", False)] - A[("sum", True)] / A[("size", True)]; w = A[("size", True)]
+        return float((dd * w).sum() / w.sum())
+    t2 = est(A)
+    if not boot: return float(np.sqrt(max(t2, 0.0)))
+    rng = np.random.default_rng(seed); races = A.index.get_level_values(0).unique(); bs = []
+    for _ in range(boot): bs.append(est(pd.concat([A.loc[[r]] for r in rng.choice(races, len(races))])))
+    return float(np.sqrt(max(t2, 0.0))), t2, float(np.std(bs))
+
+
 if __name__ == "__main__":
     main()

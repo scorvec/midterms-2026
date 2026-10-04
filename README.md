@@ -129,6 +129,20 @@ poll, and a first-round-only poll is converted to an expected final-round margin
 tabulations above; the spread of those rates across past counts is added to the race's polling uncertainty. Backtest and
 numbers: `web/about.html#rcv`. `MIDTERMS_RCV=off` restores the previous handling.
 
+## Pollster shared error (implemented, switched off)
+
+A pollster's house error is shared by all of its polls in a race, so four polls from one firm are not four independent reads
+(Florida governor, October 2026: Change Research's four polls carried 44 % of the poll weight). `model.POLLSTER_SHARED_ERROR`
+= tau splits each poll's error in the race blend (`robust_blend`) into its own part and a pollster-race part common to that
+firm's polls, integrated out exactly; each poll's marginal variance is unchanged, so a firm with one poll in a race is treated
+as before. tau is fitted on 538's raw_polls (`race_poll_calibration.pollster_shared_sd`: within-race pairs of polls at the same
+time gap, different-pollster minus same-pollster squared error difference, lean-corrected, net of sampling): tau^2 = 7.7 +- 0.7,
+tau = 2.8 points (2.77-2.83 on cycles before 2018-2024). On the leak-free backtests (Senate 2018-2024, governors 2018-2022, House
+2018 and 2022; six dates from September 1 to November 1; tau from earlier cycles) it changed nothing measurable: log loss
+Senate +0.0002 (95 % interval -0.0014 to +0.0016), governors -0.0006 (-0.0024 to +0.0008), House +0.0001 (-0.0001 to +0.0003),
+Brier and the error of the race means likewise within noise. Not adopted: the switch stays off (`None`). Switched on, the
+Florida governor race moves from 39 % to 34 % for Jolly; the national headlines move by less than half a point.
+
 ## Heating-oil adjustment
 
 A judgment term, not backtested: the rise in retail heating oil over the past year, times each district's (state's)

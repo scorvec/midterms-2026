@@ -390,12 +390,20 @@ def _f0(v):
     return v if np.isfinite(v) else 0.0
 
 
-def _record(mu_prior, prior_sd, p, asof, age, q, s, y, th, de, ll, lp, post, nu, poll_sys, mu, sd):
+def _record(mu_prior, prior_sd, p, asof, age, q, s, y, th, de, ll, lp, post, nu, poll_sys, mu, sd, gid=None, s_own=None, tau=None):
     """Effective weights of the Student-t blend at the posterior: w_i = (nu+1)/(nu+r_i^2) / s_i^2 with r_i the poll's
-    standardised residual from (theta + delta) at the posterior means; 'discount' = (nu+1)/(nu+r^2) (1 = taken at face value)."""
+    standardised residual from (theta + delta) at the posterior means; 'discount' = (nu+1)/(nu+r^2) (1 = taken at face value).
+    With the pollster shared error on (gid, s_own, tau), a pollster's k >= 2 polls are weighted with their own-error scale s_own and
+    their summed weight W_g is cut to 1 / (1 / W_g + tau^2) - the precision of a block that shares one house error."""
     joint = np.exp(ll + lp[:, None] - (ll + lp[:, None]).max()); joint /= joint.sum()
     dhat = float((joint.sum(0) * de).sum())
     r = (y - mu - dhat) / s; disc = (nu + 1) / (nu + r ** 2); w = disc / s ** 2
+    if gid is not None and tau:
+        for g in np.unique(gid):
+            ix = np.where(gid == g)[0]
+            if len(ix) < 2: continue
+            rg = (y[ix] - mu - dhat) / s_own[ix]; wg = (nu + 1) / (nu + rg ** 2) / s_own[ix] ** 2; disc[ix] = (nu + 1) / (nu + rg ** 2)
+            w[ix] = wg * (1.0 / (1.0 / wg.sum() + tau ** 2)) / wg.sum()
     pw = 1.0 / (1.0 / w.sum() + poll_sys ** 2); share_polls = pw / (pw + 1.0 / prior_sd ** 2)
     seat = str(p["seat"].iloc[0]) if "seat" in p else ""; corr = state_poll_correction(statewide=len(seat) == 2)
     rows = []
@@ -408,10 +416,43 @@ def _record(mu_prior, prior_sd, p, asof, age, q, s, y, th, de, ll, lp, post, nu,
                      "published": pub, "lean": _f0(x.get("lean")), "state_corr": float(corr.get(seat[:2], 0.0)) if "[" not in str(x["pollster"]) else 0.0,
                      "adjusted": float(y[i]), "sponsor": str(x.get("sponsor") or ""), "vmult": round(_f0(x.get("vmult")) or 1.0, 3),
                      "experience": exp_k, "precision": round(float(q[i]), 3), "sd": round(float(s[i]), 2),
-                     "discount": round(float(disc[i] * nu / (nu + 1)), 3), "share": round(float(w[i] / w.sum()), 3)})   # 1 = at the consensus
+                     "discount": round(float(disc[i] * nu / (nu + 1)), 3), "share": round(float(w[i] / w.sum()), 3),
+                     **({"pollster_block": int((gid == gid[i]).sum())} if gid is not None and tau else {})})   # 1 = at the consensus
     RECORD.append({"office": RECORD_OFFICE, "seat": seat, "asof": pd.Timestamp(asof).date().isoformat(), "prior": round(float(mu_prior), 2),
                    "prior_sd": round(float(prior_sd), 2), "posterior": round(mu, 2), "posterior_sd": round(sd, 2),
                    "polls_share": round(float(share_polls), 3), "shared_miss": round(dhat, 2), "polls": rows})
+
+
+# Pollster shared error (2026-10-04; prompted by the Florida governor race, where Change Research's 4 polls carried 44 % of the
+# poll weight). A pollster's house error is shared by all its polls in a race, so k polls from one firm are not k independent
+# reads. With POLLSTER_SHARED_ERROR = tau (pts), robust_blend splits each poll's error into its own part and a pollster-race part
+# b ~ N(0, tau^2) common to that pollster's polls in the race (integrated out exactly), keeping each poll's marginal variance:
+# a pollster with one poll in a race is treated exactly as before; k polls from one pollster can together count at most as much
+# as one poll with variance tau^2. Pollsters are grouped by pollster_blocks (the same identity rule as the duplicate checks).
+# tau fitted by race_poll_calibration.pollster_shared_sd: within-race, same-gap pairs of polls, (different-pollster minus
+# same-pollster) mean half squared difference of the lean-corrected errors (538 raw_polls, House/Senate/governor generals, last
+# 61 days, even years): tau^2 7.7 +- 0.7 -> tau 2.8 (cycles before 2018: 2.81; before 2020/22/24: 2.78).
+# Backtest (2026-10-04, leak-free live harnesses, tau fitted on earlier cycles, as-of Sep 1 / Sep 15 / Oct 1 / Oct 15 / Oct 22 /
+# Nov 1, paired by race-date, on minus off): Senate 2018-24 dLL +0.0002 [-0.0014, +0.0016] (2/4 cycles better), governor 2018-22
+# -0.0006 [-0.0024, +0.0008] (2/3), House 2018/22 +0.0001 [-0.0001, +0.0003] (0/2); Brier and race-mean MAE likewise within
+# noise (statewide pooled MAE -0.005 [-0.030, +0.021]). Not supported by the backtest, so OFF (README "Pollster shared error").
+# Switched on (2.77) on 2026-10-04 it moves Florida governor 39 % -> 34 % for Jolly (Change Research 44 % -> 32 % of the weight).
+POLLSTER_SHARED_ERROR = None
+SHARED_OWN_FLOOR = 0.5       # own-error scale never below half the poll's total scale (only the best, freshest polls get near it)
+
+
+def pollster_blocks(names):
+    """Block id per poll: polls whose pollsters are the same firm (_same_pollster, sponsor tags ignored) share an id. Synthetic
+    rows ('[...]', e.g. substate polls) are their own blocks."""
+    n = len(names); parent = list(range(n))
+    def find(i):
+        while parent[i] != i: parent[i] = parent[parent[i]]; i = parent[i]
+        return i
+    for i in range(n):
+        if "[" in str(names[i]): continue
+        for j in range(i + 1, n):
+            if "[" not in str(names[j]) and _same_pollster(names[i], names[j]): parent[find(i)] = find(j)
+    return np.array([find(i) for i in range(n)])
 
 
 def robust_blend(mu_prior, prior_sd, polls, asof, poll_sd, poll_sys, nu):
@@ -430,15 +471,28 @@ def robust_blend(mu_prior, prior_sd, polls, asof, poll_sd, poll_sys, nu):
     th = np.arange(mu_prior - 5 * prior_sd - 20, mu_prior + 5 * prior_sd + 20, 0.25)
     de = np.linspace(-4 * poll_sys, 4 * poll_sys, 49)
     ll = np.zeros((len(th), len(de)))
-    for yi, si in zip(y, s):
-        ll += T.logpdf((yi - th[:, None] - de[None, :]) / si, nu) - np.log(si)
+    tau = POLLSTER_SHARED_ERROR
+    gid = pollster_blocks(p["pollster"].tolist()) if tau else np.arange(len(p)); s_own = s.copy()
+    for g in np.unique(gid):
+        ix = np.where(gid == g)[0]
+        if len(ix) == 1:                                     # a pollster's only poll in the race: exactly as without the switch
+            ll += T.logpdf((y[ix[0]] - th[:, None] - de[None, :]) / s[ix[0]], nu) - np.log(s[ix[0]]); continue
+        # k >= 2 polls from one pollster: poll error = own error (Student-t, scale s_own) + ONE shared house error b ~ N(0, tau^2),
+        # integrated out on a grid. The marginal variance of each poll is unchanged: s_own^2 nu/(nu-2) + tau^2 = s^2 nu/(nu-2).
+        so = np.sqrt(np.maximum(s[ix] ** 2 - tau ** 2 * (nu - 2) / nu, (SHARED_OWN_FLOOR * s[ix]) ** 2)); s_own[ix] = so
+        x = th[:, None] + de[None, :]; xg = np.arange(x.min() - 0.5, x.max() + 0.5, 0.1)
+        bg = np.linspace(-4 * tau, 4 * tau, 41); lw = norm.logpdf(bg, 0, tau) + np.log(bg[1] - bg[0])
+        L = np.zeros((len(xg), len(bg)))
+        for yi, si in zip(y[ix], so): L += T.logpdf((yi - xg[:, None] - bg[None, :]) / si, nu) - np.log(si)
+        L += lw[None, :]; mL = L.max(1); Lg = mL + np.log(np.exp(L - mL[:, None]).sum(1))
+        ll += np.interp(x, xg, Lg)
     ll += norm.logpdf(de, 0, poll_sys)[None, :]
     lp = norm.logpdf(th, mu_prior, prior_sd)
     m = ll.max(); like = np.log(np.exp(ll - m).sum(1)) + m
     post = lp + like; post = np.exp(post - post.max()); post /= post.sum()
     mu = float((th * post).sum()); sd = float(np.sqrt(((th - mu) ** 2 * post).sum()))
     if RECORD is not None:
-        try: _record(mu_prior, prior_sd, p, asof, age, q, s, y, th, de, ll, lp, post, nu, poll_sys, mu, sd)
+        try: _record(mu_prior, prior_sd, p, asof, age, q, s, y, th, de, ll, lp, post, nu, poll_sys, mu, sd, gid, s_own, tau)
         except Exception as e: print("  poll record failed:", str(e)[:80])
     return mu, sd
 
