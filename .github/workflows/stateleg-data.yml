@@ -1,0 +1,66 @@
+name: state-legislature data build
+
+# One-time builds for the state-legislative chamber forecasts (feature branch state-leg). Downloads go to data/raw
+# (cached, never committed); only the compact derived tables in data/static/stateleg are committed back to the branch.
+on:
+  workflow_dispatch:
+    inputs:
+      step:
+        description: "probe | build | wiki | all"
+        default: probe
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stateleg-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt geopandas==1.1.1 pyogrio==0.11.1 shapely==2.1.1 pyarrow
+      - name: Restore raw cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw/stateleg
+          key: stateleg-raw-${{ github.run_id }}
+          restore-keys: stateleg-raw-
+      - name: Run
+        run: |
+          case "${{ inputs.step }}" in
+            probe) python -m midterms.stateleg_probe ;;
+            build) python -m midterms.stateleg_build ;;
+            wiki)  python -m midterms.stateleg_wiki ;;
+            all)   python -m midterms.stateleg_build && python -m midterms.stateleg_wiki ;;
+            *) python -m midterms.${{ inputs.step }} ;;
+          esac
+      - name: Save raw cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/raw/stateleg
+          key: stateleg-raw-${{ github.run_id }}
+      - name: Commit derived tables
+        if: ${{ inputs.step != 'probe' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/static/stateleg || true
+          if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+          du -sh data/static/stateleg
+          git commit -q -m "state-leg derived tables (${{ inputs.step }})"
+          for i in 1 2 3; do git pull -q --no-rebase origin state-leg && git push -q origin HEAD:state-leg && exit 0; sleep 5; done
+          exit 1
