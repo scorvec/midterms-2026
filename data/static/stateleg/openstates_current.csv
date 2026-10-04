@@ -1,0 +1,1959 @@
+state,chamber,district,name,party,id
+MI,lower,3,Alabas Farhat,Democratic,ocd-person/788d408d-cb80-43fd-802a-4778a930894d
+MI,lower,62,Alicia St. Germaine,Republican,ocd-person/81da0894-0569-4c8d-9c4e-befd39650fee
+MI,lower,94,Amos O'Neal,Democratic,ocd-person/5f160dff-1ce1-4606-a469-fdd08125beb4
+MI,lower,79,Angela Rigas,Republican,ocd-person/527d59db-a346-4a91-8f98-e1b57947b58c
+MI,lower,76,Angela Witwer,Democratic,ocd-person/0db39d07-a543-4e52-82b0-457f406855e8
+MI,lower,49,Ann Bollin,Republican,ocd-person/3a9d71dc-da5b-4bd3-8062-c8387292dc52
+MI,upper,20,Aric Nesbitt,Republican,ocd-person/6d11944d-f19f-4697-811c-0c9dca750c57
+MI,lower,103,Betsy Coffia,Democratic,ocd-person/80ccf9a5-7303-4218-be3e-0ab6f8e90eee
+MI,lower,95,Bill Schuette,Republican,ocd-person/5355f558-55bb-4f29-81eb-89179f55d69a
+MI,lower,37,Brad Paquette,Republican,ocd-person/04a88313-6387-44ab-972c-b000b3c316f4
+MI,lower,85,Brad Slagh,Republican,ocd-person/38c62407-9471-40de-8a1c-44142573c79a
+MI,lower,53,Brenda Carter,Democratic,ocd-person/0019e62f-6671-4085-b2d3-55d3c4a23717
+MI,lower,71,Brian BeGole,Republican,ocd-person/172b6e7c-3765-4978-bc03-3d19a92d5164
+MI,lower,90,Bryan Posthumus,Republican,ocd-person/c925c469-552f-448d-a89f-ef456e15da21
+MI,lower,106,Cam Cavitt,Republican,ocd-person/60ae519b-a739-4dc5-80bb-c0161269607a
+MI,lower,84,Carol Glanville,Democratic,ocd-person/86812673-e63a-4f36-aa3e-26de84380657
+MI,lower,47,Carrie Rheingans,Democratic,ocd-person/2f75473d-b2e6-49fd-914e-1e552ebc38a6
+MI,upper,35,Chedrick Greene,Democratic,ocd-person/b5b41ca8-2f16-4df4-9808-66b2a13bfecc
+MI,lower,102,Curt VanderWall,Republican,ocd-person/b0804883-3f8c-4341-bbc1-26a0346b37c4
+MI,lower,70,Cynthia Neeley,Democratic,ocd-person/7e3c6932-35bd-43f6-b1ca-d8fd6d5c0040
+MI,upper,25,Dan Lauwers,Republican,ocd-person/30afc35e-fa35-448c-b303-e0f6cc456c77
+MI,upper,4,Darrin Camilleri,Democratic,ocd-person/5d2fbcb4-0e27-4cb5-99bf-f94693b3aa12
+MI,lower,68,David Martin,Republican,ocd-person/95434509-a8fd-4e25-9f04-a952416d6da3
+MI,lower,108,Dave Prestin,Republican,ocd-person/addfe9a4-4b73-4dec-95a9-4bb7cd0d6bd2
+MI,upper,5,Dayna Polehanki,Democratic,ocd-person/f266a938-3705-4c7c-994f-859b2b6024dc
+MI,lower,61,Denise Mentzer,Democratic,ocd-person/7e4be084-8c26-421f-ab31-81893f7ac525
+MI,lower,11,Donavan McKinney,Democratic,ocd-person/36e87b55-c5db-4331-8088-8fe1dbc544f9
+MI,lower,54,Donni Steele,Republican,ocd-person/4a5a14f9-56b4-4f7a-ad0c-bfe3750912a3
+MI,lower,59,Doug Wozniak,Republican,ocd-person/2e512bae-42f3-4ce8-b565-df48469da08a
+MI,lower,26,Dylan Wegela,Democratic,ocd-person/07ff51f1-6cd0-4004-b618-bc70e5a2e551
+MI,upper,38,Ed McBroom,Republican,ocd-person/4fc7e235-2446-405d-9a56-5e010017f617
+MI,lower,77,Emily Dievendorf,Democratic,ocd-person/10e1b0b6-8c1d-4f2b-b29a-08770991b1d4
+MI,upper,1,Erika Geiss,Democratic,ocd-person/ebc9981a-cbe1-4d37-99b0-89d3c350fd3f
+MI,lower,15,Erin Byrnes,Democratic,ocd-person/3d6727ea-1a91-414d-aac4-ba312cbfaabc
+MI,lower,78,Gina Johnsen,Republican,ocd-person/37cbe31c-4d9d-4f77-847f-ce463e1bec58
+MI,lower,88,Greg VanWoerkom,Republican,ocd-person/960d6487-b202-46fa-8905-e001b6954d5a
+MI,lower,98,Greg Alexander,Republican,ocd-person/fc7627d7-6c08-49e7-9edc-6f419443ffaa
+MI,lower,110,Greg Markkanen,Republican,ocd-person/a3b57cdd-ae52-49af-9456-bc1f212fe970
+MI,lower,8,Helena Scott,Democratic,ocd-person/6751fa70-04e4-45e1-b3c5-6e0a5a397f8f
+MI,lower,65,Jaime Greene,Republican,ocd-person/fe33333e-a9ff-4279-ae47-1cc27703ee5c
+MI,lower,29,Jim DeSana,Republican,ocd-person/af4a0996-bcf0-4e8f-9165-4290343e905f
+MI,lower,28,Jamie Thompson,Republican,ocd-person/ea1e2bf8-dd08-4785-a7f7-48e7c9e8a53c
+MI,lower,18,Jason Hoskins,Democratic,ocd-person/d6da4c9b-26ef-4fa9-a1c6-a79d843abe09
+MI,lower,23,Jason Morgan,Democratic,ocd-person/9b0967d9-1238-4f90-8e03-233a17fc03e0
+MI,lower,50,Jason Woolford,Republican,ocd-person/4831928f-e1e5-4905-928b-633128aefa77
+MI,lower,69,Jaz Martus,Democratic,ocd-person/124196c5-fa79-4958-97c1-364026ae5f36
+MI,lower,63,Jay DeBoyer,Republican,ocd-person/569bf706-64ce-4dd7-8639-886beb018d8c
+MI,upper,15,Jeff Irwin,Democratic,ocd-person/a1c1163d-af8d-4b88-9365-07717d4a45c3
+MI,lower,48,Jennifer Conlin,Democratic,ocd-person/99ac6698-e0f9-4ddf-9df6-2d82aa70468f
+MI,lower,35,Jennifer Wortz,Republican,ocd-person/be12c20b-e96b-4326-a1c2-8cabe83f4f2b
+MI,upper,7,Jeremy Moss,Democratic,ocd-person/d1c4631b-145d-4418-8a29-24683b83ae44
+MI,lower,92,Jerry Neyer,Republican,ocd-person/549e485e-c1ea-4582-8db3-91d1e15fe27a
+MI,upper,23,Jim Runestad,Republican,ocd-person/e0a8928d-8ccc-4e1e-9ca5-d7f50642ff91
+MI,lower,32,Jimmie Wilson,Democratic,ocd-person/8560a009-9142-4824-bec4-67559d8d0add
+MI,lower,64,Joe Pavlov,Republican,ocd-person/65bb5257-9a90-4b14-a7bd-aee9efd0ab55
+MI,lower,9,Joe Tate,Democratic,ocd-person/19b8cf37-0b98-4194-9d2c-db6da3fae35c
+MI,lower,38,Joey Andrews,Democratic,ocd-person/fd51ab83-f1b7-4044-b794-871ba167b504
+MI,upper,27,John Cherry,Democratic,ocd-person/de1a4de4-aa34-4487-98f8-27b140fed784
+MI,upper,37,John Damoose,Republican,ocd-person/071e391f-da3d-4e66-ae78-61a63bc23729
+MI,lower,83,John Fitzgerald,Democratic,ocd-person/9f4f8b82-e4ee-4e50-a2ea-d46bbf264d34
+MI,lower,104,J.R. Roth,Republican,ocd-person/e1147656-e038-47fa-ad70-4d206233db72
+MI,upper,32,Jon Bumstead,Republican,ocd-person/5a58fa81-639b-4304-87ca-7471ba9ade96
+MI,upper,17,Jonathan Lindsey,Republican,ocd-person/a16e3693-0703-40fb-b508-3b2812079548
+MI,lower,60,Joe Aragona,Republican,ocd-person/f66dcbe7-c834-4c23-83ca-38eb5d1a1ba9
+MI,upper,16,Joe Bellino,Republican,ocd-person/e394293d-abd7-46a9-a60f-6c75e369468e
+MI,lower,101,Joseph Fox,Republican,ocd-person/ba49b4ef-08fb-48a0-b8a9-495a3605ef0a
+MI,lower,66,Josh Schriver,Republican,ocd-person/f6df9fad-c6ec-4abf-b175-ac1e9d672759
+MI,lower,73,Julie Brixie,Democratic,ocd-person/192ea166-adcc-4d74-b497-2fd4db882a00
+MI,lower,41,Julie Rogers,Democratic,ocd-person/5154033e-e367-449c-a719-9437a309e269
+MI,lower,74,Kara Hope,Democratic,ocd-person/f5c9b37d-39a5-4c63-a526-6f35f45cf5cf
+MI,lower,4,Karen Whitsett,Democratic,ocd-person/1b71cbce-bf12-4009-b1cd-79da2f22b9aa
+MI,lower,109,Karl Bohnak,Republican,ocd-person/e3bae1dd-d4b9-48c3-8e40-112987214638
+MI,lower,46,Kathy Schmaltz,Republican,ocd-person/e21ee6f1-0fdc-4ee6-8432-6149de16046d
+MI,lower,21,Kelly Breen,Democratic,ocd-person/6f366c7a-8dab-4d39-90b0-3a25760d2234
+MI,lower,105,Ken Borton,Republican,ocd-person/f38453af-388f-48fc-a18e-f709dba5153c
+MI,upper,26,Kevin Daley,Republican,ocd-person/cf7ed8de-2df4-41ff-9dcb-489980b031a0
+MI,upper,12,Kevin Hertel,Democratic,ocd-person/cbfd5eae-d312-4498-a988-bcb52883f637
+MI,lower,12,Kimberly Edwards,Democratic,ocd-person/e1d87954-4ee4-4668-9075-c6240dbe8c9b
+MI,lower,82,Kristian Grant,Democratic,ocd-person/642baa61-66d3-44c1-997f-58b2c5740b4f
+MI,upper,22,Lana Theis,Republican,ocd-person/4fa99fea-71fd-4f21-9f75-157e6a946c80
+MI,lower,17,Laurie Pohutsky,Democratic,ocd-person/64f12acb-0356-4726-ab8e-0c9c1945d5b0
+MI,lower,89,Luke Meerman,Republican,ocd-person/187a5c10-ccc0-4c94-a4c9-4c208ace4776
+MI,lower,13,Mai Xiong,Democratic,ocd-person/cd44a574-079b-4fd8-82cd-0daea8d7ff96
+MI,upper,8,Mallory McMorrow,Democratic,ocd-person/dc6ff9c0-f2b1-433d-a96b-292cf05bcb50
+MI,upper,30,Mark Huizenga,Republican,ocd-person/8564d477-bb39-47a4-87e1-3ceacd7d3abe
+MI,lower,55,Mark Tisdel,Republican,ocd-person/a5bb89cb-ac42-47c0-bcc8-96bf18e4d865
+MI,upper,6,Mary Cavanagh,Democratic,ocd-person/a9e6b2e4-016d-481e-9f34-1f1b33d857ca
+MI,lower,97,Matt Bierlein,Republican,ocd-person/33fdbffe-7e3d-4146-bd91-bddc098a7bf3
+MI,lower,42,Matt Hall,Republican,ocd-person/dc7344e8-b8bf-4f0d-924d-4f4b5ea40554
+MI,lower,22,Matt Koleszar,Democratic,ocd-person/42a456fa-8979-468f-b2a6-30f81ff20299
+MI,lower,40,Matt Longjohn,Democratic,ocd-person/cf865d78-f3ea-43f7-b843-a06dbb4bf4be
+MI,lower,51,Matt Maddock,Republican,ocd-person/241c969f-c72f-4acb-9a37-529e6ec0d955
+MI,upper,9,Michael Webber,Republican,ocd-person/be2c96ad-1304-4c25-8cab-2c8ec5d6475f
+MI,upper,36,Michele Hoitenga,Republican,ocd-person/0c9a2c44-5a9a-44cd-8470-5dad5c7b2c53
+MI,lower,52,Mike Harris,Republican,ocd-person/a93eaebe-bdac-4292-a28f-6a3b04efd191
+MI,lower,99,Mike Hoadley,Republican,ocd-person/0991c39a-0216-491e-a2c1-e7b61b11275d
+MI,lower,14,Mike McFall,Democratic,ocd-person/b34263be-1f2e-49db-a261-b30e76ba790a
+MI,lower,72,Mike Mueller,Republican,ocd-person/bdbada04-5616-4e9c-91db-f709e24d43f3
+MI,lower,33,Morgan Foreman,Democratic,ocd-person/0cec5462-4aa6-423a-a946-c13d03370565
+MI,lower,86,Nancy DeBoer,Republican,ocd-person/ffae0dee-fb80-4434-bc8c-8e510d3bc495
+MI,lower,34,Nancy Jenkins-Arno,Republican,ocd-person/b8703f11-7463-4df6-aedb-9b3d51560bcb
+MI,lower,6,Natalie Price,Democratic,ocd-person/2c6f93a7-f08a-4ad4-9424-cdd857401e6e
+MI,lower,20,Noah Arbit,Democratic,ocd-person/3b59f672-58f4-4d87-8b6e-6f9cc63a4d4c
+MI,lower,107,Parker Fairbairn,Republican,ocd-person/9cf66125-7bd7-4991-bee6-ddc21fd23b5d
+MI,lower,91,Pat Outman,Republican,ocd-person/1a809c60-e0a4-4b43-bdba-43f097021b1f
+MI,upper,10,Paul Wojno,Democratic,ocd-person/1d71200f-5f95-46e8-ac9b-a35c6c0178d8
+MI,lower,39,Pauline Wendzel,Republican,ocd-person/f749bf7e-46bc-482d-ac6e-60288f3b722e
+MI,lower,75,Penelope Tsernoglou,Democratic,ocd-person/026c8d4d-bdd5-4b1f-838e-12c191323540
+MI,lower,25,Peter Herzberg,Democratic,ocd-person/8e6c8809-d207-477d-8bdc-6646878249c5
+MI,lower,67,Phil Green,Republican,ocd-person/67081474-baf6-465a-bcd2-b2b84ab5c36b
+MI,lower,80,Phil Skaggs,Democratic,ocd-person/a61c6338-85df-446c-854a-17991386d252
+MI,lower,43,Rachelle Smit,Republican,ocd-person/6c955ba2-9448-43ae-8d7f-c3d76329ad60
+MI,lower,24,Ranjeev Puri,Democratic,ocd-person/1a16bef8-b655-46da-a5c5-07a8c5569eed
+MI,lower,31,Reggie Miller,Democratic,ocd-person/50d75ced-0a70-4f88-aada-57015d799fd0
+MI,lower,5,Regina Weiss,Democratic,ocd-person/ae5a3a48-9948-4c6c-95c2-c2d0915fd866
+MI,upper,33,Rick Outman,Republican,ocd-person/9c525554-fb85-45f3-87fa-cf6a3208ce32
+MI,upper,34,Roger Hauck,Republican,ocd-person/b6d8b86d-2975-4d07-83fe-a1841f39806b
+MI,upper,31,Roger Victory,Republican,ocd-person/cd36ab04-a62b-41fa-8b91-d6c792f6719e
+MI,lower,58,Ron Robinson,Republican,ocd-person/cda45c1f-0a65-4c08-b912-a90cd945f4ec
+MI,upper,13,Rosemary Bayer,Democratic,ocd-person/3e24c95f-2ed8-442a-a41f-1a3a9a0b95ed
+MI,upper,24,Ruth Johnson,Republican,ocd-person/8d0d58dd-a718-4f8f-bb7f-c530e039c0c5
+MI,lower,27,Rylee Linting,Republican,ocd-person/c1ac9f88-970a-4930-8249-7c15e77210ed
+MI,upper,28,Sam Singh,Democratic,ocd-person/9271c2c7-01d8-44f1-95a4-1496b8716268
+MI,lower,19,Samantha Steckloff,Democratic,ocd-person/5a99ab1c-62e3-4424-9bb1-310ffcecc3e3
+MI,upper,21,Sarah Anthony,Democratic,ocd-person/08eac592-a25a-444f-aea7-db0cdfa79e7b
+MI,lower,45,Sarah Lightner,Republican,ocd-person/ef5b60a6-d301-4433-8e85-6c14ba254011
+MI,upper,19,Sean McCann,Democratic,ocd-person/c15f272e-73f2-410c-8afe-1cc91ad3603a
+MI,lower,56,Sharon MacDonell,Democratic,ocd-person/55a6fa48-006b-48ee-bffd-655ed7e56fce
+MI,upper,3,Stephanie Chang,Democratic,ocd-person/1d297b7e-2e51-4e1a-a208-2f5505e9f1f7
+MI,lower,16,Stephanie Young,Democratic,ocd-person/ea254169-e403-4e29-ab06-8f40fb869ac2
+MI,lower,81,Stephen Wooden,Democratic,ocd-person/a071cb31-2347-40a8-a88b-ec72bacdeffd
+MI,lower,36,Steve Carra,Republican,ocd-person/4dee484b-79f4-4ca2-92dc-2ed7e0623d6b
+MI,lower,44,Steve Frisbie,Republican,ocd-person/c62d1d8e-1e35-48c2-a869-6801ad396875
+MI,upper,14,Sue Shink,Democratic,ocd-person/38c58e5f-715a-4943-a8d9-2b557db3db02
+MI,upper,2,Sylvia Santana,Democratic,ocd-person/8e302b97-4868-4575-a56f-3881e91ae0f8
+MI,upper,18,Thomas Albert,Republican,ocd-person/c96aa62f-6a2c-4d37-9074-2c25875c639b
+MI,lower,57,Tom Kuhn,Republican,ocd-person/58e6e432-e6a2-44f4-8dda-cc3d8e01ca7e
+MI,lower,93,Tim Kelly,Republican,ocd-person/679924dd-c6da-467c-9a9c-1f5a22aa1787
+MI,lower,96,Timmy Beson,Republican,ocd-person/6b7aadaf-f690-487f-bec8-95f095f6b565
+MI,lower,100,Tom Kunse,Republican,ocd-person/462dc80a-8642-40d7-9c22-f6234da5451e
+MI,lower,7,Tonya Phillips,Democratic,ocd-person/787d9bda-d4dd-47fe-aaf0-348c505211e4
+MI,lower,2,Tullio Liberati,Democratic,ocd-person/4d548157-c00e-4131-bf2b-5838ffc5281a
+MI,upper,11,Veronica Klinefelt,Democratic,ocd-person/3cef42f4-ef0b-43c2-b0b8-01f7f399af2f
+MI,lower,10,Veronica Paiz,Democratic,ocd-person/8c335851-e7f6-40d6-b83c-fe413f21934e
+MI,lower,30,Will Bruck,Republican,ocd-person/a9f36e83-23ad-4912-a183-8b1e93ef3e81
+MI,lower,87,Will Snyder,Democratic,ocd-person/6f36a657-51ea-4c74-b1fd-7bc69ad222bd
+MI,upper,29,Winnie Brinks,Democratic,ocd-person/de38477b-6f3e-44cd-96d0-bd81ff831948
+MN,lower,62A,Aisha Gomez,Democratic-Farmer-Labor,ocd-person/09493dc0-a224-4cf6-a859-1384ffeda8a0
+MN,lower,49A,Alex Falconer,Democratic-Farmer-Labor,ocd-person/1a50d8e6-64c4-4c8f-87ee-dedde17c1c2c
+MN,upper,50,Alice Mann,Democratic-Farmer-Labor,ocd-person/c5f2a744-0a3e-481f-9224-e4d5a58b9c9d
+MN,lower,8B,Liish Kozlowski,Democratic-Farmer-Labor,ocd-person/5604b347-d9b5-40b6-844d-8bc5246283d3
+MN,upper,47,Amanda Hemmingsen-Jaeger,Democratic-Farmer-Labor,ocd-person/8300aa36-f818-4ae8-ad31-f9373e396e08
+MN,upper,27,Andrew Mathews,Republican,ocd-person/aabdca28-85ec-41e4-be90-726acaaa0cff
+MN,lower,45A,Andrew Myers,Republican,ocd-person/bba68b5b-90ac-4465-bdd2-fdf23c33b87a
+MN,upper,16,Andrew Lang,Republican,ocd-person/3e1cd4f3-2c37-4531-b2cb-ca875c82d773
+MN,lower,25B,Andy Smith,Democratic-Farmer-Labor,ocd-person/41cf59c9-a2c3-442d-85f1-7d6ec8de1a97
+MN,upper,43,Ann Rest,Democratic-Farmer-Labor,ocd-person/ec588921-873b-4335-8fa1-2e3485008d3e
+MN,upper,45,Ann Johnson Stewart,Democratic-Farmer-Labor,ocd-person/4749e0fb-4f41-46e3-a8b4-19fdbbbde113
+MN,lower,62B,Anquam Mahamoud,Democratic-Farmer-Labor,ocd-person/8c85da58-235b-4769-be5f-dcf5b7c66c75
+MN,upper,14,Aric Putnam,Democratic-Farmer-Labor,ocd-person/20c89480-8cde-4106-8b3d-54183371960a
+MN,lower,66B,Athena Hollins,Democratic-Farmer-Labor,ocd-person/9f56bc31-f522-4e29-af62-cdc616babc88
+MN,lower,54B,Ben Bakeberg,Republican,ocd-person/f8d52f8b-1b8c-454d-87be-42edd3100511
+MN,lower,6A,Ben Davis,Republican,ocd-person/f5597924-50c0-4bfc-bd63-3d3b814274f8
+MN,lower,14A,Bernie Perryman,Republican,ocd-person/354e366b-b9b5-46b4-b9ce-f3d96f508ceb
+MN,lower,52B,Bianca Virnig,Democratic-Farmer-Labor,ocd-person/971431ad-1fdb-49e5-9cf0-57cfff1645a8
+MN,lower,2A,Bidal Duran,Republican,ocd-person/8a84172a-6b96-4b28-a9ab-bf11625528a3
+MN,upper,58,Bill Lieske,Republican,ocd-person/05fb3c26-0704-49c8-8eb6-8c624b752434
+MN,upper,21,Bill Weber,Republican,ocd-person/f839da78-1e9c-4e4b-b1d7-d203970ec6b2
+MN,lower,22A,Bjorn Olson,Republican,ocd-person/ad3245d1-b310-4d50-8290-e642d078f661
+MN,lower,17B,Bobbie Harder,Republican,ocd-person/fe6a11bc-199d-467e-9447-3999c8250490
+MN,upper,59,Bobby Joe Champion,Democratic-Farmer-Labor,ocd-person/c7436be4-472a-4d5e-82f5-f46359395d3a
+MN,upper,42,Bonnie Westlin,Democratic-Farmer-Labor,ocd-person/7536b66f-54fe-436e-ba03-83291c3c8d12
+MN,lower,54A,Brad Tabke,Democratic-Farmer-Labor,ocd-person/05f634e6-f8d3-4983-9604-dfc8dddc574e
+MN,lower,36B,Brion Curran,Democratic-Farmer-Labor,ocd-person/372ff500-488c-4bf6-9557-6b5824c6e193
+MN,lower,27B,Bryan Lawrence,Republican,ocd-person/b135d3fd-c3cd-4bb5-a0b8-eefef669aada
+MN,upper,31,Cal Bahr,Republican,ocd-person/57b9021d-f5b7-4f80-a82d-a93ca9a123d0
+MN,lower,7B,Cal Warwas,Republican,ocd-person/0fcdf023-48a4-4f62-92d0-0be6715bf229
+MN,upper,24,Carla Nelson,Republican,ocd-person/69ac712d-4de2-448a-8b84-ef07b4c4e423
+MN,lower,49B,Carlie Kotyza-Witthuhn,Democratic-Farmer-Labor,ocd-person/bfa93ce5-99ed-4840-9d49-c3531a6e7742
+MN,lower,43A,Cedrick Frazier,Democratic-Farmer-Labor,ocd-person/31bf14e3-fcde-4b2f-b2c4-1dd47b9a260b
+MN,lower,46B,Cheryl Youakim,Democratic-Farmer-Labor,ocd-person/ec1171fd-3b90-4137-b01d-041f905c642d
+MN,lower,15A,Chris Swedzinski,Republican,ocd-person/d9abe93e-6eba-4658-a0cd-68610585606b
+MN,upper,66,Clare Oumou Verbeten,Democratic-Farmer-Labor,ocd-person/9afffc3e-2fd8-404c-beeb-5bf3e17397ce
+MN,upper,61,Scott Dibble,Democratic-Farmer-Labor,ocd-person/4dc8ff31-159a-457a-9551-a897d222f87e
+MN,lower,14B,Dan Wolgamott,Democratic-Farmer-Labor,ocd-person/57755948-5912-49c5-b8b7-65c110ae44d9
+MN,lower,34A,Danny Nadeau,Republican,ocd-person/04242ba4-8fb4-4306-98d2-cae358d8e532
+MN,lower,16B,Dave Baker,Republican,ocd-person/c0275aeb-e2ff-44c7-b4ab-cae4bf495d84
+MN,lower,64B,Dave Pinto,Democratic-Farmer-Labor,ocd-person/a8c6c773-371b-4df9-a57a-5d2565c7b876
+MN,lower,40B,David Gottfried,Democratic-Farmer-Labor,ocd-person/0d187b4d-c15c-487e-9602-541bd7dd948a
+MN,lower,17A,Dawn Gillman,Republican,ocd-person/f4047f6d-971d-41be-bbce-e15dac5829ae
+MN,upper,60,Doron Clark,Democratic-Farmer-Labor,ocd-person/2c27d592-c50b-45ae-b62a-ff657c828a5c
+MN,lower,58B,Drew Roach,Republican,ocd-person/7eb10c5c-1b6e-4ee2-9dac-589e3db32f49
+MN,lower,24A,Duane Quam,Republican,ocd-person/6652aa40-32c5-4430-bbf6-707a0b8a1f56
+MN,lower,36A,Elliott Engen,Republican,ocd-person/f27e2742-5c0f-4dba-a37f-76592f91f6f0
+MN,lower,63B,Emma Greenman,Democratic-Farmer-Labor,ocd-person/f38e8115-610c-4e22-b9cb-80bd96311410
+MN,upper,30,Eric Lucero,Republican,ocd-person/a9040c8f-56d4-4ad9-83f5-e6f1216e7a5e
+MN,upper,54,Eric Pratt,Republican,ocd-person/f520232e-1086-4353-b904-9ff7a89ba5e8
+MN,lower,18A,Erica Schwartz,Republican,ocd-person/e62d342c-ae38-4607-88d7-3a7f3f7e248b
+MN,upper,56,Erin Maye Quade,Democratic-Farmer-Labor,ocd-person/5233b98b-0b6d-47c9-9fc0-9218a592f8d8
+MN,lower,39A,Erin Koegel,Democratic-Farmer-Labor,ocd-person/0d6f7edf-eae0-441d-8089-84472ce1f36f
+MN,upper,64,Erin Murphy,Democratic-Farmer-Labor,ocd-person/81828030-d1b8-4641-8692-8148fca58b28
+MN,lower,59B,Esther Agbaje,Democratic-Farmer-Labor,ocd-person/b140f0d2-f803-4118-9c6c-72aa322ec3bb
+MN,lower,47B,Ethan Cha,Democratic-Farmer-Labor,ocd-person/d0e94ca0-b600-4567-88ee-34a861ca38aa
+MN,upper,67,Foung Hawj,Democratic-Farmer-Labor,ocd-person/5644f3f8-6394-4ab6-9619-7ab6702b37ea
+MN,lower,59A,Fue Lee,Democratic-Farmer-Labor,ocd-person/d8da71a7-c99b-4510-8abc-2d8e78db3fff
+MN,upper,15,Gary Dahms,Republican,ocd-person/d1b377a1-8caa-4e37-999b-83ef8a1bf92c
+MN,upper,23,Gene Dornink,Republican,ocd-person/d3857eb4-0ec5-4406-840a-e338aad6a238
+MN,lower,42B,Ginny Klevorn,Democratic-Farmer-Labor,ocd-person/2cb0f6d7-006d-4f7a-a1a3-218eff6016aa
+MN,upper,17,Glenn Gruenhagen,Republican,ocd-person/7a52595e-fa21-4e21-88d6-b03e4d9f1f77
+MN,upper,3,Grant Hauschild,Democratic-Farmer-Labor,ocd-person/6a13cdd4-3646-4fe9-a2a3-5f1399c2c146
+MN,lower,26B,Greg Davids,Republican,ocd-person/5bf21441-27fe-4f78-8fc1-83ca3ee5700d
+MN,lower,31A,Harry Niska,Republican,ocd-person/371f41ef-a432-4880-950b-f3ac4b17d02f
+MN,upper,36,Heather Gustafson,Democratic-Farmer-Labor,ocd-person/9411a121-c47d-431a-b407-88ff5c891c5f
+MN,lower,4A,Heather Keeler,Democratic-Farmer-Labor,ocd-person/3ace0851-830e-42a1-8390-27c1142f2367
+MN,lower,38A,Huldah Hiltsley,Democratic-Farmer-Labor,ocd-person/05831ea3-3480-4a57-a5ea-a1844a554301
+MN,lower,10B,Isaac Schultz,Republican,ocd-person/a916d408-21ae-4eee-a2d7-c8019478f521
+MN,lower,61B,Jamie Long,Democratic-Farmer-Labor,ocd-person/b6ea5e13-3aad-438c-bed0-749a9bff80c3
+MN,upper,11,Jason Rarick,Republican,ocd-person/f15c0d42-4380-4f9b-b66d-14ffe61e1a40
+MN,lower,67B,Jay Xiong,Democratic-Farmer-Labor,ocd-person/8892bfba-9b17-4378-8c85-f2d73d2b88ac
+MN,lower,9A,Jeff Backer,Republican,ocd-person/edcf7ea6-b735-46b3-9d50-fa189cda6e8d
+MN,lower,11A,Jeff Dotseth,Republican,ocd-person/f6aa30f5-2e66-44ae-8de0-352c64ddafe8
+MN,upper,13,Jeff Howe,Republican,ocd-person/971dbd16-363f-4151-a75c-306746aec18e
+MN,lower,57B,Jeff Witte,Republican,ocd-person/72c6929c-a329-4613-99a0-5e339f5a045f
+MN,upper,8,Jen McEwen,Democratic-Farmer-Labor,ocd-person/8d0a69ec-1301-4df5-9676-86720555ea7c
+MN,upper,26,Jeremy Miller,Republican,ocd-person/f0824aef-4692-46c8-bafa-f19a01a9d716
+MN,lower,55A,Jess Hanson,Democratic-Farmer-Labor,ocd-person/5099a61c-2d2a-41d0-a03d-ccbbb0edbf15
+MN,upper,35,Jim Abeler,Republican,ocd-person/fc189dd9-b597-4744-86d3-ac315b93a3f3
+MN,upper,52,Jim Carlson,Democratic-Farmer-Labor,ocd-person/ac087885-bab6-4fbf-b88a-daf71262c8b6
+MN,lower,4B,Jim Joy,Republican,ocd-person/0897d40e-d8b4-4b1e-b0cf-e0ae4e9685f2
+MN,lower,48A,Jim Nash,Republican,ocd-person/d7012c12-e223-4409-823b-ba3e55be6677
+MN,lower,28A,Jimmy Gordon,Republican,ocd-person/a2fed609-2172-4740-b9f3-f00a6da4716d
+MN,lower,29A,Joe McDonald,Republican,ocd-person/6292245e-1db4-4a8e-ba2a-a036e7b68044
+MN,upper,34,John Hoffman,Democratic-Farmer-Labor,ocd-person/b31cb55a-94ea-4f44-a4b9-8003b32c749a
+MN,lower,1A,John Burkel,Republican,ocd-person/c86f501e-0b47-4e57-8f5a-d7d0be2392af
+MN,lower,56B,John Huot,Democratic-Farmer-Labor,ocd-person/5d8ac115-4a2b-4f0f-b70a-c1df26184891
+MN,upper,40,John Marty,Democratic-Farmer-Labor,ocd-person/4acf27d9-edd4-4f04-97c7-164390a5664b
+MN,upper,19,John Jasinski,Republican,ocd-person/f6b649e0-5359-4d22-8ff0-6ca017bc5e23
+MN,lower,57A,Jon Koznick,Republican,ocd-person/8c4ed90f-f243-43f1-b205-0edd374777d8
+MN,upper,9,Jordan Rasmusson,Republican,ocd-person/4c3116e2-98db-4367-b543-a12220c9b12f
+MN,lower,6B,Josh Heintzeman,Republican,ocd-person/18549c8f-0d80-4c2f-bdcc-f3762c3acb19
+MN,lower,33B,Josiah Hill,Democratic-Farmer-Labor,ocd-person/4558fb30-435a-4fde-acdd-bdcc82c7da45
+MN,upper,41,Judy Seeberger,Democratic-Farmer-Labor,ocd-person/4ca681ca-58ab-4d75-b7ef-8d255f858d62
+MN,upper,48,Julia Coleman,Republican,ocd-person/62a79a93-6117-4f36-87ef-f4058c34142a
+MN,lower,50A,Julie Greene,Democratic-Farmer-Labor,ocd-person/15f0a29b-674a-4146-8a93-019c9a3f305e
+MN,lower,55B,Kaela Berg,Democratic-Farmer-Labor,ocd-person/1912cdc1-267c-4d36-acec-08896502658e
+MN,lower,35B,Kari Rehrauer,Democratic-Farmer-Labor,ocd-person/ecea4720-d4e0-4c21-a4dd-76cdb54023d2
+MN,upper,33,Karin Housley,Republican,ocd-person/dde8cf7d-52c2-48e5-bf65-f0fe2477713c
+MN,lower,61A,Katie Jones,Democratic-Farmer-Labor,ocd-person/12252e69-5ffb-459b-a84e-333af1219f94
+MN,lower,19A,Keith Allen,Republican,ocd-person/939c0bab-e76d-443f-b46b-7f98d05036e2
+MN,lower,40A,Kelly Moller,Democratic-Farmer-Labor,ocd-person/3eb5eb9d-cd17-4a48-ac4c-4f7a7b8e133e
+MN,upper,6,Keri Heintzeman,Republican,ocd-person/4d922135-f178-4e50-8439-ebbf47cf025c
+MN,lower,25A,Kim Hicks,Democratic-Farmer-Labor,ocd-person/6902f219-7571-4bf1-a0af-ffa9eae2c23f
+MN,lower,5A,Krista Knudsen,Republican,ocd-person/d9b75b0d-6065-4efc-81e2-03084dee070a
+MN,lower,58A,Kristi Pursell,Democratic-Farmer-Labor,ocd-person/ed73b309-bb2f-4805-a33b-a3fb760e6664
+MN,lower,37B,Kristin Bahner,Democratic-Farmer-Labor,ocd-person/ad111cf3-f5f9-4e94-a087-dc39ce1fb136
+MN,lower,37A,Kristin Robbins,Republican,ocd-person/d32d0b31-20af-4068-a5bd-42fd0a072ded
+MN,lower,46A,Larry Kraft,Democratic-Farmer-Labor,ocd-person/a4451923-cc1b-4d5d-9c14-5c50062335a2
+MN,lower,66A,Leigh Finke,Democratic-Farmer-Labor,ocd-person/afff2a0a-1b2d-480e-a90d-8609842f0927
+MN,lower,44B,Leon Lillie,Democratic-Farmer-Labor,ocd-person/00240593-7a31-4725-8c31-c723115732bb
+MN,upper,55,Lindsey Port,Democratic-Farmer-Labor,ocd-person/39814623-d268-47a1-8dcd-78e3ae1a33cf
+MN,lower,13A,Lisa Demuth,Republican,ocd-person/7b7b8d46-05d4-4285-b728-abcad1a430d5
+MN,upper,25,Liz Boldon,Democratic-Farmer-Labor,ocd-person/26ed75ae-3230-4e92-82a3-486bd76e1893
+MN,lower,67A,Liz Lee,Democratic-Farmer-Labor,ocd-person/f9dbe591-5c2d-4a25-836a-ae05863b40ff
+MN,lower,52A,Liz Reyer,Democratic-Farmer-Labor,ocd-person/e57307af-8e06-4c44-997d-a2cad2cdb231
+MN,lower,48B,Lucy Rehm,Democratic-Farmer-Labor,ocd-person/75e19dbb-1f4b-4ace-b87e-201e445d25b4
+MN,lower,18B,Luke Frederick,Democratic-Farmer-Labor,ocd-person/b0d93fc5-2efc-4908-aceb-7b2fc208b34d
+MN,lower,65B,María Isa Pérez-Vega,Democratic-Farmer-Labor,ocd-person/d1c094c0-6184-49e4-a18a-d5b900caca1b
+MN,lower,29B,Marion Rarick,Republican,ocd-person/0682bc6b-e4f2-427a-917b-96fbc49bb741
+MN,lower,21B,Marj Fogelman,Republican,ocd-person/9837607c-b08b-4742-ad5f-3e8f72f8b7b4
+MN,upper,1,Mark Johnson,Republican,ocd-person/de9b28f6-a2a8-4edd-98cb-2b3ff2e6382c
+MN,upper,28,Mark Koran,Republican,ocd-person/f20a4255-6c65-4091-a0f5-aea70f133cdb
+MN,lower,53A,Mary Clardy,Democratic-Farmer-Labor,ocd-person/1acddc90-d32a-4495-a769-27f8b57193b7
+MN,lower,12B,Mary Franson,Republican,ocd-person/1b284763-8577-49ab-b641-f4f079196646
+MN,upper,39,Mary Kunesh,Democratic-Farmer-Labor,ocd-person/2795e0ed-3a02-4afc-8836-f5c3c067139c
+MN,lower,2B,Matt Bliss,Republican,ocd-person/cbab855f-4a47-4afd-b74a-468a4545b82b
+MN,upper,53,Matt Klein,Democratic-Farmer-Labor,ocd-person/a4b21c2d-d3fe-41dc-9614-0ff80878850c
+MN,lower,32B,Matt Norris,Democratic-Farmer-Labor,ocd-person/662f07d4-7dd5-4549-bded-c8b5a200e054
+MN,lower,28B,Max Rymer,Republican,ocd-person/afca05de-e5ff-4b1c-b38c-444f37b92687
+MN,lower,64A,Meg Luger-Nikolai,Democratic-Farmer-Labor,ocd-person/8164812a-be9a-44e0-bf42-741cb4a01e2c
+MN,upper,51,Melissa Wiklund,Democratic-Farmer-Labor,ocd-person/d2fb6801-379e-481c-9313-2ac099d3a775
+MN,upper,32,Michael Kreun,Republican,ocd-person/3a76623e-d295-4c58-be60-fd37a285a39b
+MN,lower,51A,Mike Howard,Democratic-Farmer-Labor,ocd-person/8910b3db-698e-4019-b976-0ee19ecb8ca0
+MN,lower,43B,Mike Freiberg,Democratic-Farmer-Labor,ocd-person/4815983e-d0b9-4ebc-855f-bb9eac8aa5ae
+MN,upper,29,Mike Holmstrom,Republican,ocd-person/564bbace-b157-416d-ae59-81cd8a1fbaf8
+MN,lower,5B,Mike Wiener,Republican,ocd-person/4c34f3d9-8890-4145-8a96-92ab23f046c0
+MN,lower,60B,Mohamud Noor,Democratic-Farmer-Labor,ocd-person/591ea10b-1362-434e-90be-2db0877a0e9c
+MN,lower,3B,Natalie Zeleznikar,Republican,ocd-person/1b1055a8-959c-452c-a2a8-106a4ccef20d
+MN,lower,51B,Nathan Coulter,Democratic-Farmer-Labor,ocd-person/63b26a4d-ae7c-4267-89ab-dfa4a1f341ad
+MN,lower,11B,Nathan Nelson,Republican,ocd-person/172cb289-beec-4bc1-8627-f027f2cd3769
+MN,upper,10,Nathan Wesenberg,Republican,ocd-person/7eaf40ec-f926-4992-8962-65b90846ef80
+MN,lower,42A,Ned Carroll,Democratic-Farmer-Labor,ocd-person/764db471-e56d-4ef0-9df8-4e7a164c3b7e
+MN,upper,18,Nick Frentz,Democratic-Farmer-Labor,ocd-person/55a02119-b43d-4b39-a19b-07411c5ec7c9
+MN,lower,32A,Nolan West,Republican,ocd-person/171224fc-8a8d-4516-aa87-a2f5bcf1ea46
+MN,upper,62,Omar Fateh,Democratic-Farmer-Labor,ocd-person/04eeaa61-ee3c-4e36-88f2-b415660175eb
+MN,lower,20A,Pam Altendorf,Republican,ocd-person/26c19220-1368-4453-81c9-3b0c395e3949
+MN,lower,23B,Patty Mueller,Republican,ocd-person/71df2690-6a54-4452-960a-54a5b6540bc7
+MN,lower,33A,Patti Anderson,Republican,ocd-person/4bab18ef-55dc-44bf-adfe-8dbdf9488a09
+MN,lower,45B,Patty Acomb,Democratic-Farmer-Labor,ocd-person/b393cb61-cb71-4cd0-8132-6e21c2a7202d
+MN,lower,12A,Paul Anderson,Republican,ocd-person/ab35dde5-226a-4427-9344-c74d8291a75f
+MN,upper,5,Paul Utke,Republican,ocd-person/fde08265-b73e-4a4b-ba87-d90d71319640
+MN,lower,30B,Paul Novotny,Republican,ocd-person/3e0eb8aa-b66c-4b30-9a0e-f1326c6f0589
+MN,lower,15B,Paul Torkelson,Republican,ocd-person/380875c6-dc4c-4062-8c2d-f5b80dd64c4c
+MN,lower,23A,Peggy Bennett,Republican,ocd-person/16c8390c-93c6-403e-83d4-5ff1a81fe4aa
+MN,lower,31B,Peggy Scott,Republican,ocd-person/75f1b339-bd9f-4f7c-820b-75812553bde0
+MN,lower,8A,Pete Johnson,Democratic-Farmer-Labor,ocd-person/fb643600-2577-4561-a902-6f158a5c40e4
+MN,lower,44A,Peter Fischer,Democratic-Farmer-Labor,ocd-person/929dc6f7-63f4-4a9d-ba24-6ab8c5964acf
+MN,upper,22,Rich Draheim,Republican,ocd-person/f9fb7c65-e0ab-484c-8517-b20267cc3f07
+MN,lower,53B,Rick Hansen,Democratic-Farmer-Labor,ocd-person/c41944c1-d89b-4c3f-a76f-d5c58d0a507f
+MN,lower,26A,Ripper Repinski,Republican,ocd-person/e783687f-ea0d-480a-a1ff-3072f491fb44
+MN,lower,56A,Robert Bierman,Democratic-Farmer-Labor,ocd-person/f2b7f80c-abb4-4204-839f-eb9a4de6dbab
+MN,upper,7,Rob Farnsworth,Republican,ocd-person/9cdb9977-9923-4124-ae93-c45e28f1f51c
+MN,upper,4,Rob Kupec,Democratic-Farmer-Labor,ocd-person/b8c303a5-0a73-4a26-8071-be5a9dcf113a
+MN,lower,3A,Roger Skraba,Republican,ocd-person/e7b3aed7-aa50-4c4b-bd53-eacc60e53ba8
+MN,lower,10A,Ron Kresha,Republican,ocd-person/3059daef-810c-4917-b6fa-c059312f97bf
+MN,upper,46,Ron Latz,Democratic-Farmer-Labor,ocd-person/834a2c10-beb0-454e-8e08-619309d8a08a
+MN,lower,65A,Samakab Hussein,Democratic-Farmer-Labor,ocd-person/1ff5f689-18c9-4d74-970f-c289f915dc6a
+MN,lower,63A,Samantha Sencer-Mura,Democratic-Farmer-Labor,ocd-person/74dec7df-a9b9-48aa-9fae-bbe45990f4f5
+MN,lower,38B,Samantha Vang,Democratic-Farmer-Labor,ocd-person/3f73ba2f-f038-47ff-b721-27118592b691
+MN,lower,39B,Sandra Feist,Democratic-Farmer-Labor,ocd-person/94c52434-9616-43bd-863b-9481943dedb1
+MN,upper,65,Sandy Pappas,Democratic-Farmer-Labor,ocd-person/0b83a916-567b-4d36-843f-17d8f5e13b8d
+MN,lower,16A,Scott Van Binsbergen,Republican,ocd-person/18e1e0aa-a224-4772-b4d1-11c7a9ed510f
+MN,lower,27A,Shane Mekeland,Republican,ocd-person/204ac87d-7f04-4b49-adc4-658faec7d413
+MN,lower,47A,Shelley Buck,Democratic-Farmer-Labor,ocd-person/0b860ed2-515a-4212-81ab-cc27b5e16223
+MN,lower,7A,Spencer Igo,Republican,ocd-person/2e342c55-f56d-4895-9dd2-ef1271f784c0
+MN,upper,49,Steve Cwodzinski,Democratic-Farmer-Labor,ocd-person/e67843ce-752d-4cc0-abb9-4a45b8b8fdca
+MN,upper,20,Steve Drazkowski,Republican,ocd-person/a947d529-ab68-4ae8-b1e8-7ff012dde193
+MN,lower,50B,Steve Elkins,Democratic-Farmer-Labor,ocd-person/b867618c-7a49-4cb3-94ac-b5836ae8dedf
+MN,lower,1B,Steve Gander,Republican,ocd-person/23bda6c1-1fa1-4d42-9b6c-8c76d1d91227
+MN,upper,2,Steve Green,Republican,ocd-person/9d8b9b67-e74b-4e7f-92d5-52e3c0907f1d
+MN,lower,20B,Steve Jacob,Republican,ocd-person/3c90edec-1bce-4197-8e1c-cc840102c7a9
+MN,upper,38,Susan Pha,Democratic-Farmer-Labor,ocd-person/bd086574-4116-4b0a-ad6b-7c0352293f06
+MN,lower,60A,Sydney Jordan,Democratic-Farmer-Labor,ocd-person/e60bb3ff-5164-4d6d-9029-d2e3d2ac69a0
+MN,lower,22B,Terry Stier,Republican,ocd-person/9e7eca64-ff97-48f2-8887-916e50d917cd
+MN,lower,13B,Tim O'Driscoll,Republican,ocd-person/015d0cf4-9742-4050-8084-a62be4107f2e
+MN,lower,24B,Tina Liebling,Democratic-Farmer-Labor,ocd-person/ed6e8851-f7a8-41af-b2b6-570bd2004587
+MN,lower,41B,Tom Dippel,Republican,ocd-person/05de7bba-70ee-4848-b0ec-d67354b6073a
+MN,lower,9B,Tom Murphy,Republican,ocd-person/a798a6be-e28f-447c-b9ce-ffd7bf9a0ed4
+MN,lower,19B,Tom Sexton,Republican,ocd-person/2989633c-a60b-4337-972d-49941a4db1b6
+MN,upper,12,Torrey Westrom,Republican,ocd-person/1c19414e-994b-46d4-8971-432ed482ca39
+MN,upper,44,Tou Xiong,Democratic-Farmer-Labor,ocd-person/5d9e1da5-ecf9-45d9-b104-7d1238032aff
+MN,lower,30A,Walter Hudson,Republican,ocd-person/0b721953-c642-4b33-b203-5eb3f3da210b
+MN,upper,37,Warren Limmer,Republican,ocd-person/dc676c57-0779-4d0e-9ba4-a07d7034dfa1
+MN,lower,41A,Wayne Johnson,Republican,ocd-person/0926949b-8d9e-4fc0-b860-7662f46afdc6
+MN,lower,34B,Xp Lee,Democratic-Farmer-Labor,ocd-person/622e5358-869c-4d25-b6ed-e5425ca56caa
+MN,upper,57,Zach Duckworth,Republican,ocd-person/acacede0-a09a-45b9-8990-646dfa5bd59a
+MN,lower,35A,Zack Stephenson,Democratic-Farmer-Labor,ocd-person/ed5f1cc0-ff12-461e-9016-0ef27f180430
+MN,upper,63,Zaynab Mohamed,Democratic-Farmer-Labor,ocd-person/332e30b5-dc8d-4074-9c16-6e2a6255d135
+WI,lower,15,Adam Neylon,Republican,ocd-person/22d8a510-3b36-432a-9d3d-08efe7e74d5e
+WI,lower,39,Alex Dallman,Republican,ocd-person/c4afc94c-3bad-4e77-9f81-de613c406860
+WI,lower,81,Alex Joers,Democratic,ocd-person/1638f0f9-1d5a-4790-aee2-63cad736b137
+WI,lower,90,Amaad Rivera-Wagner,Democratic,ocd-person/998f8ecc-8772-44f4-a81d-622f567c0142
+WI,lower,32,Amanda Nedweski,Republican,ocd-person/5c70d5df-b7a6-471c-a766-05816ee009a5
+WI,upper,1,André Jacque,Republican,ocd-person/b0101cd0-ad49-466b-a46e-8bb8671cb709
+WI,lower,48,Andrew Hysell,Democratic,ocd-person/9dc4ee36-43d6-4392-b0f8-2d6b7d4121f3
+WI,lower,73,Angela Stroud,Democratic,ocd-person/68856392-7181-4a63-bcc0-2c414a67045e
+WI,lower,62,Angelina Cruz,Democratic,ocd-person/e47f88fc-e402-4b8d-a253-ee77ea95847d
+WI,lower,14,Angelito Tenorio,Democratic,ocd-person/fc8fe4ef-dfff-465c-92db-a369ac888afe
+WI,lower,44,Ann Roe,Democratic,ocd-person/92eb51fb-7865-4b2f-8ea1-c56b5f287b5c
+WI,lower,99,Barbara Dittrich,Republican,ocd-person/0580ebef-0cfa-40ae-a4ea-d960e0ea30ee
+WI,lower,65,Ben DeSmidt,Democratic,ocd-person/d4c9b78d-bb0b-40e8-b717-f606299c9737
+WI,lower,88,Ben Franklin,Republican,ocd-person/04b709c6-b487-49c1-9bcf-dfbbc7082beb
+WI,lower,61,Bob Donovan,Republican,ocd-person/54522ac6-81ad-4b83-929f-b94e94b8acb4
+WI,upper,32,Brad Pfaff,Democratic,ocd-person/1c95c957-d9c9-4905-8dc6-37b13272c1f0
+WI,lower,87,Brent Jacobson,Republican,ocd-person/3089bcca-553d-4637-9b50-2d9698944d5a
+WI,lower,43,Brienne Brown,Democratic,ocd-person/f8f3683e-3615-4a4b-bafe-d4d042f291d0
+WI,lower,35,Calvin Callahan,Republican,ocd-person/23c03244-880a-4263-8e2f-18c0c5556b45
+WI,lower,74,Chanz Green,Republican,ocd-person/2a6503b4-d030-4569-b5b2-8fe62ff6132d
+WI,upper,33,Chris Kapenga,Republican,ocd-person/8d93f6ba-19eb-4684-a47d-6de08e009741
+WI,upper,7,Chris Larson,Democratic,ocd-person/48d90383-6c55-47c7-979c-2b95a806ec4c
+WI,lower,93,Christian Phelps,Democratic,ocd-person/ad79773d-d349-4adf-9e3c-00d2b38a90b2
+WI,lower,20,Christine Sinicki,Democratic,ocd-person/2da8406a-4a68-4167-887d-22fe1b872940
+WI,lower,84,Chuck Wichgers,Republican,ocd-person/ef921fbc-cb1a-4208-a4ab-b2ea99114f0a
+WI,lower,97,Cindi Duchow,Republican,ocd-person/171aec6e-ba95-4244-9854-84cddf028d90
+WI,lower,92,Clint Moses,Republican,ocd-person/21e310b1-c14b-42e6-b3fc-84c1613c3063
+WI,lower,45,Clint Anderson,Democratic,ocd-person/d670cb97-7d46-4d57-95ec-1a3654a6fe0c
+WI,upper,29,Cory Tomczyk,Republican,ocd-person/365aa5a9-3584-4baa-86b5-51f096764f69
+WI,upper,20,Dan Feyen,Republican,ocd-person/a0284290-ef4c-4f10-a5be-485115057ab5
+WI,lower,24,Dan Knodl,Republican,ocd-person/1152309b-c82f-4660-bd5d-3e16322f1200
+WI,lower,10,Darrin Madison,Democratic,ocd-person/d9f84b91-88ac-4abc-8d47-0672e2de5970
+WI,lower,83,Dave Maxey,Republican,ocd-person/f20f569f-1f36-4856-9193-b4b938dfcdaf
+WI,lower,67,Dave Armstrong,Republican,ocd-person/28caa8bd-605b-4755-85a0-52434a9be02f
+WI,lower,56,Dave Murphy,Republican,ocd-person/1e2717f2-3426-47b6-8e86-a63f0a507c81
+WI,lower,4,David Steffen,Republican,ocd-person/2a067a93-dffc-4ce7-8975-d37fb67b4512
+WI,lower,53,Dean Kaufert,Republican,ocd-person/72aa0b66-48f0-41fd-8ac8-b33f610d97c7
+WI,lower,23,Deb Andraca,Democratic,ocd-person/bcca1ebf-1a4c-4624-97a6-dbfd3e255191
+WI,upper,9,Devin LeMahieu,Republican,ocd-person/be7a6f06-6d2c-49d1-908d-451adef564eb
+WI,upper,27,Dianne Hesselbein,Democratic,ocd-person/57a316e3-b233-4460-abf5-193dd042291f
+WI,upper,4,Dora Drake,Democratic,ocd-person/798979da-9683-41b4-b663-d5c73ec93364
+WI,lower,75,Duke Tucker,Republican,ocd-person/2a047fc5-2adb-4c4b-9c67-0eda3aa07233
+WI,lower,6,Elijah Behnke,Republican,ocd-person/de5dfe78-e3a2-4a58-a7f1-bb184bfd1ade
+WI,upper,2,Eric Wimberger,Republican,ocd-person/86a5289a-d18f-4869-ac53-432022c7f9c7
+WI,lower,76,Francesca Hong,Democratic,ocd-person/17879a06-e9fc-4e11-88bf-3c684c460c07
+WI,lower,66,Greta Neubauer,Democratic,ocd-person/62f218bf-b308-4240-84b3-4be181466b42
+WI,upper,17,Howard Marklein,Republican,ocd-person/c405ad68-fdbd-43fe-abc2-f449f33c89b0
+WI,upper,30,Jamie Wall,Democratic,ocd-person/5d4675a4-34f3-47ea-8821-69669a2a8d05
+WI,upper,31,Jeff Smith,Democratic,ocd-person/8a1ee7b3-8450-45b4-a1cf-5e05788c0653
+WI,lower,36,Jeff Mursau,Republican,ocd-person/5254db79-a23b-4496-ad9b-cc0e7a9b7f3a
+WI,lower,50,Jenna Jacobson,Democratic,ocd-person/a38a3643-e446-419c-b255-97d88f880634
+WI,lower,60,Jerry O'Connor,Republican,ocd-person/4e1004c1-d397-4a50-baeb-2d3fbbd2912f
+WI,upper,23,Jesse James,Republican,ocd-person/79d7550b-bb75-453b-bfd7-3f273debe3e4
+WI,lower,21,Jessie Rodriguez,Republican,ocd-person/1dd290f4-6504-4967-9566-55cb3340d303
+WI,lower,95,Jill Billings,Democratic,ocd-person/7da63875-0a3c-4b03-aaa8-fe48c718eb45
+WI,lower,98,Jim Piwowarczyk,Republican,ocd-person/61dfe0c1-631f-401a-a4db-6641547db7ef
+WI,lower,46,Joan Fitzgerald,Democratic,ocd-person/fd8d6d12-9d66-4926-92b4-61c463cae027
+WI,lower,91,Jodi Emerson,Democratic,ocd-person/71d596fa-95f2-4411-9b7c-9e250380b701
+WI,upper,8,Jodi Habush Sinykin,Democratic,ocd-person/225f946c-4812-435d-83f1-dad22a2fb0d6
+WI,lower,26,Joe Sheehan,Democratic,ocd-person/28a7f0c8-0d9c-4436-bfe2-f92ae3871ee2
+WI,lower,1,Joel Kitchens,Republican,ocd-person/e127b754-c756-4017-a414-83cff1bb30f5
+WI,upper,13,John Jagler,Republican,ocd-person/13728fa5-9484-4767-b642-8bf9adf80a8b
+WI,lower,86,John Spiros,Republican,ocd-person/38070b4e-d50c-4bc1-86ad-6739c5edc60a
+WI,lower,5,Joy Goeben,Republican,ocd-person/b8666d84-956f-40a7-8faa-75709f9d4a12
+WI,upper,28,Julian Bradley,Republican,ocd-person/91a901ca-e295-4843-b368-e9da162c0ae4
+WI,lower,16,Kalan Haywood,Democratic,ocd-person/ac00fa62-2863-4ce4-97fb-57c094eaa158
+WI,lower,40,Karen DeSanto,Democratic,ocd-person/521bd1d9-d819-4637-88be-f496966b7617
+WI,lower,69,Karen Hurd,Republican,ocd-person/1332581f-d860-43a0-b7d9-ddf619451efa
+WI,lower,7,Karen Kirsch,Democratic,ocd-person/032a80c3-81a6-42a3-9fa7-f210f2407aa0
+WI,upper,26,Kelda Roys,Democratic,ocd-person/967afe3c-119d-4051-a8b1-674f328c4775
+WI,lower,57,Kevin Petersen,Republican,ocd-person/43c33bdc-3c41-47cc-8ffb-10a043ecdc93
+WI,upper,18,Kristin Dassler-Alfheim,Democratic,ocd-person/73b2bf4c-54e5-4da3-9a8c-c2c5bf4f102d
+WI,upper,6,LaTonya Johnson,Democratic,ocd-person/eba6f26b-65c9-42fe-a8a5-09e11c8d089a
+WI,lower,52,Lee Snodgrass,Democratic,ocd-person/54a3a633-bff9-47f1-9951-ae3a82d012a8
+WI,lower,27,Lindee Brill,Republican,ocd-person/a8bf9343-7c1b-4a9d-812c-eef5a89365a6
+WI,lower,79,Lisa Subeck,Democratic,ocd-person/eed49381-7c5b-4890-bba3-d63b8681463d
+WI,lower,54,Lori Palmeri,Democratic,ocd-person/aef40b88-72b7-4001-b336-9210a55a2bde
+WI,lower,18,Margaret Arney,Democratic,ocd-person/74ee2a17-e955-441b-9dca-32feb5fba9b0
+WI,lower,37,Mark Born,Republican,ocd-person/b6559841-9e69-4435-8788-0d8bc087baed
+WI,upper,15,Mark Spreitzer,Democratic,ocd-person/3bd551f3-a086-4f32-9a6e-31d04d0529ce
+WI,upper,12,Mary Felzkowski,Republican,ocd-person/c67b7b29-0932-4667-bb92-63f46cdfaef0
+WI,lower,42,Maureen McCarville,Democratic,ocd-person/0af151f7-2d0c-48d1-8560-f17d8bacc5a2
+WI,upper,16,Melissa Ratcliff,Democratic,ocd-person/784b437c-b5d1-4adc-909a-2bc28c9d6e88
+WI,lower,80,Mike Bare,Democratic,ocd-person/1b0b0777-af08-40f2-a45b-3c2431b37722
+WI,lower,70,Nancy VanderMeer,Republican,ocd-person/5858f406-f96a-4846-8a9e-0bede48d94ed
+WI,lower,55,Gus Gustafson,Republican,ocd-person/58b31138-e0a5-41ae-bd2f-5713e6c0cc0c
+WI,lower,85,Pat Snyder,Republican,ocd-person/38649f7a-eba4-4908-b264-f95fe908fc7a
+WI,upper,24,Patrick Testin,Republican,ocd-person/13416c83-b50d-4578-b721-83ff5c1486ad
+WI,lower,22,Paul Melotik,Republican,ocd-person/dab88795-9c78-44c5-a0c7-c93cb677f2e3
+WI,lower,25,Paul Tittl,Republican,ocd-person/2e759534-4cf1-43f5-85d0-bf48fea3a048
+WI,lower,9,Priscilla Prado,Democratic,ocd-person/898a7833-5441-4ef4-89f1-f25106589133
+WI,upper,19,Rachael Cabral-Guevara,Republican,ocd-person/5fec547c-aff0-4c6c-880b-bc0f52d28e30
+WI,lower,47,Randy Udell,Democratic,ocd-person/7743646d-bb5a-4771-9c2b-df3a8271609c
+WI,lower,77,Renuka Mayadev,Democratic,ocd-person/8b54c039-be1b-4320-89f8-415ac1afa698
+WI,lower,58,Rick Gundrum,Republican,ocd-person/264f7afa-69cb-46f3-97f3-ff8f21a1d68a
+WI,upper,5,Rob Hutton,Republican,ocd-person/49d245a5-ad19-46cf-9857-581573c0b99b
+WI,lower,28,Rob Kreibich,Republican,ocd-person/a5d9287a-c3e7-4457-8faf-31024e0e9ac6
+WI,upper,10,Rob Stafsholt,Republican,ocd-person/a1407176-afc6-45ce-ad6c-d7f69b5b3b78
+WI,lower,68,Rob Summerfield,Republican,ocd-person/e23ff9c6-f6d5-4ada-8974-74c6ce90c422
+WI,lower,34,Rob Swearingen,Republican,ocd-person/3a7f3611-78c4-453a-ae50-3cad3761dc9b
+WI,lower,59,Rob Brooks,Republican,ocd-person/d8956a67-d280-4219-853f-c21ec173f80a
+WI,upper,22,Bob Wirch,Democratic,ocd-person/dc69e926-a090-4561-bb0f-2f81ec0dc977
+WI,lower,63,Bob Wittke,Republican,ocd-person/ea4d8d73-19b6-408f-a802-22b2ddf816d9
+WI,lower,33,Robin Vos,Republican,ocd-person/c8381cb6-1fcf-4a82-a6c5-5c60773a85e1
+WI,lower,13,Robyn Vining,Democratic,ocd-person/5faa0c8c-6ceb-4629-819b-b13779b93754
+WI,upper,25,Romaine Quinn,Republican,ocd-person/003644e8-cb82-45c6-b875-e52bc28424bb
+WI,lower,3,Ron Tusler,Republican,ocd-person/1c2038cc-ee27-475c-a578-0236dba3f3f3
+WI,lower,12,Russell Goodwin,Democratic,ocd-person/ccf7588a-e4da-4093-a532-8043b2534a06
+WI,lower,19,Ryan Clancy,Democratic,ocd-person/91423371-a92c-4006-ad7d-e21f2f7e666b
+WI,lower,89,Ryan Spaude,Democratic,ocd-person/3d4582f2-ed69-468c-ad02-33cbd612199d
+WI,upper,14,Sarah Keyeski,Democratic,ocd-person/c7bbb253-91be-4cf1-ab53-ab7c1d902b48
+WI,lower,82,Scott Allen,Republican,ocd-person/06b28490-4fb0-43fe-9577-60bdb921164b
+WI,lower,72,Scott Krug,Republican,ocd-person/77257644-eb9a-447d-bcd8-f3e3de7e49e4
+WI,lower,11,Sequanna Taylor,Democratic,ocd-person/a3db3b70-1e27-44a4-a5ae-025450ae4d3d
+WI,lower,2,Shae Sortwell,Republican,ocd-person/82745ad9-d4b8-48e7-bbb9-3c5d73535c30
+WI,lower,30,Shannon Zimmerman,Republican,ocd-person/d949fee5-765b-43ea-913c-386fe2b3c441
+WI,lower,78,Shelia Stubbs,Democratic,ocd-person/5d04e8d6-f9aa-4c1e-b1d4-102a0caff933
+WI,upper,11,Steve Nass,Republican,ocd-person/0301a2cd-37fc-46f6-948a-f1fade57b5c0
+WI,lower,94,Steve Doyle,Democratic,ocd-person/b3064a65-976e-4324-a66d-dfd44a0f0e3e
+WI,lower,17,Supreme Moore Omokunde,Democratic,ocd-person/bf0fa47b-889e-49fb-8fab-059452acdbf9
+WI,lower,8,Sylvia Ortiz-Velez,Democratic,ocd-person/710a050b-1721-4e81-bc01-ad3193836e4d
+WI,lower,96,Tara Johnson,Democratic,ocd-person/17b43cb0-9999-42ee-a5b4-c68aebc129b6
+WI,upper,3,Tim Carpenter,Democratic,ocd-person/5afcecdf-8000-4e54-bcf2-329f919ed0bd
+WI,lower,64,Tip McGuire,Democratic,ocd-person/c66ed13a-e5a7-49e0-9cce-02d677c5da15
+WI,lower,51,Todd Novak,Republican,ocd-person/c1e8d1c1-380d-4f59-893e-a18f77be21dd
+WI,lower,41,Tony Kurtz,Republican,ocd-person/5967b2fb-a060-4262-b10d-6fd27d81bf3f
+WI,lower,49,Travis Tranel,Republican,ocd-person/97dae592-4e4a-4cf2-9d56-069d7432b8d9
+WI,lower,29,Treig Pronschinske,Republican,ocd-person/0ea516ae-e0f5-4d3e-baee-124e0b00d70e
+WI,lower,31,Tyler August,Republican,ocd-person/b4554989-ede4-44a0-a541-c2aea2659d39
+WI,upper,21,Van Wanggaard,Republican,ocd-person/b2ad4345-9408-4238-a1f9-13e747f599b3
+WI,lower,71,Vinnie Miresse,Democratic,ocd-person/b4fedde3-c1a5-4cb5-976d-05f4c541e382
+WI,lower,38,Will Penterman,Republican,ocd-person/790447a2-d03d-4bc7-b15c-a72b25689eb3
+AZ,lower,5,Aaron Márquez,Democratic,ocd-person/c6a181c7-b58e-4c2a-aa2d-9ca31fc6548f
+AZ,lower,3,Alex Kolodin,Republican,ocd-person/102ffcb1-3028-401f-b74f-6f45db25e05e
+AZ,lower,20,Alma Hernández,Democratic,ocd-person/6dba6afa-b274-4273-b8c6-270d27214eee
+AZ,upper,24,Analise Ortiz,Democratic,ocd-person/87e6206a-c16e-4038-a86f-0d5c88b993e3
+AZ,lower,24,Anna Abeytia,Democratic,ocd-person/2e9c0206-d392-48a3-a599-7f6d226527b7
+AZ,lower,20,Betty Villegas,Democratic,ocd-person/81d12f3a-b635-4111-be8d-a71d2f7565f2
+AZ,lower,28,Beverly Pingerelli,Republican,ocd-person/77be0e97-4c93-4332-a9f9-9348560fdf98
+AZ,upper,23,Brian Fernandez,Democratic,ocd-person/5425612b-fb2c-4857-8f75-31523345eb2b
+AZ,lower,8,Brian Garcia,Democratic,ocd-person/c13f449f-0423-4ad5-836b-69913aad6600
+AZ,upper,4,Carine Werner,Republican,ocd-person/051cb7cf-e965-49a7-844a-a8830447df0c
+AZ,upper,11,Catherine Miranda,Democratic,ocd-person/6241112b-910b-4ad8-9c0d-9caad318874f
+AZ,lower,26,Cesar Aguilar,Democratic,ocd-person/b1da595a-8c97-42f8-ae58-694c17efa3f3
+AZ,lower,16,Chris Lopez,Republican,ocd-person/9128a4e7-1464-483c-8642-0d878da05619
+AZ,lower,18,Chris Mathis,Democratic,ocd-person/b2ed48a3-b9ae-42be-a2c8-22a47477acfd
+AZ,lower,3,Cody Reim,Republican,ocd-person/367990a3-3e02-455b-97b3-6b8dc34d9bbf
+AZ,lower,21,Consuelo Hernandez,Democratic,ocd-person/0a4e4b0a-a16e-475b-8aa1-75088657d8c1
+AZ,upper,10,Dave Farnsworth,Republican,ocd-person/263ebe9c-566a-4b5c-bfbc-ea1f1d0dc3f2
+AZ,upper,19,David Gowan,Republican,ocd-person/51520de4-0e87-475b-91d2-99aa18addf72
+AZ,lower,28,David Livingston,Republican,ocd-person/6e8f2c0d-c9d3-4cb5-ae59-5264cb6d61a7
+AZ,upper,12,Mitzi Epstein,Democratic,ocd-person/f0175b18-52a0-407d-af38-c1fe118e209d
+AZ,lower,22,Elda Luna-Nájera,Democratic,ocd-person/93db82ca-c8b1-43e4-98ce-ba52f4d0f635
+AZ,upper,22,Eva Diaz,Democratic,ocd-person/e1cd66fa-a0de-45fd-ae53-a4db7d178d21
+AZ,upper,26,Flavio Bravo,Democratic,ocd-person/36cc8d88-e944-4889-b8ab-cf5610f3f03e
+AZ,upper,28,Frank Carroll,Republican,ocd-person/faca0001-6681-450b-9577-6185f4f49a3d
+AZ,lower,19,Gail Griffin,Republican,ocd-person/1e39adcf-868d-4722-a07b-09fcd36ad9ed
+AZ,upper,30,Hildy Angius,Republican,ocd-person/a739b3e9-8161-4b10-b007-3d1e90de791f
+AZ,upper,15,Jake Hoffman,Republican,ocd-person/35f7056c-9f29-4b66-9ae0-f041fe6e7e05
+AZ,lower,29,James Taylor,Republican,ocd-person/70f55f83-fed8-497f-86a9-94b6d428b9b4
+AZ,upper,29,Janae Shamp,Republican,ocd-person/c94f542a-52e0-4831-8479-02793a97ccd9
+AZ,lower,8,Janeen Connolly,Democratic,ocd-person/acfd8972-7a82-41f3-9fd7-0993cfa7365c
+AZ,upper,13,J.D. Mesnard,Republican,ocd-person/06adeea1-c37c-4dd1-8be5-92e9b5d3556e
+AZ,lower,13,Jeff Weninger,Republican,ocd-person/de8a5959-6572-44a9-bea5-ed73c27dd0ce
+AZ,lower,30,John Gillette,Republican,ocd-person/fd68e4c2-0463-477c-81ea-e2e36273e12b
+AZ,upper,3,John Kavanagh,Republican,ocd-person/b6144266-5383-491f-8c87-df8fd11805ea
+AZ,lower,13,Julie Willoughby,Republican,ocd-person/d19ab410-5bc3-4160-b279-765e25d959ab
+AZ,lower,11,Junelle Cavero,Democratic,ocd-person/94895484-6eda-42d7-823b-a4eab17071e8
+AZ,lower,10,Justin Olson,Republican,ocd-person/448cb969-a498-4826-ad1e-c443fe9b8057
+AZ,lower,2,Justin Wilmeth,Republican,ocd-person/2706e746-45b7-4586-8d06-8b80e99d3869
+AZ,upper,27,Kevin Payne,Republican,ocd-person/4b336587-cb71-4a49-9cf8-514cdd2771ff
+AZ,lower,17,Kevin Volk,Democratic,ocd-person/183af2d0-dd61-476d-873f-305ae591968f
+AZ,lower,14,Khyl Powell,Republican,ocd-person/bd3fb0ce-720a-4137-bd45-87fb6bcf8649
+AZ,upper,9,Kiana Sears,Democratic,ocd-person/78fce9ac-3aa4-484f-b345-f55bbbf9db9b
+AZ,upper,8,Lauren Kuby,Democratic,ocd-person/159091af-9aa8-4cb8-8c9c-9e20ba83c0ed
+AZ,lower,14,Laurin Hendrix,Republican,ocd-person/45d0b998-57ed-4c6f-ae22-bdbc4262f3e3
+AZ,upper,5,Lela Alston,Democratic,ocd-person/030638cb-5fcd-4637-8c59-c129e28db988
+AZ,lower,30,Leo Biasiucci,Republican,ocd-person/433aab5d-35be-48cc-80a9-f468d5279022
+AZ,lower,27,Lisa Fink,Republican,ocd-person/981d0aee-d239-4acc-9da8-1332481e57ee
+AZ,lower,9,Lorena Austin,Democratic,ocd-person/90a36fec-df56-4f22-bf16-790866d5b227
+AZ,lower,22,Lupe Contreras,Democratic,ocd-person/095a6754-d7ca-4f1f-b562-974d92e7eb3c
+AZ,lower,19,Lupe Diaz,Republican,ocd-person/bc52f516-a13b-4490-a12c-7b98fa3969e5
+AZ,lower,24,Lydia Hernandez,Democratic,ocd-person/7a33e2bd-8394-45d9-967b-0c39430ff39b
+AZ,lower,6,Mae Peshlakai,Democratic,ocd-person/bcc217f5-fe08-4213-b8a5-78d1e4d64184
+AZ,lower,23,Mariana Sandoval,Democratic,ocd-person/3b6fa6b2-0a60-4f2e-9fd8-0882b04d9e0b
+AZ,upper,1,Mark Finchem,Republican,ocd-person/77415ae8-cbbc-4f67-ac01-3f749d44ff08
+AZ,lower,4,Matt Gress,Republican,ocd-person/bfb503ce-dcb1-444b-9484-8a90e73c6a6f
+AZ,lower,25,Michael Carbone,Republican,ocd-person/8db06598-a7e1-4b25-9e76-6a2be0d9eae3
+AZ,lower,15,Michael Way,Republican,ocd-person/555adc5f-cc3a-46b1-a00b-8fb209bc457e
+AZ,lower,23,Michele Peña,Republican,ocd-person/68c38dfc-a12b-4c51-8b70-c4e02931cddf
+AZ,lower,6,Myron Tsosie,Democratic,ocd-person/a437a3ce-e3ba-44ec-af75-3308e70f5a87
+AZ,lower,18,Nancy Gutierrez,Democratic,ocd-person/f9216229-6490-412d-aa30-8baac5c2be3e
+AZ,lower,15,Neal Carter,Republican,ocd-person/17f344ec-ffe3-46fe-ba7a-8efdc5fbf2fd
+AZ,lower,25,Nick Kupper,Republican,ocd-person/8595d83f-1e95-4c0d-8c24-100a4a763a8f
+AZ,lower,11,Oscar De Los Santos,Democratic,ocd-person/a4fabea6-f50e-4fe9-8696-8b4505a481e8
+AZ,lower,4,Pamela Carter,Republican,ocd-person/d78cb0f9-fd3c-472e-aeb8-716abd42f26e
+AZ,lower,12,Patty Contreras,Democratic,ocd-person/61dc96d8-140a-4042-b832-ac51bf0796f3
+AZ,upper,18,Priya Sundareshan,Democratic,ocd-person/7ff01dde-5112-436f-a267-dd7a7f91ec9b
+AZ,lower,1,Quang Nguyen,Republican,ocd-person/a4f969ab-e79a-4364-9a93-ad8c75ccf668
+AZ,lower,26,Quantá Crews,Democratic,ocd-person/0fb2e73b-b140-4669-a9bd-b75facb342dd
+AZ,lower,17,Rachel Keshel,Republican,ocd-person/11b313a8-0f20-4d81-8060-4ec7e65f1a29
+AZ,lower,10,Ralph Heap,Republican,ocd-person/176a6d0b-88bb-45fa-bf37-b4610972b2ae
+AZ,upper,21,Rosanna Gabaldón,Democratic,ocd-person/6de57177-1b9e-4864-bb87-97c528842030
+AZ,upper,20,Sally Gonzales,Democratic,ocd-person/3c965e03-1e51-4f10-a037-4fb2f35292c5
+AZ,lower,5,Sarah Liguori,Democratic,ocd-person/99f91f84-b1db-4a48-897a-4f87593357ea
+AZ,lower,1,Selina Bliss,Republican,ocd-person/bdcadc0a-7e86-4e6a-8e27-4896dbb094ce
+AZ,lower,9,Seth Blattman,Democratic,ocd-person/4b29d125-27ee-46c7-a6ac-ed870c1f10a7
+AZ,upper,2,Shawnna Bolick,Republican,ocd-person/355be281-2f88-4108-b894-62c54b67fba3
+AZ,lower,12,Stacey Travers,Democratic,ocd-person/7bd58fc8-e6df-4091-86c6-c64f54b96c35
+AZ,lower,21,Stephanie Stahl Hamilton,Democratic,ocd-person/df482d8a-1ed9-41ae-b4ba-d73d4cd9aa39
+AZ,lower,2,Stephanie Simacek,Democratic,ocd-person/bf406953-ad2b-43f7-95ea-3af060525c90
+AZ,lower,29,Steve Montenegro,Republican,ocd-person/37f8815d-1672-42dd-9e9b-305449d7bb8b
+AZ,lower,7,Sylvia Allen,Republican,ocd-person/fa74a7b7-6413-4abb-813d-056b84252549
+AZ,lower,16,Teresa Martinez,Republican,ocd-person/0fa874b7-acab-4f29-b800-56bd54f375fe
+AZ,upper,6,Theresa Hatathlie,Democratic,ocd-person/384e8b4c-d85b-4414-9372-40116a10b3b6
+AZ,upper,16,T.J. Shope,Republican,ocd-person/bde26535-68ee-4eef-bbc8-bfa8a4380015
+AZ,upper,25,Tim Dunn,Republican,ocd-person/0b8c9973-1ae5-4af3-8a73-713c8365eccd
+AZ,lower,27,Tony Rivero,Republican,ocd-person/ec93f89c-d32f-4f34-bbe9-1aeb8305a065
+AZ,upper,17,Vince Leach,Republican,ocd-person/00f9103d-191e-40ca-8f5c-e5bf806896a6
+AZ,lower,7,Walt Blackman,Republican,ocd-person/d4068bfb-d487-4fde-b36e-7db0ac5cae38
+AZ,upper,14,Warren Petersen,Republican,ocd-person/66e496a4-a407-4af1-add3-ef6899b89807
+AZ,upper,7,Wendy Rogers,Republican,ocd-person/417c9599-7617-4b6d-ac0a-1d1b2a005f4e
+PA,lower,8,Aaron Bernstine,Republican,ocd-person/844f3ed7-03df-420f-81bd-3f547c12e61e
+PA,lower,60,Abby Major,Republican,ocd-person/db196239-5fca-4218-82ee-ce1f6cf03ec4
+PA,lower,34,Abigail Salisbury,Democratic,ocd-person/4bc74848-3896-4a0a-9310-970458f48d1a
+PA,lower,19,Aerion Abney,Democratic,ocd-person/1b5abb1e-0028-49a3-ae86-cfb90296c796
+PA,lower,119,Alec Ryncavage,Republican,ocd-person/be809fa5-6ef4-4071-bb94-ed10fb051f69
+PA,upper,17,Amanda Cappelletti,Democratic,ocd-person/77755456-0f2a-4bbd-ac96-03d83398d6fc
+PA,lower,10,Amen Brown,Democratic,ocd-person/a41016aa-660f-4af7-afcd-ef182e544533
+PA,lower,22,Ana Tiburcio,Democratic,ocd-person/19dca465-48d8-4b4a-84e2-79ef9797c986
+PA,lower,201,Andre Carroll,Democratic,ocd-person/628312bf-7920-44b7-b226-90c92f92a123
+PA,lower,79,Andrea Verobish,Republican,ocd-person/23f12d9a-928a-445e-abbe-4976cb082809
+PA,lower,39,Andrew Kuzma,Republican,ocd-person/0d86d77b-ff68-4182-be53-09ff196b8174
+PA,lower,45,Anita Kulik,Democratic,ocd-person/999d1ffd-b893-4aac-9fbb-ae43b3039038
+PA,lower,138,Ann Flood,Republican,ocd-person/e00e0f63-7058-46a4-8b63-f31dc804c614
+PA,lower,203,Anthony Bellmon,Democratic,ocd-person/57be936d-802b-4d09-b95e-2a5354cb9984
+PA,upper,8,Tony Williams,Democratic,ocd-person/fe79a0f0-7dfd-442a-8b79-f8792613a4de
+PA,upper,4,Art Haywood,Democratic,ocd-person/ea712eba-1da5-45e2-8d9f-022e8307a614
+PA,lower,30,Arvind Venkat,Democratic,ocd-person/f4e98ad8-2ee6-45e4-8594-0deaaa51190e
+PA,lower,199,Barb Gleim,Republican,ocd-person/48c5b966-eef2-456a-8ca0-f47d584e7883
+PA,lower,182,Ben Waxman,Democratic,ocd-person/1f2c3093-8ce7-41f7-8df0-6cd14ddd354b
+PA,lower,153,Ben Sanchez,Democratic,ocd-person/b64463e2-41f6-4d58-a725-03db71798c1c
+PA,lower,6,Brad Roae,Republican,ocd-person/979ea568-4c43-41bd-ba1e-4c2da172bb82
+PA,lower,12,Brandon Dukes,Democratic,ocd-person/f619eb4d-d296-46b9-af60-12f33d90e6e0
+PA,lower,25,Brandon Markosek,Democratic,ocd-person/9aea39f8-1503-4fea-9440-1e0e9c2f8fa3
+PA,lower,120,Brenda Pugh,Republican,ocd-person/e12dc574-f19b-4c9c-9a30-42b68371ea4a
+PA,lower,41,Brett Miller,Republican,ocd-person/1a6e36d3-ff44-4e21-bb9d-397a56482b34
+PA,lower,144,Brian Munroe,Democratic,ocd-person/0f035e7e-d035-4d8c-bc5b-876ba70452cc
+PA,lower,56,Brian Rasel,Republican,ocd-person/7ec5f0f0-0899-4f54-b284-c4c5931c25bc
+PA,lower,66,Brian Smith,Republican,ocd-person/ac7d02d3-9bb7-4cc1-8cee-4283094fe604
+PA,lower,114,Bridget Malloy Kosierowski,Democratic,ocd-person/e5149ed2-f2bb-4054-8064-e2331ffaf1c0
+PA,lower,100,Bryan Cutler,Republican,ocd-person/fd5d0580-766c-482c-a12f-e4689e0bcf30
+PA,lower,50,Bud Cook,Republican,ocd-person/9b9857aa-5fad-4678-a4f9-7e40bc642f64
+PA,upper,46,Camera Bartolotta,Republican,ocd-person/66b8c0a7-f8be-4acd-aafb-29ca02fcde65
+PA,lower,69,Carl Metzgar,Republican,ocd-person/462fc474-e481-436e-b47a-7bbde2de3e3a
+PA,lower,95,Carol Hill-Evans,Democratic,ocd-person/cafbffed-be4d-4e5b-9d99-9aec024675e2
+PA,lower,159,Carol Kazeem,Democratic,ocd-person/05f5a4fa-4a1e-4242-8664-eca508f36a3c
+PA,upper,19,Carolyn Comitta,Democratic,ocd-person/91c58c1d-de9d-471b-8178-f6ef89c1286b
+PA,lower,193,Catherine Wallen,Republican,ocd-person/d881386d-8aad-45c7-8705-27f3288f20ea
+PA,lower,90,Chad Reichard,Republican,ocd-person/851902e6-5649-4c0c-948a-57fb9c1dd40d
+PA,lower,51,Charity Krupa,Republican,ocd-person/d5bd036c-03f5-4111-b770-15cb2dbe3278
+PA,lower,156,Chris Pielli,Democratic,ocd-person/d83a0679-02c9-469b-89ed-11f9b46166c5
+PA,lower,158,Christina Sappey,Democratic,ocd-person/43d9c3c2-aeec-416c-859d-ad90600bbe0e
+PA,upper,2,Tina Tartaglione,Democratic,ocd-person/f3b4fe8c-05f9-4610-81ef-354c0fcb0cdd
+PA,upper,48,Chris Gebhard,Republican,ocd-person/965b26f8-5a4a-4458-a327-a25d89605e65
+PA,lower,200,Chris Rabb,Democratic,ocd-person/e6a8e555-0d65-4a1f-9673-56ad1e3c7855
+PA,lower,68,Clint Owlett,Republican,ocd-person/626de4be-b2f3-4a37-bbbc-ede598381d6b
+PA,lower,145,Craig Staats,Republican,ocd-person/bb324f66-3a5c-4e90-9c75-d142cce81c92
+PA,lower,160,Craig Williams,Republican,ocd-person/e17c51da-556e-4afe-aad4-137ee3a0881e
+PA,upper,25,Cris Dush,Republican,ocd-person/402d7e3b-1935-47fa-8124-61490037d016
+PA,lower,73,Dallas Kephart,Republican,ocd-person/70d0ff46-746e-47a0-8c5f-cbe73dbf72ce
+PA,lower,23,Dan Frankel,Democratic,ocd-person/96667f6d-d967-4f6a-9cd9-23bf480a98c1
+PA,lower,35,Dan Goughnour,Democratic,ocd-person/b42a625f-25e4-4f25-b942-928c8a3e0bb2
+PA,lower,74,Dan Williams,Democratic,ocd-person/8cb5e285-fdd9-4c63-b7c7-480bf9e477e1
+PA,lower,91,Dan Moul,Republican,ocd-person/f4071288-fa18-48bb-99f1-41abd60d215e
+PA,lower,116,Dane Watro,Republican,ocd-person/d4de5cc2-b3b9-49a0-9f20-62c6f4f6a052
+PA,lower,27,Dan Deasy,Democratic,ocd-person/2608882d-9ae2-4522-b8b2-83d905913d3f
+PA,upper,49,Dan Laughlin,Republican,ocd-person/431a823e-0268-4921-a62d-5f698211e706
+PA,lower,155,Danielle Otten,Democratic,ocd-person/6678bcaf-292f-408a-aa36-90ed8bc8fd08
+PA,lower,197,Danilo Burgos,Democratic,ocd-person/a2579707-5a31-4f4b-a9ed-49847d35eae6
+PA,lower,198,Darisha Parker,Democratic,ocd-person/943fdd89-fe0a-43f6-8077-82cd252bdeb2
+PA,lower,162,Dave Delloso,Democratic,ocd-person/c05046a6-87dd-4956-a172-cad035960391
+PA,lower,104,Dave Madsen,Democratic,ocd-person/4a0c9e5e-07cc-4b4b-a47a-22be60d1623e
+PA,upper,29,Dave Argall,Republican,ocd-person/2a2df3c1-9ede-46b7-8d73-896b1e317aff
+PA,lower,99,Dave Zimmerman,Republican,ocd-person/2fbada46-9c48-4be5-a49f-e1ca0af132ed
+PA,lower,130,David Maloney,Republican,ocd-person/fb4a0115-dd63-4e25-8d36-0ea6afc55faf
+PA,lower,85,David Rowe,Republican,ocd-person/c88ccd9a-3378-4284-9dc6-767a4826526e
+PA,upper,31,Dawn Keefer,Republican,ocd-person/2a13f9df-b7e6-4281-82e4-f7263b6fa12e
+PA,upper,37,Devlin Robinson,Republican,ocd-person/5271803b-8b46-449c-bf89-44f7d09c6cd2
+PA,lower,147,Donna Scheuren,Republican,ocd-person/5913495d-53f8-4c39-8507-650cfe51c08b
+PA,upper,33,Doug Mastriano,Republican,ocd-person/cda65f80-13e8-463c-88fa-6f5569a599bf
+PA,lower,122,Doyle Heffley,Republican,ocd-person/885e9a2a-c18b-4f68-b5d0-0b867ec3268d
+PA,lower,174,Ed Neilson,Democratic,ocd-person/3d3d4070-dadd-4382-9d40-be2892745773
+PA,lower,121,Eddie Pashinski,Democratic,ocd-person/c1cb6f95-37c8-4e25-802e-80387e70ad74
+PA,upper,47,Elder Vogel,Republican,ocd-person/8a2a9b56-cdfa-45e0-a26e-b45b547a2eae
+PA,lower,184,Elizabeth Fiedler,Democratic,ocd-person/90d95881-f6ae-4b29-af31-31a8821b8a7c
+PA,lower,20,Emily Kinkead,Democratic,ocd-person/875b1add-2803-4cc3-964b-0e351ed6ca1c
+PA,lower,58,Eric Davanzo,Republican,ocd-person/80abce94-a517-4357-a70d-cbc791aa34a1
+PA,lower,57,Eric Nelson,Republican,ocd-person/0910d394-3c42-48ee-aea7-6d4c0c144130
+PA,lower,5,Eric Weaknecht,Republican,ocd-person/b7373c43-580b-4044-a405-054073ac687b
+PA,upper,6,Frank Farry,Republican,ocd-person/611d3c65-f30f-4dde-8f80-7db4ec405a36
+PA,lower,72,Frank Burns,Democratic,ocd-person/a60da669-bae3-4e1d-a241-370a7ad2c769
+PA,lower,190,Roni Green,Democratic,ocd-person/c3ad9b17-c8f5-450e-9aaa-f002e1414bd5
+PA,lower,187,Gary Day,Republican,ocd-person/3088ff8e-d2d9-46b9-8ea3-bd35af9438c2
+PA,upper,23,Gene Yaw,Republican,ocd-person/18127660-d04e-43c2-b931-084f0c87142c
+PA,lower,196,George Margetas,Republican,ocd-person/3beadda2-daa5-4006-a2eb-32f9d9abdc71
+PA,lower,164,Gina Curry,Democratic,ocd-person/4c88ce64-4ba6-4f5e-a22f-86bf6a0d5b7f
+PA,upper,34,Greg Rothman,Republican,ocd-person/3e99b4f3-2efa-4330-b0b9-fb273b1322ea
+PA,lower,54,Greg Scott,Democratic,ocd-person/969ce6cb-ddcb-4347-b69d-2019cfbd6e18
+PA,lower,166,Greg Vitali,Democratic,ocd-person/7a1f510f-12e0-4018-b6da-556b404399be
+PA,lower,163,Heather Boyd,Democratic,ocd-person/d5f1bbaf-5daf-4266-9b18-16042f49db1b
+PA,lower,49,Izzy Smith-Wade-El,Democratic,ocd-person/fefff26b-b89a-4400-b633-99e5aa09523b
+PA,lower,176,Jack Rader,Republican,ocd-person/abca93cc-5058-473c-93bc-c8e099c7fa20
+PA,lower,126,Jacklyn Rusnock,Democratic,ocd-person/fe624f82-e44d-4071-a49f-3a0d4965b7b9
+PA,lower,4,Jake Banta,Republican,ocd-person/4657c161-af68-44a8-bd60-8b8e88e702d1
+PA,lower,62,Jim Struzzi,Republican,ocd-person/4a24dcc2-5619-4bb1-acb3-bf7a7d08e6b1
+PA,upper,36,James Malone,Democratic,ocd-person/fea0b7c4-d51a-463f-964a-75722678083b
+PA,lower,124,Jamie Barton,Republican,ocd-person/82938e14-97ce-44f0-942f-5bd2d7c532ba
+PA,lower,83,Jamie Flick,Republican,ocd-person/e396f514-a357-404f-bdb9-1ba33d97d0a7
+PA,lower,117,Jamie Walsh,Republican,ocd-person/96cbec5b-b9a4-4325-8346-bd4d08d87237
+PA,lower,202,Jared Solomon,Democratic,ocd-person/6b6602c0-8b45-4e1e-89ba-1782da5d67c6
+PA,upper,16,Jarrett Coleman,Republican,ocd-person/ecd51b53-a59b-4b92-b203-c1d24f748cb1
+PA,lower,179,Jason Dawkins,Democratic,ocd-person/4a2176cc-292b-4d19-aff6-8b4c4b460ba0
+PA,lower,46,Jason Ortitay,Republican,ocd-person/1871b5c7-35c4-4d32-9e09-9febf8ba3f66
+PA,upper,43,Jay Costa,Democratic,ocd-person/ee6b52c3-d92c-4cd6-a6ea-6869a8c93df0
+PA,lower,133,Jeanne McNeill,Democratic,ocd-person/ddd14a2f-ebef-4918-bf91-578b71c085e4
+PA,lower,139,Jeff Olsommer,Republican,ocd-person/08211014-af0e-4d71-92a7-e0045ba8062a
+PA,lower,42,Jen Mazzocco,Democratic,ocd-person/65b852b7-0c73-487d-aaf4-2b6648fa6383
+PA,lower,165,Jenn O'Mara,Democratic,ocd-person/7c8e87fe-1c8e-4736-a03c-35cf729b80e9
+PA,lower,28,Jeremy Shaffer,Republican,ocd-person/0df3f8d5-b6df-4cd8-a2c7-1dee651e60a8
+PA,lower,78,Jesse Topper,Republican,ocd-person/865dbfc4-e6ec-400e-bd5c-257f9a947519
+PA,lower,36,Jessica Benham,Democratic,ocd-person/8b6409e9-8ab6-4222-b6f3-fb8f33800c95
+PA,lower,55,Jill Cooper,Republican,ocd-person/6ae972c8-aff3-4886-a7d7-bd2cc5e40a38
+PA,lower,118,Jim Haddock,Democratic,ocd-person/3b91abb8-4b49-4fa2-85ed-beea4919bccc
+PA,lower,140,Jim Prokopiak,Democratic,ocd-person/3c3cd25a-658f-4aab-a648-ef2509469c34
+PA,lower,71,Jim Rigby,Republican,ocd-person/343e541b-fbd3-4622-bf42-7843494b1714
+PA,lower,191,Joanna McClinton,Democratic,ocd-person/1951ae06-881a-4c43-9635-224878c3ecb5
+PA,lower,107,Joanne Stehr,Republican,ocd-person/6e7b8baa-4fa3-404e-b8f8-bab3077221b7
+PA,lower,146,Joe Ciresi,Democratic,ocd-person/c9521d0e-56ca-40d2-b9bc-7a1f1be639bc
+PA,lower,137,Joe Emrick,Republican,ocd-person/0e873ea0-c8a2-4fbb-a408-de0c5bd36de9
+PA,lower,84,Joe Hamm,Republican,ocd-person/acc00fca-50e5-46f7-8676-d502ecfc94ac
+PA,lower,142,Joe Hogan,Republican,ocd-person/b1beaa5c-93d2-479e-9408-47c7687cd212
+PA,lower,125,Joe Kerwin,Republican,ocd-person/8a7494a6-3d82-432b-a5c2-6dc46d192611
+PA,lower,32,Joe McAndrew,Democratic,ocd-person/d31e549e-2c3d-4ea3-850b-5285955c3c2f
+PA,upper,5,Joe Picozzi,Republican,ocd-person/00e98952-3983-44cd-aeca-09fb6cd84f3d
+PA,upper,41,Joe Pittman,Republican,ocd-person/722f324f-db47-4ce2-9cbc-93f29ae38158
+PA,lower,150,Joe Webster,Democratic,ocd-person/676410b6-c3aa-4c17-856f-7d896e6fbc83
+PA,lower,129,Johanny Cepeda-Freytiz,Democratic,ocd-person/8d5ab463-45d5-4cf0-9c65-85820c08e506
+PA,lower,13,John Lawrence,Republican,ocd-person/8c1966e4-80f4-4a98-bf55-b1de0b9705b3
+PA,lower,101,John Schlegel,Republican,ocd-person/b6a10f6b-3f2e-42df-adf9-7184222af2c2
+PA,upper,9,John Kane,Democratic,ocd-person/c45052c1-f3e4-485e-a3d2-f346fa51839b
+PA,lower,38,John Inglis,Democratic,ocd-person/0b0beeaf-a1b0-4049-95cb-4ad5a3952336
+PA,lower,111,Jonathan Fritz,Republican,ocd-person/23a2b079-dc91-49b0-b08e-f3ae80fba11f
+PA,lower,186,Jordan Harris,Democratic,ocd-person/2313ce98-7ac4-44b9-a61d-5b128338a405
+PA,lower,180,José Giral,Democratic,ocd-person/d390f1ac-1f16-478a-9e0d-462c9ed79818
+PA,lower,177,Joe Hohenstein,Democratic,ocd-person/99728978-f905-406c-8b52-f2912f374602
+PA,lower,47,Joe D'Orsie,Republican,ocd-person/b698d343-137d-423b-a102-c471f1fd1768
+PA,lower,63,Josh Bashline,Republican,ocd-person/2062ecc5-049f-44c4-83bf-850a34b75531
+PA,lower,15,Josh Kail,Republican,ocd-person/fbb14b8a-8940-4679-9ed8-3ec48096a3a2
+PA,upper,11,Judy Schwank,Democratic,ocd-person/35362d6e-d00a-4cf1-806d-b4f2f2a55f72
+PA,upper,30,Judy Ward,Republican,ocd-person/b6ed7151-9ea4-4828-b639-785f9e358eb1
+PA,lower,105,Justin Fleming,Democratic,ocd-person/98b96b05-81eb-4871-a81b-2e03c0b92267
+PA,lower,169,Kate Klunk,Republican,ocd-person/08283fbe-18bc-4daf-972c-617d1e35d746
+PA,lower,18,K.C. Tomlinson,Republican,ocd-person/26925ace-f614-409d-80a2-9b6a42e7ddb5
+PA,lower,65,Kathy Rapp,Republican,ocd-person/36348b5e-47fe-404a-b6c3-99359115846c
+PA,upper,44,Katie Muth,Democratic,ocd-person/ade3ef98-a98c-4448-a974-ec4e0eede98f
+PA,lower,195,Keith Harris,Democratic,ocd-person/99c32bc9-33c2-4394-94e6-2f9d0ff43133
+PA,lower,43,Keith Greiner,Republican,ocd-person/dcd0037e-7833-416d-9523-5f25802bd43a
+PA,lower,171,Kerry Benninghoff,Republican,ocd-person/5a5a7a42-bc5e-4a07-aee1-d1a01e810385
+PA,upper,39,Kim Ward,Republican,ocd-person/c48a0179-5770-410d-ba97-bdbc05d20786
+PA,upper,28,Kristin Phillips-Hill,Republican,ocd-person/cb724e4a-0e5e-4ebd-ac0c-f3dfda73aef6
+PA,lower,178,Kristin Marcell,Republican,ocd-person/f1c8d8ab-0220-4b1e-96d0-6e0ae0b6df87
+PA,lower,167,Kristine Howard,Democratic,ocd-person/f451e90b-e93a-4768-a294-67d1ff000396
+PA,lower,113,Kyle Donahue,Democratic,ocd-person/009be4f2-d613-4353-8126-6b5642d868bc
+PA,lower,112,Kyle Mullins,Democratic,ocd-person/625784c9-4cd0-417c-9c44-1acd53b34307
+PA,lower,24,La'Tasha Mayes,Democratic,ocd-person/526967db-cef3-4f64-a380-1377f5c6f1fe
+PA,lower,161,Leanne Krueger,Democratic,ocd-person/8187ecb2-3e4b-4ba0-819e-a7cfb4b9ac93
+PA,lower,59,Leslie Rossi,Republican,ocd-person/71bb086e-11d9-496d-b274-91d7a8b85eaf
+PA,lower,21,Lindsay Powell,Democratic,ocd-person/b7c8d063-8db4-4cdf-a159-a0b064b7cae5
+PA,upper,38,Lindsey Williams,Democratic,ocd-person/bc64322a-faaf-4b33-b6c2-cf5059f4121c
+PA,lower,168,Lisa Borowski,Democratic,ocd-person/d927a6f9-9878-4375-ac7d-9996e8968c9d
+PA,upper,20,Lisa Baker,Republican,ocd-person/aa421a2c-4203-45b7-9766-8826c02a659d
+PA,upper,18,Lisa Boscola,Democratic,ocd-person/de81d407-bc84-48e6-9796-4a56be984cbd
+PA,lower,61,Liz Hanbidge,Democratic,ocd-person/0aa9e1d6-4552-4ad4-b660-e2f3cc17b7dd
+PA,upper,27,Lynda Culver,Republican,ocd-person/02117eb4-a7b3-4095-831b-1857910660fb
+PA,lower,181,Malcolm Kenyatta,Democratic,ocd-person/96711736-a47d-4bd6-bcc3-92297ec01516
+PA,lower,33,Mandy Steele,Democratic,ocd-person/63f8d7ea-b621-48b7-a326-4e2a732a521c
+PA,lower,127,Manny Guzman,Democratic,ocd-person/d26c016b-27e5-4171-849b-94773178023d
+PA,lower,92,Marc Anderson,Republican,ocd-person/8d16f666-803c-4946-8adc-32f1e80d79d9
+PA,lower,11,Marci Mustello,Republican,ocd-person/dc7a449c-43cf-4522-b2a3-efb4707907c4
+PA,upper,12,Maria Collett,Democratic,ocd-person/323c52e8-f841-4a0b-a49e-91103949fbc8
+PA,lower,128,Mark Gillen,Republican,ocd-person/cd92c819-d5aa-4df3-ba96-2315dbdf4555
+PA,lower,9,Marla Brown,Republican,ocd-person/68e26db9-10ba-414b-9d06-440dd1fd3f10
+PA,lower,67,Marty Causer,Republican,ocd-person/171af8ac-41e0-4047-be38-654cc912053b
+PA,lower,170,Martina White,Republican,ocd-person/93435394-e853-45f2-9e88-65399b3f9042
+PA,upper,22,Marty Flynn,Democratic,ocd-person/7061c75d-7eeb-40aa-841e-8121edba5d8a
+PA,lower,148,Mary Jo Daley,Democratic,ocd-person/2b9c199b-dd4e-477a-a5d0-849180c956a0
+PA,lower,175,Mary Isaacson,Democratic,ocd-person/ac9d319c-4df3-489a-890e-f7daba8c4bda
+PA,lower,70,Matt Bradford,Democratic,ocd-person/a15da78b-2475-4606-854f-7477dfc4233d
+PA,lower,115,Maureen Madden,Democratic,ocd-person/8ec333cd-97c4-4f5a-92de-13bf8cbc0020
+PA,lower,151,Missy Cerrato,Democratic,ocd-person/610a353c-8973-48ea-a4d4-dac21efc3422
+PA,lower,157,Melissa Shusterman,Democratic,ocd-person/2cb7688e-e8ea-431e-9f56-34ee9a9a3ecc
+PA,lower,108,Michael Stender,Republican,ocd-person/ef4ff98e-baba-4655-b24f-66ec5933fcb0
+PA,lower,132,Mike Schlossberg,Democratic,ocd-person/fc1f0752-9166-4d7f-987a-ec15b8bf4048
+PA,upper,50,Michele Brooks,Republican,ocd-person/406baa79-8352-4fa4-a1fa-70cc55e34406
+PA,lower,75,Mike Armanini,Republican,ocd-person/32c83f92-2bcc-4c2f-bcd0-8b367af29e28
+PA,lower,93,Mike Jones,Republican,ocd-person/ce5d2c01-e29c-4eac-b06b-208d8c302dff
+PA,lower,131,Milou Mackenzie,Republican,ocd-person/b4559406-2139-4c7c-9ce9-7a2a604a8a95
+PA,lower,37,Mindy Fee,Republican,ocd-person/f5b2ec4d-1d69-483a-a6ec-143d50ad395b
+PA,lower,192,Morgan Cephas,Democratic,ocd-person/05326e52-202a-46cd-bbbe-cc8d01d9a44b
+PA,lower,152,Nancy Guenst,Democratic,ocd-person/d18ccbd7-270a-46c2-8bbd-a19ea82d0e51
+PA,lower,154,Napoleon Nelson,Democratic,ocd-person/94e57e39-e58d-4374-9506-ece1a01e0ebd
+PA,lower,40,Natalie Mihalek,Republican,ocd-person/c5e053dd-a874-4a51-a071-661a20db33ab
+PA,lower,103,Nate Davidson,Democratic,ocd-person/c7f76970-11d0-483e-81b4-b4750220932c
+PA,upper,14,Nick Miller,Democratic,ocd-person/a160699d-cc7d-4ed7-b486-57008ee0e642
+PA,upper,45,Nick Pisciottano,Democratic,ocd-person/c9f6833a-470e-480f-b3ad-d91c887aa4f9
+PA,upper,1,Nikil Saval,Democratic,ocd-person/6f172bc8-50b0-4dd3-aed6-b5fd48b70eeb
+PA,lower,96,Nikki Rivera,Democratic,ocd-person/5df981dc-0f0f-498e-8e0e-72cfa5410b2a
+PA,lower,7,Parke Wentling,Republican,ocd-person/8f7a2783-e165-4bf2-aead-113d98dd7dd2
+PA,lower,173,Pat Gallagher,Democratic,ocd-person/36e7e815-87a3-4c58-baae-71f210e48114
+PA,lower,1,Pat Harkins,Democratic,ocd-person/c4a1a8f4-cb29-4700-8235-b103fcb40279
+PA,upper,32,Pat Stefano,Republican,ocd-person/14106428-709f-4018-8881-5c31ee078ff8
+PA,upper,15,Patty Kim,Democratic,ocd-person/b5ff17d0-36e8-4f29-8c9b-e51bb9b3ea29
+PA,lower,26,Paul Friel,Democratic,ocd-person/494797a5-3d84-414a-9c8c-caaadd621cdd
+PA,lower,82,Paul Takac,Democratic,ocd-person/dd35ae63-5dee-4f87-b64e-65907b8adaba
+PA,lower,86,Perry Stambaugh,Republican,ocd-person/eb33e206-fb08-40bc-8b9b-1d9a72fcb8fc
+PA,lower,31,Perry Warren,Democratic,ocd-person/e2bc8bc4-33ab-46dd-8f67-da218949efb6
+PA,lower,134,Pete Schweyer,Democratic,ocd-person/63936c68-ec65-40a9-9a68-0d956939404a
+PA,lower,64,Lee James,Republican,ocd-person/b29f8685-d054-4c6c-a8ad-d64f80bd840f
+PA,lower,185,Regina Young,Democratic,ocd-person/a737f4d4-5b45-469b-8d51-98c7aa78183a
+PA,lower,81,Rich Irvin,Republican,ocd-person/ff2471f3-f3ff-4a46-8ca7-be5094f0dfdc
+PA,lower,188,Rick Krajewski,Democratic,ocd-person/42ffbed1-2284-4018-a60f-b5bfa3f35833
+PA,lower,89,Rob Kauffman,Republican,ocd-person/17e1e676-8e83-4883-8cf5-4c8ddcce076e
+PA,lower,2,Bob Merski,Democratic,ocd-person/bd4c3d05-059a-4084-b8f8-e8598e4eb955
+PA,lower,16,Rob Matzie,Democratic,ocd-person/a7b2e50f-90a6-4f35-b1fb-c33406dc4277
+PA,lower,136,Bob Freeman,Democratic,ocd-person/13bfe11c-06e2-4a1d-844d-d195ef18dc06
+PA,lower,109,Robert Leadbeter,Republican,ocd-person/1d775faf-9231-420a-b62e-979bb6a1fc78
+PA,lower,14,Roman Kozak,Republican,ocd-person/69faf85a-c63c-4d75-9801-047fffddf228
+PA,upper,40,Rosemary Brown,Republican,ocd-person/3e2840e6-f904-43be-911e-235b906458a5
+PA,lower,102,Russ Diamond,Republican,ocd-person/5348e28d-bbbe-493f-8f77-a509cb315abe
+PA,lower,3,Ryan Bizzarro,Democratic,ocd-person/32370423-acb8-4a8e-8336-67af5ed32bb9
+PA,lower,52,Ryan Warner,Republican,ocd-person/0d747b7a-0a5a-42cf-8bb6-1eb0fa69090f
+PA,lower,80,Scott Barger,Republican,ocd-person/983dc33a-559e-4f01-9c60-08fed48a1415
+PA,lower,77,Scott Conklin,Democratic,ocd-person/97b012cd-5cd7-4039-a9ae-fed936aabe37
+PA,upper,21,Scott Hutchinson,Republican,ocd-person/5d3e2203-b11c-4471-8f35-5106c30263ec
+PA,upper,13,Scott Martin,Republican,ocd-person/c2fcd2dc-22f8-4ec2-b70a-439bc6d60802
+PA,lower,172,Sean Dougherty,Democratic,ocd-person/d8624d56-a38e-4918-98ac-d7795569ad06
+PA,upper,3,Sharif Street,Democratic,ocd-person/b0d20b05-428a-4e3a-bda1-bbba5c3cfd6a
+PA,lower,143,Shelby Labs,Republican,ocd-person/7c0b9792-8ece-4ae8-b0f3-f5d4b79ff9f1
+PA,lower,88,Sheryl Delozier,Republican,ocd-person/9e4954ab-971c-4620-9f9d-ebb68311e3f1
+PA,lower,76,Stephanie Borowicz,Republican,ocd-person/bccfe530-42ce-47b0-aadf-ae863b37cf9a
+PA,lower,135,Steve Samuelson,Democratic,ocd-person/34472dfb-dae9-4db4-8901-088457d74904
+PA,lower,97,Steve Mentzer,Republican,ocd-person/4463dd94-6a9d-41bd-830f-0d03e192f896
+PA,upper,10,Steve Santarsiero,Democratic,ocd-person/91f290d0-3405-4091-bb16-822a97f45af5
+PA,lower,53,Steve Malagari,Democratic,ocd-person/fa1e1564-0a13-4b26-8416-098b39627df7
+PA,lower,189,Tarah Probst,Democratic,ocd-person/8caab7df-f601-45f0-9be5-35d94175e766
+PA,lower,194,Tarik Khan,Democratic,ocd-person/6fa30029-d933-4f6d-b0fb-343a0c82772c
+PA,lower,87,Thomas Kutz,Republican,ocd-person/932682ef-c7da-4383-8c50-58879fba0ca6
+PA,lower,106,Tom Mehaffie,Republican,ocd-person/bda0ab75-036f-49bd-9dd5-cfc9c55eec02
+PA,lower,29,Tim Brennan,Democratic,ocd-person/de68158e-3cc9-4651-b3a1-71f5e77b7dab
+PA,lower,149,Tim Briggs,Democratic,ocd-person/5c752a95-ba5d-4f1f-81aa-6cb1c7875581
+PA,lower,123,Tim Twardzik,Republican,ocd-person/686cdc9c-8133-4c1b-a7f0-34b420884559
+PA,lower,48,Tim O'Neal,Republican,ocd-person/2c5551d6-71a8-4099-b1a4-a30721320869
+PA,upper,26,Tim Kearney,Democratic,ocd-person/f9f2479f-0c37-47d1-a4eb-666146e2856f
+PA,lower,17,Tim Bonner,Republican,ocd-person/105c6361-0cb6-46f4-9222-ff0ffb727d29
+PA,lower,141,Tina Davis,Democratic,ocd-person/f9a1f1ab-9538-424c-87f1-65e2a4f4bfc7
+PA,lower,110,Tina Pickett,Republican,ocd-person/8e174923-d514-4240-b6cd-cbb7927410ba
+PA,lower,98,Tom Jones,Republican,ocd-person/7f6b3c0e-4446-4243-ae49-d2d33ab30273
+PA,upper,24,Tracy Pennycuick,Republican,ocd-person/d9ad47a6-7e74-45f2-93a5-1b7e40ad36db
+PA,lower,44,Valerie Gaydos,Republican,ocd-person/590df273-5587-46bd-98dc-f3943cd1ddd8
+PA,upper,7,Vincent Hughes,Democratic,ocd-person/53a598e0-3595-4b19-8f65-4a538bdc7a74
+PA,upper,42,Wayne Fontana,Democratic,ocd-person/b93e4f38-764f-4e95-bd51-4d40dba0aaa4
+PA,upper,35,Wayne Langerholc,Republican,ocd-person/7b3a6244-335b-4407-957d-b7d6b6ab1d97
+PA,lower,94,Wendy Fink,Republican,ocd-person/1300735f-1441-4861-b20f-c1fa3e222c08
+PA,lower,183,Zach Mako,Republican,ocd-person/c3b27985-614c-434d-b3c0-3e032fad4d6c
+NH,lower,Rockingham 30,Aboul Khan,Republican,ocd-person/e60aed5e-cbb4-4b27-ab1b-2ce1dd787dac
+NH,lower,Hillsborough 12,Adam Presa,Republican,ocd-person/e6d39a32-9602-4a87-905b-a86eeefe9ae1
+NH,lower,Strafford 7,Aidan Ankarberg,Independent,ocd-person/540cbe60-cc65-4ff6-8c78-5d54488e5ed8
+NH,lower,Rockingham 33,Alexis Simpson,Democratic,ocd-person/3ab49eaa-77a6-4e6e-85a5-24812e78ae7a
+NH,lower,Strafford 15,Alice Wade,Democratic,ocd-person/ef4b9cee-5a72-452c-8720-a59d5d5ca9ef
+NH,lower,Hillsborough 7,Alicia Gregg,Democratic,ocd-person/36eee284-6fc9-4b03-9b5c-012b5fdd6995
+NH,lower,Hillsborough 20,Alissandra Murray,Democratic,ocd-person/f809a410-5a03-4ebc-a0ab-32507705c479
+NH,lower,Strafford 20,Allan Howland,Democratic,ocd-person/69b94b6a-d5d5-430b-a4b9-c62c8414cb75
+NH,lower,Rockingham 12,Allison Knab,Democratic,ocd-person/0bc83772-75ee-453c-868c-8d2a034788b1
+NH,lower,Merrimack 26,Alvin See,Republican,ocd-person/e3a1815a-a84c-4bd1-9e20-b73b07d2576f
+NH,lower,Strafford 9,Amy Malone,Democratic,ocd-person/47ad413d-8b61-4b5b-8be6-9c999fb1a682
+NH,lower,Hillsborough 13,Andrew Prout,Republican,ocd-person/da5fb901-d16d-430f-b5cb-7ab556f8d4ee
+NH,lower,Carroll 2,Anita Burroughs,Democratic,ocd-person/a028512b-5d61-4d23-9e28-dec7038577d6
+NH,lower,Coos 2,Arnie Davis,Republican,ocd-person/4f07f5aa-c410-481b-b570-36ae37d64e24
+NH,lower,Belknap 7,Barbara Comtois,Republican,ocd-person/3e0ee111-2332-4742-b073-a23cc37a8b51
+NH,lower,Cheshire 10,Barry Faulkner,Democratic,ocd-person/a8bcce41-eef2-4b18-b99f-8bb34c7f94ea
+NH,lower,Merrimack 17,Beth Richards,Democratic,ocd-person/49453d65-a175-4c22-bc1f-878d02ea3d45
+NH,lower,Hillsborough 12,Bill Boyd,Republican,ocd-person/6f592f37-cac8-4bf0-b12c-3a86f9b444dc
+NH,upper,23,Bill Gannon,Republican,ocd-person/d3c437bd-532d-458b-961f-4f6dccec1e4b
+NH,lower,Hillsborough 10,Bill Ohm,Republican,ocd-person/9839219c-e885-4957-99e8-01ebb78583de
+NH,lower,Grafton 8,Bill Bolton,Democratic,ocd-person/6d4386a3-50ff-437f-bf9e-50faea1fd774
+NH,lower,Strafford 12,Billie Butler,Democratic,ocd-person/1c179bc8-d192-44c1-aed6-4801e9d6b338
+NH,lower,Rockingham 17,Bob Lynn,Republican,ocd-person/ce46c52e-8598-4888-8a1f-d16b283a7238
+NH,lower,Carroll 7,Bobbi Boudman,Democratic,ocd-person/4dadf712-9f7e-4120-bd9a-455bf619f757
+NH,lower,Hillsborough 26,Brian Cole,Republican,ocd-person/e0dbb769-2677-4939-adc5-e1d2b253150f
+NH,lower,Hillsborough 2,Brian Labrie,Republican,ocd-person/a04ceb08-3ec9-43b6-87d2-014313ada4a1
+NH,lower,Sullivan 1,Brian Sullivan,Democratic,ocd-person/4c78e7fc-43a2-467b-abe3-6ba04ad8853e
+NH,lower,Rockingham 4,Brian Nadeau,Republican,ocd-person/c8d8a204-038c-4544-ad17-e12a5af19cd6
+NH,lower,Merrimack 12,Brian Seaworth,Republican,ocd-person/b12abcbf-fbbe-4464-854e-6960b024e62a
+NH,lower,Carroll 8,Brian Taylor,Republican,ocd-person/8297edd2-5298-4cef-b2ab-75d4f9fa5a31
+NH,lower,Merrimack 3,Bryan Morse,Republican,ocd-person/cee0d2c5-0580-4fa6-bc84-43fa5f54144f
+NH,lower,Rockingham 26,Buzz Scherr,Democratic,ocd-person/214295d3-da3e-45cb-89bc-80de2be1a071
+NH,lower,Grafton 1,Calvin Beaulier,Republican,ocd-person/205741ac-701b-416e-9716-c725bc7d7665
+NH,lower,Merrimack 27,Carol McGuire,Republican,ocd-person/ae3d6133-98b5-444e-b95e-2edc2f5302dc
+NH,lower,Rockingham 28,Carrie Sorensen,Democratic,ocd-person/810aefbf-2c1d-448d-824a-a848d5d05910
+NH,lower,Hillsborough 6,Carry Spier,Democratic,ocd-person/74d3b542-b2d0-426f-9835-0de12d5e4895
+NH,lower,Strafford 4,Cassandra Levesque,Democratic,ocd-person/711423e3-ff28-4150-8a89-ec568a4f2c5d
+NH,lower,Hillsborough 13,Cathy Kenny,Republican,ocd-person/db105051-1a17-4bff-a3a3-46332533ac8a
+NH,lower,Hillsborough 2,Catherine Rombeau,Democratic,ocd-person/5223be3f-79ec-4442-8164-588d2ccc77e0
+NH,lower,Hillsborough 7,Catherine Sofikitis,Democratic,ocd-person/36fb226e-9ed4-483f-a254-141baf18d295
+NH,lower,Cheshire 6,Cathryn Harvey,Democratic,ocd-person/c15709b9-8514-4e8f-8a52-6b464eb8484d
+NH,lower,Rockingham 17,Charles McMahon,Republican,ocd-person/28d59199-5bae-46fe-99f3-ec78e330cdeb
+NH,lower,Rockingham 13,Charlie Foote,Republican,ocd-person/2cc808df-0763-4807-9a67-b53a1764f84c
+NH,lower,Rockingham 20,Charlie Melvin,Republican,ocd-person/66ba1045-a0e7-4602-b228-e68dea8be29e
+NH,lower,Rockingham 29,Chris Muns,Democratic,ocd-person/0dbeb05f-3510-48d3-9918-a929a6069ac2
+NH,lower,Carroll 2,Chris McAleer,Democratic,ocd-person/28ef2003-b65a-4c46-92f1-b777498c5a00
+NH,lower,Hillsborough 8,Christal Lloyd,Democratic,ocd-person/84fef36b-d3a0-4bb1-9458-7e7b165a51ff
+NH,lower,Hillsborough 21,Christine Seibert,Democratic,ocd-person/a05c5eab-d5d5-475d-a66a-39b8b514b8e6
+NH,lower,Hillsborough 24,Chris Herbert,Democratic,ocd-person/7eb393f4-db93-4fbd-95bc-3491d9a6ca93
+NH,lower,Rockingham 4,Cindy Bennett,Republican,ocd-person/24af30d5-efc3-40b2-9493-b9ef94217ada
+NH,upper,13,Cindy Rosenwald,Democratic,ocd-person/f3e949ce-6d98-4826-bbca-08039cea4ea4
+NH,lower,Strafford 2,Claudine Burnham,Republican,ocd-person/bfecb4c6-509b-4c23-9c69-0e21483c44d3
+NH,lower,Merrimack 13,Clayton Wood,Republican,ocd-person/2bf4a05c-14f0-4916-964b-48bdb20f4fdd
+NH,lower,Merrimack 16,Connie Lane,Democratic,ocd-person/8171a035-7cc1-4a7f-b086-9bdb800782da
+NH,lower,Merrimack 13,Cy Aures,Republican,ocd-person/e4ac4259-d405-4839-af31-6c409719065c
+NH,lower,Sullivan 6,Dale Girard,Republican,ocd-person/87ac63e4-d144-451e-a13b-0b834f1ef81b
+NH,lower,Hillsborough 5,Dale Swanson,Democratic,ocd-person/89af0a16-e17b-490b-96d1-8d445071cec2
+NH,lower,Hillsborough 16,Dan Bergeron,Democratic,ocd-person/4ae310b1-b493-47b9-888e-e318a5ea0e76
+NH,lower,Merrimack 14,Dan McGuire,Republican,ocd-person/f67d5fcc-0dac-4bf0-b1ab-b63f73162d0b
+NH,upper,7,Dan Innis,Republican,ocd-person/6328e7f7-d952-4d28-98b8-75a9a6f50c8d
+NH,lower,Hillsborough 34,Dan LeClerc,Democratic,ocd-person/ce0bbcca-54b7-40f4-817f-4f17e7a212a1
+NH,lower,Rockingham 17,Daniel Popovici-Muller,Republican,ocd-person/36ded3c5-84fd-49cc-82cb-d03fe682ad5f
+NH,lower,Hillsborough 34,Dan Veilleux,Democratic,ocd-person/88428a5a-4af6-40b8-a4ff-c2ea283b758f
+NH,lower,Grafton 1,Darrell Louis,Republican,ocd-person/7349598b-1f4e-4a54-8053-34534c9663e0
+NH,upper,22,Daryl Abbas,Republican,ocd-person/6dfd683a-1f79-49db-95a9-07f4f9898a22
+NH,lower,Rockingham 13,David Love,Republican,ocd-person/1c956ef6-b705-4e9d-af0c-f66d6f44591e
+NH,lower,Rockingham 16,David Lundgren,Republican,ocd-person/4e9bb139-f952-4fda-bce1-f1bb16c585e3
+NH,lower,Rockingham 13,David Milz,Republican,ocd-person/ef41a7dd-a84f-47db-b794-2a6c6be48771
+NH,lower,Grafton 16,David Fracht,Democratic,ocd-person/01e401fa-3dca-460b-8eac-080f6e7fce90
+NH,upper,4,David Watters,Democratic,ocd-person/cf24defe-6df3-49f3-88ca-c6774b144f19
+NH,lower,Belknap 6,Dave Nagel,Democratic,ocd-person/c614a6b4-5a2b-46ca-89c0-1ff666aef92a
+NH,lower,Hillsborough 17,David Preece,Democratic,ocd-person/d347f91a-d60c-48a2-b78b-8e387e7b38a1
+NH,lower,Merrimack 9,David Luneau,Democratic,ocd-person/c3c9bb99-9512-4bec-be04-d8b29ea96f3e
+NH,lower,Rockingham 37,David Meuse,Democratic,ocd-person/4b449f0f-2024-4e18-bbbd-7f0bbcfa8cac
+NH,lower,Carroll 1,David Paige,Democratic,ocd-person/09308be5-c800-42a8-b0bf-afbc877ab976
+NH,upper,1,David Rochefort,Republican,ocd-person/e849b9fb-0e1d-4ed5-b684-2a6b3520be6a
+NH,lower,Strafford 19,David Walker,Republican,ocd-person/91c36b59-79ca-4370-b855-43c3d1c78b61
+NH,lower,Merrimack 5,Deborah Aylward,Republican,ocd-person/8015d8e4-78cd-41a5-93f9-f6a704910c2f
+NH,upper,24,Debra Altschiller,Democratic,ocd-person/925608b2-8d23-4186-85f6-4c50f334374d
+NH,lower,Rockingham 18,Debra DeSimone,Republican,ocd-person/7ef7472f-0bda-4708-9239-76adeca1e87e
+NH,lower,Cheshire 11,Denis Murphy,Republican,ocd-person/72264eda-ca33-468c-bc9d-f745c55bce68
+NH,lower,Strafford 6,Denise DeDe-Poulin,Republican,ocd-person/579982ee-0c20-4345-a08d-777f6723e67c
+NH,upper,9,Denise Ricciardi,Republican,ocd-person/8dc59c94-caba-41b2-a6ba-6bca0f595118
+NH,lower,Rockingham 24,Dennis Malloy,Democratic,ocd-person/d6200a81-3d99-4ff7-93e0-e2f3b49cfd65
+NH,lower,Rockingham 25,Dennis Mannion,Republican,ocd-person/4568bf8a-b56b-43ec-a00f-718341eb6cb9
+NH,lower,Hillsborough 32,Diane Kelley,Republican,ocd-person/592ab77a-caf9-4132-ba45-effb3ecb012e
+NH,lower,Hillsborough 36,Diane Pauer,Republican,ocd-person/7cc1d333-efac-47fb-a109-98113c762790
+NH,lower,Cheshire 12,Dick Thackston,Republican,ocd-person/5e1bcd9f-9dd0-46b1-8c7f-b9e84bbba8e7
+NH,lower,Hillsborough 13,Dillon Dumont,Republican,ocd-person/8be0bff9-f1a4-410d-9177-0080a7c40f0a
+NH,lower,Grafton 18,Donald McFarlane,Republican,ocd-person/538f12b2-0914-4107-9b08-6f498e7eec66
+NH,lower,Rockingham 9,Donald Selby,Republican,ocd-person/3d27678e-e5ec-4ba7-989d-3e4d50245fff
+NH,upper,10,Donovan Fenton,Democratic,ocd-person/8e013e93-3dd2-4530-a42f-d9ba62ea5f04
+NH,lower,Belknap 8,Douglas Trottier,Republican,ocd-person/464c15d2-0b67-47e6-8c0a-fc556b336d4a
+NH,lower,Rockingham 16,Doug Thomas,Republican,ocd-person/5db11498-80a8-4136-9c50-2c7f1a2f6826
+NH,lower,Cheshire 2,Dru Fox,Democratic,ocd-person/31e633fb-0fd5-43e8-8a18-2bd0c1d6bca9
+NH,lower,Hillsborough 8,Efstathia Booras,Democratic,ocd-person/3ffd7496-524f-40b6-92d8-0e932f002a90
+NH,lower,Merrimack 8,Eileen Kelly,Democratic,ocd-person/956f70c5-6a5c-455f-b17d-c25f04b25db1
+NH,lower,Merrimack 9,Eleana Colby,Democratic,ocd-person/3b5abb0c-bfa9-4dfb-a84d-a60f7d3f8bc7
+NH,lower,Rockingham 10,Ellen Read,Democratic,ocd-person/77304532-17fb-4b2c-aed6-213a435e4a46
+NH,lower,Grafton 12,Ellen Rockmore,Democratic,ocd-person/194a44fa-ae6e-4f8a-80fa-1ba652df02ba
+NH,lower,Merrimack 20,Eric Gallager,Democratic,ocd-person/a8e2dc1d-b828-475a-92d4-373129360dcb
+NH,lower,Rockingham 6,Eric Turer,Democratic,ocd-person/fa004123-5b0b-4019-8f74-8c43570c388c
+NH,lower,Rockingham 13,Erica Layon,Republican,ocd-person/94df7a3f-b27d-42c1-9ecc-1ebdc707c9ae
+NH,lower,Rockingham 29,Erica de Vries,Democratic,ocd-person/cd3ca080-a00e-4ad2-a5c4-897d8939c32b
+NH,lower,Strafford 11,Erik Johnson,Democratic,ocd-person/5a468f0d-8baf-47e9-92da-2db62373030f
+NH,lower,Hillsborough 40,Erin Kerwin,Democratic,ocd-person/b30166c7-822f-4680-9aa0-0b62e3caf9bd
+NH,lower,Merrimack 3,Ernesto Gonzalez,Republican,ocd-person/6e5dc279-9e21-4971-9d63-eaf55886db57
+NH,lower,Hillsborough 3,Fred Davis,Democratic,ocd-person/0119879d-c522-4d71-992d-936a57389093
+NH,lower,Rockingham 11,Gaby Grossman,Democratic,ocd-person/01d85172-f83f-48ee-8c35-8979a95c9190
+NH,lower,Strafford 16,Gary Gilmore,Democratic,ocd-person/26cadaaa-59d2-4c71-b23b-9f103dbd3e81
+NH,lower,Hillsborough 43,Gary Daniels,Republican,ocd-person/281c916b-4280-41ff-9ee1-ba183d838536
+NH,lower,Merrimack 30,Gary Woods,Democratic,ocd-person/5d98b66b-f4d1-4776-953f-67dc348fdd12
+NH,lower,Strafford 21,Geoff Smith,Democratic,ocd-person/1d25683b-5c85-41cb-8585-6e18ddd0f648
+NH,lower,Grafton 14,George Sykes,Democratic,ocd-person/1d64c012-42cd-433e-9e51-d449279fe57e
+NH,lower,Sullivan 5,George Grant,Republican,ocd-person/8ecb185e-f9d2-4da1-94af-8ea367b7b34a
+NH,lower,Hillsborough 42,Gerry Griffin,Republican,ocd-person/915a097c-1280-478b-b200-0903e323e9e5
+NH,lower,Rockingham 27,Gerry Ward,Democratic,ocd-person/03774445-16e9-4857-8015-317a3d8705a3
+NH,lower,Belknap 6,Glen Aldrich,Republican,ocd-person/620d9d69-c8fb-47ad-ad25-1c1ef75c39dd
+NH,lower,Strafford 2,Glenn Bailey,Republican,ocd-person/56f58b74-b3b6-4f73-ad18-15af5119c4bc
+NH,lower,Merrimack 7,Greg Sargent,Democratic,ocd-person/f1292af8-a209-4ff7-87b5-086acddcc10e
+NH,lower,Merrimack 2,Greg Hill,Republican,ocd-person/852df922-484b-412f-a604-c2d67efee5ec
+NH,lower,Strafford 4,Heath Howard,Democratic,ocd-person/ff64ec8f-c8be-4e9c-8dce-3397cdc2401e
+NH,lower,Grafton 4,Heather Baldwin,Democratic,ocd-person/b14568dd-d9f5-4557-8ccd-0d000c231650
+NH,lower,Hillsborough 5,Heather Raymond,Democratic,ocd-person/e1e26c8f-3b7f-42bf-89e2-33331ff83bb3
+NH,lower,Hillsborough 29,Henry Giasson,Republican,ocd-person/1a1bb56f-cf92-4af0-b65e-3831e8a07b64
+NH,lower,Sullivan 8,Hope Damon,Democratic,ocd-person/a1852031-32a0-4f94-95b8-57ddcc5ab576
+NH,upper,17,Howard Pearl,Republican,ocd-person/c4122c6a-ed23-492e-b813-59a0fed1ec86
+NH,lower,Rockingham 36,J.D. Bernardy,Republican,ocd-person/9bae2e1c-4557-48a0-8adb-531347472614
+NH,lower,Hillsborough 45,Jack Flanagan,Republican,ocd-person/0772e02f-5d9a-45d3-aa62-81a5416b06e2
+NH,lower,Rockingham 2,Jim Spillane,Republican,ocd-person/2520dc46-648c-44d0-ba1f-fe09b17a9d8b
+NH,lower,Merrimack 22,James Roesener,Democratic,ocd-person/cfbe3994-9a8b-4edf-80e7-d087700ca75a
+NH,lower,Merrimack 9,James Newsom,Democratic,ocd-person/58bff024-3ec3-431f-bfa7-0d499b0bb780
+NH,upper,6,James Gray,Republican,ocd-person/e6443187-eb51-42eb-8bd7-349ed0ba9641
+NH,lower,Merrimack 18,Jim MacKay,Democratic,ocd-person/c027d650-709d-440f-8740-84b3e11406ba
+NH,lower,Cheshire 18,Jim Qualey,Republican,ocd-person/8ee6ee68-5ccb-4871-b815-6ed27c68c3ae
+NH,lower,Rockingham 20,Jim Summers,Republican,ocd-person/14936ed1-5203-4f3e-be18-4243f1fff521
+NH,lower,Merrimack 25,James Thibault,Republican,ocd-person/15de6eda-2f2d-4807-9ff1-e770c60ca46c
+NH,lower,Coos 1,James Tierney,Republican,ocd-person/0723bc3a-b040-40e5-9eaa-60c12f148828
+NH,lower,Strafford 11,Janet Wall,Democratic,ocd-person/2830876f-1a4d-4332-ae2a-a97607c4e1b9
+NH,lower,Grafton 7,Janet Lucas,Democratic,ocd-person/5aab63e3-55a7-485a-b6ee-93a9533b760a
+NH,lower,Grafton 2,Jared Sullivan,Democratic,ocd-person/80eb1932-bf31-4008-b48b-640178bfa0d3
+NH,lower,Rockingham 2,Jason Osborne,Republican,ocd-person/6e2bc564-5cd1-4f96-a265-4753b7f12ee1
+NH,lower,Rockingham 18,Jay Markell,Republican,ocd-person/f96a83f9-c085-451a-9b6b-4f79e2472e90
+NH,lower,Hillsborough 23,Jean Jeudy,Democratic,ocd-person/f47878eb-66fe-4d01-92ea-4d3190c6183c
+NH,lower,Hillsborough 12,Jeanine Notter,Republican,ocd-person/84f79859-fef0-441d-80bb-5edeafc70e78
+NH,lower,Hillsborough 1,Jeff Tenczar,Republican,ocd-person/ff500f6d-8768-4947-af54-b2881b1134a4
+NH,lower,Cheshire 17,Jennifer Rhodes,Republican,ocd-person/50eaea14-c7e4-4aac-890e-bda69eb86978
+NH,lower,Rockingham 21,Jennifer Mandelbaum,Democratic,ocd-person/64122b0a-5dcf-4f7e-aa74-cff67dcb67b3
+NH,lower,Hillsborough 13,Jeremy Slottje,Republican,ocd-person/c258b160-4a1f-461e-8fed-18597f349df9
+NH,lower,Grafton 3,Jerry Stringham,Democratic,ocd-person/80181303-730c-46b5-88e5-ccfbf32b132f
+NH,lower,Rockingham 31,Jess Edwards,Republican,ocd-person/3787c84d-f615-4e9d-bac8-42f86ea308db
+NH,lower,Strafford 17,Jessica LaMontagne,Democratic,ocd-person/47233e65-87c6-4a8b-ba37-271c2413615d
+NH,lower,Hillsborough 18,Jessica Grill,Democratic,ocd-person/d607d081-ecb8-4d5d-bc2f-d3ee78a627c7
+NH,lower,Hillsborough 30,Jim Fedolfi,Republican,ocd-person/de8891e6-5b3f-4fb5-8c5d-63ab84c70e59
+NH,lower,Cheshire 16,Jim Gruber,Democratic,ocd-person/c46f0617-3009-41d2-97e3-a51004d83430
+NH,lower,Rockingham 1,Jim Guzofski,Republican,ocd-person/ec6cfbd9-53fd-4643-b2c9-b0889f417baa
+NH,lower,Hillsborough 32,Jim Kofalt,Republican,ocd-person/fa8b39ea-006f-420a-9a3f-fe36d0db8776
+NH,lower,Hillsborough 30,Jim Creighton,Republican,ocd-person/e6b59654-1e8f-4f6b-b01f-7d69bb76ffec
+NH,lower,Merrimack 28,Jim Snodgrass,Democratic,ocd-person/4bb909b9-4651-4272-8d8d-3b649850e965
+NH,lower,Rockingham 23,Jim Maggiore,Democratic,ocd-person/deb760cf-91f7-415c-949a-bab0c5311d6f
+NH,lower,Cheshire 4,Jodi Newell,Democratic,ocd-person/97c57bb8-58d9-43b2-9ccb-5c926022f89f
+NH,lower,Rockingham 13,Jodi Nelson,Republican,ocd-person/1f649bd8-815d-47b9-aca3-6e11ef2da422
+NH,lower,Hillsborough 29,Joe Alexander,Republican,ocd-person/e7800d58-1019-4aff-8d1a-22faba9d3e23
+NH,lower,Carroll 3,Joe Hamblen,Republican,ocd-person/5afc747c-0880-4f38-9ae3-28a966cd7a64
+NH,lower,Rockingham 25,Joe Sweeney,Republican,ocd-person/568a287b-89c6-44b7-a8e6-a5188ef7f9bc
+NH,lower,Merrimack 10,John Leavitt,Republican,ocd-person/c4ba3022-267a-4ca0-8aad-2a2daa3af0db
+NH,lower,Cheshire 14,John Hunt,Republican,ocd-person/35c51630-9b9c-411a-9b98-0842cb6093df
+NH,lower,Rockingham 25,John Janigian,Republican,ocd-person/4c4f4974-0202-43a0-9aba-f41d0f99603a
+NH,lower,Strafford 19,John Larochelle,Democratic,ocd-person/fcd4cdd8-007f-4d0d-b4c5-371db50e81a5
+NH,lower,Rockingham 13,John Potucek,Republican,ocd-person/433c67d6-bfdc-410e-87e2-463c93d55a17
+NH,lower,Sullivan 6,John Cloutier,Democratic,ocd-person/d3dab509-1268-4b4f-b363-98932002bf2e
+NH,lower,Hillsborough 2,John Schneller,Republican,ocd-person/84047292-5618-45d3-afbf-16bb611f415d
+NH,lower,Grafton 10,John Sellers,Republican,ocd-person/a365b40c-5682-4627-ae84-764e7da7219e
+NH,lower,Strafford 12,John Stone,Democratic,ocd-person/78fa874f-3651-424e-a8c7-094b2d89de95
+NH,lower,Hillsborough 36,John Suiter,Republican,ocd-person/fe4b2b32-0709-486c-910c-fa3bcfc54056
+NH,lower,Rockingham 25,John Sytek,Republican,ocd-person/81a14b0b-f5dd-4e7a-b500-c9dc0a56c2be
+NH,lower,Carroll 6,John MacDonald,Republican,ocd-person/a22a36bb-3514-4d76-a39e-791902f41d6c
+NH,lower,Hillsborough 33,Jonah Wheeler,Democratic,ocd-person/87b1ae9f-d7ad-4fc2-b96c-a03c1926c4b1
+NH,lower,Carroll 5,Jonathan Smith,Republican,ocd-person/214b10b8-1ed6-4964-8aab-32c6609965f6
+NH,lower,Hillsborough 13,Jordan Ulery,Republican,ocd-person/31f696d4-f806-4eb3-a8ce-5b1d2a2eba93
+NH,lower,Merrimack 4,Jose Cambrils,Republican,ocd-person/3d1f7d21-9a20-4245-b51f-03ca0d2b14eb
+NH,lower,Rockingham 15,Joe Guthrie,Republican,ocd-person/772f5157-b959-4aed-beaa-6bd67ab8fefe
+NH,lower,Grafton 1,Joseph Barton,Republican,ocd-person/894db7b4-6c38-493e-9935-0f54a6cda8b7
+NH,lower,Sullivan 4,Judy Aron,Republican,ocd-person/533fb85c-c4f0-41f3-9bc6-8b1c422a9693
+NH,lower,Rockingham 11,Julie Gilman,Democratic,ocd-person/77ca15e6-ebe1-4ef5-8bc9-ed3dff861f38
+NH,lower,Hillsborough 12,Julie Miles,Republican,ocd-person/44b33c8b-b7ee-41e3-a7a4-601a53746e36
+NH,lower,Belknap 3,Juliet Harvey-Bolia,Republican,ocd-person/5d7f39ae-2cc4-4b36-bd76-828a24bc454d
+NH,lower,Rockingham 35,Julius Soti,Republican,ocd-person/0d4bc96e-c56f-42a3-b602-54222dfdd883
+NH,lower,Carroll 3,Karel Crawford,Republican,ocd-person/a0936f2f-8170-47f9-8b05-6c6697a95968
+NH,lower,Merrimack 7,Karen Ebel,Democratic,ocd-person/947e2e2b-04eb-4f92-9f83-aef8760517e0
+NH,lower,Hillsborough 41,Karen Hegner,Democratic,ocd-person/46f2bce3-b004-4b9c-8202-494feab86dee
+NH,lower,Hillsborough 35,Kat McGhee,Democratic,ocd-person/4c8bec8a-e86d-4316-8b2e-2f8c4157cae5
+NH,lower,Rockingham 17,Katelyn Kuttab,Republican,ocd-person/b7d43cab-3399-4022-a2a4-9415937b3daa
+NH,lower,Rockingham 13,Katherine Prudhomme-O'Brien,Republican,ocd-person/a0a8c9d8-1f27-4d28-a249-8a5856ea5c05
+NH,lower,Hillsborough 25,Kathi Paquette,Republican,ocd-person/dca02694-20ad-476e-8b56-2ff59d3d8ba6
+NH,lower,Hillsborough 25,Kathy Staub,Democratic,ocd-person/4f2dee8b-bbd5-41d9-8bd4-bf2f60556ed7
+NH,lower,Carroll 6,Katy Peternel,Republican,ocd-person/437d084e-35d3-4a37-9ccb-61d6fcc43b1c
+NH,lower,Hillsborough 28,Keith Erf,Republican,ocd-person/0e6b2514-25d6-4e16-bcbd-5029e90df22d
+NH,lower,Hillsborough 42,Keith Ammon,Republican,ocd-person/c975be5b-c686-4489-92d2-5b8ba36f9974
+NH,upper,16,Keith Murphy,Republican,ocd-person/7ec573c3-d961-4d08-a71c-d239490b5c1a
+NH,lower,Strafford 19,Kelley Potenza,Republican,ocd-person/b9b6f587-2395-497d-8f04-dfaae1b3d7f4
+NH,lower,Rockingham 14,Ken Weyler,Republican,ocd-person/e2f9dd7e-b221-4cf0-b7de-5daa70658669
+NH,upper,12,Kevin Avard,Republican,ocd-person/b99b0bbb-4710-43c7-a6b5-0e04524eedf0
+NH,lower,Hillsborough 8,Kevin Scully,Republican,ocd-person/2a474f9c-7a7d-4d4f-8c7c-73ade8e11ad8
+NH,lower,Rockingham 2,Kevin Verville,Republican,ocd-person/9d10ccec-b571-4eea-b025-9ed7634b6516
+NH,lower,Hillsborough 38,Kim Rice,Republican,ocd-person/35bc8d7d-92ae-41de-95eb-d515df5b9e9b
+NH,lower,Hillsborough 2,Kristin Noble,Republican,ocd-person/4246d501-b872-4cf9-bfd8-7ef21015da7a
+NH,lower,Merrimack 29,Kris Schultz,Democratic,ocd-person/8698b473-ea4e-4126-8766-a2b5b5878702
+NH,lower,Rockingham 16,Kristine Perez,Republican,ocd-person/ea8d6a3b-8312-4ffe-a85a-e8a9776ec560
+NH,lower,Hillsborough 16,Larry Gagne,Republican,ocd-person/26d443c0-53fe-480b-bf4c-7b7a28a109e9
+NH,lower,Rockingham 7,Larry Miner,Republican,ocd-person/efbf2adf-16f5-490e-9513-a80698aab5d8
+NH,lower,Hillsborough 11,Laura Telerski,Democratic,ocd-person/ac414b7c-45dc-48b6-9530-eaa8e80b124f
+NH,lower,Grafton 13,Laurel Stavis,Democratic,ocd-person/90ca1969-94b3-4c8d-b712-e00e48a7a671
+NH,lower,Hillsborough 6,Lee Ann Kluger,Democratic,ocd-person/b80b4918-c952-4015-82e5-585229f9c2eb
+NH,lower,Strafford 4,Len Turcotte,Republican,ocd-person/b5f897f3-cce8-43b0-a130-f98d0d88da8e
+NH,lower,Grafton 11,Lex Berezhny,Republican,ocd-person/a70935b5-517e-4b70-accb-26e55c34fb42
+NH,lower,Rockingham 15,Lilli Walsh,Republican,ocd-person/554fe6ba-061a-413f-b2c7-c0e10c47ad01
+NH,lower,Hillsborough 41,Lily Foss,Democratic,ocd-person/5d2f52fe-3001-4a7f-a33e-3fa580c1dc70
+NH,lower,Hillsborough 17,Linda DiSilvestro,Democratic,ocd-person/a9f75dde-f348-4c7a-90c9-a785ee2de208
+NH,lower,Hillsborough 10,Linda Harriott-Gathright,Democratic,ocd-person/1e2b57f6-dbb9-4069-a71b-d40828c80cfa
+NH,lower,Grafton 6,Linda Franz,Republican,ocd-person/61c86857-d1d9-401b-a045-3f4bac5b3312
+NH,lower,Hillsborough 2,Linda Gould,Republican,ocd-person/40ae4adb-2124-47ca-82b5-9eee794af4a2
+NH,lower,Rockingham 40,Linda McGrath,Republican,ocd-person/4b68fc91-27b5-4065-af3d-b541877116f5
+NH,lower,Hillsborough 4,Linda Ryan,Democratic,ocd-person/d0a3a869-3612-4910-b31b-32a88667cb84
+NH,lower,Carroll 4,Lino Avellani,Republican,ocd-person/4d68b7bf-e7fb-4c6d-ac12-526aba53e65e
+NH,lower,Hillsborough 42,Lisa Post,Republican,ocd-person/72ef654a-277a-4309-b0ae-08fee715af2c
+NH,lower,Belknap 8,Lisa Freeman,Republican,ocd-person/a87a3359-2def-4743-bf8f-9df4d308f864
+NH,lower,Hillsborough 44,Lisa Mazur,Republican,ocd-person/e44fbca0-a34c-4b73-aaa6-872b471b9031
+NH,lower,Hillsborough 35,Liz Barbour,Republican,ocd-person/6fbc7a9b-82b3-4897-86e1-61e3fb4a4f77
+NH,lower,Hillsborough 2,Loren Foxx,Democratic,ocd-person/260ddf78-7100-4fee-a353-0ebf1a0615ec
+NH,lower,Strafford 10,Loren Selig,Democratic,ocd-person/a35a4483-879d-4dd2-889e-57a576e56acc
+NH,lower,Coos 7,Lori Korzen,Republican,ocd-person/1becd24c-cc2c-46fd-9859-a06c46340b93
+NH,lower,Rockingham 25,Lorie Ball,Republican,ocd-person/b89dda18-b7c5-4184-b6d9-0bff9bed045e
+NH,lower,Hillsborough 7,Lou Juris,Democratic,ocd-person/9e0a9394-7bcc-451a-9ae1-439248598eae
+NH,lower,Merrimack 5,Louise Andrus,Republican,ocd-person/4f84e968-9226-470f-bde4-4163efc19593
+NH,lower,Cheshire 8,Lucius Parshall,Democratic,ocd-person/4854b313-26e5-49a3-8095-76298f96ced3
+NH,lower,Cheshire 5,Lucy Weber,Democratic,ocd-person/a6790cd1-6b7a-48f9-b48c-b298929578a4
+NH,lower,Strafford 21,Luz Bay,Democratic,ocd-person/b2bd1fe6-401e-41ac-88cc-a96d8a12d737
+NH,lower,Hillsborough 11,Manoj Chourasia,Democratic,ocd-person/ce051501-985a-4008-913f-38b1b05351c6
+NH,lower,Coos 5,Marc Tremblay,Republican,ocd-person/20e7dbe4-40e8-4a11-bf8b-c7f7d2658725
+NH,lower,Hillsborough 3,Marc Plamondon,Democratic,ocd-person/a5b1edc7-c0a1-49fe-824c-a9177a8e1218
+NH,lower,Sullivan 7,Margaret Drye,Republican,ocd-person/17abebe7-d58e-456b-b716-5cdadf60cbc7
+NH,lower,Grafton 5,Marie Bjelobrk,Republican,ocd-person/f3ab13ac-5040-4533-b5f3-ce49dec5020f
+NH,lower,Strafford 10,Marjorie Smith,Democratic,ocd-person/86b31d04-3a4b-4199-b10e-27bd337f0a34
+NH,lower,Rockingham 5,Mark Vallone,Democratic,ocd-person/248ddc70-c3e0-4ec2-94ff-1d1de0d0e9fc
+NH,upper,3,Mark McConkey,Republican,ocd-person/c344ed7a-6fea-4f17-9c48-4e27d67bebc8
+NH,lower,Hillsborough 15,Mark Proulx,Republican,ocd-person/b50abef6-0b19-4d5c-97c9-f757f3b571ad
+NH,lower,Hillsborough 15,Mark McLean,Republican,ocd-person/b089786f-4435-4822-a7d6-3725cca787bf
+NH,lower,Rockingham 11,Mark Paige,Democratic,ocd-person/8c6eeb07-d048-47fd-9f0e-718460e2edc9
+NH,lower,Rockingham 34,Mark Pearson,Republican,ocd-person/6c90e0a1-d9d5-488c-a9a3-898ca5b0f9a4
+NH,lower,Hillsborough 40,Mark MacKenzie,Democratic,ocd-person/69275b32-0ad6-48a4-9787-bf2869573772
+NH,lower,Hillsborough 39,Mark Warden,Republican,ocd-person/01358592-fa6d-49bf-a933-ea2f223572d7
+NH,lower,Hillsborough 10,Martin Jack,Democratic,ocd-person/27e55643-df5b-49aa-8529-082cd786c0f8
+NH,lower,Grafton 12,Mary Hakken-Phillips,Democratic,ocd-person/0929165d-f73c-4820-8820-209de58c1e78
+NH,lower,Rockingham 3,Mary Ford,Republican,ocd-person/c353b272-e9b3-41d1-812c-17ee08295476
+NH,lower,Hillsborough 23,Mary Georges,Democratic,ocd-person/4b40718c-8dbd-4df2-a1a0-75a9093778ce
+NH,lower,Merrimack 19,Mary Jane Wallner,Democratic,ocd-person/0e6f806c-ba57-4dc6-b6b4-f2a926288ca3
+NH,lower,Hillsborough 27,Mary Murphy,Republican,ocd-person/bdc7b519-4849-4992-b21b-f5563d642285
+NH,lower,Hillsborough 19,Matt Drew,Republican,ocd-person/472f8b30-237d-44fe-8d3e-af33b833d8eb
+NH,lower,Rockingham 30,Matt Sabourin dit Choinière,Republican,ocd-person/5709592a-7c88-41e3-8295-7c05146327e2
+NH,lower,Hillsborough 21,Matt Wilhelm,Democratic,ocd-person/61d2e8f3-f2b9-4357-81af-fe982ee1821f
+NH,lower,Belknap 2,Matt Coker,Republican,ocd-person/3b11dc06-256a-430c-9f75-7ebe69267e4d
+NH,lower,Merrimack 11,Matthew Pitaro,Republican,ocd-person/08622297-087a-4e0e-97ad-abd8e81a89d8
+NH,lower,Merrimack 24,Matthew Hicks,Democratic,ocd-person/3e70b6de-08a4-4ee5-a1c5-482f9394c475
+NH,lower,Hillsborough 12,Maureen Mooney,Republican,ocd-person/4a80db99-34b2-4d33-995b-41d889592bf3
+NH,lower,Hillsborough 37,Megan Murray,Democratic,ocd-person/f1902aac-3930-478d-9e89-60cef8bcae0b
+NH,lower,Rockingham 32,Melissa Litchfield,Republican,ocd-person/ee439da0-f552-4df7-80d4-cd6b19ecd5df
+NH,lower,Merrimack 23,Merryl Gibbs,Democratic,ocd-person/db534ca2-9d91-4578-b093-9b3ed61695eb
+NH,lower,Rockingham 29,Michael Edgar,Democratic,ocd-person/0f78413a-b328-4856-ab48-21a5d4d614c0
+NH,lower,Sullivan 8,Michael Aron,Republican,ocd-person/2952c8e8-7d64-43a3-8502-fa6f8110fa14
+NH,lower,Rockingham 10,Michael Cahill,Democratic,ocd-person/facb5409-244f-4381-8452-e6a1078bb1c5
+NH,lower,Strafford 18,Mike Harrington,Republican,ocd-person/21e95dbc-c226-4f4a-9fa2-8f5b374d0a98
+NH,lower,Strafford 2,Michael Granger,Republican,ocd-person/6d72216e-2f3d-4c60-9ce0-dc2c365d2033
+NH,lower,Merrimack 4,Mike Moffett,Republican,ocd-person/acb20216-f193-42e1-9304-2b1d3572e61d
+NH,lower,Belknap 5,Mike Bordes,Republican,ocd-person/c924901e-1cc8-4574-ae7c-19f3e52d2031
+NH,lower,Rockingham 4,Mike Drago,Republican,ocd-person/07c09a56-23ba-4c8b-90bd-5668f22c5103
+NH,lower,Coos 3,Mike Ouellet,Republican,ocd-person/7c8a79bb-76d5-488c-988b-084fa40b34c7
+NH,lower,Carroll 4,Mike Belcher,Republican,ocd-person/75ad73cd-6591-4a64-9f6b-7558bbaf3689
+NH,lower,Hillsborough 31,Molly Howard,Democratic,ocd-person/4825494b-dbbb-44f4-a4a7-dee1df0a87ae
+NH,lower,Merrimack 9,Muriel Hall,Democratic,ocd-person/c85e3c8a-f2b9-40d5-a830-7c59a1328bf4
+NH,lower,Strafford 12,Myles England,Democratic,ocd-person/0d466dcc-c612-4c5e-b080-0bd257ec589d
+NH,lower,Hillsborough 12,Nancy Murphy,Democratic,ocd-person/0ac05fa7-143f-4ae9-8ac8-99de42d21779
+NH,lower,Rockingham 39,Ned Raynolds,Democratic,ocd-person/f20b1b61-dfc7-4ea0-b0cf-3705e7c7283e
+NH,lower,Cheshire 15,Nick Germana,Democratic,ocd-person/170e4582-46d4-480d-9bca-b49b2ba8baf3
+NH,lower,Rockingham 29,Nicholas Bridle,Republican,ocd-person/276d3407-ff3e-4e21-966d-696cfde5faa8
+NH,lower,Hillsborough 22,Nicole Leapley,Democratic,ocd-person/854e522b-afa5-4359-b826-71aaa8b89f39
+NH,lower,Hillsborough 3,Paige Beauchemin,Democratic,ocd-person/2fe799f4-a099-4667-ac0d-1bce40a08e3d
+NH,lower,Rockingham 14,Pam Brown,Republican,ocd-person/8efd1438-4fbb-4e6a-ab55-73222f232022
+NH,lower,Hillsborough 22,Patricia Cornell,Democratic,ocd-person/e657ef2c-bfc3-4a08-99fe-4456be3bfe2a
+NH,lower,Hillsborough 26,Patrick Long,Democratic,ocd-person/c480dbd4-efbc-4a6b-9fc2-37bef688e2de
+NH,upper,20,Pat Long,Democratic,ocd-person/14d0ff58-3340-4344-bb79-c6acd5f8ba6c
+NH,lower,Belknap 7,Paul Terry,Republican,ocd-person/8488ba3a-e608-4f0d-9d7b-7e6e13244917
+NH,lower,Rockingham 1,Paul Tudor,Republican,ocd-person/9a1db7df-83d0-4f2f-8c3c-7610f8012ce6
+NH,lower,Hillsborough 43,Paul Dargie,Democratic,ocd-person/b2021972-0991-4a95-a897-b7e992eac8dd
+NH,lower,Cheshire 6,Paul Berch,Democratic,ocd-person/f96a072d-9add-44b0-8028-0ec057f31f52
+NH,lower,Rockingham 38,Peggy Balboni,Democratic,ocd-person/3d7dffbf-59f3-4a2f-a29a-bcece98c17fb
+NH,lower,Strafford 14,Peter Schmidt,Democratic,ocd-person/16654889-3b48-44d6-a6d3-8da5d7a434f1
+NH,lower,Grafton 8,Peter Lovett,Democratic,ocd-person/af8ff7f6-ee61-492f-87cc-8fc69bee7886
+NH,lower,Merrimack 12,Peter Mehegan,Republican,ocd-person/e2026731-25f3-42b3-bd92-f6b3fc101f01
+NH,lower,Coos 5,Pete Morency,Republican,ocd-person/622ea33c-23b7-4074-9ed6-75d2086677e8
+NH,lower,Hillsborough 43,Peter Petrigno,Democratic,ocd-person/1bf3d6c4-3325-4571-b2f7-6a28422dada6
+NH,lower,Hillsborough 33,Peter Leishman,Democratic,ocd-person/86708f42-531f-4e57-a6b1-f5b11ff9389c
+NH,lower,Belknap 7,Peter Varney,Republican,ocd-person/b4735fd9-309f-40b0-a554-c646dde34fc1
+NH,lower,Strafford 13,Peter Bixby,Democratic,ocd-person/2c42e95c-0192-4910-9fc6-8a43b58c6467
+NH,lower,Cheshire 3,Philip Jones,Democratic,ocd-person/09cfaba9-f3ee-41d6-8cf7-0c93613109cd
+NH,lower,Rockingham 13,Phyllis Katsakiores,Republican,ocd-person/19404ada-b556-4609-9814-f19db9c0a0ad
+NH,lower,Hillsborough 20,Pierre DuPont,Republican,ocd-person/040f626d-c4bc-4c7b-a99a-1fcc5df165d9
+NH,lower,Hillsborough 38,Ralph Boehm,Republican,ocd-person/ac6ce16b-a462-4727-8e4b-724c7c19e58c
+NH,lower,Hillsborough 4,Ray Newman,Democratic,ocd-person/f68b34d8-19af-449e-a4cc-3d2729bb9e23
+NH,lower,Hillsborough 14,Ray Peeples,Republican,ocd-person/c67b2f9d-8f52-4ce4-b613-781763f0bfe4
+NH,lower,Merrimack 27,Ray Plante,Republican,ocd-person/81c0f95e-01e6-492f-9d68-42396dc3a9a0
+NH,upper,21,Rebecca Perkins Kwoka,Democratic,ocd-person/c20b7693-7f2c-4646-af7f-d57518edd1a4
+NH,upper,19,Regina Birdsell,Republican,ocd-person/461c9024-c8c3-44a5-91d6-015a6587db5f
+NH,lower,Hillsborough 30,Riché Colcombe,Republican,ocd-person/f34606de-25d3-4e18-991e-b21727563eb6
+NH,lower,Cheshire 9,Rich Nalevanko,Republican,ocd-person/34a4f745-0a57-454d-acc0-598c6fcc35ce
+NH,lower,Cheshire 13,Dick Ames,Democratic,ocd-person/47c165c7-ecd9-4b88-b9f7-2e58e8e290d4
+NH,lower,Rockingham 13,Richard Tripp,Republican,ocd-person/c715d154-3822-42b6-ab75-73181ac7be0a
+NH,lower,Carroll 8,Richard Brown,Republican,ocd-person/d08d07c4-6aa0-4ce4-a940-924ab72e216f
+NH,lower,Hillsborough 14,Rich Lascelles,Republican,ocd-person/c11f9fad-128e-455e-896e-2e880b6cc29e
+NH,lower,Grafton 5,Rick Ladd,Republican,ocd-person/1bd6c569-f2dd-4670-bf82-ef3ea4b15960
+NH,lower,Merrimack 1,Rick Devoid,Republican,ocd-person/3ce1bede-22ef-4c98-b958-1bca45624608
+NH,lower,Cheshire 18,Rita Mattson,Republican,ocd-person/6554d13d-8086-437d-8b44-e5a164b34933
+NH,lower,Rockingham 20,Bob Harb,Republican,ocd-person/c62fca24-e8c3-4f87-95dd-cb52a3d58c05
+NH,lower,Hillsborough 13,Robert Wherry,Republican,ocd-person/e7f37a7a-0f05-4fd3-944d-be2c41cc200b
+NH,lower,Strafford 1,Robley Hall,Republican,ocd-person/225fd1a2-5691-411a-b0ba-48c1943a139b
+NH,lower,Rockingham 16,Ron Dunn,Republican,ocd-person/e0b29cba-9dd9-4e90-889c-e5eaea7d174c
+NH,lower,Hillsborough 12,Rosemarie Rung,Democratic,ocd-person/1a5923c6-3e1f-4ebe-8739-17c9e9642403
+NH,lower,Hillsborough 44,Ross Berry,Republican,ocd-person/1b016eb0-b4c0-4929-b957-ef9de5b46031
+NH,lower,Belknap 6,Russ Dumais,Republican,ocd-person/9aae937c-2a6d-4654-a18e-d76e1b379e51
+NH,lower,Grafton 12,Russ Muirhead,Democratic,ocd-person/33c30ffc-2203-48fc-9161-e14946abce23
+NH,upper,8,Ruth Ward,Republican,ocd-person/9089a509-1f26-4770-adc6-199ed716e692
+NH,lower,Grafton 8,Sallie Fellows,Democratic,ocd-person/2260bb0a-065f-4d26-a814-f70aa2c16705
+NH,lower,Strafford 8,Sam Farrington,Republican,ocd-person/b0df7728-b702-4448-b36e-e09cdacbd16d
+NH,lower,Cheshire 15,Samantha Jacobs,Democratic,ocd-person/d699ae32-c8ba-43d2-a127-fdc38e722bc7
+NH,lower,Hillsborough 9,Sanjeev Manohar,Democratic,ocd-person/db63311e-bd1c-454a-8d9f-7e89cf645a72
+NH,lower,Hillsborough 9,Santosh Salvi,Democratic,ocd-person/9f34527d-c08a-4112-8046-1ce5a61b3f0a
+NH,lower,Rockingham 8,Sayra DeVito,Republican,ocd-person/44357af0-cbba-4906-87fd-1929564931b9
+NH,lower,Rockingham 1,Scott Bryer,Republican,ocd-person/b51774f3-49ab-4d3f-b103-683491aa57c4
+NH,lower,Coos 1,Sean Durkin,Republican,ocd-person/8d99d9dc-999d-438c-84c8-01d80f1ef5cd
+NH,lower,Coos 4,Seth King,Republican,ocd-person/15d93e43-ec08-4958-8f3b-1d56d95eb574
+NH,lower,Strafford 21,Seth Miller,Democratic,ocd-person/027bd13f-0029-48f3-a5dd-76b15a95546d
+NH,lower,Hillsborough 32,Shane Sirois,Republican,ocd-person/a56b0587-b57f-4dbb-a977-ba82c714a379
+NH,upper,14,Sharon Carson,Republican,ocd-person/00964fc0-dd57-44c3-87bf-b6d5bbc34560
+NH,lower,Belknap 5,Sheri Minor,Republican,ocd-person/d4473432-7416-4a64-9a3f-24b7ce96c446
+NH,lower,Rockingham 16,Sherm Packard,Republican,ocd-person/e94c1d98-5454-40a2-8293-ee0998fee8ca
+NH,lower,Hillsborough 29,Sherri Reinfurt,Republican,ocd-person/19278cc6-c610-4ae1-b1eb-b33f60658f0b
+NH,lower,Sullivan 3,Skip Rollins,Republican,ocd-person/31d4d765-be08-4393-8e9a-21444cf8b411
+NH,lower,Cheshire 10,Sly Karasinski,Republican,ocd-person/c2f2054b-2949-44ea-b784-ffe4820eed77
+NH,lower,Hillsborough 34,Stephanie Grund,Democratic,ocd-person/dfbe7855-971b-4eb3-832e-a3f67b8b6a61
+NH,lower,Merrimack 8,Stephanie Payeur,Democratic,ocd-person/8184319b-a3eb-4538-a78a-5e5cd439e2a3
+NH,lower,Rockingham 13,Steve Pearson,Republican,ocd-person/2a085551-6f62-4320-a1eb-bc9a177b9a6d
+NH,lower,Merrimack 10,Stephen Boyd,Republican,ocd-person/b46ed135-4c70-40b9-81ab-94660b76be3e
+NH,lower,Carroll 1,Steve Woodcock,Democratic,ocd-person/bdde38b3-3210-4b2d-890b-bbf2d2bf314a
+NH,lower,Hillsborough 18,Steve Kesselring,Republican,ocd-person/f773bff0-d2b7-4fa5-8f82-c8b519b8556b
+NH,lower,Sullivan 3,Steven Smith,Republican,ocd-person/129a2970-07b9-4136-aae1-15c689edca40
+NH,lower,Belknap 5,Steve Bogert,Republican,ocd-person/a82b5491-46a0-4062-aec5-362724f8f729
+NH,lower,Strafford 1,Sue DeLemus,Republican,ocd-person/62edd52b-364d-4f60-a796-107ca302fdc5
+NH,lower,Hillsborough 4,Sue Newman,Democratic,ocd-person/27254294-07b6-4c08-90be-466800c312bc
+NH,lower,Hillsborough 5,Susan Elberger,Democratic,ocd-person/c9b60101-8e1e-4ca2-b5c1-3ffa019fcb3e
+NH,lower,Strafford 3,Susan DeRoy,Republican,ocd-person/09972c73-4e4f-471a-9888-558053aace85
+NH,lower,Rockingham 25,Sue Vandecasteele,Republican,ocd-person/b3316ac6-b023-4dec-9e07-33600f4027bb
+NH,lower,Rockingham 19,Susan Porcelli,Republican,ocd-person/64a835c6-0e89-411f-bc32-331e246b10f0
+NH,lower,Grafton 17,Susan Almy,Democratic,ocd-person/e13283b4-defe-4f4e-8e67-4d89b8e3790c
+NH,lower,Hillsborough 19,Suzanne Chretien,Democratic,ocd-person/4c5b973d-20c9-4205-a69d-bed3b74ca391
+NH,upper,5,Sue Prentiss,Democratic,ocd-person/de206392-deba-4ecf-96a3-33494c415417
+NH,lower,Rockingham 25,Tanya Donnelly,Republican,ocd-person/93179238-e90a-433f-bafb-72333aa7c9ef
+NH,upper,15,Tara Reardon,Democratic,ocd-person/db4dc6cd-8c68-487f-a1e3-dd80995ba786
+NH,lower,Hillsborough 2,Ted Gorski,Republican,ocd-person/c40abbd9-220c-4081-9ad8-9559c10f9aae
+NH,lower,Cheshire 7,Terri O'Rorke,Democratic,ocd-person/81cb2080-0fec-4a30-8212-71fa0679e2f3
+NH,lower,Rockingham 31,Terry Roy,Republican,ocd-person/6d43b165-fda9-4918-a2b7-ad66940062a0
+NH,lower,Grafton 12,Terry Spahr,Democratic,ocd-person/3427853b-656d-4c4e-9857-acb92e08187d
+NH,lower,Merrimack 6,Tom Schamberg,Democratic,ocd-person/29eeecd3-79b7-489c-b1a5-ace913e619f2
+NH,lower,Merrimack 10,Thomas Walsh,Republican,ocd-person/e325954b-c90e-4b1e-aadb-3f5cc7ec1671
+NH,lower,Grafton 15,Tom Cormen,Democratic,ocd-person/25d71e57-9def-4149-8257-2bfb3c5e5415
+NH,lower,Carroll 1,Tom Buco,Democratic,ocd-person/22809c1b-0676-4ad9-8d0e-8a0a9d19063a
+NH,lower,Strafford 5,Thomas Kaczynski,Republican,ocd-person/21a4a059-a8f3-4ec9-ac42-84983f16fb8d
+NH,lower,Strafford 11,Tom Southworth,Democratic,ocd-person/4febed48-b7fd-4b44-98e8-fb20de52968e
+NH,lower,Hillsborough 1,Tim Mannion,Republican,ocd-person/5e093007-fbc4-44da-a096-5eac6ae040f2
+NH,upper,11,Tim McGough,Republican,ocd-person/18d80f49-9f78-441e-bf28-1ed0929b5fd3
+NH,lower,Merrimack 21,Timothy Soucy,Democratic,ocd-person/edcefea3-7cd4-4128-92ef-b22bc4a7c0b4
+NH,upper,2,Tim Lang,Republican,ocd-person/5330ad05-ce69-47c0-9093-6286233c7a7d
+NH,lower,Strafford 10,Timothy Horrigan,Democratic,ocd-person/2a11a559-c16e-4211-82ea-215951d74c1f
+NH,lower,Hillsborough 1,Tom Mannion,Republican,ocd-person/6bf9fba1-96e4-46af-843d-5e006d357acd
+NH,lower,Rockingham 16,Tom Dolan,Republican,ocd-person/330b6b4b-dfa6-4379-ae45-bedd9b276fcd
+NH,lower,Belknap 1,Tom Ploszaj,Independent,ocd-person/8f685697-5fb0-4966-8cd0-ad3059650f8d
+NH,lower,Rockingham 10,Toni Weinstein,Democratic,ocd-person/fc03907c-1276-40e7-9838-83f4ab670d03
+NH,lower,Merrimack 8,Tony Caplan,Democratic,ocd-person/960dc748-e7c7-4859-ab1d-b07f9bb7b269
+NH,lower,Merrimack 15,Tracy Bricchi,Democratic,ocd-person/31497c82-3d45-49e4-9232-1c435a5c72e3
+NH,lower,Hillsborough 28,Travis Corcoran,Republican,ocd-person/f5b14d40-aa28-485b-ab61-dc07c647384a
+NH,lower,Belknap 4,Travis Toner,Republican,ocd-person/9b0c88d1-3fd7-465a-b24e-3675d18a2dde
+NH,lower,Hillsborough 40,Trinidad Tellez,Democratic,ocd-person/6164e59b-1d52-4ee4-aa53-28ea86884757
+NH,lower,Rockingham 25,Valerie McDonnell,Republican,ocd-person/8c0d6811-045b-46ca-91c6-86e360249246
+NH,lower,Hillsborough 43,Vanessa Sheehan,Republican,ocd-person/5c985922-36b3-4d80-986d-1f9c363920f1
+NH,lower,Rockingham 9,Vicki Wilson,Republican,ocd-person/ee2f53d6-9f8b-46ef-82e1-53ba6eae54bd
+NH,upper,18,Victoria Sullivan,Republican,ocd-person/dbf39ca6-e569-4078-b150-f63c51784d80
+NH,lower,Sullivan 3,Terry Spilsbury,Republican,ocd-person/236f5df6-87b6-488d-86cd-a1ed3a5adb81
+NH,lower,Rockingham 16,Wayne MacDonald,Republican,ocd-person/8588302c-ac8c-4b58-9444-0c9f29448aa0
+NH,lower,Sullivan 6,Wayne Hemingway,Republican,ocd-person/891b5235-2e56-4bbf-820a-ca7c928324e1
+NH,lower,Strafford 10,Wayne Burton,Democratic,ocd-person/4c3783ee-340d-4891-abf6-c4dfa6a030e3
+NH,lower,Strafford 12,Wayne Pearson,Democratic,ocd-person/a56c3553-5c3b-4638-89a5-e1d97ccd4516
+NH,lower,Hillsborough 12,Wendy Thomas,Democratic,ocd-person/2375b05c-cf9a-4f1b-a4b0-194fac6d86bf
+NH,lower,Hillsborough 11,Will Darby,Democratic,ocd-person/4c6a4d79-307b-4e5f-9d63-ba4f60a6892c
+NH,lower,Hillsborough 9,Bill Dolan,Democratic,ocd-person/967b5d85-d526-49ad-941a-1401fa855998
+NH,lower,Sullivan 2,Bill Palmer,Democratic,ocd-person/0e14232e-aea6-4da6-9380-c59375f58e7c
+NH,lower,Merrimack 10,Yury Polozov,Republican,ocd-person/3bc62111-d292-4ae2-a648-43b858308394
+NH,lower,Rockingham 12,Zoe Manos,Democratic,ocd-person/82019391-800c-469e-b17b-fbbf700b6555
+NC,lower,65,Reece Pyrtle,Republican,ocd-person/837ec59b-a7db-41dc-9e9f-a7a83b462213
+NC,lower,38,Abe Jones,Democratic,ocd-person/559521af-e5f9-43c3-a75e-de9b242d364f
+NC,lower,107,Aisha Dew,Democratic,ocd-person/9f9d7fb9-9981-412d-b3e2-45c7f67d189a
+NC,lower,59,Alan Branson,Republican,ocd-person/6ca8b8ee-96ed-4b21-94cf-d67e49f9c1c8
+NC,lower,56,Allen Buansi,Democratic,ocd-person/95a533af-7933-4992-aea6-dfdc626b7ca6
+NC,lower,25,Allen Chesser,Republican,ocd-person/fc3772c1-d98a-4325-a6c8-96b9da492ed6
+NC,lower,11,Allison Dahle,Democratic,ocd-person/785927b3-34ca-4a2d-bc1c-df4cc8e16c47
+NC,lower,60,Amanda Cook,Democratic,ocd-person/5f309927-de7a-4fd4-930b-a369dd10fec8
+NC,lower,72,Amber Baker,Democratic,ocd-person/628fc48c-a48b-4128-87f1-2391ab795e0a
+NC,lower,58,Amos Quick,Democratic,ocd-person/46275779-8191-48be-8b0b-8373376fa23d
+NC,upper,25,Amy Galey,Republican,ocd-person/8be9deca-bbd6-404f-8726-0aecaeb19ca7
+NC,lower,119,Anna Ferguson,Republican,ocd-person/5ca31513-814c-44b9-9206-aae55c05d056
+NC,lower,2,Ray Jeffers,Democratic,ocd-person/064a56b9-d616-43a1-a3f2-ffd4938740d3
+NC,lower,102,Becky Carney,Democratic,ocd-person/367ad234-14bc-4d86-95ee-ab1176890d6e
+NC,lower,52,Ben Moss,Republican,ocd-person/fdc7d25a-085c-4100-b5f4-a8ae51979292
+NC,upper,10,Benton Sawrey,Republican,ocd-person/0c960acb-381f-4ce9-b9d3-313fd882b6e1
+NC,lower,98,Beth Gardner Helfrich,Democratic,ocd-person/cf469ccf-d24e-4ccd-a2fb-041806933b93
+NC,upper,8,Bill Rabon,Republican,ocd-person/ac7e8e60-b5cb-41c2-92f9-1bdf9204f79a
+NC,lower,5,Bill Ward,Republican,ocd-person/f1d726fb-535d-456b-9712-b689afcb7763
+NC,lower,94,Blair Eddins,Republican,ocd-person/b558be80-96b1-4df6-8714-fcba387f8abc
+NC,upper,3,Bob Brinson,Republican,ocd-person/0104c116-78b6-4a91-af98-464fdbf12904
+NC,upper,43,Brad Overcash,Republican,ocd-person/dfacde1f-3324-4ebe-bc96-ae473548e951
+NC,lower,104,Brandon Lofton,Democratic,ocd-person/4142addf-2eb1-4557-b3d3-bcea559cbbd3
+NC,lower,46,Brenden Jones,Republican,ocd-person/1e419504-9efe-4b1f-b1e0-6e8d7d8c74a9
+NC,upper,9,Brent Jackson,Republican,ocd-person/23f1da0b-34b2-4347-adb4-f5fc26e0475d
+NC,lower,70,Brian Biggs,Republican,ocd-person/c476ab83-c1f7-44a7-b7c9-4cfa4679bed8
+NC,lower,82,Brian Echevarria,Republican,ocd-person/19c32795-3313-4f2f-a1d2-b79ff1dd81fb
+NC,lower,116,Brian Turner,Democratic,ocd-person/0229944f-1584-4c3c-9a7b-5c97b6785a6f
+NC,lower,32,Bryan Cohn,Democratic,ocd-person/e596d2ce-a208-475c-a9c1-15e25ccb3404
+NC,upper,41,Caleb Theodros,Democratic,ocd-person/a2013778-1144-4936-a0fa-895ad190649f
+NC,upper,33,Carl Ford,Republican,ocd-person/91615553-5509-4625-ab20-7a81896438e0
+NC,lower,106,Carla Cunningham,Independent,ocd-person/f1ba290a-c2a5-453a-884c-6d03a2c8e83a
+NC,lower,101,Carolyn Logan,Democratic,ocd-person/80495071-4aea-43ff-9548-09860c77cc90
+NC,lower,16,Carson Smith,Republican,ocd-person/6f78b8a8-f77c-4aef-bfa4-b3dac3312e33
+NC,lower,13,Celeste Cairns,Republican,ocd-person/51b17197-aa93-4c8f-821d-81a32b41e2ae
+NC,lower,44,Charles Smith,Democratic,ocd-person/2736ade6-4cc1-4833-ab0d-cf1953227726
+NC,lower,19,Charlie Miller,Republican,ocd-person/311f0605-29d2-4608-a964-323768582198
+NC,lower,12,Chris Humphrey,Republican,ocd-person/fdf6de7b-aad3-403b-96c3-a6a007b11ccd
+NC,upper,34,Chris Measmer,Republican,ocd-person/9dfc9308-ec16-4da8-b5c7-8a9cc55df534
+NC,lower,67,Cody Huneycutt,Republican,ocd-person/702adc2f-f401-4ab4-ac8e-8fcf1a14376b
+NC,lower,49,Cynthia Ball,Democratic,ocd-person/a5d3d142-3601-429e-954c-fdb98b0e628a
+NC,upper,14,Dan Blue,Democratic,ocd-person/06dca4de-5217-45fc-b78a-fc7870ae7faf
+NC,lower,90,Dan Kiger,Republican,ocd-person/443b38b0-1881-443c-ba43-70ffb1d7a9ea
+NC,upper,31,Dana Jones,Republican,ocd-person/93fbb331-6fe5-427f-802d-09881d4913d3
+NC,upper,24,Danny Britt,Republican,ocd-person/91f238a6-29fd-4b65-bc48-1464da11786b
+NC,lower,24,Dante Pittman,Democratic,ocd-person/d0cbde92-5f2b-4177-822a-f100613a9b30
+NC,upper,29,Dave Craven,Republican,ocd-person/7074c9f6-6a8e-4c63-b0b3-ae43b9cfba0d
+NC,lower,68,David Willis,Republican,ocd-person/6b06a564-763d-421d-bc9b-4779f4dbc1a4
+NC,upper,39,DeAndrea Salvador,Democratic,ocd-person/1c0d5d12-7bc0-4296-a148-423e4faa7dae
+NC,lower,69,Dean Arp,Republican,ocd-person/ffdbb3fa-0445-460a-9501-18b5028fbe50
+NC,lower,18,Deb Butler,Democratic,ocd-person/cab978f1-1c91-41e4-9f2e-69af3c89bbf8
+NC,lower,64,Dennis Riddell,Republican,ocd-person/fcff21e8-b2a0-4fe5-8fb9-1b1c084a26e1
+NC,lower,87,Destin Hall,Republican,ocd-person/636555c9-b55c-47f8-9fcc-c9cb93b27f50
+NC,lower,43,Diane Wheatley,Republican,ocd-person/034ed56d-8058-4489-be3e-3d4b9977ac4b
+NC,lower,26,Donna White,Republican,ocd-person/7e1cb220-ff5e-4543-bc51-f44ba7ee0a2b
+NC,lower,109,Donnie Loftis,Republican,ocd-person/d7308aed-454d-4091-b32c-606f516e9421
+NC,lower,75,Donny Lambeth,Republican,ocd-person/dd2200c1-2bdb-4afc-a557-ebcbb5f1eee8
+NC,lower,85,Dudley Greene,Republican,ocd-person/0573192d-0557-449a-9c3e-8462844a79ab
+NC,upper,4,Buck Newton,Republican,ocd-person/b560f232-dfa2-49f7-81c8-42000cc9027b
+NC,upper,36,Eddie Settle,Republican,ocd-person/b4b6f0a7-baca-4062-947a-989cb9f98356
+NC,lower,1,Ed Goodwin,Republican,ocd-person/10d93679-f5f4-496f-8b7c-89f923038ac0
+NC,lower,114,Eric Ager,Democratic,ocd-person/8c10abe1-4b81-404a-9164-9823e023cd2b
+NC,lower,37,Erin Paré,Republican,ocd-person/ea801bb0-b3bd-4dbc-9164-25e7f4e63f84
+NC,lower,45,Frances Jackson,Democratic,ocd-person/1a32e77b-9880-467c-88c8-6aeb738f6525
+NC,lower,17,Frank Iler,Republican,ocd-person/f75593f8-b178-47f1-8e72-e403f04dfb5d
+NC,upper,16,Gale Adcock,Democratic,ocd-person/1ba9c7a6-3a28-47ec-9704-6f3437463845
+NC,lower,48,Garland Pierce,Democratic,ocd-person/32edee21-40a5-491f-b28e-316ba7262360
+NC,upper,28,Gladys Robinson,Democratic,ocd-person/af3f63da-d39a-4542-b0f2-41f118d96f55
+NC,lower,8,Gloristine Brown,Democratic,ocd-person/d2ab7bb8-d0d6-4824-a42e-d180c2644f9e
+NC,lower,83,Grant Campbell,Republican,ocd-person/aca7632d-5a2a-470c-bb83-6cf374c68172
+NC,lower,76,Harry Warren,Republican,ocd-person/940d4a15-ee12-4a3b-a7b5-70b9dea38379
+NC,upper,18,Haseeb Fatmi,Democratic,ocd-person/e94fc39b-d33c-4d24-81c7-2cd2cc5aa997
+NC,lower,97,Heather Rhyne,Republican,ocd-person/d01232af-826f-441e-85c0-efaedd1ba422
+NC,lower,53,Howard Penny,Republican,ocd-person/9b6a3a48-9827-421f-9925-4717340110ab
+NC,lower,86,Hugh Blackwell,Republican,ocd-person/f7ffa24f-4c1f-416f-bf1d-30d762d9c6c3
+NC,lower,113,Jake Johnson,Republican,ocd-person/11c5404c-5cb6-4f99-84a5-711a23e6295f
+NC,lower,39,James Roberson,Democratic,ocd-person/4547831d-14b9-4d9d-9e3c-15b66c389054
+NC,lower,96,Jay Adams,Republican,ocd-person/1a75f967-8f35-40aa-8b0a-990a135e70cb
+NC,upper,15,Jay Chaudhuri,Democratic,ocd-person/75860d99-3e31-4c38-b511-734f76477c9b
+NC,lower,74,Jeff Zenger,Republican,ocd-person/f3f10d50-4117-41f8-b2af-c9273d3c425e
+NC,lower,84,Jeff McNeely,Republican,ocd-person/09d4ccb5-4456-4f33-aea7-36f3e2ef9e43
+NC,lower,117,Jennifer Balkcom,Republican,ocd-person/1c0b287a-2695-47e3-8c7a-1868db5c8d5c
+NC,upper,1,Jerry Tillett,Republican,ocd-person/de679003-a07a-4f53-bb87-fd9bab0af532
+NC,upper,12,Jim Burgin,Republican,ocd-person/9793e1e4-641c-4a5c-b1bc-7f6d0a65a655
+NC,lower,4,Jimmy Dixon,Republican,ocd-person/2fdb425d-47c9-4683-943e-15a566f3552b
+NC,lower,108,John Torbett,Republican,ocd-person/cb059250-c895-4a14-bfa2-997aed42155e
+NC,lower,62,John Blust,Republican,ocd-person/3a96a66b-58e9-4ce5-bc6c-803b19c2746d
+NC,lower,47,John Lowery,Republican,ocd-person/7d07a14d-a5dc-46a9-8277-85fee42921a1
+NC,lower,10,John Bell,Republican,ocd-person/cc410819-75a4-46dd-a3d5-edbd80d9f861
+NC,lower,51,John Sauls,Republican,ocd-person/bde014bb-27c1-42a3-909f-c5d96cca5c3f
+NC,upper,23,Jonah Garson,Democratic,ocd-person/3622ded7-77d3-46f8-a62b-dad1c8f3e589
+NC,lower,73,Jonathan Almond,Republican,ocd-person/a8fb7327-cfc3-4951-a15f-5a60ba05dcba
+NC,lower,112,Jordan Lopez,Democratic,ocd-person/196e72cf-7987-4847-8e2f-03b540064e86
+NC,lower,6,Joe Pike,Republican,ocd-person/50435516-ccee-4b72-9075-e27a0bfe0a72
+NC,upper,40,Joyce Waddell,Democratic,ocd-person/3e8067e6-6232-4ebb-979c-d077ab968446
+NC,lower,77,Julia Howard,Republican,ocd-person/5318144e-d466-40ea-8e35-f0f09bf57760
+NC,lower,100,Julia Greenfield,Democratic,ocd-person/e9c35f8c-48f0-46e3-bd47-2e9481abc971
+NC,upper,49,Julie Mayfield,Democratic,ocd-person/c8ac71ee-e3dc-450f-83f7-efeb363e88bc
+NC,lower,36,Julie von Haefen,Democratic,ocd-person/7b4481a0-466b-44be-8b39-def9e1bc04f8
+NC,upper,5,Kandie Smith,Democratic,ocd-person/5afbb4dc-a121-414a-b600-53af0936beb8
+NC,lower,71,Kanika Brown,Democratic,ocd-person/91f28923-c52e-4a47-aed2-944672902823
+NC,lower,120,Karl Gillespie,Republican,ocd-person/c0ca675d-4bd2-462f-9bcb-b7ac8226dbdf
+NC,lower,79,Keith Kidwell,Republican,ocd-person/a39903f1-cf67-494a-8c6a-4ae15c334fc9
+NC,lower,110,Kelly Hastings,Republican,ocd-person/4edb53d2-f5a1-447d-ac37-36da75a7a4ed
+NC,upper,50,Kevin Corbin,Republican,ocd-person/410836ee-4f48-4934-8f95-fca6b2d2f051
+NC,lower,91,Kyle Hall,Republican,ocd-person/6d8e0e56-939e-45c4-a9db-2fc370fbbdef
+NC,lower,28,Larry Strickland,Republican,ocd-person/3ed64eae-ecec-4cbf-a436-e7c1471a4cef
+NC,lower,81,Larry Potts,Republican,ocd-person/11c903f8-ce25-4463-8a24-a49394c21955
+NC,lower,103,Laura Budd,Democratic,ocd-person/283007b1-e7a2-486b-b19b-5a8126bc4128
+NC,lower,115,Lindsey Prather,Democratic,ocd-person/16a0c907-4efa-45a7-83d2-1c79cc541535
+NC,upper,13,Lisa Grafstein,Democratic,ocd-person/a370c6f1-338d-49c3-a0b4-41e885dc0d80
+NC,upper,11,Lisa Barnes,Republican,ocd-person/21577fbd-e06f-4bc3-8717-e050ff165a74
+NC,lower,30,Marcia Morey,Democratic,ocd-person/be5acee4-3874-4414-9aff-77043943c1c1
+NC,lower,41,Maria Cervania,Democratic,ocd-person/7a50ad08-1f2a-4f5f-9463-b1672d3a60a3
+NC,lower,55,Mark Brody,Republican,ocd-person/cc238a7c-3222-4ac2-8d4d-3884dd342a5f
+NC,lower,118,Mark Pless,Republican,ocd-person/601cab9a-8b58-42fa-a62e-4170ec23b955
+NC,upper,45,Mark Hollo,Republican,ocd-person/1afc84ab-30e5-413a-8975-2a552e050aee
+NC,lower,88,Mary Belk,Democratic,ocd-person/819581b6-a44a-4d4a-8a08-14c2dccd86f5
+NC,lower,7,Matthew Winslow,Republican,ocd-person/1dfa7f10-249d-43aa-930b-a5be9e4fce9f
+NC,upper,6,Michael Lazzara,Republican,ocd-person/f0121b49-81cc-45f5-98e1-1fbeee882c81
+NC,upper,27,Michael Garrett,Democratic,ocd-person/f40a7222-92eb-4d8e-ad4d-7008b859aae7
+NC,upper,7,Michael Lee,Republican,ocd-person/082079ab-53d2-43e5-be5f-cb7c6054edd3
+NC,lower,42,Mike Colvin,Democratic,ocd-person/b3b24f9e-5eb4-475e-8b06-7040cfb39fb5
+NC,lower,35,Mike Schietzelt,Republican,ocd-person/f6d0fc41-fbfa-4829-aa33-f5977edf1082
+NC,lower,89,Mitchell Setzer,Republican,ocd-person/d4713ec5-e36b-49bb-bfc8-6b7fe9c0e9a7
+NC,lower,33,Monika Johnson-Hostler,Democratic,ocd-person/018cd1c9-5b84-4f8e-8a1d-6f0326ce1f2f
+NC,upper,38,Mujtaba Mohammed,Democratic,ocd-person/c733e47e-af6a-4f31-a350-010043b5164b
+NC,lower,99,Nasif Majeed,Independent,ocd-person/6acc3963-2724-4d88-8762-f78df333be94
+NC,upper,20,Natalie Murdock,Democratic,ocd-person/121cec2b-d03f-45bc-a835-1ae5f4eb18d3
+NC,lower,78,Neal Jackson,Republican,ocd-person/1e2d0ef7-d021-4427-af07-14fae1ad5aa0
+NC,upper,2,Norman Sanderson,Republican,ocd-person/7493bee0-b1ed-4d45-b772-b7fce91be4ff
+NC,upper,32,Paul Lowe,Democratic,ocd-person/a73e339a-9724-45a5-9ebd-f1ca506374a0
+NC,lower,111,Paul Scott,Republican,ocd-person/8f02ce28-e826-48f7-adc1-11f8e5c2ed26
+NC,upper,26,Phil Berger,Republican,ocd-person/f276e61a-c569-4924-b302-caeda17a306a
+NC,lower,40,Phil Rubin,Democratic,ocd-person/efae51b3-e547-46c0-87df-4ac35c0c60de
+NC,lower,15,Phil Shepard,Republican,ocd-person/eab6e9df-d2e4-4476-b09d-cda1de0cf654
+NC,lower,61,Pricey Harrison,Democratic,ocd-person/4c2e2654-2647-4394-8efe-f09532225ff6
+NC,upper,47,Ralph Hise,Republican,ocd-person/25828c07-8295-45af-bd01-b044b59d530a
+NC,lower,93,Ray Pickett,Republican,ocd-person/27cea850-e6f2-4fe8-a02e-26f9867d00f1
+NC,lower,50,Renée Price,Democratic,ocd-person/7ee23b19-064e-4531-a9e8-2e928f8f2203
+NC,lower,54,Robert Reives,Democratic,ocd-person/3aa6f3c5-cd15-42e1-907e-92e6f5362c8f
+NC,lower,27,Rodney Pierce,Democratic,ocd-person/230ed41f-56c1-459d-a66d-7ab0a3a8342b
+NC,lower,80,Sam Watford,Republican,ocd-person/4f490403-b729-4f33-b3ba-5417db20cb0b
+NC,lower,66,Sarah Crawford,Democratic,ocd-person/4eb017f8-318e-43ba-b0c5-9fecbc3d0530
+NC,lower,23,Shelly Willingham,Democratic,ocd-person/f0d9b7f4-abb7-4111-b640-766a1f81d653
+NC,upper,22,Sophia Chitlik,Democratic,ocd-person/c8c4c09a-5b3a-4521-82d4-2e2ded1b6b0a
+NC,lower,63,Stephen Ross,Republican,ocd-person/6b6dc936-a880-4bdb-9fba-11e0a2ff9f01
+NC,upper,30,Steve Jarvis,Republican,ocd-person/d0af18d6-b4e1-4a9a-92f3-a6950961e953
+NC,lower,3,Steve Tyson,Republican,ocd-person/e4c62004-8706-4984-acb1-0140967173f0
+NC,upper,17,Sydney Batch,Democratic,ocd-person/f29f268e-5a29-4f49-8c5e-3fa19688f4a2
+NC,lower,20,Ted Davis,Republican,ocd-person/b654a887-2eca-41f7-83ba-60044df0fc1c
+NC,lower,92,Terry Brown,Democratic,ocd-person/1ac38d5f-d089-4589-bcc4-bef1f1675956
+NC,upper,48,Tim Moffitt,Republican,ocd-person/20f45197-ec0c-4031-a889-2825bffb008a
+NC,lower,34,Tim Longest,Democratic,ocd-person/1bc1818f-49fd-478a-affa-1f167adcfb51
+NC,lower,9,Tim Reeder,Republican,ocd-person/f836e608-2d16-4792-bec5-0993fa2db3aa
+NC,lower,95,Todd Carver,Republican,ocd-person/1a7c3ce0-97be-4601-895d-8300458a7e42
+NC,upper,35,Todd Johnson,Republican,ocd-person/37e615d5-0c02-488c-83e2-e6e6df5b8184
+NC,upper,21,Tom McInnis,Republican,ocd-person/81a19cd2-9493-4b85-b92b-44df8777530e
+NC,lower,57,Tracy Clark,Democratic,ocd-person/47d80aae-1c7b-4330-96bd-76db7fe8b060
+NC,lower,105,Tricia Cotham,Republican,ocd-person/6045737f-cc7a-4cf5-b7e6-12419deed77b
+NC,upper,19,Val Applewhite,Democratic,ocd-person/1ba98521-ee10-414a-9cf0-8b389ad02ffe
+NC,lower,29,Vernetta Alston,Democratic,ocd-person/baca6c05-f6c5-4239-bf9b-c4f57001273d
+NC,upper,37,Vickie Sawyer,Republican,ocd-person/ece1f23b-841d-4145-9719-3807bf29f861
+NC,upper,44,Ted Alexander,Republican,ocd-person/fe39f817-2024-401d-a0a8-3818ca22bdb1
+NC,upper,46,Warren Daniel,Republican,ocd-person/5397305f-16ba-460d-aa16-3bee6185299b
+NC,lower,22,William Brisson,Republican,ocd-person/5eadd1cd-7d46-448d-9608-2901b596b24f
+NC,upper,42,Woodson Bradley,Democratic,ocd-person/da2ebbae-4f50-4a95-927d-359ed2a9a42b
+NC,lower,14,Wyatt Gable,Republican,ocd-person/89065b80-ca15-43b3-bbe5-c7bb5e3a3843
+NC,lower,21,Ya Liu,Democratic,ocd-person/d48b59a1-cf27-438e-8a25-2f8f179992f2
+NC,lower,31,Zack Hawkins,Democratic,ocd-person/6dea5a89-20c8-4370-94c2-0dac7fe29d77
+GA,upper,7,Adrienne White,Democratic,ocd-person/3cfc8d4f-68d4-44b2-81f4-a162465e1aed
+GA,lower,106,Akbar Ali,Democratic,ocd-person/938f2479-c51f-446a-87f0-76d4f07c61e5
+GA,lower,168,Al Williams,Democratic,ocd-person/a5a0998b-3837-4c4e-a66b-a567dc2f9d77
+GA,lower,33,Alan Powell,Republican,ocd-person/bb48e87c-29db-4a4d-a278-fa299be2020e
+GA,lower,177,Alvin Payton,Democratic,ocd-person/8aa7ee05-bf64-4c51-8821-ad905d25741b
+GA,lower,91,Angela Moore,Democratic,ocd-person/b001a55f-61fa-4e62-85fd-ac6c282f2711
+GA,lower,169,Angie O'Steen,Republican,ocd-person/1d0deded-daaa-425b-b6aa-3612492dca5b
+GA,lower,163,Anne Westbrook,Democratic,ocd-person/e16d6516-badc-4682-9e3a-84f30a44b060
+GA,lower,96,Arlene Beckles,Democratic,ocd-person/3b3da57c-2f96-4a94-a7bc-eb6a814cc627
+GA,upper,1,Ben Watson,Republican,ocd-person/fd2717f1-6294-4601-a027-8fc41195372c
+GA,lower,135,Beth Camp,Republican,ocd-person/e4e40f68-0970-4392-b739-3c68f749bcdc
+GA,lower,147,Bethany Ballard,Republican,ocd-person/8b4b00cb-6f78-4b69-b788-796b19d94752
+GA,lower,54,Betsy Holland,Democratic,ocd-person/c2c81ffc-f4b1-40f4-96b0-6309f89902ee
+GA,upper,46,Bill Cowsert,Republican,ocd-person/4dc87191-fa52-4c2f-bc9c-8823a8b4c882
+GA,lower,23,Bill Fincher,Republican,ocd-person/f2444048-8c14-45b2-b700-37f7899fa5bb
+GA,lower,161,Bill Hitchens,Republican,ocd-person/4a9ef816-9130-4510-a19e-3124e3f2aeed
+GA,lower,157,Bill Werkheiser,Republican,ocd-person/adefd0ba-43cd-4aae-9321-12f67e57ac8a
+GA,lower,152,Bill Yearta,Republican,ocd-person/23dfc274-73d1-45df-b381-67e597cf0b84
+GA,upper,4,Billy Hickman,Republican,ocd-person/449db918-10b7-4fa7-a047-eb9de416dce3
+GA,lower,88,Billy Mitchell,Democratic,ocd-person/96307d79-07d4-4f59-9dd3-b7f994d566d5
+GA,upper,19,Blake Tillery,Republican,ocd-person/e9c5a2fc-3354-49e1-ac29-783502155fe7
+GA,upper,50,Bo Hatchett,Republican,ocd-person/60bb96c4-f20c-4918-b88b-d7857341e5f4
+GA,lower,21,Brad Thomas,Republican,ocd-person/933a841a-19d6-42c2-a046-991ff9903a23
+GA,lower,28,Brent Cox,Republican,ocd-person/c0b205e2-1542-4802-896d-fa7b2b6fc4d9
+GA,lower,132,Brian Prince,Democratic,ocd-person/a53e6bbd-a5b8-436b-94ae-bebf957c5b61
+GA,upper,42,Brian Strickland,Republican,ocd-person/3a5721a0-d848-40d0-a48a-66b797e7d7d9
+GA,lower,112,Bruce Williamson,Republican,ocd-person/13b7af1b-5b56-481b-a81a-2001846188a6
+GA,lower,56,Bryce Berry,Democratic,ocd-person/b1187e7a-8cea-4e91-9c9f-7c7c61df3c85
+GA,lower,167,Buddy DeLoach,Republican,ocd-person/d40576ac-fbc0-4b42-98ee-f6362063784d
+GA,lower,158,Butch Parrish,Republican,ocd-person/842218b5-88ae-4ba8-8395-756bf3340e16
+GA,upper,13,Carden Summers,Republican,ocd-person/98850c9f-1c37-4177-9ad8-17d2b4d3c8d4
+GA,lower,162,Carl Gilliard,Democratic,ocd-person/562e162f-2a60-441c-956b-11db12eef266
+GA,lower,139,Carmen Rice,Republican,ocd-person/3646e872-85a6-4383-97c5-36ff96ca7113
+GA,lower,141,Carolyn Hugley,Democratic,ocd-person/0f5a9273-2fc6-458f-af59-b75070a1dc76
+GA,lower,24,Carter Barrett,Republican,ocd-person/72370a62-92f4-46f1-ab7b-193a643085b8
+GA,lower,172,Chas Cannon,Republican,ocd-person/cba2f06c-773c-49d3-949c-b1a2db377c21
+GA,lower,20,Charlice Byrd,Republican,ocd-person/0d75f0d9-0242-4f72-b4f3-1cd085eb26b6
+GA,lower,32,Chris Erwin,Republican,ocd-person/d79c3e9b-b73d-416b-9bfd-8a0338d8256c
+GA,lower,49,Chuck Martin,Republican,ocd-person/42517dd7-eccb-4d22-a795-cbd010b69ee6
+GA,lower,104,Chuck Efstration,Republican,ocd-person/3ff894cb-f2e4-47d0-9f67-b125245a10c3
+GA,upper,52,Chuck Hufstetler,Republican,ocd-person/b11d0191-cd84-4a93-add6-ee65494caff2
+GA,upper,54,Chuck Payne,Republican,ocd-person/1ac93f89-f367-4de3-82ba-79fa78d4d134
+GA,lower,118,Clint Crowe,Republican,ocd-person/e1a9102d-f845-47f5-882e-e344eef060ec
+GA,upper,45,Clint Dixon,Republican,ocd-person/17a7e011-73f2-4ac5-8470-3436b47a6744
+GA,lower,144,Dale Washburn,Republican,ocd-person/ec6cf250-ebcc-4dda-89a5-12da9ebbe51a
+GA,lower,133,Danny Mathis,Republican,ocd-person/1a9598cc-056f-4725-a3fb-64c3f0fd26ed
+GA,lower,173,Darlene Taylor,Republican,ocd-person/d00eb950-0fb6-41ab-ae22-8e9ce84d7cf0
+GA,lower,95,Dar'shun Kendrick,Democratic,ocd-person/1f94316e-fb58-401f-bbfc-5ada0a717b6b
+GA,lower,100,David Clark,Republican,ocd-person/ad18dba4-9247-4542-95b1-2ccef815dbc7
+GA,lower,72,David Huddleston,Republican,ocd-person/9bcfa0eb-ee7d-4762-9555-7bc4a67d6417
+GA,lower,136,David Jenkins,Republican,ocd-person/0f288c5b-484a-4b70-8209-0a23f922edd1
+GA,upper,26,David Lucas,Democratic,ocd-person/4b05e770-4423-4b64-8ae1-9600e8c73244
+GA,lower,153,David Sampson,Democratic,ocd-person/9a8e7b0c-3c19-473f-b04a-d3a17037af0a
+GA,lower,38,David Wilkerson,Democratic,ocd-person/83a7bbf2-d69c-4813-bbeb-52820e6b9af4
+GA,lower,137,Debbie Buckner,Democratic,ocd-person/5061bc6b-83af-46d0-a78d-30ebe10a63db
+GA,lower,53,Deborah Silcox,Republican,ocd-person/b824f8fd-7343-449d-8027-fcd0afaf1949
+GA,lower,69,Debra Bazemore,Democratic,ocd-person/1bb8d14b-9d5d-4edd-8c93-37e95991a8e4
+GA,lower,78,Demetrius Douglas,Democratic,ocd-person/016fb7f0-2b08-4587-b7f2-8d18c1d9b8f5
+GA,upper,2,Derek Mallow,Democratic,ocd-person/73918c45-83c1-4d52-a84d-3ad7ad8de40b
+GA,lower,68,Derrick Jackson,Democratic,ocd-person/9046fcb2-f3eb-4233-bd92-32c94e60f9df
+GA,lower,30,Derrick McCollum,Republican,ocd-person/3a323603-753e-4380-993c-9bb2a7fc55f3
+GA,lower,34,Devan Seabaugh,Republican,ocd-person/8f76af22-98dc-4e1e-ba99-75b87c1129d6
+GA,lower,109,Dewey McClain,Democratic,ocd-person/8afda706-7afa-462c-89f2-0d6d5da010ff
+GA,lower,44,Don Parsons,Republican,ocd-person/81dde544-49e9-4fb0-9313-32eacaf6194b
+GA,upper,28,Donzella James,Democratic,ocd-person/7f88fadb-2f51-48c7-8ae5-e20cd2f33e4a
+GA,lower,93,Doreen Carter,Democratic,ocd-person/818f1afb-2850-448e-99c1-be63a9acfe95
+GA,upper,49,Drew Echols,Republican,ocd-person/6be704ef-6250-4e08-86d3-f5fa2e1eebf3
+GA,upper,15,Ed Harbison,Democratic,ocd-person/4cf7c975-678b-4e21-9877-6d22d7b37916
+GA,upper,37,Ed Setzler,Republican,ocd-person/777f58bb-9d6b-4755-ab7b-b94d11629cb5
+GA,lower,12,Eddie Lumsden,Republican,ocd-person/f33d979c-554c-433e-ad0f-837eef1da589
+GA,lower,165,Edna Jackson,Democratic,ocd-person/18427775-e3e7-4730-bb6f-722616e6aebe
+GA,lower,116,El-Mahdi Holly,Democratic,ocd-person/4615e308-db74-408f-89df-02be56b5013b
+GA,upper,44,Elena Parent,Democratic,ocd-person/3f15ad5e-877d-44aa-b5b3-b24587c42685
+GA,upper,10,Emanuel Jones,Democratic,ocd-person/acc7c167-6251-4ce8-8021-511acfa291ef
+GA,lower,31,Emory Dunahoo,Republican,ocd-person/3b2b9f31-6859-4582-8d82-581597c0c178
+GA,lower,75,Eric Bell,Democratic,ocd-person/fe4b934e-8976-4c62-bcb0-ed8ae9782560
+GA,lower,121,Eric Gisler,Democratic,ocd-person/abece831-30a8-4cf8-94ff-d41f7f48197f
+GA,lower,51,Esther Panitch,Democratic,ocd-person/bdc621be-7296-4383-8c45-b4533d1c106c
+GA,lower,149,Floyd Griffin,Democratic,ocd-person/b261086c-7b16-4a8e-82a6-22df4445af84
+GA,upper,47,Frank Ginn,Republican,ocd-person/9e417b67-da09-4516-b858-6b2458f53633
+GA,lower,102,Gabe Okoye,Democratic,ocd-person/dc99efc3-076b-4d00-b4b0-66a0507a4057
+GA,lower,42,Gabriel Sanchez,Democratic,ocd-person/bd990496-ea34-4b79-8d6f-68cfed424c15
+GA,upper,17,Gail Davenport,Democratic,ocd-person/df023a79-0194-4d1a-8755-5dee4053e1cc
+GA,lower,125,Gary Richardson,Republican,ocd-person/47fd36f3-f5d4-4ef6-a429-1ffc7681e233
+GA,lower,154,Gerald Greene,Republican,ocd-person/570a213a-a475-4fd3-ac36-23e1bd1190be
+GA,lower,36,Ginny Ehrhart,Republican,ocd-person/be05ace3-ea73-4f3f-85ae-c5ed313d4cbe
+GA,upper,27,Greg Dolezal,Republican,ocd-person/1f7d013a-8861-4e08-b6bf-7c8d36f8107c
+GA,upper,22,Harold Jones,Democratic,ocd-person/d7bfd125-d343-4acd-a4dc-480daf241af3
+GA,lower,119,Holt Persinger,Republican,ocd-person/b39e2164-d570-45f2-b271-5e2fbe99c8d6
+GA,lower,120,Houston Gaines,Republican,ocd-person/e73cb2a6-bf3e-4211-a386-142c18a4f607
+GA,lower,86,Imani Barnes,Democratic,ocd-person/2a68d594-e7d5-49cd-b615-6efb872430c3
+GA,lower,55,Inga Willis,Democratic,ocd-person/f02d369f-2d48-4d8d-853d-77ce5a8810fc
+GA,lower,170,Jaclyn Ford,Republican,ocd-person/37602f7b-947e-4067-8f2e-b2fec620643e
+GA,upper,35,Jaha Howard,Democratic,ocd-person/fcd57129-480c-4fba-a0d1-7fb369706611
+GA,lower,176,James Burchett,Republican,ocd-person/dbce462d-74e3-42d3-bd6c-3b9f8eeb69fe
+GA,lower,47,Jan Jones,Republican,ocd-person/85740034-23b0-4001-9190-8948bd9f3b37
+GA,lower,108,Jasmine Clark,Democratic,ocd-person/0461f02b-df18-4984-8b3b-ada287879d0a
+GA,upper,31,Jason Anavitarte,Republican,ocd-person/cb7d8c1d-3c26-4f35-8d37-d1cf8a7ce207
+GA,upper,21,Jason Dickerson,Republican,ocd-person/584267b0-e40b-4d6e-a7fe-4c076eb6214c
+GA,lower,6,Jason Ridley,Republican,ocd-person/594aa971-500b-42a4-9d7a-1ceb4c029220
+GA,lower,166,Jesse Petrea,Republican,ocd-person/38c596a4-df69-4a56-9329-be73f26bc7d5
+GA,lower,171,Joe Campbell,Republican,ocd-person/c862c17f-ed00-41d7-97e5-1138f451a96c
+GA,upper,56,John Albers,Republican,ocd-person/ac1cac30-3fec-4c56-b172-b483db465a6b
+GA,lower,46,John Carson,Republican,ocd-person/713cac52-0a57-4baa-8273-6eeca5b491df
+GA,lower,174,John Corbett,Republican,ocd-person/a34c9a5a-f307-4c07-b766-3b3b1148d7b1
+GA,lower,175,John LaHood,Republican,ocd-person/9249be26-54d2-467a-88ec-2588b886148d
+GA,lower,7,Johnny Chastain,Republican,ocd-person/8106e2d8-e1e3-42a8-b550-fbd2627fa474
+GA,lower,159,Jon Burns,Republican,ocd-person/64012657-d026-411c-9525-3232524a5145
+GA,lower,22,Jordan Ridley,Republican,ocd-person/56f28f8a-9296-4e69-9bd4-d0101a42b359
+GA,lower,19,Joseph Gullett,Republican,ocd-person/f36d2507-b19a-4ee5-b4f9-5c06df761edf
+GA,lower,73,Josh Bonner,Republican,ocd-person/0e45048c-c1a4-415f-9ee4-5d09ea857e2e
+GA,upper,14,Josh McLaurin,Democratic,ocd-person/b83b0486-773f-4979-a1ce-e2f7f3e6d7e1
+GA,lower,71,Jutt Howard,Republican,ocd-person/8b62e64b-bf80-4967-832b-8fb92cd6c4b3
+GA,lower,83,Karen Lupton,Democratic,ocd-person/eb28f991-35c9-4d84-a907-5be56aed1aff
+GA,lower,82,Karen Mathiak,Republican,ocd-person/f8db50e0-08ab-406c-ac8b-39c7038ef5ca
+GA,lower,85,Karla Drenner,Democratic,ocd-person/27365f19-a138-4a9e-9f6e-11352932e5d5
+GA,lower,129,Karlton Howard,Democratic,ocd-person/4b3fdb35-d3fb-40aa-843e-d3900df37ce4
+GA,lower,4,Kasey Carpenter,Republican,ocd-person/97a40ea4-674f-4b84-8fd3-8bc2f3b4a35d
+GA,lower,13,Katie Dempsey,Republican,ocd-person/bf68b3dc-ca81-49f9-8e33-fe27317183d3
+GA,upper,32,Kay Kirkpatrick,Republican,ocd-person/fc31ab02-026c-4173-86db-570c0b297c64
+GA,upper,34,Kenya Wicks,Democratic,ocd-person/0a816fbf-e5ec-4056-8b3e-08184400e71b
+GA,upper,41,Kim Jackson,Democratic,ocd-person/2f8621bc-0548-457c-8b0d-9148e14b77fe
+GA,lower,63,Kim Schofield,Democratic,ocd-person/eff357d0-3187-4a7b-93fe-2d54d010b093
+GA,lower,66,Kimberly Alexander,Democratic,ocd-person/275b772e-6407-4aaa-8bd6-ceddad1da7fa
+GA,lower,40,Kimberly New,Republican,ocd-person/fc1a5e1f-6ce4-47ab-987b-095afa166359
+GA,lower,126,L.C. Myles,Democratic,ocd-person/1d9bb111-bf4f-4e4f-aa63-a2f6a94b566c
+GA,upper,53,Lanny Thomas,Republican,ocd-person/ae6e08e3-6971-4cd2-982a-48d650a343d5
+GA,upper,20,Larry Walker,Republican,ocd-person/44a51125-9e82-41f6-8d4f-a646895b5994
+GA,lower,26,Lauren McDonald,Republican,ocd-person/7767ee85-7961-45ba-adc2-c3606b1c39b8
+GA,upper,24,Lee Anderson,Republican,ocd-person/e11cecf4-f2e5-49d9-ba9e-47681f779438
+GA,lower,27,Lee Hawkins,Republican,ocd-person/69493144-3e3e-49a8-9e1f-f9a948fd0ff3
+GA,lower,156,Leesa Hagan,Republican,ocd-person/df874c28-6403-42c1-9cbb-0855508cda85
+GA,lower,160,Lehman Franklin,Republican,ocd-person/6971bb34-9ea4-4bdc-971e-c1a2c5de344c
+GA,lower,35,Lisa Campbell,Democratic,ocd-person/3a23acfd-5ce6-4e47-b641-1efdab05bdca
+GA,lower,80,Long Tran,Democratic,ocd-person/7475f989-a4f9-4ac8-9188-26903a012d71
+GA,lower,67,Lydia Glaize,Democratic,ocd-person/ee575d7a-b5a1-419c-949d-4aa9290a67a1
+GA,lower,70,Lynn Smith,Republican,ocd-person/945875f7-f3c5-4c75-acd6-a195a0f76b12
+GA,lower,128,Mack Jackson,Democratic,ocd-person/8e209d95-2333-4aa2-a628-1bdcec0674f5
+GA,lower,127,Mark Newton,Republican,ocd-person/5e12fb82-1f69-46df-9ac5-a09ce51dd95b
+GA,lower,17,Martin Momtahan,Republican,ocd-person/6552dd8d-1020-4bbb-abfc-88975573ebd4
+GA,upper,16,Marty Harbin,Republican,ocd-person/078246e9-90b8-43aa-bb92-d7016f517b8e
+GA,lower,98,Marvin Lim,Democratic,ocd-person/9531d502-440c-48db-83c4-70dfbe9a9ea1
+GA,lower,117,Mary Ann Santos,Democratic,ocd-person/7deae3f1-5548-4afe-9018-e8112945fd8d
+GA,lower,37,Mary Frances Williams,Democratic,ocd-person/4aec761f-5117-4f43-a487-9d77418f0bfa
+GA,lower,84,Mary Margaret Oliver,Democratic,ocd-person/e6ca1b23-0972-4df6-ab04-6186cf9da814
+GA,lower,5,Matt Barton,Republican,ocd-person/9103b29e-964b-4637-9304-0e73216d7796
+GA,upper,6,Matt Brass,Republican,ocd-person/81b84318-8c9f-467f-a7c1-776d9c415f51
+GA,lower,29,Matt Dubnik,Republican,ocd-person/99f0a2a7-8817-4756-a40e-575e259890e7
+GA,lower,155,Matt Hatchett,Republican,ocd-person/c81779f3-65bf-4714-b295-79cac3b0da28
+GA,lower,99,Matt Reeves,Republican,ocd-person/0f4f3c5a-1192-4ec1-9698-4aef005b4875
+GA,lower,15,Matthew Gambill,Republican,ocd-person/909e9026-e549-494b-be99-e8562a389e0c
+GA,upper,23,Max Burns,Republican,ocd-person/918888ac-edc7-4178-9133-d058f0f21010
+GA,lower,61,Mekyah McQueen,Democratic,ocd-person/f0af2586-d535-4e44-bcaa-65239f9390b1
+GA,upper,33,Doc Rhett,Democratic,ocd-person/efb9168c-b45a-4f43-bba5-d6f05e7d9cbe
+GA,lower,41,Michael Smith,Democratic,ocd-person/68185f1d-fa54-4571-b305-fcd6c7dc024e
+GA,lower,50,Michelle Au,Democratic,ocd-person/48b46caf-d38e-46ab-96ff-c268e23a7d76
+GA,lower,1,Mike Cameron,Republican,ocd-person/f4f9be12-5d7c-4fae-8b7b-9e9d19d2282f
+GA,lower,151,Mike Cheokas,Republican,ocd-person/1831cc73-e694-4cea-83a4-b55c3495f76a
+GA,upper,3,Mike Hodges,Republican,ocd-person/011995be-4dd0-43b2-ae75-57ae45f53576
+GA,lower,142,Miriam Paris,Democratic,ocd-person/bad14891-c7bc-4ac4-b23a-fb5ae3878d67
+GA,lower,3,Mitchell Horner,Republican,ocd-person/c4c6c741-0cb4-4179-b46d-9983421b8fdd
+GA,lower,14,Mitchell Scoggins,Republican,ocd-person/7ac30a66-1649-4a8c-a72f-a4b9a7ab1534
+GA,upper,36,Nan Orrock,Democratic,ocd-person/bf2c1ec5-d995-4605-85ac-139adb037d99
+GA,upper,9,Nikki Merritt,Democratic,ocd-person/57ad1f65-9969-4be2-b262-684bf53123fb
+GA,lower,143,Nissa Jones,Democratic,ocd-person/55074030-4d64-4da0-b68a-5e3945d00f25
+GA,lower,148,Noel Williams,Republican,ocd-person/3252da04-a17e-4298-b19d-9dd2fbf29ded
+GA,lower,81,Noelle Kahaian,Republican,ocd-person/fdf78e39-985f-48c3-8ed3-ccf15946871f
+GA,lower,89,Omari Crawford,Democratic,ocd-person/dbb81f07-2181-48dd-b383-19870e08d4fd
+GA,lower,58,Park Cannon,Democratic,ocd-person/5c5ab5cb-54f6-4218-8d1d-a99d36bca436
+GA,lower,150,Patty Marie Stinson,Democratic,ocd-person/af51c2db-8871-45a4-803d-314fa2b9d18d
+GA,lower,59,Phil Olaleye,Democratic,ocd-person/80928bd9-c963-4b21-954c-c62ee9373064
+GA,upper,55,Randal Mangham,Democratic,ocd-person/8798a822-fee8-4546-bcdd-455f788bef44
+GA,upper,29,Randy Robertson,Republican,ocd-person/6da7fe11-4436-4854-8e1b-4c45dc4cdaac
+GA,upper,38,RaShaun Kemp,Democratic,ocd-person/069fb4fa-766b-40e4-90b7-ce96b4fa2ace
+GA,lower,115,Regina Lewis-Ward,Democratic,ocd-person/21651856-bba6-49fd-b3f8-8ed1b723e804
+GA,lower,111,Rey Martinez,Republican,ocd-person/08ee45fd-d3f4-4129-9e7c-27cf52533ed2
+GA,lower,77,Rhonda Burnough,Democratic,ocd-person/e04bd985-5b75-4551-84a1-f9797ac495d2
+GA,lower,92,Rhonda Taylor,Democratic,ocd-person/bc40f904-9c20-41d0-80d5-e5645d3e6935
+GA,lower,11,Rick Jasperse,Republican,ocd-person/4d1f5379-01e9-4f58-9868-42acc07ec7a8
+GA,lower,179,Rick Townsend,Republican,ocd-person/1da20ad9-1a05-42ab-addb-7fbf295a0e5d
+GA,upper,25,Rick Williams,Republican,ocd-person/c7860bae-9d9c-449c-9903-20230eec50ac
+GA,lower,131,Rob Clifton,Republican,ocd-person/84eb7371-a332-4534-b3b3-542500c798f8
+GA,lower,123,Rob Leverett,Republican,ocd-person/29210f3f-ec97-47c8-9492-b81154275109
+GA,lower,65,Robert Dawson,Democratic,ocd-person/5d77204f-89e7-43df-bccb-a08b9956132d
+GA,lower,134,Robert Dickey,Republican,ocd-person/f863b50d-c865-463a-830a-e5648837d9f7
+GA,lower,74,Robert Flournoy,Democratic,ocd-person/32c3fbdd-4034-47d0-b7ab-0411bd200737
+GA,lower,164,Ron Stephens,Republican,ocd-person/aeaeb854-ff9c-47cb-8069-395b60ba05b2
+GA,upper,8,Russ Goodman,Republican,ocd-person/b90b899d-87f0-43a5-9d15-6e310187ac41
+GA,lower,97,Ruwa Romman,Democratic,ocd-person/d291834f-70cd-48b5-b7db-b05d23d74a4c
+GA,lower,90,Saira Draper,Democratic,ocd-person/2a66b922-b812-4c45-9786-478187cd5e33
+GA,upper,40,Sally Harrell,Democratic,ocd-person/218a4fc4-a568-4b78-b350-0d60c6b12d4c
+GA,lower,107,Sam Park,Democratic,ocd-person/2ba0916f-40b1-4255-9496-94b12ccabd1e
+GA,upper,11,Sam Watson,Republican,ocd-person/cbcdfca3-e47d-4b32-9164-ec0709a134bf
+GA,lower,76,Sandra Scott,Democratic,ocd-person/21c6cae1-bcd2-4403-ad39-af04b64ce55c
+GA,lower,105,Sandy Donatucci,Republican,ocd-person/4ab15127-5b7a-40bc-8807-26e8e8a73397
+GA,lower,48,Scott Hilton,Republican,ocd-person/91abe321-5ea4-4f17-b8d8-573d7cb913e6
+GA,lower,101,Scott Holcomb,Democratic,ocd-person/99ef9b20-6b1f-4831-8e58-a523de606cda
+GA,lower,110,Segun Adeyina,Democratic,ocd-person/702658f4-8382-479a-9416-79928239d5e7
+GA,lower,45,Sharon Cooper,Republican,ocd-person/15db25fc-273b-467f-b8f9-897337f40b65
+GA,lower,113,Sharon Henderson,Democratic,ocd-person/e51d36a7-9684-4540-aae7-a5e60e434681
+GA,lower,146,Shaw Blackmon,Republican,ocd-person/ee145624-3295-4db4-b3ce-9d1583e4ef6e
+GA,upper,48,Shawn Still,Republican,ocd-person/314d7845-ba55-4bd4-809a-c7c7aea26690
+GA,lower,52,Shea Roberts,Democratic,ocd-person/9007dcd9-3246-4cf3-9185-7478b3a9ad7a
+GA,upper,5,Sheikh Rahman,Democratic,ocd-person/5b6e0e37-802b-4103-b401-551532aba2e7
+GA,lower,130,Sheila Nelson,Democratic,ocd-person/059c0e54-cc7b-4605-aee6-58388026a2fb
+GA,lower,60,Sheila Jones,Democratic,ocd-person/b278b399-5ca3-4cd7-bc19-4053166577a2
+GA,lower,43,Solomon Adesanya,Democratic,ocd-person/5474fbe2-6cdb-4ad2-9831-cdffaca442af
+GA,upper,39,Sonya Halpern,Democratic,ocd-person/2abbbe23-8cb6-4f33-afaf-38ce88a4e10c
+GA,lower,103,Soo Hong,Republican,ocd-person/64721c9b-451c-4bc9-9040-4ca232ffd746
+GA,lower,122,Spencer Frye,Democratic,ocd-person/e6ae8d30-4b1b-4b06-8918-2be6fa7f8108
+GA,lower,57,Stacey Evans,Democratic,ocd-person/fa5d8d09-a0b9-4ba4-93da-a24902530416
+GA,lower,8,Stan Gunter,Republican,ocd-person/432ef767-d4c8-4736-b2ac-96397205fb3d
+GA,upper,51,Steve Gooch,Republican,ocd-person/e2c141e9-9e04-4e2b-8e5b-57db594c7abc
+GA,lower,2,Steve Tarvin,Republican,ocd-person/80f4bbdf-02f3-4233-8456-e550e7e745af
+GA,upper,18,Steven McNeel,Republican,ocd-person/516cb969-9467-490f-9a05-02c3e7decae3
+GA,lower,178,Steven Meeks,Republican,ocd-person/3194a8e0-aaf8-4686-b2c9-a22521f85fff
+GA,lower,180,Steven Sainz,Republican,ocd-person/99082062-acd6-4c6b-bb45-2cfa071f19fc
+GA,lower,64,Sylvia Wayfer,Democratic,ocd-person/cabc1e6f-ba7c-4063-a778-707579f91ec8
+GA,lower,145,Tangie Herring,Democratic,ocd-person/c5766526-3a5a-4d33-b5ff-a0d1d358d7ae
+GA,lower,62,Tanya Miller,Democratic,ocd-person/6e5432a3-09ed-4813-b11d-e97222bb7e4d
+GA,lower,39,Terry Cummings,Democratic,ocd-person/aa7405f9-5c37-4ce8-a7eb-ac5949a6e776
+GA,upper,30,Tim Bearden,Republican,ocd-person/93f45299-bfa2-4458-844a-5c6b9bdd8c1d
+GA,lower,114,Tim Fleming,Republican,ocd-person/cf955c60-cbda-4414-9266-3d8dca3553fe
+GA,lower,25,Todd Jones,Republican,ocd-person/45567c87-3ba6-49ec-9ea2-5ebb880aa94c
+GA,upper,43,Tonya Anderson,Democratic,ocd-person/d9f1ea57-7b90-484a-9664-927a36c87e0c
+GA,lower,140,Teddy Reese,Democratic,ocd-person/9fe70ed7-31a0-4732-92b1-54d2a79a4654
+GA,lower,16,Trey Kelley,Republican,ocd-person/6ac8933e-8dde-4902-8eec-61cc5a91c844
+GA,lower,124,Trey Rhodes,Republican,ocd-person/9dfc8ec3-0935-4d1d-877d-e05cf7a5dca5
+GA,lower,18,Tyler Smith,Republican,ocd-person/4b162447-89a7-4ffc-acbf-617e1ad87e2a
+GA,lower,138,Vance Smith,Republican,ocd-person/9deeb60b-4d1e-42b8-8052-d2808a30ea9a
+GA,lower,94,Venola Mason,Democratic,ocd-person/b9050158-4a6d-4332-8ad2-769472f52e3e
+GA,lower,10,Victor Anderson,Republican,ocd-person/546d682f-b256-4060-8fd3-084d7f118d43
+GA,lower,87,Viola Davis,Democratic,ocd-person/e3b1be9c-b244-4466-9192-adc365a31cfb
+GA,lower,9,Will Wade,Republican,ocd-person/97a002db-6151-4fdf-9bce-013a6344764f
+GA,lower,79,Yasmin Neal,Democratic,ocd-person/6f986b42-14f6-4147-9466-c49294331db9
+IA,lower,90,Adam Zabner,Democratic,ocd-person/c29c02a4-8429-4846-bc19-817f545f3935
+IA,upper,44,Adrian Dickey,Republican,ocd-person/9788064e-fad9-4130-9084-69e829884d9c
+IA,lower,80,Aime Wichtendahl,Democratic,ocd-person/e0883366-eaba-4dc1-9a66-4c35cb1d0290
+IA,lower,85,Amy Nielsen,Democratic,ocd-person/0ed1d7f1-1471-4055-b674-582bf19c28b3
+IA,upper,12,Amy Sinclair,Republican,ocd-person/8e969687-4903-4f3c-a76f-2e35a2232d09
+IA,lower,78,Angel Ramirez,Democratic,ocd-person/17e291e9-2484-4e94-a99f-0c12d6269349
+IA,lower,8,Ann Meyer,Republican,ocd-person/f8bf5332-b8b7-4d55-8652-e9b883cae35e
+IA,upper,27,Annette Sweeney,Republican,ocd-person/79eacd35-8caf-466e-b75f-0d878dcf5221
+IA,upper,40,Art Staed,Democratic,ocd-person/57925a0b-3010-440d-a012-c8465535c13e
+IA,lower,36,Austin Baeth,Democratic,ocd-person/9aa42801-ba2e-4f2e-9448-cf5e6114fba7
+IA,lower,26,Austin Harris,Republican,ocd-person/3dea807e-b6b5-4531-a5d6-d51ae8811aca
+IA,lower,37,Barb Kniff McCulla,Republican,ocd-person/5aa1870f-0eb7-4a82-9788-7b159d28a287
+IA,lower,49,Beth Wessel-Kroeschell,Democratic,ocd-person/5c955d7c-30ce-4930-9d96-588735b89dc2
+IA,lower,40,Bill Gustoff,Republican,ocd-person/7ebd4346-a560-458d-b010-3ddd82d1cf38
+IA,lower,100,Blaine Watkins,Republican,ocd-person/16d3e647-2d71-4eb0-beb3-1c6e0294fd7d
+IA,lower,75,Bob Kressig,Democratic,ocd-person/bdd055a7-677f-4df3-ba42-72c09d75a2ad
+IA,lower,82,Bobby Kaufmann,Republican,ocd-person/657c7d2d-2444-4809-93fb-d1701d77f528
+IA,lower,19,Brent Siegrist,Republican,ocd-person/29efffba-9a8b-473f-a66e-8be5441cbb83
+IA,lower,51,Brett Barker,Republican,ocd-person/e34f4bba-5e1f-4e99-8654-d35140a5470b
+IA,lower,45,Brian Lohse,Republican,ocd-person/e0d66082-fd49-47ff-acd7-2f8106bc9837
+IA,lower,29,Brian Meyer,Democratic,ocd-person/141dec61-26f0-4155-a86b-9b2179c9546c
+IA,lower,21,Brooke Boden,Republican,ocd-person/942429d9-5b4a-4ad7-8da7-d43eb7828dff
+IA,upper,33,Carrie Koelker,Republican,ocd-person/9b68d2a2-ead2-401e-a225-1edae68f6099
+IA,lower,47,Carter Nordman,Republican,ocd-person/e7b268b8-c922-4e66-8327-cc4c49854d5e
+IA,upper,1,Catelin Drey,Democratic,ocd-person/96941816-29ce-4c03-ab43-efa1ef2930ab
+IA,lower,48,Chad Behn,Republican,ocd-person/3d113997-b440-47db-97d2-3dca3a2b431a
+IA,lower,68,Chad Ingels,Republican,ocd-person/623b4ac1-3411-4109-b0eb-31bec2780313
+IA,lower,58,Charley Thomson,Republican,ocd-person/1a5372b1-e23d-4877-a614-a32f552c58b4
+IA,upper,42,Charlie McClintock,Republican,ocd-person/006bcadf-1173-4661-a28e-25fbf1a5c423
+IA,upper,13,Cherielynn Westrich,Republican,ocd-person/f4803b48-80d4-43aa-86cd-fe78d268e77a
+IA,lower,59,Christian Hermanson,Republican,ocd-person/08e97c3c-42e2-47f7-b186-0b5099161d4e
+IA,lower,83,Cindy Golding,Republican,ocd-person/6729badd-57a5-484c-bb4c-23afa6e96cdf
+IA,upper,49,Cindy Winckler,Democratic,ocd-person/84279bc7-04df-475e-8d6f-9f9703c73101
+IA,lower,67,Craig Johnson,Republican,ocd-person/63ec798f-401b-4512-9f56-b162eb96bfe9
+IA,lower,11,Craig Williams,Republican,ocd-person/cf98b8af-97b3-46d8-9cc8-4695aab1ae30
+IA,upper,10,Dan Dawson,Republican,ocd-person/79384252-69ca-43c7-bda1-46b6abe5873e
+IA,lower,46,Dan Gehlbach,Republican,ocd-person/d9b64ebb-2332-4ab8-b21f-e697f08759d3
+IA,lower,81,Dan Gosa,Democratic,ocd-person/63c59e95-ff5f-40b3-871e-3569f6ad8425
+IA,upper,34,Dan Zumbach,Republican,ocd-person/3fa8bceb-666f-4480-a957-1928e2b5fec6
+IA,upper,38,Dave Sires,Republican,ocd-person/b261b6a8-cb30-4808-b750-df2e7963d6c8
+IA,lower,52,David Blom,Republican,ocd-person/6c2b2d09-de80-47ca-af67-e646f20ba5fa
+IA,upper,5,Dave Rowley,Republican,ocd-person/93e9ba73-a053-4661-8b8b-e8e2f25d0596
+IA,lower,28,David Young,Republican,ocd-person/e0df02a4-7910-4538-8c3b-8152fb8f657c
+IA,lower,86,Dave Jacoby,Democratic,ocd-person/55c46119-e6fa-4b22-ade6-18990aeacf0c
+IA,lower,16,David Sieck,Republican,ocd-person/7e4913e9-9219-461f-9842-2a96813e009e
+IA,upper,46,Dawn Driscoll,Republican,ocd-person/fe90f2b2-0892-4abd-9d6d-4b2ac1dae632
+IA,lower,53,Dean Fisher,Republican,ocd-person/a4832927-060d-4e15-82d7-795f6f9cc78f
+IA,upper,28,Dennis Guth,Republican,ocd-person/1e11235a-f4c8-4124-9f3a-3bb7a219636d
+IA,lower,76,Derek Wulf,Republican,ocd-person/5dbb36a6-f191-4201-9cbe-20d7aada4d4c
+IA,lower,17,Devon Wood,Republican,ocd-person/60f3c355-fa56-48db-8379-14234d427148
+IA,upper,30,Doug Campbell,Republican,ocd-person/a38725e7-bec0-4a5d-bc71-d039bcb8ec04
+IA,lower,43,Eddie Andrews,Republican,ocd-person/258e0f31-d71a-42b5-98ff-3f2263f95f65
+IA,lower,89,Elinor Levin,Democratic,ocd-person/6ce3e40a-3eee-4a3f-acf3-ddee38e37e6f
+IA,lower,73,Elizabeth Wilson,Democratic,ocd-person/75ee3e5c-bf95-4f36-8366-264872631c3c
+IA,lower,74,Eric Gjerde,Democratic,ocd-person/8e424b53-9531-4b76-bd44-a8008f34b539
+IA,lower,93,Gary Mohr,Republican,ocd-person/98672aab-5ba5-4994-964a-f53d8bcdd108
+IA,lower,25,Hans Wilz,Republican,ocd-person/831144f3-e67d-4706-a018-abec3c492269
+IA,lower,92,Heather Hora,Republican,ocd-person/e927adb7-9b5c-41a8-8daf-c9a8620741f5
+IA,lower,42,Heather Matson,Democratic,ocd-person/ba713234-dc5e-4646-9f74-c25d84f648cc
+IA,lower,88,Helena Hayes,Republican,ocd-person/64d7c18c-3a40-4a0c-a5b9-51ab85b37c81
+IA,lower,9,Henry Stone,Republican,ocd-person/21405c5b-96dc-4c28-9b69-59c2cf00e9a5
+IA,upper,25,Herman Quirmbach,Democratic,ocd-person/d3b3bc8e-ab0c-4ee2-ba3d-de78040274af
+IA,upper,17,Izaah Knox,Democratic,ocd-person/0af01ef4-f982-4239-9ffc-56d33cee3b7b
+IA,lower,1,J.D. Scholten,Democratic,ocd-person/4483a8f0-d946-45b2-9a2e-00dbb4816816
+IA,upper,23,Jack Whitver,Republican,ocd-person/9da58039-06dd-451e-835c-c406a493a21c
+IA,lower,14,Jacob Bossman,Republican,ocd-person/9c6428d6-af30-4a4f-bb9c-666d3d6d84c5
+IA,lower,60,Jane Bloomingdale,Republican,ocd-person/37952941-d329-4c96-8458-654fa495ec76
+IA,upper,18,Janet Petersen,Democratic,ocd-person/3089e8af-0071-4298-822c-2d16ac01fe9f
+IA,upper,45,Janice Weiner,Democratic,ocd-person/1c841d58-bdbe-4021-9126-055184cecdd5
+IA,lower,64,Jason Gearhart,Republican,ocd-person/2f1410fb-220d-46f7-a49c-2a96ac49e338
+IA,upper,6,Jason Schultz,Republican,ocd-person/32126238-17ce-4338-923a-3867b6517039
+IA,lower,77,Jeff Cooling,Democratic,ocd-person/c8eeda58-6c95-4ac9-988f-1c9363b2e17c
+IA,upper,50,Jeff Reichman,Republican,ocd-person/54f49ddd-7a13-4639-87de-7db8760ed5c5
+IA,lower,87,Jeff Shipley,Republican,ocd-person/11ceb3de-a680-4dc0-b140-edd37f04e75b
+IA,upper,2,Jeff Taylor,Republican,ocd-person/cc1cff7e-82d6-4947-a906-f467b4017285
+IA,lower,32,Jennifer Konfrst,Democratic,ocd-person/522b14b8-b82f-4336-a7fb-a0f782d5509a
+IA,lower,72,Jennifer Smith,Republican,ocd-person/4b61e993-1cb9-4bd2-a383-46d264d298f9
+IA,lower,62,Jerome Amos,Democratic,ocd-person/d7083428-89b1-4a56-a4c8-4a40e80e30e8
+IA,upper,24,Jesse Green,Republican,ocd-person/c6cbc677-2d42-4497-ae57-989a30aaddae
+IA,lower,10,John Wills,Republican,ocd-person/955a4d7c-a378-4bd2-8a74-dac94f74ba52
+IA,lower,38,Jon Dunwell,Republican,ocd-person/7a97018b-eb0e-46cf-8bd8-26520ff0d1e0
+IA,lower,20,Josh Turek,Democratic,ocd-person/c9679bfc-5a21-405a-bae1-e2de9a85baf8
+IA,lower,54,Josh Meggers,Republican,ocd-person/b28ad297-8f6d-4f36-807e-0acfa35c7d4c
+IA,lower,91,Judd Lawler,Republican,ocd-person/69441bf5-e98f-4872-8bf0-5bca86e3c258
+IA,upper,26,Kara Warme,Republican,ocd-person/ef7b8c3c-3cd0-4f95-8b4f-9e4daa061479
+IA,lower,97,Ken Croken,Democratic,ocd-person/3dd459aa-4a08-4a98-bce4-37536a9414fa
+IA,upper,19,Ken Rozenboom,Republican,ocd-person/1cfc824d-740a-4e35-a4e2-3728e2d43056
+IA,lower,27,Kenan Judge,Democratic,ocd-person/1b7d56b0-f635-423c-9c09-5617322b1518
+IA,upper,41,Kerry Gruenhagen,Republican,ocd-person/2ff1622d-f1f4-4344-8821-57bcf8d99b83
+IA,upper,7,Kevin Alons,Republican,ocd-person/abad9c61-6eb9-484a-bf07-94cb9040a639
+IA,lower,44,Larry McBurney,Democratic,ocd-person/dcd5b341-0a0b-4f2b-bb34-d7aab8539258
+IA,lower,71,Lindsay James,Democratic,ocd-person/2f43be90-4912-41fa-acf3-735e3a9ef557
+IA,upper,39,Liz Bennett,Democratic,ocd-person/a5bbbe7f-202c-4427-89e1-da8d2786d1dc
+IA,upper,3,Lynn Evans,Republican,ocd-person/0f7d8e8f-ab3e-4a0f-bde0-2ef776cdb27d
+IA,lower,96,Mark Cisneros,Republican,ocd-person/277c38cf-3dc5-419b-b072-df34adc214e6
+IA,upper,8,Mark Costello,Republican,ocd-person/37b1879c-5435-4c28-bb62-fa71fbabbbdb
+IA,lower,56,Mark Thompson,Republican,ocd-person/967868e2-3ec5-425f-bc96-f41208809217
+IA,upper,48,Mark Lofgren,Republican,ocd-person/b1110000-b6c3-4348-8655-8a7b51c8a9db
+IA,lower,31,Mary Madison,Democratic,ocd-person/996db9b7-c251-478f-8852-0c5477013469
+IA,upper,22,Matt Blake,Democratic,ocd-person/4bb97641-21a7-4aaa-b4d8-7f0dfcacd3a0
+IA,lower,15,Matt Windschitl,Republican,ocd-person/be1898a3-30da-45c6-810f-4751158daefc
+IA,lower,99,Matt Rinker,Republican,ocd-person/aec12ca2-6ad3-4026-9f01-7a691566c6fc
+IA,lower,6,Megan Jones,Republican,ocd-person/65c3efb9-452e-4aae-a390-15db3f3ba707
+IA,lower,30,Megan Srinivas,Democratic,ocd-person/84f3edbd-f0e1-4220-a670-f7d39d57bda5
+IA,lower,63,Michael Bergan,Republican,ocd-person/bf9a43c8-3e2a-489f-94f6-b26035f7f9b9
+IA,upper,21,Mike Bousselot,Republican,ocd-person/37784f85-492c-422c-93a3-9910867f68f9
+IA,upper,32,Mike Klimesh,Republican,ocd-person/cad5e110-d7b3-45b3-b7c3-9e8232e2dbc7
+IA,upper,20,Mike Pike,Republican,ocd-person/fdb8c40c-9f1e-4799-bc5f-0249d21f3811
+IA,lower,94,Mike Vondran,Republican,ocd-person/4416e207-bc39-4dee-b6fc-7e70e351aa54
+IA,upper,35,Mike Zimmer,Democratic,ocd-person/93034bcb-c3fa-4427-8a1a-d48b8485a8eb
+IA,upper,37,Molly Donahue,Democratic,ocd-person/d675a03b-f474-4e1c-b48a-b78b399488c4
+IA,lower,98,Monica Kurth,Democratic,ocd-person/c746f92f-f2d1-4dd9-aa76-f056fe026c32
+IA,lower,57,Pat Grassley,Republican,ocd-person/43530aa9-bb74-4e1b-845c-e9491c9a410c
+IA,lower,23,Bubba Sorensen,Republican,ocd-person/97a4ef03-4b50-4fcd-9ebc-3d76482f2150
+IA,upper,16,Renee Hardman,Democratic,ocd-person/6d119d13-56ee-4aef-a7b0-602efef0b995
+IA,lower,39,Rick Olson,Democratic,ocd-person/8ef407a5-2d80-4190-a656-a23d13fb5cb4
+IA,lower,34,Rob Johnson,Democratic,ocd-person/6c4e422c-1d04-48c1-8e75-7af2e6ad1002
+IA,lower,2,Bob Henderson,Republican,ocd-person/078e02d7-0d26-49f2-9176-8044701e540f
+IA,lower,50,Ross Wilburn,Democratic,ocd-person/068a7290-ab67-4ff5-abe5-8e23a7715097
+IA,lower,33,Ruth Ann Gaines,Democratic,ocd-person/dad6bcf1-d56a-4a10-a969-2980dd3582d8
+IA,lower,41,Ryan Weldon,Republican,ocd-person/3c21eb9b-0b5d-429e-9bb4-0d53adf4442c
+IA,lower,24,Sam Wengryn,Republican,ocd-person/c9617375-c6c8-453d-8807-32714cd85c21
+IA,lower,22,Samantha Fett,Republican,ocd-person/a629e45d-fc34-4751-9ca3-d70d2b8f332d
+IA,upper,29,Sandy Salmon,Republican,ocd-person/b51c0843-c860-4568-a3a7-3d004a377fd4
+IA,upper,14,Sarah Garriott,Democratic,ocd-person/ce66871e-57e7-471d-b231-d772dd41eb63
+IA,upper,47,Scott Webster,Republican,ocd-person/5d6f21b7-11a6-4f5e-8661-abc9345f3623
+IA,lower,35,Sean Bagniewski,Democratic,ocd-person/8ee06272-1977-4810-8c40-5d007fb31ac8
+IA,lower,55,Shannon Latham,Republican,ocd-person/90ea16da-2e10-470e-a004-a5e2688e6331
+IA,lower,65,Shannon Lundgren,Republican,ocd-person/82dcdad5-7974-4b38-a44c-7007e8111a5c
+IA,lower,4,Skyler Wheeler,Republican,ocd-person/9d60676d-f50e-4117-8d22-681927e43a01
+IA,lower,66,Steve Bradley,Republican,ocd-person/fca5c5d4-a5b0-40eb-ace9-24dfd50bc4a6
+IA,lower,12,Steven Holt,Republican,ocd-person/427b416b-eca9-4863-a8c2-c54ad2769bc1
+IA,lower,95,Taylor Collins,Republican,ocd-person/fb3a8905-a9a9-4016-97b3-94ce90308240
+IA,lower,84,Tom Gerhold,Republican,ocd-person/ed333b61-6734-49a2-b37d-a167f330bf09
+IA,upper,4,Tim Kraayenbrink,Republican,ocd-person/293487d6-a28b-48a2-8cfc-c3daabb8abbe
+IA,lower,61,Timi Brown-Powers,Democratic,ocd-person/7467e822-4c62-4cd2-b8e1-6f72a9204fce
+IA,lower,69,Tom Determann,Republican,ocd-person/264c5cb9-f69f-4d07-ac58-231c98915233
+IA,lower,3,Tom Jeneary,Republican,ocd-person/49fc2a54-b290-4f92-9fda-64893f09d29c
+IA,lower,18,Tom Moore,Republican,ocd-person/137108a7-0316-40f8-9624-08b2094fb723
+IA,upper,9,Tom Shipley,Republican,ocd-person/d1167ce2-5a24-4eb8-bce8-3800ea24a4d0
+IA,upper,36,Tom Townsend,Democratic,ocd-person/ba2c7b09-df43-4428-b268-1f5a4995282e
+IA,upper,15,Tony Bisignano,Democratic,ocd-person/be302cfd-09b1-4a29-974d-479aa24469eb
+IA,lower,79,Tracy Ehlert,Democratic,ocd-person/0a7675f8-869f-4d49-9a14-c44201e8a8dc
+IA,lower,13,Travis Sitzmann,Republican,ocd-person/4b23e066-26f2-4b23-ac81-060462b2a956
+IA,lower,7,Wendy Larson,Republican,ocd-person/b385cd86-67bc-4cff-94cb-6e822f719ca7
+IA,lower,5,Zach Dieken,Republican,ocd-person/ef26d757-2882-4047-a82e-0682cc638d05
+IA,upper,43,Zach Wahls,Democratic,ocd-person/ab4528a8-eeca-4562-8475-967ce868eb68
+TX,lower,30,A.J. Louderback,Republican,ocd-person/dd3e49ca-2b2b-4a83-ae63-0ade6ccef73f
+TX,upper,27,Adam Hinojosa,Republican,ocd-person/7f748f58-e6f2-4c86-ad01-52c7ca3435ca
+TX,lower,109,Aicha Davis,Democratic,ocd-person/c55d85ff-7172-42d4-9c8f-da2f258dc19b
+TX,lower,44,Alan Schoolcraft,Republican,ocd-person/1493b76f-b77d-48db-9ecd-26d0e2dfc843
+TX,lower,131,Alma Allen,Democratic,ocd-person/2fd6fcd3-9676-42a4-b879-e317576ff18f
+TX,lower,143,Ana Hernandez,Democratic,ocd-person/4f98520b-d88b-4053-acc5-3cb2fff14660
+TX,lower,102,Ana-Maria Rodriguez Ramos,Democratic,ocd-person/7f893a20-0547-4ad9-9a94-1084a9ef6469
+TX,lower,64,Andy Hopper,Republican,ocd-person/ee8cc382-84b7-47e3-824f-e05cf6455161
+TX,upper,8,Angela Paxton,Republican,ocd-person/895887ba-73cd-4321-827d-bb06d4eedfdf
+TX,lower,13,Angelia Orr,Republican,ocd-person/aa0d12c3-c318-4c97-a0d4-c63795ec50d9
+TX,lower,112,Angie Button,Republican,ocd-person/2a9478ef-b573-4de6-ab96-bb3f6091346f
+TX,lower,134,Ann Johnson,Democratic,ocd-person/45f3ddfb-5994-4f05-b2c8-e0e3b2a99c47
+TX,lower,39,Mando Martinez,Democratic,ocd-person/e2d786e9-5e46-4807-be42-546203016996
+TX,lower,140,Armando Walle,Democratic,ocd-person/3caafbc8-6561-4bf8-8247-aaf398573ba8
+TX,lower,120,Barbara Gervin-Hawkins,Democratic,ocd-person/9c37e80d-af10-4433-a78a-408b2b798fb6
+TX,lower,63,Ben Bumgarner,Republican,ocd-person/ba43365e-63dc-4bdc-aadc-e3939aa7465b
+TX,upper,2,Bob Hall,Republican,ocd-person/013d69b7-a958-490c-a4a2-7224a30efa08
+TX,lower,41,Bobby Guerra,Democratic,ocd-person/51591894-e9ff-48d3-81c5-897ec1c5e600
+TX,upper,13,Borris Miles,Democratic,ocd-person/3475b324-1c9b-4513-90e6-063aba5ac04e
+TX,lower,54,Brad Buckley,Republican,ocd-person/e3533cbc-f3ab-46bc-a591-c68657f82527
+TX,upper,30,Brent Hagenbuch,Republican,ocd-person/c15c9bf3-f28a-4c01-9a10-383bc7a05cb9
+TX,lower,2,Brent Money,Republican,ocd-person/469f1932-49dc-4a46-8341-b2cd9bc0f96d
+TX,upper,4,Brett Ligon,Republican,ocd-person/6fde08be-f7c0-464a-83a7-430c60617beb
+TX,lower,10,Brian Harrison,Republican,ocd-person/b1bf46ac-e99e-49f6-8f40-cf07aca12187
+TX,lower,128,Briscoe Cain,Republican,ocd-person/065c24a0-401a-4dc5-a19c-e7d96dcbffc5
+TX,lower,81,Brooks Landgraf,Republican,ocd-person/83030f8b-5f1f-4475-b564-a07ae42f6d98
+TX,upper,1,Bryan Hughes,Republican,ocd-person/8326538c-c907-43b2-a6db-76434036afd7
+TX,lower,89,Candy Noble,Republican,ocd-person/f4976334-0e0e-4474-b5b4-3264e8d73f1d
+TX,lower,84,Carl Tepper,Republican,ocd-person/8f7f161e-6ef4-4c12-8eea-de88a313b36c
+TX,upper,6,Carol Alvarado,Democratic,ocd-person/e78373de-6d96-44db-b552-6da34ed992fc
+TX,lower,87,Caroline Dunmoyer,Republican,ocd-person/5c40c2b0-07c1-4c73-b15b-14d0ef6df40e
+TX,lower,52,Caroline Harris Davila,Republican,ocd-person/72920206-cbe7-4429-b42b-c6fc746a1d56
+TX,lower,73,Carrie Isaac,Republican,ocd-person/64221b86-e3ca-4b67-b2bb-3f4f9641e133
+TX,lower,115,Cas Garcia Hernandez,Democratic,ocd-person/f331962f-370b-4b74-876e-aa6a8e2e58e2
+TX,lower,3,Cecil Bell,Republican,ocd-person/33f871c9-15a6-4094-9181-ff822cd9eca4
+TX,lower,139,Charlene Ward Johnson,Democratic,ocd-person/e6ccd3a9-8f52-46d4-af8d-d0301a8e3a05
+TX,lower,127,Charles Cunningham,Republican,ocd-person/41f4a5e2-a2d5-4e54-aae3-9c99f9ea5eba
+TX,upper,28,Charles Perry,Republican,ocd-person/6522ba2d-f263-455a-9470-cec0aa03033b
+TX,upper,5,Charles Schwertner,Republican,ocd-person/d7d0bd69-2615-4d0c-84df-4cdb75809343
+TX,lower,99,Charlie Geren,Republican,ocd-person/65a42043-6243-4f79-b1e0-69b3b8b4af29
+TX,lower,101,Chris Turner,Democratic,ocd-person/a5e2021c-8221-41ba-b45c-cc89d13b2af2
+TX,lower,22,Christian Manuel,Democratic,ocd-person/26090510-8782-4d64-b981-3d1cde573090
+TX,lower,145,Christina Morales,Democratic,ocd-person/791e4399-56bb-4d4c-8561-71f0979fb999
+TX,lower,79,Claudia Ordaz,Democratic,ocd-person/6feda596-fd20-429b-ae4e-bedab7e5a1c5
+TX,lower,8,Cody Harris,Republican,ocd-person/baafecd4-6f74-4a97-b564-691c1e938291
+TX,lower,25,Cody Vasut,Republican,ocd-person/3194ee5e-f4d8-4449-8ff6-ec47c0822a3d
+TX,lower,5,Cole Hefner,Republican,ocd-person/43bbf34a-6bc4-41f9-9bdc-3e944c5b8495
+TX,upper,29,César Blanco,Democratic,ocd-person/3e0f0e51-20c0-4da4-82b5-ff81606148d0
+TX,lower,21,Dade Phelan,Republican,ocd-person/7952d7d7-0fe5-4712-9967-6cb9bcedff05
+TX,lower,6,Daniel Alders,Republican,ocd-person/f602a657-8951-4dcb-9bd8-c04bcce4ba56
+TX,lower,96,David Cook,Republican,ocd-person/2d5f629c-76a7-455b-aff7-262d8c1c23f6
+TX,lower,91,David Lowe,Republican,ocd-person/15ce6502-645c-4031-994d-b228e1c69bb4
+TX,lower,68,David Spiller,Republican,ocd-person/36338558-c2b0-4b43-b656-261dccbee871
+TX,lower,34,Denise Villalobos,Republican,ocd-person/42c40e86-b355-4724-8582-995125377240
+TX,lower,129,Dennis Paul,Republican,ocd-person/e05f502a-0d27-4c51-8cad-d3b5eca585b1
+TX,lower,123,Diego Bernal,Democratic,ocd-person/7847295c-78f3-4f8c-adb6-3536fca2782e
+TX,lower,80,Don McLaughlin,Republican,ocd-person/0941f4bf-2ac8-48d0-8675-191514e06850
+TX,upper,25,Donna Campbell,Republican,ocd-person/9f80cd7f-1067-4322-8777-62bc129cd6f2
+TX,lower,48,Donna Howard,Democratic,ocd-person/349071fd-3c36-43c6-aaca-6d7f9d04322d
+TX,lower,72,Drew Darby,Republican,ocd-person/40f0e868-e021-4453-8675-a9d2357e41e1
+TX,lower,83,Dustin Burrows,Republican,ocd-person/fff5eb4f-2c41-4d00-a1c5-e566a15b063e
+TX,lower,74,Eddie Morales,Democratic,ocd-person/c84056d0-47e0-4a0c-94e1-9f90c2d90a15
+TX,lower,119,Liz Campos,Democratic,ocd-person/b91e1420-1732-4063-9f3d-edcc5e71d416
+TX,lower,19,Ellen Troxclair,Republican,ocd-person/34590156-1109-4ab6-84bc-bbe07764f365
+TX,lower,38,Erin Gámez,Democratic,ocd-person/2cadcb59-210a-4a71-af9f-7dba9ab06112
+TX,lower,45,Erin Zwiener,Democratic,ocd-person/b55d57f4-bd06-4487-8860-0b6eeb9a1dea
+TX,lower,28,Gary Gates,Republican,ocd-person/5ff88048-ebd8-4ac3-af9c-d02e1305ef37
+TX,lower,137,Gene Wu,Democratic,ocd-person/5556a81a-eca2-451d-bb29-74cfb00d1959
+TX,lower,49,Gina Hinojosa,Democratic,ocd-person/1f9ed42e-27de-4cd1-b2bf-f890ee33cb49
+TX,lower,98,Giovanni Capriglione,Republican,ocd-person/40ecf6ee-92a4-4daf-b950-ac70b6cdfeee
+TX,lower,24,Greg Bonnen,Republican,ocd-person/d0fbfb15-2f0c-4167-b8b4-d6135bbb6616
+TX,lower,142,Harold Dutton,Democratic,ocd-person/85d064ed-6f3d-4a81-93ee-1baf49c7f2c3
+TX,lower,58,Helen Kerwin,Republican,ocd-person/92b45572-c15c-4270-8356-6c3db1846c7b
+TX,lower,55,Hillary Hickland,Republican,ocd-person/ef5a2ea8-61b0-484c-bbe1-b52c5ad2f075
+TX,lower,149,Hubert Vo,Democratic,ocd-person/5c2743d2-fe0e-41d6-969d-de830d5787f8
+TX,lower,43,J.M. Lozano,Republican,ocd-person/a43f2db5-4b24-4dfa-af7f-a2c7cbc5ea21
+TX,lower,69,James Frank,Republican,ocd-person/6cbb02e6-5876-47a1-86aa-98566fe0073a
+TX,lower,50,James Talarico,Democratic,ocd-person/5e4e2fd2-e8a9-46f3-aab5-ffbc782afa8b
+TX,lower,37,Janie Lopez,Republican,ocd-person/a732704e-9b03-449c-b24f-f4c567b5acdd
+TX,lower,18,Janis Holt,Republican,ocd-person/0deb3053-0d5d-46b4-93d2-8eb9de0c4ffd
+TX,lower,106,Jared Patterson,Republican,ocd-person/e926ca11-64dd-4e15-97bd-1f7b0915de36
+TX,lower,7,Jay Dean,Republican,ocd-person/37886d81-901f-43b4-841b-f3ffbfeeb257
+TX,lower,29,Jeff Barry,Republican,ocd-person/988efb07-ace2-4419-ac40-ccec69ebe875
+TX,lower,67,Jeff Leach,Republican,ocd-person/40a678a3-7d85-486e-bf38-5d070142aa83
+TX,lower,104,Jessica González,Democratic,ocd-person/8eeb1aad-24b6-487b-bbc0-31c2238b1ccd
+TX,upper,17,Joan Huffman,Republican,ocd-person/1997b231-45f7-4f29-a435-9f52e60ebea4
+TX,lower,11,Joanne Shofner,Republican,ocd-person/b39cf891-a259-422c-945a-94b65430ea0a
+TX,lower,78,Joe Moody,Democratic,ocd-person/5898294d-5b10-4aaf-a084-b8522e69623c
+TX,lower,114,John Bryant,Democratic,ocd-person/4e07d8dc-f5b5-47e7-a1de-83f36d3b734f
+TX,lower,136,John Bucy,Democratic,ocd-person/53b19d1e-5b07-4f6e-87a9-27baecddaf70
+TX,lower,118,John Lujan,Republican,ocd-person/fbd66d9f-2a93-4cbf-b75d-b51cb01e955e
+TX,lower,97,John McQueeney,Republican,ocd-person/f926d7a8-7ec7-4020-9e18-5a475565fd41
+TX,lower,86,John Smithee,Republican,ocd-person/3cac81cd-62ca-41d6-aa4a-8e4156244dec
+TX,lower,147,Jo Jones,Democratic,ocd-person/45cd43ff-77b3-467c-aa61-890ebee8ece5
+TX,lower,135,Jon Rosenthal,Democratic,ocd-person/ab211984-06a9-447c-9ded-564d200bee60
+TX,upper,26,José Menéndez,Democratic,ocd-person/8bb90ee9-e764-44da-b27f-b5bc3cdb394e
+TX,lower,124,Josey Garcia,Democratic,ocd-person/1ec50565-379f-4a8b-ab18-c54d31df9929
+TX,upper,20,Chuy Hinojosa,Democratic,ocd-person/72766791-084c-4a20-a12c-6e809b51e95c
+TX,upper,21,Judith Zaffirini,Democratic,ocd-person/c7aad3b7-ca16-4989-bf68-87ed72498a6b
+TX,lower,33,Katrina Pierson,Republican,ocd-person/1205faf4-7ced-4d21-aa8c-aad9239e3157
+TX,lower,4,Keith Bell,Republican,ocd-person/fe47f6d5-2db3-495b-8da6-5cd12e0dc677
+TX,lower,88,Ken King,Republican,ocd-person/d9f32e07-7835-4edf-b986-7a2cf16d608b
+TX,lower,61,Keresa Richardson,Republican,ocd-person/2b79c268-eaf3-4915-a0e0-faec03b652d8
+TX,upper,31,Kevin Sparks,Republican,ocd-person/aa6deb86-b21b-4ed2-ad67-bd6217238afc
+TX,lower,138,Lacey Hull,Republican,ocd-person/2609ba13-abf1-40b5-9f4c-a4c1135e56e2
+TX,lower,146,Lauren Simmons,Democratic,ocd-person/9dc31ea5-fd89-4909-a9bf-d732ea02282a
+TX,lower,107,Linda Garcia,Democratic,ocd-person/5d3626bb-c865-4c92-a717-a72036c6ce5a
+TX,upper,18,Lois Kolkhorst,Republican,ocd-person/28eb71be-bce7-4b32-908d-289ecc265c3c
+TX,lower,51,Lulu Flores,Democratic,ocd-person/ab3ddc65-0fb9-476b-993f-b3dc4050127e
+TX,lower,133,Mano DeAyala,Republican,ocd-person/a61b0fd1-9fdf-4b4c-abe6-b790cc856023
+TX,lower,121,Marc LaHood,Republican,ocd-person/d34eead2-bd19-49ce-8131-6d314d58e6a1
+TX,lower,122,Mark Dorazio,Republican,ocd-person/2c0a4352-9871-4122-97fd-832ec998e907
+TX,lower,144,Mary Ann Perez,Democratic,ocd-person/26244d6a-f0d5-4dbe-b9ed-a38df74a7bac
+TX,lower,75,Mary González,Democratic,ocd-person/93379bbe-5fb3-400f-853a-d0b3553e7772
+TX,lower,26,Matt Morgan,Republican,ocd-person/07951419-b5d5-430b-a3e6-678e1d4aec21
+TX,lower,66,Matt Shaheen,Republican,ocd-person/71555c46-28b0-4887-98a1-997dc7482e75
+TX,upper,11,Mayes Middleton,Republican,ocd-person/1399b6ba-cbfa-45ca-bf91-6ba89fe777bf
+TX,lower,70,Mihaela Pleșa,Democratic,ocd-person/b69579f7-74de-4a71-86ba-033264cc5bc7
+TX,lower,60,Mike Olcott,Republican,ocd-person/4b70019b-d7c1-4414-bcb1-7bf917081ed5
+TX,lower,132,Mike Schofield,Republican,ocd-person/df010291-7350-4262-9220-4c576730b2db
+TX,lower,65,Mitch Little,Republican,ocd-person/96dfe856-d5b0-4f7a-86f6-06c2175a4d4a
+TX,upper,15,Molly Cook,Democratic,ocd-person/06aed58e-f403-43a5-b4b9-8785a4acf981
+TX,lower,108,Morgan Meyer,Republican,ocd-person/2639e096-d327-4c4d-823f-759b1ce373e0
+TX,upper,16,Nathan Johnson,Democratic,ocd-person/dee454b1-6da0-4b1b-a232-033e7de8551f
+TX,lower,95,Nicole Collier,Democratic,ocd-person/ea169f77-0bd8-4ca0-ac59-f894c9a09e71
+TX,lower,35,Oscar Longoria,Democratic,ocd-person/896e8f9c-7dca-4f7d-8554-c0324cfa7265
+TX,lower,56,Pat Curry,Republican,ocd-person/0e79cc57-2894-432e-9aca-505a41d4de2c
+TX,upper,7,Paul Bettencourt,Republican,ocd-person/a9f861bf-1a13-4d3b-816a-69589e9b25e7
+TX,lower,14,Paul Dyson,Republican,ocd-person/89b43853-82e0-434c-9946-4fd9057e1842
+TX,lower,148,Penny Morales Shaw,Democratic,ocd-person/51a281ff-2983-4b4b-baf4-63ee17812835
+TX,upper,24,Pete Flores,Republican,ocd-person/682e8ef8-8fc1-4490-a04d-63a7c6d92185
+TX,upper,10,Phil King,Republican,ocd-person/98bef50a-73c7-4139-9b8e-628d0e89d659
+TX,lower,117,Philip Cortez,Democratic,ocd-person/12d67093-ab4c-425d-afa3-e5777db09d1c
+TX,lower,103,Rafael Anchía,Democratic,ocd-person/f72eb41b-2ff9-434f-96cf-75b9724289ab
+TX,lower,90,Ramon Romero,Democratic,ocd-person/c0fc4283-3ed5-4165-a066-80de16f492b7
+TX,lower,125,Ray Lopez,Democratic,ocd-person/01ce2f6b-0500-4baa-a47f-386f9c6286b0
+TX,lower,113,Rhetta Bowers,Democratic,ocd-person/69ef7d69-9a5e-42be-b463-8873cb52ad10
+TX,lower,57,Richard Hayes,Republican,ocd-person/f8e0a89e-889a-4fcf-8a0a-1e0e091d89d0
+TX,lower,42,Richard Raymond,Democratic,ocd-person/d4a94a68-02a7-44c0-901f-9cd57350229a
+TX,upper,3,Robert Nichols,Republican,ocd-person/26b83cfe-10c0-4ac6-ae02-dac30e2856b1
+TX,upper,19,Roland Gutierrez,Democratic,ocd-person/68767ec3-151c-413f-aeb8-f35dd6c5f35c
+TX,lower,27,Ron Reynolds,Democratic,ocd-person/72bad853-b403-49c2-9a99-32c5fb3222c7
+TX,upper,23,Royce West,Democratic,ocd-person/d6f40682-7b90-4735-980c-7c95ef402a78
+TX,lower,31,Ryan Guillen,Republican,ocd-person/f0ede995-2253-4f7b-a922-6da34e4de194
+TX,lower,92,Salman Bhojani,Democratic,ocd-person/4fb2e1fd-fbb3-4a55-8417-761da2f6048e
+TX,lower,126,Sam Harless,Republican,ocd-person/2db06a9d-ae17-4881-98b4-5172fdfca19f
+TX,upper,14,Sarah Eckhardt,Democratic,ocd-person/20cda9bf-a1e6-4427-8115-e5655ddd8eb0
+TX,lower,141,Senfronia Thompson,Democratic,ocd-person/ace50d18-fc98-4460-9d90-928c0e88c79a
+TX,lower,36,Sergio Muñoz,Democratic,ocd-person/b7c4e0e7-4949-4dff-bc4c-fdaaada3f37d
+TX,lower,59,Shelby Slawson,Republican,ocd-person/ddebb940-33f9-4b5c-a8fa-e22c63a594e9
+TX,lower,62,Shelley Luther,Republican,ocd-person/89e814c4-6091-4156-b3b5-42a7980f8b4d
+TX,lower,46,Sheryl Cole,Democratic,ocd-person/97805dd7-1f42-482c-bac3-049dfccda311
+TX,lower,17,Stan Gerdes,Republican,ocd-person/97fc1e34-35fb-470f-a098-4ba8f0c3c8d4
+TX,lower,85,Stan Kitzman,Republican,ocd-person/2662f888-95e0-4de3-be5b-3d023623c447
+TX,lower,71,Stan Lambert,Republican,ocd-person/a4e4115b-d488-4e93-8354-80e361c0c260
+TX,lower,15,Steve Toth,Republican,ocd-person/6c80914d-b07b-4d27-95e2-0e5aa2b0c7d9
+TX,lower,76,Suleman Lalani,Democratic,ocd-person/51927936-c6fc-453b-8afd-5f0b53de7d46
+TX,upper,12,Tan Parker,Republican,ocd-person/fa4817bf-6dc6-4deb-9965-cf3f208ec976
+TX,upper,9,Taylor Rehmet,Democratic,ocd-person/9647d335-a650-4aa7-b11f-973c4e86b5a6
+TX,lower,23,Terri Leo-Wilson,Republican,ocd-person/cee6cb7a-8d88-4c34-be27-dd10d1f31768
+TX,lower,40,Terry Canales,Democratic,ocd-person/3e4ae7d4-dbb2-4991-8b44-8ada6023d7da
+TX,lower,20,Terry Wilson,Republican,ocd-person/ec19bc97-3146-4100-8294-329b88aec0e8
+TX,lower,105,Terry Meza,Democratic,ocd-person/bdecc388-4028-48e2-b211-75c59c1c5ec2
+TX,lower,32,Todd Hunter,Republican,ocd-person/9447575b-d8a1-45dd-bd68-77b12fe347ab
+TX,lower,82,Tom Craddick,Republican,ocd-person/d4d5c127-1ef6-445d-a89b-d9f02c812365
+TX,lower,130,Tom Oliverson,Republican,ocd-person/79ffab1c-4d79-4cfa-89b4-5f7ee95ca1bf
+TX,lower,110,Toni Rose,Democratic,ocd-person/0acfbb85-b501-45ce-9a9b-90537090a455
+TX,lower,94,Tony Tinderholt,Republican,ocd-person/1ca78d00-1ede-4486-b14e-16bd81ba73e4
+TX,lower,9,Trent Ashby,Republican,ocd-person/68f05872-16c8-4d3a-ab5f-ea667ca52b27
+TX,lower,116,Trey Martinez Fischer,Democratic,ocd-person/07f5e898-8d5d-435a-bf97-7bfb26fce5ac
+TX,lower,12,Trey Wharton,Republican,ocd-person/afd236d4-4266-4777-8d3d-be7616a7e43f
+TX,lower,150,Valoree Swanson,Republican,ocd-person/7298c6a9-c6be-41cd-a2ba-0cc79c851373
+TX,lower,100,Venton Jones,Democratic,ocd-person/6b2d7f89-d7e0-44d1-b861-3167915f6925
+TX,lower,47,Vikki Goodwin,Democratic,ocd-person/25157308-7474-4600-8b83-173d79e16a21
+TX,lower,77,Vince Perez,Democratic,ocd-person/5236ee6e-a57c-4d81-90b4-50a9abde8e5e
+TX,lower,53,Wes Virdell,Republican,ocd-person/436ab2a5-12ca-4a9c-b8ec-73b1bae4ee68
+TX,lower,16,Will Metcalf,Republican,ocd-person/e7a379ec-9de2-48a2-918b-5ba58e1fd3f3
+TX,lower,111,Yvonne Davis,Democratic,ocd-person/3f38bf62-86ba-4833-9737-2e084ae6255d
