@@ -531,6 +531,9 @@ def manual_race_polls(state, office, existing=None, names=None):
     return d[["seat", "pollster", "end_date", "n", "dem", "rep", "margin", "dem_name", "rep_name", "und", "other", "grade"]]
 
 
+SAME_POLL_LISTED_TWICE_DAYS = 14   # same pollster + identical D/R shares this close = one poll listed twice
+
+
 def collapse_versions(p: pd.DataFrame, race_col="seat") -> pd.DataFrame:
     """One survey, one row (2026-10-03). Within a race, rows whose end dates are within 3 days are versions of ONE survey when
     the pollster name is the same once sponsor tags are dropped (ID-1 'SurveyUSA' / 'SurveyUSA (I)' 7/14, SC 'Impact Research (D)'
@@ -550,10 +553,14 @@ def collapse_versions(p: pd.DataFrame, race_col="seat") -> pd.DataFrame:
         for a_ in range(len(g)):
             for b_ in range(a_ + 1, len(g)):
                 i, j = g[a_], g[b_]
-                if abs((p.at[i, "end_date"] - p.at[j, "end_date"]).days) > 3: continue
+                gap = abs((p.at[i, "end_date"] - p.at[j, "end_date"]).days)
+                if gap > SAME_POLL_LISTED_TWICE_DAYS: continue
                 same_name = base[i] == base[j] and base[i] != ""
                 same_nums = pd.notna(p.at[i, "dem"]) and p.at[i, "dem"] == p.at[j, "dem"] and p.at[i, "rep"] == p.at[j, "rep"]
-                if same_name or same_nums: parent[find(i)] = find(j)
+                # within 3 days: versions of one survey (same name OR identical numbers); 4-14 days apart only the SAME
+                # pollster with IDENTICAL D and R shares counts as one poll listed twice (2026-10-04: NV governor
+                # 'Grassroots Targeting (R)' 40-52 ending 7/6 and again 7/16 was counted twice)
+                if (gap <= 3 and (same_name or same_nums)) or (same_name and same_nums): parent[find(i)] = find(j)
     grp = [find(i) for i in range(len(p))]
     if len(set(grp)) == len(p): return p
     p["_g"] = grp
