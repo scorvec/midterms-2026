@@ -2,12 +2,12 @@ name: state-legislature data build
 
 # One-time builds for the state-legislative chamber forecasts (feature branch state-leg). Downloads go to data/raw
 # (cached, never committed); only the compact derived tables in data/static/stateleg are committed back to the branch.
+# Triggered by a push to the state-leg branch that changes .github/stateleg_step.txt (its first line names the step:
+# probe | build | wiki | all | <module>); workflow_dispatch needs the file on the default branch, which this branch must not touch.
 on:
-  workflow_dispatch:
-    inputs:
-      step:
-        description: "probe | build | wiki | all"
-        default: probe
+  push:
+    branches: [state-leg]
+    paths: [".github/stateleg_step.txt"]
 
 permissions:
   contents: write
@@ -40,12 +40,14 @@ jobs:
           restore-keys: stateleg-raw-
       - name: Run
         run: |
-          case "${{ inputs.step }}" in
+          STEP=$(head -1 .github/stateleg_step.txt | tr -d '[:space:]')
+          echo "STEP=$STEP" >> "$GITHUB_ENV"
+          case "$STEP" in
             probe) python -m midterms.stateleg_probe ;;
             build) python -m midterms.stateleg_build ;;
             wiki)  python -m midterms.stateleg_wiki ;;
             all)   python -m midterms.stateleg_build && python -m midterms.stateleg_wiki ;;
-            *) python -m midterms.${{ inputs.step }} ;;
+            *) python -m midterms.$STEP ;;
           esac
       - name: Save raw cache
         if: always()
@@ -54,13 +56,13 @@ jobs:
           path: data/raw/stateleg
           key: stateleg-raw-${{ github.run_id }}
       - name: Commit derived tables
-        if: ${{ inputs.step != 'probe' }}
+        if: ${{ env.STEP != 'probe' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A data/static/stateleg || true
           if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
           du -sh data/static/stateleg
-          git commit -q -m "state-leg derived tables (${{ inputs.step }})"
+          git commit -q -m "state-leg derived tables ($STEP)"
           for i in 1 2 3; do git pull -q --no-rebase origin state-leg && git push -q origin HEAD:state-leg && exit 0; sleep 5; done
           exit 1
