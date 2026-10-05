@@ -57,7 +57,7 @@ def dv_get(key, pattern):
     hit = [(i, n) for i, n in dv_list(key) if re.fullmatch(pattern, n, re.I)]
     if not hit: return None
     fid, name = hit[0]; p = R / "dv" / key / name.replace(".tab", ".csv")
-    if not p.exists() and not list(p.parent.glob(p.stem + ".*.slim.parquet")):
+    if not p.exists() and not list(p.parent.glob(p.stem + ".*.slim2.parquet")):
         p.parent.mkdir(parents=True, exist_ok=True); print(f"  download {key}/{name}")
         stream(f"https://dataverse.harvard.edu/api/access/datafile/{fid}?format=original", p)
     return p
@@ -116,7 +116,7 @@ def norm_district(st, ch, d, county=""):
     return str(int(m.group(1))) if m else None
 
 
-COLS = ["state_po", "stage", "office", "district", "county_fips", "county_name", "jurisdiction_fips", "precinct", "mode", "party_simplified",
+COLS = ["state_po", "stage", "office", "district", "county_fips", "county_name", "jurisdiction_fips", "jurisdiction_name", "precinct", "mode", "party_simplified",
         "candidate", "votes", "magnitude", "writein", "special"]
 
 
@@ -138,7 +138,7 @@ def office_chamber(df) -> pd.Series:
 def medsl_load(p: Path, st: str) -> pd.DataFrame:
     """MEDSL precinct file -> the rows this model uses (president, U.S. House, state legislature), one count per precinct x contest x
     candidate. The slim extract is kept as parquet next to the download (the cache keeps it; the large CSV can be deleted)."""
-    slim = p.with_name(p.stem + f".{st}.slim.parquet")
+    slim = p.with_name(p.stem + f".{st}.slim2.parquet")
     if slim.exists():
         df = pd.read_parquet(slim)
     else:
@@ -152,11 +152,14 @@ def medsl_load(p: Path, st: str) -> pd.DataFrame:
         df = pd.concat(parts, ignore_index=True); df.to_parquet(slim)
     if "stage" in df: df = df[df["stage"].fillna("GEN").str.upper().str.startswith("GEN")]
     df["votes"] = pd.to_numeric(df["votes"], errors="coerce").fillna(0.0)
-    for c in ("county_fips", "jurisdiction_fips", "precinct", "county_name", "district", "mode", "candidate", "party_simplified", "magnitude", "writein", "special"):
+    for c in ("county_fips", "jurisdiction_fips", "jurisdiction_name", "precinct", "county_name", "district", "mode", "candidate", "party_simplified", "magnitude", "writein", "special"):
         if c not in df: df[c] = ""
         df[c] = df[c].fillna("").astype(str)
     df["office"] = df["office"].astype(str).str.upper().str.strip()
-    df["key"] = df["county_fips"] + "|" + df["jurisdiction_fips"] + "|" + df["precinct"].str.upper().str.strip()
+    # county | jurisdiction | precinct: precinct names repeat across towns (NJ "District 1"), and some files leave the
+    # jurisdiction code blank, so the names go into the key as well
+    df["key"] = (df["county_fips"] + "|" + df["county_name"].str.upper().str.strip() + "|" + df["jurisdiction_fips"] + "|" +
+                 df["jurisdiction_name"].str.upper().str.strip() + "|" + df["precinct"].str.upper().str.strip())
     df["party"] = df["party_simplified"].str.upper().map({"DEMOCRAT": "D", "REPUBLICAN": "R"}).fillna("O")
     # one count per precinct x contest x candidate: a TOTAL row where a state reports both TOTAL and the vote modes
     is_tot = df["mode"].str.upper() == "TOTAL"
@@ -258,7 +261,9 @@ def vest_votes(zp: Path, yy: str):
     dcol = [c for c in g.columns if re.fullmatch(f"G{yy}PRED\\w*", c, re.I)]; rcol = [c for c in g.columns if re.fullmatch(f"G{yy}PRER\\w*", c, re.I)]
     if not dcol or not rcol: raise ValueError(f"{zp.name}: no G{yy}PRED/PRER columns in {list(g.columns)[:40]}")
     g["d"] = g[dcol].apply(pd.to_numeric, errors="coerce").fillna(0).sum(1); g["r"] = g[rcol].apply(pd.to_numeric, errors="coerce").fillna(0).sum(1)
-    namecol = next((c for c in g.columns if c.upper() in ("NAME", "PRECINCT", "PREC_NAME", "TOWN", "NAME20", "NAME16")), None)
+    namecol = next((c for c in g.columns if c.upper() in ("NAME", "PRECINCT", "PREC_NAME", "TOWN", "NAME20", "NAME16", "TOWNWARD", "NAMELSAD", "PCT_NAME", "PRECINCTNA")), None)
+    if namecol is None: namecol = next((c for c in g.columns if re.search(r"name|town|prec", c, re.I)), None)
+    if zp.name.startswith("nh"): print(f"  {zp.name} columns: {list(g.columns)[:30]}; name column {namecol}; sample {g[namecol].head(5).tolist() if namecol else None}")
     g["pname"] = g[namecol].astype(str) if namecol else ""
     g = g[["d", "r", "pname", "geometry"]].to_crs(5070)
     g["geometry"] = g.geometry.make_valid()
@@ -326,8 +331,53 @@ def map_changes(fips, lay, y0, y1):
 NEST = {"MN": lambda d: str(int(re.match(r"(\d+)", d).group(1))), "WI": lambda d: str((int(d) + 2) // 3)}
 
 
+def sld_cell_upper(st, v, cells24, lower_exact):
+    """Senate districts with no 2024 contest (MI: whole chamber; PA odd seats): VEST 2020 precincts cut by the 2024 House districts
+    (TIGER 2024 SLDL), each piece moved 2020->2024 by the swing and turnout change of its (county x House district) cell measured
+    on the 2024 labels (House-district swing where the county codes do not match), then summed into the 2025 TIGER Senate districts
+    (piece representative point). House districts are ~3x smaller than Senate districts, so the swing is local."""
+    import geopandas as gpd
+    lo = tiger(2024, FIPS[st], "sldl"); up = tiger(2025, FIPS[st], "sldu")
+    vv = v.copy(); vv["pid"] = np.arange(len(vv)); vv["parea"] = vv.geometry.area
+    x = gpd.overlay(vv[["pid", "d", "r", "parea", "geometry"]], lo[["code", "geometry"]], how="intersection", keep_geom_type=True)
+    f = x.geometry.area / x["parea"].where(x["parea"] > 0); x["d"] = x["d"] * f; x["r"] = x["r"] * f
+    x["lo"] = [norm_district(st, "lower", c) for c in x["code"]]
+    pts = x[["lo", "d", "r", "geometry"]].copy(); pts["geometry"] = pts.geometry.representative_point()
+    pts = gpd.sjoin(pts, counties(), how="left", predicate="within").drop(columns="index_right")
+    pts = gpd.sjoin(pts, up[["code", "geometry"]], how="left", predicate="within")
+    pts["up"] = [norm_district(st, "upper", c) if isinstance(c, str) else None for c in pts["code"]]
+    pts = pts[~pts.index.duplicated()]
+    pts["county"] = pts["GEOID"].astype(str)
+    c24 = cells24.assign(county=cells24["county"].astype(str).str.replace(r"\.0$", "", regex=True).str.zfill(5)).groupby(["county", "district"])[["d", "r"]].sum()
+    c24.index.names = ["county", "lo"]
+    c20 = pts.groupby(["county", "lo"])[["d", "r"]].sum()
+    c = c20.join(c24, lsuffix="20", rsuffix="24", how="left")
+    m = lambda a, b: 100 * (a - b) / (a + b)
+    c["swing"] = m(c["d24"], c["r24"]) - m(c["d20"], c["r20"]); c["turn"] = (c["d24"] + c["r24"]) / (c["d20"] + c["r20"])
+    dl = pts.groupby("lo")[["d", "r"]].sum().join(cells24.groupby("district")[["d", "r"]].sum(), lsuffix="20", rsuffix="24")
+    dl["dsw"] = m(dl["d24"], dl["r24"]) - m(dl["d20"], dl["r20"]); dl["dtu"] = (dl["d24"] + dl["r24"]) / (dl["d20"] + dl["r20"])
+    c = c.reset_index().merge(dl[["dsw", "dtu"]], left_on="lo", right_index=True, how="left")
+    bad = c["swing"].isna() | ~c["turn"].between(0.6, 1.6) | (c["d20"] + c["r20"] < 50)
+    QC[f"sldcell_{st}_invalid_cells_vote_share"] = round(float((c.loc[bad, "d20"] + c.loc[bad, "r20"]).sum() / (c["d20"] + c["r20"]).sum()), 4)
+    c.loc[bad, "swing"] = c.loc[bad, "dsw"]; c.loc[bad, "turn"] = c.loc[bad, "dtu"]
+    c["swing"] = c["swing"].fillna(0); c["turn"] = c["turn"].fillna(1)
+    pts = pts.merge(c[["county", "lo", "swing", "turn"]], on=["county", "lo"], how="left")
+    n20 = pts["d"] + pts["r"]; m20 = np.where(n20 > 0, (pts["d"] - pts["r"]) / n20.where(n20 > 0, 1), 0)
+    m24 = np.clip(m20 + pts["swing"].fillna(0) / 100, -1, 1); n24 = n20 * pts["turn"].fillna(1)
+    pts["d24"] = n24 * (1 + m24) / 2; pts["r24"] = n24 * (1 - m24) / 2
+    o = pts.groupby("up")[["d24", "r24", "d", "r"]].sum().reset_index().rename(columns={"up": "district"})
+    o["lean24_cell"] = m(o["d24"], o["r24"]); o["lean20"] = m(o["d"], o["r"])
+    if lower_exact is not None and len(lower_exact):                     # validation on Senate districts whose 2024 value is known
+        ex = lower_exact.set_index("district"); ex["m"] = m(ex["d"], ex["r"])
+        k = o.set_index("district").join(ex[["m"]], how="inner"); e = k["lean24_cell"] - k["m"]
+        if len(k): QC[f"sldcell_{st}_upper_validation"] = {"n": int(len(k)), "rms": round(float(np.sqrt((e ** 2).mean())), 2), "max": round(float(e.abs().max()), 2)}
+        if len(k): print(f"  sld-cell check {st} upper: rms {np.sqrt((e ** 2).mean()):.2f} on {len(k)} districts with 2024 labels")
+    return o
+
+
 def build_2026():
     rows, res, cm = [], [], {}
+    lower_cells, upper_exact = {}, {}
     for st in STATES:
         p24 = dv_get("m2024", f"2024-{st.lower()}-precinct-general\\.(tab|csv)")
         if p24 is None: print("!! no 2024 file", st); continue
@@ -341,7 +391,9 @@ def build_2026():
             if ch == "upper" and st in NEST: continue                  # from the nested House / Assembly districts below
             o = label_lean(df, st, ch, "m2024")
             if o is not None:
+                if ch == "lower": lower_cells[st] = o.attrs["cells"]
                 o = pd.DataFrame(o.to_dict("list")); o["state"], o["chamber"], o["src"] = st, ch, "medsl2024_labels"; rows.append(o)
+                if ch == "upper": upper_exact[st] = o
         if st == "AZ":                                                 # AZ House districts are the 30 legislative districts (= Senate)
             up_ = [r for r in rows if r["state"].iat[0] == "AZ" and r["chamber"].iat[0] == "upper"]
             if up_:
@@ -351,7 +403,7 @@ def build_2026():
             lo = next((r for r in rows if r["chamber"].iat[0] == "lower" and r["state"].iat[0] == st), None)
             if lo is not None:
                 n = lo.copy(); n["district"] = n["district"].map(NEST[st]); n = n.groupby("district")[["d", "r"]].sum().reset_index()
-                n["state"], n["chamber"], n["src"] = st, "upper", "medsl2024_nested"; rows.append(n)
+                n["state"], n["chamber"], n["src"] = st, "upper", "medsl2024_nested"; rows.append(n); upper_exact[st] = n
     L = pd.concat(rows, ignore_index=True)
     # spatial cross-check / fallback on the 2025 TIGER maps: VEST 2020 + county swing 2020->2024
     sp = []
@@ -376,16 +428,22 @@ def build_2026():
                 s = cw.groupby("district").apply(lambda q: np.average(q["swing"], weights=q["n"]) if q["n"].sum() > 0 else np.nan).rename("swing")
                 o = o.merge(s, left_on="district", right_index=True, how="left")
             else: o["swing"] = np.nan
+            if ch == "upper" and st in lower_cells and st not in ("AZ",):
+                try:
+                    oc = sld_cell_upper(st, v, lower_cells[st], upper_exact.get(st))
+                    o = o.merge(oc[["district", "lean24_cell"]], on="district", how="left")
+                except Exception as e: print("!! sld-cell", st, e)
             o["state"], o["chamber"] = st, ch; QC[f"spatial2025_{st}_{ch}_coverage"] = round(cov, 4); sp.append(o)
             HIST.append(o[["district", "d", "r", "state", "chamber"]].assign(src="vest2020_tiger2025", pres_year=2020, cycle=2026))
     S = pd.concat(sp, ignore_index=True) if sp else pd.DataFrame(columns=["state", "chamber", "district", "lean20", "swing"])
     S["lean24_hat"] = S["lean20"] + S["swing"]
+    if "lean24_cell" in S: S["lean24_hat"] = S["lean24_cell"].fillna(S["lean24_hat"])
     # fallback rows: MI Senate (no 2024 Senate election; map partly redrawn for 2026) and PA odd Senate seats
     have = set(zip(L["state"], L["chamber"], L["district"]))
     fb = S[[(s, c, d) not in have for s, c, d in zip(S["state"], S["chamber"], S["district"])]].copy()
     if len(fb):
         tot = fb["d"] + fb["r"]; m = fb["lean24_hat"] / 100
-        fb["d"], fb["r"] = tot * (1 + m) / 2, tot * (1 - m) / 2; fb["src"] = "vest2020_tiger2025_countyswing"
+        fb["d"], fb["r"] = tot * (1 + m) / 2, tot * (1 - m) / 2; fb["src"] = np.where(fb.get("lean24_cell", pd.Series(np.nan, index=fb.index)).notna(), "vest2020_tiger2025_housecellswing", "vest2020_tiger2025_countyswing")
         L = pd.concat([L, fb[["district", "d", "r", "state", "chamber", "src"]]], ignore_index=True)
     L["lean24"] = 100 * (L["d"] - L["r"]) / (L["d"] + L["r"])
     X = L.merge(S[["state", "chamber", "district", "lean20", "lean24_hat"]], on=["state", "chamber", "district"], how="left")
@@ -408,7 +466,6 @@ def build_hist():
     """Previous-presidential lean on the maps of the 2018 and 2022 elections (leak-free backtest inputs)."""
     for cyc, vy, yy, ty in ((2018, "vest2016", "16", 2018), (2022, "vest2020", "20", 2022)):
         for st in STATES:
-            if st == "NH": continue
             pat = f"{st.lower()}(_{2000 + int(yy)})?\\.zip"
             zp = dv_get(vy, pat)
             if zp is None: print("!! no", vy, st); continue
@@ -416,6 +473,7 @@ def build_hist():
             except Exception as e: print("!!", vy, st, e); continue
             for ch, lay in (("upper", "sldu"), ("lower", "sldl")):
                 if st == "AZ" and ch == "lower": lay = "sldu"
+                if st == "NH" and ch == "lower": continue             # floterials are not in TIGER: NH House by town names below
                 try: t = tiger(ty, FIPS[st], lay); o, cov, _ = areal(v, t, st, ch)
                 except Exception as e: print("!! spatial", cyc, st, ch, e); continue
                 QC[f"hist{cyc}_{st}_{ch}_coverage"] = round(cov, 4)
@@ -452,7 +510,7 @@ def _town(s):
 def m2022_state(st):
     """The 2022 state-offices file is one national CSV (863 MB): one pass writes every state's slim extract."""
     src = dv_get("m2022", "STATE_precinct_general\\.(tab|csv)")
-    slim = lambda s_: src.with_name(src.stem + f".{s_}.slim.parquet")
+    slim = lambda s_: src.with_name(src.stem + f".{s_}.slim2.parquet")
     if not slim(st).exists():
         parts = {s_: [] for s_ in STATES}
         for ch in pd.read_csv(src, dtype=str, chunksize=500_000, low_memory=False, usecols=lambda c: c.lower() in COLS):
@@ -534,7 +592,7 @@ def main():
     if "2026" in steps:
         R24 = build_2026(); build_results(R24)
     if "hist" in steps: build_hist()
-    if "maps" in steps or "2026" in steps:
+    if "maps" in steps:
         for st in STATES:
             for lay in ("sldu", "sldl"):
                 try:

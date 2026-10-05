@@ -132,7 +132,16 @@ def carry_2024(bv: pd.DataFrame, cells24: pd.DataFrame, b119: pd.DataFrame, cm24
     if cm20 is None: cm20 = (pd.Series(dtype=float), pd.Series(dtype=float))
     cs = (z(cm24[0]) - z(cm20[0])).rename("cswing"); ct = (z(cm24[1]) / z(cm20[1])).rename("cturn")
     c = c.reset_index().merge(cs, left_on="county", right_index=True, how="left").merge(ct, left_on="county", right_index=True, how="left")
-    fb = c["swing"].isna() | ~np.isfinite(c["turn"]) | (c["d20"] + c["r20"] < 50)
+    # fallback 1: the 2024 district's own swing (cells whose county code differs between the files, e.g. Kansas City, MO)
+    dd = c.groupby("cd119")[["d20", "r20"]].sum().join(cells24.groupby("district")[["d", "r"]].sum().rename(columns={"d": "d24", "r": "r24"}), how="left")
+    dd["dswing"] = 100 * (dd["d24"] - dd["r24"]) / (dd["d24"] + dd["r24"]) - 100 * (dd["d20"] - dd["r20"]) / (dd["d20"] + dd["r20"])
+    dd["dturn"] = (dd["d24"] + dd["r24"]) / (dd["d20"] + dd["r20"])
+    c = c.merge(dd[["dswing", "dturn"]], left_on="cd119", right_index=True, how="left")
+    bad = c["swing"].isna() | ~np.isfinite(c["turn"]) | (c["d20"] + c["r20"] < 50) | ~c["turn"].between(0.6, 1.6)
+    QC.setdefault("cell_invalid_share", []).append(round(float((c.loc[bad, "d20"] + c.loc[bad, "r20"]).sum() / (c["d20"] + c["r20"]).sum()), 4))
+    fb1 = bad & c["dswing"].notna() & np.isfinite(c["dturn"])
+    c.loc[fb1, "swing"] = c.loc[fb1, "dswing"]; c.loc[fb1, "turn"] = c.loc[fb1, "dturn"]
+    fb = bad & ~fb1
     QC.setdefault("cell_fallback_share", []).append(round(float((c.loc[fb, "d20"] + c.loc[fb, "r20"]).sum() / (c["d20"] + c["r20"]).sum()), 4))
     c.loc[fb, "swing"] = c.loc[fb, "cswing"]; c.loc[fb, "turn"] = c.loc[fb, "cturn"]
     c["swing"] = c["swing"].fillna(0.0); c["turn"] = c["turn"].replace([np.inf, -np.inf], np.nan).fillna(1.0)

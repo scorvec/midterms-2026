@@ -46,7 +46,7 @@ jobs:
             probe) python -m midterms.stateleg_probe ;;
             build) python -m midterms.stateleg_build ;;
             wiki)  python -m midterms.stateleg_wiki ;;
-            all)   rc=0; python -m midterms.stateleg_build || rc=$?; python -m midterms.cd_lean_build || rc=1; exit $rc ;;
+            all)   rc=0; python -m midterms.stateleg_build || rc=$?; python -m midterms.cd_lean_build || rc=1; python -m midterms.stateleg_wiki || rc=1; exit $rc ;;
             cd)    python -m midterms.cd_lean_build ;;
             *:*) python -m midterms.${STEP%%:*} $(echo "${STEP#*:}" | tr ',' ' ') ;;
             *) python -m midterms.$STEP ;;

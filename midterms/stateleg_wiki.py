@@ -135,7 +135,11 @@ def parse_page(st, ch, html):
                 nm = str(r["Incumbent"])
                 if not dist or nm.lower() == "nan": continue
                 pty = next((party_code(r[c]) for c in pcols if party_code(r[c])), None)
-                summ.setdefault(dist, []).append({"name": clean_name(nm), "party": pty, "retiring": "†" in nm, "status": str(r.get("Status", ""))})
+                pc24 = next((c for c in cols if c.lower().startswith("2024 pres")), None); p24 = None
+                if pc24:
+                    mm = re.match(r"\s*([DR])\+\s*([\d.]+)", str(r[pc24]))
+                    if mm: p24 = float(mm.group(2)) * (1 if mm.group(1) == "D" else -1)
+                summ.setdefault(dist, []).append({"name": clean_name(nm), "party": pty, "retiring": "†" in nm, "status": str(r.get("Status", "")), "p24": p24})
     # retirement / outgoing lists
     ret = []
     for m in re.finditer(r'<h[234][^>]*id="([^"]*(Retir|Outgoing|Term-limited|Term_limited|Seeking|Lost_renomination|defeated|Declined)[^"]*)"', html, re.I):
@@ -161,6 +165,7 @@ def build(states=("MI", "MN", "WI", "AZ", "PA", "NH", "NC")):
                              "dem": "; ".join(clean_name(n) for p, n in c if p == "D"), "rep": "; ".join(clean_name(n) for p, n in c if p == "R"),
                              "inc_marks": "; ".join(recs.get(d, {}).get("inc_marks", [])),
                              "inc_names": "; ".join(f"{x['name']}|{x['party'] or ''}|{int(x['retiring'])}|{x['status'][:30]}" for x in inc),
+                             "pres24_page": next((x["p24"] for x in inc if x.get("p24") is not None), None),
                              "source": recs.get(d, {}).get("source", "summary only" if inc else "")})
             print(f"  {t}: {len(recs)} districts with candidates, {len(summ)} with incumbents, {len(ret)} retirement-list items")
             rows.append({"state": st, "chamber": ch, "district": "_retirements", "dem": "; ".join(ret)[:20000]})
@@ -169,8 +174,20 @@ def build(states=("MI", "MN", "WI", "AZ", "PA", "NH", "NC")):
     return out
 
 
+def qc_leans(o):
+    """Internal check only (never published): our 2024 presidential margins v the margins some chamber pages print."""
+    from .paths import STATIC
+    try: L = pd.read_csv(STATIC / "stateleg" / "lean_2026.csv", dtype={"district": str})
+    except FileNotFoundError: return
+    q = o.dropna(subset=["pres24_page"]).merge(L[["state", "chamber", "district", "lean24", "src"]], on=["state", "chamber", "district"], how="inner")
+    for (st, ch), g in q.groupby(["state", "chamber"]):
+        e = g["lean24"] - g["pres24_page"]
+        print(f"  QC {st} {ch}: ours v page 2024 margin, n {len(g)}, rms {float((e ** 2).mean()) ** 0.5:.2f}, max {e.abs().max():.1f} "
+              f"(worst {g.loc[e.abs().idxmax(), 'district']}: ours {g.loc[e.abs().idxmax(), 'lean24']:.1f} v {g.loc[e.abs().idxmax(), 'pres24_page']:.1f}; {g['src'].iat[0]})")
+
+
 if __name__ == "__main__":
-    o = build()
+    o = build(); qc_leans(o)
     print(o[o.district != "_retirements"].groupby(["state", "chamber"]).agg(n=("district", "size"), with_cands=("n_dem", lambda x: x.notna().sum()),
           no_dem=("n_dem", lambda x: (x == 0).sum()), no_rep=("n_rep", lambda x: (x == 0).sum())).to_string())
     print(o[o.district != "_retirements"].groupby(["state", "chamber"]).head(3).to_string(max_colwidth=50)[:6000])
