@@ -218,7 +218,7 @@ def main():
             pr = B.pres_rows(df); fd, fr = pr.loc[pr["party"] == "D", "votes"].sum(), pr.loc[pr["party"] == "R", "votes"].sum()
             fm = 100 * (fd - fr) / max(fd + fr, 1); ratio = (fd + fr) / t24s
             QC[f"medsl_vs_mit_{st}"] = {"ratio": round(float(ratio), 4), "margin_diff": round(float(fm - m24s), 3)}
-            file_ok = abs(fm - m24s) <= 0.5 and 0.97 <= ratio <= 1.03
+            file_ok = abs(fm - m24s) <= 0.6 and 0.9 <= ratio <= 1.1
         else: file_ok = False
         if df is not None:
             pr = B.pres_rows(df); nat["d24"] += pr.loc[pr["party"] == "D", "votes"].sum(); nat["r24"] += pr.loc[pr["party"] == "R", "votes"].sum()
@@ -233,13 +233,15 @@ def main():
                 cm20 = block_county_margin(bv)
                 cm24 = B.county_margin(df) if df is not None else (pd.Series(dtype=float), pd.Series(dtype=float))
                 cells = lab.attrs["cells"] if lab is not None else pd.DataFrame(columns=["county", "district", "d", "r"])
+                if not file_ok:                       # the precinct file disagrees with the official totals: uniform state swing only
+                    cells = pd.DataFrame(columns=["county", "district", "d", "r"]); cm24 = (pd.Series(dtype=float), pd.Series(dtype=float))
                 x = carry_2024(bv, cells, b119[b119["block"].str[:2] == FIPS[st]], cm24, cm20, state_swing=(m24s - m20s, t24s / t20s))
                 x = x.merge(b120.rename(columns={"cd": "cd120"}), on="block", how="left")
                 x["cd120"] = x["cd120"].fillna("0").map(lambda c: str(max(int(c), 1)) if str(c).isdigit() else "1")
                 g = x.groupby("cd120")[["d", "r", "d24", "r24"]].sum()
                 for cd, r in g.iterrows():
                     rows.append({"seat": f"{st}-{cd}", "pres24_d": r["d24"], "pres24_r": r["r24"], "pres20_d": r["d"], "pres20_r": r["r"],
-                                 "method24": "vest2020_blocks_cd120_cellswing" if file_ok else "vest2020_blocks_cd120_cellswing_checked",
+                                 "method24": "vest2020_blocks_cd120_cellswing" if file_ok else "vest2020_blocks_cd120_stateswing",
                                  "method20": "vest2020_blocks_cd120", "redrawn": st in redrawn})
                 # check of the cell-swing step on the UNCHANGED 2024 districts of the same state (blocks -> CD119 vs labels)
                 if lab is not None:

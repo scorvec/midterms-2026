@@ -250,6 +250,8 @@ def results_from_medsl(df, st, year):
 def county_margin(df):
     pr = pres_rows(df); pr = pr[pr["party"].isin(["D", "R"])]
     v = pr.groupby(["county_fips", "party"])["votes"].sum().unstack(fill_value=0.0)
+    for c in "DR":
+        if c not in v: v[c] = 0.0
     return (100 * (v["D"] - v["R"]) / (v["D"] + v["R"])).rename("m"), (v["D"] + v["R"]).rename("n")
 
 

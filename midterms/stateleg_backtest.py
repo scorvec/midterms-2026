@@ -141,7 +141,7 @@ def run_cycle(cycle, n=10000, seed=3, arm="base"):
         outcome = "D" if actual > tot_eff / 2 else ("R" if act_r > tot_eff / 2 else "T")
         pD = float(cd.mean())
         cov = tot_eff / total
-        ch_rows.append({"cycle": cycle, "chamber": name, "seats_modelled": tot_eff, "coverage": round(cov, 3), "scored": cov >= 0.95, "p_d": round(pD, 3), "mean_d": round(float(ds.mean()), 1),
+        ch_rows.append({"cycle": cycle, "chamber": name, "seats_modelled": tot_eff, "coverage": round(cov, 3), "scored": cov >= 0.99, "p_d": round(pD, 3), "mean_d": round(float(ds.mean()), 1),
                         "p10": int(np.percentile(ds, 10)), "p90": int(np.percentile(ds, 90)), "actual_d": actual, "outcome": outcome,
                         "pit": round(float((ds < actual).mean() + 0.5 * (ds == actual).mean()), 3),
                         "prev_majority": prev.get((st, ch)), "brier": round((pD - (outcome == "D")) ** 2, 4),
@@ -163,6 +163,18 @@ def main():
             print(f"\n{cyc} [{arm}] E {r['E']:+.1f} s_E {r['s_E']:.1f}: seat Brier {r['seat_brier']:.4f} log loss {r['seat_logloss']:.4f} "
                   f"(n {r['n_slots_contested']}), baseline seat error rate {r['baseline_seat_error_rate']:.3f}, no-lean seats {r['seats_without_lean']}")
             print(pd.DataFrame(r["chambers"]).to_string(index=False))
+    # summary: chamber control Brier (model) v the naive "current majority holds" call, scored chambers only
+    for arm in ("base", "state"):
+        rows = [c for r in out if r.get("arm") == arm for c in r.get("chambers", []) if c["scored"] and c["outcome"] != "T"]
+        if not rows: continue
+        bm = np.mean([c["brier"] for c in rows]); bn = np.mean([float(c["prev_majority"] != c["outcome"]) for c in rows])
+        calls = np.mean([bool(c["call_ok"]) for c in rows]); naive = np.mean([bool(c["naive_ok"]) for c in rows])
+        ll = np.mean([-np.log(min(max(c["p_d"] if c["outcome"] == "D" else 1 - c["p_d"], 1e-3), 1)) for c in rows])
+        inband = np.mean([c["p10"] <= c["actual_d"] <= c["p90"] for c in rows])
+        print(f"[{arm}] {len(rows)} chamber-elections: control Brier {bm:.3f} (naive {bn:.3f}), log loss {ll:.3f}, calls right {calls:.0%} "
+              f"(naive {naive:.0%}), seat count inside 80% range {inband:.0%}")
+        out.append({"summary": arm, "n": len(rows), "brier": round(bm, 4), "naive_brier": round(bn, 4), "logloss": round(ll, 4), "calls": round(calls, 3),
+                    "naive_calls": round(naive, 3), "in80": round(inband, 3)})
     (SLM.SL / "backtest.json").write_text(json.dumps(out, indent=1, default=lambda o: bool(o) if isinstance(o, (np.bool_,)) else str(o)))
 
 

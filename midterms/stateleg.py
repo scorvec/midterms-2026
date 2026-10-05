@@ -169,6 +169,8 @@ def hist_table(cycle):
     """Seats up in a past cycle (target states) with lean, incumbency, slates and the result (Klarner)."""
     k = klarner(); np_ = nat_pres(); L = pd.read_csv(SL / "lean_hist.csv", dtype={"district": str})
     L = L[L["cycle"] == cycle].copy(); L["lean"] = L["lean"] - np_[int(L["pres_year"].iloc[0])]
+    L["pref"] = L["src"].str.contains("tiger").astype(int)               # shapes x TIGER over town-name matching where both exist
+    L = L.sort_values("pref", ascending=False).drop_duplicates(["state", "chamber", "district"])
     q = k[(k["year"] == cycle) & k["sab"].isin([c[0] for c in CHAMBERS])].copy()
     q = q.rename(columns={"sab": "state"})
     q = q.merge(L[["state", "chamber", "district", "lean"]], on=["state", "chamber", "district"], how="left")

@@ -134,12 +134,13 @@ def parse_page(st, ch, html):
     for tb in tabs:
         cols = [" ".join(map(str, c)) if isinstance(c, tuple) else str(c) for c in tb.columns]; tb.columns = cols
         if "District" not in cols: continue
-        if "Candidate" in cols and not recs:
-            ci = cols.index("Candidate"); pc = cols[ci - 1]
+        if "Candidate" in cols and len(tb) >= 10:                       # district breakdown: overrides boxes (specials) for its districts
+            ci = cols.index("Candidate"); pc = cols[ci - 1]; bt = {}
             for _, r in tb.iterrows():
                 dist = norm_dist(st, ch, r["District"]); nm = str(r["Candidate"])
                 if not dist or nm.lower() in ("nan", "no candidate filed"): continue
-                recs.setdefault(dist, {"cands": [], "source": "breakdown table", "inc_marks": []})["cands"].append((party_code(r[pc]) or "O", nm))
+                bt.setdefault(dist, {"cands": [], "source": "breakdown table", "inc_marks": []})["cands"].append((party_code(r[pc]) or "O", nm))
+            recs.update(bt)
         if "Incumbent" in cols:
             pcols = [c for c in cols if c.startswith("Party")]
             dcols = [c for c in cols if c.startswith("District")]
@@ -164,7 +165,7 @@ def parse_page(st, ch, html):
     return recs, summ, ret
 
 
-def build(states=("MI", "MN", "WI", "AZ", "PA", "NH", "NC")):
+def build(states=("MI", "MN", "WI", "AZ", "PA", "NH", "NC"), debug=False):
     rows = []
     for st in states:
         for ch in ("upper", "lower"):
@@ -172,6 +173,10 @@ def build(states=("MI", "MN", "WI", "AZ", "PA", "NH", "NC")):
             try: html = W.fetch(t)
             except Exception as e: print(f"  {t}: fetch failed ({str(e)[:60]})"); continue
             recs, summ, ret = parse_page(st, ch, html)
+            if debug and (st, ch) in (("MN", "lower"), ("MN", "upper"), ("NH", "upper"), ("NH", "lower")):
+                i = html.find('id="District_1A"') if st == "MN" else html.find('id="District_1"')
+                i = i if i >= 0 else html.find("Candidates")
+                txt = re.sub(r"\s+", " ", html[max(i, 0): max(i, 0) + 2500]); print(f"  DEBUG {st} {ch} excerpt: {txt}")
             for d in sorted(set(recs) | set(summ), key=lambda x: (len(x), x)):
                 c = recs.get(d, {}).get("cands", [])
                 inc = summ.get(d, [])
@@ -207,7 +212,8 @@ def qc_leans(o):
 
 
 if __name__ == "__main__":
-    o = build(); qc_leans(o)
+    import sys
+    o = build(debug="debug" in sys.argv); qc_leans(o)
     print(o[o.district != "_retirements"].groupby(["state", "chamber"]).agg(n=("district", "size"), with_cands=("n_dem", lambda x: x.notna().sum()),
           no_dem=("n_dem", lambda x: (x == 0).sum()), no_rep=("n_rep", lambda x: (x == 0).sum())).to_string())
     print(o[o.district != "_retirements"].groupby(["state", "chamber"]).head(3).to_string(max_colwidth=50)[:6000])
