@@ -6,6 +6,14 @@
   "early_voting_dates": [],
   "counties": 254,
   "index_date_updated": "10/05/2026",
-  "retrieved_utc": "2026-10-05T22:19Z"
+  "retrieved_utc": "2026-10-05T22:22Z"
+ },
+ "tx_county_pres2024": {
+  "file": "data/static/tx_county_pres2024.csv",
+  "source": "doi:10.7910/DVN/NYTPDU, file 2024-tx-precinct-general (precincts summed by county)",
+  "publisher": "MIT Election Data and Science Lab, 2024 precinct-level returns (CC0)",
+  "retrieved_utc": "2026-10-05T22:23Z",
+  "statewide_R_margin": 13.66,
+  "total_votes": 11404528
  }
 }
