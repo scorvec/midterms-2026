@@ -1,0 +1,88 @@
+state,chamber,page,in_model,klarner22_districts,klarner22_seats,klarner22_one_party,multi_member_2022,page_ok,districts_parsed,districts_summary,sources,districts_trusted,trusted_one_party
+AL,upper,2026 Alabama Senate election,False,35,35,27,False,True,35,0,{'general box': 35},35,20
+AL,lower,2026 Alabama House of Representatives election,False,105,105,80,False,True,46,0,"{'primary winners': 30, 'general box': 16}",16,9
+AK,upper,2026 Alaska Senate election,False,19,19,11,False,True,0,0,{},0,0
+AK,lower,2026 Alaska House of Representatives election,False,40,40,24,False,True,39,40,{'primary winners': 39},0,0
+AZ,upper,2026 Arizona Senate election,True,30,30,10,False,True,30,0,{'primary winners': 30},0,0
+AZ,lower,2026 Arizona House of Representatives election,True,30,60,10,True,True,30,0,{'primary winners': 30},0,0
+AR,upper,2026 Arkansas Senate election,False,35,35,22,False,True,17,0,{'general box': 17},17,13
+AR,lower,2026 Arkansas House of Representatives election,False,100,100,65,False,True,4,0,{'primary winners': 4},0,0
+CA,upper,2026 California Senate election,False,20,20,5,False,True,20,0,{'general box': 20},20,1
+CA,lower,2026 California State Assembly election,False,80,80,22,False,True,80,0,{'general box': 80},80,12
+CO,upper,2026 Colorado Senate election,False,17,17,2,False,True,1,0,{'general box': 1},1,0
+CO,lower,2026 Colorado House of Representatives election,False,65,65,4,False,True,0,0,{},0,0
+CT,upper,2026 Connecticut Senate election,False,36,36,15,False,True,36,0,{'general box': 36},36,7
+CT,lower,2026 Connecticut House of Representatives election,False,151,151,79,False,True,151,151,{'general box': 151},151,35
+DE,upper,2026 Delaware Senate election,False,21,21,11,False,True,6,0,{'primary winners': 6},0,0
+DE,lower,2026 Delaware House of Representatives election,False,41,41,16,False,True,0,0,{},0,0
+FL,upper,2026 Florida Senate election,False,40,40,17,False,True,23,20,{'general box': 23},23,3
+FL,lower,2026 Florida House of Representatives election,False,120,120,53,False,True,8,120,"{'general box': 5, 'candidate list': 2, 'prose': 1}",5,0
+GA,upper,2026 Georgia Senate election,False,56,56,30,False,True,1,0,{'general box': 1},1,0
+GA,lower,2026 Georgia House of Representatives election,True,180,180,94,False,True,180,180,"{'primary winners': 176, 'general box': 4}",4,0
+HI,upper,2026 Hawaii Senate election,False,25,25,4,False,True,2,13,{'prose': 2},0,0
+HI,lower,2026 Hawaii House of Representatives election,False,51,51,11,False,True,23,51,{'primary winners': 23},0,0
+ID,upper,2026 Idaho Senate election,False,35,35,22,False,True,0,0,{},0,0
+ID,lower,2026 Idaho House of Representatives election,False,70,70,38,False,True,0,0,{},0,0
+IL,upper,2026 Illinois Senate election,False,59,59,34,False,True,9,39,"{'general box': 5, 'primary winners': 4}",5,1
+IL,lower,2026 Illinois House of Representatives election,False,118,118,40,False,True,17,0,"{'primary winners': 16, 'prose': 1}",0,0
+IN,upper,2026 Indiana Senate election,False,25,25,8,False,True,24,0,"{'general box': 23, 'primary winners': 1}",23,1
+IN,lower,2026 Indiana House of Representatives election,False,100,100,47,False,True,77,0,"{'general box': 71, 'primary winners': 5, 'prose': 1}",71,2
+IA,upper,2026 Iowa Senate election,False,34,34,11,False,True,24,0,{'general box': 24},24,11
+IA,lower,2026 Iowa House of Representatives election,True,100,100,48,False,True,2,91,{'prose': 2},0,0
+KS,lower,2026 Kansas House of Representatives election,False,125,125,65,False,True,1,0,{'prose': 1},0,0
+KY,upper,2026 Kentucky Senate election,False,19,19,11,False,True,19,19,{'general box': 19},19,10
+KY,lower,2026 Kentucky House of Representatives election,False,100,100,54,False,True,100,100,{'general box': 100},100,52
+ME,upper,2026 Maine Senate election,False,35,35,0,False,True,0,0,{},0,0
+ME,lower,2026 Maine House of Representatives election,False,151,151,38,False,True,2,0,{'general box': 2},2,0
+MD,upper,2026 Maryland Senate election,False,47,47,20,False,True,47,0,{'general box': 47},47,20
+MD,lower,2026 Maryland House of Delegates election,False,71,141,27,True,True,47,47,{'general box': 47},47,18
+MA,upper,2026 Massachusetts Senate election,False,40,40,22,False,True,0,0,{},0,0
+MA,lower,2026 Massachusetts House of Representatives election,False,160,160,118,False,True,0,0,{},0,0
+MI,upper,2026 Michigan Senate election,True,38,38,1,False,True,38,0,{'general box': 38},38,0
+MI,lower,2026 Michigan House of Representatives election,True,110,110,1,False,True,110,110,"{'general box': 94, 'primary winners': 16}",94,0
+MN,upper,2026 Minnesota Senate election,True,67,67,9,False,True,0,0,{},0,0
+MN,lower,2026 Minnesota House of Representatives election,True,134,134,17,False,True,134,134,"{'candidate list': 115, 'primary winners': 17, 'general box': 2}",2,1
+MO,upper,2026 Missouri Senate election,False,17,17,6,False,True,0,17,{},0,0
+MO,lower,2026 Missouri House of Representatives election,False,163,163,94,False,True,0,0,{},0,0
+MT,upper,2026 Montana Senate election,False,25,25,7,False,True,1,0,{'prose': 1},0,0
+MT,lower,2026 Montana House of Representatives election,False,100,100,32,False,True,0,0,{},0,0
+NV,upper,2026 Nevada Senate election,False,11,11,2,False,True,4,0,"{'primary winners': 3, 'candidate list': 1}",0,0
+NV,lower,2026 Nevada Assembly election,False,42,42,7,False,True,23,1,"{'primary winners': 22, 'candidate list': 1}",0,0
+NH,upper,2026 New Hampshire Senate election,True,24,24,2,False,True,11,0,{'candidate list': 11},0,0
+NH,lower,2026 New Hampshire House of Representatives election,True,203,400,23,True,True,0,203,{},0,0
+NM,lower,2026 New Mexico House of Representatives election,False,70,70,36,False,True,0,0,{},0,0
+NY,upper,2026 New York State Senate election,False,63,63,55,False,True,17,0,"{'primary winners': 12, 'general box': 3, 'prose': 2}",3,0
+NY,lower,2026 New York State Assembly election,False,150,150,128,False,True,8,1,"{'candidate list': 5, 'general box': 3}",3,1
+NC,upper,2026 North Carolina Senate election,True,50,50,15,False,True,50,0,{'general box': 50},50,5
+NC,lower,2026 North Carolina House of Representatives election,True,120,120,39,False,True,120,0,{'general box': 120},120,31
+ND,upper,2026 North Dakota Senate election,False,32,32,20,False,True,0,0,{},0,0
+ND,lower,2026 North Dakota House of Representatives election,False,35,66,16,True,True,26,0,{'primary winners': 26},0,0
+OH,upper,2026 Ohio Senate election,False,17,17,5,False,True,17,0,{'primary winners': 17},0,0
+OH,lower,2026 Ohio House of Representatives election,False,99,99,30,False,True,85,0,"{'general box': 57, 'primary winners': 27, 'prose': 1}",57,2
+OK,upper,2026 Oklahoma Senate election,False,24,24,17,False,True,0,0,{},0,0
+OK,lower,2026 Oklahoma House of Representatives election,False,101,101,72,False,True,0,0,{},0,0
+OR,upper,2026 Oregon Senate election,False,15,15,1,False,True,15,0,{'general box': 15},15,0
+OR,lower,2026 Oregon House of Representatives election,False,60,60,5,False,True,0,0,{},0,0
+PA,upper,2026 Pennsylvania Senate election,True,25,25,4,False,True,26,25,"{'breakdown table': 25, 'general box': 1}",26,7
+PA,lower,2026 Pennsylvania House of Representatives election,True,203,203,83,False,True,203,203,{'breakdown table': 203},203,60
+RI,upper,2026 Rhode Island Senate election,False,38,38,12,False,True,0,0,{},0,0
+RI,lower,2026 Rhode Island House of Representatives election,False,75,75,38,False,True,15,0,"{'general box': 14, 'primary winners': 1}",14,12
+SC,lower,2026 South Carolina House of Representatives election,False,124,124,74,False,True,0,124,{},0,0
+SD,upper,2026 South Dakota Senate election,False,35,35,23,False,True,22,0,{'primary winners': 22},0,0
+SD,lower,2026 South Dakota House of Representatives election,False,37,70,14,True,True,27,0,{'primary winners': 27},0,0
+TN,upper,2026 Tennessee Senate election,False,17,17,9,False,True,17,0,"{'primary winners': 16, 'general box': 1}",1,1
+TN,lower,2026 Tennessee House of Representatives election,False,99,99,63,False,True,99,0,"{'primary winners': 98, 'candidate list': 1}",0,0
+TX,upper,2026 Texas Senate election,False,31,31,13,False,True,16,0,{'general box': 16},16,3
+TX,lower,2026 Texas House of Representatives election,True,150,150,70,False,True,149,1,"{'general box': 143, 'primary winners': 6}",143,14
+UT,upper,2026 Utah Senate election,False,14,14,7,False,True,15,15,{'general box': 15},15,3
+UT,lower,2026 Utah House of Representatives election,False,75,75,37,False,True,0,75,{},0,0
+VT,upper,2026 Vermont Senate election,False,16,30,4,True,True,0,0,{},0,0
+VT,lower,2026 Vermont House of Representatives election,False,109,150,53,True,True,0,0,{},0,0
+WA,upper,2026 Washington Senate election,False,24,24,10,False,True,24,0,{'general box': 24},24,12
+WA,lower,2026 Washington House of Representatives election,False,98,98,37,False,True,49,0,{'general box': 49},49,21
+WV,upper,2026 West Virginia Senate election,False,17,17,5,False,True,17,0,{'general box': 17},17,1
+WV,lower,2026 West Virginia House of Delegates election,False,100,100,25,False,True,6,0,{'general box': 6},6,1
+WI,upper,2026 Wisconsin Senate election,True,17,17,5,False,True,17,0,{'general box': 17},17,4
+WI,lower,2026 Wisconsin State Assembly election,True,99,99,26,False,True,96,3,{'general box': 96},96,9
+WY,upper,2026 Wyoming Senate election,False,16,16,10,False,True,17,0,{'primary winners': 17},0,0
+WY,lower,2026 Wyoming House of Representatives election,False,62,62,43,False,True,0,0,{},0,0
