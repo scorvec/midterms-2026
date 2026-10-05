@@ -115,6 +115,68 @@
   0.0,
   0.0
  ],
+ "map_status": {
+  "AL": {
+   "bef120": "unverified - the seat table and our lean disagree on AL-2 (Cook R+7, ours R+10)",
+   "in_force": "2023 legislature map, Supreme Court lifted the injunction (May 11 / June 2, 2026)",
+   "map": 120,
+   "source": "Bloomberg Law 'What we know about the race to redraw 2026 lines' (checked 2026-10-05)"
+  },
+  "CA": {
+   "bef120": "unverified",
+   "in_force": "Prop 50 map: three-judge panel rejected the challenge, Supreme Court denied review",
+   "map": 120,
+   "source": "same, checked 2026-10-05"
+  },
+  "FL": {
+   "bef120": "unverified",
+   "in_force": "2026 map signed 2026-05-04, litigation pending",
+   "map": 120,
+   "source": "same, checked 2026-10-05"
+  },
+  "LA": {
+   "bef120": "unverified",
+   "in_force": "UNRESOLVED: Callais voided the 2024 map; new map / suspended House primaries",
+   "map": 120,
+   "source": "Bloomberg Law (checked 2026-10-05)"
+  },
+  "MO": {
+   "bef120": "n/a",
+   "in_force": "2022 map (6-2): U.S. Supreme Court blocked the 2025 map and ordered the 2022 map for 2026, 2026-09-25",
+   "map": 119,
+   "source": "PBS / Missouri Independent / The Hill, 2026-09-25; Wikipedia '2025 Missouri redistricting'"
+  },
+  "NC": {
+   "bef120": "unverified",
+   "in_force": "2025 map, litigation on the merits pending",
+   "map": 120,
+   "source": "same, checked 2026-10-05"
+  },
+  "OH": {
+   "bef120": "unverified",
+   "in_force": "2025 map, no live challenge",
+   "map": 120,
+   "source": "same, checked 2026-10-05"
+  },
+  "TN": {
+   "bef120": "unverified",
+   "in_force": "2026 map passed 2026-05-07",
+   "map": 120,
+   "source": "Wikipedia '2026 Tennessee redistricting' (checked 2026-10-05)"
+  },
+  "TX": {
+   "bef120": "unverified",
+   "in_force": "2025 map: three-judge panel ruling stayed by the U.S. Supreme Court",
+   "map": 120,
+   "source": "Ballotpedia / Wikipedia '2025-2026 United States redistricting' (checked 2026-10-05)"
+  },
+  "UT": {
+   "bef120": "unverified",
+   "in_force": "court-ordered plaintiffs' Map 1 (Judge Gibson; federal court cleared it)",
+   "map": 120,
+   "source": "KSL / NBC News (checked 2026-10-05)"
+  }
+ },
  "medsl_vs_mit_AL": {
   "margin_diff": -28.185,
   "ratio": 1.6885
@@ -323,7 +385,18 @@
  "pres20_areal_VA_coverage": 1.0,
  "pres20_areal_WI_coverage": 1.0,
  "pres20_areal_WV_coverage": 1.0,
- "redrawn_states": {
+ "redrawn_states": [
+  "AL",
+  "CA",
+  "FL",
+  "LA",
+  "NC",
+  "OH",
+  "TN",
+  "TX",
+  "UT"
+ ],
+ "redrawn_states_in_bef120": {
   "AL": 0.1265,
   "CA": 0.2567,
   "FL": 0.2548,
