@@ -70,6 +70,8 @@ def check():
     complete trusted slates; one-party seats against 2024 (MEDSL) and 2022 (Klarner); sitting members for held seats."""
     import sys
     from .paths import CACHE
+    from .cd_lean_build import mit
+    mit()                                                         # the MIT presidential file (national margin), once
     W.FRESH_SINCE = None
     SW.build()                                                    # candidates for CHAMBERS + PENDING -> data/cache
     C = pd.read_csv(CACHE / "stateleg_candidates.csv", dtype={"district": str})
