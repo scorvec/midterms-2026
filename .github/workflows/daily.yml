@@ -51,7 +51,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # data/raw (fixed public downloads, UF/FL early-vote snapshots, registration files) and data/cache (Wikipedia page
+      # data/raw (fixed public downloads, UF/FL/TX early-vote snapshots, registration files) and data/cache (Wikipedia page
       # cache, the reconstructed history) carry over between runs. A rolling key: every run saves a new entry and restores
       # the newest. Losing it only costs time (bootstrap re-downloads, the backfill rebuilds in ~10 min) - except the
       # day-by-day diagnostic snapshots (FL statistics files, UF counts), which nothing in the forecast needs.
@@ -92,6 +92,13 @@ jobs:
           elif [ "$rc" != "0" ]; then
             exit "$rc"
           fi
+
+      # Texas early vote (midterms/tx_early.py), DIAGNOSTIC ONLY, next to the FL/PA trackers inside the daily run: from
+      # Oct 19 the SOS county file of each early-voting day (one conditional request per file per day) into
+      # data/raw/tx_stats, then web/data/tx_early.json against the committed 2022 baseline (uploaded with the diagnostics).
+      - name: Texas early vote (diagnostic)
+        if: ${{ !cancelled() }}
+        run: python -m midterms.tx_early || echo "::warning::Texas early-vote tracker failed (diagnostic only)"
 
       - name: Save data cache
         if: ${{ always() && steps.run.outcome != 'cancelled' }}
@@ -144,6 +151,7 @@ jobs:
           path: |
             web/data/pollster_deltas.json
             web/data/registration.json
+            web/data/tx_early.json
             data/cache/pa_early_pace.csv
             data/cache/registration_*.csv
             data/cache/pollster_quality_2026.csv

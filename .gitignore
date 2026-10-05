@@ -4,6 +4,7 @@ data/cache/
 # diagnostics that are not published
 web/data/pollster_deltas.json
 web/data/registration.json
+web/data/tx_early.json
 web/data/county.json
 # local
 logs/

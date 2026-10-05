@@ -1,0 +1,86 @@
+name: tx early-vote baseline (one-time)
+
+# ONE-TIME: builds the 2022 comparison for the Texas early-vote tracker (midterms/tx_early.py, diagnostic only) and commits
+#   data/static/tx_early_2022.csv       2022 general, cumulative early votes by county and early-voting day (Texas SOS)
+#   data/static/tx_county_pres2024.csv  2024 president by county (MIT Election Lab, CC0), to check the county groups
+#   data/static/tx_early_sources.json   sources, retrieval time, checks; what the SOS index lists for the 2026 general
+# Parts already committed are skipped (force rebuilds them). Remove this workflow once the baseline is in.
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Rebuild parts that are already committed"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tx-early-baseline
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build
+        id: build
+        run: |
+          set +e
+          python -m midterms.tx_early baseline ${{ inputs.force && '--force' || '' }}
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+      - name: Upload pages and outputs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: tx-early-baseline-${{ github.run_id }}
+          retention-days: 30
+          if-no-files-found: ignore
+          path: |
+            data/raw/tx_stats/legacy2022
+            data/static/tx_early_2022.csv
+            data/static/tx_county_pres2024.csv
+            data/static/tx_early_sources.json
+      # snapshot, then resync to the newest main on each attempt (the daily bot commits there), restore, commit, push
+      - name: Commit
+        run: |
+          set -uo pipefail
+          paths=""
+          for f in data/static/tx_early_2022.csv data/static/tx_county_pres2024.csv data/static/tx_early_sources.json; do
+            [ -e "$f" ] && paths="$paths $f"
+          done
+          if [ -z "$paths" ]; then echo "nothing built"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          SNAP=$(mktemp -d)
+          git add -A -- $paths
+          git diff --staged --name-only -z | tar cf "$SNAP/outs.tar" --null -T -
+          git reset -q
+          for i in 1 2 3 4 5; do
+            if ! timeout 120 git fetch -q origin "$GITHUB_REF_NAME"; then echo "fetch $i failed"; sleep 5; continue; fi
+            git reset -q --hard "origin/$GITHUB_REF_NAME"
+            tar xf "$SNAP/outs.tar"
+            git add -A -- $paths
+            if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "Texas early-vote baseline: 2022 general by county and early-voting day (Texas SOS), 2024 county results (MIT Election Lab)"
+            if timeout 180 git push -q origin "HEAD:$GITHUB_REF_NAME"; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push $i rejected; resyncing and retrying"; sleep $((i * 5))
+          done
+          echo "::error::push failed after 5 attempts"; exit 1
+      - name: Fail when a part did not build
+        if: ${{ steps.build.outputs.rc != '0' }}
+        run: |
+          echo "::error::baseline incomplete; see the Build log and the uploaded pages"; exit 1
