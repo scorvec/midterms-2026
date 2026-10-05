@@ -92,7 +92,9 @@ def _votes(v):
     v = re.sub(r"[^\d]", "", str(v)); return int(v) if v else None
 
 
-def from_boxes(boxes):
+def from_boxes(boxes, k=1):
+    """Nominees: the last general-election box, else each party's primary winners (the top k by votes in a k-seat district; a
+    party that nominated fewer, e.g. a single-shot in Arizona, keeps fewer)."""
     gen = [b for b in boxes if not re.search(r"primary|convention|caucus", b[0], re.I)]
     if gen:
         rows = gen[-1][1]; src = "general box"
@@ -100,10 +102,10 @@ def from_boxes(boxes):
         rows, src = [], "primary winners"
         for p in ("D", "R"):
             for cap, rr in boxes:
-                q = [r for r in rr if r[0] == p]
+                q = [r for r in rr if r[0] == p and not re.search(r"write-in", r[1], re.I)]
                 if not q: continue
-                best = max(q, key=lambda r: _votes(r[2]) or 0) if any(_votes(r[2]) for r in q) else (q[0] if len(q) == 1 else None)
-                if best: rows.append(best); break
+                if any(_votes(r[2]) for r in q): q = sorted(q, key=lambda r: -(_votes(r[2]) or 0))
+                rows += q[:k]; break
     return [(p, n) for p, n, _ in rows if not re.search(r"write-in|total|other", n, re.I)], src
 
 
@@ -140,7 +142,7 @@ def parse_page(st, ch, html):
                 if nm: c.append(("D" if m.group(1) == "Democratic" else "R", nm.group(1).strip()))
         if c: recs[dist] = {"cands": c, "source": "candidate list", "inc_marks": []}
     for dist, boxes in by_d.items():
-        cands, src = from_boxes(boxes)
+        cands, src = from_boxes(boxes, 2 if (st, ch) == ("AZ", "lower") else 1)
         if dist and cands: recs[dist] = {"cands": cands, "source": src, "inc_marks": [clean_name(n) for p, n in cands if is_inc_mark(n)]}
     # 2) district-breakdown tables (District / Candidate / party columns)
     try: tabs = pd.read_html(StringIO(html))
