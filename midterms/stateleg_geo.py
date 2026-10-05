@@ -31,9 +31,9 @@ VINTAGE = 2025
 STATE_OUTLINE = "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_500k.zip"
 NH_VTD = "https://www2.census.gov/geo/tiger/TIGER2020PL/LAYER/VTD/2020/tl_2020_33_vtd20.zip"
 MAPSHAPER = "mapshaper@0.6.113"
-BUILD = "v1"                                     # bump (or change SIMPLIFY / QUANT) to force a rebuild on the next push
-SIMPLIFY = "interval=400"            # metres; mapshaper Visvalingam, keep-shapes
-QUANT = "quantization=100000"
+BUILD = "v3"                                     # bump (or change SIMPLIFY / QUANT) to force a rebuild on the next push
+SIMPLIFY = "interval=500"            # metres; mapshaper Visvalingam, keep-shapes
+QUANT = "quantization=60000"
 FIPS = {"AL": "01", "AK": "02", "AZ": "04", "AR": "05", "CA": "06", "CO": "08", "CT": "09", "DE": "10", "FL": "12", "GA": "13", "HI": "15",
         "ID": "16", "IL": "17", "IN": "18", "IA": "19", "KS": "20", "KY": "21", "LA": "22", "ME": "23", "MD": "24", "MA": "25", "MI": "26",
         "MN": "27", "MS": "28", "MO": "29", "MT": "30", "NE": "31", "NV": "32", "NH": "33", "NJ": "34", "NM": "35", "NY": "36", "NC": "37",
@@ -108,13 +108,18 @@ def outline(st):
     return _OUTLINE[_OUTLINE["STATEFP"] == FIPS[st]].geometry.union_all()
 
 
+MIN_PART_KM2 = 2.0                   # islands / clipping fragments smaller than this are dropped (a district's largest part is kept)
+
+
 def polys(geom):
-    """Polygonal part of a geometry (clipping can leave slivers of lines / points)."""
+    """Polygonal part of a geometry (clipping leaves slivers of lines / points), without parts under MIN_PART_KM2."""
     from shapely.geometry import MultiPolygon, Polygon
     if geom is None or geom.is_empty: return None
-    if isinstance(geom, (Polygon, MultiPolygon)): return geom
-    parts = [p for g in getattr(geom, "geoms", []) for p in (getattr(g, "geoms", None) or [g]) if isinstance(p, Polygon)]
-    return MultiPolygon(parts) if parts else None
+    parts = [geom] if isinstance(geom, Polygon) else [p for g in getattr(geom, "geoms", []) for p in (getattr(g, "geoms", None) or [g]) if isinstance(p, Polygon)]
+    if not parts: return None
+    km2 = lambda p: p.area * (111.32 ** 2) * abs(__import__("math").cos(__import__("math").radians(p.centroid.y)))   # degrees^2 -> km^2
+    big = max(parts, key=km2); parts = [p for p in parts if p is big or km2(p) >= MIN_PART_KM2]
+    return parts[0] if len(parts) == 1 else MultiPolygon(parts)
 
 
 def nh_floterials(base, keys):
@@ -149,6 +154,15 @@ def nh_floterials(base, keys):
         info[f] = {"bases": bases, "towns": int(len(pk)), "method": how}
         if geom is not None: rows.append({"id": f, "geometry": geom})
     return gpd.GeoDataFrame(rows, crs=4326), info
+
+
+def flot_of(audit):
+    """{base district: [floterials it votes in]} for the page's tooltips."""
+    o = {}
+    for f, v in audit.get("nh_floterials", {}).items():
+        if f.startswith("_"): continue
+        for b in v["bases"]: o.setdefault(b, []).append(f)
+    return o
 
 
 def build(force=False):
@@ -197,7 +211,8 @@ def build(force=False):
                            "districts by MEDSL 2024 precinct labels",
                  "vintage": VINTAGE, "build": signature(),
                  "chambers": {obj_name(st, ch): {"object": obj_name(*ALIAS.get((st, ch), (st, ch))),
-                                                 **({"floterials": "NH_lower_flot"} if (st, ch) == ("NH", "lower") and "NH_lower_flot" in T["objects"] else {}),
+                                                 **({"floterials": "NH_lower_flot", "floterial_of": flot_of(audit)}
+                                                    if (st, ch) == ("NH", "lower") and "NH_lower_flot" in T["objects"] else {}),
                                                  **NOTES.get((st, ch), {})} for (st, ch) in sorted(need)}}
     OUT.write_text(json.dumps(T, separators=(",", ":")))
     bad = {k: v["missing_after_simplify"] for k, v in audit["chambers"].items() if v.get("missing_after_simplify") or v.get("missing_polygon")}
