@@ -116,7 +116,7 @@ def norm_district(st, ch, d, county=""):
     return str(int(m.group(1))) if m else None
 
 
-COLS = ["state_po", "stage", "office", "district", "county_fips", "county_name", "jurisdiction_fips", "jurisdiction_name", "precinct", "mode", "party_simplified",
+COLS = ["state_po", "stage", "office", "district", "county_fips", "county_name", "jurisdiction_fips", "jurisdiction_name", "precinct", "mode", "party_simplified", "party_detailed",
         "candidate", "votes", "magnitude", "writein", "special"]
 
 
@@ -160,7 +160,8 @@ def medsl_load(p: Path, st: str) -> pd.DataFrame:
     # jurisdiction code blank, so the names go into the key as well
     df["key"] = (df["county_fips"] + "|" + df["county_name"].str.upper().str.strip() + "|" + df["jurisdiction_fips"] + "|" +
                  df["jurisdiction_name"].str.upper().str.strip() + "|" + df["precinct"].str.upper().str.strip())
-    ps = df["party_simplified"].str.upper().str.strip()
+    if "party_detailed" not in df: df["party_detailed"] = ""
+    ps = df["party_simplified"].str.upper().str.strip().where(df["party_simplified"].str.strip() != "", df["party_detailed"].fillna("").astype(str).str.upper().str.strip())
     df["party"] = np.where(ps.str.startswith("DEM"), "D", np.where(ps.str.startswith("REP"), "R", "O"))
     # one count per precinct x contest x candidate: a TOTAL row where a state reports both TOTAL and the vote modes
     is_tot = df["mode"].str.upper() == "TOTAL"
@@ -261,7 +262,10 @@ def vest_votes(zp: Path, yy: str):
     g = gpd.read_file(f"zip://{zp}!{shp[0]}")
     dcol = [c for c in g.columns if re.fullmatch(f"G{yy}PRED\\w*", c, re.I)]; rcol = [c for c in g.columns if re.fullmatch(f"G{yy}PRER\\w*", c, re.I)]
     if not dcol or not rcol: raise ValueError(f"{zp.name}: no G{yy}PRED/PRER columns in {list(g.columns)[:40]}")
-    g["d"] = g[dcol].apply(pd.to_numeric, errors="coerce").fillna(0).sum(1); g["r"] = g[rcol].apply(pd.to_numeric, errors="coerce").fillna(0).sum(1)
+    # one column per party: the nominee's (largest total) - a state file can carry other candidates of the same party letter
+    num = lambda c: pd.to_numeric(g[c], errors="coerce").fillna(0)
+    dcol = max(dcol, key=lambda c: num(c).sum()); rcol = max(rcol, key=lambda c: num(c).sum())
+    g["d"] = num(dcol); g["r"] = num(rcol)
     namecol = next((c for c in g.columns if c.upper() in ("NAME", "PRECINCT", "PREC_NAME", "TOWN", "NAME20", "NAME16", "TOWNWARD", "NAMELSAD", "PCT_NAME", "PRECINCTNA")), None)
     if namecol is None: namecol = next((c for c in g.columns if re.search(r"name|town|prec", c, re.I)), None)
     if zp.name.startswith("nh"): print(f"  {zp.name} columns: {list(g.columns)[:30]}; name column {namecol}; sample {g[namecol].head(5).tolist() if namecol else None}")

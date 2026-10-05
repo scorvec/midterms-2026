@@ -78,6 +78,24 @@ def bef(n: int) -> pd.DataFrame:
     return b
 
 
+_MIT = None
+def mit():
+    """State presidential two-party totals 2020/2024 (MIT Election Lab, CC0 - the file the model's bootstrap already uses)."""
+    global _MIT
+    if _MIT is None:
+        from .bootstrap import FILES, RAW as BR
+        dest, url, _ = next(f for f in FILES if f[0] == "mit/president_1976_2024.csv")
+        f = BR / dest
+        if not f.exists(): f.parent.mkdir(parents=True, exist_ok=True); B.stream(url, f)
+        p = pd.read_csv(f); p = p[p.year.isin([2020, 2024]) & p.party_simplified.isin(["DEMOCRAT", "REPUBLICAN"])]
+        _MIT = p.pivot_table(index=["year", "state_po"], columns="party_simplified", values="candidatevotes", aggfunc="sum")
+    return _MIT
+
+
+def mit_state(st, y):
+    v = mit().loc[(y, st)]; return 100 * (v.DEMOCRAT - v.REPUBLICAN) / (v.DEMOCRAT + v.REPUBLICAN), float(v.DEMOCRAT + v.REPUBLICAN), float(v.DEMOCRAT), float(v.REPUBLICAN)
+
+
 def blocks(st: str) -> pd.DataFrame:
     """2020 Census blocks of a state: GEOID20, POP20, internal point (attributes only; the zip is deleted after extraction)."""
     pq = B.R / "blocks" / f"{st}.parquet"
@@ -119,7 +137,7 @@ def block_votes(st: str, v) -> pd.DataFrame:
     return out
 
 
-def carry_2024(bv: pd.DataFrame, cells24: pd.DataFrame, b119: pd.DataFrame, cm24, cm20) -> pd.DataFrame:
+def carry_2024(bv: pd.DataFrame, cells24: pd.DataFrame, b119: pd.DataFrame, cm24, cm20, state_swing=None) -> pd.DataFrame:
     """2024 per block: the 2020 block votes moved by the swing (two-party margin change) and turnout ratio of the block's
     (county x 2024 district) cell; cells without 2024 labels fall back to the county's change."""
     x = bv.merge(b119.rename(columns={"cd": "cd119"}), on="block", how="left")
@@ -141,11 +159,15 @@ def carry_2024(bv: pd.DataFrame, cells24: pd.DataFrame, b119: pd.DataFrame, cm24
     c = c.merge(dd[["dswing", "dturn"]], left_on="cd119", right_index=True, how="left")
     bad = c["swing"].isna() | ~np.isfinite(c["turn"]) | (c["d20"] + c["r20"] < 50) | ~c["turn"].between(0.6, 1.6)
     QC.setdefault("cell_invalid_share", []).append(round(float((c.loc[bad, "d20"] + c.loc[bad, "r20"]).sum() / (c["d20"] + c["r20"]).sum()), 4))
-    fb1 = bad & c["dswing"].notna() & np.isfinite(c["dturn"])
+    fb1 = bad & c["dswing"].notna() & c["dturn"].between(0.6, 1.6)
     c.loc[fb1, "swing"] = c.loc[fb1, "dswing"]; c.loc[fb1, "turn"] = c.loc[fb1, "dturn"]
     fb = bad & ~fb1
     QC.setdefault("cell_fallback_share", []).append(round(float((c.loc[fb, "d20"] + c.loc[fb, "r20"]).sum() / (c["d20"] + c["r20"]).sum()), 4))
-    c.loc[fb, "swing"] = c.loc[fb, "cswing"]; c.loc[fb, "turn"] = c.loc[fb, "cturn"]
+    fbc = fb & c["cswing"].notna() & c["cturn"].between(0.6, 1.6)
+    c.loc[fbc, "swing"] = c.loc[fbc, "cswing"]; c.loc[fbc, "turn"] = c.loc[fbc, "cturn"]
+    fbs = fb & ~fbc                                                    # last resort: the state's own 2020->24 change (MIT)
+    QC.setdefault("cell_state_fallback_share", []).append(round(float((c.loc[fbs, "d20"] + c.loc[fbs, "r20"]).sum() / (c["d20"] + c["r20"]).sum()), 4))
+    if state_swing is not None: c.loc[fbs, "swing"] = state_swing[0]; c.loc[fbs, "turn"] = state_swing[1]
     c["swing"] = c["swing"].fillna(0.0); c["turn"] = c["turn"].replace([np.inf, -np.inf], np.nan).fillna(1.0)
     x = x.merge(c[["county", "cd119", "swing", "turn"]], on=["county", "cd119"], how="left")
     n20 = x["d"] + x["r"]; m20 = np.where(n20 > 0, (x["d"] - x["r"]) / n20.where(n20 > 0, 1), 0.0)
@@ -185,32 +207,40 @@ def main():
         if df is not None and not B.pres_rows(df).shape[0]:
             print(f"  !! {st}: no president rows; offices {df['office'].value_counts().head(15).to_dict()}; rows {len(df)}")
         n119 = b119.loc[b119["block"].str[:2] == FIPS[st], "cd"].nunique()
-        if df is not None and n119 == 1:                                  # at-large: the whole state
-            pr = B.pres_rows(df); d_, r_ = pr.loc[pr["party"] == "D", "votes"].sum(), pr.loc[pr["party"] == "R", "votes"].sum()
-            lab = pd.DataFrame({"district": ["1"], "d": [d_], "r": [r_]}); lab.attrs["qc"] = {"assigned_vs_total": 1.0, "unlabelled_pres_share": 0.0}
-            lab.attrs["cells"] = pd.DataFrame(columns=["county", "district", "d", "r"])
-        else:
-            lab = B.label_lean(df, st, "cd", "cd2024") if df is not None else None
+        m24s, t24s, d24s, r24s = mit_state(st, 2024); m20s, t20s, _, _ = mit_state(st, 2020)
+        if n119 == 1:                                                     # at-large: the state's official totals (MIT)
+            rows.append({"seat": f"{st}-1", "pres24_d": d24s, "pres24_r": r24s, "method24": "mit_state", "redrawn": False})
+            _, _, d20s, r20s = mit_state(st, 2020); rows[-1].update({"pres20_d": d20s, "pres20_r": r20s, "method20": "mit_state"})
+            continue
+        lab = B.label_lean(df, st, "cd", "cd2024") if df is not None else None
+        # completeness of the precinct file against the official state totals
+        if df is not None:
+            pr = B.pres_rows(df); fd, fr = pr.loc[pr["party"] == "D", "votes"].sum(), pr.loc[pr["party"] == "R", "votes"].sum()
+            fm = 100 * (fd - fr) / max(fd + fr, 1); ratio = (fd + fr) / t24s
+            QC[f"medsl_vs_mit_{st}"] = {"ratio": round(float(ratio), 4), "margin_diff": round(float(fm - m24s), 3)}
+            file_ok = abs(fm - m24s) <= 0.5 and 0.97 <= ratio <= 1.03
+        else: file_ok = False
         if df is not None:
             pr = B.pres_rows(df); nat["d24"] += pr.loc[pr["party"] == "D", "votes"].sum(); nat["r24"] += pr.loc[pr["party"] == "R", "votes"].sum()
         n_cd = b120.loc[b120["block"].str[:2] == FIPS[st], "cd"].nunique()
         q = lab.attrs["qc"] if lab is not None else {}
         good = lab is not None and (q.get("assigned_vs_total") or 0) >= 0.97 and len(lab) == b119.loc[b119["block"].str[:2] == FIPS[st], "cd"].nunique()
-        use_blocks = st in redrawn or not good
+        use_blocks = st in redrawn or not good or not file_ok
         r20 = None
         if use_blocks:
             try:
                 v = vest20(st); bv = block_votes(st, v)
                 cm20 = block_county_margin(bv)
-                cm24 = B.county_margin(df)
+                cm24 = B.county_margin(df) if df is not None else (pd.Series(dtype=float), pd.Series(dtype=float))
                 cells = lab.attrs["cells"] if lab is not None else pd.DataFrame(columns=["county", "district", "d", "r"])
-                x = carry_2024(bv, cells, b119[b119["block"].str[:2] == FIPS[st]], cm24, cm20)
+                x = carry_2024(bv, cells, b119[b119["block"].str[:2] == FIPS[st]], cm24, cm20, state_swing=(m24s - m20s, t24s / t20s))
                 x = x.merge(b120.rename(columns={"cd": "cd120"}), on="block", how="left")
                 x["cd120"] = x["cd120"].fillna("0").map(lambda c: str(max(int(c), 1)) if str(c).isdigit() else "1")
                 g = x.groupby("cd120")[["d", "r", "d24", "r24"]].sum()
                 for cd, r in g.iterrows():
                     rows.append({"seat": f"{st}-{cd}", "pres24_d": r["d24"], "pres24_r": r["r24"], "pres20_d": r["d"], "pres20_r": r["r"],
-                                 "method24": "vest2020_blocks_cd120_cellswing", "method20": "vest2020_blocks_cd120", "redrawn": st in redrawn})
+                                 "method24": "vest2020_blocks_cd120_cellswing" if file_ok else "vest2020_blocks_cd120_cellswing_checked",
+                                 "method20": "vest2020_blocks_cd120", "redrawn": st in redrawn})
                 # check of the cell-swing step on the UNCHANGED 2024 districts of the same state (blocks -> CD119 vs labels)
                 if lab is not None:
                     chk = x.groupby("cd119")[["d24", "r24"]].sum(); chk["m_hat"] = 100 * (chk["d24"] - chk["r24"]) / (chk["d24"] + chk["r24"])

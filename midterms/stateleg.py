@@ -262,14 +262,14 @@ def seats_2026():
             c = c.iloc[0] if len(c) else None
             nd = c["n_dem"] if c is not None and pd.notna(c.get("n_dem")) else np.nan
             nr = c["n_rep"] if c is not None and pd.notna(c.get("n_rep")) else np.nan
-            known = nd == nd
+            known = (nd == nd) and (nr == nr)                   # both slates known (general-election box / breakdown table)
             inc_d = inc_r = 0
             for _, h in hold.iterrows():
                 running = _inc_running(h, c, ret)
                 if running and h["party"] == "D": inc_d += 1
                 if running and h["party"] == "R": inc_r += 1
             rows.append({"state": st, "chamber": ch, "district": d, "k": k_, "lean": float(Lq.at[d, "lean"]), "lean_src": Lq.at[d, "src"],
-                         "n_d": int(min(nd, k_)) if known else k_, "n_r": int(min(nr, k_)) if known else k_, "cands_known": bool(known),
+                         "n_d": int(min(nd, k_)) if nd == nd else k_, "n_r": int(min(nr, k_)) if nr == nr else k_, "cands_known": bool(known),
                          "inc_d": inc_d, "inc_r": inc_r, "members": "; ".join(f"{h['name']} ({h['party']})" for _, h in hold.iterrows()),
                          "dem": c["dem"] if c is not None and isinstance(c.get("dem"), str) else "", "rep": c["rep"] if c is not None and isinstance(c.get("rep"), str) else ""})
     S = pd.DataFrame(rows); S["inc"] = np.where((S["k"] == 1) & (S["inc_d"] > 0), 1, np.where((S["k"] == 1) & (S["inc_r"] > 0), -1, 0))
@@ -298,7 +298,8 @@ def _inc_running(h, c, ret_text):
     """Is this sitting member on the 2026 general ballot? Nominee list when the page has one; else not if the summary table marks
     the member with a dagger or the name is in the page's retirement / outgoing lists; else assumed running."""
     sn = _surname(h["name"])
-    if c is not None and pd.notna(c.get("n_dem")):
+    side = {"D": "n_dem", "R": "n_rep"}.get(h["party"])
+    if c is not None and side and pd.notna(c.get(side)):               # that party's nominee list is known
         names = f"{c.get('dem') or ''}; {c.get('rep') or ''}".lower()
         return bool(sn) and sn in names
     if c is not None and isinstance(c.get("inc_names"), str):

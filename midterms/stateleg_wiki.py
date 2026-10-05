@@ -61,21 +61,29 @@ def norm_dist(st, ch, s):
     return str(int(m.group(1)))
 
 
+def _box_rows(tb):
+    rows = []
+    for tr in tb.xpath(".//tr"):
+        cells = [re.sub(r"\s+", " ", " ".join(c.xpath(".//text()"))).strip() for c in tr.xpath("./td|./th")]
+        cells = [c for c in cells if c != ""]
+        if len(cells) < 2: continue
+        i = next((j for j, c in enumerate(cells[:2]) if party_code(c) in ("D", "R") or re.match(r"^(Libertarian|Green|Independent|Constitution|Forward|Working)", c)), None)
+        if i is None: continue
+        p = party_code(cells[i]); name = cells[i + 1] if i + 1 < len(cells) else ""
+        if re.search(r"^(total|turnout|majority|plurality|margin)", name, re.I) or re.search(r"\b(hold|gain)\b", " ".join(cells), re.I): continue
+        rows.append((p, name, cells[i + 2] if i + 2 < len(cells) else ""))
+    return rows
+
+
 def election_boxes(chunk_html):
-    """[(caption, [(party, name, votes_text)])] for every election-box table in the chunk."""
+    """[(caption, [(party, name, votes_text)])] for every election-box table in the chunk (candidate names sit in <th> row headers
+    in 'plainrowheaders' boxes, so both th and td cells are read)."""
     out = []
     try: root = LH.fromstring(f"<div>{chunk_html}</div>")
     except Exception: return out
     for tb in root.xpath(".//table[contains(@class,'wikitable')]"):
         cap = " ".join(tb.xpath("./caption//text()")).strip()
-        rows = []
-        for tr in tb.xpath(".//tr"):
-            tds = [re.sub(r"\s+", " ", " ".join(td.xpath(".//text()"))).strip() for td in tr.xpath("./td")]
-            tds = [t for t in tds if t != ""]
-            if len(tds) < 2: continue
-            p = party_code(tds[0])
-            if p is None or re.search(r"total|turnout|majority|plurality|margin|hold|gain|write-in", " ".join(tds[:2]), re.I) and p == "O": continue
-            rows.append((p, tds[1], tds[2] if len(tds) > 2 else ""))
+        rows = _box_rows(tb)
         if rows: out.append((cap, rows))
     return out
 
@@ -101,15 +109,23 @@ def from_boxes(boxes):
 
 def parse_page(st, ch, html):
     recs = {}
-    # 1) district sections
-    heads = [(m.start(), m.group(1), int(m.group(2) or 1)) for m in re.finditer(r'<h[234][^>]*id="District_(\d+[AB]?)(?:_(\d+))?"', html)]
-    stops = [m.start() for m in re.finditer(r"<h2", html)]
-    for i, (pos, d, k) in enumerate(heads):
-        end = min([p for p in [h[0] for h in heads[i + 1:]] + stops if p > pos] or [len(html)])
-        boxes = election_boxes(html[pos:end])
-        if not boxes: continue
+    # 1) election boxes, each assigned to the nearest preceding "District N" heading (or the district in its caption)
+    heads = [(m.start(), m.group(1)) for m in re.finditer(r'<h[2345][^>]*id="District_(\d+[AB]?)(?:_\d+)?"', html)]
+    by_d = {}
+    for m in re.finditer(r'<table[^>]*class="[^"]*wikitable[^"]*"', html):
+        end = html.find("</table>", m.start())
+        if end < 0: continue
+        block = html[m.start(): end + 8]
+        cap = re.search(r"<caption[^>]*>(.*?)</caption>", block, re.S)
+        capt = re.sub(r"<[^>]+>", " ", cap.group(1)) if cap else ""
+        md = re.search(r"(\d+)(?:st|nd|rd|th)?\s*([AB])?\s*(?:district|District)", capt) or re.search(r"District\s+(\d+)([AB])?", capt)
+        prev = [d for p, d in heads if p < m.start()]
+        d = (f"{md.group(1)}{md.group(2) or ''}" if md else (prev[-1] if prev else None))
+        if d is None: continue
+        bx = election_boxes(block)
+        if bx: by_d.setdefault(norm_dist(st, ch, d), []).extend([(capt or c, r) for c, r in bx])
+    for dist, boxes in by_d.items():
         cands, src = from_boxes(boxes)
-        dist = norm_dist(st, ch, d)
         if dist and cands: recs[dist] = {"cands": cands, "source": src, "inc_marks": [clean_name(n) for p, n in cands if is_inc_mark(n)]}
     # 2) district-breakdown tables (District / Candidate / party columns)
     try: tabs = pd.read_html(StringIO(html))
@@ -159,8 +175,12 @@ def build(states=("MI", "MN", "WI", "AZ", "PA", "NH", "NC")):
             for d in sorted(set(recs) | set(summ), key=lambda x: (len(x), x)):
                 c = recs.get(d, {}).get("cands", [])
                 inc = summ.get(d, [])
+                src = recs.get(d, {}).get("source", "")
+                nd_ = sum(p == "D" for p, _ in c) if c else None; nr_ = sum(p == "R" for p, _ in c) if c else None
+                if src == "primary winners":          # a party with no contested primary has no box: absence is not evidence
+                    nd_ = nd_ or None; nr_ = nr_ or None
                 rows.append({"state": st, "chamber": ch, "district": d,
-                             "n_dem": sum(p == "D" for p, _ in c) if c else None, "n_rep": sum(p == "R" for p, _ in c) if c else None,
+                             "n_dem": nd_, "n_rep": nr_,
                              "n_oth": sum(p == "O" for p, _ in c) if c else None,
                              "dem": "; ".join(clean_name(n) for p, n in c if p == "D"), "rep": "; ".join(clean_name(n) for p, n in c if p == "R"),
                              "inc_marks": "; ".join(recs.get(d, {}).get("inc_marks", [])),
