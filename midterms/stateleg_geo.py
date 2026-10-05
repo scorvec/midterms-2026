@@ -1,12 +1,14 @@
 """District maps for the state-legislature page (web/legislatures.html): Census TIGER/Line state legislative districts -> one
-TopoJSON, web/data/stateleg_districts.topo.json, with every chamber in stateleg.CHAMBERS.
+TopoJSON per state, web/data/stateleg_geo/{ST}.topo.json (the page loads only the state it shows), and web/data/stateleg_geo/
+index.json (chamber -> file / object, map notes, the file list), for every chamber in stateleg.CHAMBERS.
 
 One-time build in GitHub Actions (.github/workflows/stateleg-geo.yml); downloads are cached in data/raw/stateleg (never committed).
   * TIGER/Line 2025 SLDU / SLDL (public domain). The 2025 files equal the 2024 ones for every modelled chamber (stateleg_build
     `maps` audit) and carry the maps used in 2026 - except the Michigan Senate, whose court-ordered 2026 redraw of the Detroit-area
     districts is not in the Census files (flagged on the map; the model's leans use the same 2025 lines).
-  * TIGER/Line polygons run out into the Great Lakes and coastal water: they are clipped to the Census cartographic state outline
-    (cb_2024_us_state_500k) so the maps show land.
+  * TIGER/Line polygons run out into the Great Lakes and coastal water: the large water areas (district area outside the Census
+    cartographic state outline cb_2024_us_state_500k, pieces over 25 km2) are cut away so the maps show land; land borders keep the
+    TIGER lines. Islands under 2 km2 are dropped (a district's largest part is always kept).
   * Arizona House = the 30 legislative districts (two members each): the page draws the Senate object for it.
   * New Hampshire House floterial districts are not in TIGER (it holds the 164 base districts): each floterial is rebuilt from the
     towns and wards that vote in it (MEDSL 2024 precinct labels: a town votes in its base district and in a floterial) as the union
@@ -25,15 +27,16 @@ from pathlib import Path
 import pandas as pd
 from .paths import ROOT, STATIC
 
-OUT = ROOT / "web" / "data" / "stateleg_districts.topo.json"
+OUTDIR = ROOT / "web" / "data" / "stateleg_geo"
+INDEX = OUTDIR / "index.json"
 AUDIT = STATIC / "stateleg" / "geo_audit.json"
 VINTAGE = 2025
 STATE_OUTLINE = "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_500k.zip"
 NH_VTD = "https://www2.census.gov/geo/tiger/TIGER2020PL/LAYER/VTD/2020/tl_2020_33_vtd20.zip"
 MAPSHAPER = "mapshaper@0.6.113"
-BUILD = "v3"                                     # bump (or change SIMPLIFY / QUANT) to force a rebuild on the next push
-SIMPLIFY = "interval=500"            # metres; mapshaper Visvalingam, keep-shapes
-QUANT = "quantization=60000"
+BUILD = "v4"                                     # bump (or change SIMPLIFY / QUANT) to force a rebuild on the next push
+SIMPLIFY = "interval=400"            # metres; mapshaper Visvalingam, keep-shapes
+QUANT = "quantization=20000"
 FIPS = {"AL": "01", "AK": "02", "AZ": "04", "AR": "05", "CA": "06", "CO": "08", "CT": "09", "DE": "10", "FL": "12", "GA": "13", "HI": "15",
         "ID": "16", "IL": "17", "IN": "18", "IA": "19", "KS": "20", "KY": "21", "LA": "22", "ME": "23", "MD": "24", "MA": "25", "MI": "26",
         "MN": "27", "MS": "28", "MO": "29", "MT": "30", "NE": "31", "NV": "32", "NH": "33", "NJ": "34", "NM": "35", "NY": "36", "NC": "37",
@@ -68,14 +71,16 @@ def signature():
 
 
 def complete(need):
-    """True when the committed TopoJSON already has a polygon for every modelled key of every chamber."""
-    if not OUT.exists(): return False
-    T = json.loads(OUT.read_text())
-    if T.get("meta", {}).get("build") != signature(): return False
+    """True when the committed per-state files already have a polygon for every modelled key of every chamber (same build settings)."""
+    if not INDEX.exists(): return False
+    I = json.loads(INDEX.read_text())
+    if I.get("build") != signature(): return False
     for (st, ch), keys in need.items():
-        o = T["objects"].get(obj_name(*ALIAS.get((st, ch), (st, ch))))
-        if o is None: return False
-        have = {g["properties"]["id"] for g in o["geometries"] if g.get("type")}
+        m = I["chambers"].get(obj_name(st, ch))
+        if m is None or not (OUTDIR / m["file"]).exists(): return False
+        T = json.loads((OUTDIR / m["file"]).read_text())
+        have = {g["properties"]["id"] for o in [m["object"]] + ([m["floterials"]] if m.get("floterials") else [])
+                for g in T["objects"].get(o, {"geometries": []})["geometries"] if g.get("type")}
         if keys - have: return False
     return True
 
@@ -108,7 +113,13 @@ def outline(st):
     return _OUTLINE[_OUTLINE["STATEFP"] == FIPS[st]].geometry.union_all()
 
 
-MIN_PART_KM2 = 2.0                   # islands / clipping fragments smaller than this are dropped (a district's largest part is kept)
+MIN_PART_KM2 = 2.0                   # islands / fragments smaller than this are dropped (a district's largest part is kept)
+WATER_KM2 = 25.0                     # district area outside the shoreline outline in pieces at least this big = lake / sea
+
+
+def km2(p):
+    import math
+    return p.area * 111.32 ** 2 * abs(math.cos(math.radians(p.centroid.y)))        # degrees^2 -> km^2 (small shapes)
 
 
 def polys(geom):
@@ -117,9 +128,19 @@ def polys(geom):
     if geom is None or geom.is_empty: return None
     parts = [geom] if isinstance(geom, Polygon) else [p for g in getattr(geom, "geoms", []) for p in (getattr(g, "geoms", None) or [g]) if isinstance(p, Polygon)]
     if not parts: return None
-    km2 = lambda p: p.area * (111.32 ** 2) * abs(__import__("math").cos(__import__("math").radians(p.centroid.y)))   # degrees^2 -> km^2
-    big = max(parts, key=km2); parts = [p for p in parts if p is big or km2(p) >= MIN_PART_KM2]
+    big = max(parts, key=lambda p: p.area); parts = [p for p in parts if p is big or km2(p) >= MIN_PART_KM2]
     return parts[0] if len(parts) == 1 else MultiPolygon(parts)
+
+
+def land(g, st):
+    """Cut the large water areas (Great Lakes, sea, big bays) out of the districts; land borders keep the TIGER lines."""
+    from shapely.ops import unary_union
+    w = unary_union(list(g.geometry)).difference(outline(st))
+    parts = [p for p in (getattr(w, "geoms", None) or [w]) if p.geom_type == "Polygon" and km2(p) >= WATER_KM2]
+    g = g.copy()
+    if parts: g["geometry"] = g.geometry.difference(unary_union(parts))
+    g["geometry"] = g.geometry.map(polys)
+    return g[g.geometry.notna()]
 
 
 def nh_floterials(base, keys):
@@ -169,56 +190,58 @@ def build(force=False):
     need = model_keys()
     if not force and complete(need):
         print("stateleg_geo: every chamber already has its polygons - nothing to build"); return 0
-    import geopandas as gpd
-    tmp = Path(tempfile.mkdtemp()); layers, audit = [], {"vintage": VINTAGE, "chambers": {}}
+    tmp = Path(tempfile.mkdtemp()); layers, audit = {}, {"vintage": VINTAGE, "chambers": {}}
     for (st, ch), keys in sorted(need.items()):
         if (st, ch) in ALIAS: continue
         lay = "sldu" if ch == "upper" else "sldl"
         g = tiger_layer(st, lay)
-        if st == "NH" and ch == "lower":
-            print("  NH sldl columns:", list(g.columns), g[["code", "NAMELSAD"]].head(8).values.tolist())
         g["id"] = [_tiger_key(st, ch, r) for _, r in g.iterrows()]
         g = g[g["id"].notna()][["id", "geometry"]]
-        g["geometry"] = g.geometry.make_valid().intersection(outline(st)).map(polys)
-        g = g[g.geometry.notna()]
-        g = g.dissolve("id", as_index=False)
-        name = obj_name(st, ch); g.to_file(tmp / f"{name}.geojson", driver="GeoJSON"); layers.append(name)
+        g["geometry"] = g.geometry.make_valid()
+        g = land(g.dissolve("id", as_index=False), st)
+        name = obj_name(st, ch); g.to_file(tmp / f"{name}.geojson", driver="GeoJSON"); layers.setdefault(st, []).append(name)
         if st == "NH" and ch == "lower":
             fl, info = nh_floterials(g, keys)
             if fl is not None and len(fl):
-                fl["geometry"] = fl.geometry.make_valid().intersection(outline(st)).map(polys)
-                fl.to_file(tmp / f"{name}_flot.geojson", driver="GeoJSON"); layers.append(f"{name}_flot")
+                fl["geometry"] = fl.geometry.map(polys)
+                fl.to_file(tmp / f"{name}_flot.geojson", driver="GeoJSON"); layers[st].append(f"{name}_flot")
                 audit["nh_floterials"] = info
                 g = pd.concat([g, fl], ignore_index=True)
         have = set(g["id"])
         audit["chambers"][name] = {"model": len(keys), "polygons": len(have), "missing_polygon": sorted(keys - have), "not_modelled": sorted(have - keys)}
         print(f"  {name}: {len(keys)} modelled, {len(have)} polygons, missing {sorted(keys - have)[:20]}, extra {sorted(have - keys)[:20]}")
-    out_tmp = tmp / "out.topo.json"
-    cmd = ["npx", "-y", MAPSHAPER, "-i"] + [str(tmp / f"{n}.geojson") for n in layers] + \
-          ["combine-files", "-simplify", SIMPLIFY, "keep-shapes", "-o", "format=topojson", QUANT, str(out_tmp)]
-    print(" ".join(cmd[3:6]), "...", " ".join(cmd[-6:])); subprocess.run(cmd, check=True)
-    T = json.loads(out_tmp.read_text())
+    if OUTDIR.exists(): shutil.rmtree(OUTDIR)
+    OUTDIR.mkdir(parents=True)
+    files, T = {}, {}
+    for st, names in sorted(layers.items()):
+        f = OUTDIR / f"{st}.topo.json"
+        cmd = ["npx", "-y", MAPSHAPER, "-i"] + [str(tmp / f"{n}.geojson") for n in names] + \
+              ["combine-files", "-simplify", SIMPLIFY, "keep-shapes", "-o", "format=topojson", QUANT, str(f)]
+        subprocess.run(cmd, check=True)
+        T[st] = json.loads(f.read_text()); files[st] = f.name
+        print(f"  {f.name}: {f.stat().st_size / 1e3:.0f} kB, {len(T[st]['arcs'])} arcs")
     # post-simplification audit (keep-shapes should keep every polygon)
+    meta = {}
     for (st, ch), keys in sorted(need.items()):
-        o = T["objects"].get(obj_name(*ALIAS.get((st, ch), (st, ch))), {"geometries": []})
-        ids = {g_["properties"]["id"] for g_ in o["geometries"] if g_.get("type")}
-        if (st, ch) == ("NH", "lower"): ids |= {g_["properties"]["id"] for g_ in T["objects"].get("NH_lower_flot", {"geometries": []})["geometries"] if g_.get("type")}
-        rec = audit["chambers"].setdefault(obj_name(st, ch), {"model": len(keys), "alias_of": obj_name(*ALIAS[(st, ch)])} if (st, ch) in ALIAS else {})
+        src = ALIAS.get((st, ch), (st, ch)); o = obj_name(*src); objs = T.get(src[0], {"objects": {}})["objects"]
+        ids = {g_["properties"]["id"] for g_ in objs.get(o, {"geometries": []})["geometries"] if g_.get("type")}
+        fl = f"{o}_flot" if f"{o}_flot" in objs else None
+        if fl: ids |= {g_["properties"]["id"] for g_ in objs[fl]["geometries"] if g_.get("type")}
+        rec = audit["chambers"].setdefault(obj_name(st, ch), {"model": len(keys), "alias_of": o} if (st, ch) in ALIAS else {})
         rec["missing_after_simplify"] = sorted(keys - ids)
         if (st, ch) in ALIAS: rec.update(polygons=len(ids), missing_polygon=sorted(keys - ids), not_modelled=sorted(ids - keys))
-    T["meta"] = {"source": f"U.S. Census Bureau TIGER/Line Shapefiles {VINTAGE}, state legislative districts (SLDU/SLDL), clipped to the "
-                           "Census 2024 cartographic state outline; New Hampshire floterials rebuilt from base districts / TIGER 2020 voting "
-                           "districts by MEDSL 2024 precinct labels",
-                 "vintage": VINTAGE, "build": signature(),
-                 "chambers": {obj_name(st, ch): {"object": obj_name(*ALIAS.get((st, ch), (st, ch))),
-                                                 **({"floterials": "NH_lower_flot", "floterial_of": flot_of(audit)}
-                                                    if (st, ch) == ("NH", "lower") and "NH_lower_flot" in T["objects"] else {}),
-                                                 **NOTES.get((st, ch), {})} for (st, ch) in sorted(need)}}
-    OUT.write_text(json.dumps(T, separators=(",", ":")))
-    bad = {k: v["missing_after_simplify"] for k, v in audit["chambers"].items() if v.get("missing_after_simplify") or v.get("missing_polygon")}
-    audit["ok"] = not bad; audit["bytes"] = OUT.stat().st_size
+        meta[obj_name(st, ch)] = {"file": files.get(src[0]), "object": o, **({"floterials": fl, "floterial_of": flot_of(audit)} if fl else {}),
+                                  **NOTES.get((st, ch), {})}
+    I = {"source": f"U.S. Census Bureau TIGER/Line Shapefiles {VINTAGE}, state legislative districts (SLDU/SLDL); large water areas cut "
+                   "away with the Census 2024 cartographic state outline; New Hampshire floterials rebuilt from the base districts that "
+                   "vote in them (MEDSL 2024 precinct labels)",
+         "vintage": VINTAGE, "build": signature(), "files": sorted(files.values()), "chambers": meta}
+    INDEX.write_text(json.dumps(I, separators=(",", ":"), ensure_ascii=False))
+    bad = {k: v["missing_after_simplify"] or v.get("missing_polygon") for k, v in audit["chambers"].items() if v.get("missing_after_simplify") or v.get("missing_polygon")}
+    audit["ok"] = not bad; audit["bytes"] = {f.name: f.stat().st_size for f in sorted(OUTDIR.glob("*.json"))}
+    audit["bytes_total"] = sum(audit["bytes"].values())
     AUDIT.write_text(json.dumps(audit, indent=1, sort_keys=True))
-    print(f"wrote {OUT.relative_to(ROOT)}: {OUT.stat().st_size / 1e3:.0f} kB, {len(T['objects'])} objects")
+    print(f"wrote {OUTDIR.relative_to(ROOT)}: {audit['bytes_total'] / 1e3:.0f} kB in {len(files)} state files")
     shutil.rmtree(tmp, ignore_errors=True)
     if bad:
         print("!! modelled seats without a polygon:", bad); return 1

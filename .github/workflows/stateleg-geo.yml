@@ -1,6 +1,6 @@
 name: state-legislature district maps
 
-# Builds web/data/stateleg_districts.topo.json (Census TIGER/Line state legislative districts, simplified) and the join audit
+# Builds web/data/stateleg_geo/ (one TopoJSON per state + index.json; Census TIGER/Line state legislative districts, simplified) and the join audit
 # data/static/stateleg/geo_audit.json with midterms/stateleg_geo.py. Downloads are cached in data/raw/stateleg (never committed).
 # Runs when the chamber list or the modelled districts change (stateleg.py / lean_2026.csv): the script is a no-op when every
 # modelled seat already has a polygon, so a chamber added later gets its map without a manual step. The build fails when any
@@ -72,13 +72,13 @@ jobs:
           name: stateleg-geo-${{ github.run_id }}
           path: |
             data/static/stateleg/geo_audit.json
-            web/data/stateleg_districts.topo.json
+            web/data/stateleg_geo
           if-no-files-found: ignore
       # snapshot + resync + push (merge-free, never rebase), like the daily run
       - name: Commit outputs
         run: |
           set -uo pipefail
-          paths="web/data/stateleg_districts.topo.json data/static/stateleg/geo_audit.json"
+          paths="web/data/stateleg_geo data/static/stateleg/geo_audit.json"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A -- $paths
