@@ -126,10 +126,10 @@
   "rms_no_swing_2020": 4.009
  },
  "validate_PA_upper": {
-  "max_abs": 23.11,
+  "max_abs": 3.73,
   "n": 25,
-  "rms_cellswing": 8.399,
-  "rms_no_swing_2020": 8.867
+  "rms_cellswing": 0.882,
+  "rms_no_swing_2020": 2.877
  },
  "validate_WI_lower": {
   "max_abs": 9.63,
@@ -138,9 +138,9 @@
   "rms_no_swing_2020": 2.884
  },
  "validate_WI_upper": {
-  "max_abs": 30.27,
+  "max_abs": 1.78,
   "n": 16,
-  "rms_cellswing": 11.661,
-  "rms_no_swing_2020": 12.362
+  "rms_cellswing": 0.79,
+  "rms_no_swing_2020": 2.066
  }
 }
