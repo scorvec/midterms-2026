@@ -203,7 +203,7 @@ def label_lean(df: pd.DataFrame, st: str, ch: str, tag: str):
     J["d"] = J["D"] * J["w"]; J["r"] = J["R"] * J["w"]
     # presidential votes on "precincts" that split across districts: real splits are rare; a large share means county-level rows
     # (every district then gets the county's margin)
-    wmax = J.groupby("key")["w"].transform("max"); split_v = float(((J["D"] + J["R"]) * J["w"])[wmax < 0.95].sum())
+    J = J.reset_index(drop=True); wmax = J["w"].groupby(J["key"].to_numpy()).transform("max"); split_v = float(((J["D"] + J["R"]) * J["w"])[wmax < 0.95].sum())
     cells = J.groupby(["county", "dist"])[["d", "r"]].sum()
     # unlabelled presidential rows
     # precincts with a label in ANOTHER contest (U.S. House, the other chamber) are real precincts of districts not up this year

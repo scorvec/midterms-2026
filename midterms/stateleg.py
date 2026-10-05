@@ -254,6 +254,7 @@ def seats_2026():
     L["lean"] = L["lean24"] - np_[2024]
     R = pd.read_csv(SL / "medsl_results.csv.gz", dtype={"district": str})
     mag = R[(R["year"] == 2024) & ~R["special"]].groupby(["state", "chamber", "district"])["magnitude"].max().rename("k").reset_index()
+    up24 = set(zip(mag["state"], mag["chamber"], mag["district"]))          # 4-year senates: a seat elected in 2024 is not up in 2026
     OS = pd.read_csv(SL / "openstates_current.csv", dtype={"district": str})
     OS["party"] = OS["party"].map(lambda p: "D" if str(p).startswith("Democratic") else ("R" if str(p).startswith("Republican") else "O"))
     OS["district"] = [_os_dist(s, c, d) for s, c, d in zip(OS["state"], OS["chamber"], OS["district"])]
@@ -270,7 +271,7 @@ def seats_2026():
             km = mag[(mag.state == st) & (mag.chamber == ch) & (mag.district == d)]["k"]
             k_ = int(km.iloc[0]) if len(km) else (2 if (st, ch) == ("AZ", "lower") else 1)
             hold = OS[(OS.state == st) & (OS.chamber == ch) & (OS.district == d)]
-            if up == "odd" and num % 2 == 0:
+            if (up == "odd" and num % 2 == 0) or (up == "not2024" and (st, ch, d) in up24):
                 held.append({"state": st, "chamber": ch, "district": d, "party": hold["party"].iloc[0] if len(hold) else None,
                              "member": hold["name"].iloc[0] if len(hold) else None}); continue
             c = C[(C["state"] == st) & (C["chamber"] == ch) & (C["district"] == d)]
