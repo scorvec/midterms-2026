@@ -92,11 +92,13 @@ def _seat_rows(cands, year, st, cd):
 
 def medsl(years):
     m = pd.read_csv(MEDSL, low_memory=False, encoding="latin-1")
-    m = m[m.year.isin(years) & (m.stage == "gen")]
-    # regular rows; a seat's same-year special rows only where it has no regular ones (Texas 1996 and 2006: the court-redrawn
-    # districts elected their members in November open "special" elections)
-    sp = m.special.astype(str).str.upper().eq("TRUE"); k0 = m.year.astype(str) + m.state_po + m.district.astype(str)
-    m = m[~sp | ~k0.isin(set(k0[~sp]))]
+    m = m[m.year.isin(years)]
+    # Texas 1996 and 2006: the court-redrawn districts elected their members in November open "special" elections (coded
+    # stage pri / blank, special TRUE) - used for the seats that have no regular general-election rows
+    k0 = m.year.astype(str) + m.state_po + m.district.astype(str)
+    gen = (m.stage == "gen") & ~m.special.astype(str).str.upper().eq("TRUE")
+    tx = (m.state_po == "TX") & m.year.isin([1996, 2006]) & m.special.astype(str).str.upper().eq("TRUE") & ~k0.isin(set(k0[gen]))
+    m = m[gen | tx]
     # a seat's November rows; runoff rows only where the seat has nothing else (LA 1996: the November vote was the runoff)
     ro = m.runoff.astype(str).str.upper().eq("TRUE"); key = m.year.astype(str) + m.state_po + m.district.astype(str)
     m = m[~ro | ~key.isin(set(key[~ro]))]
