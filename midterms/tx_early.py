@@ -27,8 +27,13 @@ the same weekday and the same number of days before Election Day in both years. 
 12 days before through the day before Election Day, but only after the SOS publishes its implementation report (due by
 Aug 1, 2027); the SOS calendar for Nov 3, 2026 keeps Oct 19-30.
 
-    python -m midterms.tx_early               # daily: snapshot (from Oct 19) + summary -> web/data/tx_early.json
-    python -m midterms.tx_early baseline      # ONE-TIME, GitHub Actions only (.github/workflows/tx-early-baseline.yml)
+OFF (user, 2026-10-05) until switched on: nothing runs or fetches unless TX_EARLY=on (repository variable TX_EARLY in
+daily.yml). The 2022 comparison is planned as the FINAL 2022 early vote by county (see the TODO in _final_2022); the
+day-by-day 2022 portal below blocks automated access, so its parser (parse_legacy_table, tested on a real 2022 table) is
+kept for reference only.
+
+    TX_EARLY=on python -m midterms.tx_early            # daily: snapshot (from Oct 19) + summary -> web/data/tx_early.json
+    TX_EARLY=on python -m midterms.tx_early baseline   # one-time, GitHub Actions only (needs a workflow; none is installed)
 """
 from __future__ import annotations
 
@@ -137,6 +142,7 @@ def snapshot(today: dt.date | None = None) -> list[Path]:
     """One conditional request per file per day (fetch.get, min_age 20 h): the election index and the county file of every
     early-voting date up to today. Quiet no-op before early voting starts or while a file is not up."""
     from . import fetch as F
+    if os.environ.get("TX_EARLY", "off") != "on": return []          # off until the user switches it on (2026-10-05)
     today = today or dt.date.today()
     if not CAL[2026]["first"] <= today <= CAL[2026]["election_day"] + dt.timedelta(days=14): return []
     RAW.mkdir(parents=True, exist_ok=True); got = []
@@ -459,35 +465,26 @@ FINAL_2022 = STATIC / "tx_early_2022_final.csv"
 
 
 def _final_2022(force: bool = False) -> dict:
-    """2022 general (idElection 47009), final early vote by county from the SOS results site: PROBE stage - fetch the
-    county results file and the voter turnout report once, keep them for the run artifact, and print their structure."""
-    from . import fetch as F
-    if FINAL_2022.exists() and not force:
-        print("  2022 final early vote already committed; skipped")
-        return json.loads(SOURCES.read_text()).get("tx_early_2022_final", {}) if SOURCES.exists() else {}
-    d = RAW / "final2022"; d.mkdir(parents=True, exist_ok=True)
-    out = {}
-    for name, url in (("County.json", f"{RESULTS}/election/47009/242/County.json"),
-                      ("VoterTurnoutReport.pdf", f"{RESULTS}/Reports/47009/VoterTurnoutReport.pdf")):
-        time.sleep(2)
-        try:
-            b = F.open_url(url, timeout=120)
-        except urllib.error.HTTPError as e:
-            snippet = re.sub(r"\s+", " ", e.read(400).decode("utf-8", "replace"))
-            print(f"  {name}: HTTP {e.code} (server {e.headers.get('Server')}): {snippet[:200]}"); out[name] = f"HTTP {e.code}"; continue
-        (d / name).write_bytes(b); out[name] = len(b); print(f"  {name}: {len(b):,} bytes")
-        if name.endswith(".json"):
-            j = json.loads(b); k0 = next(iter(j)); c = j[k0]
-            print("   county keys:", {k: (type(v).__name__, v if not isinstance(v, (dict, list)) else len(v)) for k, v in c.items()})
-            r0 = next(iter(c.get("Races", {}).values()), {})
-            print("   race keys:", {k: (type(v).__name__, v if not isinstance(v, (dict, list)) else len(v)) for k, v in r0.items()})
-            c0 = next(iter(r0.get("C", {}).values()), {})
-            print("   candidate keys:", c0)
-        else:
-            import fitz
-            doc = fitz.open(stream=b, filetype="pdf")
-            print(f"   {doc.page_count} pages; page 1:\n" + doc[0].get_text()[:2500])
-    raise RuntimeError(f"probe only: {out}")
+    """2022 general, FINAL early vote by county (the user's option 3, 2026-10-05). NOT BUILT: the tracker is off until the
+    user switches it on.
+
+    TODO (when switched on): build data/static/tx_early_2022_final.csv (county, registered, ev_in_person, ev_mail, ev_total)
+      * Blocked from GitHub Actions on 2026-10-05 (Cloudflare "Just a moment..." challenge, HTTP 403, honest User-Agent; not
+        to be evaded): earlyvoting.texas-election.com (2020-2025 early-voting portal, idElection 47009) and
+        results.texas-election.com (static/data/election/47009/242/County.json, static/data/Reports/47009/VoterTurnoutReport.pdf).
+      * Candidate on an open SOS host (seen with a web reader, not yet fetched from Actions): "Voter Registration and
+        Unofficial Early Voting Figures by County", https://www.sos.state.tx.us/elections/historical/counties.shtml ->
+        one page per county (<name>.shtml), columns YEAR | Reg Voters | Voted | Voted % | Early Vote | EV % (Harris 2022:
+        2,568,463 | 1,102,418 | 42.92% | 752,491 | 29.30%). Early Vote comes from unofficial election-night returns and has
+        NO in-person / mail split (ev_in_person, ev_mail would stay empty, or come from the EAC 2022 EAVS F1f / F1d with its
+        own definitions). 255 sequential requests (index + counties), paced.
+      * Checks: summed Reg Voters = 17,672,143 (SOS 70-92.shtml, Nov 2022; the same total as the early-voting portal's
+        registered column); summed early vote against the ~5.4 million the SOS reported at the close of early voting.
+      * summary(): on each 2026 day pct_rv against the 2022 final pct_rv and ev_2026 / ev_2022_final; after Oct 30 the
+        like-for-like final comparison (turnout, group shares of the statewide early vote, composition shift); the per-day
+        *_2022 fields dropped (null) with a note that the 2022 daily series is unavailable (portal blocks automated access).
+    """
+    raise RuntimeError("2022 final early vote not built: tracker off until the user switches it on (see the TODO)")
 
 
 def baseline(force: bool = False) -> None:
@@ -507,6 +504,8 @@ def baseline(force: bool = False) -> None:
 
 
 if __name__ == "__main__":
+    if os.environ.get("TX_EARLY", "off") != "on":
+        print("Texas early-vote tracker is off (user, 2026-10-05); TX_EARLY=on switches it on"); sys.exit(0)
     if sys.argv[1:2] == ["baseline"]:
         baseline(force="--force" in sys.argv)
     else:

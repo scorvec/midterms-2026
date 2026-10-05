@@ -28,7 +28,7 @@ machine. The run commits its outputs to `web/`, and the website copies them from
    of every past date with only the polls released by then - rebuilt only when the methodology files change) and
    `web/data/race_history.json`; `web/data/summary.json` (the homepage panel).
 7. Diagnostics that do not feed the forecast: Florida and Pennsylvania early/mail vote (`fl_early.py`, `pa_early.py`),
-   Texas early-vote turnout (`tx_early.py`, a separate workflow step), voter registration in North Carolina and
+   Texas early-vote turnout (`tx_early.py`, a separate workflow step, off until switched on), voter registration in North Carolina and
    Pennsylvania on Mondays (`registration.py`), same-pollster poll deltas. They are uploaded as a workflow artifact, not
    committed.
 8. Mondays: `reports/weekly_<date>.md`, which races moved in the past week and why.
@@ -67,7 +67,7 @@ Committed inputs (`data/static/`) and their sources:
 | `fec_june30_{2018,2022,2026}.csv`, `fec_senate_june30_2026.csv`, `fec_reports_2026.csv`, `fec_nominees_2026.csv` | candidate fundraising through June 30 | FEC / OpenFEC (public domain); `fec_money.py` |
 | `house_national_vote_1946.csv` | national House vote by party since 1946 | Wikipedia election pages (CC BY-SA 4.0) |
 | `national_mood_fit.json` | fitted coefficients only: the national-vote error s(L) (and the unused directional and approval variants), the cycles used and the late-movement slope | our fit to the generic-ballot average vs the House vote, 15 cycles 1996-2024 (538 / ABC News averages and poll archives, HuffPost Pollster archives, Gallup approval). The underlying table is not distributed; `python -m midterms.national_mood --refit` rebuilds the fit from a local copy |
-| `tx_early_2022.csv` (pending), `tx_early_sources.json` | 2022 general: cumulative early votes (in person, by mail) and registered voters by county and early-voting day (Oct 24 - Nov 4, 2022), with the source, retrieval time and checks | Texas Secretary of State, Early Voting Turnout portal (earlyvoting.texas-election.com; public records as reported by the counties; attribution, no endorsement implied); `python -m midterms.tx_early baseline`, once, in GitHub Actions |
+| `tx_early_sources.json` (`tx_early_2022_final.csv` planned, not built) | sources and retrieval times for the Texas tracker; the 2022 final early vote by county will be added when the tracker is switched on | Texas Secretary of State (public records as reported by the counties; attribution, no endorsement implied) |
 | `tx_county_pres2024.csv` | 2024 presidential votes by Texas county (to check the tracker's county groups) | MIT Election Data and Science Lab 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), summed by county; `tx_early baseline` |
 | `rcv_transfers.csv`, `rcv_rates.json`, `rcv_backtest_results.csv`, `rcv_backtest_polls.csv` | ranked-choice transfers: one row per eliminated candidate (party type, first-round share, share of its ballots reaching each finalist or exhausted), the fitted rates, and the leave-one-race-out backtests | official round-by-round tabulations of the Maine Secretary of State (2nd district 2018, 2022) and the State of Alaska Division of Elections (August 2022 special general, 2022 and 2024 general elections), public records; `python -m midterms.rcv --fetch` downloads them once into `data/raw/rcv/` and rebuilds the tables, `--backtest` reruns the test |
 
@@ -82,8 +82,8 @@ no quality weighting is switched on; the grades themselves are not committed).
 Downloaded at run time (never committed): the 538 poll archives and data repository files (CC BY 4.0), FEC results
 workbooks, MIT Election Lab presidential returns (CC0), VoteHub, Wikipedia, Bluesky posts, pollresults.org, UF Election
 Lab early-vote counts (CC BY-NC-ND 4.0 - used only to compute each state's scaling, never republished), EIA heating-oil
-prices, Florida Division of Elections and Pennsylvania Department of State files, the Texas Secretary of State's 2026
-early-voting county files. Race ratings from Cook, Sabato and
+prices, Florida Division of Elections and Pennsylvania Department of State files (and, once switched on, the Texas Secretary of
+State's 2026 early-voting county files). Race ratings from Cook, Sabato and
 Inside Elections are read from Wikipedia's ratings tables at run time and shown for comparison only.
 
 ### Fetching politely
@@ -99,7 +99,7 @@ request and prints the totals per host at the end of the run). `data/raw` and `d
 | Bluesky (Polling USA, Political Poll Bot) | posts are cached; the feed is read only until the first post already held (about one page per account) |
 | VoteHub API (5 poll types) | 5 requests, ~2 MB: the API has no date filter or ETag |
 | EIA heating oil, UF early vote, Florida statistics files | conditional requests (ETag / Last-Modified): unchanged files come back as 304 |
-| Texas SOS early-voting turnout (from Oct 19) | the election index and one county file per early-voting day so far, each at most once a day (conditional requests); the per-voter rosters are never requested |
+| Texas SOS early-voting turnout | OFF until switched on (`TX_EARLY`); when on, from Oct 19: the election index and one county file per early-voting day so far, each at most once a day (conditional requests); the per-voter rosters are never requested |
 | Pennsylvania mail ballots (data.pa.gov) | 2026 aggregates only; 2022 and 2024 are queried once and kept |
 | NC / PA registration (Mondays) | new weekly NC snapshots only; past years' date lists and PA PDFs are kept |
 | 538, FEC, MIT inputs (bootstrap) | once, then kept (checksums verified) |
@@ -166,24 +166,33 @@ above are aggregates. Source: Gallup, "Party Affiliation" trend, retrieved 2026-
 
 ## Texas early-vote turnout (diagnostic)
 
-`midterms/tx_early.py` (a step of the daily workflow; nothing feeds the forecast) follows the Texas Secretary of State's daily
-county early-voting file for the 2026 general (early voting Mon Oct 19 - Fri Oct 30; the SOS "Early Voting Turnout" portal,
-`goelect.txelections.civixapps.com`, county summary only) and writes `web/data/tx_early.json` (workflow artifact): for every
-early-voting day, cumulative early votes (in person + mail ballots received) as a share of registered voters, against the 2022
-general on the same early-voting day (Oct 24 - Nov 4, 2022, to be committed once in `data/static/tx_early_2022.csv`; PENDING: on
-2026-10-05 the SOS's 2020-2025 portal answered GitHub Actions with a Cloudflare browser challenge, HTTP 403, and the 2026 side
-runs without it until a permitted route is found), statewide and for fixed county groups - big Democratic counties (Harris,
-Dallas, Travis, Bexar, El Paso), Republican-leaning suburbs and exurbs (Collin and Denton, Trump +11 and +13 in 2024, Montgomery,
-and every other non-core county of the Dallas-Fort Worth, Houston and San Antonio metros with over 60,000 presidential votes
-that Trump carried by 15 points or more: Rockwall, Parker, Kaufman, Ellis, Johnson, Brazoria, Galveston, Comal, Guadalupe;
-`data/static/tx_county_pres2024.csv`, margins in the file), the Rio Grande Valley and border (Hidalgo, Cameron, Webb, Starr, Willacy, Maverick) and the
-swing suburbs Tarrant and Fort Bend - plus each group's share of the statewide early vote against its 2022 share and the mail
-share. Both early-voting periods start on the 17th day before Election Day moved to the next Monday and run 12 days, so day k is
-the same weekday and the same number of days out in both years (SB 2753 of 2025, which would change the period, is not in effect
-for November 2026). Caveats (also in the file's `notes`): Texas has no party registration and no party data are used, so this is
-turnout, not vote choice; mail voting is limited to voters 65 and over, disabled voters and a few other groups; HB 1217 (2023)
-extended weekend and last-week hours to small counties; counties' reports lag, and the file counts the counties that did not move
-from the day before.
+**Off (user, 2026-10-05) until switched on.** `midterms/tx_early.py` is in the repository but makes no request and writes
+nothing unless the repository variable `TX_EARLY` is set to `on` (the daily workflow's step is skipped otherwise, and the
+script itself checks `TX_EARLY=on`). When on, it follows the Texas Secretary of State's daily county early-voting file for the
+2026 general (early voting Mon Oct 19 - Fri Oct 30; the SOS "Early Voting Turnout" portal, `goelect.txelections.civixapps.com`,
+county summary only, one conditional request per file per day) and writes `web/data/tx_early.json` (workflow artifact): early
+votes (in person + mail ballots received) as a share of registered voters, statewide and for fixed county groups - big
+Democratic counties (Harris, Dallas, Travis, Bexar, El Paso), Republican-leaning suburbs and exurbs (Collin and Denton, Trump +11
+and +13 in 2024, Montgomery, and every other non-core county of the Dallas-Fort Worth, Houston and San Antonio metros with over
+60,000 presidential votes that Trump carried by 15 points or more: Rockwall, Parker, Kaufman, Ellis, Johnson, Brazoria,
+Galveston, Comal, Guadalupe; `data/static/tx_county_pres2024.csv`), the Rio Grande Valley and border (Hidalgo, Cameron, Webb,
+Starr, Willacy, Maverick) and the swing suburbs Tarrant and Fort Bend - with each group's share of the statewide early vote and
+the mail share.
+
+The 2022 comparison is not built yet. The SOS's day-by-day 2022 portal (earlyvoting.texas-election.com) and its 2019-2024
+results site (results.texas-election.com) answered GitHub Actions with a Cloudflare browser challenge (HTTP 403) on 2026-10-05,
+which is not evaded. Planned (user's choice): the FINAL 2022 general early vote by county as the end point (on each 2026 day,
+turnout against the 2022 final and the share of the 2022 final reached; after Oct 30 the like-for-like final comparison and the
+composition shift), from the SOS's "Voter Registration and Unofficial Early Voting Figures by County" pages
+(sos.state.tx.us/elections/historical/counties.shtml; early votes from unofficial election-night returns, no in-person / mail
+split), checked against the 17,672,143 registered voters and the ~5.4 million early votes the SOS reported for 2022. Details
+in the TODO in `tx_early._final_2022`.
+
+Calendar: both early-voting periods start on the 17th day before Election Day moved to the next Monday and run 12 days, so day
+k is the same weekday and the same number of days out in 2022 and 2026 (SB 2753 of 2025, which would change the period, is not
+in effect for November 2026). Caveats (also in the file's `notes`): Texas has no party registration and no party data are used,
+so this is turnout, not vote choice; mail voting is limited to voters 65 and over, disabled voters and a few other groups; HB
+1217 (2023) extended weekend and last-week hours to small counties; counties' reports lag.
 
 ## Heating-oil adjustment
 

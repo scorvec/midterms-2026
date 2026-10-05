@@ -93,11 +93,14 @@ jobs:
             exit "$rc"
           fi
 
-      # Texas early vote (midterms/tx_early.py), DIAGNOSTIC ONLY, next to the FL/PA trackers inside the daily run: from
-      # Oct 19 the SOS county file of each early-voting day (one conditional request per file per day) into
-      # data/raw/tx_stats, then web/data/tx_early.json against the committed 2022 baseline (uploaded with the diagnostics).
+      # Texas early vote (midterms/tx_early.py), DIAGNOSTIC ONLY. OFF (user, 2026-10-05) until switched on: the step runs only
+      # when the repository variable TX_EARLY is "on" (and the script itself does nothing without TX_EARLY=on). When on: from
+      # Oct 19 the SOS county file of each early-voting day (one conditional request per file per day) into data/raw/tx_stats,
+      # then web/data/tx_early.json (uploaded with the diagnostics).
       - name: Texas early vote (diagnostic)
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && vars.TX_EARLY == 'on' }}
+        env:
+          TX_EARLY: ${{ vars.TX_EARLY }}
         run: python -m midterms.tx_early || echo "::warning::Texas early-vote tracker failed (diagnostic only)"
 
       - name: Save data cache
