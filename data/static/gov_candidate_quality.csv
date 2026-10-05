@@ -61,12 +61,12 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 1998,NV,Jan Laverty Jones,Democratic,Jan Laverty Jones,1,0,0,0,,1371689736.0
 1998,NV,Chuck Horne,Independent American,,0,0,0,0,,
 1998,NV,Terry C. Savage,Libertarian,,0,0,0,0,,
-1998,NH,Jeanne Shaheen,Democratic,Jeanne Shaheen,1,0,0,0,,1376671668.0
+1998,NH,Jeanne Shaheen,Democratic,Jeanne Shaheen,1,1,0,1,78th Governor of New Hampshire,1376671668.0
 1998,NH,Jay Lucas,Republican,,0,0,0,0,,
 1998,NH,Ken Blevens,Libertarian,,0,0,0,0,,
 1998,NM,Gary Johnson,Republican,Gary Johnson,1,0,0,0,,1378271644.0
 1998,NM,Martin Chávez,Democratic,Martin Chávez,1,0,0,0,,1365920557.0
-1998,NY,George Pataki,Republican,George Pataki,1,1,0,1,The Stealth Governor Gets His Way,1378299783.0
+1998,NY,George Pataki,Republican,George Pataki,1,0,0,0,,1378299783.0
 1998,NY,Peter Vallone Sr.,Democratic,Peter Vallone Sr.,1,0,0,0,,1371764937.0
 1998,NY,Tom Golisano,Independence,Tom Golisano,1,0,0,0,,1378676356.0
 1998,NY,Betsy McCaughey,Liberal,Betsy McCaughey,1,1,0,1,Lieutenant Governor of New York,1373067880.0
@@ -122,7 +122,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2000,MT,Judy Martz,Republican,Judy Martz,1,1,0,1,31st Lieutenant Governor of Montana,1371681986.0
 2000,MT,Mark O'Keefe,Democratic,Mark O'Keefe (politician),1,1,0,1,Auditor of Montana,1365681272.0
 2000,MT,Stan Jones,Libertarian,Stan Jones (Libertarian politician),1,0,0,0,,1374246220.0
-2000,NH,Jeanne Shaheen,Democratic,Jeanne Shaheen,1,0,0,0,,1376671668.0
+2000,NH,Jeanne Shaheen,Democratic,Jeanne Shaheen,1,1,0,1,78th Governor of New Hampshire,1376671668.0
 2000,NH,Gordon J. Humphrey,Republican,Gordon J. Humphrey,1,0,1,1,United States Senator New Hampshire,1368977793.0
 2000,NH,Mary Brown,Independent,,0,0,0,0,,
 2000,NH,John J. Babiarz,Libertarian,,0,0,0,0,,
@@ -176,7 +176,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2002,ID,Jerry Brady,Democratic,,0,0,0,0,,
 2002,ID,Daniel Adams,Libertarian,,0,0,0,0,,
 2002,IL,Rod Blagojevich,Democratic,Rod Blagojevich,1,0,0,0,,1378693362.0
-2002,IL,Jim Ryan,Republican,Jim Ryan (politician),1,0,0,0,,1372737915.0
+2002,IL,Jim Ryan,Republican,Jim Ryan (politician),1,1,0,1,40th Attorney General of Illinois,1372737915.0
 2002,IL,Calvin Skinner,Libertarian,Calvin Skinner,1,0,0,0,,1378320550.0
 2002,IA,Tom Vilsack,Democratic,Tom Vilsack,1,0,0,0,,1371641401.0
 2002,IA,Doug Gross,Republican,,0,0,0,0,,
@@ -216,7 +216,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2002,NM,Bill Richardson,Democratic,Bill Richardson,1,0,0,0,,1375633454.0
 2002,NM,John Sanchez,Republican,John Sanchez,1,0,0,0,,1372741755.0
 2002,NM,David Bacon,Green,,0,0,0,0,,
-2002,NY,George Pataki,Republican,George Pataki,1,1,0,1,The Stealth Governor Gets His Way,1378299783.0
+2002,NY,George Pataki,Republican,George Pataki,1,0,0,0,,1378299783.0
 2002,NY,Carl McCall,Democratic,Carl McCall,1,1,0,1,52nd Comptroller of New York,1372866577.0
 2002,NY,Tom Golisano,Independence,Tom Golisano,1,0,0,0,,1378676356.0
 2002,NY,Gerald Cronin,Right to Life,,0,0,0,0,,
@@ -285,7 +285,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2004,WV,Joe Manchin,Democratic,Joe Manchin,1,1,0,1,27th Secretary of State of West Virginia,1376415537.0
 2004,WV,Monty Warner,Republican,,0,0,0,0,,
 2004,WV,Jesse Johnson,Mountain,Jesse Johnson (West Virginia politician),1,0,0,0,,1370789664.0
-2006,AL,Bob Riley,Republican,Bob Riley,1,1,0,1,Approval Ratings of All 50 Governors as of 5/10/05,1365848385.0
+2006,AL,Bob Riley,Republican,Bob Riley,1,0,0,0,,1365848385.0
 2006,AL,Lucy Baxley,Democratic,Lucy Baxley,1,1,0,1,28th Lieutenant Governor of Alabama,1370718593.0
 2006,AK,Sarah Palin,Republican,Sarah Palin,1,0,0,0,,1375742306.0
 2006,AK,Tony Knowles,Democratic,Tony Knowles (politician),1,0,0,0,,1364391112.0
@@ -634,7 +634,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2014,NV,Brian Sandoval,Republican,Brian Sandoval,1,1,0,1,30th Attorney General of Nevada,1368395970.0
 2014,NV,Bob Goodman,Democratic,,0,0,0,0,,
 2014,NV,David VanDerBeek,Independent American,,0,0,0,0,,
-2014,NH,Maggie Hassan,Democratic,Maggie Hassan,1,0,0,0,,1378242705.0
+2014,NH,Maggie Hassan,Democratic,Maggie Hassan,1,1,0,1,81st Governor of New Hampshire,1378242705.0
 2014,NH,Walt Havenstein,Republican,Walt Havenstein,1,0,0,0,,1350846837.0
 2014,NM,Susana Martinez,Republican,Susana Martinez,1,0,0,0,,1375916553.0
 2014,NM,Gary King,Democratic,Gary King (politician),1,1,0,1,30th Attorney General of New Mexico,1372716723.0
@@ -672,20 +672,20 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2014,TN,Shaun Crowell,Constitution,,0,0,0,0,,
 2014,TN,Isa Infante,Green,,0,0,0,0,,
 2014,TX,Greg Abbott,Republican,Greg Abbott,1,1,0,1,50th Attorney General of Texas,1376548972.0
-2014,TX,Wendy Davis,Democratic,Wendy Davis (politician),1,1,0,1,"Texas gubernatorial election, 2014: Governor",1365651945.0
+2014,TX,Wendy Davis,Democratic,Wendy Davis (politician),1,0,0,0,,1365651945.0
 2014,TX,Kathie Glass,Libertarian,,0,0,0,0,,
 2014,VT,Peter Shumlin,Democratic,Peter Shumlin,1,0,0,0,,1376407111.0
 2014,VT,Scott Milne,Republican,Scott Milne,1,0,0,0,,1296386380.0
 2014,VT,Dan Feliciano,Libertarian,,0,0,0,0,,
 2014,VT,Emily Peyton,Independent,,0,0,0,0,,
-2014,WI,Scott Walker,Republican,Scott Walker (politician),1,1,0,1,2010 election for Governor of Wisconsin,1371687071.0
+2014,WI,Scott Walker,Republican,Scott Walker (politician),1,0,0,0,,1371687071.0
 2014,WI,Mary Burke,Democratic,Mary Burke,1,0,0,0,,1353877334.0
 2014,WY,Matt Mead,Republican,Matt Mead,1,0,0,0,,1371056605.0
 2014,WY,Pete Gosar,Democratic,Pete Gosar,1,0,0,0,,1355281949.0
 2014,WY,Don Wills,Independent,,0,0,0,0,,
 2014,WY,Dee Cozzens,Libertarian,,0,0,0,0,,
 2016,DE,John Carney,Democratic,John Carney (Delaware politician),1,1,0,1,24th Lieutenant Governor of Delaware,1378401786.0
-2016,DE,Colin Bonini,Republican,Colin Bonini,1,1,0,1,2010 Delaware State Treasurer election }},1365535154.0
+2016,DE,Colin Bonini,Republican,Colin Bonini,1,0,0,0,,1365535154.0
 2016,DE,Andrew Groff,Green,,0,0,0,0,,
 2016,DE,Sean Louis Goward,Libertarian,,0,0,0,0,,
 2016,IN,Eric Holcomb,Republican,Eric Holcomb,1,1,0,1,51st Lieutenant Governor of Indiana,1375784505.0
@@ -725,7 +725,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2016,WV,Charlotte Pritt,Mountain,Charlotte Pritt,1,0,0,0,,1365529157.0
 2016,WV,David Moran,Libertarian,,0,0,0,0,,
 2016,WV,Phil Hudok,Constitution,,0,0,0,0,,
-2018,AL,Kay Ivey,Republican,Kay Ivey,1,1,0,1,38th Treasurer of Alabama,1377384852.0
+2018,AL,Kay Ivey,Republican,Kay Ivey,1,1,0,1,30th Lieutenant Governor of Alabama,1377384852.0
 2018,AL,Walt Maddox,Democratic,Walt Maddox,1,0,0,0,,1374300663.0
 2018,AK,Mike Dunleavy,Republican,Mike Dunleavy (politician),1,0,0,0,,1377300505.0
 2018,AK,Mark Begich,Democratic,Mark Begich,1,0,1,1,United States Senator Alaska,1377935824.0
@@ -737,7 +737,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2018,AR,Asa Hutchinson,Republican,Asa Hutchinson,1,0,0,0,,1370713675.0
 2018,AR,Jared Henderson,Democratic,,0,0,0,0,,
 2018,AR,Mark West,Libertarian,,0,0,0,0,,
-2018,CA,Gavin Newsom,Democratic,Gavin Newsom,1,0,0,0,,1377534074.0
+2018,CA,Gavin Newsom,Democratic,Gavin Newsom,1,1,0,1,49th Lieutenant Governor of California,1377534074.0
 2018,CA,John H. Cox,Republican,John H. Cox,1,0,0,0,,1377675748.0
 2018,CO,Jared Polis,Democratic,Jared Polis,1,0,0,0,,1376526876.0
 2018,CO,Walker Stapleton,Republican,Walker Stapleton,1,1,0,1,56th Treasurer of Colorado,1363822114.0
@@ -754,7 +754,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2018,HI,Andria Tupola,Republican,Andria Tupola,1,0,0,0,,1372341535.0
 2018,HI,Jim Brewer,Green,,0,0,0,0,,
 2018,HI,Terrence Teruya,Nonpartisan,,0,0,0,0,,
-2018,ID,Brad Little,Republican,Brad Little,1,0,0,0,,1370197408.0
+2018,ID,Brad Little,Republican,Brad Little,1,1,0,1,42nd Lieutenant Governor of Idaho,1370197408.0
 2018,ID,Paulette Jordan,Democratic,Paulette Jordan,1,0,0,0,,1366632788.0
 2018,ID,Bev Boeck,Libertarian,,0,0,0,0,,
 2018,ID,Walter L. Bayes,Constitution,,0,0,0,0,,
@@ -766,10 +766,10 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2018,IA,Fred Hubbell,Democratic,Fred Hubbell,1,0,0,0,,1354882535.0
 2018,IA,Jake Porter,Libertarian,,0,0,0,0,,
 2018,KS,Laura Kelly,Democratic,Laura Kelly,1,0,0,0,,1375123223.0
-2018,KS,Kris Kobach,Republican,Kris Kobach,1,0,0,0,,1377675541.0
+2018,KS,Kris Kobach,Republican,Kris Kobach,1,1,0,1,31st Secretary of State of Kansas,1377675541.0
 2018,KS,Greg Orman,Independent,Greg Orman,1,0,0,0,,1376202815.0
 2018,KS,Jeff Caldwell,Libertarian,,0,0,0,0,,
-2018,ME,Janet Mills,Democratic,Janet Mills,1,0,0,0,,1376630508.0
+2018,ME,Janet Mills,Democratic,Janet Mills,1,1,0,1,55th and 57th Attorney General of Maine,1376630508.0
 2018,ME,Shawn Moody,Republican,,0,0,0,0,,
 2018,ME,Terry Hayes,Independent,Terry Hayes (politician),1,1,0,1,51st Treasurer of Maine,1378167476.0
 2018,MD,Larry Hogan,Republican,Larry Hogan,1,0,0,0,,1370849853.0
@@ -819,7 +819,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2018,RI,Bill Gilbert,Moderate,,0,0,0,0,,
 2018,RI,Luis-Daniel Munoz,Independent,,0,0,0,0,,
 2018,RI,Anne Armstrong,Compassion,,0,0,0,0,,
-2018,SC,Henry McMaster,Republican,Henry McMaster,1,1,0,1,50th Attorney General of South Carolina,1374596885.0
+2018,SC,Henry McMaster,Republican,Henry McMaster,1,1,0,1,91st Lieutenant Governor of South Carolina,1374596885.0
 2018,SC,James E. Smith Jr.,Democratic,James E. Smith Jr.,1,0,0,0,,1364894648.0
 2018,SD,Kristi Noem,Republican,Kristi Noem,1,0,0,0,,1378709202.0
 2018,SD,Billie Sutton,Democratic,Billie Sutton,1,0,0,0,,1365514889.0
@@ -827,14 +827,14 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2018,TN,Bill Lee,Republican,Bill Lee (Tennessee politician),1,0,0,0,,1377857517.0
 2018,TN,Karl Dean,Democratic,Karl Dean,1,0,0,0,,1353243587.0
 2018,TX,Greg Abbott,Republican,Greg Abbott,1,1,0,1,Governor of Texas,1376548972.0
-2018,TX,Lupe Valdez,Democratic,Lupe Valdez,1,1,0,1,Lupe Valdez Makes History In Texas By Winning Democratic Nod For Governor,1373414628.0
+2018,TX,Lupe Valdez,Democratic,Lupe Valdez,1,0,0,0,,1373414628.0
 2018,TX,Mark Tippetts,Libertarian,,0,0,0,0,,
 2018,VT,Phil Scott,Republican,Phil Scott,1,1,0,1,81st Lieutenant Governor of Vermont,1376872964.0
 2018,VT,Christine Hallquist,Democratic,Christine Hallquist,1,0,0,0,,1368804689.0
 2018,VT,Trevor Barlow,Independent,,0,0,0,0,,
 2018,WI,Tony Evers,Democratic,Tony Evers,1,0,0,0,,1377523716.0
 2018,WI,Scott Walker,Republican,Scott Walker (politician),1,1,0,1,Chair of the Republican Governors Association,1371687071.0
-2018,WY,Mark Gordon,Republican,Mark Gordon (politician),1,0,0,0,,1374700472.0
+2018,WY,Mark Gordon,Republican,Mark Gordon (politician),1,1,0,1,29th Treasurer of Wyoming,1374700472.0
 2018,WY,Mary Throne,Democratic,Mary Throne,1,0,0,0,,1365684085.0
 2018,WY,Rex Rammell,Constitution,Rex Rammell,1,0,0,0,,1355867711.0
 2018,WY,Lawrence Struempf,Libertarian,,0,0,0,0,,
@@ -874,21 +874,21 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2020,WV,Erika Kolenich,Libertarian,,0,0,0,0,,
 2020,WV,S. Marshall Wilson,Independent/write-in,S. Marshall Wilson,1,0,0,0,,1377272204.0
 2020,WV,Daniel Lutz,Mountain,,0,0,0,0,,
-2022,AL,Kay Ivey,Republican,Kay Ivey,1,1,0,1,38th Treasurer of Alabama,1377384852.0
+2022,AL,Kay Ivey,Republican,Kay Ivey,1,1,0,1,30th Lieutenant Governor of Alabama,1377384852.0
 2022,AL,Yolanda Flowers,Democratic,,0,0,0,0,,
 2022,AL,Jimmy Blake,Libertarian,,0,0,0,0,,
 2022,AK,Mike Dunleavy,Republican,Mike Dunleavy (politician),1,1,0,1,Governor of Alaska,1377300505.0
 2022,AK,Les Gara,Democratic,Les Gara,1,0,0,0,,1365673519.0
 2022,AK,Bill Walker,Independent,Bill Walker (American politician),1,0,0,0,,1374573840.0
 2022,AK,Charlie Pierce,Republican,,0,0,0,0,,
-2022,AZ,Katie Hobbs,Democratic,Katie Hobbs,1,0,0,0,,1377584899.0
+2022,AZ,Katie Hobbs,Democratic,Katie Hobbs,1,1,0,1,21st Secretary of State of Arizona,1377584899.0
 2022,AZ,Kari Lake,Republican,Kari Lake,1,0,0,0,,1376377310.0
 2022,AR,Sarah Huckabee Sanders,Republican,Sarah Huckabee Sanders,1,0,0,0,,1377750225.0
 2022,AR,Chris Jones,Democratic,,0,0,0,0,,
 2022,AR,Ricky Harrington,Libertarian,,0,0,0,0,,
-2022,CA,Gavin Newsom,Democratic,Gavin Newsom,1,0,0,0,,1377534074.0
+2022,CA,Gavin Newsom,Democratic,Gavin Newsom,1,1,0,1,49th Lieutenant Governor of California,1377534074.0
 2022,CA,Brian Dahle,Republican,Brian Dahle,1,0,0,0,,1365517806.0
-2022,CO,Jared Polis,Democratic,Jared Polis,1,0,0,0,,1376526876.0
+2022,CO,Jared Polis,Democratic,Jared Polis,1,1,0,1,Governor of Colorado,1376526876.0
 2022,CO,Heidi Ganahl,Republican,Heidi Ganahl,1,0,0,0,,1376530591.0
 2022,CO,Kevin Ruskusky,Libertarian,,0,0,0,0,,
 2022,CO,Danielle Neuschwanger,Constitution,,0,0,0,0,,
@@ -903,9 +903,9 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2022,GA,Brian Kemp,Republican,Brian Kemp,1,1,0,1,Governor of Georgia,1376230618.0
 2022,GA,Stacey Abrams,Democratic,Stacey Abrams,1,0,0,0,,1377979506.0
 2022,GA,Shane Hazel,Libertarian,,0,0,0,0,,
-2022,HI,Josh Green,Democratic,Josh Green (politician),1,0,0,0,,1374498940.0
+2022,HI,Josh Green,Democratic,Josh Green (politician),1,1,0,1,15th Lieutenant Governor of Hawaii,1374498940.0
 2022,HI,Duke Aiona,Republican,Duke Aiona,1,1,0,1,11th Lieutenant Governor of Hawaii,1368480654.0
-2022,ID,Brad Little,Republican,Brad Little,1,0,0,0,,1370197408.0
+2022,ID,Brad Little,Republican,Brad Little,1,1,0,1,42nd Lieutenant Governor of Idaho,1370197408.0
 2022,ID,Stephen Heidt,Democratic,,0,0,0,0,,
 2022,ID,Ammon Bundy,Independent,Ammon Bundy,1,0,0,0,,1378616626.0
 2022,ID,Paul Sand,Libertarian,,0,0,0,0,,
@@ -917,7 +917,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2022,IA,Deidre DeJear,Democratic,,0,0,0,0,,
 2022,IA,Rick Stewart,Libertarian,,0,0,0,0,,
 2022,KS,Laura Kelly,Democratic,Laura Kelly,1,0,0,0,,1375123223.0
-2022,KS,Derek Schmidt,Republican,Derek Schmidt,1,0,0,0,,1376610107.0
+2022,KS,Derek Schmidt,Republican,Derek Schmidt,1,1,0,1,44th Attorney General of Kansas,1376610107.0
 2022,KS,Dennis Pyle,Independent,Dennis Pyle,1,0,0,0,,1371412334.0
 2022,KS,Seth Cordell,Libertarian,,0,0,0,0,,
 2022,ME,Janet Mills,Democratic,Janet Mills,1,1,0,1,75th Governor of Maine,1376630508.0
@@ -928,7 +928,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2022,MD,David Lashar,Libertarian,,0,0,0,0,,
 2022,MD,David Harding,Working Class,,0,0,0,0,,
 2022,MD,Nancy Wallace,Green,,0,0,0,0,,
-2022,MA,Maura Healey,Democratic,Maura Healey,1,0,0,0,,1378182281.0
+2022,MA,Maura Healey,Democratic,Maura Healey,1,1,0,1,44th Attorney General of Massachusetts,1378182281.0
 2022,MA,Geoff Diehl,Republican,Geoff Diehl,1,0,0,0,,1372744422.0
 2022,MA,Kevin Reed,Libertarian,,0,0,0,0,,
 2022,MI,Gretchen Whitmer,Democratic,Gretchen Whitmer,1,0,0,0,,1377810693.0
@@ -957,7 +957,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2022,NM,Michelle Lujan Grisham,Democratic,Michelle Lujan Grisham,1,0,0,0,,1376162551.0
 2022,NM,Mark Ronchetti,Republican,,0,0,0,0,,
 2022,NM,Karen Bedonie,Libertarian,,0,0,0,0,,
-2022,NY,Kathy Hochul,Democratic,Kathy Hochul,1,1,0,1,2014 Democratic primary results Lieutenant Governor of New York,1378288256.0
+2022,NY,Kathy Hochul,Democratic,Kathy Hochul,1,1,0,1,Lieutenant Governor of New York,1378288256.0
 2022,NY,Lee Zeldin,Republican,Lee Zeldin,1,0,0,0,,1370215975.0
 2022,OH,Mike DeWine,Republican,Mike DeWine,1,1,1,1,Governor of Ohio,1378614261.0
 2022,OH,Nan Whaley,Democratic,Nan Whaley,1,0,0,0,,1370931678.0
@@ -970,17 +970,17 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2022,OR,Betsy Johnson,Independent,Betsy Johnson,1,0,0,0,,1376624858.0
 2022,OR,Donice Smith,Constitution,,0,0,0,0,,
 2022,OR,R. Leon Noble,Libertarian,,0,0,0,0,,
-2022,PA,Josh Shapiro,Democratic,Josh Shapiro,1,0,0,0,,1378582751.0
+2022,PA,Josh Shapiro,Democratic,Josh Shapiro,1,1,0,1,Attorney General of Pennsylvania,1378582751.0
 2022,PA,Doug Mastriano,Republican,Doug Mastriano,1,0,0,0,,1378652192.0
 2022,PA,Matt Hackenburg,Libertarian,,0,0,0,0,,
 2022,PA,Christina DiGiulio,Green,,0,0,0,0,,
 2022,PA,Joe Soloski,Keystone,,0,0,0,0,,
-2022,RI,Dan McKee,Democratic,Dan McKee,1,1,0,1,57th Chair of the National Lieutenant Governors Association,1377210487.0
+2022,RI,Dan McKee,Democratic,Dan McKee,1,1,0,1,69th Lieutenant Governor of Rhode Island,1377210487.0
 2022,RI,Ashley Kalus,Republican,,0,0,0,0,,
 2022,RI,Zachary Hurwitz,Independent,,0,0,0,0,,
 2022,RI,Paul Rianna Jr.,Independent,,0,0,0,0,,
 2022,RI,Elijah Gizzarelli,Libertarian,,0,0,0,0,,
-2022,SC,Henry McMaster,Republican,Henry McMaster,1,1,0,1,50th Attorney General of South Carolina,1374596885.0
+2022,SC,Henry McMaster,Republican,Henry McMaster,1,1,0,1,91st Lieutenant Governor of South Carolina,1374596885.0
 2022,SC,Joe Cunningham,Democratic,Joe Cunningham (American politician),1,0,0,0,,1370184066.0
 2022,SC,Bruce Reeves,Libertarian,,0,0,0,0,,
 2022,SD,Kristi Noem,Republican,Kristi Noem,1,0,0,0,,1378709202.0
@@ -1016,17 +1016,17 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2024,IN,Mike Braun,Republican,Mike Braun,1,0,1,1,United States Senator Indiana,1376796744.0
 2024,IN,Jennifer McCormick,Democratic,Jennifer McCormick,1,1,0,1,44th Indiana Superintendent of Public Instruction,1349157664.0
 2024,IN,Donald Rainwater,Libertarian,,0,0,0,0,,
-2024,MO,Mike Kehoe,Republican,Mike Kehoe,1,0,0,0,,1371524271.0
+2024,MO,Mike Kehoe,Republican,Mike Kehoe,1,1,0,1,48th Lieutenant Governor of Missouri,1371524271.0
 2024,MO,Crystal Quade,Democratic,Crystal Quade,1,0,0,0,,1366844808.0
 2024,MO,Bill Slantz,Libertarian,,0,0,0,0,,
 2024,MO,Paul Lehmann,Green,,0,0,0,0,,
 2024,MT,Greg Gianforte,Republican,Greg Gianforte,1,0,0,0,,1377988673.0
 2024,MT,Ryan Busse,Democratic,Ryan Busse,1,0,0,0,,1377893103.0
 2024,MT,Kaiser Leib,Libertarian,,0,0,0,0,,
-2024,NH,Kelly Ayotte,Republican,Kelly Ayotte,1,1,0,1,27th Attorney General of New Hampshire,1377743042.0
+2024,NH,Kelly Ayotte,Republican,Kelly Ayotte,1,1,1,1,United States Senator New Hampshire,1377743042.0
 2024,NH,Joyce Craig,Democratic,Joyce Craig,1,0,0,0,,1374066316.0
 2024,NH,Stephen Villee,Libertarian,,0,0,0,0,,
-2024,NC,Josh Stein,Democratic,Josh Stein,1,0,0,0,,1371022742.0
+2024,NC,Josh Stein,Democratic,Josh Stein,1,1,0,1,51st Attorney General of North Carolina,1371022742.0
 2024,NC,Mark Robinson,Republican,Mark Robinson (American politician),1,1,0,1,35th Lieutenant Governor of North Carolina,1376008395.0
 2024,NC,Mike Ross,Libertarian,,0,0,0,0,,
 2024,NC,Vinny Smith,Constitution,,0,0,0,0,,
@@ -1034,7 +1034,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2024,ND,Kelly Armstrong,Republican,Kelly Armstrong,1,0,0,0,,1376458353.0
 2024,ND,Merrill Piepkorn,Democratic–NPL,Merrill Piepkorn,1,0,0,0,,1341411829.0
 2024,ND,Michael Coachman,Independent,,0,0,0,0,,
-2024,UT,Spencer Cox,Republican,Spencer Cox (politician),1,1,0,1,8th Lieutenant Governor of Utah,1378203905.0
+2024,UT,Spencer Cox,Republican,Spencer Cox (politician),1,1,0,1,Chair of the National Governors Association,1378203905.0
 2024,UT,Brian King,Democratic,Brian King (politician),1,0,0,0,,1375300066.0
 2024,UT,Phil Lyman,Write-in,Phil Lyman,1,0,0,0,,1365699893.0
 2024,UT,Robert Latham,Libertarian,,0,0,0,0,,
@@ -1045,9 +1045,9 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2024,VT,Kevin Hoyt,Independent,,0,0,0,0,,
 2024,VT,June Goodband,Green Mountain,,0,0,0,0,,
 2024,VT,Eli Mutino,Independent,,0,0,0,0,,
-2024,WA,Bob Ferguson,Democratic,Bob Ferguson (politician),1,0,0,0,,1377491542.0
-2024,WA,Dave Reichert,Republican,Dave Reichert,1,0,1,1,Dave Reichert Elected U.S. Representative District 8 Washington,1354657802.0
-2024,WV,Patrick Morrisey,Republican,Patrick Morrisey,1,0,0,0,,1372094420.0
+2024,WA,Bob Ferguson,Democratic,Bob Ferguson (politician),1,1,0,1,18th Attorney General of Washington,1377491542.0
+2024,WA,Dave Reichert,Republican,Dave Reichert,1,0,0,0,,1354657802.0
+2024,WV,Patrick Morrisey,Republican,Patrick Morrisey,1,1,0,1,34th Attorney General of West Virginia,1372094420.0
 2024,WV,Steve Williams,Democratic,Stephen T. Williams,1,0,0,0,,1376773944.0
 2024,WV,Erika Kolenich,Libertarian,,0,0,0,0,,
 2024,WV,Marshall Wilson,Constitution,,0,0,0,0,,
@@ -1087,8 +1087,8 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2026,GA,Keisha Lance Bottoms,Democratic,Keisha Lance Bottoms,1,0,0,0,,1378050658.0
 2026,GA,Rick Jackson,Republican,Rick Jackson (businessman),1,0,0,0,,1377232117.0
 2026,HI,Gary Cordery,Republican,,0,0,0,0,,
-2026,HI,Josh Green,Democratic,Josh Green (politician),1,0,0,0,,1374498940.0
-2026,ID,Brad Little,Republican,Brad Little,1,0,0,0,,1370197408.0
+2026,HI,Josh Green,Democratic,Josh Green (politician),1,1,0,1,15th Lieutenant Governor of Hawaii,1374498940.0
+2026,ID,Brad Little,Republican,Brad Little,1,1,0,1,42nd Lieutenant Governor of Idaho,1370197408.0
 2026,ID,Terri Pickens,Democratic,,0,0,0,0,,
 2026,ID,Pro-Life,Constitution,Pro-Life (politician),1,0,0,0,,1377269586.0
 2026,ID,Paul Sand,Libertarian,,0,0,0,0,,
@@ -1106,16 +1106,16 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2026,ME,Hannah Pingree,Democratic,Hannah Pingree,1,0,0,0,,1378412846.0
 2026,MD,Dan Cox,Republican,Dan Cox,1,0,0,0,,1374249562.0
 2026,MD,Andy Ellis,Green,,0,0,0,0,,
-2026,MD,Wes Moore,Democratic,Wes Moore,1,0,0,0,,1376270232.0
+2026,MD,Wes Moore,Democratic,Wes Moore,1,1,0,1,Chair of the National Governors Association,1376270232.0
 2026,MD,Cathy White,Working Class,,0,0,0,0,,
-2026,MA,Maura Healey,Democratic,Maura Healey,1,0,0,0,,1378182281.0
+2026,MA,Maura Healey,Democratic,Maura Healey,1,1,0,1,44th Attorney General of Massachusetts,1378182281.0
 2026,MA,Andrea James,Independent,Andrea C. James,1,0,0,0,,1355420328.0
 2026,MA,Mike Minogue,Republican,,0,0,0,0,,
 2026,MI,Jocelyn Benson,Democratic,Jocelyn Benson,1,1,0,1,43rd Secretary of State of Michigan,1376210949.0
 2026,MI,Donna Brandenburg,U.S. Taxpayers,,0,0,0,0,,
 2026,MI,Douglas Campbell,Green,,0,0,0,0,,
 2026,MI,Anthony Hudson,Libertarian,,0,0,0,0,,
-2026,MI,John James,Republican,John James (Michigan politician),1,0,1,1,2018 United States Senate election in Michigan (Republican primary),1374880077.0
+2026,MI,John James,Republican,John James (Michigan politician),1,0,0,0,,1374880077.0
 2026,MN,Lisa Demuth,Republican,Lisa Demuth,1,0,0,0,,1377808046.0
 2026,MN,Amy Klobuchar,DFL,Amy Klobuchar,1,0,1,1,United States Senator Minnesota,1377911492.0
 2026,MN,Steven Young,Green,,0,0,0,0,,
@@ -1126,13 +1126,13 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2026,NV,Aaron Ford,Democratic,Aaron D. Ford,1,1,0,1,34th Attorney General of Nevada,1375786294.0
 2026,NV,Danielle Ford,Independent,,0,0,0,0,,
 2026,NV,Joe Lombardo,Republican,Joe Lombardo,1,1,0,1,Governor of Nevada,1377741197.0
-2026,NH,Kelly Ayotte,Republican,Kelly Ayotte,1,1,0,1,83rd Governor of New Hampshire,1377743042.0
+2026,NH,Kelly Ayotte,Republican,Kelly Ayotte,1,1,1,1,83rd Governor of New Hampshire,1377743042.0
 2026,NH,Jon Kiper,Community First,,0,0,0,0,,
 2026,NH,Cinde Warmington,Democratic,Cinde Warmington,1,0,0,0,,1378319099.0
 2026,NM,Deb Haaland,Democratic,Deb Haaland,1,0,0,0,,1377136999.0
 2026,NM,Gregg Hull,Republican,Gregg Hull,1,0,0,0,,1376833933.0
 2026,NY,Bruce Blakeman,Republican,Bruce Blakeman,1,0,0,0,,1378604796.0
-2026,NY,Kathy Hochul,Democratic,Kathy Hochul,1,1,0,1,2014 Democratic primary results Lieutenant Governor of New York,1378288256.0
+2026,NY,Kathy Hochul,Democratic,Kathy Hochul,1,1,0,1,Lieutenant Governor of New York,1378288256.0
 2026,OH,Amy Acton,Democratic,Amy Acton,1,0,0,0,,1373962554.0
 2026,OH,Donald Kissick,Libertarian,,0,0,0,0,,
 2026,OH,Vivek Ramaswamy,Republican,Vivek Ramaswamy,1,0,0,0,,1378149051.0
@@ -1146,7 +1146,7 @@ year,state,name,party,title,has_page,statewide,congress,experienced,office,revid
 2026,OR,Brett Smith,Pacific Green,,0,0,0,0,,
 2026,PA,Stacy Garrity,Republican,Stacy Garrity,1,1,0,1,79th Treasurer of Pennsylvania,1377665958.0
 2026,PA,Ken Krawchuk,Libertarian,,0,0,0,0,,
-2026,PA,Josh Shapiro,Democratic,Josh Shapiro,1,0,0,0,,1378582751.0
+2026,PA,Josh Shapiro,Democratic,Josh Shapiro,1,1,0,1,Attorney General of Pennsylvania,1378582751.0
 2026,RI,Ken Block,Independent,Ken Block (politician),1,0,0,0,,1374159849.0
 2026,RI,Helena Foulkes,Democratic,Helena Foulkes,1,0,0,0,,1375549518.0
 2026,RI,Jasjit Gotra,Independent,,0,0,0,0,,
