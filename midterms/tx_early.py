@@ -41,6 +41,7 @@ import os
 import re
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -58,7 +59,7 @@ OUT = ROOT / "web" / "data" / "tx_early.json"
 CIVIX = "https://goelect.txelections.civixapps.com/api-ivis-system/api/v1/getFile"
 CIVIX_UI = "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr"
 LEGACY = "https://earlyvoting.texas-election.com/Elections"
-MEDSL_COUNTY = "https://dataverse.harvard.edu/api/access/datafile/13573089?format=original"   # countypres_2000-2024
+MEDSL_COUNTY = "https://dataverse.harvard.edu/api/access/datafile/13573089"   # countypres_2000-2024.tab (tab-separated)
 
 CAL = {2026: {"election_day": dt.date(2026, 11, 3), "first": dt.date(2026, 10, 19), "last": dt.date(2026, 10, 30)},
        2022: {"election_day": dt.date(2022, 11, 8), "first": dt.date(2022, 10, 24), "last": dt.date(2022, 11, 4)}}
@@ -124,7 +125,7 @@ def _mdy(d: dt.date) -> str:
 
 
 def find_2026(index: dict) -> dict | None:
-    for e in (index or {}).get("elections", []):
+    for e in (index or {}).get("elections") or []:
         name = str(e.get("election_name", "")).upper()
         if e.get("election_date") == _mdy(CAL[2026]["election_day"]) and "GENERAL" in name and "SPECIAL" not in name:
             return e
@@ -145,7 +146,7 @@ def snapshot(today: dt.date | None = None) -> list[Path]:
     el = find_2026(idx)
     if not el: return []
     (RAW / "election.json").write_text(json.dumps({k: v for k, v in el.items() if k != "counties"}))
-    dates = sorted({dt.datetime.strptime(x["date"], "%m/%d/%Y").date() for x in el.get("early_voting_dates", [])}) \
+    dates = sorted({dt.datetime.strptime(x["date"], "%m/%d/%Y").date() for x in el.get("early_voting_dates") or []}) \
         or list(pd.date_range(CAL[2026]["first"], CAL[2026]["last"]).date)
     for d in [d for d in dates if d <= today]:
         try:
@@ -300,8 +301,12 @@ class _Legacy:
         h = {"User-Agent": self.F.UA, "Referer": f"{LEGACY}/getElectionDetails.do"}
         body = urllib.parse.urlencode(data).encode() if data is not None else None
         if body: h["Content-Type"] = "application/x-www-form-urlencoded"
-        with self.op.open(urllib.request.Request(url, data=body, headers=h), timeout=120) as r:
-            b = r.read()
+        try:
+            with self.op.open(urllib.request.Request(url, data=body, headers=h), timeout=120) as r:
+                b = r.read()
+        except urllib.error.HTTPError as e:
+            snippet = re.sub(r"\s+", " ", e.read(600).decode("utf-8", "replace"))
+            raise RuntimeError(f"{action}: HTTP {e.code} (server {e.headers.get('Server')}, cf-ray {e.headers.get('CF-RAY')}): {snippet[:300]}")
         self.F.count(url, len(b))
         if name: (self.save / name).write_bytes(b)    # county tables only (no voter data); kept for the run's artifact
         return b.decode("utf-8", "replace")
@@ -398,8 +403,13 @@ def _pres_2024(force: bool = False) -> dict:
     if PRES_2024.exists() and not force:
         print("  2024 county results already committed; skipped")
         return json.loads(SOURCES.read_text()).get("tx_county_pres2024", {}) if SOURCES.exists() else {}
-    raw = F.get(MEDSL_COUNTY, ROOT / "data" / "raw" / "mit" / "countypres_2000_2024.csv", timeout=300)[0]
-    d = pd.read_csv(io.BytesIO(raw), dtype={"county_fips": str}, keep_default_na=False, low_memory=False)
+    try:
+        raw = F.get(MEDSL_COUNTY, ROOT / "data" / "raw" / "mit" / "countypres_2000_2024.tab", timeout=300)[0]
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f"MEDSL HTTP {e.code}: {e.read(400).decode('utf-8', 'replace')}")
+    sep = "\t" if b"\t" in raw[:2000] else ","
+    d = pd.read_csv(io.BytesIO(raw), sep=sep, dtype={"county_fips": str}, keep_default_na=False, low_memory=False)
+    d["year"] = pd.to_numeric(d["year"], errors="coerce")
     d = d[(d.year == 2024) & (d.state_po == "TX")].copy()
     d["candidatevotes"] = pd.to_numeric(d.candidatevotes, errors="coerce").fillna(0)
     d["county"] = d.county_name.str.upper().str.strip()
@@ -427,13 +437,15 @@ def _probe_2026() -> dict:
         idx = _decode(F.open_url(_civix_url(type="EVR_ELECTION"), timeout=60))
     except Exception as e:
         return {"error": str(e)[:200]}
+    RAW.mkdir(parents=True, exist_ok=True)
+    (RAW / "election_index_probe.json").write_text(json.dumps(idx, indent=1)[:2_000_000])
     el = find_2026(idx)
-    names = [f'{e.get("election_name")} ({e.get("election_date")})' for e in (idx or {}).get("elections", [])]
+    names = [f'{e.get("election_name")} ({e.get("election_date")})' for e in (idx or {}).get("elections") or []]
     if not el: return {"found": False, "elections_listed": names}
-    ev = [x["date"] for x in el.get("early_voting_dates", [])]
+    ev = [x["date"] for x in el.get("early_voting_dates") or []]
     print(f"  2026 general in the SOS index: {el.get('election_name')} id {el.get('id')}, EV dates {ev[:1]}..{ev[-1:]} ({len(ev)})")
     return {"found": True, "id": el.get("id"), "election_name": el.get("election_name"), "early_voting_dates": ev,
-            "counties": len(el.get("counties", [])), "index_date_updated": idx.get("date_updated"),
+            "counties": len(el.get("counties") or []), "index_date_updated": idx.get("date_updated"),
             "retrieved_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")}
 
 
@@ -448,7 +460,8 @@ def baseline(force: bool = False) -> None:
         try: src[key] = fn()
         except (Exception, SystemExit) as e:
             errors.append(f"{key}: {str(e)[:300]}"); print(f"!! {key} failed: {str(e)[:300]}")
-    SOURCES.write_text(json.dumps(src, indent=1) + "\n")
+    src = {k: v for k, v in src.items() if v}
+    if src: SOURCES.write_text(json.dumps(src, indent=1) + "\n")   # only parts that built (nothing written otherwise)
     F.report()
     if errors: raise SystemExit("baseline incomplete: " + " | ".join(errors))
 
