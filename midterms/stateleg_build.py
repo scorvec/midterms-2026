@@ -35,8 +35,10 @@ from .fetch import open_url, report
 from .paths import RAW, STATIC
 
 R = RAW / "stateleg"; OUT = STATIC / "stateleg"
-STATES = ["MI", "MN", "WI", "AZ", "PA", "NH", "NC", "GA", "IA", "TX"]
-FIPS = {"MI": "26", "MN": "27", "WI": "55", "AZ": "04", "PA": "42", "NH": "33", "NC": "37", "GA": "13", "IA": "19", "TX": "48"}
+STATES = ["MI", "MN", "WI", "AZ", "PA", "NH", "NC", "GA", "IA", "TX",
+          "CA", "CT", "KY", "UT", "WA", "WV", "OR"]       # 2026-10-05: chambers whose Wikipedia pages list complete general-election slates
+FIPS = {"MI": "26", "MN": "27", "WI": "55", "AZ": "04", "PA": "42", "NH": "33", "NC": "37", "GA": "13", "IA": "19", "TX": "48",
+        "CA": "06", "CT": "09", "KY": "21", "UT": "49", "WA": "53", "WV": "54", "OR": "41"}
 DV = "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/{}"
 SETS = {"m2024": "NYTPDU", "m2020": "NT66Z3", "m2018": "NVQYMG", "m2022": "OAARCY", "vest2016": "NH5S2I", "vest2020": "K7760H", "klarner": "FJOGJB"}
 QC: dict = {}

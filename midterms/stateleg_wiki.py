@@ -21,8 +21,9 @@ from . import wiki_polls as W
 from .paths import CACHE
 
 NAMES = {"MI": "Michigan", "MN": "Minnesota", "WI": "Wisconsin", "AZ": "Arizona", "PA": "Pennsylvania", "NH": "New Hampshire",
-         "NC": "North Carolina", "GA": "Georgia", "IA": "Iowa", "TX": "Texas"}
-LOWER_NAME = {"WI": "State Assembly"}
+         "NC": "North Carolina", "GA": "Georgia", "IA": "Iowa", "TX": "Texas", "CA": "California", "CT": "Connecticut", "KY": "Kentucky",
+         "UT": "Utah", "WA": "Washington", "WV": "West Virginia", "OR": "Oregon"}
+LOWER_NAME = {"WI": "State Assembly", "CA": "State Assembly", "WV": "House of Delegates"}
 
 
 def title(st, ch):
