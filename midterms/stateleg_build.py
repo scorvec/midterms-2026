@@ -76,7 +76,8 @@ def stream(url, dest: Path):
         except Exception as e:
             if "format=original" in url and "400" in str(e):         # files Dataverse never ingested have no "original" form
                 url = url.replace("?format=original", ""); continue
-            if k == 3: raise
+            code = getattr(e, "code", None)
+            if k == 3 or (code is not None and 400 <= code < 500 and code != 429): raise
             print(f"  retry {url[:90]} ({str(e)[:60]})"); import time; time.sleep(20 * (k + 1))
     tmp.rename(dest); count(url, dest.stat().st_size)
 
@@ -121,7 +122,7 @@ COLS = ["state_po", "stage", "office", "district", "county_fips", "county_name",
 
 def _keep_office(o: pd.Series) -> pd.Series:
     u = o.astype(str).str.upper().str.strip()
-    return (u.str.contains("PRESIDENT") & ~u.str.contains("VICE")) | u.str.match(r"^(US|U\.S\.) HOUSE") | u.map(_chamber_map(u)).notna()
+    return (u.str.contains("PRESIDENT") & ~u.str.startswith("VICE")) | u.str.match(r"^(US|U\.S\.) HOUSE") | u.map(_chamber_map(u)).notna()
 
 
 def _chamber_map(u: pd.Series) -> dict:
@@ -165,7 +166,8 @@ def medsl_load(p: Path, st: str) -> pd.DataFrame:
 
 
 def pres_rows(df):
-    return df[df["office"].str.contains("PRESIDENT") & ~df["office"].str.contains("VICE")]
+    o = df["office"]
+    return df[o.str.contains("PRESIDENT") & ~o.str.startswith("VICE") & ~o.str.contains("PRIMARY")]
 
 
 def label_lean(df: pd.DataFrame, st: str, ch: str, tag: str):
@@ -258,6 +260,15 @@ def vest_votes(zp: Path, yy: str):
     return g
 
 
+def vest_county_margin(v):
+    """2020 two-party presidential margin per county from VEST precincts (representative point in the 2020 county)."""
+    import geopandas as gpd
+    pts = v[["d", "r", "geometry"]].copy(); pts["geometry"] = pts.geometry.representative_point()
+    j = gpd.sjoin(pts, counties(), how="left", predicate="within")
+    g = j.groupby("GEOID")[["d", "r"]].sum()
+    return (100 * (g["d"] - g["r"]) / (g["d"] + g["r"])).rename("m")
+
+
 def tiger(year, fips, lay):
     import geopandas as gpd
     p = url_get(f"https://www2.census.gov/geo/tiger/TIGER{year}/{lay.upper()}/tl_{year}_{fips}_{lay.lower()}.zip", f"tl_{year}_{fips}_{lay.lower()}.zip")
@@ -327,12 +338,6 @@ def build_2026():
             if lo is not None:
                 n = lo.copy(); n["district"] = n["district"].map(NEST[st]); n = n.groupby("district")[["d", "r"]].sum().reset_index()
                 n["state"], n["chamber"], n["src"] = st, "upper", "medsl2024_nested"; rows.append(n)
-        p20 = dv_get("m2020", f"2020-{st.lower()}-precinct-general\\.(tab|csv)")
-        if p20 is not None:
-            d20 = medsl_load(p20, st); cm[(st, 2020)] = county_margin(d20); res.append(results_from_medsl(d20, st, 2020))
-            for ch in ("upper", "lower"):
-                o = label_lean(d20, st, ch, "m2020")
-                if o is not None: o["state"], o["chamber"], o["src"] = st, ch, "medsl2020_labels"; o["map"] = 2020; HIST.append(o.assign(pres_year=2020, cycle=2020))
     L = pd.concat(rows, ignore_index=True)
     # spatial cross-check / fallback on the 2025 TIGER maps: VEST 2020 + county swing 2020->2024
     sp = []
@@ -343,7 +348,9 @@ def build_2026():
         try: v = vest_votes(zp, "20")
         except Exception as e: print("!! VEST 2020", st, e); continue
         sw = None
-        if (st, 2024) in cm and (st, 2020) in cm: sw = (cm[(st, 2024)][0] - cm[(st, 2020)][0]).rename("swing")
+        if (st, 2024) in cm:
+            c20 = vest_county_margin(v); c24 = cm[(st, 2024)][0]; c24.index = c24.index.astype(str).str.replace(r"\.0$", "", regex=True).str.zfill(5)
+            sw = (c24 - c20).dropna().rename("swing")
         for ch, lay in (("upper", "sldu"), ("lower", "sldl")):
             if st == "AZ" and ch == "lower": lay = "sldu"          # AZ House districts = the 30 legislative districts
             try:

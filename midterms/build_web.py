@@ -117,6 +117,16 @@ def main():
         out["governor"] = gov
     except Exception as ex:
         print("governors skipped:", str(ex)[:120])
+    from . import stateleg as SLG                                        # state legislatures (stateleg.py): MIDTERMS_STATELEG=on only
+    if SLG.ON:
+        try:
+            from . import stateleg_wiki as SLW
+            SLW.build()
+            sl, _ = SLG.run_live(E_now, Z, MOOD["s_house"], SS, smg, GS if "governor" in out else None, gmg if "governor" in out else None)
+            out["state_legislatures"] = sl
+            print("State legislatures:", "; ".join(f"{c['name']} D {c['p_d']:.2f}" for c in sl["chambers"]))
+        except Exception as ex:
+            import traceback; traceback.print_exc(); print("state legislatures skipped:", str(ex)[:160])
     json.dump(out, open("web/data/model.json", "w"), separators=(",", ":"))
     polls_page(out, gm, E_now, BIAS)
     try:                                                     # the "What if?" page's ingredients (midterms/whatif.py)

@@ -148,9 +148,10 @@ def medsl24(st):
     return B.medsl_load(p, st) if p is not None else None
 
 
-def medsl20(st):
-    p = B.dv_get("m2020", f"2020-{st.lower()}-precinct-general\\.(tab|csv)")
-    return B.medsl_load(p, st) if p is not None else None
+def block_county_margin(bv):
+    """2020 margin and two-party votes per county from the block votes (block GEOID -> county)."""
+    g = bv.assign(county=bv["block"].str[:5]).groupby("county")[["d", "r"]].sum()
+    return (100 * (g["d"] - g["r"]) / (g["d"] + g["r"])).rename("m"), (g["d"] + g["r"]).rename("n")
 
 
 def vest20(st):
@@ -170,7 +171,13 @@ def main():
     for st in sorted(FIPS):
         try: df = medsl24(st)
         except Exception as e: print("!!", st, "2024 file", e); df = None
-        lab = B.label_lean(df, st, "cd", "cd2024") if df is not None else None
+        n119 = b119.loc[b119["block"].str[:2] == FIPS[st], "cd"].nunique()
+        if df is not None and n119 == 1:                                  # at-large: the whole state
+            pr = B.pres_rows(df); d_, r_ = pr.loc[pr["party"] == "D", "votes"].sum(), pr.loc[pr["party"] == "R", "votes"].sum()
+            lab = pd.DataFrame({"district": ["1"], "d": [d_], "r": [r_]}); lab.attrs["qc"] = {"assigned_vs_total": 1.0, "unlabelled_pres_share": 0.0}
+            lab.attrs["cells"] = pd.DataFrame(columns=["county", "district", "d", "r"])
+        else:
+            lab = B.label_lean(df, st, "cd", "cd2024") if df is not None else None
         if df is not None:
             pr = B.pres_rows(df); nat["d24"] += pr.loc[pr["party"] == "D", "votes"].sum(); nat["r24"] += pr.loc[pr["party"] == "R", "votes"].sum()
         n_cd = b120.loc[b120["block"].str[:2] == FIPS[st], "cd"].nunique()
@@ -181,7 +188,7 @@ def main():
         if use_blocks:
             try:
                 v = vest20(st); bv = block_votes(st, v)
-                d20 = medsl20(st); cm20 = B.county_margin(d20) if d20 is not None else None
+                cm20 = block_county_margin(bv)
                 cm24 = B.county_margin(df)
                 cells = lab.attrs["cells"] if lab is not None else pd.DataFrame(columns=["county", "district", "d", "r"])
                 x = carry_2024(bv, cells, b119[b119["block"].str[:2] == FIPS[st]], cm24, cm20)
@@ -207,9 +214,11 @@ def main():
         try:
             if cd119 is None:
                 import geopandas as gpd
-                p = B.url_get("https://www2.census.gov/geo/tiger/TIGER2024/CD/tl_2024_us_cd119.zip", "tl_2024_us_cd119.zip")
-                cd119 = gpd.read_file(f"zip://{p}").to_crs(5070); cd119["geometry"] = cd119.geometry.make_valid()
-            t = cd119[cd119["STATEFP"] == FIPS[st]].rename(columns={"CD119FP": "code"})[["code", "geometry"]]
+                cd119 = True
+            import geopandas as gpd
+            p = B.url_get(f"https://www2.census.gov/geo/tiger/TIGER2024/CD/tl_2024_{FIPS[st]}_cd119.zip", f"tl_2024_{FIPS[st]}_cd119.zip")
+            t = gpd.read_file(f"zip://{p}").to_crs(5070); t["geometry"] = t.geometry.make_valid()
+            t = t.rename(columns={"CD119FP": "code"})[["code", "geometry"]]
             o, cov, _ = B.areal(vest20(st), t, st, "cd")
             QC[f"pres20_areal_{st}_coverage"] = round(cov, 4)
             for _, r in o.iterrows():
@@ -240,7 +249,7 @@ def validate_sld(states=("PA", "MI", "WI", "NC")):
         try:
             df = medsl24(st); v = vest20(st); bv = block_votes(st, v)
             lab = B.label_lean(df, st, "cd", "cd2024_v")
-            x = carry_2024(bv, lab.attrs["cells"], b119[b119["block"].str[:2] == FIPS[st]], B.county_margin(df), B.county_margin(medsl20(st)))
+            x = carry_2024(bv, lab.attrs["cells"], b119[b119["block"].str[:2] == FIPS[st]], B.county_margin(df), block_county_margin(bv))
             bl = blocks(st).merge(x[["block", "d24", "r24", "d", "r"]], on="block", how="inner")
             pts = gpd.GeoDataFrame(bl, geometry=gpd.points_from_xy(bl["lon"], bl["lat"]), crs=4269).to_crs(5070)
             for ch, lay in (("lower", "sldl"), ("upper", "sldu")):
