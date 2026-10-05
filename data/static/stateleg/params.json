@@ -1,0 +1,78 @@
+{
+ "c": 6.029,
+ "g": 0.766,
+ "beta": 0.912,
+ "a": 2.87,
+ "sd_seat": 5.834,
+ "sd_state": 3.383,
+ "rho_ch": 0.62,
+ "kappa": 0.074,
+ "slate_sd": 0.0862,
+ "fit": {
+  "swing": {
+   "c": 6.029,
+   "g": 0.766,
+   "g_const": -0.412,
+   "sd_u2": 4.784,
+   "rho_ch": 0.62,
+   "n_pairs": 42851,
+   "n_cells": 1132,
+   "sd_e_diff": 13.754
+  },
+  "levels": {
+   "beta": 0.912,
+   "c_levels": 4.856,
+   "a": 2.87,
+   "sd_seat": 5.834,
+   "sd_state_level": 1.835,
+   "n_seats": 1494,
+   "n_cells": 24,
+   "cells": {
+    "AZupper2018": -5.01,
+    "AZupper2022": 1.25,
+    "MIlower2018": -0.75,
+    "MIlower2022": 3.29,
+    "MIupper2018": -2.65,
+    "MIupper2022": 3.13,
+    "MNlower2018": 0.26,
+    "MNlower2022": -0.35,
+    "MNupper2022": 0.36,
+    "NClower2018": -0.65,
+    "NClower2022": -0.02,
+    "NCupper2018": -1.67,
+    "NCupper2022": 0.39,
+    "NHlower2022": 0.74,
+    "NHupper2018": -0.55,
+    "NHupper2022": -1.47,
+    "PAlower2018": -1.59,
+    "PAlower2022": 3.94,
+    "PAupper2018": -2.61,
+    "PAupper2022": 0.6,
+    "WIlower2018": -3.29,
+    "WIlower2022": 2.05,
+    "WIupper2018": -2.69,
+    "WIupper2022": 1.95
+   }
+  },
+  "kappa": {
+   "kappa": 0.074,
+   "kappa_se": 0.024,
+   "n": 172,
+   "gov_prior": [
+    -1.597,
+    0.356,
+    15.24,
+    0.554
+   ]
+  },
+  "slate": {
+   "slate_sd": 0.0862,
+   "n": 11434
+  }
+ },
+ "before": null,
+ "cycles": [
+  2018,
+  2022
+ ]
+}

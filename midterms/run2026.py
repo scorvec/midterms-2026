@@ -2,7 +2,7 @@
 incumbent running / open), national environment from the generic-ballot aggregates, no race polls
 yet, correlated Monte Carlo, slider grid.   python -m midterms.run2026 [E]
 """
-import sys, json, numpy as np, pandas as pd
+import os, sys, json, numpy as np, pandas as pd
 from . import model as M
 
 # Hispanic / Asian swing since 2024 (research/specials_hispanic.py, research/offyear2025_hispanic.py, 2026-09-19).
@@ -56,6 +56,13 @@ def group_loadings(s):
 def load_seats():
     s = pd.read_csv("data/cache/house2026_seats.csv"); s["state"] = s["seat"].str[:2]
     if "lean" not in s or s["lean"].isna().all(): s["lean"] = 2.0 * s["cook_pvi"]      # Cook share points -> margin units (see wiki_inputs)
+    if os.environ.get("MIDTERMS_CD_LEAN", "cook").lower() == "ours":
+        # our own lean (cd_lean_build.py: 2024/2020 president on the 2026 maps from MEDSL / VEST / Census block files, 75/25 like
+        # Cook, margin units). Built and validated 2026-10-04, NOT the default: the prior coefficients were fitted on 538/Cook leans
+        try:
+            cl = pd.read_csv("data/static/cd_lean_2026.csv").set_index("seat")["lean_75_25"]
+            s["lean_cook"] = s["lean"]; s["lean"] = s["seat"].map(cl).fillna(s["lean"])
+        except FileNotFoundError: pass
     u = pd.read_csv("data/raw/538repo/urbanization-index-2022.csv"); u["seat"] = u["state"] + "-" + u["cd"].astype(int).astype(str)
     s = s.merge(u[["seat", "urbanindex"]], on="seat", how="left")
     # redrawn states: 538's 2022 file is keyed by district NUMBER, so those seats carried an unrelated old district's value
