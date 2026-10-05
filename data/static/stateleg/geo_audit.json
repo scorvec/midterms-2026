@@ -1,18 +1,20 @@
 {
  "bytes": {
   "AZ.topo.json": 22232,
+  "CA.topo.json": 108015,
   "GA.topo.json": 79478,
   "IA.topo.json": 30581,
+  "KY.topo.json": 77868,
   "MI.topo.json": 74682,
   "MN.topo.json": 49441,
   "NC.topo.json": 86591,
   "NH.topo.json": 49275,
   "PA.topo.json": 93320,
-  "TX.topo.json": 94004,
+  "TX.topo.json": 148084,
   "WI.topo.json": 39999,
-  "index.json": 5693
+  "index.json": 5998
  },
- "bytes_total": 625296,
+ "bytes_total": 865564,
  "chambers": {
   "AZ_lower": {
    "alias_of": "AZ_upper",
@@ -29,6 +31,20 @@
    "not_modelled": [],
    "polygons": 30
   },
+  "CA_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 80,
+   "not_modelled": [],
+   "polygons": 80
+  },
+  "CA_upper": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 40,
+   "not_modelled": [],
+   "polygons": 40
+  },
   "GA_lower": {
    "missing_after_simplify": [],
    "missing_polygon": [],
@@ -42,6 +58,20 @@
    "model": 100,
    "not_modelled": [],
    "polygons": 100
+  },
+  "KY_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 100,
+   "not_modelled": [],
+   "polygons": 100
+  },
+  "KY_upper": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 38,
+   "not_modelled": [],
+   "polygons": 38
   },
   "MI_lower": {
    "missing_after_simplify": [],
@@ -119,6 +149,13 @@
    "model": 150,
    "not_modelled": [],
    "polygons": 150
+  },
+  "TX_upper": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 31,
+   "not_modelled": [],
+   "polygons": 31
   },
   "WI_lower": {
    "missing_after_simplify": [],
