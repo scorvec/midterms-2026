@@ -587,7 +587,9 @@ def build_openstates():
     d = R / "openstates"
     if not d.exists():
         subprocess.run(["git", "clone", "-q", "--depth", "1", "--filter=blob:none", "--sparse", "https://github.com/openstates/people", str(d)], check=True)
-        subprocess.run(["git", "-C", str(d), "sparse-checkout", "set"] + [f"data/{s.lower()}/legislature" for s in STATES], check=True)
+    # the cached clone may predate added states: widen the sparse checkout every time (and pull the current roster)
+    subprocess.run(["git", "-C", str(d), "sparse-checkout", "set"] + [f"data/{s.lower()}/legislature" for s in STATES], check=True)
+    subprocess.run(["git", "-C", str(d), "pull", "-q", "--depth", "1", "--no-rebase"], check=False)
     import yaml
     rows = []
     for st in STATES:

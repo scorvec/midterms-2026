@@ -95,6 +95,12 @@ def check():
                "held": int(len(hq)), "held_unknown_party": int(hq["party"].isna().sum()) if len(hq) else 0,
                "fixed_D": int(((s.n_r == 0) & (s.n_d > 0)).sum()), "fixed_R": int(((s.n_d == 0) & (s.n_r > 0)).sum()),
                "neither": int(((s.n_d == 0) & (s.n_r == 0)).sum())}
+        newly = [d for d in s.district if d in g24.index and not g24[d] and d in set(c.district)
+                 and (c.set_index("district").loc[d, "n_dem"] or 0) > 0 and (c.set_index("district").loc[d, "n_rep"] or 0) > 0]
+        if newly:
+            cc = c.set_index("district")
+            print(f"  {name}: {len(newly)} seats one-party in 2024 but two-party on the page, e.g. " +
+                  "; ".join(f"{d}: D {cc.loc[d, 'dem']} / R {cc.loc[d, 'rep']}" for d in newly[:8]))
         rec["pass_slates"] = rec["page_trusted"] >= rec["up_model"] and not rec["up_not_on_page"] and not rec["page_not_up"]
         rows.append(rec)
     o = pd.DataFrame(rows); pd.set_option("display.width", 250)

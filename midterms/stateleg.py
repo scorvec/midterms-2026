@@ -71,7 +71,7 @@ PENDING = [
     ("KY", "lower", "Kentucky House", 100, "all", "shared"),
     ("UT", "upper", "Utah Senate", 29, "not2024", "shared"),
     ("WA", "upper", "Washington Senate", 49, "not2024", "shared"),
-    ("WV", "upper", "West Virginia Senate", 34, "not2024", "shared"),
+    ("WV", "upper", "West Virginia Senate", 34, "one_of_two", "shared"),   # 17 two-seat districts, one seat each election
     ("OR", "upper", "Oregon Senate", 30, "not2024", "shared"),
     ("IA", "upper", "Iowa Senate", 50, "not2024", "shared"),
     ("TX", "upper", "Texas Senate", 31, "not2024", "shared"),
@@ -277,6 +277,11 @@ def seats_2026(chambers=None):
     try: C = pd.read_csv(CACHE / "stateleg_candidates.csv", dtype={"district": str})
     except FileNotFoundError: C = pd.DataFrame(columns=["state", "chamber", "district", "n_dem", "n_rep", "dem", "rep", "inc_names", "inc_marks"])
     C = official_nominees(C)
+    # districts the chamber page lists with a general-election slate (a special election for a seat elected in 2024 is up as well)
+    page_up = set()
+    if "source" in C:
+        t = C[C["source"].isin(["general box", "breakdown table"])]
+        page_up = set(zip(t["state"].astype(str), t["chamber"].astype(str), t["district"].astype(str)))
     rows, held = [], []
     for st, ch, name, n, up, tie in (chambers or CHAMBERS):
         Lq = L[(L["state"] == st) & (L["chamber"] == ch)].set_index("district")
@@ -287,7 +292,12 @@ def seats_2026(chambers=None):
             km = mag[(mag.state == st) & (mag.chamber == ch) & (mag.district == d)]["k"]
             k_ = int(km.iloc[0]) if len(km) else (2 if (st, ch) == ("AZ", "lower") else 1)
             hold = OS[(OS.state == st) & (OS.chamber == ch) & (OS.district == d)]
-            if (up == "odd" and num % 2 == 0) or (up == "not2024" and (st, ch, d) in up24):
+            if up == "one_of_two":                                     # the seat won in 2024 is held over; the other is up
+                w24 = R[(R["year"] == 2024) & ~R["special"] & (R["state"] == st) & (R["chamber"] == ch) & (R["district"] == d) & R["winner"]]
+                held.append({"state": st, "chamber": ch, "district": d, "party": w24["party"].iloc[0] if len(w24) else None,
+                             "member": w24["candidate"].iloc[0] if len(w24) else None})
+                hold = hold[hold["name"].map(_surname) != (_surname(w24["candidate"].iloc[0]) if len(w24) else "")]
+            elif (up == "odd" and num % 2 == 0) or (up == "not2024" and (st, ch, d) in up24 and (st, ch, d) not in page_up):
                 held.append({"state": st, "chamber": ch, "district": d, "party": hold["party"].iloc[0] if len(hold) else None,
                              "member": hold["name"].iloc[0] if len(hold) else None}); continue
             c = C[(C["state"] == st) & (C["chamber"] == ch) & (C["district"] == d)]
