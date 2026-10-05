@@ -199,6 +199,9 @@ def label_lean(df: pd.DataFrame, st: str, ch: str, tag: str):
         T.loc[T["w"].isna(), "w"] = 1.0 / T.groupby("key")["dist"].transform("count")
     J = T.merge(P, left_on="key", right_index=True, how="inner")
     J["d"] = J["D"] * J["w"]; J["r"] = J["R"] * J["w"]
+    # presidential votes on "precincts" that split across districts: real splits are rare; a large share means county-level rows
+    # (every district then gets the county's margin)
+    wmax = J.groupby("key")["w"].transform("max"); split_v = float(((J["D"] + J["R"]) * J["w"])[wmax < 0.95].sum())
     cells = J.groupby(["county", "dist"])[["d", "r"]].sum()
     # unlabelled presidential rows
     # precincts with a label in ANOTHER contest (U.S. House, the other chamber) are real precincts of districts not up this year
@@ -219,6 +222,7 @@ def label_lean(df: pd.DataFrame, st: str, ch: str, tag: str):
     out = cells.groupby(level="dist")[["d", "r"]].sum()
     out = out.reset_index().rename(columns={"dist": "district"})
     QC[f"{tag}_{st}_{ch}"] = {"districts": int(len(out)), "unlabelled_pres_share": round(un_share, 4), "pres_lost_share": round(lost, 4),
+                              "split_precinct_pres_share": round(split_v / tot_pres, 4) if tot_pres and st != "NH" else None,
                               "bad_district_labels": round(float(bad), 4), "assigned_vs_total": round(float((out["d"].sum() + out["r"].sum()) / tot_pres), 4) if st != "NH" else None}
     print(f"  {tag} {st} {ch}: {len(out)} districts, unlabelled pres {un_share:.3f}, lost {lost:.4f}")
     out.attrs["cells"] = cells.reset_index().rename(columns={"dist": "district"})

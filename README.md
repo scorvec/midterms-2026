@@ -151,6 +151,67 @@ spread over 750 gallons, times the share not yet priced into the polls, against 
 EIA's weekly Maine No. 2 heating oil residential price. EIA's survey runs from October to March; outside the season the
 last published week is held (the page says which week).
 
+## State legislatures (Phase 1, implemented, switched off)
+
+`midterms/stateleg.py` forecasts control of 14 chambers - Michigan, Minnesota, Wisconsin, Arizona, Pennsylvania, New Hampshire and
+North Carolina, both chambers each - inside the daily run when `MIDTERMS_STATELEG=on` (workflow input `stateleg`; default off). It
+writes `state_legislatures` into `web/data/model.json`; `web/legislatures.html` shows it (not linked from the other pages yet).
+
+**Seat model.** Each seat's expected Democratic two-party margin is `a + beta * lean + c * inc + g * E + kappa * shift_state`:
+the district's 2024 presidential margin minus the national one (`lean`), incumbency (+1 / -1 / 0), the model's national environment
+E (the same generic-ballot trend, no directional correction) and the state's own signal (how far its Senate / governor race polls pull
+those races from their fundamentals priors, net of the national average pull). The simulation adds g x the House's national draw,
+kappa x the same state's Senate/governor surprise in the same simulation, a state error shared by both chambers (partly chamber-specific)
+and a t5 seat error. Multi-member districts (AZ House, NH House) elect their top-k candidates (party share +- the candidate's own
+deviation from its slate, sd fitted, plus an incumbency bonus); a party with fewer nominees than seats can win at most that many. Seats
+with only one major party on the ballot are fixed. PA and WI senates add the held-over seats (Open States holders). Ties: MI and PA
+senates go to the party of the 2026 governor winner (the lieutenant governor), the NC Senate to the Democrats (Lt Gov Hunt), elsewhere
+counted as shared.
+
+**Fitted parameters** (`data/static/stateleg/params.json`; `python -m midterms.stateleg fit`): incumbency c = 6.0 pts, national slope
+g = 0.77, 2-year state swing error 4.8 (state error 3.4), between-chamber correlation 0.62 - Klarner returns 1972-2022, 42,851
+consecutive same-map district pairs; lean slope beta = 0.91, intercept a = 2.9, seat error 5.8 - 2018 (2016 lean) and 2022 (2020 lean)
+results; kappa = 0.074 (se 0.024, 153 state-years: Klarner 4-year legislative swing residuals v the change in the same state's
+governor-race residual); slate sd 8.6 % of the party mean (11,276 multi-member slates).
+
+**Backtest** (`python -m midterms.stateleg_backtest`, `data/static/stateleg/backtest.json`): 2018 and 2022 on Oct 1, Klarner parameters
+from earlier elections only, the lean slope from the other cycle, E = the 538 generic-ballot average with no correction, who is on
+the ballot from the candidate records. 24 chamber-elections with full district data: control Brier 0.119 against 0.250 for "the current
+majority holds" (calls right 75 % for both), seat count inside the 80 % range 22 of 24; seats (contested slots) Brier 0.049 (2018) and
+0.046 (2022) against 0.103 / 0.069 for each seat staying with its last winner (2018) or the sign of its lean (2022). The state-signal arm
+(kappa x governor-poll pull) changed seat log loss by +0.002 (2018) and -0.001 (2022) and control Brier 0.119 -> 0.125: no measurable
+gain; kappa is small and kept as fitted. No published forecaster's chamber calls were scored (none available under a usable licence).
+
+**Approximations.** NH House: candidates are not listed on Wikipedia, so every seat is contested by full slates, floterial districts are
+simulated as ordinary multi-member districts, and the 2018 backtest has no NH House (MEDSL's 2018 files cannot be downloaded); flagged
+experimental. MI Senate: no 2024 Senate election and the 2026 court-ordered redraw of the Detroit-area districts is not in the Census
+TIGER files yet; leans are VEST 2020 precincts moved to 2024 by each House district's measured swing on the 2022 map (the same method
+reproduces known 2024 Senate leans with rms 0.3-1.8 in PA, GA, IA, TX, NC). PA odd Senate seats use the same method on the current map.
+MN Senate candidates are not on Wikipedia: incumbents are assumed to run unless listed as retiring.
+
+**Data** (`midterms/stateleg_build.py`, one-time, GitHub Actions `.github/workflows/stateleg-data.yml`; downloads cached, never committed):
+
+| file | contents | source |
+|---|---|---|
+| `stateleg/lean_2026.csv` | 2024 president by 2026 district (MEDSL precinct rows joined to the same precinct's legislative labels; MN/WI senates from nested House districts; AZ House = LDs; MI Senate / PA odd seats as above) + a spatial cross-check | MEDSL 2024 precinct returns (CC0), VEST 2020 (CC BY 4.0), TIGER (public domain) |
+| `stateleg/lean_hist.csv` | 2016 president on the 2018 maps, 2020 president on the 2022 maps | VEST 2016/2020 x TIGER 2018/2022; NH House by town names x MEDSL 2022 labels |
+| `stateleg/medsl_results.csv.gz` | candidate-level legislative results 2022, 2024 | MEDSL (CC0) |
+| `stateleg/klarner.csv.gz` | Klarner returns aggregated to district-elections, all states 1972-2022 | Klarner, doi:10.7910/DVN/FJOGJB (CC0) |
+| `stateleg/openstates_current.csv` | sitting legislators | Open States people (CC0) |
+| `stateleg/qc.json` | coverage, cross-checks, map-change audit | - |
+
+Candidates and retirements are read each day from the Wikipedia 2026 chamber pages (`midterms/stateleg_wiki.py`, cached like every page).
+
+## Congressional-district lean from public data (built, not used)
+
+`midterms/cd_lean_build.py` -> `data/static/cd_lean_2026.csv`: 2024 and 2020 presidential two-party margins for all 435 seats on the 2026
+maps, and a 75/25 lean like Cook's, as a replacement candidate for Cook PVI (proprietary). Redrawn states are found from the Census 119th
+v 120th Congress block equivalency files (AL CA FL LA MO NC OH TN TX UT). Unchanged states: MEDSL 2024 precinct rows by their U.S. House
+label, where the file matches the official state totals (MIT) and the presidential vote sits on labelled precinct rows. Redrawn states
+(and files that fail those checks): VEST 2020 precincts -> 2020 blocks (internal point, split by block population) -> 120th-Congress
+districts, carried to 2024 by the (county x 2024 district) swing on the labels, else the county's, else the state's. Each state is then
+calibrated to its official totals. `MIDTERMS_CD_LEAN=ours` switches the House prior to it (off).
+
 ## Credits
 
 Model and code: Shawn Corvec. Poll data belong to their pollsters. Ranked-choice transfer rates are derived from the Maine

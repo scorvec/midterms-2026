@@ -218,7 +218,7 @@ def main():
             pr = B.pres_rows(df); fd, fr = pr.loc[pr["party"] == "D", "votes"].sum(), pr.loc[pr["party"] == "R", "votes"].sum()
             fm = 100 * (fd - fr) / max(fd + fr, 1); ratio = (fd + fr) / t24s
             QC[f"medsl_vs_mit_{st}"] = {"ratio": round(float(ratio), 4), "margin_diff": round(float(fm - m24s), 3)}
-            file_ok = abs(fm - m24s) <= 0.6 and 0.9 <= ratio <= 1.1
+            file_ok = abs(fm - m24s) <= 0.6 and 0.97 <= ratio <= 1.03
         else: file_ok = False
         if df is not None:
             pr = B.pres_rows(df); nat["d24"] += pr.loc[pr["party"] == "D", "votes"].sum(); nat["r24"] += pr.loc[pr["party"] == "R", "votes"].sum()
@@ -227,6 +227,7 @@ def main():
         # county-level tallies spread over a county's districts (WA's King County president rows) give every district the county's
         # margin: labels are trusted only when almost all presidential votes sit on labelled precinct rows
         good = (lab is not None and (q.get("assigned_vs_total") or 0) >= 0.97 and (q.get("unlabelled_pres_share") or 0) <= 0.05
+                and (q.get("split_precinct_pres_share") or 0) <= 0.05
                 and len(lab) == b119.loc[b119["block"].str[:2] == FIPS[st], "cd"].nunique())
         use_blocks = st in redrawn or not good or not file_ok
         r20 = None
@@ -236,7 +237,7 @@ def main():
                 cm20 = block_county_margin(bv)
                 cm24 = B.county_margin(df) if df is not None else (pd.Series(dtype=float), pd.Series(dtype=float))
                 cells = lab.attrs["cells"] if lab is not None else pd.DataFrame(columns=["county", "district", "d", "r"])
-                cells_ok = file_ok and (q.get("unlabelled_pres_share") or 0) <= 0.05
+                cells_ok = file_ok and (q.get("unlabelled_pres_share") or 0) <= 0.05 and (q.get("split_precinct_pres_share") or 0) <= 0.05
                 if not cells_ok:        # labels unreliable: no (county x district) or district swing; county swing where the county's
                     cells = pd.DataFrame(columns=["county", "district", "d", "r"])        # turnout ratio is plausible, else the state's
                 x = carry_2024(bv, cells, b119[b119["block"].str[:2] == FIPS[st]], cm24, cm20, state_swing=(m24s - m20s, t24s / t20s))

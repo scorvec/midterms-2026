@@ -61,6 +61,18 @@ a:focus-visible{outline:2px solid var(--d);outline-offset:2px}
 <p><b>Tested before use.</b> Each count was predicted from its official first round with rates fitted on the other counts only. Transfers missed the final margin by 2.5 points on average, against 5.9 points for the first-round margin between the two finalists (better in 10 of 13 counts) and 8.4 points for adding up each party's first-round vote, the rule this model used for Alaska's governor race before (better in 12 of 13); the stated uncertainty matched the misses (root-mean-square standardised error 1.05). On the final month of polls in the five federal races (10 polls), the transfer handling missed by 3.4 points against 3.7 for averaging each poll's rounds together and 5.3 for party sums: in the same direction, but five races cannot settle it on their own. In Alaska's August 2022 special election the last poll's own count put the wrong Republican in the final round, which no transfer rule can fix.</p>
 <p><b>Alaska's House seat.</b> The likely final round is the Republican, Nick Begich, against an independent, Bill Hill; the Democrat polls near 10 %. The House model scores Democrats against Republicans only, so this seat stays on its fundamentals and the panel says so.</p>
 
+<h2 id="legislatures">State legislatures (in development)</h2>
+<p>Not yet part of the published forecast. Fourteen chambers in seven states (Michigan, Minnesota, Wisconsin, Arizona, Pennsylvania,
+New Hampshire, North Carolina) are simulated seat by seat with the same national draw as the House and Senate. A seat's expected margin
+starts from its district's 2024 presidential result relative to the nation (precinct returns joined to the precinct's legislative
+district), adds the national mood at 0.77 strength, an incumbency effect of 6 points, and a small share (0.07) of how far the state's own
+Senate and governor polls run from those races' fundamentals; errors move every seat in a state together. All of these were fitted on
+past elections (Klarner's state legislative returns 1972-2022 and the 2018 and 2022 results). Tested on 2018 and 2022 with only the
+information available on October 1, the chamber chances scored a Brier score of 0.12 against 0.25 for assuming the current majority
+holds; the seat count fell inside the 80% range in 22 of 24 chamber elections. The New Hampshire House (400 seats, multi-member and
+floterial districts, no candidate lists) is experimental, and the Michigan Senate uses the 2022 district lines where a 2026 court-ordered
+redraw is not yet in the Census files.</p>
+
 <h2 id="tests">Track record</h2>
 <p>The same code was run as if it were September of past election years, using only the information available then.</p>
 <div class="dyn" id="mtests">…</div>
