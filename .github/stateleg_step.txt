@@ -1,2 +1,2 @@
-cd
-# Mon Oct  5 06:21:54 EDT 2026
+stateleg_wiki:debug
+# Mon Oct  5 07:36:30 EDT 2026
