@@ -63,7 +63,18 @@ def probe4():
     report()
 
 
+def probe5():
+    for u in ("https://www.newtoncountyga.gov/174/Election-Results", "https://floydcountyga.gov/elections/election_results.php"):
+        try:
+            t = open_url(u).decode("utf-8", "replace")
+            print(u, sorted(set(re.findall(r"results\.sos\.ga\.gov[^\"'<> ]+", t)))[:40])
+        except Exception as e: print(u, e)
+        time.sleep(3)
+    report()
+
+
 if __name__ == "__main__":
+    if "probe5" in sys.argv: probe5()
     if "probe4" in sys.argv: probe4()
     if "probe3" in sys.argv: probe3()
     if "probe" in sys.argv: probe()
