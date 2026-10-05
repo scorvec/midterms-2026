@@ -2,7 +2,7 @@ name: tx early-vote baseline (one-time)
 
 # ONE-TIME: builds the 2022 comparison for the Texas early-vote tracker (midterms/tx_early.py, diagnostic only) and commits
 #   data/static/tx_early_2022.csv       2022 general, cumulative early votes by county and early-voting day (Texas SOS)
-#   data/static/tx_county_pres2024.csv  2024 president by county (MIT Election Lab, CC0), to check the county groups
+#   data/static/tx_county_pres2024.csv  2024 president by county (MIT Election Lab 2024 precincts, CC0), to check the county groups
 #   data/static/tx_early_sources.json   sources, retrieval time, checks; what the SOS index lists for the 2026 general
 # Parts already committed are skipped (force rebuilds them). Remove this workflow once the baseline is in.
 on:
@@ -35,7 +35,14 @@ jobs:
           python-version: "3.11"
           cache: pip
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt pyarrow
+      # the state-legislature build's raw cache holds MEDSL's 2024 precinct files (only Texas is read; nothing is saved back)
+      - name: Restore the state-legislature raw cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw/stateleg
+          key: stateleg-raw-${{ github.run_id }}
+          restore-keys: stateleg-raw-
       - name: Build
         id: build
         run: |

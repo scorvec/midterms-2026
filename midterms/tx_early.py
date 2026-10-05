@@ -17,8 +17,8 @@ Sources (Texas Secretary of State; public records, data supplied by the county e
       https://earlyvoting.texas-election.com/Elections/getElectionDetails.do
     a Struts form (GET getElectionDetails.do -> POST getElectionEVDates.do -> POST getEVDetails.do per date) whose county
     table is parsed once (`baseline`) into data/static/tx_early_2022.csv; provenance in data/static/tx_early_sources.json.
-  * county groups are checked against the 2024 presidential result by county: MIT Election Data and Science Lab, County
-    Presidential Election Returns 2000-2024, doi:10.7910/DVN/VOQCHQ (CC0) -> data/static/tx_county_pres2024.csv.
+  * county groups are checked against the 2024 presidential result by county: MIT Election Data and Science Lab 2024
+    precinct returns, doi:10.7910/DVN/NYTPDU (CC0), summed by county -> data/static/tx_county_pres2024.csv.
 
 Calendar: Election Code 85.001 starts early voting on the 17th day before Election Day (moved to the next business day
 when that is a weekend) and ends on the 4th day before. Nov 3, 2026 - 17 = Sat Oct 17 -> Mon Oct 19; Nov 8, 2022 - 17 = Sat
@@ -59,7 +59,6 @@ OUT = ROOT / "web" / "data" / "tx_early.json"
 CIVIX = "https://goelect.txelections.civixapps.com/api-ivis-system/api/v1/getFile"
 CIVIX_UI = "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr"
 LEGACY = "https://earlyvoting.texas-election.com/Elections"
-MEDSL_COUNTY = "https://dataverse.harvard.edu/api/access/datafile/13573089"   # countypres_2000-2024.tab (tab-separated)
 
 CAL = {2026: {"election_day": dt.date(2026, 11, 3), "first": dt.date(2026, 10, 19), "last": dt.date(2026, 10, 30)},
        2022: {"election_day": dt.date(2022, 11, 8), "first": dt.date(2022, 10, 24), "last": dt.date(2022, 11, 4)}}
@@ -220,10 +219,13 @@ def _group_margin(pres: dict, counties: list[str] | None):
 
 
 def summary() -> dict | None:
-    if not BASE_2022.exists():
-        print("  TX: no 2022 baseline yet (data/static/tx_early_2022.csv; run the tx-early-baseline workflow)"); return None
-    B = pd.read_csv(BASE_2022, parse_dates=["date"]); B["date"] = B["date"].dt.date
     C = series_2026()
+    if BASE_2022.exists():
+        B = pd.read_csv(BASE_2022, parse_dates=["date"]); B["date"] = B["date"].dt.date
+    else:                                           # the 2026 side still runs; the 2022 fields stay null
+        B = pd.DataFrame(columns=["ev_day", "county", "registered", "in_person_cum", "mail_cum", "total_cum"])
+    if not len(C) and not len(B):
+        print("  TX: nothing to summarise yet (no 2026 file, no 2022 baseline)"); return None
     pres = _pres_margins()
     groups = {"statewide": ("Statewide", None), **GROUPS}
     days, prev26 = [], None
@@ -269,6 +271,7 @@ def summary() -> dict | None:
             counties[name] = r
     src = json.loads(SOURCES.read_text()) if SOURCES.exists() else {}
     out = {"asof": str(dt.date.today()), "status": "early voting" if last else "before early voting (2022 baseline only)",
+           "baseline_2022": bool(len(B)),
            "latest_ev_day": int(last) if last else None,
            "election": {"2026": {k: str(v) for k, v in CAL[2026].items()}, "2022": {k: str(v) for k, v in CAL[2022].items()}},
            "groups": {k: {"label": lab, "counties": cs, "pres2024_R_margin": _group_margin(pres, cs) if pres else None}
@@ -276,7 +279,7 @@ def summary() -> dict | None:
            "days": days, "counties": counties,
            "sources": {"2026": CIVIX_UI, "2022": src.get("tx_early_2022", {}).get("source", LEGACY + "/getElectionDetails.do"),
                        "2022_retrieved": src.get("tx_early_2022", {}).get("retrieved_utc"),
-                       "pres2024": "MIT Election Data and Science Lab, County Presidential Election Returns 2000-2024, doi:10.7910/DVN/VOQCHQ (CC0)",
+                       "pres2024": "MIT Election Data and Science Lab, 2024 precinct returns summed by county, doi:10.7910/DVN/NYTPDU (CC0)",
                        "credit": "Texas Secretary of State, Elections Division (early voting turnout by county, as reported by the counties)"},
            "notes": NOTES}
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -399,35 +402,35 @@ def _baseline_2022(force: bool) -> dict:
 
 
 def _pres_2024(force: bool = False) -> dict:
-    from . import fetch as F
+    """2024 president by county from MEDSL's 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), the same file the
+    state-legislature build uses (stateleg_build.dv_get / medsl_load; the workflow restores that build's raw cache, so
+    normally nothing is downloaded). The county file (doi:10.7910/DVN/VOQCHQ) sits behind a Dataverse guestbook."""
     if PRES_2024.exists() and not force:
         print("  2024 county results already committed; skipped")
         return json.loads(SOURCES.read_text()).get("tx_county_pres2024", {}) if SOURCES.exists() else {}
-    try:
-        raw = F.get(MEDSL_COUNTY, ROOT / "data" / "raw" / "mit" / "countypres_2000_2024.tab", timeout=300)[0]
-    except urllib.error.HTTPError as e:
-        raise RuntimeError(f"MEDSL HTTP {e.code}: {e.read(400).decode('utf-8', 'replace')}")
-    sep = "\t" if b"\t" in raw[:2000] else ","
-    d = pd.read_csv(io.BytesIO(raw), sep=sep, dtype={"county_fips": str}, keep_default_na=False, low_memory=False)
-    d["year"] = pd.to_numeric(d["year"], errors="coerce")
-    d = d[(d.year == 2024) & (d.state_po == "TX")].copy()
-    d["candidatevotes"] = pd.to_numeric(d.candidatevotes, errors="coerce").fillna(0)
-    d["county"] = d.county_name.str.upper().str.strip()
-    g = d.groupby("county")
-    P = pd.DataFrame({"rep": d[d.party == "REPUBLICAN"].groupby("county").candidatevotes.sum(),
-                      "dem": d[d.party == "DEMOCRAT"].groupby("county").candidatevotes.sum(),
-                      "total": g.candidatevotes.sum()}).fillna(0).astype(int).reset_index()
+    from . import stateleg_build as B
+    p = B.dv_get("m2024", "2024-tx-precinct-general\\.(tab|csv)")
+    if p is None: raise RuntimeError("MEDSL 2024 Texas precinct file not found in doi:10.7910/DVN/NYTPDU")
+    pr = B.pres_rows(B.medsl_load(p, "TX"))
+    pr = pr.assign(county=pr["county_name"].str.upper().str.strip())
+    v = pr.groupby(["county", "party"])["votes"].sum().unstack(fill_value=0.0)
+    for c in "DRO":
+        if c not in v: v[c] = 0.0
+    P = pd.DataFrame({"rep": v["R"], "dem": v["D"], "total": v["D"] + v["R"] + v["O"]}).round().astype(int).reset_index()
     P["margin_r"] = (100 * (P.rep - P.dem) / P.total).round(2)
-    if len(P) != 254: raise SystemExit(f"MEDSL 2024 TX: {len(P)} counties (expected 254)")
+    if len(P) != 254: raise RuntimeError(f"MEDSL 2024 TX: {len(P)} counties (expected 254)")
     missing = sorted({c for _, cs in GROUPS.values() for c in cs} - set(P.county))
-    if missing: raise SystemExit(f"group counties missing from MEDSL: {missing}")
+    if missing: raise RuntimeError(f"group counties missing from MEDSL: {missing}")
     P.to_csv(PRES_2024, index=False)
+    m = P.set_index("county").margin_r
     for key, (lab, cs) in GROUPS.items():
-        print(f"  {lab}: " + ", ".join(f"{c.title()} {P.set_index('county').margin_r[c]:+.1f}" for c in cs))
-    return {"file": "data/static/tx_county_pres2024.csv", "source": "doi:10.7910/DVN/VOQCHQ, file countypres_2000-2024 (id 13573089)",
-            "publisher": "MIT Election Data and Science Lab, County Presidential Election Returns 2000-2024 (CC0)",
+        print(f"  {lab}: " + ", ".join(f"{c.title()} R{m[c]:+.1f}" for c in cs))
+    sub = P[(P.total > 60000) & (P.margin_r >= 20)].sort_values("total", ascending=False)
+    print("  counties with > 60,000 presidential votes and Trump +20 or more:", ", ".join(f"{r.county.title()} {r.margin_r:+.1f}" for r in sub.itertuples()))
+    return {"file": "data/static/tx_county_pres2024.csv", "source": "doi:10.7910/DVN/NYTPDU, file 2024-tx-precinct-general (precincts summed by county)",
+            "publisher": "MIT Election Data and Science Lab, 2024 precinct-level returns (CC0)",
             "retrieved_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
-            "statewide_R_margin": round(100 * (P.rep.sum() - P.dem.sum()) / P.total.sum(), 2)}
+            "statewide_R_margin": round(100 * (P.rep.sum() - P.dem.sum()) / P.total.sum(), 2), "total_votes": int(P.total.sum())}
 
 
 def _probe_2026() -> dict:
