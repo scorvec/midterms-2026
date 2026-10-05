@@ -259,6 +259,7 @@ def seats_2026():
     OS["district"] = [_os_dist(s, c, d) for s, c, d in zip(OS["state"], OS["chamber"], OS["district"])]
     try: C = pd.read_csv(CACHE / "stateleg_candidates.csv", dtype={"district": str})
     except FileNotFoundError: C = pd.DataFrame(columns=["state", "chamber", "district", "n_dem", "n_rep", "dem", "rep", "inc_names", "inc_marks"])
+    C = official_nominees(C)
     rows, held = [], []
     for st, ch, name, n, up, tie in CHAMBERS:
         Lq = L[(L["state"] == st) & (L["chamber"] == ch)].set_index("district")
@@ -288,6 +289,23 @@ def seats_2026():
                          "dem": c["dem"] if c is not None and isinstance(c.get("dem"), str) else "", "rep": c["rep"] if c is not None and isinstance(c.get("rep"), str) else ""})
     S = pd.DataFrame(rows); S["inc"] = np.where((S["k"] == 1) & (S["inc_d"] > 0), 1, np.where((S["k"] == 1) & (S["inc_r"] > 0), -1, 0))
     return S, pd.DataFrame(held)
+
+
+OFFICIAL = {("GA", "lower"): "ga_house_nominees_2026.csv"}     # official nominee tables (ga_sos.py) replace the Wikipedia parse
+
+
+def official_nominees(C):
+    """Georgia House: nominees from the Georgia Secretary of State's official primary + runoff results (ga_sos.build). A party with no
+    State House primary candidate in a district has no nominee (Georgia lists unopposed primary candidates on the ballot)."""
+    for (st, ch), f in OFFICIAL.items():
+        try: T = pd.read_csv(SL / f, dtype={"district": str}, keep_default_na=False)
+        except FileNotFoundError: continue
+        C = C[~((C["state"] == st) & (C["chamber"] == ch) & (C["district"] != "_retirements"))]
+        add = pd.DataFrame({"state": st, "chamber": ch, "district": T["district"], "n_dem": (T["d_nominee"] != "").astype(int),
+                            "n_rep": (T["r_nominee"] != "").astype(int), "n_oth": 0, "dem": T["d_nominee"], "rep": T["r_nominee"],
+                            "inc_marks": "", "inc_names": "", "source": "Georgia SOS"})
+        C = pd.concat([C, add], ignore_index=True)
+    return C
 
 
 def _os_dist(st, ch, d):
