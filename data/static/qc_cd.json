@@ -1,50 +1,57 @@
 {
- "bef119_rows_raw_vs_unique": [
-  9261979,
-  8126800
- ],
- "bef120_rows_raw_vs_unique": [
-  11099973,
-  8126800
- ],
  "blocks_AL_vote_coverage": 1.0,
  "blocks_CA_vote_coverage": 1.0,
  "blocks_FL_vote_coverage": 1.0,
+ "blocks_IN_vote_coverage": 1.0,
  "blocks_LA_vote_coverage": 1.0,
+ "blocks_MD_vote_coverage": 1.0,
  "blocks_MI_vote_coverage": 1.0,
  "blocks_MO_vote_coverage": 1.0,
  "blocks_NC_vote_coverage": 1.0,
  "blocks_NE_vote_coverage": 1.0,
  "blocks_NH_vote_coverage": 1.0,
+ "blocks_NJ_vote_coverage": 1.0,
+ "blocks_NY_vote_coverage": 1.0,
  "blocks_OH_vote_coverage": 1.0,
  "blocks_OK_vote_coverage": 1.0,
+ "blocks_OR_vote_coverage": 1.0,
  "blocks_PA_vote_coverage": 1.0,
  "blocks_TN_vote_coverage": 1.0,
  "blocks_TX_vote_coverage": 1.0,
  "blocks_UT_vote_coverage": 1.0,
  "blocks_WI_vote_coverage": 1.0,
- "cd119_selfcheck_AL_rms": 1.058,
+ "cd119_selfcheck_AL_rms": 13.492,
  "cd119_selfcheck_CA_rms": 0.003,
  "cd119_selfcheck_FL_rms": 0.011,
- "cd119_selfcheck_LA_rms": 0.3,
+ "cd119_selfcheck_IN_rms": 1.942,
+ "cd119_selfcheck_LA_rms": 3.161,
+ "cd119_selfcheck_MD_rms": 2.842,
  "cd119_selfcheck_MO_rms": 0.009,
  "cd119_selfcheck_NC_rms": 0.0,
  "cd119_selfcheck_NH_rms": 0.0,
+ "cd119_selfcheck_NJ_rms": 7.124,
+ "cd119_selfcheck_NY_rms": 1.618,
  "cd119_selfcheck_OH_rms": 0.0,
  "cd119_selfcheck_OK_rms": 0.848,
+ "cd119_selfcheck_OR_rms": 24.258,
  "cd119_selfcheck_TN_rms": 0.0,
  "cd119_selfcheck_TX_rms": 0.001,
  "cd119_selfcheck_UT_rms": 0.0,
  "cell_fallback_share": [
-  0.0,
+  0.6995,
   0.0,
   0.0302,
   0.0,
+  0.9671,
+  0.0732,
   0.0,
   0.0,
+  0.0,
+  0.2218,
   0.0,
   0.0,
   0.1789,
+  0.2149,
   0.0,
   0.0,
   0.0,
@@ -57,12 +64,17 @@
   0.7122,
   0.0,
   0.0302,
+  0.0909,
   0.9671,
+  0.0786,
   0.0933,
   0.0,
   0.0,
+  0.3332,
+  0.0132,
   0.0,
   0.2015,
+  0.3159,
   0.0,
   0.0,
   0.0,
@@ -71,51 +83,239 @@
   0.0,
   0.0
  ],
+ "cell_state_fallback_share": [
+  0.5922,
+  0.0,
+  0.0,
+  0.0,
+  0.9671,
+  0.0732,
+  0.0,
+  0.0,
+  0.0,
+  0.2218,
+  0.0,
+  0.0,
+  0.0,
+  0.2149,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0
+ ],
+ "medsl_vs_mit_AL": {
+  "margin_diff": -28.185,
+  "ratio": 1.6885
+ },
+ "medsl_vs_mit_AR": {
+  "margin_diff": -0.003,
+  "ratio": 0.9998
+ },
+ "medsl_vs_mit_AZ": {
+  "margin_diff": 0.018,
+  "ratio": 0.9997
+ },
+ "medsl_vs_mit_CA": {
+  "margin_diff": 0.044,
+  "ratio": 0.9989
+ },
+ "medsl_vs_mit_CO": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_CT": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_FL": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_GA": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_HI": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_IA": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_ID": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_IL": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_IN": {
+  "margin_diff": 0.045,
+  "ratio": 1.0512
+ },
+ "medsl_vs_mit_KS": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_KY": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_LA": {
+  "margin_diff": 1.005,
+  "ratio": 0.5155
+ },
+ "medsl_vs_mit_MA": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_MD": {
+  "margin_diff": 3.372,
+  "ratio": 1.0739
+ },
+ "medsl_vs_mit_ME": {
+  "margin_diff": -0.48,
+  "ratio": 0.9923
+ },
+ "medsl_vs_mit_MI": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_MN": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_MO": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_MS": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_MT": {
+  "margin_diff": 0.0,
+  "ratio": 0.9998
+ },
+ "medsl_vs_mit_NC": {
+  "margin_diff": -0.011,
+  "ratio": 0.9998
+ },
+ "medsl_vs_mit_NE": {
+  "margin_diff": 20.841,
+  "ratio": 0.0
+ },
+ "medsl_vs_mit_NH": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_NJ": {
+  "margin_diff": -4.744,
+  "ratio": 0.9756
+ },
+ "medsl_vs_mit_NM": {
+  "margin_diff": -0.004,
+  "ratio": 0.9999
+ },
+ "medsl_vs_mit_NV": {
+  "margin_diff": 0.006,
+  "ratio": 0.9997
+ },
+ "medsl_vs_mit_NY": {
+  "margin_diff": 2.469,
+  "ratio": 0.9182
+ },
+ "medsl_vs_mit_OH": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_OK": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_OR": {
+  "margin_diff": -8.336,
+  "ratio": 0.6941
+ },
+ "medsl_vs_mit_PA": {
+  "margin_diff": -0.028,
+  "ratio": 0.9996
+ },
+ "medsl_vs_mit_RI": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_SC": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_TN": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_TX": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_UT": {
+  "margin_diff": 0.006,
+  "ratio": 0.9996
+ },
+ "medsl_vs_mit_VA": {
+  "margin_diff": 0.011,
+  "ratio": 1.0006
+ },
+ "medsl_vs_mit_WA": {
+  "margin_diff": 0.033,
+  "ratio": 0.9986
+ },
+ "medsl_vs_mit_WI": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "medsl_vs_mit_WV": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
  "missing_pres20": [],
  "n_seats": 432,
- "national_2024_from_medsl_rows": -2.497,
+ "national_2024_from_medsl_rows": -2.443,
  "national_two_party_margin": {
-  "2020_from_seats": 4.497,
-  "2024": -2.397
+  "2020_from_seats": 4.498,
+  "2024": -1.811
  },
- "pres20_areal_AK_coverage": 0.9999,
  "pres20_areal_AR_coverage": 0.9999,
  "pres20_areal_AZ_coverage": 1.0,
  "pres20_areal_CO_coverage": 1.0,
  "pres20_areal_CT_coverage": 0.967,
- "pres20_areal_DE_coverage": 1.0,
  "pres20_areal_GA_coverage": 1.0,
  "pres20_areal_HI_coverage": 1.0,
  "pres20_areal_IA_coverage": 1.0,
  "pres20_areal_ID_coverage": 1.0,
  "pres20_areal_IL_coverage": 1.0,
- "pres20_areal_IN_coverage": 1.0,
  "pres20_areal_KS_coverage": 1.0,
  "pres20_areal_KY_coverage": 1.0,
  "pres20_areal_MA_coverage": 0.9999,
- "pres20_areal_MD_coverage": 0.9999,
  "pres20_areal_ME_coverage": 1.0,
  "pres20_areal_MI_coverage": 1.0,
  "pres20_areal_MN_coverage": 1.0,
  "pres20_areal_MS_coverage": 1.0,
  "pres20_areal_MT_coverage": 1.0,
- "pres20_areal_ND_coverage": 1.0,
  "pres20_areal_NE_coverage": 1.0,
- "pres20_areal_NJ_coverage": 0.9998,
  "pres20_areal_NM_coverage": 1.0,
  "pres20_areal_NV_coverage": 1.0,
- "pres20_areal_NY_coverage": 1.0,
- "pres20_areal_OR_coverage": 1.0,
  "pres20_areal_PA_coverage": 0.9999,
  "pres20_areal_RI_coverage": 1.0,
  "pres20_areal_SC_coverage": 1.0,
- "pres20_areal_SD_coverage": 1.0,
  "pres20_areal_VA_coverage": 1.0,
- "pres20_areal_VT_coverage": 1.0,
  "pres20_areal_WA_coverage": 0.9999,
  "pres20_areal_WI_coverage": 1.0,
  "pres20_areal_WV_coverage": 1.0,
- "pres20_areal_WY_coverage": 1.0,
  "redrawn_states": {
   "AL": 0.1265,
   "CA": 0.2567,
