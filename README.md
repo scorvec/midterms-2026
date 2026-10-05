@@ -210,8 +210,19 @@ MN Senate candidates are not on Wikipedia: incumbents are assumed to run unless 
 | `stateleg/klarner.csv.gz` | Klarner returns aggregated to district-elections, all states 1972-2022 | Klarner, doi:10.7910/DVN/FJOGJB (CC0) |
 | `stateleg/openstates_current.csv` | sitting legislators | Open States people (CC0) |
 | `stateleg/qc.json` | coverage, cross-checks, map-change audit | - |
+| `stateleg/geo_audit.json` | district-map join audit: every modelled district key against the map polygons (the build fails on a gap) | - |
+| `web/data/stateleg_geo/{ST}.topo.json`, `index.json` | district maps for `legislatures.html`, one TopoJSON per state (`midterms/stateleg_geo.py`, GitHub Actions `.github/workflows/stateleg-geo.yml`) | U.S. Census Bureau TIGER/Line Shapefiles 2025, state legislative districts (public domain); large water cut with the Census 2024 cartographic state outline; NH floterials from MEDSL 2024 precinct labels |
 
 Candidates and retirements are read each day from the Wikipedia 2026 chamber pages (`midterms/stateleg_wiki.py`, cached like every page).
+
+**District maps** (`legislatures.html`): each chamber's districts shaded by the chance a Democrat wins the seat (multi-member: the expected
+Democratic share), hatched where only one party is on the ballot, dotted where the seat is not up in 2026 (PA and WI odd-year senate
+seats, by the current holder). The daily run writes the per-seat file `web/data/stateleg_seats.json` (`midterms/stateleg_seats.py`:
+P(D), expected margin, lean, fixed party, expected seats of k, members, nominees). Boundaries: Census TIGER/Line 2025 (= 2024 for every
+chamber here, so the maps in force for 2026), except the Michigan Senate's court-ordered 2026 Detroit-area redraw, which is not in the
+Census files and is flagged on its map. New Hampshire floterials are not in TIGER: each is the union of the base districts whose towns
+vote in it (all 39 match whole base districts exactly) and is drawn as an outline over them. The geometry workflow reruns when
+`stateleg.py` or `lean_2026.csv` changes and builds only when a chamber lacks polygons, so added chambers get maps automatically.
 
 ## Congressional-district lean from public data (built, not used)
 

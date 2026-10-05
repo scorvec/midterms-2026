@@ -1,0 +1,485 @@
+{
+ "bytes": {
+  "AZ.topo.json": 22232,
+  "GA.topo.json": 79478,
+  "IA.topo.json": 30581,
+  "MI.topo.json": 74682,
+  "MN.topo.json": 49441,
+  "NC.topo.json": 86591,
+  "NH.topo.json": 49275,
+  "PA.topo.json": 93320,
+  "TX.topo.json": 94004,
+  "WI.topo.json": 39999,
+  "index.json": 5693
+ },
+ "bytes_total": 625296,
+ "chambers": {
+  "AZ_lower": {
+   "alias_of": "AZ_upper",
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 30,
+   "not_modelled": [],
+   "polygons": 30
+  },
+  "AZ_upper": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 30,
+   "not_modelled": [],
+   "polygons": 30
+  },
+  "GA_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 180,
+   "not_modelled": [],
+   "polygons": 180
+  },
+  "IA_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 100,
+   "not_modelled": [],
+   "polygons": 100
+  },
+  "MI_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 110,
+   "not_modelled": [],
+   "polygons": 110
+  },
+  "MI_upper": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 38,
+   "not_modelled": [],
+   "polygons": 38
+  },
+  "MN_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 134,
+   "not_modelled": [],
+   "polygons": 134
+  },
+  "MN_upper": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 67,
+   "not_modelled": [],
+   "polygons": 67
+  },
+  "NC_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 120,
+   "not_modelled": [],
+   "polygons": 120
+  },
+  "NC_upper": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 50,
+   "not_modelled": [],
+   "polygons": 50
+  },
+  "NH_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 203,
+   "not_modelled": [],
+   "polygons": 203
+  },
+  "NH_upper": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 24,
+   "not_modelled": [],
+   "polygons": 24
+  },
+  "PA_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 203,
+   "not_modelled": [],
+   "polygons": 203
+  },
+  "PA_upper": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 50,
+   "not_modelled": [],
+   "polygons": 50
+  },
+  "TX_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 150,
+   "not_modelled": [],
+   "polygons": 150
+  },
+  "WI_lower": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 99,
+   "not_modelled": [],
+   "polygons": 99
+  },
+  "WI_upper": {
+   "missing_after_simplify": [],
+   "missing_polygon": [],
+   "model": 33,
+   "not_modelled": [],
+   "polygons": 33
+  }
+ },
+ "nh_floterials": {
+  "Belknap 8": {
+   "bases": [
+    "Belknap 3",
+    "Belknap 4"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Carroll 7": {
+   "bases": [
+    "Carroll 5",
+    "Carroll 6"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Carroll 8": {
+   "bases": [
+    "Carroll 3",
+    "Carroll 4"
+   ],
+   "method": "base",
+   "towns": 8
+  },
+  "Cheshire 15": {
+   "bases": [
+    "Cheshire 1",
+    "Cheshire 2",
+    "Cheshire 3",
+    "Cheshire 4",
+    "Cheshire 5",
+    "Cheshire 6"
+   ],
+   "method": "base",
+   "towns": 9
+  },
+  "Cheshire 16": {
+   "bases": [
+    "Cheshire 7",
+    "Cheshire 8",
+    "Cheshire 9"
+   ],
+   "method": "base",
+   "towns": 10
+  },
+  "Cheshire 17": {
+   "bases": [
+    "Cheshire 10",
+    "Cheshire 11",
+    "Cheshire 12"
+   ],
+   "method": "base",
+   "towns": 5
+  },
+  "Cheshire 18": {
+   "bases": [
+    "Cheshire 13",
+    "Cheshire 14"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Coos 7": {
+   "bases": [
+    "Coos 4",
+    "Coos 5"
+   ],
+   "method": "base",
+   "towns": 5
+  },
+  "Grafton 17": {
+   "bases": [
+    "Grafton 13",
+    "Grafton 14",
+    "Grafton 15"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Grafton 18": {
+   "bases": [
+    "Grafton 10",
+    "Grafton 11",
+    "Grafton 16",
+    "Grafton 9"
+   ],
+   "method": "base",
+   "towns": 10
+  },
+  "Hillsborough 37": {
+   "bases": [
+    "Hillsborough 34",
+    "Hillsborough 43"
+   ],
+   "method": "base",
+   "towns": 2
+  },
+  "Hillsborough 38": {
+   "bases": [
+    "Hillsborough 13",
+    "Hillsborough 14"
+   ],
+   "method": "base",
+   "towns": 2
+  },
+  "Hillsborough 39": {
+   "bases": [
+    "Hillsborough 15",
+    "Hillsborough 16",
+    "Hillsborough 20"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Hillsborough 40": {
+   "bases": [
+    "Hillsborough 18",
+    "Hillsborough 19",
+    "Hillsborough 21",
+    "Hillsborough 22",
+    "Hillsborough 23"
+   ],
+   "method": "base",
+   "towns": 5
+  },
+  "Hillsborough 41": {
+   "bases": [
+    "Hillsborough 17",
+    "Hillsborough 24",
+    "Hillsborough 25",
+    "Hillsborough 26"
+   ],
+   "method": "base",
+   "towns": 4
+  },
+  "Hillsborough 44": {
+   "bases": [
+    "Hillsborough 28",
+    "Hillsborough 29"
+   ],
+   "method": "base",
+   "towns": 2
+  },
+  "Hillsborough 45": {
+   "bases": [
+    "Hillsborough 35",
+    "Hillsborough 36"
+   ],
+   "method": "base",
+   "towns": 4
+  },
+  "Merrimack 25": {
+   "bases": [
+    "Merrimack 2",
+    "Merrimack 3"
+   ],
+   "method": "base",
+   "towns": 4
+  },
+  "Merrimack 26": {
+   "bases": [
+    "Merrimack 1",
+    "Merrimack 4",
+    "Merrimack 5"
+   ],
+   "method": "base",
+   "towns": 8
+  },
+  "Merrimack 27": {
+   "bases": [
+    "Merrimack 10",
+    "Merrimack 11",
+    "Merrimack 14"
+   ],
+   "method": "base",
+   "towns": 4
+  },
+  "Merrimack 28": {
+   "bases": [
+    "Merrimack 15",
+    "Merrimack 16",
+    "Merrimack 17"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Merrimack 29": {
+   "bases": [
+    "Merrimack 18",
+    "Merrimack 23",
+    "Merrimack 24"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Merrimack 30": {
+   "bases": [
+    "Merrimack 19",
+    "Merrimack 20",
+    "Merrimack 21",
+    "Merrimack 22"
+   ],
+   "method": "base",
+   "towns": 4
+  },
+  "Rockingham 31": {
+   "bases": [
+    "Rockingham 2",
+    "Rockingham 3"
+   ],
+   "method": "base",
+   "towns": 4
+  },
+  "Rockingham 32": {
+   "bases": [
+    "Rockingham 6",
+    "Rockingham 7",
+    "Rockingham 8"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Rockingham 33": {
+   "bases": [
+    "Rockingham 10",
+    "Rockingham 11",
+    "Rockingham 12"
+   ],
+   "method": "base",
+   "towns": 4
+  },
+  "Rockingham 34": {
+   "bases": [
+    "Rockingham 14",
+    "Rockingham 15"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Rockingham 35": {
+   "bases": [
+    "Rockingham 16",
+    "Rockingham 17"
+   ],
+   "method": "base",
+   "towns": 2
+  },
+  "Rockingham 36": {
+   "bases": [
+    "Rockingham 19",
+    "Rockingham 20"
+   ],
+   "method": "base",
+   "towns": 5
+  },
+  "Rockingham 37": {
+   "bases": [
+    "Rockingham 21",
+    "Rockingham 22"
+   ],
+   "method": "base",
+   "towns": 4
+  },
+  "Rockingham 38": {
+   "bases": [
+    "Rockingham 23",
+    "Rockingham 24"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Rockingham 39": {
+   "bases": [
+    "Rockingham 26",
+    "Rockingham 27",
+    "Rockingham 28"
+   ],
+   "method": "base",
+   "towns": 3
+  },
+  "Rockingham 40": {
+   "bases": [
+    "Rockingham 29",
+    "Rockingham 30"
+   ],
+   "method": "base",
+   "towns": 2
+  },
+  "Strafford 18": {
+   "bases": [
+    "Strafford 3",
+    "Strafford 4"
+   ],
+   "method": "base",
+   "towns": 4
+  },
+  "Strafford 19": {
+   "bases": [
+    "Strafford 5",
+    "Strafford 6",
+    "Strafford 7",
+    "Strafford 8",
+    "Strafford 9"
+   ],
+   "method": "base",
+   "towns": 5
+  },
+  "Strafford 20": {
+   "bases": [
+    "Strafford 10",
+    "Strafford 11"
+   ],
+   "method": "base",
+   "towns": 4
+  },
+  "Strafford 21": {
+   "bases": [
+    "Strafford 13",
+    "Strafford 14",
+    "Strafford 15",
+    "Strafford 16",
+    "Strafford 17"
+   ],
+   "method": "base",
+   "towns": 5
+  },
+  "Sullivan 7": {
+   "bases": [
+    "Sullivan 2",
+    "Sullivan 3"
+   ],
+   "method": "base",
+   "towns": 5
+  },
+  "Sullivan 8": {
+   "bases": [
+    "Sullivan 4",
+    "Sullivan 5",
+    "Sullivan 6"
+   ],
+   "method": "base",
+   "towns": 11
+  }
+ },
+ "ok": true,
+ "vintage": 2025
+}

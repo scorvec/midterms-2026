@@ -122,8 +122,11 @@ def main():
         try:
             from . import stateleg_wiki as SLW
             SLW.build()
-            sl, _ = SLG.run_live(E_now, Z, MOOD["s_house"], SS, smg, GS if "governor" in out else None, gmg if "governor" in out else None)
+            sl, sl_seats = SLG.run_live(E_now, Z, MOOD["s_house"], SS, smg, GS if "governor" in out else None, gmg if "governor" in out else None)
             out["state_legislatures"] = sl
+            try:                                                         # per-seat file for the district maps (stateleg_seats.py)
+                from . import stateleg_seats as SLX; SLX.export(sl, sl_seats, out.get("asof"))
+            except Exception as ex: print("  !! stateleg seats export failed:", str(ex)[:160])
             print("State legislatures:", "; ".join(f"{c['name']} D {c['p_d']:.2f}" for c in sl["chambers"]))
         except Exception as ex:
             import traceback; traceback.print_exc(); print("state legislatures skipped:", str(ex)[:160])
