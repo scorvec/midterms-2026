@@ -1,0 +1,11 @@
+{
+ "civix_2026_probe": {
+  "found": true,
+  "id": 53815,
+  "election_name": "2026 NOVEMBER GENERAL ELECTION",
+  "early_voting_dates": [],
+  "counties": 254,
+  "index_date_updated": "10/05/2026",
+  "retrieved_utc": "2026-10-05T22:19Z"
+ }
+}
