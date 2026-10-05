@@ -66,11 +66,13 @@ CAL = {2026: {"election_day": dt.date(2026, 11, 3), "first": dt.date(2026, 10, 1
 # County groups (SOS spelling, upper case). The two suburban groups are fixed here, not chosen from the turnout.
 GROUPS = {
     "big_dem": ("Big Democratic counties", ["HARRIS", "DALLAS", "TRAVIS", "BEXAR", "EL PASO"]),
-    # Republican-leaning suburbs / exurbs: Collin, Denton (the large, fast-growing DFW suburbs, Trump single to low double
-    # digits in 2024) and Montgomery, plus every collar county of the four big metros (DFW, Houston, San Antonio) with more
-    # than ~75,000 registered voters that Trump carried by 20+ points in 2024 (tx_county_pres2024.csv; the margins are in
-    # the JSON). Austin's collar (Williamson close, Hays carried by Harris) is left out; Tarrant and Fort Bend are the
-    # swing group below.
+    # Republican-leaning suburbs / exurbs: Collin and Denton (the two large DFW suburbs; Trump +11.1 and +13.1 in 2024) and
+    # Montgomery (+45.5), plus every other county of the Dallas-Fort Worth, Houston and San Antonio metro areas outside the
+    # core counties with more than 60,000 presidential votes in 2024 that Trump carried by 15 points or more
+    # (tx_county_pres2024.csv): Rockwall +40.7, Parker +66.4, Kaufman +27.8, Ellis +31.0, Johnson +51.3 (DFW), Brazoria +19.7,
+    # Galveston +27.4 (Houston), Comal +45.5, Guadalupe +29.4 (San Antonio). Austin's collar has none (Williamson +2.4, Hays
+    # -5.6). Free-standing metros (Lubbock, Smith, McLennan, Brazos, Randall, Grayson ...) are not suburbs and stay out;
+    # Tarrant (+5.1) and Fort Bend (-1.6) are the swing group below.
     "gop_suburbs": ("Republican-leaning suburbs and exurbs",
                     ["COLLIN", "DENTON", "MONTGOMERY", "ROCKWALL", "PARKER", "KAUFMAN", "ELLIS", "JOHNSON",
                      "BRAZORIA", "GALVESTON", "COMAL", "GUADALUPE"]),
