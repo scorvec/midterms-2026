@@ -92,7 +92,11 @@ def _seat_rows(cands, year, st, cd):
 
 def medsl(years):
     m = pd.read_csv(MEDSL, low_memory=False, encoding="latin-1")
-    m = m[m.year.isin(years) & (m.stage == "gen") & ~m.special.astype(str).str.upper().eq("TRUE")]
+    m = m[m.year.isin(years) & (m.stage == "gen")]
+    # regular rows; a seat's same-year special rows only where it has no regular ones (Texas 1996 and 2006: the court-redrawn
+    # districts elected their members in November open "special" elections)
+    sp = m.special.astype(str).str.upper().eq("TRUE"); k0 = m.year.astype(str) + m.state_po + m.district.astype(str)
+    m = m[~sp | ~k0.isin(set(k0[~sp]))]
     # a seat's November rows; runoff rows only where the seat has nothing else (LA 1996: the November vote was the runoff)
     ro = m.runoff.astype(str).str.upper().eq("TRUE"); key = m.year.astype(str) + m.state_po + m.district.astype(str)
     m = m[~ro | ~key.isin(set(key[~ro]))]
@@ -142,7 +146,7 @@ _STNAME = {k.upper(): v for k, v in D._ST.items()}
 
 def clerk_2024():
     """The Clerk's 2024 statistics PDF: per district, candidate label lines ('1. Name, Party ....') followed by their votes."""
-    import fitz
+    import pymupdf as fitz
     lines = []
     for p in fitz.open(CLERK24): lines += [l.strip() for l in p.get_text().split("\n")]
     rows, st, sect, dist, queue, odd = [], None, False, None, [], []
@@ -458,8 +462,6 @@ def build():
     (OUT / "params.json").write_text(json.dumps({"draw_errors": params, "pair_beta": [round(float(x), 4) for x in beta], "safe_thetaR": round(float(F["thR"]), 3),
                                                   "safe_inc": round(float(F["c"]), 3), "fe_inc": round(b_inc, 3), "knot": KNOT, "seed": SEED}, indent=1))
     with pd.option_context("display.width", 250): print(N.round(2).to_string())
-    # spot checks
-    print(U.sort_values("year")[["year", "seat", "kind", "how", "yp", "mp", "m_imp", "T_imp", "rec", "winner"]].tail(40).to_string())
 
 
 def probe():
