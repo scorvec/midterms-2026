@@ -1,3 +1,3 @@
 # one-time governor data build (.github/workflows/gov-data.yml); first non-comment line = the gov_quality step
-# run 2: infobox parsed by its top-level fields; offices audit table
+# run 3: parse audit in the log
 fetch

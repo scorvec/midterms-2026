@@ -22,6 +22,7 @@ NOMINEES = ROOT / "data" / "static" / "gov_nominees.csv"
 QUALITY = ROOT / "data" / "static" / "gov_candidate_quality.csv"
 OFFICES = ROOT / "data" / "static" / "gov_nominee_offices.csv"      # the infobox offices read for each D / R nominee (audit)
 YEARS = list(range(1998, 2025, 2)) + [2026]
+DEBUG_TITLES = ("Josh Shapiro", "Byron Donalds", "Ned Lamont")
 _PARTY = re.compile(r"\s*\(([^)]+)\)\s*([\d.]+%)?")
 
 STATEWIDE = re.compile(r"(?<!board of )governor|attorney general|secretary of (?:the )?state|treasurer|comptroller|controller|auditor|"
@@ -162,6 +163,9 @@ def fetch():
         print(f"  {min(i + 50, len(want))}/{len(want)} pages", flush=True)
     if want: WT.parent.mkdir(parents=True, exist_ok=True); WT.write_text(json.dumps({"text": text, "resolved": resolved}))
     rows, orows = [], []
+    for t in DEBUG_TITLES:                                   # parse audit in the workflow log
+        wt = text.get(t) or ""; i = wt.lower().find("{{infobox")
+        print(f"--- {t}: infobox at {i}; fields {list(_infobox_fields(wt))[:40]}"); print(wt[max(i, 0):max(i, 0) + 1200])
     for r in T.itertuples():
         wt = text.get(r.title) if r.has_page else None
         offs = offices(wt) if wt else []
