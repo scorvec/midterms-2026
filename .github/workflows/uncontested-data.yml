@@ -1,0 +1,63 @@
+name: uncontested-seat data build (test only)
+
+# One-time build for the uncontested-seat test (midterms/uncontested_adj.py, branch uncontested-adj; NOT part of the live
+# model). Downloads (MIT Election Data + Science Lab House returns 1976-2018 from MEDSL's GitHub, CC0 on Harvard Dataverse;
+# FEC results workbooks 2018-2022; the House Clerk's 2024 election statistics PDF) are cached under data/raw, never
+# committed; only the derived per-cycle tables in data/static/uncontested are committed back to this branch.
+# Triggered by a push to uncontested-adj that changes .github/uncontested_step.txt (first word: probe | build).
+on:
+  push:
+    branches: [uncontested-adj]
+    paths: [".github/uncontested_step.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: uncontested-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Restore raw cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw
+          key: uncontested-raw-${{ github.run_id }}
+          restore-keys: uncontested-raw-
+      - name: Run
+        run: |
+          STEP=$(grep -v '^#' .github/uncontested_step.txt | head -1 | awk '{print $1}')
+          echo "STEP=$STEP" >> "$GITHUB_ENV"
+          python -m midterms.uncontested_adj fetch
+          python -m midterms.uncontested_adj $STEP
+      - name: Save raw cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/raw
+          key: uncontested-raw-${{ github.run_id }}
+      - name: Commit derived tables
+        if: ${{ always() && env.STEP != 'probe' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/static/uncontested || true
+          if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -q -m "uncontested-seat derived tables ($STEP)"
+          for i in 1 2 3; do git pull -q --no-rebase origin uncontested-adj && git push -q origin HEAD:uncontested-adj && exit 0; sleep 5; done
+          exit 1
