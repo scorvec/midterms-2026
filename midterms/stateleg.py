@@ -55,7 +55,10 @@ CHAMBERS = [
 ]
 SUPER = {("NC", "upper"): 30, ("NC", "lower"): 72}                    # 3/5 veto-override thresholds
 EXPERIMENTAL = {("NH", "lower"): "candidate lists are not on Wikipedia: every seat is treated as contested by full slates; "
-                                 "floterial districts are simulated as ordinary multi-member districts"}
+                                 "floterial districts are simulated as ordinary multi-member districts",
+                ("MI", "upper"): "no 2024 Senate election: district leans are 2020 precinct results moved to 2024 by each House district's "
+                                 "measured swing, on the 2022 Senate map (the court-ordered 2026 redraw of the Detroit-area districts is not "
+                                 "yet in the Census boundary files)"}
 
 
 # ------------------------------------------------------------------ data
