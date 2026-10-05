@@ -1,13 +1,13 @@
 chamber,seats,up_model,page_districts,page_trusted,up_not_on_page,page_not_up,lean_missing,one_party_2026,one_party_2024,contested_2024,one_party_2022,districts_2022,held,held_unknown_party,fixed_D,fixed_R,neither,pass_slates
-California Senate,40,20,20,20,[],[],0,1,4,16,5,20,20,20,0,1,0,True
+California Senate,40,20,20,20,[],[],0,1,4,16,5,20,20,0,0,1,0,True
 California Assembly,80,80,80,80,[],[],0,12,17,63,22,80,0,0,6,6,0,True
 Connecticut Senate,36,36,36,36,[],[],0,7,20,16,15,36,0,0,7,0,0,True
 Connecticut House,151,151,151,151,[],[],0,35,83,68,79,151,0,0,31,4,0,True
-Kentucky Senate,38,19,19,19,[],[],0,10,12,7,11,19,19,19,0,10,0,True
+Kentucky Senate,38,19,19,19,[],[],0,10,12,7,11,19,19,0,0,10,0,True
 Kentucky House,100,100,100,100,[],[],0,52,56,44,54,100,0,0,9,43,0,True
-Utah Senate,29,14,15,15,[],['12'],0,3,6,9,7,14,15,15,1,2,0,False
-Washington Senate,49,24,24,24,[],[],0,12,5,20,10,24,25,25,7,5,0,True
-West Virginia Senate,34,0,17,17,[],"['1', '10', '11', '12', '13', '14', '15', '16', '17', '2']",0,0,8,9,5,17,17,17,0,0,0,False
-Oregon Senate,30,15,15,15,[],[],0,0,9,6,1,15,15,15,0,0,0,True
+Utah Senate,29,15,15,15,[],[],0,3,6,9,7,14,14,0,1,2,0,True
+Washington Senate,49,24,24,24,[],[],0,12,5,20,10,24,25,0,7,5,0,True
+West Virginia Senate,34,17,17,17,[],[],0,1,8,9,5,17,17,0,0,1,0,True
+Oregon Senate,30,15,15,15,[],[],0,0,9,6,1,15,15,0,0,0,0,True
 Iowa Senate,50,25,24,24,['31'],[],0,11,7,18,11,34,25,0,6,5,0,False
 Texas Senate,31,16,16,16,[],[],0,3,5,10,13,31,15,0,3,0,0,True
