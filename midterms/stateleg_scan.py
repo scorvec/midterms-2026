@@ -61,5 +61,45 @@ def main():
     report()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "check" not in __import__("sys").argv:
     main()
+
+
+def check():
+    """Checks for the PENDING chambers: seats up (2024 rule) = the districts the page lists; every up district has a lean and
+    complete trusted slates; one-party seats against 2024 (MEDSL) and 2022 (Klarner); sitting members for held seats."""
+    import sys
+    from .paths import CACHE
+    W.FRESH_SINCE = None
+    SW.build()                                                    # candidates for CHAMBERS + PENDING -> data/cache
+    C = pd.read_csv(CACHE / "stateleg_candidates.csv", dtype={"district": str})
+    S, H = SLM.seats_2026(SLM.PENDING)
+    R = pd.read_csv(STATIC / "stateleg" / "medsl_results.csv.gz", dtype={"district": str}); R = R[(R.year == 2024) & ~R.special]
+    k = SLM.klarner(); k22 = k[k["year"] == 2022]
+    rows = []
+    for st, ch, name, n, up, tie in SLM.PENDING:
+        s = S[(S.state == st) & (S.chamber == ch)]; c = C[(C.state == st) & (C.chamber == ch) & (C.district != "_retirements")]
+        ct = c[c.source.isin(TRUSTED)]
+        up_set, page_set = set(s.district), set(c.district)
+        r24 = R[(R.state == st) & (R.chamber == ch)]
+        g24 = r24.groupby("district")["party"].agg(lambda x: ("D" in set(x)) and ("R" in set(x)))
+        q22 = k22[(k22["sab"] == st) & (k22["chamber"] == ch)]
+        hq = H[(H.state == st) & (H.chamber == ch)] if len(H) else H
+        rec = {"chamber": name, "seats": n, "up_model": len(up_set), "page_districts": len(page_set), "page_trusted": len(ct),
+               "up_not_on_page": sorted(up_set - page_set)[:10], "page_not_up": sorted(page_set - up_set)[:10],
+               "lean_missing": int(s["lean"].isna().sum()), "one_party_2026": int(((s.n_d == 0) | (s.n_r == 0)).sum()),
+               "one_party_2024": int((~g24).sum()), "contested_2024": int(g24.sum()),
+               "one_party_2022": int(((q22["n_d"] == 0) | (q22["n_r"] == 0)).sum()), "districts_2022": int(len(q22)),
+               "held": int(len(hq)), "held_unknown_party": int(hq["party"].isna().sum()) if len(hq) else 0,
+               "fixed_D": int(((s.n_r == 0) & (s.n_d > 0)).sum()), "fixed_R": int(((s.n_d == 0) & (s.n_r > 0)).sum()),
+               "neither": int(((s.n_d == 0) & (s.n_r == 0)).sum())}
+        rec["pass_slates"] = rec["page_trusted"] >= rec["up_model"] and not rec["up_not_on_page"] and not rec["page_not_up"]
+        rows.append(rec)
+    o = pd.DataFrame(rows); pd.set_option("display.width", 250)
+    print(o.to_string(index=False))
+    o.to_csv(STATIC / "stateleg" / "pending_check.csv", index=False)
+    report()
+
+
+if __name__ == "__main__" and "check" in __import__("sys").argv:
+    check()

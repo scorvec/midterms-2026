@@ -158,6 +158,10 @@ def medsl_load(p: Path, st: str) -> pd.DataFrame:
         if c not in df: df[c] = ""
         df[c] = df[c].fillna("").astype(str)
     df["office"] = df["office"].astype(str).str.upper().str.strip()
+    # Washington names the district in the office ("LEGISLATIVE DISTRICT 1 - STATE SENATOR") and leaves the district column empty
+    od = df["office"].str.extract(r"LEGISLATIVE DISTRICT\s+0*(\d+)", expand=False)
+    nodist = ~df["district"].str.contains(r"\d", regex=True)
+    df.loc[nodist & od.notna(), "district"] = od[nodist & od.notna()]
     # county | jurisdiction | precinct: precinct names repeat across towns (NJ "District 1"), and some files leave the
     # jurisdiction code blank, so the names go into the key as well
     df["key"] = (df["county_fips"] + "|" + df["county_name"].str.upper().str.strip() + "|" + df["jurisdiction_fips"] + "|" +

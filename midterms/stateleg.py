@@ -60,6 +60,22 @@ CHAMBERS = [
     ("IA", "lower", "Iowa House", 100, "all", "shared"),
     ("TX", "lower", "Texas House", 150, "all", "shared"),
 ]
+# candidate chambers (2026-10-05 coverage scan): complete general-election slates on Wikipedia and a lean built; checked by
+# stateleg_scan.check before any is moved into CHAMBERS (published)
+PENDING = [
+    ("CA", "upper", "California Senate", 40, "not2024", "shared"),
+    ("CA", "lower", "California Assembly", 80, "all", "shared"),
+    ("CT", "upper", "Connecticut Senate", 36, "all", "shared"),
+    ("CT", "lower", "Connecticut House", 151, "all", "shared"),
+    ("KY", "upper", "Kentucky Senate", 38, "not2024", "shared"),
+    ("KY", "lower", "Kentucky House", 100, "all", "shared"),
+    ("UT", "upper", "Utah Senate", 29, "not2024", "shared"),
+    ("WA", "upper", "Washington Senate", 49, "not2024", "shared"),
+    ("WV", "upper", "West Virginia Senate", 34, "not2024", "shared"),
+    ("OR", "upper", "Oregon Senate", 30, "not2024", "shared"),
+    ("IA", "upper", "Iowa Senate", 50, "not2024", "shared"),
+    ("TX", "upper", "Texas Senate", 31, "not2024", "shared"),
+]
 SUPER = {("NC", "upper"): 30, ("NC", "lower"): 72}                    # 3/5 veto-override thresholds
 EXPERIMENTAL = {("NH", "lower"): "candidate lists are not on Wikipedia: every seat is treated as contested by full slates; "
                                  "floterial districts are simulated as ordinary multi-member districts",
@@ -248,7 +264,7 @@ def fit(before=None, cycles=(2018, 2022), save=True):
 
 # ------------------------------------------------------------------ seat tables
 
-def seats_2026():
+def seats_2026(chambers=None):
     """Districts up in 2026 with lean, slate sizes, incumbency, fixed winners; and the held-over seats."""
     np_ = nat_pres(); L = pd.read_csv(SL / "lean_2026.csv", dtype={"district": str})
     L["lean"] = L["lean24"] - np_[2024]
@@ -262,7 +278,7 @@ def seats_2026():
     except FileNotFoundError: C = pd.DataFrame(columns=["state", "chamber", "district", "n_dem", "n_rep", "dem", "rep", "inc_names", "inc_marks"])
     C = official_nominees(C)
     rows, held = [], []
-    for st, ch, name, n, up, tie in CHAMBERS:
+    for st, ch, name, n, up, tie in (chambers or CHAMBERS):
         Lq = L[(L["state"] == st) & (L["chamber"] == ch)].set_index("district")
         dists = sorted(Lq.index, key=lambda d: (int("".join(x for x in d if x.isdigit()) or 0) if st != "NH" else 0, d))
         ret = " ".join(C.loc[(C["state"] == st) & (C["chamber"] == ch) & (C["district"] == "_retirements"), "dem"].fillna("").astype(str)).lower()

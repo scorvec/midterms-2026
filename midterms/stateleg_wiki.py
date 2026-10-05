@@ -205,7 +205,8 @@ def parse_page(st, ch, html):
 
 
 def build(states=None, debug=False):
-    from .stateleg import CHAMBERS
+    from .stateleg import CHAMBERS, PENDING
+    CHAMBERS = CHAMBERS + PENDING
     rows = []
     for st in dict.fromkeys(c[0] for c in CHAMBERS if states is None or c[0] in states):
         for ch in [c[1] for c in CHAMBERS if c[0] == st]:
