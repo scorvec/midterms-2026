@@ -185,8 +185,12 @@ gain, so the state-poll signal is NOT used (tested, not adopted; `MIDTERMS_STATE
 **Georgia, Iowa and Texas Houses** (same method and parameters): backtest reported separately - 5 chamber elections with complete
 district data (GA 2018 missing two districts' leans): all called right (as the current-majority rule), Brier 0.006, seat count inside
 the 80 % range 5/5. Adding them re-draws the simulation, so the 14 original chambers now read Brier 0.118 (naive 0.250), calls 79 %
-(naive 75 %), 23/24 inside the 80 % range (Monte Carlo noise against the first run's 0.119 / 75 % / 22). Candidates: GA and TX from the
-district election boxes (a seat is fixed only where the general-election listing lacks a party); IA from district prose (retirements
+(naive 75 %), 23/24 inside the 80 % range (Monte Carlo noise against the first run's 0.119 / 75 % / 22). Candidates: GA from the Georgia
+Secretary of State's official results of the May 19 primary and June 16 runoff (`midterms/ga_sos.py` -> `data/static/stateleg/
+ga_house_nominees_2026.csv`, derived table with source and retrieval date; 119 contested, 40 D only, 21 R only, against 90 / 43 / 47 in
+2024; cross-check with Wikipedia and Open States in `ga_house_crosscheck.csv` - every difference is a retirement, a primary defeat, a
+name spelling, or Wikipedia's district-3 box that belongs to district 4; the SOS table wins); TX from the district election boxes (a seat
+is fixed only where the general-election listing lacks a party); IA from district prose (retirements
 read; nominees mostly not, so seats count as contested unless the page says a party has none).
 
 **Approximations.** NH House: candidates are not listed on Wikipedia, so every seat is contested by full slates, floterial districts are

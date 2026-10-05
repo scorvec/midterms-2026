@@ -239,7 +239,9 @@ def build():
         W = pd.read_csv(CACHE / "stateleg_candidates.csv", dtype={"district": str}); W = W[(W.state == "GA") & (W.chamber == "lower")].set_index("district")
         O = pd.read_csv(STATIC / "stateleg" / "openstates_current.csv", dtype={"district": str}); O = O[(O.state == "GA") & (O.chamber == "lower")]
         O["district"] = O["district"].astype(str).str.lstrip("0"); O = O.set_index("district")
-        sur = lambda n: re.sub(r"[^a-z]", "", str(n).split()[-1].lower()) if str(n).strip() and str(n) != "nan" else ""
+        def sur(n):
+            p = [x for x in re.sub(r"[^A-Za-z' -]", " ", str(n)).split() if x.lower() not in ("jr", "sr", "ii", "iii", "iv") and str(n) != "nan"]
+            return p[-1].lower() if p else ""
         diffs = []
         for r in T.itertuples():
             w = W.loc[r.district] if r.district in W.index else None
