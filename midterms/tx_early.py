@@ -454,14 +454,49 @@ def _probe_2026() -> dict:
             "retrieved_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")}
 
 
+RESULTS = "https://results.texas-election.com/static/data"      # SOS election results 2019-2024 (static JSON / PDF reports)
+FINAL_2022 = STATIC / "tx_early_2022_final.csv"
+
+
+def _final_2022(force: bool = False) -> dict:
+    """2022 general (idElection 47009), final early vote by county from the SOS results site: PROBE stage - fetch the
+    county results file and the voter turnout report once, keep them for the run artifact, and print their structure."""
+    from . import fetch as F
+    if FINAL_2022.exists() and not force:
+        print("  2022 final early vote already committed; skipped")
+        return json.loads(SOURCES.read_text()).get("tx_early_2022_final", {}) if SOURCES.exists() else {}
+    d = RAW / "final2022"; d.mkdir(parents=True, exist_ok=True)
+    out = {}
+    for name, url in (("County.json", f"{RESULTS}/election/47009/242/County.json"),
+                      ("VoterTurnoutReport.pdf", f"{RESULTS}/Reports/47009/VoterTurnoutReport.pdf")):
+        time.sleep(2)
+        try:
+            b = F.open_url(url, timeout=120)
+        except urllib.error.HTTPError as e:
+            snippet = re.sub(r"\s+", " ", e.read(400).decode("utf-8", "replace"))
+            print(f"  {name}: HTTP {e.code} (server {e.headers.get('Server')}): {snippet[:200]}"); out[name] = f"HTTP {e.code}"; continue
+        (d / name).write_bytes(b); out[name] = len(b); print(f"  {name}: {len(b):,} bytes")
+        if name.endswith(".json"):
+            j = json.loads(b); k0 = next(iter(j)); c = j[k0]
+            print("   county keys:", {k: (type(v).__name__, v if not isinstance(v, (dict, list)) else len(v)) for k, v in c.items()})
+            r0 = next(iter(c.get("Races", {}).values()), {})
+            print("   race keys:", {k: (type(v).__name__, v if not isinstance(v, (dict, list)) else len(v)) for k, v in r0.items()})
+            c0 = next(iter(r0.get("C", {}).values()), {})
+            print("   candidate keys:", c0)
+        else:
+            import fitz
+            doc = fitz.open(stream=b, filetype="pdf")
+            print(f"   {doc.page_count} pages; page 1:\n" + doc[0].get_text()[:2500])
+    raise RuntimeError(f"probe only: {out}")
+
+
 def baseline(force: bool = False) -> None:
     if os.environ.get("GITHUB_ACTIONS") != "true":
         raise SystemExit("the baseline downloads run in GitHub Actions only (.github/workflows/tx-early-baseline.yml)")
     from . import fetch as F
     src = json.loads(SOURCES.read_text()) if SOURCES.exists() else {}
     errors = []
-    for key, fn in (("civix_2026_probe", _probe_2026), ("tx_early_2022", lambda: _baseline_2022(force)),
-                    ("tx_county_pres2024", lambda: _pres_2024(force))):
+    for key, fn in (("tx_early_2022_final", lambda: _final_2022(force)), ("tx_county_pres2024", lambda: _pres_2024(force))):
         try: src[key] = fn()
         except (Exception, SystemExit) as e:
             errors.append(f"{key}: {str(e)[:300]}"); print(f"!! {key} failed: {str(e)[:300]}")

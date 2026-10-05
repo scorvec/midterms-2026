@@ -1,7 +1,7 @@
 name: tx early-vote baseline (one-time)
 
 # ONE-TIME: builds the 2022 comparison for the Texas early-vote tracker (midterms/tx_early.py, diagnostic only) and commits
-#   data/static/tx_early_2022.csv       2022 general, cumulative early votes by county and early-voting day (Texas SOS)
+#   data/static/tx_early_2022_final.csv 2022 general, final early votes (in person, mail) and registered voters by county (Texas SOS)
 #   data/static/tx_county_pres2024.csv  2024 president by county (MIT Election Lab 2024 precincts, CC0), to check the county groups
 #   data/static/tx_early_sources.json   sources, retrieval time, checks; what the SOS index lists for the 2026 general
 # Parts already committed are skipped (force rebuilds them). Remove this workflow once the baseline is in.
@@ -57,9 +57,9 @@ jobs:
           retention-days: 30
           if-no-files-found: ignore
           path: |
-            data/raw/tx_stats/legacy2022
+            data/raw/tx_stats/final2022
             data/raw/tx_stats/election_index_probe.json
-            data/static/tx_early_2022.csv
+            data/static/tx_early_2022_final.csv
             data/static/tx_county_pres2024.csv
             data/static/tx_early_sources.json
       # snapshot, then resync to the newest main on each attempt (the daily bot commits there), restore, commit, push
@@ -67,7 +67,7 @@ jobs:
         run: |
           set -uo pipefail
           paths=""
-          for f in data/static/tx_early_2022.csv data/static/tx_county_pres2024.csv data/static/tx_early_sources.json; do
+          for f in data/static/tx_early_2022_final.csv data/static/tx_county_pres2024.csv data/static/tx_early_sources.json; do
             [ -e "$f" ] && paths="$paths $f"
           done
           if [ -z "$paths" ]; then echo "nothing built"; exit 0; fi
