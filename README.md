@@ -210,8 +210,11 @@ v 120th Congress block equivalency files (AL CA FL LA MO NC OH TN TX UT). Unchan
 label, where the file matches the official state totals (MIT) and the presidential vote sits on labelled precinct rows. Redrawn states
 (and files that fail those checks): VEST 2020 precincts -> 2020 blocks (internal point, split by block population) -> 120th-Congress
 districts, carried to 2024 by the (county x 2024 district) swing on the labels, else the county's, else the state's. Each state is then
-calibrated to its official totals (`qc_cd.json` lists every check and shift). `MIDTERMS_CD_LEAN=ours` switches the whole House prior to it (off). Missouri: the 120th-Congress block file carries the 2025 redraw,
-which may not be the map in force (court challenge); the seat table keeps its values until the map's status is confirmed.
+calibrated to its official totals (`qc_cd.json` lists every check and shift). `MIDTERMS_CD_LEAN=ours` switches the whole House prior to it (off). The Census 120th-Congress block file does not
+follow court orders: `cd_lean_build.MAP_STATUS` records the map in force per state with a dated source (`qc_cd.json` -> map_status).
+Missouri uses its 2022 lines (the U.S. Supreme Court blocked the 2025 map on 2026-09-25); the other redrawn states use the 120th file
+and are flagged `map_verified = False` (block-level match to the map in force not checked; Louisiana's map is unresolved). No House
+seat lean is overridden.
 
 Against the Cook PVI the House model uses (x2, margin units): seats on unchanged maps agree to rms 0.9 points (r 0.9996; Cook rounds to
 whole PVI points); redrawn seats rms 3.8, almost all of it Missouri, where the seat table's Cook values look like the old map's (MO-5:

@@ -34,6 +34,24 @@ ABBR = {"01": "AL", "02": "AK", "04": "AZ", "05": "AR", "06": "CA", "08": "CO", 
         "50": "VT", "51": "VA", "53": "WA", "54": "WV", "55": "WI", "56": "WY"}
 FIPS = {v: k for k, v in ABBR.items()}
 QC: dict = {}
+# Which congressional map is in force for November 2026, per a dated source (2026-10-05). The Census 120th-Congress block
+# equivalency file records the maps states adopted and does NOT follow later court orders. "map": 119 = the 2024 (119th-Congress)
+# lines, 120 = the Census 120th-Congress file. "bef120": whether that file is known to hold the map in force (block level):
+# "n/a" when the 119th lines are used, else "unverified" - no state's plan file was compared block by block.
+MAP_STATUS = {
+    "MO": {"map": 119, "in_force": "2022 map (6-2): U.S. Supreme Court blocked the 2025 map and ordered the 2022 map for 2026, 2026-09-25",
+           "source": "PBS / Missouri Independent / The Hill, 2026-09-25; Wikipedia '2025 Missouri redistricting'", "bef120": "n/a"},
+    "TX": {"map": 120, "in_force": "2025 map: three-judge panel ruling stayed by the U.S. Supreme Court", "source": "Ballotpedia / Wikipedia '2025-2026 United States redistricting' (checked 2026-10-05)", "bef120": "unverified"},
+    "CA": {"map": 120, "in_force": "Prop 50 map: three-judge panel rejected the challenge, Supreme Court denied review", "source": "same, checked 2026-10-05", "bef120": "unverified"},
+    "OH": {"map": 120, "in_force": "2025 map, no live challenge", "source": "same, checked 2026-10-05", "bef120": "unverified"},
+    "NC": {"map": 120, "in_force": "2025 map, litigation on the merits pending", "source": "same, checked 2026-10-05", "bef120": "unverified"},
+    "FL": {"map": 120, "in_force": "2026 map signed 2026-05-04, litigation pending", "source": "same, checked 2026-10-05", "bef120": "unverified"},
+    "TN": {"map": 120, "in_force": "2026 map passed 2026-05-07", "source": "Wikipedia '2026 Tennessee redistricting' (checked 2026-10-05)", "bef120": "unverified"},
+    "UT": {"map": 120, "in_force": "court-ordered plaintiffs' Map 1 (Judge Gibson; federal court cleared it)", "source": "KSL / NBC News (checked 2026-10-05)", "bef120": "unverified"},
+    "AL": {"map": 120, "in_force": "2023 legislature map, Supreme Court lifted the injunction (May 11 / June 2, 2026)", "source": "Bloomberg Law 'What we know about the race to redraw 2026 lines' (checked 2026-10-05)",
+           "bef120": "unverified - the seat table and our lean disagree on AL-2 (Cook R+7, ours R+10)"},
+    "LA": {"map": 120, "in_force": "UNRESOLVED: Callais voided the 2024 map; new map / suspended House primaries", "source": "Bloomberg Law (checked 2026-10-05)", "bef120": "unverified"},
+}
 MAPF = "https://www2.census.gov/programs-surveys/decennial/rdo/mapping-files/"
 
 
@@ -197,7 +215,13 @@ def main():
     m = b119.merge(b120, on="block", how="outer", suffixes=("119", "120"))
     m["st"] = m["block"].str[:2].map(ABBR)
     changed = m.groupby("st").apply(lambda q: float((q["cd119"] != q["cd120"]).mean()))
-    redrawn = sorted(changed[changed > 0.001].index); QC["redrawn_states"] = {s: round(float(changed[s]), 4) for s in redrawn}
+    redrawn_bef = sorted(changed[changed > 0.001].index); QC["redrawn_states_in_bef120"] = {s: round(float(changed[s]), 4) for s in redrawn_bef}
+    QC["map_status"] = MAP_STATUS
+    # states whose map in force is the 119th-Congress map get the 119th lines (b120 rows replaced by b119)
+    keep119 = [st for st, v in MAP_STATUS.items() if v["map"] == 119]
+    f119 = [FIPS[st] for st in keep119]
+    b120 = pd.concat([b120[~b120["block"].str[:2].isin(f119)], b119[b119["block"].str[:2].isin(f119)]], ignore_index=True)
+    redrawn = [st for st in redrawn_bef if st not in keep119]; QC["redrawn_states"] = redrawn
     print("redrawn for 2026 (share of blocks changing district):", QC["redrawn_states"])
     rows = []; nat = {"d24": 0.0, "r24": 0.0}
     cd119 = None
@@ -209,7 +233,7 @@ def main():
         n119 = b119.loc[b119["block"].str[:2] == FIPS[st], "cd"].nunique()
         m24s, t24s, d24s, r24s = mit_state(st, 2024); m20s, t20s, _, _ = mit_state(st, 2020)
         if n119 == 1:                                                     # at-large: the state's official totals (MIT)
-            rows.append({"seat": f"{st}-1", "pres24_d": d24s, "pres24_r": r24s, "method24": "mit_state", "redrawn": False})
+            rows.append({"seat": f"{st}-1", "pres24_d": d24s, "pres24_r": r24s, "method24": "mit_state", "redrawn": False, "map_verified": True})
             _, _, d20s, r20s = mit_state(st, 2020); rows[-1].update({"pres20_d": d20s, "pres20_r": r20s, "method20": "mit_state"})
             continue
         lab = B.label_lean(df, st, "cd", "cd2024") if df is not None else None
@@ -247,7 +271,8 @@ def main():
                 for cd, r in g.iterrows():
                     rows.append({"seat": f"{st}-{cd}", "pres24_d": r["d24"], "pres24_r": r["r24"], "pres20_d": r["d"], "pres20_r": r["r"],
                                  "method24": "vest2020_blocks_cd120_cellswing" if cells_ok else "vest2020_blocks_cd120_countyswing",
-                                 "method20": "vest2020_blocks_cd120", "redrawn": st in redrawn})
+                                 "method20": "vest2020_blocks_cd120", "redrawn": st in redrawn,
+                                 "map_verified": st not in redrawn})
                 # check of the cell-swing step on the UNCHANGED 2024 districts of the same state (blocks -> CD119 vs labels)
                 if lab is not None:
                     chk = x.groupby("cd119")[["d24", "r24"]].sum(); chk["m_hat"] = 100 * (chk["d24"] - chk["r24"]) / (chk["d24"] + chk["r24"])
@@ -259,7 +284,7 @@ def main():
                 print(f"!! {st}: block route failed ({e}); labels kept" if lab is not None else f"!! {st}: no route ({e})")
                 if lab is None: continue
         for _, r in lab.iterrows():
-            rows.append({"seat": f"{st}-{r['district']}", "pres24_d": r["d"], "pres24_r": r["r"], "method24": "medsl2024_cd_labels",
+            rows.append({"seat": f"{st}-{r['district']}", "pres24_d": r["d"], "pres24_r": r["r"], "method24": "medsl2024_cd_labels", "map_verified": True,
                          "unlabelled_share": q.get("unlabelled_pres_share"), "redrawn": False})
         # 2020 on the unchanged map: VEST 2020 areally into TIGER CD119
         try:
