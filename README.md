@@ -153,8 +153,8 @@ last published week is held (the page says which week).
 
 ## State legislatures (experimental, on since 2026-10-05)
 
-`midterms/stateleg.py` forecasts control of 14 chambers - Michigan, Minnesota, Wisconsin, Arizona, Pennsylvania, New Hampshire and
-North Carolina, both chambers each - inside the daily run (`MIDTERMS_STATELEG`, default on; workflow input `stateleg`). It
+`midterms/stateleg.py` forecasts control of 17 chambers - Michigan, Minnesota, Wisconsin, Arizona, Pennsylvania, New Hampshire and
+North Carolina (both chambers) and the Georgia, Iowa and Texas Houses (added 2026-10-05) - inside the daily run (`MIDTERMS_STATELEG`, default on; workflow input `stateleg`). It
 writes `state_legislatures` into `web/data/model.json`; `web/legislatures.html` shows it (not linked from the other pages yet).
 
 **Seat model.** Each seat's expected Democratic two-party margin is `a + beta * lean + c * inc + g * E + kappa * shift_state`:
@@ -181,6 +181,13 @@ majority holds" (calls right 75 % for both), seat count inside the 80 % range 22
 0.046 (2022) against 0.103 / 0.069 for each seat staying with its last winner (2018) or the sign of its lean (2022). The state-signal arm
 (kappa x governor-poll pull) changed seat log loss by +0.002 (2018) and -0.001 (2022) and control Brier 0.119 -> 0.125: no measurable
 gain, so the state-poll signal is NOT used (tested, not adopted; `MIDTERMS_STATELEG_KAPPA=on` restores it). No published forecaster's chamber calls were scored (none available under a usable licence).
+
+**Georgia, Iowa and Texas Houses** (same method and parameters): backtest reported separately - 5 chamber elections with complete
+district data (GA 2018 missing two districts' leans): all called right (as the current-majority rule), Brier 0.006, seat count inside
+the 80 % range 5/5. Adding them re-draws the simulation, so the 14 original chambers now read Brier 0.118 (naive 0.250), calls 79 %
+(naive 75 %), 23/24 inside the 80 % range (Monte Carlo noise against the first run's 0.119 / 75 % / 22). Candidates: GA and TX from the
+district election boxes (a seat is fixed only where the general-election listing lacks a party); IA from district prose (retirements
+read; nominees mostly not, so seats count as contested unless the page says a party has none).
 
 **Approximations.** NH House: candidates are not listed on Wikipedia, so every seat is contested by full slates, floterial districts are
 simulated as ordinary multi-member districts, and the 2018 backtest has no NH House (MEDSL's 2018 files cannot be downloaded); flagged
