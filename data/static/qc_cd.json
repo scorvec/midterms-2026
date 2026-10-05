@@ -285,8 +285,8 @@
  "n_seats": 435,
  "national_2024_from_medsl_rows": -2.443,
  "national_two_party_margin": {
-  "2020_from_seats": 4.353,
-  "2024": -1.615
+  "2020_from_seats": 4.352,
+  "2024": -1.719
  },
  "pres20_areal_AR_coverage": 0.9999,
  "pres20_areal_AZ_coverage": 1.0,
@@ -326,6 +326,15 @@
   "TN": 0.3527,
   "TX": 0.2873,
   "UT": 0.6723
+ },
+ "state_calibration_shift": {
+  "CT2020": 0.144,
+  "FL2024": -1.333,
+  "IN2024": -0.098,
+  "ME2024": 0.087,
+  "OK2024": -0.59,
+  "RI2024": 0.216,
+  "VA2020": -0.092
  },
  "validate_MI_lower": {
   "max_abs": 52.78,
