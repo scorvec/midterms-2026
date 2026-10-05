@@ -210,7 +210,15 @@ v 120th Congress block equivalency files (AL CA FL LA MO NC OH TN TX UT). Unchan
 label, where the file matches the official state totals (MIT) and the presidential vote sits on labelled precinct rows. Redrawn states
 (and files that fail those checks): VEST 2020 precincts -> 2020 blocks (internal point, split by block population) -> 120th-Congress
 districts, carried to 2024 by the (county x 2024 district) swing on the labels, else the county's, else the state's. Each state is then
-calibrated to its official totals. `MIDTERMS_CD_LEAN=ours` switches the House prior to it (off).
+calibrated to its official totals (`qc_cd.json` lists every check and shift). `MIDTERMS_CD_LEAN=ours` switches the House prior to it (off).
+
+Against the Cook PVI the House model uses (x2, margin units): seats on unchanged maps agree to rms 0.9 points (r 0.9996; Cook rounds to
+whole PVI points); redrawn seats rms 3.8, almost all of it Missouri, where the seat table's Cook values look like the old map's (MO-5:
+Cook D+12 v ours R+8); without Missouri rms 1.1 over all 435. The block-and-swing route reproduces known 2024 legislative-district
+margins to rms 1.9 (PA House, WI Assembly; districts far smaller than a congressional district). Switched on offline (Oct 5 inputs):
+Democratic House seats 241.1 -> 241.2, majority 88.5 % -> 88.0 %; MO-5 1.00 -> 0.48, FL-22 +0.17, AL-2 -0.14, MO-2 -0.15. A backtest of
+the switch needs the same lean on the 2018 and 2022 maps (VEST 2016/2020 x TIGER CD116/CD118) and the House prior refitted on it in
+place of 538's partisan lean.
 
 ## Credits
 
