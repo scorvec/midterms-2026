@@ -15,15 +15,15 @@
  "blocks_TX_vote_coverage": 1.0,
  "blocks_UT_vote_coverage": 1.0,
  "blocks_WI_vote_coverage": 1.0,
- "cd119_selfcheck_AL_rms": 0.008,
+ "cd119_selfcheck_AL_rms": 0.969,
  "cd119_selfcheck_CA_rms": 0.003,
- "cd119_selfcheck_FL_rms": 0.0,
- "cd119_selfcheck_LA_rms": 0.02,
- "cd119_selfcheck_MO_rms": 6.949,
- "cd119_selfcheck_NC_rms": 0.0,
+ "cd119_selfcheck_FL_rms": 0.011,
+ "cd119_selfcheck_LA_rms": 0.003,
+ "cd119_selfcheck_MO_rms": 0.009,
+ "cd119_selfcheck_NC_rms": 0.089,
  "cd119_selfcheck_NH_rms": 0.0,
  "cd119_selfcheck_OH_rms": 0.0,
- "cd119_selfcheck_OK_rms": 0.0,
+ "cd119_selfcheck_OK_rms": 0.848,
  "cd119_selfcheck_TN_rms": 0.0,
  "cd119_selfcheck_TX_rms": 0.001,
  "cd119_selfcheck_UT_rms": 0.0,
@@ -45,11 +45,29 @@
   0.0,
   0.0
  ],
+ "cell_invalid_share": [
+  0.0249,
+  0.0,
+  0.0302,
+  1.0,
+  0.0933,
+  0.9836,
+  0.0,
+  0.0,
+  0.2015,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.9836
+ ],
  "missing_pres20": [],
  "n_seats": 432,
  "national_two_party_margin": {
   "2020_from_seats": 2.491,
-  "2024": -1.492
+  "2024": -2.497
  },
  "pres20_areal_AK_coverage": 0.9999,
  "pres20_areal_AR_coverage": 0.9999,
@@ -108,15 +126,15 @@
   "rms_no_swing_2020": 7.897
  },
  "validate_NC_lower": {
-  "max_abs": 31.41,
+  "max_abs": 28.96,
   "n": 120,
-  "rms_cellswing": 4.601,
+  "rms_cellswing": 5.922,
   "rms_no_swing_2020": 6.589
  },
  "validate_NC_upper": {
-  "max_abs": 15.94,
+  "max_abs": 21.47,
   "n": 50,
-  "rms_cellswing": 3.367,
+  "rms_cellswing": 5.313,
   "rms_no_swing_2020": 6.039
  },
  "validate_PA_lower": {

@@ -18,10 +18,10 @@
   "rms_labels_vs_spatial": 2.95
  },
  "crosscheck_GA_upper": {
-  "mean": -0.22,
+  "mean": -0.0,
   "n": 56,
   "of": 56,
-  "rms_labels_vs_spatial": 1.92
+  "rms_labels_vs_spatial": 0.77
  },
  "crosscheck_IA_lower": {
   "mean": 0.13,
@@ -30,10 +30,10 @@
   "rms_labels_vs_spatial": 1.82
  },
  "crosscheck_IA_upper": {
-  "mean": 0.7,
+  "mean": 0.3,
   "n": 25,
   "of": 25,
-  "rms_labels_vs_spatial": 1.72
+  "rms_labels_vs_spatial": 1.28
  },
  "crosscheck_MI_lower": {
   "mean": -0.08,
@@ -48,10 +48,10 @@
   "rms_labels_vs_spatial": 2.21
  },
  "crosscheck_MN_upper": {
-  "mean": 0.08,
+  "mean": -0.0,
   "n": 67,
   "of": 67,
-  "rms_labels_vs_spatial": 1.78
+  "rms_labels_vs_spatial": 0.01
  },
  "crosscheck_NC_lower": {
   "mean": -0.01,
@@ -60,10 +60,10 @@
   "rms_labels_vs_spatial": 5.96
  },
  "crosscheck_NC_upper": {
-  "mean": -0.02,
+  "mean": 0.07,
   "n": 50,
   "of": 50,
-  "rms_labels_vs_spatial": 5.53
+  "rms_labels_vs_spatial": 1.79
  },
  "crosscheck_PA_lower": {
   "mean": -0.15,
@@ -72,10 +72,10 @@
   "rms_labels_vs_spatial": 2.18
  },
  "crosscheck_PA_upper": {
-  "mean": -0.19,
+  "mean": -0.04,
   "n": 25,
   "of": 25,
-  "rms_labels_vs_spatial": 1.11
+  "rms_labels_vs_spatial": 0.31
  },
  "crosscheck_TX_lower": {
   "mean": -0.04,
@@ -84,10 +84,10 @@
   "rms_labels_vs_spatial": 3.58
  },
  "crosscheck_TX_upper": {
-  "mean": -0.12,
+  "mean": 0.15,
   "n": 15,
   "of": 15,
-  "rms_labels_vs_spatial": 2.4
+  "rms_labels_vs_spatial": 0.89
  },
  "crosscheck_WI_lower": {
   "mean": 0.01,
@@ -96,10 +96,10 @@
   "rms_labels_vs_spatial": 1.92
  },
  "crosscheck_WI_upper": {
-  "mean": 0.02,
+  "mean": 0.0,
   "n": 33,
   "of": 33,
-  "rms_labels_vs_spatial": 1.15
+  "rms_labels_vs_spatial": 0.0
  },
  "hist2018_AZ_lower_coverage": 1.0,
  "hist2018_AZ_upper_coverage": 1.0,
@@ -113,6 +113,7 @@
  "hist2018_MN_upper_coverage": 0.9999,
  "hist2018_NC_lower_coverage": 0.9999,
  "hist2018_NC_upper_coverage": 0.9999,
+ "hist2018_NH_upper_coverage": 1.0,
  "hist2018_PA_lower_coverage": 1.0,
  "hist2018_PA_upper_coverage": 1.0,
  "hist2018_TX_lower_coverage": 1.0,
@@ -132,6 +133,7 @@
  "hist2022_NC_lower_coverage": 1.0,
  "hist2022_NC_upper_coverage": 1.0,
  "hist2022_NH_lower_town_unmatched": 0.7459,
+ "hist2022_NH_upper_coverage": 0.9989,
  "hist2022_NH_upper_town_unmatched": 0.7719,
  "hist2022_PA_lower_coverage": 1.0,
  "hist2022_PA_upper_coverage": 1.0,
@@ -275,6 +277,49 @@
   "unlabelled_pres_share": 0.0
  },
  "m2024_WI_lower_not_up_share": 0.0,
+ "sldcell_GA_invalid_cells_vote_share": 0.0018,
+ "sldcell_GA_upper_validation": {
+  "max": 2.71,
+  "n": 56,
+  "rms": 0.77
+ },
+ "sldcell_IA_invalid_cells_vote_share": 0.0054,
+ "sldcell_IA_upper_validation": {
+  "max": 5.79,
+  "n": 25,
+  "rms": 1.28
+ },
+ "sldcell_MI_invalid_cells_vote_share": 0.0002,
+ "sldcell_MN_invalid_cells_vote_share": 0.0001,
+ "sldcell_MN_upper_validation": {
+  "max": 0.05,
+  "n": 67,
+  "rms": 0.01
+ },
+ "sldcell_NC_invalid_cells_vote_share": 0.0151,
+ "sldcell_NC_upper_validation": {
+  "max": 6.44,
+  "n": 50,
+  "rms": 1.79
+ },
+ "sldcell_PA_invalid_cells_vote_share": 0.0,
+ "sldcell_PA_upper_validation": {
+  "max": 1.0,
+  "n": 25,
+  "rms": 0.31
+ },
+ "sldcell_TX_invalid_cells_vote_share": 0.0037,
+ "sldcell_TX_upper_validation": {
+  "max": 2.16,
+  "n": 15,
+  "rms": 0.89
+ },
+ "sldcell_WI_invalid_cells_vote_share": 0.0,
+ "sldcell_WI_upper_validation": {
+  "max": 0.0,
+  "n": 33,
+  "rms": 0.0
+ },
  "spatial2025_AZ_lower_coverage": 1.0,
  "spatial2025_AZ_upper_coverage": 1.0,
  "spatial2025_GA_lower_coverage": 1.0,
@@ -292,546 +337,5 @@
  "spatial2025_TX_lower_coverage": 1.0,
  "spatial2025_TX_upper_coverage": 1.0,
  "spatial2025_WI_lower_coverage": 0.9999,
- "spatial2025_WI_upper_coverage": 0.9999,
- "tiger_change_AZ_sldl_2022_2024": {
-  "changed": [],
-  "n0": 30,
-  "n1": 30
- },
- "tiger_change_AZ_sldl_2024_2025": {
-  "changed": [],
-  "n0": 30,
-  "n1": 30
- },
- "tiger_change_AZ_sldu_2022_2024": {
-  "changed": [],
-  "n0": 30,
-  "n1": 30
- },
- "tiger_change_AZ_sldu_2024_2025": {
-  "changed": [],
-  "n0": 30,
-  "n1": 30
- },
- "tiger_change_GA_sldl_2022_2024": {
-  "changed": [
-   "019",
-   "034",
-   "035",
-   "036",
-   "037",
-   "040",
-   "042",
-   "043",
-   "055",
-   "056",
-   "057",
-   "058",
-   "060",
-   "061",
-   "064",
-   "065",
-   "066",
-   "074",
-   "078",
-   "081",
-   "082",
-   "084",
-   "085",
-   "086",
-   "087",
-   "089",
-   "090",
-   "091",
-   "092",
-   "093",
-   "094",
-   "095",
-   "101",
-   "102",
-   "105",
-   "106",
-   "107",
-   "108",
-   "109",
-   "110",
-   "111",
-   "112",
-   "113",
-   "114",
-   "115",
-   "116",
-   "117",
-   "118",
-   "133",
-   "134",
-   "135",
-   "142",
-   "143",
-   "144",
-   "145",
-   "147",
-   "149"
-  ],
-  "n0": 180,
-  "n1": 180
- },
- "tiger_change_GA_sldl_2024_2025": {
-  "changed": [],
-  "n0": 180,
-  "n1": 180
- },
- "tiger_change_GA_sldu_2022_2024": {
-  "changed": [
-   "006",
-   "010",
-   "017",
-   "025",
-   "028",
-   "030",
-   "033",
-   "035",
-   "038",
-   "039",
-   "041",
-   "042",
-   "043",
-   "044",
-   "055"
-  ],
-  "n0": 56,
-  "n1": 56
- },
- "tiger_change_GA_sldu_2024_2025": {
-  "changed": [],
-  "n0": 56,
-  "n1": 56
- },
- "tiger_change_IA_sldl_2022_2024": {
-  "changed": [],
-  "n0": 100,
-  "n1": 100
- },
- "tiger_change_IA_sldl_2024_2025": {
-  "changed": [],
-  "n0": 100,
-  "n1": 100
- },
- "tiger_change_IA_sldu_2022_2024": {
-  "changed": [],
-  "n0": 50,
-  "n1": 50
- },
- "tiger_change_IA_sldu_2024_2025": {
-  "changed": [],
-  "n0": 50,
-  "n1": 50
- },
- "tiger_change_MI_sldl_2022_2024": {
-  "changed": [
-   "001",
-   "002",
-   "003",
-   "004",
-   "005",
-   "006",
-   "007",
-   "008",
-   "009",
-   "010",
-   "011",
-   "012",
-   "013",
-   "014",
-   "016"
-  ],
-  "n0": 110,
-  "n1": 110
- },
- "tiger_change_MI_sldl_2024_2025": {
-  "changed": [],
-  "n0": 110,
-  "n1": 110
- },
- "tiger_change_MI_sldu_2022_2024": {
-  "changed": [],
-  "n0": 38,
-  "n1": 38
- },
- "tiger_change_MI_sldu_2024_2025": {
-  "changed": [],
-  "n0": 38,
-  "n1": 38
- },
- "tiger_change_MN_sldl_2022_2024": {
-  "changed": [
-   "44A",
-   "44B"
-  ],
-  "n0": 134,
-  "n1": 134
- },
- "tiger_change_MN_sldl_2024_2025": {
-  "changed": [],
-  "n0": 134,
-  "n1": 134
- },
- "tiger_change_MN_sldu_2022_2024": {
-  "changed": [],
-  "n0": 67,
-  "n1": 67
- },
- "tiger_change_MN_sldu_2024_2025": {
-  "changed": [],
-  "n0": 67,
-  "n1": 67
- },
- "tiger_change_NC_sldl_2022_2024": {
-  "changed": [
-   "001",
-   "003",
-   "004",
-   "006",
-   "007",
-   "008",
-   "009",
-   "010",
-   "011",
-   "013",
-   "014",
-   "015",
-   "018",
-   "019",
-   "020",
-   "021",
-   "026",
-   "032",
-   "033",
-   "034",
-   "035",
-   "036",
-   "037",
-   "038",
-   "039",
-   "040",
-   "041",
-   "042",
-   "043",
-   "044",
-   "045",
-   "046",
-   "047",
-   "049",
-   "050",
-   "053",
-   "055",
-   "056",
-   "057",
-   "058",
-   "059",
-   "060",
-   "061",
-   "062",
-   "063",
-   "064",
-   "066",
-   "068",
-   "069",
-   "071",
-   "072",
-   "073",
-   "074",
-   "075",
-   "079",
-   "080",
-   "081",
-   "082",
-   "083",
-   "085",
-   "088",
-   "090",
-   "091",
-   "092",
-   "094",
-   "095",
-   "098",
-   "099",
-   "100",
-   "101",
-   "102",
-   "103",
-   "104",
-   "105",
-   "106",
-   "107",
-   "108",
-   "109",
-   "110",
-   "111",
-   "112",
-   "113",
-   "114",
-   "115",
-   "116",
-   "117"
-  ],
-  "n0": 120,
-  "n1": 120
- },
- "tiger_change_NC_sldl_2024_2025": {
-  "changed": [],
-  "n0": 120,
-  "n1": 120
- },
- "tiger_change_NC_sldu_2022_2024": {
-  "changed": [
-   "001",
-   "002",
-   "003",
-   "007",
-   "013",
-   "014",
-   "015",
-   "016",
-   "017",
-   "018",
-   "019",
-   "021",
-   "022",
-   "025",
-   "026",
-   "027",
-   "028",
-   "029",
-   "031",
-   "032",
-   "034",
-   "035",
-   "037",
-   "038",
-   "039",
-   "040",
-   "041",
-   "042",
-   "045",
-   "046",
-   "047",
-   "049"
-  ],
-  "n0": 50,
-  "n1": 50
- },
- "tiger_change_NC_sldu_2024_2025": {
-  "changed": [],
-  "n0": 50,
-  "n1": 50
- },
- "tiger_change_NH_sldl_2022_2024": {
-  "changed": [],
-  "n0": 164,
-  "n1": 164
- },
- "tiger_change_NH_sldl_2024_2025": {
-  "changed": [],
-  "n0": 164,
-  "n1": 164
- },
- "tiger_change_NH_sldu_2022_2024": {
-  "changed": [],
-  "n0": 24,
-  "n1": 24
- },
- "tiger_change_NH_sldu_2024_2025": {
-  "changed": [],
-  "n0": 24,
-  "n1": 24
- },
- "tiger_change_PA_sldl_2022_2024": {
-  "changed": [
-   "173",
-   "175",
-   "177",
-   "184"
-  ],
-  "n0": 203,
-  "n1": 203
- },
- "tiger_change_PA_sldl_2024_2025": {
-  "changed": [],
-  "n0": 203,
-  "n1": 203
- },
- "tiger_change_PA_sldu_2022_2024": {
-  "changed": [
-   "001"
-  ],
-  "n0": 50,
-  "n1": 50
- },
- "tiger_change_PA_sldu_2024_2025": {
-  "changed": [],
-  "n0": 50,
-  "n1": 50
- },
- "tiger_change_TX_sldl_2022_2024": {
-  "changed": [],
-  "n0": 150,
-  "n1": 150
- },
- "tiger_change_TX_sldl_2024_2025": {
-  "changed": [],
-  "n0": 150,
-  "n1": 150
- },
- "tiger_change_TX_sldu_2022_2024": {
-  "changed": [],
-  "n0": 31,
-  "n1": 31
- },
- "tiger_change_TX_sldu_2024_2025": {
-  "changed": [],
-  "n0": 31,
-  "n1": 31
- },
- "tiger_change_WI_sldl_2022_2024": {
-  "changed": [
-   "002",
-   "003",
-   "004",
-   "005",
-   "006",
-   "007",
-   "013",
-   "014",
-   "015",
-   "020",
-   "021",
-   "022",
-   "023",
-   "024",
-   "025",
-   "026",
-   "027",
-   "028",
-   "029",
-   "030",
-   "031",
-   "032",
-   "033",
-   "035",
-   "036",
-   "037",
-   "038",
-   "039",
-   "040",
-   "041",
-   "042",
-   "043",
-   "044",
-   "045",
-   "046",
-   "047",
-   "048",
-   "049",
-   "050",
-   "051",
-   "052",
-   "053",
-   "054",
-   "055",
-   "056",
-   "057",
-   "058",
-   "059",
-   "060",
-   "061",
-   "062",
-   "063",
-   "064",
-   "065",
-   "066",
-   "067",
-   "068",
-   "069",
-   "070",
-   "071",
-   "072",
-   "073",
-   "074",
-   "075",
-   "076",
-   "077",
-   "078",
-   "079",
-   "080",
-   "081",
-   "082",
-   "083",
-   "084",
-   "085",
-   "086",
-   "087",
-   "088",
-   "089",
-   "090",
-   "091",
-   "092",
-   "093",
-   "094",
-   "095",
-   "096",
-   "097",
-   "098",
-   "099"
-  ],
-  "n0": 99,
-  "n1": 99
- },
- "tiger_change_WI_sldl_2024_2025": {
-  "changed": [],
-  "n0": 99,
-  "n1": 99
- },
- "tiger_change_WI_sldu_2022_2024": {
-  "changed": [
-   "001",
-   "002",
-   "003",
-   "005",
-   "007",
-   "008",
-   "009",
-   "010",
-   "011",
-   "012",
-   "013",
-   "014",
-   "015",
-   "016",
-   "017",
-   "018",
-   "019",
-   "020",
-   "021",
-   "022",
-   "023",
-   "024",
-   "025",
-   "026",
-   "027",
-   "028",
-   "029",
-   "030",
-   "031",
-   "032",
-   "033"
-  ],
-  "n0": 33,
-  "n1": 33
- },
- "tiger_change_WI_sldu_2024_2025": {
-  "changed": [],
-  "n0": 33,
-  "n1": 33
- }
+ "spatial2025_WI_upper_coverage": 0.9999
 }
