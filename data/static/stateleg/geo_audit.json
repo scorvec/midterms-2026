@@ -1,5 +1,18 @@
 {
- "bytes": 786789,
+ "bytes": {
+  "AZ.topo.json": 22232,
+  "GA.topo.json": 79478,
+  "IA.topo.json": 30581,
+  "MI.topo.json": 74682,
+  "MN.topo.json": 49441,
+  "NC.topo.json": 86591,
+  "NH.topo.json": 49275,
+  "PA.topo.json": 93320,
+  "TX.topo.json": 94004,
+  "WI.topo.json": 39999,
+  "index.json": 5693
+ },
+ "bytes_total": 625296,
  "chambers": {
   "AZ_lower": {
    "alias_of": "AZ_upper",
