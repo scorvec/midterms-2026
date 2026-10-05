@@ -34,7 +34,7 @@ def fetch():
 
 
 def probe():
-    m = pd.read_csv(MEDSL, low_memory=False)
+    m = pd.read_csv(MEDSL, low_memory=False, encoding="latin-1"); print("=====BEGIN")
     print(m.columns.tolist(), len(m)); print(m.head(3).to_string())
     for y in (1996, 1998, 2016):
         q = m[m.year == y]; print(y, len(q), q.party.value_counts().head(25).to_dict())
