@@ -107,7 +107,23 @@ def probe8():
     report()
 
 
+def probe9():
+    import urllib.parse as up
+    t = open_url("https://results.sos.ga.gov/results/public/main-E6MCELDW.js").decode("utf-8", "replace")
+    for key in ("jurisdictions", "reports/", "/reports", "download", "lazy", "loadChildren", "chunk-"):
+        for m in list(re.finditer(re.escape(key), t))[:3]:
+            print("CTX", key, t[max(0, m.start() - 200): m.start() + 150].replace("\n", " "))
+    j = json.loads(open_url(API + "GeneralPrimary51926")); blob = j["publicReportCategories"][0]["reports"][0]["blobName"]
+    for u in (CDN + up.quote(blob), CDN + "reports/" + up.quote(blob), CDN + "Georgia/" + up.quote(blob), CDN + "Georgia/export-GeneralPrimary51926.json",
+              "https://results.sos.ga.gov/results/public/api/jurisdictions/Georgia"):
+        time.sleep(3)
+        try: b = open_url(u); print("OK", u, len(b), b[:120])
+        except Exception as e: print("NO", u, e)
+    report()
+
+
 if __name__ == "__main__":
+    if "probe9" in sys.argv: probe9()
     if "probe8" in sys.argv: probe8()
     if "probe7" in sys.argv: probe7()
     if "probe6" in sys.argv: probe6()
