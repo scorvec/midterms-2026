@@ -143,6 +143,22 @@ Senate +0.0002 (95 % interval -0.0014 to +0.0016), governors -0.0006 (-0.0024 to
 Brier and the error of the race means likewise within noise. Not adopted: the switch stays off (`None`). Switched on, the
 Florida governor race moves from 39 % to 34 % for Jolly; the national headlines move by less than half a point.
 
+## Gallup party identification (tested, not adopted)
+
+A one-off backtest (2026-10-05) asked whether Gallup's leaned party-ID gap (Democrats + Democratic leaners minus
+Republicans + Republican leaners, adults) added to the generic-ballot average G at Oct 1 for the national House vote. Gallup's
+quarterly series (the intended Q3 input) is not openly published (the trend page has annual averages 1991-2025; releases show
+only a few recent quarters), so the annual series is the proxy: the election year's average (has Oct-Dec look-ahead), the
+previous year's (leak-free) and the two-year change. Leave-one-election-out, 1996-2024 (n 15; no G for 1992/94 in the repository):
+V ~ G MAE 1.91 / RMSE 2.29; + election-year gap 1.69 / 2.14 (coef 0.31 +- 0.20; better in 11/15, paired t on squared error p
+0.31, permutation p 0.09, bootstrap 95 % of the MSE gain -0.6 to +1.8); + previous-year gap 1.60 / 2.08 (12/15, t p 0.37,
+permutation 0.06, bootstrap -1.1 to +2.7); + two-year change 2.04 / 2.41 (worse). Midterms only (n 7): no variant helps (the
+change is worse in 7/7). The House vote runs 4.4 points more Republican than Gallup's adult gap on average (sd 3.4, 1992-2024;
+midterms -5.1, presidential years -3.8, difference not significant). No significant out-of-sample gain: not adopted. Today's Q3
+2026 reading (D+10) would move the fitted national margin by +0.2 against the same fit without it.
+The script and the per-year gap series are not distributed (Gallup does not allow republishing its tables); the figures
+above are aggregates. Source: Gallup, "Party Affiliation" trend, retrieved 2026-10-05.
+
 ## Heating-oil adjustment
 
 A judgment term, not backtested: the rise in retail heating oil over the past year, times each district's (state's)
