@@ -16,7 +16,21 @@ from . import poll_overrides as PO
 from . import model as M, wiki_polls as W, rcv as RC
 ROOT = Path(__file__).resolve().parents[1]
 TWO_YEAR = {"NH", "VT"}
-POLL_SD, POLL_SYS = M.SEN_POLL_SD, M.SEN_POLL_SYS
+POLL_SD, POLL_SYS = M.SEN_POLL_SD, M.SEN_POLL_SYS      # the Senate's per-poll and race-average poll errors (see GOV_POLL_* below)
+
+# ---- Governor model review (2026-10-05; midterms/gov_backtest.py, README "Governor model review"). Every switch below was scored
+# on the leak-free governor harness (2006-2022, walk-forward prior, the live poll pipeline); the values here are the LIVE ones -
+# a switch is on only where the harness showed a significant out-of-sample gain. Nothing here shifts either party.
+INC_FIX = False         # history(): an incumbent who succeeded mid-term and ran ("Incumbent elected to full term") counts as an incumbent
+PRIOR_SPEC = {}         # extra prior terms, Prior(): lean_t / half / prev / het / excl_third (see Prior)
+GOV_POLL_SD = None      # per-poll governor poll error; None = the Senate's POLL_SD
+GOV_POLL_SYS = None     # race-average governor poll error (total, before the shared part is taken out); None = POLL_SYS
+SHARED_K = 1.0          # scale of the shared statewide shock the governor simulation draws (x b3 / NAT_SLOPE)
+RACE_SD_K = 1.0         # scale of each race's own outcome sd in the simulation
+PRIOR_SD_K = 1.0        # scale of the prior sd in the blend (fundamentals v polls weight)
+UND_PARAMS = None       # (free, slope, cap) for governor polls' undecided variance; None = model.UND_*
+THIRD_MULT = None       # governor polls with a third candidate at 10 %+; None = model.THIRD_MULT
+AGE_HALF = None         # governor poll staleness half-life (days); None = model.AGE_HALF
 
 
 def _pres_lean():
@@ -31,58 +45,186 @@ def _pres_lean():
     return lean
 
 
+# status text of an incumbent who was on the general ballot. The first parser matched only "re-elected / lost re-election /
+# defeated", so 19 incumbents who had succeeded mid-term and then ran (Ivey AL 2018, Reynolds IA 2018, Hochul NY 2022, McKee RI 2022,
+# Parson MO 2020, Quinn IL 2010 ...: "Incumbent elected to full term"; Kernan IN 2004: "lost election to full term") counted as open seats.
+_RAN_OLD = r"re-?elected|lost re-?election|defeated"
+_RAN = r"re-?elected|lost re-?election|defeated|elected to (?:a )?(?:full|finish) term|lost election to (?:a )?full term"
+_NOT_RAN = r"lost (?:re-?)?nomination|lost (?:the )?primary|lost nomination|withdrew"
+_CAND = r"([^%▌]+?)\s*\(([^)]+)\)\s*([\d.]+)%"          # "Name (Party) 49.2%" (1998/2002 tables have no ▌ markers)
+_DEM = ("Democratic", "DFL", "Democratic–Farmer–Labor", "Democratic-NPL")
+
+
+def _surname(n):
+    w = [x for x in re.findall(r"[a-z]+", re.sub(r"\(.*?\)", "", str(n)).lower()) if x not in ("jr", "sr", "ii", "iii", "iv")]
+    return w[-1] if w else ""
+
+
+def parse_results(y, html):
+    """Rows of one yearly "United States gubernatorial elections" page's results table (D-v-R races only)."""
+    from .data_prep import _ST
+    T = None
+    for tb in pd.read_html(io.StringIO(html)):
+        cols = [" ".join(map(str, c)) if isinstance(c, tuple) else str(c) for c in tb.columns]
+        if any(c.startswith("Candidates") for c in cols) and any(c.startswith("State") for c in cols) and len(tb) >= 10: tb.columns = cols; T = tb; break
+    if T is None: return []
+    cc = [c for c in T.columns if c.startswith("Candidates")][0]; sc = [c for c in T.columns if c.startswith("State")][0]
+    stc = [c for c in T.columns if c.startswith("Status") or c.startswith("Result")]
+    pc = [c for c in T.columns if c.startswith("Party")]
+    rows = []
+    for _, r in T.iterrows():
+        st = _ST.get(re.sub(r"\[.*?\]", "", str(r[sc])).strip())
+        if not st: continue
+        c = [(re.sub(r"^(?:Others\s+|Y\s+(?=[A-Z]))", "", n.strip()), p, float(v)) for n, p, v in re.findall(_CAND, re.sub(r"\[.*?\]", "", str(r[cc])))]
+        dd = [(n, v) for n, p, v in c if p.startswith(_DEM)]; rr = [(n, v) for n, p, v in c if p.startswith("Republican")]
+        if not dd or not rr: continue
+        (dn, d), (rn, rp) = max(dd, key=lambda x: x[1]), max(rr, key=lambda x: x[1])
+        status = re.sub(r"\[.*?\]", "", str(r[stc[0]])) if stc else ""; party = str(r[pc[0]]) if pc else ""
+        ip = 1.0 if party.startswith(("Democratic", "DFL")) else (-1.0 if party.startswith("Republican") else 0.0)
+        ran_old = bool(re.search(_RAN_OLD, status, re.I)) and not re.search(r"lost renomination|lost (the )?primary", status, re.I)
+        ran = bool(re.search(_RAN, status, re.I)) and not re.search(_NOT_RAN, status, re.I)
+        rows.append({"year": y, "state": st, "margin": round(d - rp, 2), "dn": dn, "rn": rn,
+                     "oth_max": max([v for n, p, v in c if not p.startswith(_DEM + ("Republican",))], default=0.0),
+                     "inc_old": ip if ran_old else 0.0, "inc_fix": ip if ran else 0.0})
+    return rows
+
+
+RESULTS_2024 = ROOT / "data" / "static" / "gov_results_2024.csv"     # derived 2024 rows (gov_quality results2024, GitHub Actions)
+USE_2024 = False        # history(): add the 2024 races (data/static/gov_results_2024.csv) to the governor history
+
+
 def history():
     """EVERY governor race 1998-2022 (even years) from the Wikipedia yearly pages' results tables: D% - R% (top candidate of each
     party), incumbent running from the status column. The first version used only 538's POLLED races, which skew competitive:
-    the lean slope came out 0.37 and Wyoming's Democrat got 12 %."""
-    from .data_prep import _ST
+    the lean slope came out 0.37 and Wyoming's Democrat got 12 %.
+    Columns: margin, inc (INC_FIX picks inc_fix or inc_old), lean, E, the nominees (dn, rn), the largest other candidate's share
+    (oth_max), and the same state's previous governor race within 4 years (prev_*; inc_same = the incumbent on the ballot won it).
+    USE_2024 adds 2024 from the committed derived table."""
     lean = _pres_lean(); E = pd.read_csv(ROOT / "data" / "static" / "house_national_vote_1946.csv").set_index("year").E
     rows = []
-    for y in range(1998, 2023, 2):
-        h = W.fetch(f"{y} United States gubernatorial elections", max_age_h=10 ** 6)
-        T = None
-        for tb in pd.read_html(io.StringIO(h)):
-            cols = [" ".join(map(str, c)) if isinstance(c, tuple) else str(c) for c in tb.columns]
-            if any(c.startswith("Candidates") for c in cols) and any(c.startswith("State") for c in cols) and len(tb) >= 10: tb.columns = cols; T = tb; break
-        if T is None: continue
-        cc = [c for c in T.columns if c.startswith("Candidates")][0]; sc = [c for c in T.columns if c.startswith("State")][0]
-        stc = [c for c in T.columns if c.startswith("Status") or c.startswith("Result")]
-        pc = [c for c in T.columns if c.startswith("Party")]
-        for _, r in T.iterrows():
-            st = _ST.get(re.sub(r"\[.*?\]", "", str(r[sc])).strip())
-            if not st: continue
-            c = [(p, float(v)) for p, v in re.findall(r"\((Democratic|Republican|DFL|Democratic–Farmer–Labor|Democratic-NPL)[^)]*\)\s*([\d.]+)%", str(r[cc]))]
-            d = max([v for p, v in c if not p.startswith("Rep")], default=None); rp = max([v for p, v in c if p.startswith("Rep")], default=None)
-            if d is None or rp is None: continue
-            status = str(r[stc[0]]) if stc else ""; party = str(r[pc[0]]) if pc else ""
-            ran = bool(re.search(r"re-?elected|lost re-?election|defeated", status, re.I)) and not re.search(r"lost renomination|lost (the )?primary", status, re.I)
-            ip = 1.0 if party.startswith(("Democratic", "DFL")) else (-1.0 if party.startswith("Republican") else 0.0)
-            rows.append({"year": y, "state": st, "margin": d - rp, "inc": ip if ran else 0.0, "lean": lean(y, st), "E": E.get(y)})
-    return pd.DataFrame(rows).dropna(subset=["lean", "E", "margin"])
+    for y in range(1998, 2023, 2): rows += parse_results(y, W.fetch(f"{y} United States gubernatorial elections", max_age_h=10 ** 6))
+    H = pd.DataFrame(rows)
+    if USE_2024 and RESULTS_2024.exists(): H = pd.concat([H, pd.read_csv(RESULTS_2024)], ignore_index=True)
+    H["lean"] = [lean(y, st) for y, st in zip(H.year, H.state)]; H["E"] = H.year.map(E)
+    H = H.dropna(subset=["lean", "E", "margin"])
+    H["inc"] = H["inc_fix"] if INC_FIX else H["inc_old"]
+    return _with_prev(H).sort_values(["year", "state"]).reset_index(drop=True)
 
 
-def history_polled():
-    """One row per even-year polled D-v-R governor race 1998-2022 with the actual margin (538 raw_polls) - the backtest's poll source."""
-    r = pd.read_csv(ROOT / "data" / "raw" / "538repo" / "raw_polls.csv", low_memory=False)
-    g = r[(r.type_simple == "Gov-G") & (r.cycle % 2 == 0) & (r.location.str.len() == 2)].copy()
-    g = g[(g.cand1_party.isin(["DEM", "REP"])) & (g.cand2_party.isin(["DEM", "REP"])) & (g.cand1_party != g.cand2_party)]
-    g["d_act"] = np.where(g.cand1_party == "DEM", g.cand1_actual, g.cand2_actual); g["r_act"] = np.where(g.cand1_party == "REP", g.cand1_actual, g.cand2_actual)
-    g["d_name"] = np.where(g.cand1_party == "DEM", g.cand1_name, g.cand2_name); g["r_name"] = np.where(g.cand1_party == "REP", g.cand1_name, g.cand2_name)
-    R = g.groupby(["cycle", "location"]).agg(d=("d_act", "first"), r=("r_act", "first"), dn=("d_name", "first"), rn=("r_name", "first")).reset_index()
-    R["margin"] = R.d - R.r; R["winner"] = np.where(R.margin > 0, R.dn, R.rn)
-    prev = {(c, l): w for c, l, w in zip(R.cycle, R.location, R.winner)}
-    def inc(c, l, dn, rn):
-        w = prev.get((c - (2 if l in TWO_YEAR else 4), l))
-        return 1.0 if w == dn else (-1.0 if w == rn else 0.0)
-    R["inc"] = [inc(c, l, dn, rn) for c, l, dn, rn in zip(R.cycle, R.location, R.dn, R.rn)]
-    lean = _pres_lean(); R["lean"] = [lean(c, l) for c, l in zip(R.cycle, R.location)]
-    E = pd.read_csv(ROOT / "data" / "static" / "house_national_vote_1946.csv").set_index("year").E; R["E"] = R.cycle.map(E)
-    return R.dropna(subset=["lean", "E", "margin"]).rename(columns={"cycle": "year", "location": "state"})
+def _with_prev(H):
+    H = H.sort_values(["state", "year"]).copy(); g = H.groupby("state")
+    for k in ("margin", "E", "lean", "inc", "year", "dn", "rn"): H["prev_" + k] = g[k].shift(1)
+    far = (H.year - H.prev_year) > 4
+    H.loc[far, [c for c in H.columns if c.startswith("prev_")]] = np.nan
+    w = np.where(H.prev_margin > 0, H.prev_dn, H.prev_rn)
+    H["inc_same"] = [float(i != 0 and isinstance(x, str) and _surname(x) == _surname(dn if i > 0 else rn)) for i, x, dn, rn in zip(H.inc, w, H.dn, H.rn)]
+    return H
 
 
 def fit(R):
     X = np.column_stack([np.ones(len(R)), R.lean, R.inc, R.E]); b = np.linalg.lstsq(X, R.margin, rcond=None)[0]
     return b, float((R.margin - X @ b).std())
+
+
+class Prior:
+    """Governor fundamentals prior, fitted on the races in H:  margin = b0 + b1 lean + b2 inc + b3 E [+ extra terms].
+    spec (PRIOR_SPEC by default):
+      lean_t: lean x (year - 2010) / 10 - a lean slope that changes over time (nationalization)
+      half:   recency weights 0.5 ** (age in years / half)
+      prev:   the same state's previous governor race, as its residual against the base fit ("all"; "split" = separately when the
+              incumbent on the ballot won that race himself and otherwise; "inc" = the incumbent's own only). Symmetric in party.
+      het:    prior sd by open seat v incumbent ("inc") or growing with the prior's distance from 0 ("lean")
+      excl_third: leave races where another candidate took >= this share out of the fit
+    b[3] is always the national slope."""
+
+    def __init__(self, H, spec=None):
+        self.spec = dict(PRIOR_SPEC if spec is None else spec); s = self.spec
+        tr = H[H.oth_max < s["excl_third"]] if s.get("excl_third") else H
+        self.ymax = int(tr.year.max())
+        self.w = (0.5 ** ((self.ymax + 2 - tr.year) / s["half"])).values if s.get("half") else np.ones(len(tr))
+        Xb = self._base(tr); self.b_base = self._wls(Xb, tr.margin.values, self.w)
+        X = self.design(tr); self.b = self._wls(X, tr.margin.values, self.w); res = tr.margin.values - X @ self.b
+        self.sd = float(np.sqrt(np.average(res ** 2, weights=self.w) * len(tr) / (len(tr) - 1)))      # = the old fit()'s residual .std()
+        if s.get("het") == "inc":
+            ii = (tr.inc != 0).values
+            self.sd_by = (float(np.sqrt(np.average(res[ii] ** 2, weights=self.w[ii]))), float(np.sqrt(np.average(res[~ii] ** 2, weights=self.w[~ii]))))
+        if s.get("het") == "lean":
+            A = np.column_stack([np.ones(len(tr)), np.abs(X @ self.b) / 10]); sw = np.sqrt(self.w)
+            self.sd_c = np.linalg.lstsq(A * sw[:, None], np.abs(res) * sw, rcond=None)[0] * np.sqrt(np.pi / 2)
+
+    @staticmethod
+    def _wls(X, y, w):
+        sw = np.sqrt(w); return np.linalg.lstsq(X * sw[:, None], y * sw, rcond=None)[0]
+
+    @staticmethod
+    def _base(D): return np.column_stack([np.ones(len(D)), D.lean, D.inc, D.E])
+
+    def prev_resid(self, D):
+        if "prev_margin" not in D: return np.zeros(len(D))
+        P = pd.DataFrame({"lean": D.prev_lean, "inc": D.prev_inc, "E": D.prev_E}).fillna(0.0)
+        r = D.prev_margin.values - self._base(P) @ self.b_base
+        return np.where(D.prev_margin.notna().values, r, 0.0)
+
+    def design(self, D):
+        s = self.spec; cols = [self._base(D)]
+        if s.get("lean_t"): cols.append((D.lean * (D.year - 2010) / 10).values[:, None])
+        if s.get("prev"):
+            pr = self.prev_resid(D); same = D.inc_same.fillna(0).values if "inc_same" in D else np.zeros(len(D))
+            if s["prev"] == "all": cols.append(pr[:, None])
+            elif s["prev"] == "inc": cols.append((pr * same)[:, None])
+            else: cols.append(np.column_stack([pr * same, pr * (1 - same)]))
+        return np.column_stack(cols)
+
+    def predict(self, D):
+        mu = self.design(D) @ self.b; s = self.spec
+        if s.get("het") == "inc": sd = np.where(D.inc.values != 0, *self.sd_by)
+        elif s.get("het") == "lean": sd = np.clip(self.sd_c[0] + self.sd_c[1] * np.abs(mu) / 10, 4.0, None)
+        else: sd = np.full(len(D), self.sd)
+        return mu, sd * PRIOR_SD_K
+
+    @property
+    def slope(self): return float(self.b[3])
+
+
+def poll_errors():
+    """(per-poll sd, total race-average sd) for governor polls."""
+    return (GOV_POLL_SD or POLL_SD, GOV_POLL_SYS or POLL_SYS)
+
+
+def race_sys(b3):
+    """The race's own systematic poll error = the measured total race-average miss minus the shared statewide shock the simulation
+    draws (governors feel it at b3), as senate2026.race_sys (2026-10-03: it was counted twice)."""
+    from . import senate2026 as SN
+    return float(np.sqrt(max(poll_errors()[1] ** 2 - (SN.SEN_S_NAT * b3) ** 2, 1.5 ** 2)))
+
+
+def prepare(q):
+    """Live race-poll corrections with the governor-specific undecided / third-candidate variants."""
+    return M.prepare_race_polls(q, und_params=UND_PARAMS, third_mult=THIRD_MULT)
+
+
+def blend(mu_prior, psd, qq, asof, b3, rsd=0.0):
+    """THE governor race blend, shared by run() and gov_backtest: precision blend of the prior with the poll average (or the
+    robust Student-t blend, model.ROBUST_NU). Returns (mu, sd, poll_margin, n_eff)."""
+    psd_, sysr = float(psd), float(np.hypot(race_sys(b3), rsd)); sd_poll = poll_errors()[0]
+    old = M.AGE_HALF
+    if AGE_HALF is not None: M.AGE_HALF = AGE_HALF
+    try:
+        pa = M.poll_average(qq, asof) if qq is not None and len(qq) else pd.DataFrame()
+        pm, ne, vm = (pa.poll_margin.iloc[0], pa.n_eff.iloc[0], float(pa.vmult.iloc[0])) if len(pa) else (np.nan, np.nan, 1.0)
+        wp, wq = 1 / psd_ ** 2, (1.0 / (sd_poll ** 2 * vm / ne + sysr ** 2) if ne == ne else 0.0)
+        mu = (wp * mu_prior + wq * (pm if pm == pm else 0)) / (wp + wq); sd = float(np.sqrt(1 / (wp + wq)))
+        if M.ROBUST_NU and qq is not None and len(qq): mu, sd = M.robust_blend(mu_prior, psd_, qq, asof, sd_poll, sysr, M.ROBUST_NU)
+    finally:
+        M.AGE_HALF = old
+    return float(mu), float(sd), pm, ne
+
+
+def simulate(S, b3, n=20000, seed=13, nat_z=None):
+    """Governor margins [n, races] on the shared national draw: senate2026.simulate_senate at the governors' own national slope
+    (elast = b3 / NAT_SLOPE), x SHARED_K, with each race's sd x RACE_SD_K."""
+    from . import senate2026 as SN
+    return SN.simulate_senate(S.assign(elast=SHARED_K * b3 / SN.NAT_SLOPE, sd=S["sd"] * RACE_SD_K), n=n, seed=seed, nat_z=nat_z)
 
 
 def races():
@@ -194,17 +336,31 @@ def race_polls(R, refresh=True):
 NOW_D, NOW_R = 24, 26        # governors before the election (Wikipedia infobox, 2026-09-22); 18 of each are up
 
 
+def prev_2026(R, H):
+    """The previous governor race of each 2026 state (2022; 2024 for the two-year states, which history() does not hold yet - those
+    get no previous race) as the prev_* / inc_same columns Prior.design reads."""
+    last = H.sort_values("year").groupby("state").tail(1).set_index("state")
+    R = R.copy()
+    for k in ("margin", "E", "lean", "inc", "year", "dn", "rn"):
+        R["prev_" + k] = [last[k].get(st) if st in last.index and (st not in TWO_YEAR or last.year.get(st) == 2024) and 2026 - last.year.get(st) <= 4 else np.nan
+                          for st in R.state]
+    w = np.where(R.prev_margin > 0, R.prev_dn, R.prev_rn)
+    R["inc_same"] = [float(i != 0 and isinstance(x, str) and _surname(x) == _surname(g)) for i, x, g in zip(R.inc, w, R.governor)]
+    return R
+
+
 def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
     from . import senate2026 as SN
     asof = pd.Timestamp(asof or pd.Timestamp.today().normalize())
-    Hh = history(); b, sd = fit(Hh)
+    Hh = history(); PR = Prior(Hh); b = PR.b; b3 = PR.slope
     R = races(); lean = _pres_lean(); R["lean"] = [lean(2026, s) for s in R.state]
+    R["inc"] = [(1.0 if ip == "D" else -1.0 if ip == "R" else 0.0) if run_ else 0.0 for ip, run_ in zip(R.inc_party, R.inc_running)]
+    R["year"] = 2026; R["E"] = E; R = prev_2026(R, Hh)
+    mu_f, sd_f = PR.predict(R); R["mu_fund"] = mu_f; R["prior_sd"] = sd_f
     P = race_polls(R, refresh)
     # nominee = the highest-polling candidate of each party in the newest polls; the D-R poll margin is theirs
     corr = M.state_poll_correction(statewide=True); heat = M.heating_oil_shift("state"); G = SN.state_loadings()
-    # the race's own systematic poll error = the measured total minus the shared statewide shock the simulation draws (governors feel
-    # it at b[3]), as senate2026.race_sys (2026-10-03: it was counted twice)
-    sys_r = float(np.sqrt(max(POLL_SYS ** 2 - (SN.SEN_S_NAT * b[3]) ** 2, 1.5 ** 2)))
+    sd_poll = poll_errors()[0]
     rows = []
     for r in R.itertuples():
         q = P[P.seat == r.state].copy()
@@ -221,67 +377,37 @@ def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
         if RC.applies("governor", r.state): man = RC.convert_rows(man, RC.other_type_of(r.cands, (dn, rn)))
         if len(man): q = pd.concat([q, man], ignore_index=True)
         if len(q): q = M.collapse_versions(q.assign(_race=r.state), "_race").drop(columns="_race")       # one survey, one row
-        inc = (1.0 if r.inc_party == "D" else -1.0 if r.inc_party == "R" else 0.0) if r.inc_running else 0.0
         # Hispanic / Asian swing term (2026-10-03): the House and Senate carry it and the 2025 evidence for it is itself GOVERNOR
         # races (NJ, VA), yet the governor prior had no mean term while the simulation drew the group shocks. Scaled like the
-        # Senate's (state_loadings is NAT_SLOPE-scaled): by the governors' own national slope b[3].
-        gscale = b[3] / SN.NAT_SLOPE
-        mu_prior = b[0] + b[1] * r.lean + b[2] * inc + b[3] * E + gscale * G.group_shift.get(r.state, 0.0)
-        qq = M.prepare_race_polls(q.assign(margin=q.margin - corr.get(r.state, 0.0))) if len(q) else q
-        sub = M.substate_polls(r.state, "governor", POLL_SD)
+        # Senate's (state_loadings is NAT_SLOPE-scaled): by the governors' own national slope b3.
+        gscale = b3 / SN.NAT_SLOPE
+        mu_prior = r.mu_fund + gscale * G.group_shift.get(r.state, 0.0)
+        qq = prepare(q.assign(margin=q.margin - corr.get(r.state, 0.0))) if len(q) else q
+        sub = M.substate_polls(r.state, "governor", sd_poll)
         if len(sub): qq = pd.concat([qq, sub.assign(margin=sub.margin - corr.get(r.state, 0.0))], ignore_index=True)
-        pa = M.poll_average(qq, asof) if len(qq) else pd.DataFrame()
-        pm, ne, vm = (pa.poll_margin.iloc[0], pa.n_eff.iloc[0], float(pa.vmult.iloc[0])) if len(pa) else (np.nan, np.nan, 1.0)
-        wp, wq = 1 / sd ** 2, (1.0 / (POLL_SD ** 2 * vm / ne + sys_r ** 2) if ne == ne else 0.0)
-        mu = (wp * mu_prior + wq * (pm if pm == pm else 0)) / (wp + wq)
-        sd_r = float(np.sqrt(1 / (wp + wq)))
         rcv_on = RC.applies("governor", r.state); rsd = RC.race_sd(qq, asof) if rcv_on and len(qq) else 0.0   # ranked-choice transfer sd
-        if rsd > 0:
-            wq = 1.0 / (POLL_SD ** 2 * vm / ne + sys_r ** 2 + rsd ** 2) if ne == ne else 0.0
-            mu = (wp * mu_prior + wq * (pm if pm == pm else 0)) / (wp + wq); sd_r = float(np.sqrt(1 / (wp + wq)))
-        if M.ROBUST_NU and len(qq): mu, sd_r = M.robust_blend(mu_prior, sd, qq, asof, POLL_SD, float(np.hypot(sys_r, rsd)), M.ROBUST_NU)
-        mu = mu + b[3] * heat.get(r.state, 0.0)
-        rows.append({"state": r.state, "governor": r.governor, "inc_party": r.inc_party, "inc": inc, "dem": dn, "rep": rn, "lean": round(r.lean, 1),
-                     "n_polls": int(len(qq)) if len(qq) else 0, "poll_margin": pm, "mu_prior": mu_prior, "mu": mu, "sd": sd_r,
+        mu, sd_r, pm, ne = blend(mu_prior, r.prior_sd, qq, asof, b3, rsd)
+        mu = mu + b3 * heat.get(r.state, 0.0)
+        rows.append({"state": r.state, "governor": r.governor, "inc_party": r.inc_party, "inc": r.inc, "dem": dn, "rep": rn, "lean": round(r.lean, 1),
+                     "n_polls": int(len(qq)) if len(qq) else 0, "poll_margin": pm, "mu_prior": mu_prior, "prior_sd": r.prior_sd, "mu": mu, "sd": sd_r,
                      "h_load": gscale * G.h_load.get(r.state, 0.0), "c_load": gscale * G.c_load.get(r.state, 0.0), "a_load": gscale * G.a_load.get(r.state, 0.0), "wnc_z": G.wnc_z.get(r.state, 0.0),
                      "group_shift": gscale * G.group_shift.get(r.state, 0.0),
                      "newest_poll": q.end_date.max().date().isoformat() if len(q) else None, "rcv": RC.NOTE if rcv_on else "", "rcv_sd": rsd})
     S = pd.DataFrame(rows)
-    # governors ride the national tide at b[3], not the Senate's 0.8: rescale the shared-draw simulation
-    Sx = S.assign(elast=b[3] / SN.NAT_SLOPE)
-    mg = SN.simulate_senate(Sx, n=n, seed=seed, nat_z=nat_z); d = mg > 0
+    # governors ride the national tide at b3, not the Senate's 0.8: the shared-draw simulation is rescaled (gov2026.simulate)
+    mg = simulate(S, b3, n=n, seed=seed, nat_z=nat_z); d = mg > 0
     S["p_dem"] = d.mean(0)
     up_d = int((S.inc_party == "D").sum()); dg = (NOW_D - up_d) + d.sum(1)
     summ = {"mean": round(float(dg.mean()), 1), "p10": int(np.percentile(dg, 10)), "p90": int(np.percentile(dg, 90)), "p_d_majority": round(float((dg >= 26).mean()), 3),
             "up_d": up_d, "up_r": int((S.inc_party == "R").sum()), "now_d": NOW_D, "now_r": NOW_R}
     S.attrs["summary"] = summ
-    return S, mg, {"coef": dict(zip(("const", "lean", "inc", "E"), np.round(b, 3))), "prior_sd": round(sd, 2), "n_hist": len(Hh)}
-
-
-def backtest():
-    """Leave-one-cycle-out prior (all races) + raw_polls polls within 3 weeks of the election, scored on the polled races."""
-    Hall = history(); Hh = history_polled(); r = pd.read_csv(ROOT / "data" / "raw" / "538repo" / "raw_polls.csv", low_memory=False)
-    g = r[(r.type_simple == "Gov-G") & (r.cycle % 2 == 0) & r.cand1_party.isin(["DEM", "REP"]) & r.cand2_party.isin(["DEM", "REP"])].copy()
-    g["m"] = np.where(g.cand1_party == "DEM", g.margin_poll, -g.margin_poll)
-    out = []
-    for y in sorted(Hh.year.unique()):
-        if y < 2006: continue
-        b, sd = fit(Hall[Hall.year != y]); te = Hh[Hh.year == y]
-        for t in te.itertuples():
-            mp = b[0] + b[1] * t.lean + b[2] * t.inc + b[3] * t.E
-            q = g[(g.cycle == y) & (g.location == t.state)].m
-            if len(q): pm = q.mean(); ne = min(len(q), 6); wq = 1 / (POLL_SD ** 2 / ne + POLL_SYS ** 2)
-            else: pm, wq = 0.0, 0.0
-            wp = 1 / sd ** 2; mu = (wp * mp + wq * pm) / (wp + wq); s = np.sqrt(1 / (wp + wq) + 2.9 ** 2 * b[3] ** 2)
-            from math import erf, sqrt
-            p = 0.5 * (1 + erf(mu / (s * sqrt(2)))); out.append({"year": y, "state": t.state, "p": p, "y": float(t.margin > 0), "prior_only": 0.5 * (1 + erf(mp / (np.hypot(sd, 2.9 * b[3]) * sqrt(2))))})
-    B = pd.DataFrame(out)
-    print(f"governor backtest 2006-2022 ({len(B)} races, polls in the last 3 weeks): Brier blend {np.mean((B.p - B.y) ** 2):.4f}, prior only {np.mean((B.prior_only - B.y) ** 2):.4f}")
-    print(B.groupby(pd.cut(B.p, [0, .1, .3, .5, .7, .9, 1], include_lowest=True), observed=True).agg(n=("y", "size"), pred=("p", "mean"), actual=("y", "mean")).round(3).to_string())
-    return B
+    names = ("const", "lean", "inc", "E") + (("lean_t",) if PR.spec.get("lean_t") else ()) + \
+        ((("prev",) if PR.spec["prev"] in ("all", "inc") else ("prev_same", "prev_other")) if PR.spec.get("prev") else ())
+    return S, mg, {"coef": dict(zip(names, np.round(b, 3))), "prior_sd": round(float(np.mean(sd_f)), 2), "n_hist": len(Hh),
+                   "poll_sd": poll_errors()[0], "poll_sys": poll_errors()[1]}
 
 
 if __name__ == "__main__":
-    Hh = history(); b, sd = fit(Hh)
-    print(f"governor prior on {len(Hh)} races (all, Wikipedia) 1998-2022: const {b[0]:+.2f}, lean {b[1]:.3f}, incumbency {b[2]:.2f}, national E {b[3]:.3f}, resid sd {sd:.2f}")
-    backtest()
+    Hh = history(); PR = Prior(Hh); b = PR.b
+    print(f"governor prior on {len(Hh)} races (all, Wikipedia) 1998-2022: const {b[0]:+.2f}, lean {b[1]:.3f}, incumbency {b[2]:.2f}, national E {b[3]:.3f}, "
+          f"extra {np.round(b[4:], 3).tolist()}, resid sd {PR.sd:.2f}; backtest: python -m midterms.gov_backtest")

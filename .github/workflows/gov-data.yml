@@ -1,0 +1,56 @@
+name: governor data build
+
+# One-time build for the governor model review (branch gov-model): the 2024 governor results table and the nominees' prior office
+# (midterms/gov_quality.py). Wikipedia pages are read through the cache the daily run keeps (restored read-only); only the compact
+# derived tables in data/static are committed back to the branch. Triggered by a push to gov-model that changes .github/gov_step.txt.
+on:
+  push:
+    branches: [gov-model]
+    paths: [".github/gov_step.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gov-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Restore data cache (read-only)
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            data/raw
+            data/cache
+          key: midterms-data-${{ github.run_id }}
+          restore-keys: midterms-data-
+      - name: Run
+        run: |
+          STEP=$(grep -v '^#' .github/gov_step.txt | grep -v '^$' | head -1)
+          echo "STEP=$STEP" >> "$GITHUB_ENV"
+          python -m midterms.gov_quality $STEP
+      - name: Commit derived tables
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/static/gov_results_2024.csv data/static/gov_nominees.csv data/static/gov_candidate_quality.csv 2>/dev/null || true
+          if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -q -m "governor review derived tables ($STEP): 2024 results, nominee prior office"
+          for i in 1 2 3; do git pull -q --no-rebase origin gov-model && git push -q origin HEAD:gov-model && exit 0; sleep 5; done
+          exit 1

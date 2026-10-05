@@ -183,8 +183,10 @@ QUALITY_FN = None       # name -> weight multiplier from the pollster's track re
 CAL_OVERRIDE = None     # backtests: a calibration dict fitted on earlier cycles only (race_poll_calibration.calibration(before=year))
 
 
-def prepare_race_polls(p: pd.DataFrame, challenger_party="D") -> pd.DataFrame:
-    """Sponsor shift + weights and a variance multiplier (vmult) for undecideds and a strong third candidate."""
+def prepare_race_polls(p: pd.DataFrame, challenger_party="D", und_params=None, third_mult=None) -> pd.DataFrame:
+    """Sponsor shift + weights and a variance multiplier (vmult) for undecideds and a strong third candidate.
+    und_params = (free, slope, cap) and third_mult override UND_FREE/UND_SLOPE/UND_CAP and THIRD_MULT for one office
+    (gov2026's tested governor variants); None = the shared values."""
     import json
     from .race_poll_calibration import OUT as CAL_PATH, lean_for, main as build_cal
     if CAL_OVERRIDE is not None: cal = CAL_OVERRIDE
@@ -197,8 +199,9 @@ def prepare_race_polls(p: pd.DataFrame, challenger_party="D") -> pd.DataFrame:
     p["lean"] = [lean_for(pol, tag, cal) for pol, tag in zip(p["pollster"], sp)]
     p["margin_raw"] = p["margin"]; p["margin"] = p["margin"] - p["lean"]
     und = p["und"] if "und" in p else 100 - p["dem"] - p["rep"]
-    m = 1 + UND_SLOPE * (und.clip(UND_FREE, UND_CAP) - UND_FREE)
-    if "other" in p: m = m * np.where(p["other"].fillna(0) >= 10, THIRD_MULT, 1.0)
+    uf, us, uc = und_params if und_params is not None else (UND_FREE, UND_SLOPE, UND_CAP)
+    m = 1 + us * (und.clip(uf, uc) - uf)
+    if "other" in p: m = m * np.where(p["other"].fillna(0) >= 10, THIRD_MULT if third_mult is None else third_mult, 1.0)
     p["vmult"] = m ** 2 * p["pollster"].map(lambda x: experience_mult(pollster_experience(x))).values
     g = p["grade"] if "grade" in p else pd.Series(1.5, index=p.index)
     p["grade"] = g * np.where(sp != "", SPONSOR_WEIGHT, 1.0) / p["vmult"]
