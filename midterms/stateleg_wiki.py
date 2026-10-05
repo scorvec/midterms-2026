@@ -124,6 +124,21 @@ def parse_page(st, ch, html):
         if d is None: continue
         bx = election_boxes(block)
         if bx: by_d.setdefault(norm_dist(st, ch, d), []).extend([(capt or c, r) for c, r in bx])
+    # 1b) districts with candidate LISTS instead of boxes: "Name (Republican)" items (MN House) or "<Party> Primary ... nominee" blocks (NH Senate)
+    for i, (pos, d) in enumerate(heads):
+        dist = norm_dist(st, ch, d)
+        if dist in by_d: continue
+        end = min([p for p, _ in heads[i + 1:]] + [len(html)]); chunk = re.sub(r"<!--.*?-->", " ", html[pos:end], flags=re.S)
+        items = [re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", x)).strip() for x in re.findall(r"<li[^>]*>(.*?)</li>", chunk, re.S)]
+        c = []
+        for it in items:
+            m = re.match(r"^(.+?)\s*\((Republican|Democratic|DFL|Democratic[–-]Farmer[–-]Labor|Libertarian|Green|Independent)[^)]*\)", it)
+            if m: c.append((party_code(m.group(2)) or "O", m.group(1)))
+        if not c:
+            for m in re.finditer(r"(Republican|Democratic)\s+Primary(.*?)(?=(?:Republican|Democratic)\s+Primary|$)", re.sub(r"<[^>]+>", " | ", chunk), re.S):
+                seg = m.group(2); nm = re.search(r"(?:nominee|Nominee|Declared|Candidates?)\s*\|[\s|]*([A-Z][^|,\[]+)", seg)
+                if nm: c.append(("D" if m.group(1) == "Democratic" else "R", nm.group(1).strip()))
+        if c: recs[dist] = {"cands": c, "source": "candidate list", "inc_marks": []}
     for dist, boxes in by_d.items():
         cands, src = from_boxes(boxes)
         if dist and cands: recs[dist] = {"cands": cands, "source": src, "inc_marks": [clean_name(n) for p, n in cands if is_inc_mark(n)]}
@@ -182,7 +197,7 @@ def build(states=("MI", "MN", "WI", "AZ", "PA", "NH", "NC"), debug=False):
                 inc = summ.get(d, [])
                 src = recs.get(d, {}).get("source", "")
                 nd_ = sum(p == "D" for p, _ in c) if c else None; nr_ = sum(p == "R" for p, _ in c) if c else None
-                if src == "primary winners":          # a party with no contested primary has no box: absence is not evidence
+                if src in ("primary winners", "candidate list"):          # a party with no contested primary has no box: absence is not evidence
                     nd_ = nd_ or None; nr_ = nr_ or None
                 rows.append({"state": st, "chamber": ch, "district": d,
                              "n_dem": nd_, "n_rep": nr_,

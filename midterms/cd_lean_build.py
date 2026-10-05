@@ -145,7 +145,7 @@ def carry_2024(bv: pd.DataFrame, cells24: pd.DataFrame, b119: pd.DataFrame, cm24
     c20 = x.groupby(["county", "cd119"])[["d", "r"]].sum()
     c24 = cells24.assign(county=cells24["county"].astype(str).str.replace(r"\.0$", "", regex=True).str.zfill(5)).groupby(["county", "district"])[["d", "r"]].sum()
     c24.index.names = ["county", "cd119"]
-    c = c20.join(c24, lsuffix="20", rsuffix="24", how="left")
+    c = c20.join(c24, lsuffix="20", rsuffix="24", how="left").astype(float)
     c["m20"] = 100 * (c["d20"] - c["r20"]) / (c["d20"] + c["r20"]); c["m24"] = 100 * (c["d24"] - c["r24"]) / (c["d24"] + c["r24"])
     c["swing"] = c["m24"] - c["m20"]; c["turn"] = (c["d24"] + c["r24"]) / (c["d20"] + c["r20"])
     z = lambda ser: ser.set_axis(ser.index.astype(str).str.replace(r"\.0$", "", regex=True).str.zfill(5))
@@ -250,6 +250,7 @@ def main():
                     e = (chk["m_hat"] - ex["m"]).dropna(); QC[f"cd119_selfcheck_{st}_rms"] = round(float(np.sqrt((e ** 2).mean())), 3)
                 continue
             except Exception as e:
+                import traceback; traceback.print_exc()
                 print(f"!! {st}: block route failed ({e}); labels kept" if lab is not None else f"!! {st}: no route ({e})")
                 if lab is None: continue
         for _, r in lab.iterrows():
