@@ -1,3 +1,0 @@
-stateleg_build:openstates
-stateleg_scan:check
-# Mon Oct  5 09:27:44 EDT 2026
