@@ -73,7 +73,23 @@ def probe5():
     report()
 
 
+API = "https://results.sos.ga.gov/results/public/api/elections/Georgia/"
+CDN = "https://results.sos.ga.gov/cdn/results/"
+
+
+def probe6():
+    for eid in ("GeneralPrimary51926", "GeneralPrimaryRunoff61626", "GeneralRunoff61626", "PrimaryRunoff61626", "Runoff61626"):
+        try:
+            t = open_url(API + eid).decode("utf-8", "replace"); j = json.loads(t)
+            print(f"## {eid}: keys {list(j)[:30]}")
+            print("   ", {k: (v if not isinstance(v, (list, dict)) else type(v).__name__ + str(len(v))) for k, v in j.items()})
+        except Exception as e: print(f"## {eid}: {e}")
+        time.sleep(3)
+    report()
+
+
 if __name__ == "__main__":
+    if "probe6" in sys.argv: probe6()
     if "probe5" in sys.argv: probe5()
     if "probe4" in sys.argv: probe4()
     if "probe3" in sys.argv: probe3()
