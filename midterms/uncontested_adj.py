@@ -465,7 +465,9 @@ def build():
 
 
 def probe():
-    h = load(); print("=====BEGIN"); print(h.groupby("year").agg(seats=("seat", "size"), contested=("contested", "sum")).T.to_string())
+    m = pd.read_csv(MEDSL, low_memory=False, encoding="latin-1"); print("=====BEGIN")
+    q = m[(m.state_po == "TX") & (((m.year == 1996) & m.district.isin([18, 3])) | ((m.year == 2006) & m.district.isin([15, 21])))]
+    print(q.drop(columns=["state", "state_fips", "state_cen", "state_ic", "office", "version"]).to_string())
 
 
 if __name__ == "__main__":
