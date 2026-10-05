@@ -122,7 +122,40 @@ def probe9():
     report()
 
 
+from .paths import RAW
+GA_RAW = RAW / "stateleg" / "ga_sos"
+
+
+def get_cached(url, name):
+    """One polite GET per file, kept in the raw cache (Actions cache) so reruns do not download it again."""
+    from .stateleg_build import stream
+    p = GA_RAW / name
+    if not p.exists():
+        p.parent.mkdir(parents=True, exist_ok=True); print("  download", url); stream(url, p); time.sleep(3)
+    return p
+
+
+def elections():
+    j = json.loads(get_cached("https://results.sos.ga.gov/results/public/api/jurisdictions/Georgia", "jurisdiction_Georgia.json").read_text())
+    print("jurisdiction keys", list(j)[:40])
+    for k, v in j.items():
+        if isinstance(v, list) and v and isinstance(v[0], dict): print(k, len(v), [{kk: v[i].get(kk) for kk in list(v[i])[:6]} for i in range(min(len(v), 25))])
+    return j
+
+
+def structure(eid):
+    p = get_cached(f"https://results.sos.ga.gov/cdn/results/Georgia/export-{eid}.json", f"export-{eid}.json")
+    j = json.loads(p.read_text())
+    print(eid, "top keys", {k: (type(v).__name__, len(v) if hasattr(v, "__len__") else v) for k, v in j.items()})
+    for k, v in j.items():
+        if isinstance(v, list) and v:
+            x = v[0]; print(" first", k, json.dumps(x)[:1500])
+            hs = [b for b in v if "house" in json.dumps(b.get("name", b.get("ballotItemName", "")))[:300].lower()][:2]
+            for b in hs: print(" house item", json.dumps({kk: b[kk] for kk in b if kk not in ("precinctResults", "breakdownResults")})[:2500])
+
+
 if __name__ == "__main__":
+    if "probe10" in sys.argv: elections(); structure("GeneralPrimary51926")
     if "probe9" in sys.argv: probe9()
     if "probe8" in sys.argv: probe8()
     if "probe7" in sys.argv: probe7()
