@@ -22,7 +22,7 @@ NOMINEES = ROOT / "data" / "static" / "gov_nominees.csv"
 QUALITY = ROOT / "data" / "static" / "gov_candidate_quality.csv"
 OFFICES = ROOT / "data" / "static" / "gov_nominee_offices.csv"      # the infobox offices read for each D / R nominee (audit)
 YEARS = list(range(1998, 2025, 2)) + [2026]
-DEBUG_TITLES = ("Josh Shapiro", "Byron Donalds", "Ned Lamont")
+DEBUG_TITLES = ("Ned Lamont", "Sarah Huckabee Sanders")
 _PARTY = re.compile(r"\s*\(([^)]+)\)\s*([\d.]+%)?")
 
 STATEWIDE = re.compile(r"(?<!board of )governor|attorney general|secretary of (?:the )?state|treasurer|comptroller|controller|auditor|"
@@ -118,14 +118,21 @@ def _infobox_fields(wikitext):
 
 
 def offices(wikitext):
-    """[(office text, (start year, month) or None)] from the infobox fields office/title/jr/sr N and term_start N."""
+    """[(office text, (start year, month) or None)] from the infobox's numbered office groups. Template officeholder conventions:
+    officeN / titleN (or orderN = "48th [[Governor of X]]" when there is no officeN); jr/srN + stateN = U.S. Senator; stateN + districtN
+    without a state_house / state_senate field = U.S. Representative; state_houseN / state_senateN = the state legislature."""
     f = _infobox_fields(wikitext or "")
+    idx = sorted({m.group(2) for k in f for m in [re.match(r"^(office|title|order|jr/sr|state|district|state_house|state_senate|state_assembly|state_delegate)(\d*)$", k)] if m})
     out = []
-    for k, v in f.items():
-        m = re.match(r"^(office|title|jr/sr)(\d*)$", k)
-        if not m: continue
-        n = m.group(2); txt = _strip(v)
-        if m.group(1) == "jr/sr": txt = txt + " " + _strip(f.get("state" + n, ""))
+    for n in idx:
+        g = lambda k: _strip(f.get(k + n, ""))
+        if g("jr/sr"): txt = f"United States Senator from {g('state')}"
+        elif g("state_house") or g("state_senate") or g("state_assembly") or g("state_delegate"):
+            txt = f"Member of the {g('state_house') or g('state_senate') or g('state_assembly') or g('state_delegate')} state legislature"
+        elif g("office") or g("title"): txt = (g("order") + " " if g("order") and not re.search(r"\d", g("office") or g("title")) and re.fullmatch(r"\d+\w*", g("order")) else "") + (g("office") or g("title"))
+        elif g("order"): txt = g("order")
+        elif f.get("district" + n, "").strip() and g("state"): txt = f"Member of the U.S. House of Representatives from {g('state')} {g('district')}"
+        else: continue
         out.append((txt, _year_month(f.get("term_start" + n, "") or f.get("termstart" + n, ""))))
     return out
 
