@@ -163,7 +163,7 @@ def carry_2024(bv: pd.DataFrame, cells24: pd.DataFrame, b119: pd.DataFrame, cm24
     c.loc[fb1, "swing"] = c.loc[fb1, "dswing"]; c.loc[fb1, "turn"] = c.loc[fb1, "dturn"]
     fb = bad & ~fb1
     QC.setdefault("cell_fallback_share", []).append(round(float((c.loc[fb, "d20"] + c.loc[fb, "r20"]).sum() / (c["d20"] + c["r20"]).sum()), 4))
-    fbc = fb & c["cswing"].notna() & c["cturn"].between(0.6, 1.6)
+    fbc = fb & c["cswing"].notna() & c["cturn"].between(0.75, 1.35)
     c.loc[fbc, "swing"] = c.loc[fbc, "cswing"]; c.loc[fbc, "turn"] = c.loc[fbc, "cturn"]
     fbs = fb & ~fbc                                                    # last resort: the state's own 2020->24 change (MIT)
     QC.setdefault("cell_state_fallback_share", []).append(round(float((c.loc[fbs, "d20"] + c.loc[fbs, "r20"]).sum() / (c["d20"] + c["r20"]).sum()), 4))
@@ -224,7 +224,10 @@ def main():
             pr = B.pres_rows(df); nat["d24"] += pr.loc[pr["party"] == "D", "votes"].sum(); nat["r24"] += pr.loc[pr["party"] == "R", "votes"].sum()
         n_cd = b120.loc[b120["block"].str[:2] == FIPS[st], "cd"].nunique()
         q = lab.attrs["qc"] if lab is not None else {}
-        good = lab is not None and (q.get("assigned_vs_total") or 0) >= 0.97 and len(lab) == b119.loc[b119["block"].str[:2] == FIPS[st], "cd"].nunique()
+        # county-level tallies spread over a county's districts (WA's King County president rows) give every district the county's
+        # margin: labels are trusted only when almost all presidential votes sit on labelled precinct rows
+        good = (lab is not None and (q.get("assigned_vs_total") or 0) >= 0.97 and (q.get("unlabelled_pres_share") or 0) <= 0.05
+                and len(lab) == b119.loc[b119["block"].str[:2] == FIPS[st], "cd"].nunique())
         use_blocks = st in redrawn or not good or not file_ok
         r20 = None
         if use_blocks:
@@ -233,15 +236,16 @@ def main():
                 cm20 = block_county_margin(bv)
                 cm24 = B.county_margin(df) if df is not None else (pd.Series(dtype=float), pd.Series(dtype=float))
                 cells = lab.attrs["cells"] if lab is not None else pd.DataFrame(columns=["county", "district", "d", "r"])
-                if not file_ok:                       # the precinct file disagrees with the official totals: uniform state swing only
-                    cells = pd.DataFrame(columns=["county", "district", "d", "r"]); cm24 = (pd.Series(dtype=float), pd.Series(dtype=float))
+                cells_ok = file_ok and (q.get("unlabelled_pres_share") or 0) <= 0.05
+                if not cells_ok:        # labels unreliable: no (county x district) or district swing; county swing where the county's
+                    cells = pd.DataFrame(columns=["county", "district", "d", "r"])        # turnout ratio is plausible, else the state's
                 x = carry_2024(bv, cells, b119[b119["block"].str[:2] == FIPS[st]], cm24, cm20, state_swing=(m24s - m20s, t24s / t20s))
                 x = x.merge(b120.rename(columns={"cd": "cd120"}), on="block", how="left")
                 x["cd120"] = x["cd120"].fillna("0").map(lambda c: str(max(int(c), 1)) if str(c).isdigit() else "1")
                 g = x.groupby("cd120")[["d", "r", "d24", "r24"]].sum()
                 for cd, r in g.iterrows():
                     rows.append({"seat": f"{st}-{cd}", "pres24_d": r["d24"], "pres24_r": r["r24"], "pres20_d": r["d"], "pres20_r": r["r"],
-                                 "method24": "vest2020_blocks_cd120_cellswing" if file_ok else "vest2020_blocks_cd120_stateswing",
+                                 "method24": "vest2020_blocks_cd120_cellswing" if cells_ok else "vest2020_blocks_cd120_countyswing",
                                  "method20": "vest2020_blocks_cd120", "redrawn": st in redrawn})
                 # check of the cell-swing step on the UNCHANGED 2024 districts of the same state (blocks -> CD119 vs labels)
                 if lab is not None:
