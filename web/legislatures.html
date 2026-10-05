@@ -32,14 +32,27 @@ th{text-align:left;font-weight:600;color:var(--muted);font-size:14px;padding:4px
 td{padding:4px 6px;border-bottom:1px solid var(--rule);font-variant-numeric:tabular-nums}
 td.n{text-align:right}
 .mb{font-size:14px;color:var(--muted)}
+.xp{max-width:860px;background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--rd);border-radius:8px;padding:10px 14px;font-size:16px;margin:0 0 14px}
+.xp ul{margin:6px 0 0;padding-left:20px}.xp li{margin:3px 0}
 </style></head><body><main class="wi">
 <div class="head"><h1>State legislatures, 2026</h1><a href="index.html">&larr; Congress and governors</a></div>
 <p class="lede" id="lede">Chances of control of fourteen competitive state legislative chambers.</p>
+<div class="xp"><b>Experimental.</b> This part of the forecast is new and rests on less evidence than the Congress and governor forecasts.
+Tested on 2018 and 2022 with only what was known on October 1 (24 chamber elections): the control chances scored a Brier score of 0.119,
+against 0.250 for simply assuming the current majority holds, but they called the winner right 75% of the time - no more often than that
+naive rule. The final seat count fell inside the 80% range in 22 of 24. Known gaps:
+<ul><li><b>New Hampshire House</b> (400 seats): no candidate lists are available, so every seat is treated as contested by full slates of
+both parties, and floterial districts are simulated as ordinary multi-member districts; it was not part of the 2018 test.</li>
+<li><b>Michigan Senate</b>: no 2024 Senate election, and the 2026 court-ordered redraw of the Detroit-area districts is not yet in the
+Census boundary files; district leans are 2020 results moved by the 2024 swing, on the 2022 lines.</li>
+<li><b>Minnesota Senate</b> (and part of the New Hampshire Senate): no candidate lists; sitting senators are assumed to run unless they
+have announced their retirement.</li></ul></div>
 <p class="note" id="note"></p>
 <div class="grid" id="grid"></div>
 <p class="note" style="margin-top:22px">How it works: each seat's expected margin is the district's 2024 presidential lean (precinct returns joined to legislative
-districts), the national environment from the generic ballot, incumbency and the state's own Senate / governor polling, with errors that
-move every seat in a state together and with the national mood. Multi-member districts elect their top candidates. Sources and backtest:
+districts), the national environment from the generic ballot and incumbency, with errors that
+move every seat in a state together and with the national mood. (The state's own Senate and governor polls were also tested as a
+signal; they did not improve the backtest and are not used.) Multi-member districts elect their top candidates. Sources and backtest:
 <a href="about.html#legislatures">about the forecast</a>.</p>
 </main>
 <script>

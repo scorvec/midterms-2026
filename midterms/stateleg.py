@@ -32,7 +32,11 @@ from .paths import STATIC, CACHE, RAW, ROOT
 
 SL = STATIC / "stateleg"
 PARAMS = SL / "params.json"
-ON = os.environ.get("MIDTERMS_STATELEG", "off").lower() in ("on", "1", "true")
+ON = os.environ.get("MIDTERMS_STATELEG", "on").lower() in ("on", "1", "true")     # published as experimental since 2026-10-05
+# The state-poll signal (kappa x the pull of the state's Senate / governor polls, and kappa x their simulated surprise) is fitted
+# (kappa 0.074, se 0.024) and implemented, but TESTED AND NOT ADOPTED (2026-10-05): in the 2018/2022 backtest it changed seat log loss
+# by +0.002 / -0.001 and chamber-control Brier 0.119 -> 0.125. Off unless MIDTERMS_STATELEG_KAPPA=on.
+KAPPA_ON = os.environ.get("MIDTERMS_STATELEG_KAPPA", "off").lower() in ("on", "1", "true")
 T_DF = 5
 
 # (state, chamber, name, seats, up-rule, tie rule). up: "all" | "odd" (odd-numbered districts up in 2026)
@@ -402,6 +406,7 @@ def statewide_signal(races, Z):
 
 def run_live(E, Z, s_E, SS=None, smg=None, GS=None, gmg=None, n=20000, seed=17, grid=None, P=None):
     P = P or json.loads(PARAMS.read_text())
+    if not KAPPA_ON: P = {**P, "kappa": 0.0}
     rng = np.random.default_rng(seed)
     S, H = seats_2026(); S["E"] = E
     shift, sig = statewide_signal([(SS, smg), (GS, gmg)], np.asarray(Z))

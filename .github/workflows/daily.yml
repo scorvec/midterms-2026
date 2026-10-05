@@ -16,9 +16,9 @@ on:
         type: boolean
         default: false
       stateleg:
-        description: "State-legislature forecasts (midterms/stateleg.py; off by default until approved)"
+        description: "State-legislature forecasts (midterms/stateleg.py; experimental, on by default)"
         type: boolean
-        default: false
+        default: true
       fec_refresh:
         description: "Re-pull June 30 fundraising from the OpenFEC API first (one-time input; needs the OPENFEC_API_KEY secret)"
         type: boolean
@@ -77,7 +77,7 @@ jobs:
         id: run
         env:
           MIDTERMS_FORCE_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.force_publish) && '1' || '0' }}
-          MIDTERMS_STATELEG: ${{ (github.event_name == 'workflow_dispatch' && inputs.stateleg) && 'on' || 'off' }}
+          MIDTERMS_STATELEG: ${{ (github.event_name == 'workflow_dispatch' && !inputs.stateleg) && 'off' || 'on' }}
         run: |
           set +e
           if [ "${{ github.event_name == 'workflow_dispatch' && inputs.weekly_report }}" = "true" ]; then

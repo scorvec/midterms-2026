@@ -151,10 +151,10 @@ spread over 750 gallons, times the share not yet priced into the polls, against 
 EIA's weekly Maine No. 2 heating oil residential price. EIA's survey runs from October to March; outside the season the
 last published week is held (the page says which week).
 
-## State legislatures (Phase 1, implemented, switched off)
+## State legislatures (experimental, on since 2026-10-05)
 
 `midterms/stateleg.py` forecasts control of 14 chambers - Michigan, Minnesota, Wisconsin, Arizona, Pennsylvania, New Hampshire and
-North Carolina, both chambers each - inside the daily run when `MIDTERMS_STATELEG=on` (workflow input `stateleg`; default off). It
+North Carolina, both chambers each - inside the daily run (`MIDTERMS_STATELEG`, default on; workflow input `stateleg`). It
 writes `state_legislatures` into `web/data/model.json`; `web/legislatures.html` shows it (not linked from the other pages yet).
 
 **Seat model.** Each seat's expected Democratic two-party margin is `a + beta * lean + c * inc + g * E + kappa * shift_state`:
@@ -180,7 +180,7 @@ the ballot from the candidate records. 24 chamber-elections with full district d
 majority holds" (calls right 75 % for both), seat count inside the 80 % range 22 of 24; seats (contested slots) Brier 0.049 (2018) and
 0.046 (2022) against 0.103 / 0.069 for each seat staying with its last winner (2018) or the sign of its lean (2022). The state-signal arm
 (kappa x governor-poll pull) changed seat log loss by +0.002 (2018) and -0.001 (2022) and control Brier 0.119 -> 0.125: no measurable
-gain; kappa is small and kept as fitted. No published forecaster's chamber calls were scored (none available under a usable licence).
+gain, so the state-poll signal is NOT used (tested, not adopted; `MIDTERMS_STATELEG_KAPPA=on` restores it). No published forecaster's chamber calls were scored (none available under a usable licence).
 
 **Approximations.** NH House: candidates are not listed on Wikipedia, so every seat is contested by full slates, floterial districts are
 simulated as ordinary multi-member districts, and the 2018 backtest has no NH House (MEDSL's 2018 files cannot be downloaded); flagged
@@ -210,7 +210,8 @@ v 120th Congress block equivalency files (AL CA FL LA MO NC OH TN TX UT). Unchan
 label, where the file matches the official state totals (MIT) and the presidential vote sits on labelled precinct rows. Redrawn states
 (and files that fail those checks): VEST 2020 precincts -> 2020 blocks (internal point, split by block population) -> 120th-Congress
 districts, carried to 2024 by the (county x 2024 district) swing on the labels, else the county's, else the state's. Each state is then
-calibrated to its official totals (`qc_cd.json` lists every check and shift). `MIDTERMS_CD_LEAN=ours` switches the House prior to it (off).
+calibrated to its official totals (`qc_cd.json` lists every check and shift). `MIDTERMS_CD_LEAN=ours` switches the whole House prior to it (off). Missouri: the 120th-Congress block file carries the 2025 redraw,
+which may not be the map in force (court challenge); the seat table keeps its values until the map's status is confirmed.
 
 Against the Cook PVI the House model uses (x2, margin units): seats on unchanged maps agree to rms 0.9 points (r 0.9996; Cook rounds to
 whole PVI points); redrawn seats rms 3.8, almost all of it Missouri, where the seat table's Cook values look like the old map's (MO-5:
