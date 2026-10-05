@@ -311,7 +311,7 @@ def _inc_running(h, c, ret_text):
     the member with a dagger or the name is in the page's retirement / outgoing lists; else assumed running."""
     sn = _surname(h["name"])
     side = {"D": "n_dem", "R": "n_rep"}.get(h["party"])
-    if c is not None and side and pd.notna(c.get(side)):               # that party's nominee list is known
+    if c is not None and side and pd.notna(c.get(side)) and c.get("source") != "prose":   # that party's nominee list is known
         names = f"{c.get('dem') or ''}; {c.get('rep') or ''}".lower()
         return bool(sn) and sn in names
     if c is not None and isinstance(c.get("inc_names"), str):

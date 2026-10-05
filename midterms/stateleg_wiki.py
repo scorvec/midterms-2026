@@ -109,8 +109,11 @@ def from_boxes(boxes, k=1):
     return [(p, n) for p, n, _ in rows if not re.search(r"write-in|total|other", n, re.I)], src
 
 
+PROSE = True
+
+
 def parse_page(st, ch, html):
-    recs = {}
+    recs, summ = {}, {}
     # 1) election boxes, each assigned to the nearest preceding "District N" heading (or the district in its caption)
     heads = [(m.start(), m.group(1)) for m in re.finditer(r'<h[2345][^>]*id="District_(\d+[AB]?)(?:_\d+)?"', html)]
     by_d = {}
@@ -141,13 +144,29 @@ def parse_page(st, ch, html):
                 seg = m.group(2); nm = re.search(r"(?:nominee|Nominee|Declared|Candidates?)\s*\|[\s|]*([A-Z][^|,\[]+)", seg)
                 if nm: c.append(("D" if m.group(1) == "Democratic" else "R", nm.group(1).strip()))
         if c: recs[dist] = {"cands": c, "source": "candidate list", "inc_marks": []}
+        elif PROSE:                                                    # prose-only sections (Iowa House)
+            txt = re.sub(r"\s+", " ", re.sub(r"\[[^\]]*\]", " ", re.sub(r"<[^>]+>", " ", chunk)))
+            pc = []
+            for p_, pat in (("D", r"Democrat(?:ic)?(?: Party)? (?:candidate|nominee|challenger)s?\b|Democrat [A-Z][a-z]+ [A-Z]"),
+                            ("R", r"Republican(?: Party)? (?:candidate|nominee|challenger)s?\b|Republican [A-Z][a-z]+ [A-Z]")):
+                neg = re.search(rf"[Nn]o {('Democrat' if p_ == 'D' else 'Republican')}\w* (?:candidate|filed|is running|ran)", txt)
+                if neg: pc.append((p_, "", 0))
+                elif re.search(pat.replace("Democrat [A-Z]", "XX__").replace("Republican [A-Z]", "XX__"), txt): pc.append((p_, "named", 1))
+            m = re.search(r"Incumbent (Democrat|Republican)\w* ([A-Z][\w.'-]+(?: [A-Z][\w.'-]+)+)", txt)
+            if m:
+                ret = bool(re.search(r"retir|not (?:seek|run)|will not|is running for (?!re-?election)|resign", txt, re.I))
+                summ.setdefault(dist, []).append({"name": m.group(2), "party": "D" if m.group(1).startswith("Dem") else "R", "retiring": ret,
+                                                  "status": "prose: retiring" if ret else "prose", "p24": None})
+            if pc:
+                recs[dist] = {"cands": [(p_, nm) for p_, nm, k in pc if k], "source": "prose", "inc_marks": [],
+                              "known": {p_: k for p_, nm, k in pc}}
     for dist, boxes in by_d.items():
         cands, src = from_boxes(boxes, 2 if (st, ch) == ("AZ", "lower") else 1)
         if dist and cands: recs[dist] = {"cands": cands, "source": src, "inc_marks": [clean_name(n) for p, n in cands if is_inc_mark(n)]}
     # 2) district-breakdown tables (District / Candidate / party columns)
     try: tabs = pd.read_html(StringIO(html))
     except Exception: tabs = []
-    summ = {}
+    pass
     for tb in tabs:
         cols = [" ".join(map(str, c)) if isinstance(c, tuple) else str(c) for c in tb.columns]; tb.columns = cols
         if "District" not in cols: continue
@@ -202,7 +221,11 @@ def build(states=None, debug=False):
                 inc = summ.get(d, [])
                 src = recs.get(d, {}).get("source", "")
                 nd_ = sum(p == "D" for p, _ in c) if c else None; nr_ = sum(p == "R" for p, _ in c) if c else None
-                if src in ("primary winners", "candidate list"):          # a party with no contested primary has no box: absence is not evidence
+                if src == "prose":
+                    kn = recs[d].get("known", {}); nd_ = kn.get("D"); nr_ = kn.get("R")
+                    if nd_ == 0 or nr_ == 0: pass
+                    nd_ = nd_ if nd_ is not None else None; nr_ = nr_ if nr_ is not None else None
+                if src in ("primary winners", "candidate list"):        # (prose keeps its explicit zeros)          # a party with no contested primary has no box: absence is not evidence
                     nd_ = nd_ or None; nr_ = nr_ or None
                 rows.append({"state": st, "chamber": ch, "district": d,
                              "n_dem": nd_, "n_rep": nr_,
