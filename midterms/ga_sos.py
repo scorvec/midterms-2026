@@ -43,6 +43,18 @@ def probe2():
     report()
 
 
+def probe3():
+    t = open_url("https://results.sos.ga.gov/cdn/results/v4/Georgia.json").decode("utf-8", "replace")
+    print(len(t), t[:1500])
+    try:
+        j = json.loads(t)
+        items = j if isinstance(j, list) else next((v for v in j.values() if isinstance(v, list)), [])
+        for e in items[:80]: print("  ", {k: e[k] for k in list(e)[:8]} if isinstance(e, dict) else e)
+    except Exception as e: print("json", e)
+    report()
+
+
 if __name__ == "__main__":
+    if "probe3" in sys.argv: probe3()
     if "probe" in sys.argv: probe()
     if "probe2" in sys.argv: probe2()
