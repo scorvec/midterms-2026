@@ -1,0 +1,99 @@
+name: state-legislature district maps
+
+# Builds web/data/stateleg_districts.topo.json (Census TIGER/Line state legislative districts, simplified) and the join audit
+# data/static/stateleg/geo_audit.json with midterms/stateleg_geo.py. Downloads are cached in data/raw/stateleg (never committed).
+# Runs when the chamber list or the modelled districts change (stateleg.py / lean_2026.csv): the script is a no-op when every
+# modelled seat already has a polygon, so a chamber added later gets its map without a manual step. The build fails when any
+# modelled seat lacks a polygon.
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Rebuild even when every chamber already joins"
+        type: boolean
+        default: false
+  push:
+    branches: [main, stateleg-maps]
+    paths:
+      - "midterms/stateleg_geo.py"
+      - "midterms/stateleg.py"
+      - "data/static/stateleg/lean_2026.csv"
+      - ".github/workflows/stateleg-geo.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stateleg-geo-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: pip install -r requirements.txt geopandas==1.1.1 pyogrio==0.11.1 shapely==2.1.1 pyarrow
+      - name: Restore raw cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw/stateleg
+          key: stateleg-geo-raw-${{ github.run_id }}
+          restore-keys: stateleg-geo-raw-
+      - name: Build
+        run: python -m midterms.stateleg_geo ${{ (github.event_name == 'workflow_dispatch' && inputs.force) && '--force' || '' }}
+      - name: Drop large downloads before caching
+        if: always()
+        run: |
+          find data/raw/stateleg -type f \( -name '*.csv' -o -name '*.tab' \) -size +40M -print -delete 2>/dev/null || true
+          du -sh data/raw/stateleg 2>/dev/null || true
+      - name: Save raw cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/raw/stateleg
+          key: stateleg-geo-raw-${{ github.run_id }}
+      - name: Upload audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stateleg-geo-${{ github.run_id }}
+          path: |
+            data/static/stateleg/geo_audit.json
+            web/data/stateleg_districts.topo.json
+          if-no-files-found: ignore
+      # snapshot + resync + push (merge-free, never rebase), like the daily run
+      - name: Commit outputs
+        run: |
+          set -uo pipefail
+          paths="web/data/stateleg_districts.topo.json data/static/stateleg/geo_audit.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- $paths
+          if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+          SNAP=$(mktemp -d)
+          git diff --staged --name-only -z | tar cf "$SNAP/outs.tar" --null -T -
+          git reset -q
+          for i in 1 2 3 4 5; do
+            if ! timeout 120 git fetch -q origin "$GITHUB_REF_NAME"; then echo "fetch $i failed"; sleep 5; continue; fi
+            git reset -q --hard "origin/$GITHUB_REF_NAME"
+            tar xf "$SNAP/outs.tar"
+            git add -A -- $paths
+            if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "state-leg district maps (TIGER/Line $(date -u +%F))"
+            if timeout 180 git push -q origin "HEAD:$GITHUB_REF_NAME"; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push $i rejected; resyncing"; sleep $((i * 5))
+          done
+          exit 1
