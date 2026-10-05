@@ -1,0 +1,48 @@
+name: gallup party-ID fetch (one-off test input)
+
+# One-off input for midterms/gallup_pid_backtest.py (a test; nothing feeds the forecast). ONE request to Gallup's
+# party-affiliation page; the page is kept in actions/cache only (never committed, never uploaded - Gallup does not allow its
+# tables to be republished). The run derives the Q3 Democratic+leaner minus Republican+leaner gap per election year and
+# uploads only that small table as an artifact. Re-runs read the cached page and send no request.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Restore cached page
+        id: restore
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw/gallup
+          key: gallup-pid-raw-v1
+      - name: Fetch (once) and derive the Q3 gap
+        run: python -m midterms.gallup_pid_backtest --fetch
+      - name: Cache the page
+        if: ${{ always() && steps.restore.outputs.cache-hit != 'true' && hashFiles('data/raw/gallup/party_affiliation.html') != '' }}
+        uses: actions/cache/save@v4
+        with:
+          path: data/raw/gallup
+          key: gallup-pid-raw-v1
+      - name: Upload the derived table
+        uses: actions/upload-artifact@v4
+        with:
+          name: gallup_pid_q3
+          path: data/static/gallup_pid_q3.csv
+          retention-days: 7
