@@ -113,6 +113,7 @@ jobs:
           paths="data/state"
           if [ "$HELD" != "true" ]; then
             paths="$paths web/data/model.json web/data/summary.json web/data/polls.json web/data/race_history.json web/data/whatif.json web/data/history reports"
+            [ -e web/data/stateleg_seats.json ] && paths="$paths web/data/stateleg_seats.json"   # state-legislature district maps
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
