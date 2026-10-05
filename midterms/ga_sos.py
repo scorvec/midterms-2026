@@ -88,7 +88,19 @@ def probe6():
     report()
 
 
+def probe7():
+    t = open_url("https://results.sos.ga.gov/results/public/main-E6MCELDW.js").decode("utf-8", "replace")
+    for m in sorted(set(re.findall(r"http\.(?:get|post)\(`([^`]+)`", t))): print("EP", m)
+    for m in list(re.finditer(r"mediaExportPath|ballotItems|ballot-items|contests", t))[:12]:
+        print("CTX", t[max(0, m.start() - 200): m.start() + 150].replace("\n", " "))
+    time.sleep(2)
+    j = json.loads(open_url(API + "GeneralPrimary51926"))
+    for k in ("publicReportCategories", "map", "countGroups", "parties", "groupReportingStatus"): print(k, json.dumps(j.get(k))[:800])
+    report()
+
+
 if __name__ == "__main__":
+    if "probe7" in sys.argv: probe7()
     if "probe6" in sys.argv: probe6()
     if "probe5" in sys.argv: probe5()
     if "probe4" in sys.argv: probe4()
