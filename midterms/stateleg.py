@@ -59,22 +59,24 @@ CHAMBERS = [
     ("GA", "lower", "Georgia House", 180, "all", "shared"),          # added 2026-10-05 (user)
     ("IA", "lower", "Iowa House", 100, "all", "shared"),
     ("TX", "lower", "Texas House", 150, "all", "shared"),
+    # added 2026-10-05 after the coverage scan and stateleg_scan.check (complete slates, lean on the current map, plausible
+    # one-party counts): California (top-two: a same-party general is a fixed seat), Kentucky, Texas Senate
+    ("CA", "upper", "California Senate", 40, "not2024", "shared"),
+    ("CA", "lower", "California Assembly", 80, "all", "shared"),
+    ("KY", "upper", "Kentucky Senate", 38, "not2024", "shared"),
+    ("KY", "lower", "Kentucky House", 100, "all", "shared"),
+    ("TX", "upper", "Texas Senate", 31, "not2024", "shared"),
 ]
 # candidate chambers (2026-10-05 coverage scan): complete general-election slates on Wikipedia and a lean built; checked by
 # stateleg_scan.check before any is moved into CHAMBERS (published)
 PENDING = [
-    ("CA", "upper", "California Senate", 40, "not2024", "shared"),
-    ("CA", "lower", "California Assembly", 80, "all", "shared"),
     ("CT", "upper", "Connecticut Senate", 36, "all", "shared"),
     ("CT", "lower", "Connecticut House", 151, "all", "shared"),
-    ("KY", "upper", "Kentucky Senate", 38, "not2024", "shared"),
-    ("KY", "lower", "Kentucky House", 100, "all", "shared"),
     ("UT", "upper", "Utah Senate", 29, "not2024", "shared"),
     ("WA", "upper", "Washington Senate", 49, "not2024", "shared"),
     ("WV", "upper", "West Virginia Senate", 34, "one_of_two", "shared"),   # 17 two-seat districts, one seat each election
     ("OR", "upper", "Oregon Senate", 30, "not2024", "shared"),
     ("IA", "upper", "Iowa Senate", 50, "not2024", "shared"),
-    ("TX", "upper", "Texas Senate", 31, "not2024", "shared"),
 ]
 SUPER = {("NC", "upper"): 30, ("NC", "lower"): 72}                    # 3/5 veto-override thresholds
 EXPERIMENTAL = {("NH", "lower"): "candidate lists are not on Wikipedia: every seat is treated as contested by full slates; "

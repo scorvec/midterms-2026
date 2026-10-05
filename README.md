@@ -153,8 +153,9 @@ last published week is held (the page says which week).
 
 ## State legislatures (experimental, on since 2026-10-05)
 
-`midterms/stateleg.py` forecasts control of 17 chambers - Michigan, Minnesota, Wisconsin, Arizona, Pennsylvania, New Hampshire and
-North Carolina (both chambers) and the Georgia, Iowa and Texas Houses (added 2026-10-05) - inside the daily run (`MIDTERMS_STATELEG`, default on; workflow input `stateleg`). It
+`midterms/stateleg.py` forecasts control of 22 chambers - Michigan, Minnesota, Wisconsin, Arizona, Pennsylvania, New Hampshire and
+North Carolina (both chambers) the Georgia, Iowa and Texas Houses, and the California Senate and Assembly, Kentucky
+Senate and House and Texas Senate (all added 2026-10-05) - inside the daily run (`MIDTERMS_STATELEG`, default on; workflow input `stateleg`). It
 writes `state_legislatures` into `web/data/model.json`; `web/legislatures.html` shows it (not linked from the other pages yet).
 
 **Seat model.** Each seat's expected Democratic two-party margin is `a + beta * lean + c * inc + g * E + kappa * shift_state`:
@@ -192,6 +193,17 @@ ga_house_nominees_2026.csv`, derived table with source and retrieval date; 119 c
 name spelling, or Wikipedia's district-3 box that belongs to district 4; the SOS table wins); TX from the district election boxes (a seat
 is fixed only where the general-election listing lacks a party); IA from district prose (retirements
 read; nominees mostly not, so seats count as contested unless the page says a party has none).
+
+**Coverage scan and added chambers (2026-10-05).** `midterms/stateleg_scan.py` read every 2026 chamber page
+(`data/static/stateleg/coverage_scan.csv`) and checked the candidates (`stateleg_scan.check` -> `pending_check.csv`): a chamber is added
+only when the page has a general-election slate for every seat up (a missing party then really means no nominee), the seats up match
+the 2024 rule, every district has a lean on the current map (TIGER 2022-2025 unchanged; for the 2026 Senate seats the House-cell method
+reproduces known 2024 Senate leans to rms 0.9 CA, 1.6 KY, 0.9 TX), and the one-party seat count is plausible against 2024 (MEDSL) and
+2022 (Klarner). Added: CA Senate (1 one-party seat v 4 / 5), CA Assembly (12 v 17 / 22), KY Senate (10 v 12 / 11), KY House (52 v 56 /
+54), TX Senate (3 v 5 / 13 of 31). Backtest of the five (10 chamber elections): all called right, as the current-majority rule; seat
+count inside the 80 % range 8 of 10 (2018 CA Assembly -6, 2018 KY House +12). Held back: CT Senate and House (2024 MEDSL party coding
+under fusion voting gives no usable comparator), UT and WV Senates (one-party seats far below 2022/2024), IA Senate (district 31 missing
+from the page), WA and OR Senates (lean check failed: rms 4.0 and 8.9).
 
 **Approximations.** NH House: candidates are not listed on Wikipedia, so every seat is contested by full slates, floterial districts are
 simulated as ordinary multi-member districts, and the 2018 backtest has no NH House (MEDSL's 2018 files cannot be downloaded); flagged
