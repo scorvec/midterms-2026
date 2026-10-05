@@ -56,6 +56,9 @@ CHAMBERS = [
     ("NH", "lower", "New Hampshire House", 400, "all", "shared"),
     ("NC", "upper", "North Carolina Senate", 50, "all", "D"),       # Lt Gov Rachel Hunt (D, elected 2024) breaks ties
     ("NC", "lower", "North Carolina House", 120, "all", "shared"),
+    ("GA", "lower", "Georgia House", 180, "all", "shared"),          # added 2026-10-05 (user)
+    ("IA", "lower", "Iowa House", 100, "all", "shared"),
+    ("TX", "lower", "Texas House", 150, "all", "shared"),
 ]
 SUPER = {("NC", "upper"): 30, ("NC", "lower"): 72}                    # 3/5 veto-override thresholds
 EXPERIMENTAL = {("NH", "lower"): "candidate lists are not on Wikipedia: every seat is treated as contested by full slates; "
