@@ -272,6 +272,19 @@ def main():
                     if row["seat"] == f"{st}-{r['district']}": row.update({"pres20_d": r["d"], "pres20_r": r["r"], "method20": "vest2020_areal_cd119"})
         except Exception as e: print("!!", st, "pres20", e)
     D = pd.DataFrame(rows)
+    # calibrate each state to its official totals (MIT): whatever the route left as a statewide offset (FL +1.3 with the cell
+    # swing, VEST 2020 files short of the certified count) is removed by a uniform shift of every seat's margin in the state
+    D["st"] = D["seat"].str[:2]; QC["state_calibration_shift"] = {}
+    for y in (2024, 2020):
+        dc, rc = f"pres{y % 100}_d", f"pres{y % 100}_r"
+        for st, q in D.groupby("st"):
+            if q[dc].isna().any(): continue
+            m_off = mit_state(st, y)[0]; m_ours = 100 * (q[dc].sum() - q[rc].sum()) / (q[dc].sum() + q[rc].sum()); sh = m_off - m_ours
+            if abs(sh) > 0.05:
+                n = q[dc] + q[rc]; m = (q[dc] - q[rc]) / n + sh / 100
+                D.loc[q.index, dc] = n * (1 + m) / 2; D.loc[q.index, rc] = n * (1 - m) / 2
+                QC["state_calibration_shift"][f"{st}{y}"] = round(float(sh), 3)
+    D = D.drop(columns="st")
     D["pres24_margin"] = 100 * (D["pres24_d"] - D["pres24_r"]) / (D["pres24_d"] + D["pres24_r"])
     D["pres20_margin"] = 100 * (D["pres20_d"] - D["pres20_r"]) / (D["pres20_d"] + D["pres20_r"])
     n24_medsl = 100 * (nat["d24"] - nat["r24"]) / (nat["d24"] + nat["r24"])

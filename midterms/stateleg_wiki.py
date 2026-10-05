@@ -163,6 +163,8 @@ def parse_page(st, ch, html):
                 if st == "NH" and ch == "lower" and len(dcols) >= 2:
                     try: dist = f"{str(r[dcols[0]]).strip().title()} {int(float(r[dcols[1]]))}"
                     except Exception: continue
+                elif st == "MN" and ch == "lower" and len(dcols) >= 2 and str(r[dcols[1]]).strip() in ("A", "B"):
+                    dist = norm_dist(st, ch, f"{r[dcols[0]]}{str(r[dcols[1]]).strip()}")
                 else: dist = norm_dist(st, ch, r[dcols[0]])
                 nm = str(r["Incumbent"])
                 if not dist or nm.lower() == "nan": continue
