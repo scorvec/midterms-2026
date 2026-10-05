@@ -99,7 +99,16 @@ def probe7():
     report()
 
 
+def probe8():
+    t = open_url("https://results.sos.ga.gov/results/public/main-E6MCELDW.js").decode("utf-8", "replace")
+    for key in ("blobName", "environment.cdn}", "imageCdn", ".json`"):
+        for m in list(re.finditer(re.escape(key), t))[:6]:
+            print("CTX", key, t[max(0, m.start() - 300): m.start() + 200].replace("\n", " "))
+    report()
+
+
 if __name__ == "__main__":
+    if "probe8" in sys.argv: probe8()
     if "probe7" in sys.argv: probe7()
     if "probe6" in sys.argv: probe6()
     if "probe5" in sys.argv: probe5()
