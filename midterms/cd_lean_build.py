@@ -171,6 +171,8 @@ def main():
     for st in sorted(FIPS):
         try: df = medsl24(st)
         except Exception as e: print("!!", st, "2024 file", e); df = None
+        if df is not None and not B.pres_rows(df).shape[0]:
+            print(f"  !! {st}: no president rows; offices {df['office'].value_counts().head(15).to_dict()}; rows {len(df)}")
         n119 = b119.loc[b119["block"].str[:2] == FIPS[st], "cd"].nunique()
         if df is not None and n119 == 1:                                  # at-large: the whole state
             pr = B.pres_rows(df); d_, r_ = pr.loc[pr["party"] == "D", "votes"].sum(), pr.loc[pr["party"] == "R", "votes"].sum()

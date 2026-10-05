@@ -196,7 +196,12 @@ def label_lean(df: pd.DataFrame, st: str, ch: str, tag: str):
     J["d"] = J["D"] * J["w"]; J["r"] = J["R"] * J["w"]
     cells = J.groupby(["county", "dist"])[["d", "r"]].sum()
     # unlabelled presidential rows
-    lab = set(T["key"]); un = P[~P.index.isin(lab)].copy(); un["county"] = un.index.str.split("|").str[0]
+    # precincts with a label in ANOTHER contest (U.S. House, the other chamber) are real precincts of districts not up this year
+    # (staggered senates) and must not be spread; only rows with no district label anywhere (county-level absentee / early /
+    # provisional tallies) are
+    lab = set(T["key"]); anylab = set(df.loc[office_chamber(df).notna(), "key"])
+    un = P[~P.index.isin(lab) & ~P.index.isin(anylab - lab)].copy(); un["county"] = un.index.str.split("|").str[0]
+    QC[f"{tag}_{st}_{ch}_not_up_share"] = round(float(P[P.index.isin(anylab - lab)][["D", "R"]].sum().sum() / tot_pres), 4) if tot_pres else None
     un_share = float((un["D"].sum() + un["R"].sum()) / tot_pres) if tot_pres else float("nan")
     lost = 0.0
     if len(un):
@@ -330,11 +335,20 @@ def build_2026():
         offs = sorted({o for o in df["office"].unique() if chamber_of(o)}); print(f"{st} 2024 legislative offices: {offs}")
         cm[(st, 2024)] = county_margin(df)
         res.append(results_from_medsl(df, st, 2024))
+        if df["office"].str.contains("PRESIDENT").sum() == 0 or not offs:
+            print(f"  !! {st}: offices in the file: {df['office'].value_counts().head(25).to_dict()}")
         for ch in ("upper", "lower"):
+            if ch == "upper" and st in NEST: continue                  # from the nested House / Assembly districts below
             o = label_lean(df, st, ch, "m2024")
-            if o is not None: o["state"], o["chamber"], o["src"] = st, ch, "medsl2024_labels"; rows.append(o)
+            if o is not None:
+                o = pd.DataFrame(o.to_dict("list")); o["state"], o["chamber"], o["src"] = st, ch, "medsl2024_labels"; rows.append(o)
+        if st == "AZ":                                                 # AZ House districts are the 30 legislative districts (= Senate)
+            up_ = [r for r in rows if r["state"].iat[0] == "AZ" and r["chamber"].iat[0] == "upper"]
+            if up_:
+                rows = [r for r in rows if not (r["state"].iat[0] == "AZ" and r["chamber"].iat[0] == "lower")]
+                rows.append(up_[0].assign(chamber="lower", src="medsl2024_labels_senate_ld"))
         if st in NEST:                                            # Senate from nested House / Assembly districts
-            lo = rows[-1] if rows and rows[-1]["chamber"].iat[0] == "lower" and rows[-1]["state"].iat[0] == st else None
+            lo = next((r for r in rows if r["chamber"].iat[0] == "lower" and r["state"].iat[0] == st), None)
             if lo is not None:
                 n = lo.copy(); n["district"] = n["district"].map(NEST[st]); n = n.groupby("district")[["d", "r"]].sum().reset_index()
                 n["state"], n["chamber"], n["src"] = st, "upper", "medsl2024_nested"; rows.append(n)

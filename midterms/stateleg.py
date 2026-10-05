@@ -79,17 +79,17 @@ def klarner():
     for c in ("d_votes", "r_votes", "o_votes", "top_d", "top_r"):
         k[c] = pd.to_numeric(k[c], errors="coerce").fillna(0.0)
     k["chamber"] = np.where(k["sen"] == "1", "upper", "lower")
-    k["district"] = [kl_district(s, ch, dno, dname, geo, mmd) for s, ch, dno, dname, geo, mmd in
-                     zip(k["sab"], k["chamber"], k["dno"], k["dname"], k["geopost"], k["mmdpost"])]
+    k["district"] = [kl_district(s, ch, dno, dname, dz) for s, ch, dno, dname, dz in zip(k["sab"], k["chamber"], k["dno"], k["dname"], k["ddez"])]
     return k
 
 
-def kl_district(st, ch, dno, dname, geo, mmd):
+def kl_district(st, ch, dno, dname, ddez):
     try: n = int(float(dno))
     except Exception: return None
     if st == "MN" and ch == "lower":
-        suf = str(geo or mmd or "").strip().upper()[:1]
-        return f"{n}{suf}" if suf in ("A", "B") else str(n)
+        import re
+        m = re.search(r"(\d+)\s*-?\s*([AB])", str(ddez).upper())
+        return f"{int(m.group(1))}{m.group(2)}" if m else str(n)
     if st == "NH" and ch == "lower": return f"{str(dname).strip().title()} {n}"
     return str(n)
 
