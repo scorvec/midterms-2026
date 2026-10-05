@@ -54,7 +54,17 @@ def probe3():
     report()
 
 
+def probe4():
+    base = "https://results.sos.ga.gov/results/public/"
+    t = open_url(base + "main-E6MCELDW.js").decode("utf-8", "replace")
+    for key in ("/v4/", "mediaExportPath", "baseUrl=", "/cdn/results", "/results/public/api", "elections/${a}/${p}`", "authority"):
+        for m in list(re.finditer(re.escape(key), t))[:4]:
+            print(f"## {key} @{m.start()}: {t[max(0, m.start() - 350): m.start() + 250]}\n")
+    report()
+
+
 if __name__ == "__main__":
+    if "probe4" in sys.argv: probe4()
     if "probe3" in sys.argv: probe3()
     if "probe" in sys.argv: probe()
     if "probe2" in sys.argv: probe2()
