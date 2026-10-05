@@ -73,6 +73,7 @@ def _pty(p):
 
 
 def _last(n):
+    n = str(n).split(",")[0]      # FEC 'Young, Don' -> Young; 'Donald M. Payne, Jr.' -> Donald M. Payne
     n = re.sub(r"\(.*?\)|\".*?\"|“.*?”", " ", str(n)).replace(",", " ")
     w = [x for x in re.sub(r"[^A-Za-z' -]", " ", n).lower().split() if x not in ("jr", "sr", "ii", "iii", "iv", "jr.", "sr.")]
     return w[-1] if w else ""
@@ -91,7 +92,10 @@ def _seat_rows(cands, year, st, cd):
 
 def medsl(years):
     m = pd.read_csv(MEDSL, low_memory=False, encoding="latin-1")
-    m = m[m.year.isin(years) & (m.stage == "gen") & ~m.special.astype(str).str.upper().eq("TRUE") & ~m.runoff.astype(str).str.upper().eq("TRUE")]
+    m = m[m.year.isin(years) & (m.stage == "gen") & ~m.special.astype(str).str.upper().eq("TRUE")]
+    # a seat's November rows; runoff rows only where the seat has nothing else (LA 1996: the November vote was the runoff)
+    ro = m.runoff.astype(str).str.upper().eq("TRUE"); key = m.year.astype(str) + m.state_po + m.district.astype(str)
+    m = m[~ro | ~key.isin(set(key[~ro]))]
     m = m[~m.writein.astype(str).str.upper().eq("TRUE") & m.candidate.notna() & ~m.candidate.astype(str).str.contains("Blank|Scatter|Void|Over Vote|Under Vote", case=False)]
     m = m[~m.state_po.isin(["DC", "AS", "GU", "MP", "PR", "VI"])]
     # unopposed candidates carry 1 vote of a 1-vote total (the Clerk prints no count)
@@ -161,13 +165,13 @@ def clerk_2024():
         if re.fullmatch(r"[\d,]+", l):
             if queue: d_, lab = queue.pop(0); rows.append({"state": st, "cd": d_, "label": lab, "votes": int(l.replace(",", ""))})
             continue
-        if re.search(r"unopposed", l, re.I) and queue:
+        if (re.search(r"unopposed", l, re.I) or re.fullmatch(r"\(\d+\)", l)) and queue:     # "(1)": footnote in place of a count (unopposed, not on the ballot)
             d_, lab = queue.pop(0); rows.append({"state": st, "cd": d_, "label": lab, "votes": 0}); continue
         odd.append(f"{st} {dist}: {l[:90]}")
     print(f"  clerk 2024: {len(rows)} candidate lines; {len(odd)} unparsed lines in House sections, e.g.", odd[:25])
     c = pd.DataFrame(rows)
     c["name"] = c.label.str.split(",").str[0].str.strip()
-    c["party"] = c.label.map(lambda s: _pty(s.split(",", 1)[1]) if "," in s else "O")
+    c["party"] = c.label.map(lambda s: _pty(s.rsplit(",", 1)[1]) if "," in s else "O")      # 'Sanford D. Bishop, Jr., Democrat': the LAST field
     c.loc[c.label.str.contains("Write-in|Scattering|Blank", case=False) & ~c.label.str.contains(",", regex=False), "party"] = "O"
     c["v"] = c.votes.astype(float)
     out = [_seat_rows(g[["name", "party", "v"]], 2024, s, k) for (s, k), g in c.groupby(["state", "cd"])]
@@ -434,6 +438,9 @@ def build():
     OUT.mkdir(parents=True, exist_ok=True)
     print("=====BEGIN")
     h = load()
+    full = h.groupby("year").seat.apply(set); allseats = full.get(2022, set())
+    for y, ss in full.items():
+        if len(ss) != 435: print(f"  {y}: {len(ss)} seats; missing e.g.", sorted(set(f"{s.split('-')[0]}" for s in ss) ^ set()) [:0], sorted(s for s in (full.get(y - 2, set()) or allseats) if s not in ss)[:20])
     print(h.groupby("year").agg(seats=("seat", "size"), contested=("contested", "sum"), D=("winner", lambda w: (w == "D").sum())).T.to_string())
     print(pd.crosstab(h.year, h.kind).to_string())
     U, (beta, alpha, F) = impute_point(h)
