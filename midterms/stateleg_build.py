@@ -160,7 +160,8 @@ def medsl_load(p: Path, st: str) -> pd.DataFrame:
     # jurisdiction code blank, so the names go into the key as well
     df["key"] = (df["county_fips"] + "|" + df["county_name"].str.upper().str.strip() + "|" + df["jurisdiction_fips"] + "|" +
                  df["jurisdiction_name"].str.upper().str.strip() + "|" + df["precinct"].str.upper().str.strip())
-    df["party"] = df["party_simplified"].str.upper().map({"DEMOCRAT": "D", "REPUBLICAN": "R"}).fillna("O")
+    ps = df["party_simplified"].str.upper().str.strip()
+    df["party"] = np.where(ps.str.startswith("DEM"), "D", np.where(ps.str.startswith("REP"), "R", "O"))
     # one count per precinct x contest x candidate: a TOTAL row where a state reports both TOTAL and the vote modes
     is_tot = df["mode"].str.upper() == "TOTAL"
     has_total = is_tot.groupby([df["key"], df["office"], df["district"]]).transform("any")
@@ -502,7 +503,8 @@ def build_hist():
 
 
 def _town(s):
-    s = re.sub(r"[^A-Z0-9 ]", " ", str(s).upper()); s = re.sub(r"\bWD\b", "WARD", s); s = re.sub(r"\bTWP\b|\bTOWNSHIP\b", "", s)
+    s = re.sub(r"^(TOWN|CITY) OF ", "", str(s).upper().strip())
+    s = re.sub(r"[^A-Z0-9 ]", " ", s); s = re.sub(r"\bWD\b", "WARD", s); s = re.sub(r"\bTWP\b|\bTOWNSHIP\b", "", s)
     s = re.sub(r"\bWARD\s*0*(\d+)", r"WARD \1", s)
     return re.sub(r"\s+", " ", s).strip()
 
@@ -550,6 +552,9 @@ def build_klarner():
     for c in keys:
         if c not in k: k[c] = ""
         k[c] = k[c].fillna("").astype(str)
+    # some years list a candidate once per county of a multi-county district (cname / cfips): one row per candidate first
+    k["candid"] = k["candid"].fillna("").astype(str); k["ckey"] = np.where(k["candid"] != "", k["candid"], k["cand"].astype(str))
+    k = k.groupby(keys + ["ckey"], as_index=False).agg(pz=("pz", "first"), vote=("vote", "sum"), won=("won", "max"), inc=("inc", "max"), cand=("cand", "first"))
     agg = k.groupby(keys)[["pz", "vote", "won", "inc", "cand"]].apply(lambda q: pd.Series({
         "d_votes": q.loc[q.pz == "D", "vote"].sum(), "r_votes": q.loc[q.pz == "R", "vote"].sum(), "o_votes": q.loc[q.pz == "O", "vote"].sum(),
         "n_d": int((q.pz == "D").sum()), "n_r": int((q.pz == "R").sum()), "n_o": int((q.pz == "O").sum()),

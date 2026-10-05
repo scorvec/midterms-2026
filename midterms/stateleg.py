@@ -173,7 +173,8 @@ def hist_table(cycle):
     q = q.rename(columns={"sab": "state"})
     q = q.merge(L[["state", "chamber", "district", "lean"]], on=["state", "chamber", "district"], how="left")
     q["k"] = q["eseats"].clip(lower=1); q["inc"] = kl_inc(q); q["m"] = kl_margin(q)
-    return q
+    q = q[q.groupby(["state", "chamber"])["district"].transform("size") >= 5]        # a chamber not up (a lone special) is dropped
+    return q.reset_index(drop=True)
 
 
 def fit_levels(cycles=(2018, 2022), c=None, g=None):
@@ -243,7 +244,7 @@ def seats_2026():
     OS["party"] = OS["party"].map(lambda p: "D" if str(p).startswith("Democratic") else ("R" if str(p).startswith("Republican") else "O"))
     OS["district"] = [_os_dist(s, c, d) for s, c, d in zip(OS["state"], OS["chamber"], OS["district"])]
     try: C = pd.read_csv(CACHE / "stateleg_candidates.csv", dtype={"district": str})
-    except FileNotFoundError: C = pd.DataFrame(columns=["state", "chamber", "district"])
+    except FileNotFoundError: C = pd.DataFrame(columns=["state", "chamber", "district", "n_dem", "n_rep", "dem", "rep", "inc_names", "inc_marks"])
     rows, held = [], []
     for st, ch, name, n, up, tie in CHAMBERS:
         Lq = L[(L["state"] == st) & (L["chamber"] == ch)].set_index("district")

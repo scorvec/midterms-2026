@@ -140,7 +140,8 @@ def run_cycle(cycle, n=10000, seed=3, arm="base"):
         cd, cr, sh = SLM.control(ds, tot_eff, "shared" if tie == "gov" else tie)
         outcome = "D" if actual > tot_eff / 2 else ("R" if act_r > tot_eff / 2 else "T")
         pD = float(cd.mean())
-        ch_rows.append({"cycle": cycle, "chamber": name, "seats_modelled": tot_eff, "p_d": round(pD, 3), "mean_d": round(float(ds.mean()), 1),
+        cov = tot_eff / total
+        ch_rows.append({"cycle": cycle, "chamber": name, "seats_modelled": tot_eff, "coverage": round(cov, 3), "scored": cov >= 0.95, "p_d": round(pD, 3), "mean_d": round(float(ds.mean()), 1),
                         "p10": int(np.percentile(ds, 10)), "p90": int(np.percentile(ds, 90)), "actual_d": actual, "outcome": outcome,
                         "pit": round(float((ds < actual).mean() + 0.5 * (ds == actual).mean()), 3),
                         "prev_majority": prev.get((st, ch)), "brier": round((pD - (outcome == "D")) ** 2, 4),
@@ -154,7 +155,7 @@ def run_cycle(cycle, n=10000, seed=3, arm="base"):
 def main():
     out = []
     for cyc in (2018, 2022):
-        for arm in ("base", "state", "nokappa"):
+        for arm in ("base", "state"):
             try: r = run_cycle(cyc, arm=arm)
             except Exception as e:
                 import traceback; traceback.print_exc(); print("!!", cyc, arm, e); continue

@@ -40,17 +40,25 @@ jobs:
           restore-keys: stateleg-raw-
       - name: Run
         run: |
-          STEP=$(head -1 .github/stateleg_step.txt | tr -d '[:space:]')
-          echo "STEP=$STEP" >> "$GITHUB_ENV"
-          case "$STEP" in
-            probe) python -m midterms.stateleg_probe ;;
-            build) python -m midterms.stateleg_build ;;
-            wiki)  python -m midterms.stateleg_wiki ;;
-            all)   rc=0; python -m midterms.stateleg_build || rc=$?; python -m midterms.cd_lean_build || rc=1; python -m midterms.stateleg_wiki || rc=1; exit $rc ;;
-            cd)    python -m midterms.cd_lean_build ;;
-            *:*) python -m midterms.${STEP%%:*} $(echo "${STEP#*:}" | tr ',' ' ') ;;
-            *) python -m midterms.$STEP ;;
-          esac
+          # every non-comment line of the step file is one step, run in order (a failing step does not stop the next)
+          rc=0; first=""
+          while read -r STEP rest; do
+            case "$STEP" in ''|'#'*) continue ;; esac
+            [ -z "$first" ] && first="$STEP"
+            echo "::group::$STEP"
+            case "$STEP" in
+              probe) python -m midterms.stateleg_probe || rc=1 ;;
+              build) python -m midterms.stateleg_build || rc=1 ;;
+              wiki)  python -m midterms.stateleg_wiki || rc=1 ;;
+              all)   python -m midterms.stateleg_build || rc=1; python -m midterms.cd_lean_build || rc=1; python -m midterms.stateleg_wiki || rc=1 ;;
+              cd)    python -m midterms.cd_lean_build || rc=1 ;;
+              *:*)   python -m midterms.${STEP%%:*} $(echo "${STEP#*:}" | tr ',' ' ') || rc=1 ;;
+              *)     python -m midterms.$STEP || rc=1 ;;
+            esac
+            echo "::endgroup::"
+          done < .github/stateleg_step.txt
+          echo "STEP=$first" >> "$GITHUB_ENV"
+          exit $rc
       - name: Drop large downloads before caching (slim extracts are kept)
         if: always()
         run: |

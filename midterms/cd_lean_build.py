@@ -54,7 +54,7 @@ def _crawl(url, depth, pat, seen=None):
 
 def bef(n: int) -> pd.DataFrame:
     """Block -> district (CDFP) for the n-th Congress, from the Census block equivalency files."""
-    pq = B.R / "bef" / f"cd{n}.parquet"
+    pq = B.R / "bef" / f"cd{n}_v2.parquet"
     if pq.exists(): return pd.read_parquet(pq)
     urls = _crawl(MAPF, 3, rf"cd_?{n}.*\.(zip|txt)$")
     print(f"  BEF {n}: {urls[:6]}")
@@ -71,7 +71,9 @@ def bef(n: int) -> pd.DataFrame:
     b = pd.concat(frames, ignore_index=True); b.columns = [c.upper() for c in b.columns]
     gcol = next(c for c in b.columns if c in ("GEOID", "BLOCKID", "GEOID20")); dcol = next(c for c in b.columns if c.startswith("CD") or c == "DISTRICT")
     b = b.rename(columns={gcol: "block", dcol: "cd"})[["block", "cd"]]
-    b = b[~b["cd"].isin(["ZZ", "98", ""])]; pq.parent.mkdir(parents=True, exist_ok=True); b.to_parquet(pq)
+    n0 = len(b); b = b[~b["cd"].isin(["ZZ", "98", ""])].drop_duplicates("block")      # the zip holds overlapping files
+    QC[f"bef{n}_rows_raw_vs_unique"] = [n0, int(len(b))]
+    pq.parent.mkdir(parents=True, exist_ok=True); b.to_parquet(pq)
     print(f"  BEF {n}: {len(b)} blocks, columns {gcol}/{dcol}")
     return b
 
@@ -239,7 +241,9 @@ def main():
     D = pd.DataFrame(rows)
     D["pres24_margin"] = 100 * (D["pres24_d"] - D["pres24_r"]) / (D["pres24_d"] + D["pres24_r"])
     D["pres20_margin"] = 100 * (D["pres20_d"] - D["pres20_r"]) / (D["pres20_d"] + D["pres20_r"])
-    n24 = 100 * (nat["d24"] - nat["r24"]) / (nat["d24"] + nat["r24"])
+    n24_medsl = 100 * (nat["d24"] - nat["r24"]) / (nat["d24"] + nat["r24"])
+    n24 = 100 * (D["pres24_d"].sum() - D["pres24_r"].sum()) / (D["pres24_d"].sum() + D["pres24_r"].sum())
+    QC["national_2024_from_medsl_rows"] = round(float(n24_medsl), 3)
     n20 = 100 * (D["pres20_d"].sum() - D["pres20_r"].sum()) / (D["pres20_d"].sum() + D["pres20_r"].sum())
     QC["national_two_party_margin"] = {"2024": round(float(n24), 3), "2020_from_seats": round(float(n20), 3)}
     D["lean_75_25"] = 0.75 * (D["pres24_margin"] - n24) + 0.25 * (D["pres20_margin"] - n20)
