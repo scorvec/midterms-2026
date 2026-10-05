@@ -1,22 +1,22 @@
 target,subset,n,rmse,bias,mae,shared_sd
-"margin, pair model, nearest contested cycle 2 yr away",all contested,5858,11.168,-0.021,8.324,0.0
-"margin, pair model, nearest contested cycle 4 yr away",all contested,261,11.778,-1.106,8.687,0.0
-"margin, pair model, nearest contested cycle 6 yr away",all contested,35,11.98,1.515,9.62,7.938
-"margin, pair model, nearest contested cycle 8 yr away",all contested,12,13.494,8.108,10.991,7.064
-"margin, pair model, any distance",all contested,6166,11.204,-0.042,8.352,0.0
-"margin, safe-seat model",all contested,6836,19.729,0.469,15.858,6.021
-log two-party turnout,all contested,6836,0.112,-0.003,0.07,0.009
-"margin, pair model, nearest contested cycle 2 yr away","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",2107,11.752,-0.649,8.393,2.732
-"margin, pair model, nearest contested cycle 4 yr away","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",261,11.778,-1.106,8.687,0.0
-"margin, pair model, nearest contested cycle 6 yr away","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",35,11.98,1.515,9.62,7.938
-"margin, pair model, nearest contested cycle 8 yr away","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",12,13.494,8.108,10.991,7.064
-"margin, pair model, any distance","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",2415,11.768,-0.624,8.455,2.69
-"margin, safe-seat model","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",2540,18.39,1.894,14.208,0.0
-log two-party turnout,"lopsided (uncontested in another cycle on the same lines, or old margin > 40)",2540,0.115,-0.004,0.073,0.014
-"margin, pair model, nearest contested cycle 2 yr away",uncontested in another cycle on the same lines,1098,12.072,-0.784,8.78,3.334
-"margin, pair model, nearest contested cycle 4 yr away",uncontested in another cycle on the same lines,261,11.778,-1.106,8.687,0.0
-"margin, pair model, nearest contested cycle 6 yr away",uncontested in another cycle on the same lines,35,11.98,1.515,9.62,7.938
-"margin, pair model, nearest contested cycle 8 yr away",uncontested in another cycle on the same lines,12,13.494,8.108,10.991,7.064
-"margin, pair model, any distance",uncontested in another cycle on the same lines,1406,12.028,-0.71,8.803,3.313
-"margin, safe-seat model",uncontested in another cycle on the same lines,1531,19.007,0.013,14.514,0.0
-log two-party turnout,uncontested in another cycle on the same lines,1531,0.125,-0.004,0.079,0.005
+"margin, pair model, nearest contested cycle 2 yr away",all contested,5867,10.961,-0.026,8.101,0.0
+"margin, pair model, nearest contested cycle 4 yr away",all contested,261,11.813,-1.212,8.797,0.0
+"margin, pair model, nearest contested cycle 6 yr away",all contested,35,12.184,1.91,9.701,5.32
+"margin, pair model, nearest contested cycle 8 yr away",all contested,12,13.615,7.982,10.567,8.489
+"margin, pair model, any distance",all contested,6175,11.011,-0.049,8.145,0.0
+"margin, safe-seat model",all contested,6845,19.554,0.265,15.671,5.922
+log two-party turnout,all contested,6845,0.114,-0.003,0.07,0.009
+"margin, pair model, nearest contested cycle 2 yr away","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",2110,11.269,-0.602,7.886,2.592
+"margin, pair model, nearest contested cycle 4 yr away","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",261,11.813,-1.212,8.797,0.0
+"margin, pair model, nearest contested cycle 6 yr away","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",35,12.184,1.91,9.701,5.32
+"margin, pair model, nearest contested cycle 8 yr away","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",12,13.615,7.982,10.567,8.489
+"margin, pair model, any distance","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",2418,11.355,-0.589,8.024,2.544
+"margin, safe-seat model","lopsided (uncontested in another cycle on the same lines, or old margin > 40)",2541,17.983,1.821,13.765,0.0
+log two-party turnout,"lopsided (uncontested in another cycle on the same lines, or old margin > 40)",2541,0.116,-0.004,0.073,0.016
+"margin, pair model, nearest contested cycle 2 yr away",uncontested in another cycle on the same lines,1097,11.73,-0.862,8.436,4.55
+"margin, pair model, nearest contested cycle 4 yr away",uncontested in another cycle on the same lines,261,11.813,-1.212,8.797,0.0
+"margin, pair model, nearest contested cycle 6 yr away",uncontested in another cycle on the same lines,35,12.184,1.91,9.701,5.32
+"margin, pair model, nearest contested cycle 8 yr away",uncontested in another cycle on the same lines,12,13.615,7.982,10.567,8.489
+"margin, pair model, any distance",uncontested in another cycle on the same lines,1405,11.774,-0.782,8.553,4.496
+"margin, safe-seat model",uncontested in another cycle on the same lines,1528,18.661,0.021,14.196,0.0
+log two-party turnout,uncontested in another cycle on the same lines,1528,0.125,-0.004,0.079,0.011
