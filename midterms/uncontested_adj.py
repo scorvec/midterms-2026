@@ -466,6 +466,276 @@ def build():
     with pd.option_context("display.width", 250): print(N.round(2).to_string())
 
 
+# ================================================================================================ STEP 2: the test (local)
+# Needs the national-mood table (data/raw/national_mood/table.csv, NOT distributed - see national_mood.TABLE) and, for the
+# seat harness on the live path, the 538 archives + FEC workbooks that bootstrap.py fetches. Run: python -m midterms.uncontested_adj test
+LEADS_REPORT = (0, 7, 30, 60, 120)
+MIDTERMS = (1998, 2002, 2006, 2010, 2014, 2018, 2022)
+T_DF = 5
+
+
+def vtables():
+    """Per cycle: V (the live target), V_adj anchored on it (V + our measured adjustment V_adj - V_raw, so source differences
+    between our district sums and the reference total do not enter), V_contested anchored the same way, and V_adj draws."""
+    N = pd.read_csv(OUT / "national_vote_adj.csv", index_col=0)
+    off = N.V_ref - N.V_raw
+    V = pd.DataFrame({"V": N.V_ref, "V_adj": N.V_adj + off, "V_adj_sd": N.V_adj_sd, "V_contested": N.V_contested + off})
+    Dr = pd.read_csv(OUT / "v_adj_draws.csv"); Dr.columns = Dr.columns.astype(int)
+    Dr = Dr + off.reindex(Dr.columns).values[None, :]
+    return V, Dr
+
+
+def _tpdf(x, sd):
+    from scipy.stats import t
+    sc = sd * np.sqrt((T_DF - 2) / T_DF); return t.pdf(x / sc, T_DF) / sc
+
+
+def _tcdf(x, sd):
+    from scipy.stats import t
+    return t.cdf(x / (sd * np.sqrt((T_DF - 2) / T_DF)), T_DF)
+
+
+def _crps_t(err, sd, n=4001):
+    """CRPS of a unit-sd-scaled t5 forecast (mean 0, sd) at observation err, numerically."""
+    x = np.linspace(-12 * sd + min(err, 0), 12 * sd + max(err, 0), n); F = _tcdf(x, sd)
+    return float(np.trapezoid((F - (x >= err)) ** 2, x))
+
+
+def nat_scores(T, target, s_fit, lead, draws=None):
+    """Score E = G (no direction) with sd s_fit against `target` at one cycle/lead; draws = target draws (measurement error)."""
+    G = T.G; y = target
+    if draws is not None: dens = float(np.mean(_tpdf(draws - G, s_fit)))
+    else: dens = float(_tpdf(y - G, s_fit))
+    lo, hi = G + s_fit * np.sqrt((T_DF - 2) / T_DF) * np.array([-1, 1]) * 1.476   # t5 10/90 % points (1.476)
+    return {"logs": np.log(dens), "crps": _crps_t(y - G, s_fit), "cov80": float(lo <= y <= hi), "z": (y - G) / s_fit}
+
+
+def permutation_p(d, two_sided=True):
+    """Exact sign-flip test on the mean of paired per-cycle differences (n <= 20); bootstrap 90 % CI over cycles."""
+    d = np.asarray(d, float); n = len(d); obs = d.mean()
+    signs = ((np.arange(2 ** n)[:, None] >> np.arange(n)) & 1) * 2 - 1
+    means = (signs * np.abs(d)[None, :]).mean(1)
+    p = float(np.mean(np.abs(means) >= abs(obs) - 1e-12)) if two_sided else float(np.mean(means >= obs - 1e-12))
+    rng = np.random.default_rng(1); bs = d[rng.integers(0, n, (20000, n))].mean(1)
+    return obs, p, tuple(np.round(np.percentile(bs, [5, 95]), 4)), int((d > 0).sum())
+
+
+def national_test(T0, V, Dr):
+    from . import national_mood as NM
+    T_raw = T0.copy(); T_adj = T0.copy(); T_adj["V"] = T_adj.year.map(V.V_adj)
+    full = {"raw": NM.fit(T_raw), "adj": NM.fit(T_adj)}
+    out = {"s_full": {k: {L: {"s0_live": round(NM.at(F, L, False)[1], 3), "s_about_mean": round(NM.at(F, L, True)[1], 3), "c": round(NM.at(F, L, True)[0], 3)}
+                          for L in LEADS_REPORT + (29,)} for k, F in full.items()}}
+    # per-lead raw RMS about zero (unsmoothed) for both targets
+    out["rms_by_lead"] = {int(L): {"raw": round(float(np.sqrt(np.mean((g.V - g.G) ** 2))), 3), "adj": round(float(np.sqrt(np.mean((g.year.map(V.V_adj) - g.G) ** 2))), 3)}
+                          for L, g in T0[T0.G.notna()].groupby("lead")}
+    rows = []
+    for y in sorted(T0.year.unique()):
+        Fr, Fa = NM.fit(T_raw, exclude=y), NM.fit(T_adj, exclude=y)
+        for _, r in T0[(T0.year == y) & T0.G.notna()].iterrows():
+            sr, sa = NM.at(Fr, r.lead, False)[1], NM.at(Fa, r.lead, False)[1]
+            va, dr = V.V_adj[y], Dr[y].values
+            for name, s_, tgt, drw in (("raw->V", sr, r.V, None), ("adj->Vadj", sa, va, dr), ("raw->Vadj", sr, va, dr), ("adj->V", sa, r.V, None)):
+                rows.append({"year": y, "lead": int(r.lead), "variant": name, "s": s_, **nat_scores(r, tgt, s_, r.lead, drw)})
+    S = pd.DataFrame(rows)
+    return out, S
+
+
+def compare(S, a, b, metric, years=None, higher_better=True):
+    """Per-cycle mean (over leads) of metric(a) - metric(b), sign so that positive = a better."""
+    q = S if years is None else S[S.year.isin(years)]
+    w = q.pivot_table(index=["year", "lead"], columns="variant", values=metric)
+    d = (w[a] - w[b]) * (1 if higher_better else -1)
+    per = d.groupby(level=0).mean()
+    obs, p, ci, npos = permutation_p(per.values)
+    return {"a": a, "b": b, "metric": metric, "mean_diff_a_better": round(obs, 4), "p_perm": round(p, 4), "ci90": ci, "cycles_a_better": f"{npos}/{len(per)}"}
+
+
+def seat_harness_15(T0, V, k_local=5.0):
+    """15 cycles. The seats respond to the contested-seat level: V_contested (turnout-weighted mean contested margin), which a
+    uniform swing d moves one for one. Variant v predicts V_contested = G + k0_v + t5 x sqrt(s_v(L)^2 + S_v^2) with
+    k0_v = mean over the OTHER cycles of (V_contested - V^v), S_v = their sd x sqrt(1 + 1/n) (the live model's S_SEAT idea), s_v
+    the leave-one-out national fit. Seats = uniform swing of the ACTUAL district margins by d = prediction - actual (seat_swing.csv)
+    plus a local seat noise N(0, k_local) the same in every variant -> log score / CRPS / 80 % coverage of the D seat count,
+    Brier of P(D >= 218). Variants: live = raw fit with the live constant S_SEAT 2.0; raw = raw fit with S refitted; adj = V_adj."""
+    from . import national_mood as NM
+    from scipy.stats import norm
+    SW = pd.read_csv(OUT / "seat_swing.csv")
+    T_raw = T0.copy(); T_adj = T0.copy(); T_adj["V"] = T_adj.year.map(V.V_adj)
+    years = sorted(T0.year.unique()); rows = []
+    ks = np.arange(0, 436)
+    for y in years:
+        oth = [x for x in years if x != y]; n = len(oth)
+        gap = {"raw": (V.V_contested - V.V)[oth], "adj": (V.V_contested - V.V_adj)[oth]}
+        Fr, Fa = NM.fit(T_raw, exclude=y), NM.fit(T_adj, exclude=y)
+        sw = SW[SW.year == y]; d_grid = sw.d.values; seats_at = sw.dem_seats.values; actual = int(seats_at[np.argmin(np.abs(d_grid))])
+        # direct: the contested level's own miss about the raw k0 (no direction), RMS over the other cycles per lead, a + b sqrt(L)
+        q = T0[T0.year.isin(oth) & T0.G.notna()].copy(); k0r = float(gap["raw"].mean())
+        q["e"] = q.year.map(V.V_contested) - q.G - k0r; rl = q.groupby("lead").e.apply(lambda e: float(np.sqrt(np.mean(e ** 2))))
+        Xd = np.c_[np.ones(len(rl)), np.sqrt(rl.index.values.astype(float))]; bd = np.linalg.lstsq(Xd, rl.values, rcond=None)[0]
+        Sd = {k: float(gp.std(ddof=1) * np.sqrt(1 + 1 / n)) for k, gp in gap.items()}
+        for _, r in T0[(T0.year == y) & T0.G.notna()].iterrows():
+            L_ = np.sqrt(np.clip(float(r.lead), 0, 120))
+            specs = (("live", Fr, gap["raw"], 2.0, None), ("raw", Fr, gap["raw"], Sd["raw"], None), ("adj", Fa, gap["adj"], Sd["adj"], None),
+                     ("adj spread, raw k0", Fa, gap["raw"], Sd["adj"], None), ("raw spread, adj k0", Fr, gap["adj"], Sd["raw"], None),
+                     ("direct", Fr, gap["raw"], None, float(bd[0] + bd[1] * L_)))
+            for name, F, gp, S_, direct in specs:
+                k0 = float(gp.mean())
+                s = NM.at(F, r.lead, False)[1]; tot = float(np.hypot(s, S_)) if direct is None else direct
+                S_ = S_ if S_ is not None else np.nan
+                mu_d = r.G + k0 - V.V_contested[y]          # predicted minus actual contested level
+                # P(d in each grid cell) under t5 (sd tot) centred on mu_d
+                edges = np.r_[d_grid[0] - 0.05, (d_grid[1:] + d_grid[:-1]) / 2, d_grid[-1] + 0.05]
+                cdf = _tcdf(edges - mu_d, tot); w = np.diff(cdf); w[0] += cdf[0]; w[-1] += 1 - cdf[-1]
+                pm = np.zeros(436)
+                for st_, ww in zip(seats_at, w): pm[int(st_)] += ww
+                # local seat noise (same in every variant)
+                kern = norm.pdf(np.arange(-30, 31), 0, k_local); kern /= kern.sum(); pm = np.convolve(pm, kern, mode="same")
+                pm = np.clip(pm, 1e-9, None); pm /= pm.sum(); cdfk = np.cumsum(pm)
+                lo, hi = ks[np.searchsorted(cdfk, 0.1)], ks[np.searchsorted(cdfk, 0.9)]
+                crps = float(np.sum((cdfk - (ks >= actual)) ** 2))
+                pmaj = float(pm[218:].sum())
+                rows.append({"year": y, "lead": int(r.lead), "variant": name, "k0": k0, "S": S_, "s_house": tot, "mean": float((ks * pm).sum()), "actual": actual,
+                             "logs": float(np.log(pm[actual])), "crps": crps, "cov80": float(lo <= actual <= hi),
+                             "brier_maj": (pmaj - float(actual >= 218)) ** 2, "pmaj": pmaj})
+    return pd.DataFrame(rows)
+
+
+def lean_intercepts(V):
+    """The live seat model's contested-seat intercepts (model.fit_prior, 538 lean / Cook PVI, 2018/2020/2022) against V and V_adj."""
+    from . import model as M
+    b, c, k, sd = M.fit_prior((2018, 2020, 2022))
+    rows = [{"year": int(y), "intercept": round(float(v), 3), "minus_V": round(float(v - V.V[y]), 3), "minus_Vadj": round(float(v - V.V_adj[y]), 3)} for y, v in k.items()]
+    R = pd.DataFrame(rows)
+    b2, c2, k2, _ = M.fit_prior((2018, 2022))
+    k0 = {"raw": float(np.mean([k2[y] - V.V[y] for y in (2018, 2022)])), "adj": float(np.mean([k2[y] - V.V_adj[y] for y in (2018, 2022)]))}
+    sd = {"raw": float(R.minus_V.std(ddof=1)), "adj": float(R.minus_Vadj.std(ddof=1))}
+    return R, k0, sd
+
+
+def live_harness(T0, V, S15):
+    """The public backtest path (model.build_house: lean + incumbency prior, 538 district polls, model.simulate) for 2018, 2020,
+    2022 at every lead of the table, E = our generic estimate G (no direction). k0 = the contested-seat intercept over the
+    national vote from the OTHER lean cycles; s_nat = hypot(s_v(L) leave-one-out, S_v) with S_v from the 15-cycle harness
+    (other cycles). Variants live (raw, S_SEAT 2.0), raw (S refit), adj."""
+    from . import model as M, national_mood as NM
+    b_, c_, kall, _ = M.fit_prior((2018, 2020, 2022))
+    T_raw = T0.copy(); T_adj = T0.copy(); T_adj["V"] = T_adj.year.map(V.V_adj)
+    eday = {2018: "2018-11-06", 2020: "2020-11-03", 2022: "2022-11-08"}
+    rows = []
+    for y in (2018, 2020, 2022):
+        oth = [x for x in (2018, 2020, 2022) if x != y]
+        Fr, Fa = NM.fit(T_raw, exclude=y), NM.fit(T_adj, exclude=y)
+        Sv = S15[S15.year == y].groupby("variant").S.first()
+        for _, r in T0[(T0.year == y) & T0.G.notna()].iterrows():
+            asof = (pd.Timestamp(eday[y]) - pd.Timedelta(days=int(r.lead))).strftime("%Y-%m-%d")
+            for name, F, tgt, S_ in (("live", Fr, "V", 2.0), ("raw", Fr, "V", Sv["raw"]), ("adj", Fa, "V_adj", Sv["adj"])):
+                k0 = float(np.mean([kall[x] - V[tgt][x] for x in oth]))
+                s = NM.at(F, r.lead, False)[1]; P = M.Params(k0=k0, s_nat=float(np.hypot(s, S_)))
+                seats = M.build_house(y, asof, P, E=float(r.G)); mg = M.simulate(seats, P, n=20000, seed=3)
+                ds = (mg > 0).sum(1); actual = int((seats.winner == "D").sum())
+                pm = np.bincount(ds, minlength=436)[:436] / len(ds)
+                from scipy.stats import norm
+                kern = norm.pdf(np.arange(-6, 7), 0, 1.5); kern /= kern.sum(); pm = np.convolve(pm, kern, mode="same"); pm = np.clip(pm, 1e-6, None); pm /= pm.sum()
+                cdfk = np.cumsum(pm); ks = np.arange(436)
+                rows.append({"year": y, "lead": int(r.lead), "variant": name, "k0": k0, "s_nat": P.s_nat, "mean": float(ds.mean()), "actual": actual,
+                             "logs": float(np.log(pm[actual])), "crps": float(np.sum((cdfk - (ks >= actual)) ** 2)),
+                             "cov80": float(np.percentile(ds, 10) <= actual <= np.percentile(ds, 90)), "pmaj": float((ds >= 218).mean()),
+                             "brier_maj": (float((ds >= 218).mean()) - float(actual >= 218)) ** 2, "pit": float((ds <= actual).mean())})
+        print(f"  live harness {y} done", flush=True)
+    return pd.DataFrame(rows)
+
+
+def test():
+    from . import national_mood as NM
+    pd.set_option("display.width", 250); pd.set_option("display.max_columns", 40)
+    T0 = pd.read_csv(NM.TABLE); V, Dr = vtables()
+    yrs = sorted(T0.year.unique())
+    print("== V vs V_adj (anchored), cycles in the national fit")
+    print(V.loc[yrs].assign(diff=lambda d: d.V_adj - d.V).round(2).to_string())
+    res = {}
+    out, S = national_test(T0, V, Dr); res["national"] = out
+    print("\n== s(L) all cycles: live = RMS about zero (DIRECTION False); 'about mean' = the research fit")
+    for k in ("raw", "adj"): print(k, {L: v for L, v in out["s_full"][k].items()})
+    print("per-lead RMS about zero (unsmoothed):", out["rms_by_lead"])
+    summ = S.groupby("variant").agg(logs=("logs", "mean"), crps=("crps", "mean"), cov80=("cov80", "mean"), z_rms=("z", lambda z: float(np.sqrt(np.mean(z ** 2)))), s=("s", "mean"))
+    print(summ.round(4).to_string())
+    cmp_ = []
+    for yrs_, lab in ((None, "all 15"), (MIDTERMS, "midterms 7")):
+        for a, b in (("adj->Vadj", "raw->Vadj"), ("adj->Vadj", "raw->V"), ("adj->V", "raw->V")):
+            for m, hb in (("logs", True), ("crps", False)):
+                cmp_.append({"set": lab, **compare(S, a, b, m, yrs_, hb)})
+    C = pd.DataFrame(cmp_); print(C.to_string()); res["national_compare"] = C.to_dict("records")
+    res["national_by_variant"] = summ.round(4).reset_index().to_dict("records")
+    # midterm-only summaries
+    res["national_by_variant_midterms"] = S[S.year.isin(MIDTERMS)].groupby("variant").agg(logs=("logs", "mean"), crps=("crps", "mean"), cov80=("cov80", "mean")).round(4).reset_index().to_dict("records")
+    print(pd.DataFrame(res["national_by_variant_midterms"]).to_string())
+
+    print("\n== the seat model's contested-seat intercept (lean-based, model.fit_prior)")
+    R, k0, sdl = lean_intercepts(V); print(R.to_string()); print("k0 (2018/2022 mean):", k0, " sd 2018-22:", sdl)
+    res["lean_intercepts"] = {"table": R.to_dict("records"), "k0": k0, "sd": sdl}
+    gap = pd.DataFrame({"Vc_minus_V": (V.V_contested - V.V)[yrs], "Vc_minus_Vadj": (V.V_contested - V.V_adj)[yrs]})
+    print("V_contested minus V / V_adj by cycle:"); print(gap.round(2).T.to_string()); print("sd:", gap.std().round(3).to_dict(), "mean:", gap.mean().round(3).to_dict())
+    res["contested_gap_sd"] = gap.std().round(3).to_dict(); res["contested_gap_mean"] = gap.mean().round(3).to_dict()
+    # direct error of the contested level vs G (diagnostic): what the national + seat terms jointly have to cover
+    Tq = T0[T0.G.notna()].copy(); Tq["e_c"] = Tq.year.map(V.V_contested) - Tq.G
+    res["direct_contested_rms_about_k0"] = {int(L): round(float(np.sqrt(np.mean((g.e_c - g.e_c.mean()) ** 2))), 3) for L, g in Tq.groupby("lead")}
+
+    print("\n== 15-cycle seat harness (uniform swing of the actual district margins)")
+    S15 = seat_harness_15(T0, V)
+    s15 = S15.groupby("variant").agg(logs=("logs", "mean"), crps=("crps", "mean"), cov80=("cov80", "mean"), brier=("brier_maj", "mean"), s_house=("s_house", "mean"), S=("S", "mean"))
+    print(s15.round(4).to_string()); res["seats15"] = s15.round(4).reset_index().to_dict("records")
+    c15 = []
+    for yrs_, lab in ((None, "all 15"), (MIDTERMS, "midterms 7")):
+        for a, b in (("adj", "live"), ("adj", "raw"), ("raw", "live"), ("adj spread, raw k0", "live"), ("raw spread, adj k0", "live"), ("direct", "live"), ("adj", "direct")):
+            for m, hb in (("logs", True), ("crps", False), ("brier_maj", False)):
+                c15.append({"set": lab, **compare(S15, a, b, m, yrs_, hb)})
+    C15 = pd.DataFrame(c15); print(C15.to_string()); res["seats15_compare"] = C15.to_dict("records")
+    for k in (3.0, 8.0):
+        s_ = seat_harness_15(T0, V, k_local=k); c_ = compare(s_, "adj", "live", "logs"); c2 = compare(s_, "adj", "raw", "logs")
+        res[f"seats15_local{k:g}"] = [c_, c2]; print(f"local seat noise {k}:", c_, c2)
+
+    if "--no-live" in sys.argv:
+        (OUT / "test_results_partial.json").write_text(json.dumps(res, indent=1, default=lambda o: o.item() if hasattr(o, "item") else str(o))); return res
+    print("\n== live-path harness 2018/2020/2022 (model.build_house + 538 district polls)")
+    LH = live_harness(T0, V, S15)
+    lh = LH.groupby("variant").agg(logs=("logs", "mean"), crps=("crps", "mean"), cov80=("cov80", "mean"), brier=("brier_maj", "mean"), s_nat=("s_nat", "mean"), k0=("k0", "mean"))
+    print(lh.round(4).to_string()); print(LH.groupby(["year", "variant"])[["mean", "actual", "pmaj", "logs", "crps"]].mean().round(3).to_string())
+    res["live3"] = lh.round(4).reset_index().to_dict("records")
+    res["live3_by_year"] = LH.groupby(["year", "variant"])[["mean", "actual", "pmaj", "logs", "crps", "s_nat", "k0"]].mean().round(3).reset_index().to_dict("records")
+    c3 = [compare(LH, a, b, m, None, hb) for a, b in (("adj", "live"), ("adj", "raw")) for m, hb in (("logs", True), ("crps", False))]
+    print(pd.DataFrame(c3).to_string()); res["live3_compare"] = c3
+    (OUT / "test_results.json").write_text(json.dumps(res, indent=1, default=lambda o: o.item() if hasattr(o, "item") else str(o)))
+    return res
+
+
+def implications_2026(n=20000):
+    """2026 today under the live mapping vs the V_adj mapping, through the live run path (build_web's sequence: national_mood,
+    early-vote movement split, shared draws, run2026.run, senate2026.run). Uses the cached inputs in data/cache."""
+    from . import national_mood as NM, model as M, run2026 as H, senate2026 as SN, early_vote as EV
+    T0 = pd.read_csv(NM.TABLE); V, _ = vtables()
+    Ta = T0.copy(); Ta["V"] = Ta.year.map(V.V_adj); Fa = NM.fit(Ta)
+    L = NM.lead(); s_live = NM.mapping()["s_vote"]; s_adj = NM.at(Fa, L, False)[1]
+    R, k0, sdl = lean_intercepts(V); infl = NM.S_SEAT / sdl["raw"]          # the live S_SEAT = the 2018-22 sd x 1.28
+    S_adj = sdl["adj"] * infl; dk0 = k0["adj"] - k0["raw"]
+    E_now = round(json.load(open(ROOT / "data" / "cache" / "generic_model.json"))["generic"]["diag"]["now"], 2)
+    out = {"lead": L, "E_now": E_now, "s_vote": {"live": s_live, "adj": round(s_adj, 3)}, "S_SEAT": {"live": NM.S_SEAT, "adj": round(S_adj, 3)},
+           "k0": {"live": M.Params().k0, "adj": round(M.Params().k0 + dk0, 3)}}
+    variants = {"live": (s_live, NM.S_SEAT, M.Params().k0), "adj (s, S_SEAT, k0 all refit)": (s_adj, S_adj, M.Params().k0 + dk0),
+                "adj s only (S_SEAT 2.0, k0 1.1)": (s_adj, NM.S_SEAT, M.Params().k0)}
+    for name, (sv, Sseat, k0v) in variants.items():
+        s_house = float(np.hypot(sv, Sseat)); SN.SEN_S_NAT = NM.SEN_PER_HOUSE * sv
+        try: rho_mv = EV.setup(n, s_house, SN.STATE_SHARED_MISS / SN.NAT_SLOPE, NM.RHO_STATEWIDE)
+        except Exception as e: print("  early-vote split off:", e); M.MOVE = None; rho_mv = None
+        Z, ZS = NM.draws(n, rho=rho_mv)
+        s, mg, S = H.run(E_now, P=M.Params(s_nat=s_house, k0=k0v), n=n, nat_z=Z)
+        SS, smg, so = SN.run(E_now, nat_z=ZS)
+        out[name] = {"s_house": round(s_house, 3), "sen_s_nat": round(SN.SEN_S_NAT, 3), "house_mean": round(S["dem_seats_mean"], 1), "house_p10": S["dem_seats_p10"],
+                     "house_p90": S["dem_seats_p90"], "p_dem_house": round(S["p_dem_majority"], 3), "senate_p51": round(so["p_dem_51plus"], 3), "senate_mean": round(so["dem_seats_mean"], 2)}
+        print(name, out[name], flush=True)
+    (OUT / "implications_2026.json").write_text(json.dumps(out, indent=1, default=float)); return out
+
+
 def probe():
     m = pd.read_csv(MEDSL, low_memory=False, encoding="latin-1"); print("=====BEGIN")
     q = m[(m.state_po == "TX") & (((m.year == 1996) & m.district.isin([18, 3])) | ((m.year == 2006) & m.district.isin([15, 21])))]
@@ -474,4 +744,4 @@ def probe():
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "build"
-    {"fetch": fetch, "probe": probe, "build": build}[cmd]()
+    {"fetch": fetch, "probe": probe, "build": build, "test": test, "2026": implications_2026}[cmd]()

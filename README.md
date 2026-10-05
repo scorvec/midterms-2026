@@ -159,6 +159,37 @@ midterms -5.1, presidential years -3.8, difference not significant). No signific
 The script and the per-year gap series are not distributed (Gallup does not allow republishing its tables); the figures
 above are aggregates. Source: Gallup, "Party Affiliation" trend, retrieved 2026-10-05.
 
+## Uncontested seats and the national vote (tested, not adopted)
+
+A one-off test (2026-10-05, branch `uncontested-adj`, `midterms/uncontested_adj.py`; not wired into the live model) asked
+whether the national-mood fit should compare the generic-ballot average G with an uncontested-adjusted House vote V_adj
+instead of the raw total V. The raw total is distorted by seats without a Democrat or a Republican (2018: 29 D-only and
+2 R-only seats plus same-party top-two generals; D 6.0M votes there, R 0.6M), Florida's unopposed races (no vote at all) and
+California/Washington same-party generals. V_adj replaces every seat without a D-v-R contest (23-97 a cycle) by an imputed
+two-party contest: margin from the seat's nearest contested result on the same lines (pair regression with a cycle-pair
+swing intercept, spline in the old margin, incumbency), else a safe-seat model; two-party turnout = the state's median
+contested turnout that cycle x the seat's relative turnout on the same lines, floored at the votes recorded. Masking contested
+seats (10-fold by seat): margin RMSE 11.0 overall / 11.4 on lopsided seats (bias -0.6, shared per-cycle 2.5) for the pair
+model, 18.0 for the safe-seat fallback (used for 3-14 seats a cycle), log turnout 0.116. Errors propagated by simulation give
+V_adj sd 0.2-0.5. V_adj - V, 1996-2024: -0.6, +1.3, +0.8, +0.7, +1.6, -0.4, -1.6, +1.2, +1.2, +0.9, -0.3, -1.0, -1.1, +0.7,
++0.7 (2018: D+8.7 -> D+7.7).
+
+Result (leave one cycle out, no directional correction): the national error s(L) (RMS about zero) falls from 4.27 to 3.90 at
+29 days (3.44 -> 3.20 on election day, 5.12 -> 4.63 at 120), and the contested-seat intercept over the national vote is steadier
+(2018/20/22 sd 1.56 -> 0.59). But scored against the same target (V_adj), the narrower V_adj error does not forecast better
+(log score -0.022 per cycle, 7/15 cycles better, permutation p 0.29; midterms 4/7, p 0.66). On a 15-cycle seat harness (uniform
+swing of the actual district margins) the V_adj variant scores better (log score +0.047, 14/15, p 0.008) - but all of that gain
+comes from the intercept moving 0.27 points toward the Republicans (the V_adj spread with the old intercept: +0.000, p 0.99),
+i.e. from the generic ballot's historical Democratic overstatement, which the no-direction rule excludes; on the live model's
+lean-based intercept the same refit moves 0.15 the other way. The live-path House backtest (2018/20/22) is a wash (2/3 cycles,
+p 0.5). Not adopted. Applied today it would move P(D House majority) 88 % -> 92 % (s_house 4.71 -> 3.98) and the Senate's shared
+shock 3.03 -> 2.78 (P(D 51+) 0.685 -> 0.682).
+
+Data (downloaded in GitHub Actions only, `.github/workflows/uncontested-data.yml`; derived per-cycle tables in
+`data/static/uncontested/`): MIT Election Data and Science Lab, U.S. House 1976-2018 (MEDSL GitHub copy of Harvard Dataverse
+doi:10.7910/DVN/IG0UN2, CC0; source the House Clerk); FEC "Federal Elections" 2018-2022 (public domain); House Clerk,
+"Statistics of the Presidential and Congressional Election of November 5, 2024" (public domain).
+
 ## Heating-oil adjustment
 
 A judgment term, not backtested: the rise in retail heating oil over the past year, times each district's (state's)

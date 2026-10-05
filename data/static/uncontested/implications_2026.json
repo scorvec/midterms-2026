@@ -1,0 +1,46 @@
+{
+ "lead": 29,
+ "E_now": 8.86,
+ "s_vote": {
+  "live": 4.267,
+  "adj": 3.903
+ },
+ "S_SEAT": {
+  "live": 2.0,
+  "adj": 0.758
+ },
+ "k0": {
+  "live": 1.1,
+  "adj": 1.253
+ },
+ "live": {
+  "s_house": 4.712,
+  "sen_s_nat": 3.034,
+  "house_mean": 241.1,
+  "house_p10": 216.0,
+  "house_p90": 269.0,
+  "p_dem_house": 0.884,
+  "senate_p51": 0.685,
+  "senate_mean": 51.96
+ },
+ "adj (s, S_SEAT, k0 all refit)": {
+  "s_house": 3.976,
+  "sen_s_nat": 2.776,
+  "house_mean": 241.0,
+  "house_p10": 219.0,
+  "house_p90": 265.0,
+  "p_dem_house": 0.92,
+  "senate_p51": 0.682,
+  "senate_mean": 51.93
+ },
+ "adj s only (S_SEAT 2.0, k0 1.1)": {
+  "s_house": 4.386,
+  "sen_s_nat": 2.776,
+  "house_mean": 240.8,
+  "house_p10": 217.0,
+  "house_p90": 267.0,
+  "p_dem_house": 0.898,
+  "senate_p51": 0.682,
+  "senate_mean": 51.93
+ }
+}
