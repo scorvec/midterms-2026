@@ -31,6 +31,7 @@ VINTAGE = 2025
 STATE_OUTLINE = "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_500k.zip"
 NH_VTD = "https://www2.census.gov/geo/tiger/TIGER2020PL/LAYER/VTD/2020/tl_2020_33_vtd20.zip"
 MAPSHAPER = "mapshaper@0.6.113"
+BUILD = "v1"                                     # bump (or change SIMPLIFY / QUANT) to force a rebuild on the next push
 SIMPLIFY = "interval=400"            # metres; mapshaper Visvalingam, keep-shapes
 QUANT = "quantization=100000"
 FIPS = {"AL": "01", "AK": "02", "AZ": "04", "AR": "05", "CA": "06", "CO": "08", "CT": "09", "DE": "10", "FL": "12", "GA": "13", "HI": "15",
@@ -62,10 +63,15 @@ def obj_name(st, ch):
     return f"{st}_{ch}"
 
 
+def signature():
+    return f"{VINTAGE}|{SIMPLIFY}|{QUANT}|{MAPSHAPER}|{BUILD}"
+
+
 def complete(need):
     """True when the committed TopoJSON already has a polygon for every modelled key of every chamber."""
     if not OUT.exists(): return False
     T = json.loads(OUT.read_text())
+    if T.get("meta", {}).get("build") != signature(): return False
     for (st, ch), keys in need.items():
         o = T["objects"].get(obj_name(*ALIAS.get((st, ch), (st, ch))))
         if o is None: return False
@@ -189,7 +195,7 @@ def build(force=False):
     T["meta"] = {"source": f"U.S. Census Bureau TIGER/Line Shapefiles {VINTAGE}, state legislative districts (SLDU/SLDL), clipped to the "
                            "Census 2024 cartographic state outline; New Hampshire floterials rebuilt from base districts / TIGER 2020 voting "
                            "districts by MEDSL 2024 precinct labels",
-                 "vintage": VINTAGE,
+                 "vintage": VINTAGE, "build": signature(),
                  "chambers": {obj_name(st, ch): {"object": obj_name(*ALIAS.get((st, ch), (st, ch))),
                                                  **({"floterials": "NH_lower_flot"} if (st, ch) == ("NH", "lower") and "NH_lower_flot" in T["objects"] else {}),
                                                  **NOTES.get((st, ch), {})} for (st, ch) in sorted(need)}}
