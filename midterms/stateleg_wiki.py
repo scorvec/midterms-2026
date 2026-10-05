@@ -184,16 +184,17 @@ def parse_page(st, ch, html):
     return recs, summ, ret
 
 
-def build(states=("MI", "MN", "WI", "AZ", "PA", "NH", "NC"), debug=False):
+def build(states=None, debug=False):
+    from .stateleg import CHAMBERS
     rows = []
-    for st in states:
-        for ch in ("upper", "lower"):
+    for st in dict.fromkeys(c[0] for c in CHAMBERS if states is None or c[0] in states):
+        for ch in [c[1] for c in CHAMBERS if c[0] == st]:
             t = title(st, ch)
             try: html = W.fetch(t)
             except Exception as e: print(f"  {t}: fetch failed ({str(e)[:60]})"); continue
             recs, summ, ret = parse_page(st, ch, html)
-            if debug and (st, ch) in (("MN", "lower"), ("MN", "upper"), ("NH", "upper"), ("NH", "lower")):
-                i = html.find('id="District_1A"') if st == "MN" else html.find('id="District_1"')
+            if debug and st in ("GA", "IA", "TX"):
+                i = html.find('id="District_1"')
                 i = i if i >= 0 else html.find("Candidates")
                 txt = re.sub(r"\s+", " ", html[max(i, 0): max(i, 0) + 2500]); print(f"  DEBUG {st} {ch} excerpt: {txt}")
             for d in sorted(set(recs) | set(summ), key=lambda x: (len(x), x)):
@@ -233,6 +234,10 @@ def qc_leans(o):
 if __name__ == "__main__":
     import sys
     o = build(debug="debug" in sys.argv); qc_leans(o)
+    if "debug" in sys.argv:
+        for st in ("GA", "IA", "TX"):
+            q = o[(o.state == st) & (o.district != "_retirements")]
+            print(st, q["source"].value_counts().to_dict()); print(q.head(8).to_string(max_colwidth=40))
     print(o[o.district != "_retirements"].groupby(["state", "chamber"]).agg(n=("district", "size"), with_cands=("n_dem", lambda x: x.notna().sum()),
           no_dem=("n_dem", lambda x: (x == 0).sum()), no_rep=("n_rep", lambda x: (x == 0).sum())).to_string())
     print(o[o.district != "_retirements"].groupby(["state", "chamber"]).head(3).to_string(max_colwidth=50)[:6000])
