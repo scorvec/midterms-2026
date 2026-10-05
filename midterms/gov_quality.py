@@ -20,6 +20,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 NOMINEES = ROOT / "data" / "static" / "gov_nominees.csv"
 QUALITY = ROOT / "data" / "static" / "gov_candidate_quality.csv"
+OFFICES = ROOT / "data" / "static" / "gov_nominee_offices.csv"      # the infobox offices read for each D / R nominee (audit)
 YEARS = list(range(1998, 2025, 2)) + [2026]
 _PARTY = re.compile(r"\s*\(([^)]+)\)\s*([\d.]+%)?")
 
@@ -85,15 +86,43 @@ def _year_month(v):
     return None
 
 
+def _infobox_fields(wikitext):
+    """{field: value} of the article's first {{Infobox ...}}, split on its TOP-LEVEL pipes (one-line infoboxes and values holding
+    [[a|b]] links or nested templates are handled)."""
+    i = wikitext.lower().find("{{infobox")
+    if i < 0: return {}
+    depth = 0; j = i; n = len(wikitext)
+    while j < n:
+        if wikitext.startswith("{{", j): depth += 1; j += 2; continue
+        if wikitext.startswith("}}", j):
+            depth -= 1; j += 2
+            if depth == 0: break
+            continue
+        j += 1
+    body = wikitext[i + 2:j - 2]; parts, cur, d_t, d_l, k = [], [], 0, 0, 0
+    while k < len(body):
+        two = body[k:k + 2]
+        if two == "{{": d_t += 1; cur.append(two); k += 2; continue
+        if two == "}}": d_t -= 1; cur.append(two); k += 2; continue
+        if two == "[[": d_l += 1; cur.append(two); k += 2; continue
+        if two == "]]": d_l -= 1; cur.append(two); k += 2; continue
+        if body[k] == "|" and d_t == 0 and d_l == 0: parts.append("".join(cur)); cur = []; k += 1; continue
+        cur.append(body[k]); k += 1
+    parts.append("".join(cur))
+    f = {}
+    for p in parts[1:]:
+        if "=" not in p: continue
+        key, v = p.split("=", 1); f.setdefault(key.strip().lower().replace(" ", "_"), v.strip())
+    return f
+
+
 def offices(wikitext):
     """[(office text, (start year, month) or None)] from the infobox fields office/title/jr/sr N and term_start N."""
-    f = {}
-    for k, v in re.findall(r"^\s*\|\s*([a-z_/ ]+?\d*)\s*=\s*(.*)$", wikitext, re.M | re.I):
-        f.setdefault(k.strip().lower().replace(" ", "_"), v)
+    f = _infobox_fields(wikitext or "")
     out = []
     for k, v in f.items():
-        m = re.match(r"^(office|title|jr/sr|order)(\d*)$", k)
-        if not m or m.group(1) == "order": continue
+        m = re.match(r"^(office|title|jr/sr)(\d*)$", k)
+        if not m: continue
         n = m.group(2); txt = _strip(v)
         if m.group(1) == "jr/sr": txt = txt + " " + _strip(f.get("state" + n, ""))
         out.append((txt, _year_month(f.get("term_start" + n, "") or f.get("termstart" + n, ""))))
@@ -114,6 +143,10 @@ def fetch():
     from . import fetch as F
     T = pd.read_csv(NOMINEES); want = sorted(set(T[T.has_page == 1].title))
     API = "https://en.wikipedia.org/w/api.php"; text, resolved = {}, {}
+    WT = ROOT / "data" / "raw" / "gov_wikitext.json"         # downloaded once (Actions cache), never committed
+    if WT.exists():
+        c = json.loads(WT.read_text()); text, resolved = c["text"], {k: tuple(v) for k, v in c["resolved"].items()}
+    want = [t for t in want if t not in text]
     for i in range(0, len(want), 50):
         chunk = want[i:i + 50]
         q = urllib.parse.urlencode({"action": "query", "prop": "revisions", "rvprop": "content|ids", "rvslots": "main", "redirects": 1,
@@ -127,14 +160,19 @@ def fetch():
             if revs: text[t] = revs[0]["slots"]["main"]["content"]; resolved[t] = (n, revs[0].get("revid"))
         time.sleep(1.5)
         print(f"  {min(i + 50, len(want))}/{len(want)} pages", flush=True)
-    rows = []
+    if want: WT.parent.mkdir(parents=True, exist_ok=True); WT.write_text(json.dumps({"text": text, "resolved": resolved}))
+    rows, orows = [], []
     for r in T.itertuples():
         wt = text.get(r.title) if r.has_page else None
-        sw, cg, what = experienced(offices(wt), int(r.year)) if wt else (False, False, "")
+        offs = offices(wt) if wt else []
+        sw, cg, what = experienced(offs, int(r.year)) if wt else (False, False, "")
+        if r.party.startswith(("Democratic", "DFL", "Republican")):
+            orows += [{"year": r.year, "state": r.state, "name": r.name, "office": o[:100], "start": f"{ym[0]}-{ym[1]:02d}" if ym else ""} for o, ym in offs]
         rows.append({"year": r.year, "state": r.state, "name": r.name, "party": r.party, "title": r.title, "has_page": int(wt is not None),
                      "statewide": int(sw), "congress": int(cg), "experienced": int(sw or cg), "office": what,
                      "revid": (resolved.get(r.title) or (None, None))[1]})
     Q = pd.DataFrame(rows); Q.to_csv(QUALITY, index=False)
+    pd.DataFrame(orows).to_csv(OFFICES, index=False)
     print(f"{len(Q)} nominees, {Q.has_page.sum()} articles read, experienced {Q.experienced.sum()} -> {QUALITY}")
     from . import fetch as F2
     F2.report()
