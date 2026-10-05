@@ -154,7 +154,40 @@ def structure(eid):
             for b in hs: print(" house item", json.dumps({kk: b[kk] for kk in b if kk not in ("precinctResults", "breakdownResults")})[:2500])
 
 
+HOUSE = re.compile(r"State\s*House.*?(?:District|Dist\.?|HD)\s*0*(\d+)\D*?-\s*(Rep|Dem)\b", re.I)
+
+
+def house_contests(eid):
+    """{(district, party): {candidate: votes}} for State House primary contests, summed over the statewide and county results."""
+    j = json.loads(get_cached(f"https://results.sos.ga.gov/cdn/results/Georgia/export-{eid}.json", f"export-{eid}.json").read_text())
+    items = list(j["results"].get("ballotItems", []))
+    names = set(); out = {}; seen_state = set()
+    for b in items:
+        m = HOUSE.search(b["name"])
+        if m: seen_state.add(b["name"])
+    for src, its in [("state", items)] + [(c["name"], c.get("ballotItems", [])) for c in j.get("localResults", [])]:
+        for b in its:
+            names.add(b["name"])
+            m = HOUSE.search(b["name"])
+            if not m: continue
+            if src != "state" and b["name"] in seen_state: continue          # the statewide result already totals it
+            key = (int(m.group(1)), "R" if m.group(2).lower() == "rep" else "D")
+            d = out.setdefault(key, {})
+            for o in b.get("ballotOptions", []): d[o["name"]] = d.get(o["name"], 0) + (o.get("voteCount") or 0)
+    hn = sorted(n for n in names if "house" in n.lower())
+    print(f"{eid}: {len(names)} distinct ballot items, {len(hn)} with 'house'; samples {hn[:6]} ... {hn[-4:]}; parsed {len(out)} State House party contests")
+    return out
+
+
+def elections_2026():
+    j = json.loads(get_cached("https://results.sos.ga.gov/results/public/api/jurisdictions/Georgia", "jurisdiction_Georgia.json").read_text())
+    return sorted((e["electionDate"], e["publicElectionId"], e["name"][0]["text"]) for e in j["elections"] if e["electionDate"].startswith("2026"))
+
+
 if __name__ == "__main__":
+    if "probe11" in sys.argv:
+        for e in elections_2026(): print(e)
+        house_contests("GeneralPrimary51926")
     if "probe10" in sys.argv: elections(); structure("GeneralPrimary51926")
     if "probe9" in sys.argv: probe9()
     if "probe8" in sys.argv: probe8()
