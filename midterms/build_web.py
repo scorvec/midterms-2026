@@ -15,6 +15,11 @@ from . import model as M, run2026 as H, senate2026 as SN, rcv as RC
 GRID_LO, GRID_HI, GRID_STEP = -10.0, 14.0, 0.5
 
 
+def _gov_poll():
+    from . import gov2026 as GV
+    return tuple(round(float(x), 2) for x in GV.poll_errors())
+
+
 def grid_for(E_now):
     """Slider grid CENTRED on today's environment (2026-09-29): E_now + 0.5 k inside [-10, 14]. Until then the grid was
     the fixed half points and the page/log showed the nearest one (E0 = round(2 E)/2), so a 0.5-pt trend move across a
@@ -239,7 +244,7 @@ def polls_page(out, gm, E_now, bias):
                         for k in ("generic", "approval")},
            "constants": {"half_life_days": M.AGE_HALF, "window_days": M.POLL_WINDOW, "nu": M.ROBUST_NU, "sponsor_weight": round(M.SPONSOR_WEIGHT, 2),
                          "house_poll_sd": M.HOUSE_POLL_SD, "house_poll_sys": M.HOUSE_POLL_SYS, "sen_poll_sd": SN.POLL_SD, "sen_poll_sys": round(SN.race_sys(), 2), "sen_shared": SN.STATE_SHARED_MISS,
-                         "gov_poll_sd": M.SEN_POLL_SD, "gov_poll_sys": M.SEN_POLL_SYS}}   # the Senate's live (midterm) value, not model.SEN_POLL_SYS
+                         "gov_poll_sd": _gov_poll()[0], "gov_poll_sys": _gov_poll()[1]}}   # gov2026.poll_errors (the Senate's unless switched)
     def clean(x):                                     # NaN is not JSON: the page's parser rejects the whole file
         if isinstance(x, dict): return {k: clean(v) for k, v in x.items()}
         if isinstance(x, list): return [clean(v) for v in x]

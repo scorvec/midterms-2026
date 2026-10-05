@@ -1,3 +1,0 @@
-# one-time governor data build (.github/workflows/gov-data.yml); first non-comment line = the gov_quality step
-# run 4: order / state+district / jr-sr conventions of Template:Infobox officeholder
-fetch

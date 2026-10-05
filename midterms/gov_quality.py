@@ -10,7 +10,7 @@ not experienced (has_page = 0). The term the prior can use is symmetric in party
     python -m midterms.gov_quality fetch        # wikitext of those pages (MediaWiki API, 50 titles a request)
                                                 #   -> data/static/gov_candidate_quality.csv (derived facts only)
     python -m midterms.gov_quality results2024  # the 2024 results table -> data/static/gov_results_2024.csv (gov2026.USE_2024)
-    python -m midterms.gov_quality all          # all three (GitHub Actions: .github/workflows/gov-data.yml; the laptop downloads nothing)
+    python -m midterms.gov_quality all          # all three - run once in GitHub Actions (a one-time workflow, since removed; the laptop downloads nothing)
 Source: Wikipedia (CC BY-SA 4.0), the yearly "United States gubernatorial elections" pages and the nominees' articles.
 """
 import json, re, sys, time, urllib.parse
@@ -22,7 +22,6 @@ NOMINEES = ROOT / "data" / "static" / "gov_nominees.csv"
 QUALITY = ROOT / "data" / "static" / "gov_candidate_quality.csv"
 OFFICES = ROOT / "data" / "static" / "gov_nominee_offices.csv"      # the infobox offices read for each D / R nominee (audit)
 YEARS = list(range(1998, 2025, 2)) + [2026]
-DEBUG_TITLES = ("Ned Lamont", "Sarah Huckabee Sanders")
 _PARTY = re.compile(r"\s*\(([^)]+)\)\s*([\d.]+%)?")
 
 STATEWIDE = re.compile(r"(?<!board of )governor|attorney general|secretary of (?:the )?state|treasurer|comptroller|controller|auditor|"
@@ -170,9 +169,6 @@ def fetch():
         print(f"  {min(i + 50, len(want))}/{len(want)} pages", flush=True)
     if want: WT.parent.mkdir(parents=True, exist_ok=True); WT.write_text(json.dumps({"text": text, "resolved": resolved}))
     rows, orows = [], []
-    for t in DEBUG_TITLES:                                   # parse audit in the workflow log
-        wt = text.get(t) or ""; i = wt.lower().find("{{infobox")
-        print(f"--- {t}: infobox at {i}; fields {list(_infobox_fields(wt))[:40]}"); print(wt[max(i, 0):max(i, 0) + 1200])
     for r in T.itertuples():
         wt = text.get(r.title) if r.has_page else None
         offs = offices(wt) if wt else []

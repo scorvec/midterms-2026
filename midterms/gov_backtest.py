@@ -1,9 +1,9 @@
 """Leak-free governor backtest (2026-10-05), the governor counterpart of the Senate's live harness.
 
-For every even-year cycle 2006-2022 and several dates in the campaign, the LIVE governor path (gov2026: Prior, prepare, blend,
+For every even-year cycle 2006-2024 and several dates in the campaign, the LIVE governor path (gov2026: Prior, prepare, blend,
 simulate) is run with only what was known on that date:
   - prior: gov2026.Prior fitted WALK-FORWARD on the governor races of earlier cycles only (1998 onward; never a later cycle)
-  - polls: 538's governor poll archive for 2018-2022 (every general-election poll; the nominees' question only, versions of one
+  - polls: 538's governor poll archive for 2018-2024 (every general-election poll; the nominees' question only, versions of one
     survey averaged, first round where ranked choice), 538's raw_polls for 2006-2016 (rated polls of the last ~60 days, so those
     cycles are scored from Oct 1 on); a poll is seen RELEASE_LAG days after its last field day
   - race-poll calibration (sponsor effects, pollster leans) fitted on earlier cycles only (race_poll_calibration.calibration(before))
@@ -31,7 +31,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "cache" / "gov_bt"
 RELEASE_LAG = 3
 EDAY = {2006: "2006-11-07", 2008: "2008-11-04", 2010: "2010-11-02", 2012: "2012-11-06", 2014: "2014-11-04", 2016: "2016-11-08",
-        2018: "2018-11-06", 2020: "2020-11-03", 2022: "2022-11-08"}
+        2018: "2018-11-06", 2020: "2020-11-03", 2022: "2022-11-08", 2024: "2024-11-05"}
 YEARS = tuple(EDAY)
 ARCHIVE_FROM = 2018
 DATES_ARCHIVE = ("09-01", "09-15", "10-01", "10-15", "11-01", "final")
@@ -124,7 +124,7 @@ def run_date(year, asof, H, n=10000, seed=13):
     rows = []
     for (i, r), mp, sp in zip(te.iterrows(), mu_p, sd_p):
         q = pol[pol.seat == r.state]
-        qq = GV.prepare(q) if len(q) else q
+        qq = GV.prepare(q.assign(margin=q.margin + GV.PULL_K * (mp - b3 * E))) if len(q) else q
         mu, sd, pm, ne = GV.blend(mp, sp, qq, asof, b3)
         npol = int(((qq.end_date > pd.Timestamp(asof) - pd.Timedelta(days=M.POLL_WINDOW)).sum()) if len(qq) else 0)
         rows.append({"year": year, "asof": pd.Timestamp(asof).date().isoformat(), "state": r.state, "race": f"{year}{r.state}", "E": E, "mu_prior": mp,
@@ -148,8 +148,10 @@ def run_date(year, asof, H, n=10000, seed=13):
     return S
 
 
-# ---- variants: name -> settings of gov2026's switches (and model globals) for that run. "base" = the live model before the review.
+# ---- variants: name -> settings of gov2026's switches (and model globals) for that run. "base" = the live model before the review;
+# "lean_t+succ+qual" = the prior adopted on 2026-10-05 (gov2026.PRIOR_SPEC).
 def _set(**kw):
+    kw.setdefault("PRIOR_SPEC", {})          # every variant is stated against the PRE-review prior unless it sets its own
     @contextlib.contextmanager
     def ctx():
         old = {}
@@ -192,20 +194,55 @@ VARIANTS = {
     "third_x1.5": _set(THIRD_MULT=1.5),
     "age42": _set(AGE_HALF=42.0),
     "age90": _set(AGE_HALF=90.0),
+    "poll_gov": _set(GOV_POLL_FIT=True),
+    "succ": _set(PRIOR_SPEC={"succ": True}),
+    "lean_t+inc_fix": _set(PRIOR_SPEC={"lean_t": True}, INC_FIX=True),
+    "lean_t+succ": _set(PRIOR_SPEC={"lean_t": True, "succ": True}),
+    "pull_wf": None,           # walk-forward PULL_K (run() sets it per cycle)
+    "qual": _set(PRIOR_SPEC={"qual": "all"}),
+    "qual_open": _set(PRIOR_SPEC={"qual": "open"}),
+    "lean_t+succ+qual": _set(PRIOR_SPEC={"lean_t": True, "succ": True, "qual": "all"}),
+    "lean_t+succ+qual_open": _set(PRIOR_SPEC={"lean_t": True, "succ": True, "qual": "open"}),
+    "lean_t+succ+race_sd_x1.15": _set(PRIOR_SPEC={"lean_t": True, "succ": True}, RACE_SD_K=1.15),
+    "lean_t+succ+race_sd_x0.9": _set(PRIOR_SPEC={"lean_t": True, "succ": True}, RACE_SD_K=0.9),
+    "lean_t+succ+shared_x1.5": _set(PRIOR_SPEC={"lean_t": True, "succ": True}, SHARED_K=1.5),
+    "lean_t+succ+prior_sd_x1.25": _set(PRIOR_SPEC={"lean_t": True, "succ": True}, PRIOR_SD_K=1.25),
 }
+
+
+PULL_WF = False
+
+
+def pull_fit(before):
+    """Walk-forward PULL_K: regress (result - poll average) on the prior's non-national part (prior - b3 E) with a fixed effect per
+    cycle and date, on the BASE run's polled rows of cycles before `before` (0 when there are none)."""
+    f = OUT / "rows_base.csv"
+    if not f.exists(): return 0.0
+    R = pd.read_csv(f); R = R[(R.year < before) & (R.npolls > 0) & R.pm.notna()]
+    if R.year.nunique() < 1: return 0.0
+    b3 = {y: GV.Prior(GV.history()[lambda h: h.year < y]).slope for y in R.year.unique()}
+    x = R.mu_prior - R.year.map(b3) * R.E; fe = pd.get_dummies(R.year.astype(str) + R["asof"].astype(str), dtype=float).values
+    b = np.linalg.lstsq(np.column_stack([fe, x]), (R.result - R.pm).values, rcond=None)[0]
+    return float(b[-1])
 
 
 def run(name, ctx=None, years=YEARS, n=10000, history=None):
     OUT.mkdir(parents=True, exist_ok=True)
-    ctx = ctx or VARIANTS[name]
+    global PULL_WF
+    PULL_WF = name.startswith("pull_wf")
+    ctx = ctx or VARIANTS[name] or _set()
     out = []
     with ctx():
+        old24 = GV.USE_2024; GV.USE_2024 = True               # 2024 is a test cycle (and, for 2026, a training one)
         H = history if history is not None else GV.history()
+        GV.USE_2024 = old24
         _POLLS.clear()
         for y in years:
+            GV.POLL_FIT_BEFORE = y
+            if PULL_WF: GV.PULL_K = pull_fit(y)
             for d in dates(y):
                 out.append(run_date(y, d, H, n=n))
-    M.CAL_OVERRIDE = None
+    M.CAL_OVERRIDE = None; GV.POLL_FIT_BEFORE = None; GV.PULL_K = 0.0; PULL_WF = False
     R = pd.concat(out, ignore_index=True); R["variant"] = name
     R.to_csv(OUT / f"rows_{name}.csv", index=False)
     return R
