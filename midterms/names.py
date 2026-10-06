@@ -10,4 +10,11 @@ ALIASES = {"angus reid global": "angus reid", "mclaughlin & associates": "mclaug
            "quantus insights": "quantus", "rmg research": "rmg", "echelon insights": "echelon", "morning consult": "morning consult", "quinnipiac": "quinnipiac", "quinnipiac university": "quinnipiac", "cbs news": "yougov/cbs", "cbs news/yougov": "yougov/cbs",
            "atlas intel": "atlasintel", "atlasintel": "atlasintel", "daily mail": "jl partners", "j.l. partners": "jl partners", "financial times": "ft/yougov", "the bullfinch group": "bullfinch", "cnn": "cnn/ssrs", "cnn/ssrs": "cnn/ssrs", "nbc news": "nbc", "yahoo news": "yougov/yahoo", "yahoo news/yougov": "yougov/yahoo"}
 def canon(name: str) -> str:
-    k = re.sub(r"\s+", " ", str(name).lower().replace("*", "")).strip(); return ALIASES.get(k, k)
+    k = re.sub(r"\s+", " ", str(name).lower().replace("*", "")).strip()
+    if k in ALIASES: return ALIASES[k]
+    # 2026-10-06: "Pollster - Sponsor" (a feed wrote "YouGov - CBS News") is the POLLSTER; the sponsor travels in its own field.
+    # Without this the CBS/YouGov 9/30-10/2 LV poll entered twice ("yougov" and "yougov - cbs news"), each at full weight.
+    if " - " in k:
+        base = k.split(" - ", 1)[0].strip()
+        if base: return ALIASES.get(base, base)
+    return k
