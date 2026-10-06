@@ -150,73 +150,74 @@ for those years, holds the last ~60 days; 2018-2024 use 538's full governor poll
 polls three days after their last field day, the prior fitted walk-forward on the governor races of earlier cycles (1998 onward,
 never a later cycle), and the generic-ballot average known at that lead (538's average to 2016, our estimator from 2018; no
 directional correction; the table is the one `national_mood --refit` uses and is not distributed). The 2026-only Hispanic / Asian
-loadings and the heating-oil term are left out. n = 234 races (every D-v-R race of each cycle, polled or not), 1,122 race-dates,
-10 cycles; 1,020 race-dates had polls. Scores: Brier and log loss of P(D wins), error of the race mean, the CRPS of the margin
+loadings and the heating-oil term are left out. n = 234 races (every D-v-R race of each cycle, polled or not), 1,086 race-dates,
+10 cycles; 984 race-dates had polls. Scores: Brier and log loss of P(D wins), error of the race mean, the CRPS of the margin
 (a proper score of the whole distribution), 80 % / 50 % interval coverage. Significance, paired by race and date: an exact sign-flip
 permutation of the cycle means (2^10 assignments; the honest unit, since a cycle shares one national miss) and a race-cluster
 bootstrap stratified by cycle (4,000 draws). In the table each change reads difference (cycles better; permutation p / bootstrap p).
 
-**Baseline** (the model before the review): log loss 0.1953, Brier 0.0576, margin MAE 6.07 and RMSE 8.53 points, CRPS 4.36,
-80 % intervals cover 76.0 % and 50 % intervals 45.3 % (too narrow), PIT KS 0.119.
+**Baseline** (the model before the review): log loss 0.1944, Brier 0.0573, margin MAE 6.11 and RMSE 8.59 points, CRPS 4.39,
+80 % intervals cover 76.1 % and 50 % intervals 45.1 % (too narrow), PIT KS 0.121.
 
 | variant | log loss | Brier | CRPS | margin MAE | 80 % cov. |
 |---|---|---|---|---|---|
-| base (model before the review) | 0.1953 | 0.0576 | 4.364 | 6.07 | 0.760 |
-| successor incumbents coded as incumbents (parser fix) | -0.0053 (7/10; 0.129 / 0.065) | -0.0020 (7/10; 0.152 / 0.061) | +0.029 (3/10; 0.307 / 0.257) | +0.03 (0.510 / 0.447) | 0.758 |
-| lean slope with a time trend | -0.0049 (6/10; 0.061 / 0.017) | -0.0015 (7/10; 0.070 / 0.038) | -0.223 (7/10; 0.025 / 0.000) | -0.31 (0.023 / 0.001) | 0.789 |
-| recency weights, half-life 12 years | -0.0006 (6/10; 0.439 / 0.266) | -0.0001 (5/10; 0.562 / 0.507) | -0.038 (9/10; 0.053 / 0.011) | -0.06 (0.035 / 0.002) | 0.761 |
-| recency weights, half-life 8 years | -0.0007 (5/10; 0.525 / 0.372) | -0.0001 (5/10; 0.809 / 0.661) | -0.052 (9/10; 0.061 / 0.018) | -0.08 (0.033 / 0.003) | 0.763 |
-| fit without races with a 15 %+ third candidate | -0.0007 (3/10; 0.643 / 0.368) | -0.0003 (3/10; 0.432 / 0.214) | -0.022 (6/10; 0.180 / 0.068) | -0.02 (0.250 / 0.156) | 0.766 |
-| previous governor race residual | +0.0008 (7/10; 0.930 / 0.492) | +0.0002 (7/10; 0.906 / 0.665) | -0.045 (8/10; 0.160 / 0.087) | -0.06 (0.088 / 0.089) | 0.770 |
-| previous race residual, own v inherited | -0.0004 (7/10; 0.805 / 0.744) | -0.0002 (7/10; 0.578 / 0.633) | -0.028 (7/10; 0.473 / 0.372) | -0.04 (0.471 / 0.420) | 0.760 |
-| incumbent's own previous residual | -0.0006 (7/10; 0.512 / 0.279) | -0.0003 (8/10; 0.311 / 0.189) | -0.020 (7/10; 0.584 / 0.481) | -0.03 (0.561 / 0.498) | 0.760 |
-| prior sd: open v incumbent | +0.0006 (5/10; 0.314 / 0.082) | +0.0001 (6/10; 0.471 / 0.300) | +0.017 (1/10; 0.018 / 0.059) | +0.02 (0.021 / 0.076) | 0.748 |
-| prior sd grows with distance from 0 | +0.0018 (3/10; 0.127 / 0.051) | +0.0004 (4/10; 0.533 / 0.282) | +0.057 (2/10; 0.029 / 0.004) | +0.07 (0.035 / 0.006) | 0.751 |
-| prior sd x0.8 | -0.0057 (9/10; 0.014 / 0.006) | -0.0013 (8/10; 0.156 / 0.099) | +0.146 (0/10; 0.002 / 0.000) | +0.13 (0.006 / 0.004) | 0.727 |
-| prior sd x1.25 | +0.0066 (1/10; 0.004 / 0.000) | +0.0018 (1/10; 0.025 / 0.003) | -0.065 (8/10; 0.029 / 0.015) | -0.05 (0.076 / 0.121) | 0.778 |
-| shared statewide shock x0.5 | -0.0032 (7/10; 0.293 / 0.321) | -0.0008 (9/10; 0.127 / 0.280) | +0.024 (3/10; 0.104 / 0.023) | +0.00 (1.000 / 1.000) | 0.703 |
-| shared statewide shock x1.5 | +0.0081 (1/10; 0.035 / 0.022) | +0.0016 (1/10; 0.031 / 0.038) | +0.003 (6/10; 0.859 / 0.778) | +0.00 (1.000 / 1.000) | 0.822 |
-| race sd x1.15 | +0.0059 (2/10; 0.021 / 0.007) | +0.0012 (1/10; 0.014 / 0.006) | -0.018 (7/10; 0.135 / 0.081) | +0.00 (1.000 / 1.000) | 0.810 |
-| race sd x0.9 | -0.0033 (7/10; 0.070 / 0.035) | -0.0007 (9/10; 0.020 / 0.019) | +0.023 (2/10; 0.016 / 0.000) | +0.00 (1.000 / 1.000) | 0.730 |
-| undecided penalty x2 | +0.0001 (3/10; 0.791 / 0.822) | -0.0000 (4/10; 0.895 / 0.942) | +0.002 (5/10; 0.826 / 0.775) | +0.00 (0.523 / 0.613) | 0.758 |
-| undecided penalty from 8 % | +0.0002 (2/10; 0.459 / 0.475) | +0.0000 (4/10; 1.000 / 0.988) | +0.003 (4/10; 0.477 / 0.398) | +0.01 (0.166 / 0.145) | 0.758 |
-| no undecided penalty | +0.0002 (5/10; 0.785 / 0.769) | +0.0001 (5/10; 0.570 / 0.557) | +0.002 (4/10; 0.836 / 0.828) | -0.00 (0.812 / 0.873) | 0.757 |
-| third-candidate penalty x1.5 | +0.0002 (1/10; 0.250 / 0.026) | +0.0001 (1/10; 0.375 / 0.050) | +0.003 (2/10; 0.875 / 0.513) | +0.00 (0.875 / 0.694) | 0.760 |
-| poll staleness half-life 42 d | -0.0003 (3/10; 0.730 / 0.646) | -0.0002 (5/10; 0.471 / 0.475) | +0.009 (3/10; 0.301 / 0.408) | +0.01 (0.324 / 0.445) | 0.765 |
-| poll staleness half-life 90 d | +0.0005 (5/10; 0.410 / 0.305) | +0.0002 (5/10; 0.268 / 0.288) | -0.003 (5/10; 0.572 / 0.671) | -0.01 (0.451 / 0.512) | 0.755 |
-| governor poll errors from raw_polls (4.4 / 5.4) | +0.0016 (4/10; 0.484 / 0.521) | +0.0001 (2/10; 0.885 / 0.825) | +0.067 (2/10; 0.016 / 0.001) | +0.07 (0.025 / 0.019) | 0.772 |
-| successor incumbents, own coefficient | -0.0056 (8/10; 0.020 / 0.006) | -0.0021 (8/10; 0.025 / 0.007) | +0.016 (4/10; 0.428 / 0.429) | +0.01 (0.645 / 0.622) | 0.759 |
-| lean trend + parser fix | -0.0091 (9/10; 0.027 / 0.005) | -0.0032 (8/10; 0.018 / 0.007) | -0.166 (7/10; 0.041 / 0.002) | -0.22 (0.053 / 0.004) | 0.782 |
-| lean trend + successor term | -0.0096 (9/10; 0.008 / 0.001) | -0.0033 (9/10; 0.004 / 0.002) | -0.183 (7/10; 0.035 / 0.000) | -0.25 (0.045 / 0.003) | 0.781 |
-| polls pulled toward the state's fundamentals (k walk-forward) | -0.0044 (7/10; 0.086 / 0.177) | -0.0011 (6/10; 0.695 / 0.369) | -0.096 (7/10; 0.043 / 0.009) | -0.13 (0.070 / 0.025) | 0.785 |
-| nominee experience D - R | -0.0043 (5/10; 0.283 / 0.195) | -0.0022 (6/10; 0.107 / 0.086) | -0.085 (8/10; 0.027 / 0.005) | -0.13 (0.020 / 0.006) | 0.770 |
-| nominee experience, open seats only | -0.0038 (6/10; 0.164 / 0.185) | -0.0020 (6/10; 0.047 / 0.057) | -0.053 (8/10; 0.172 / 0.061) | -0.09 (0.102 / 0.015) | 0.770 |
-| **lean trend + successor term + experience (adopted)** | -0.0112 (9/10; 0.037 / 0.018) | -0.0045 (8/10; 0.020 / 0.005) | -0.258 (8/10; 0.012 / 0.000) | -0.35 (0.016 / 0.000) | 0.796 |
-| lean trend + successor + experience (open seats) | -0.0110 (9/10; 0.018 / 0.006) | -0.0043 (8/10; 0.014 / 0.001) | -0.228 (7/10; 0.021 / 0.000) | -0.31 (0.021 / 0.000) | 0.791 |
-| lean trend + successor, race sd x1.15 | -0.0039 (4/10; 0.363 / 0.361) | -0.0022 (5/10; 0.125 / 0.106) | -0.189 (6/10; 0.031 / 0.000) | -0.25 (0.045 / 0.003) | 0.824 |
-| lean trend + successor, race sd x0.9 | -0.0128 (8/10; 0.016 / 0.001) | -0.0040 (9/10; 0.012 / 0.001) | -0.169 (7/10; 0.062 / 0.001) | -0.25 (0.045 / 0.003) | 0.756 |
-| lean trend + successor, shared shock x1.5 | -0.0007 (2/10; 0.865 / 0.948) | -0.0015 (4/10; 0.266 / 0.404) | -0.172 (6/10; 0.041 / 0.002) | -0.25 (0.045 / 0.003) | 0.838 |
-| lean trend + successor, prior sd x1.25 | -0.0018 (6/10; 0.590 / 0.537) | -0.0010 (7/10; 0.416 / 0.337) | -0.219 (8/10; 0.008 / 0.000) | -0.28 (0.016 / 0.002) | 0.785 |
+| base (model before the review) | 0.1944 | 0.0573 | 4.390 | 6.11 | 0.761 |
+| successor incumbents coded as incumbents (parser fix) | -0.0044 (7/10; 0.129 / 0.059) | -0.0017 (7/10; 0.152 / 0.062) | +0.035 (3/10; 0.248 / 0.183) | +0.03 (0.469 / 0.372) | 0.758 |
+| lean slope with a time trend | -0.0050 (6/10; 0.061 / 0.018) | -0.0015 (7/10; 0.070 / 0.070) | -0.230 (7/10; 0.025 / 0.000) | -0.32 (0.023 / 0.001) | 0.789 |
+| recency weights, half-life 12 years | -0.0006 (6/10; 0.484 / 0.266) | -0.0001 (5/10; 0.676 / 0.578) | -0.039 (9/10; 0.064 / 0.017) | -0.06 (0.041 / 0.004) | 0.762 |
+| recency weights, half-life 8 years | -0.0007 (5/10; 0.553 / 0.377) | -0.0001 (5/10; 0.871 / 0.757) | -0.053 (9/10; 0.072 / 0.028) | -0.08 (0.037 / 0.006) | 0.762 |
+| fit without races with a 15 %+ third candidate | -0.0007 (3/10; 0.666 / 0.354) | -0.0003 (3/10; 0.484 / 0.249) | -0.021 (6/10; 0.184 / 0.103) | -0.02 (0.328 / 0.228) | 0.766 |
+| previous governor race residual | +0.0007 (7/10; 0.965 / 0.569) | +0.0002 (7/10; 0.938 / 0.729) | -0.049 (8/10; 0.160 / 0.086) | -0.07 (0.096 / 0.092) | 0.770 |
+| previous race residual, own v inherited | -0.0009 (7/10; 0.383 / 0.468) | -0.0004 (7/10; 0.312 / 0.467) | -0.033 (7/10; 0.441 / 0.338) | -0.04 (0.459 / 0.406) | 0.761 |
+| incumbent's own previous residual | -0.0006 (7/10; 0.518 / 0.286) | -0.0003 (8/10; 0.314 / 0.196) | -0.023 (7/10; 0.562 / 0.469) | -0.03 (0.555 / 0.482) | 0.761 |
+| prior sd: open v incumbent | +0.0007 (5/10; 0.268 / 0.059) | +0.0002 (6/10; 0.471 / 0.254) | +0.015 (1/10; 0.018 / 0.106) | +0.02 (0.021 / 0.152) | 0.748 |
+| prior sd grows with distance from 0 | +0.0021 (3/10; 0.105 / 0.033) | +0.0005 (4/10; 0.439 / 0.221) | +0.055 (2/10; 0.029 / 0.005) | +0.07 (0.035 / 0.009) | 0.750 |
+| prior sd x0.8 | -0.0063 (9/10; 0.014 / 0.005) | -0.0015 (9/10; 0.143 / 0.085) | +0.140 (0/10; 0.002 / 0.000) | +0.12 (0.006 / 0.007) | 0.728 |
+| prior sd x1.25 | +0.0071 (1/10; 0.004 / 0.000) | +0.0020 (1/10; 0.027 / 0.003) | -0.060 (8/10; 0.031 / 0.031) | -0.05 (0.143 / 0.150) | 0.778 |
+| shared statewide shock x0.5 | -0.0037 (7/10; 0.258 / 0.226) | -0.0008 (9/10; 0.139 / 0.239) | +0.024 (3/10; 0.119 / 0.018) | +0.00 (1.000 / 1.000) | 0.703 |
+| shared statewide shock x1.5 | +0.0085 (2/10; 0.051 / 0.008) | +0.0017 (1/10; 0.037 / 0.021) | +0.004 (6/10; 0.867 / 0.775) | +0.00 (1.000 / 1.000) | 0.822 |
+| race sd x1.15 | +0.0063 (3/10; 0.031 / 0.001) | +0.0013 (1/10; 0.016 / 0.002) | -0.019 (7/10; 0.148 / 0.076) | +0.00 (1.000 / 1.000) | 0.811 |
+| race sd x0.9 | -0.0037 (7/10; 0.066 / 0.006) | -0.0008 (9/10; 0.023 / 0.006) | +0.024 (2/10; 0.016 / 0.001) | +0.00 (1.000 / 1.000) | 0.729 |
+| undecided penalty x2 | +0.0002 (3/10; 0.578 / 0.639) | +0.0000 (4/10; 0.984 / 0.983) | +0.002 (5/10; 0.824 / 0.769) | +0.01 (0.518 / 0.581) | 0.758 |
+| undecided penalty from 8 % | +0.0003 (2/10; 0.277 / 0.309) | +0.0000 (4/10; 0.662 / 0.792) | +0.002 (4/10; 0.607 / 0.558) | +0.01 (0.211 / 0.229) | 0.758 |
+| no undecided penalty | +0.0001 (5/10; 0.891 / 0.931) | +0.0001 (6/10; 0.629 / 0.643) | +0.001 (5/10; 0.875 / 0.856) | -0.00 (0.758 / 0.838) | 0.757 |
+| third-candidate penalty x1.5 | +0.0002 (1/10; 0.250 / 0.026) | +0.0001 (1/10; 0.375 / 0.050) | +0.004 (2/10; 0.875 / 0.513) | +0.00 (0.875 / 0.694) | 0.761 |
+| poll staleness half-life 42 d | +0.0000 (3/10; 0.906 / 0.907) | -0.0001 (5/10; 0.646 / 0.750) | +0.012 (3/10; 0.178 / 0.308) | +0.02 (0.191 / 0.345) | 0.765 |
+| poll staleness half-life 90 d | +0.0002 (5/10; 0.422 / 0.577) | +0.0001 (5/10; 0.346 / 0.491) | -0.005 (5/10; 0.424 / 0.537) | -0.01 (0.289 / 0.390) | 0.755 |
+| governor poll errors from raw_polls (4.4 / 5.4) | +0.0015 (4/10; 0.555 / 0.467) | +0.0001 (2/10; 0.955 / 0.914) | +0.061 (2/10; 0.016 / 0.001) | +0.07 (0.035 / 0.025) | 0.773 |
+| successor incumbents, own coefficient | -0.0049 (8/10; 0.020 / 0.005) | -0.0018 (8/10; 0.025 / 0.005) | +0.021 (4/10; 0.340 / 0.330) | +0.02 (0.580 / 0.533) | 0.760 |
+| lean trend + parser fix | -0.0083 (9/10; 0.027 / 0.003) | -0.0028 (8/10; 0.018 / 0.009) | -0.167 (7/10; 0.041 / 0.003) | -0.22 (0.055 / 0.006) | 0.782 |
+| lean trend + successor term | -0.0090 (9/10; 0.008 / 0.001) | -0.0030 (9/10; 0.004 / 0.003) | -0.185 (7/10; 0.035 / 0.001) | -0.25 (0.045 / 0.004) | 0.781 |
+| polls pulled toward the state's fundamentals (k walk-forward) | -0.0046 (7/10; 0.074 / 0.150) | -0.0012 (6/10; 0.676 / 0.339) | -0.091 (7/10; 0.035 / 0.014) | -0.12 (0.066 / 0.037) | 0.786 |
+| nominee experience D - R | -0.0049 (5/10; 0.242 / 0.139) | -0.0024 (6/10; 0.107 / 0.075) | -0.094 (8/10; 0.027 / 0.004) | -0.13 (0.025 / 0.004) | 0.771 |
+| nominee experience, open seats only | -0.0045 (6/10; 0.107 / 0.106) | -0.0023 (6/10; 0.031 / 0.040) | -0.056 (8/10; 0.178 / 0.057) | -0.09 (0.129 / 0.019) | 0.770 |
+| **lean trend + successor term + experience (adopted)** | -0.0111 (9/10; 0.037 / 0.011) | -0.0043 (8/10; 0.020 / 0.004) | -0.266 (8/10; 0.012 / 0.000) | -0.35 (0.016 / 0.000) | 0.796 |
+| adopted + undecideds toward the trailing candidate (k walk-forward) | -0.0114 (8/10; 0.158 / 0.023) | -0.0042 (7/10; 0.045 / 0.011) | -0.084 (5/10; 0.461 / 0.266) | -0.12 (0.451 / 0.267) | 0.760 |
+| lean trend + successor + experience (open seats) | -0.0110 (9/10; 0.018 / 0.003) | -0.0042 (8/10; 0.014 / 0.001) | -0.233 (7/10; 0.021 / 0.000) | -0.32 (0.021 / 0.000) | 0.791 |
+| lean trend + successor, race sd x1.15 | -0.0029 (4/10; 0.363 / 0.402) | -0.0018 (5/10; 0.125 / 0.124) | -0.192 (6/10; 0.031 / 0.000) | -0.25 (0.045 / 0.004) | 0.824 |
+| lean trend + successor, race sd x0.9 | -0.0125 (8/10; 0.016 / 0.000) | -0.0037 (9/10; 0.012 / 0.002) | -0.170 (7/10; 0.064 / 0.004) | -0.25 (0.045 / 0.004) | 0.755 |
+| lean trend + successor, shared shock x1.5 | +0.0000 (2/10; 0.988 / 0.946) | -0.0012 (4/10; 0.266 / 0.429) | -0.175 (6/10; 0.041 / 0.002) | -0.25 (0.045 / 0.004) | 0.839 |
+| lean trend + successor, prior sd x1.25 | -0.0010 (6/10; 0.805 / 0.707) | -0.0007 (7/10; 0.553 / 0.509) | -0.218 (8/10; 0.008 / 0.000) | -0.28 (0.016 / 0.003) | 0.785 |
 
 **Adopted** (`gov2026.PRIOR_SPEC = {"lean_t": True, "succ": True, "qual": "all"}`; `{}` restores the old prior):
 - *The lean slope's time trend* (lean x (year - 2010) / 10). Governor races have nationalized: the per-cycle lean slope rose from
   0.1-0.2 (1998-2006) to 0.43-0.54 (2018-2022); a pooled slope (0.36) is too flat for a current race, which compressed every prior
-  toward 50-50. On its own: CRPS -0.22 (7/10, p 0.025 / <0.001), MAE -0.31 (p 0.023 / 0.001). Fitted 1998-2024: 0.277 + 0.110 per
+  toward 50-50. On its own: CRPS -0.23 (7/10, p 0.025 / <0.001), MAE -0.32 (p 0.023 / 0.001). Fitted 1998-2024: 0.277 + 0.110 per
   decade -> 0.45 in 2026 (one cycle beyond the data, the same reach the walk-forward test made every cycle).
 - *Successor incumbents as their own term*. The history parser read only "re-elected / lost re-election / defeated", so 19 governors
   who had succeeded mid-term and then ran (Ivey 2018, Reynolds 2018, Hochul 2022, McKee 2022, Parson 2020, Quinn 2010 ...) were fitted
   as open seats - while the 2026 race table coded every incumbent running, including the successor Rhoden (SD), as a full incumbent.
-  With their own coefficient (the Senate's appointee rule in spirit): log loss -0.0056 (8/10, p 0.020 / 0.007), Brier -0.0021 (p 0.025
-  / 0.008); on top of the lean trend log loss -0.0047 (8/10, p 0.047 / 0.042). Simply recoding them as incumbents (`INC_FIX`) scored
+  With their own coefficient (the Senate's appointee rule in spirit): log loss -0.0049 (8/10, p 0.020 / 0.005), Brier -0.0018 (p 0.025
+  / 0.006); on top of the lean trend log loss -0.0040 (8/10, p 0.047 / 0.037). Simply recoding them as incumbents (`INC_FIX`) scored
   the same within noise and is not used. Fitted: 10.8 points for an elected incumbent, 6.9 for a successor.
 - *Nominee experience*, D minus R (+1 / 0 / -1): a nominee is experienced if, before the race, he or she held a statewide elected
   office (governor, lieutenant governor, attorney general, secretary of state, treasurer, comptroller, auditor, superintendent, an
   elected state commission) or a seat in Congress - read from each nominee's Wikipedia infobox (`midterms/gov_quality.py`); a sitting
-  governor counts as experienced. Symmetric in party by construction. On top of the lean trend and successor term: CRPS -0.075 (9/10,
-  p 0.033 / 0.007), MAE -0.10 (p 0.041 / 0.018), log loss and Brier a little better (not significant). Fitted: 6.1 points.
-- Together against the baseline: log loss -0.0112 (9/10 cycles, p 0.037 / 0.018), Brier -0.0045 (8/10, p 0.020 / 0.005), CRPS -0.26
-  (8/10, p 0.012 / <0.001), margin MAE 6.07 -> 5.72 (p 0.016 / <0.001); 80 % coverage 76.0 -> 79.6 %, 50 % 45.3 -> 47.2 %, PIT KS
-  0.119 -> 0.110. Better at every date (log loss Sep 1 0.196 -> 0.171, final 0.173 -> 0.169); unpolled race-dates' MAE 14.2 -> 11.5.
+  governor counts as experienced. Symmetric in party by construction. On top of the lean trend and successor term: CRPS -0.081 (9/10,
+  p 0.037 / 0.008), MAE -0.10 (p 0.049 / 0.021), log loss and Brier a little better (not significant). Fitted: 6.1 points.
+- Together against the baseline: log loss -0.0111 (9/10 cycles, p 0.037 / 0.011), Brier -0.0043 (8/10, p 0.020 / 0.004), CRPS -0.27
+  (8/10, p 0.012 / <0.001), margin MAE 6.11 -> 5.76 (p 0.016 / <0.001); 80 % coverage 76.1 -> 79.6 %, 50 % 45.1 -> 47.2 %, PIT KS
+  0.121 -> 0.109. Better at every date (log loss Sep 1 0.196 -> 0.171, final 0.173 -> 0.169); unpolled race-dates' MAE 14.2 -> 11.5.
 - 2024 added to the history (`gov2026.USE_2024`, `data/static/gov_results_2024.csv`): a data update, not a model change; 2024 is
   also the harness's tenth test cycle.
 
@@ -236,16 +237,16 @@ in party; CRPS better, log loss not significant).
 **Measured, not used.**
 - Governor poll errors, measured exactly as the Senate's were (538 raw_polls, last 60 days, races with 3+ polls): within-race sd 4.89
   v 4.63 for the Senate, race-average systematic 5.73 v 5.32. Scaling the Senate's 4.2 / 5.0 by those ratios (4.4 / 5.4, fitted
-  walk-forward) made every score worse (CRPS +0.07, p 0.016 / <0.001): the governor blend keeps the Senate's poll errors.
+  walk-forward) made every score worse (CRPS +0.06, p 0.016 / 0.001): the governor blend keeps the Senate's poll errors.
 - The shared miss: the cycle-mean governor polling miss (non-partisan polls, last 21 days, 1998-2022) has RMS 3.5 points against the
   Senate's 2.8, and the two offices' cycle means correlate 0.90. The simulation's governor shared shock (4.2 x b3 / 0.8: 2.9 points before the review, 3.2 with the
   refitted national slope b3 0.55 -> 0.62) is left as it is: x0.5 and x1.5 each lose on log loss or coverage.
 - Same-state Senate and governor races: within a cycle, their polling errors correlate 0.58 (95 % 0.46-0.68; 149 state-years, 13
   cycles), a shared state part of about 3.7 points. The simulation draws the two races' own errors independently (they share only the
-  national draw). That matters only for joint outcomes (both races in one state); no per-race score can test it, so nothing changed.
+  national draw). See follow-up 1 below.
 - Undecideds: allocating them in proportion to the candidates' shares is not supported - on 538's governor polls with cycle fixed
   effects the coefficient is -0.19 (se 0.04) in the last 21 days and -0.52 (0.06) at 21-62 days (they lean to the trailing
-  candidate), and -0.34 / +0.02 / -0.37 on the 2018-22 archive by lead. Undecideds stay a symmetric variance term.
+  candidate), and -0.34 / +0.02 / -0.37 on the 2018-22 archive by lead. Undecideds stay a symmetric variance term (follow-up 2).
 - Results run more lopsided than the race means: after removing each cycle's shared miss the winner beats the mean by about 2 points
   (both parties' favourites). The lean trend removes part of it; the rest is not corrected (the symmetric poll pull above was not
   significant).
@@ -293,6 +294,100 @@ linked article), `gov_candidate_quality.csv` (experienced or not, the qualifying
 offices read, for audit) - facts derived from Wikipedia (CC BY-SA 4.0), built once in GitHub Actions by `gov_quality.py all` (583
 articles in 13 MediaWiki API requests; the one-time workflow that ran it was removed after the build). A nominee without an article
 counts as not experienced.
+
+### Follow-ups (2026-10-05, evening)
+
+Harness fix first: in 2010 the day before the election is Nov 1, so that date was scored twice. `gov_backtest.dates` now drops the
+duplicate; every number above is from the corrected run (1,086 race-dates), and none of the conclusions changed.
+
+**1. Same-state Senate and governor errors (implemented; switched OFF: `senate2026.JOINT_ON`).** Within a cycle, a state's Senate and
+governor polling errors correlate 0.58. With the switch on (`joint_setup` before both statewide simulations), each race's own error is
+split into c x a draw shared by the state's statewide races plus sqrt(sd^2 - c^2) x its own draw, with c capped at 0.9 sd. Each
+race's variance is unchanged, so only the covariance moves. c = sqrt of the within-cycle covariance of the two offices' race-average
+polling errors (`joint_state_sd`: 3.68 points on 1998-2022; walk-forward 3.1-3.7).
+Joint test: the governor harness (adopted prior) paired with the private live Senate harness (prior refitted walk-forward, the same
+E and dates), state by state, one joint simulation per pair with the shared national draw. n = 682 pair-dates, 142 state-years,
+10 cycles; scores over the four outcomes (both D, D governor / R senator, R governor / D senator, both R):
+
+| | off | on | difference (cycles better; permutation p / bootstrap p) |
+|---|---|---|---|
+| log loss, 4 outcomes | 0.3325 | 0.3347 | +0.0023 (5/10; 0.73 / 0.76) |
+| Brier, 4 outcomes | 0.1793 | 0.1813 | +0.0020 (4/10; 0.47 / 0.40) |
+| Brier of P(split ticket) | 0.0775 | 0.0792 | +0.0016 (5/10; 0.53 / 0.50) |
+| mean P(split) (actual 24.9 %) | 27.4 % | 26.1 % | |
+| simulated correlation of the pair | 0.31 | 0.56 | (backtest residuals: 0.32) |
+
+Per-race numbers are unchanged to Monte Carlo noise (largest |dP| 0.014). No gain, so the switch stays off. The reason: the shared
+national draw already gives a state's two races a correlation of 0.31, and the backtest residuals show 0.32. The simulated national
+shock is larger than the realized cycle-wide miss, so it already carries the state part; adding the state term on top overstates
+straight tickets. A re-split (smaller national shock plus a state term) would leave same-state pairs as they are and only move
+cross-state correlations; it was not tested here.
+2026 if switched on (Oct 5 inputs, E +8.79, the live statewide draw; states with both races and a split chance over 5 %; "D/I" = the
+non-Republican Senate candidate, independents included):
+
+| state | Senate | governor | P(Senate D/I) | P(governor D) | both D/I: off -> on | split: off -> on | both R: off -> on | corr off -> on |
+|---|---|---|---|---|---|---|---|---|
+| NH | Chris Pappas (D) v John E. Sununu | Cinde Warmington v Kelly Ayotte | 88 % | 4 % | 4 -> 4 % | 84 -> 84 % | 12 -> 12 % | 0.40 -> 0.75 |
+| TX | James Talarico (D) v Ken Paxton | Gina Hinojosa v Greg Abbott | 72 % | 23 % | 20 -> 23 % | 55 -> 50 % | 25 -> 27 % | 0.38 -> 0.68 |
+| GA | Jon Ossoff (D) v Mike Collins | Keisha Lance Bottoms v Rick Jackson | 97 % | 53 % | 52 -> 53 % | 45 -> 44 % | 3 -> 3 % | 0.41 -> 0.77 |
+| IA | Josh Turek (D) v Ashley Hinson | Rob Sand v Zach Lahn | 61 % | 89 % | 57 -> 59 % | 35 -> 31 % | 7 -> 10 % | 0.41 -> 0.73 |
+| KS | Adam Hamilton (D) v Roger Marshall | Cindy Holscher v Ty Masterson | 41 % | 20 % | 13 -> 18 % | 35 -> 26 % | 52 -> 56 % | 0.42 -> 0.78 |
+| FL | Angie Nixon (D) v Ashley Moody | David Jolly v Byron Donalds | 23 % | 39 % | 14 -> 20 % | 34 -> 23 % | 52 -> 57 % | 0.40 -> 0.77 |
+| NE | Dan Osborn (I) v Pete Ricketts | Lynne Walz v Jim Pillen | 36 % | 6 % | 4 -> 5 % | 34 -> 31 % | 62 -> 63 % | 0.37 -> 0.73 |
+| AK | Mary Peltola (D) v Dan S. Sullivan | Jonathan Kreiss-Tomkins v Bernadette Wilson | 64 % | 90 % | 60 -> 62 % | 33 -> 28 % | 6 -> 10 % | 0.38 -> 0.72 |
+| ME | Troy Jackson (D) v Susan Collins | Hannah Pingree v Robert B. Charles | 67 % | 97 % | 66 -> 66 % | 32 -> 31 % | 2 -> 3 % | 0.40 -> 0.72 |
+| OH | Sherrod Brown (D) v Jon Husted | Amy Acton v Vivek Ramaswamy | 77 % | 64 % | 55 -> 60 % | 32 -> 22 % | 13 -> 18 % | 0.40 -> 0.75 |
+| SC | Annie Andrews (D) v Darline Graham | Jermaine Johnson v Alan Wilson | 29 % | 6 % | 3 -> 4 % | 29 -> 26 % | 68 -> 70 % | 0.31 -> 0.61 |
+| SD | Brian Bengs (I) v Mike Rounds | Dan Ahlers v Larry Rhoden | 26 % | 6 % | 3 -> 5 % | 26 -> 23 % | 71 -> 72 % | 0.30 -> 0.61 |
+| OR | Jeff Merkley (D) v David Brock Smith | Tina Kotek v Christine Drazan | 98 % | 77 % | 76 -> 75 % | 24 -> 24 % | 1 -> 1 % | 0.15 -> 0.30 |
+| MI | Abdul El-Sayed (D) v Mike Rogers | Jocelyn Benson v John James | 76 % | 92 % | 72 -> 75 % | 23 -> 18 % | 4 -> 7 % | 0.44 -> 0.78 |
+| MN | Peggy Flanagan (D) v Michele Tafoya | Amy Klobuchar v Lisa Demuth | 83 % | 96 % | 81 -> 82 % | 17 -> 15 % | 2 -> 4 % | 0.37 -> 0.73 |
+| OK | N'Kiyla Jasmine Thomas (D) v Kevin Hern | Cyndi Munson v Mike Mazzei | 1 % | 14 % | 0 -> 0 % | 14 -> 15 % | 85 -> 85 % | 0.09 -> 0.19 |
+| CO | John Hickenlooper (D) v Mark Baisley | Phil Weiser v Victor Marx | 97 % | 89 % | 86 -> 86 % | 13 -> 13 % | 0 -> 0 % | 0.06 -> 0.13 |
+| AR | Hallie Shoffner (D) v Tom Cotton | Fredrick Love v Sarah Huckabee Sanders | 7 % | 7 % | 1 -> 2 % | 12 -> 10 % | 87 -> 88 % | 0.25 -> 0.50 |
+| NM | Ben Ray Luján (D) v Larry Marker | Deb Haaland v Gregg Hull | 98 % | 90 % | 89 -> 89 % | 11 -> 10 % | 1 -> 1 % | 0.24 -> 0.48 |
+| IL | Juliana Stratton (D) v Don Tracy | JB Pritzker v Darren Bailey | 92 % | 97 % | 89 -> 89 % | 11 -> 10 % | 0 -> 0 % | 0.08 -> 0.15 |
+| WY | James W. Byrd (D) v Harriet Hageman | Kenneth Casner v Eric Barlow | 2 % | 7 % | 0 -> 0 % | 9 -> 9 % | 91 -> 91 % | 0.05 -> 0.12 |
+| AL | Everett Wess (D) v Barry Moore | Doug Jones v Tommy Tuberville | 1 % | 8 % | 0 -> 1 % | 8 -> 8 % | 91 -> 91 % | 0.27 -> 0.56 |
+| ID | Todd Achilles (I) v Jim Risch | Terri Pickens v Brad Little | 7 % | 1 % | 0 -> 0 % | 8 -> 7 % | 92 -> 92 % | 0.24 -> 0.48 |
+
+Headlines with it on are unchanged within noise: Senate 51.93 -> 51.92 Democratic seats, P(51+) 68.2 -> 68.1 %, P(Republicans lose
+control) 70.1 -> 69.9 %; governors 26.8, P(majority) 66.9 -> 66.8 %. Each office's distribution is a sum over one office's races,
+so a cross-office covariance cannot move it.
+State legislatures (report only, unchanged). The legislative state swing residual (Klarner cells, `stateleg.fit_swing`) does track
+the state's statewide polling miss: slope -0.31 (se 0.05) per point of poll - result error, r -0.31, 360 state-cycles 1998-2020
+(-0.26 on the change from the previous cycle, n 224). But the model's existing link, kappa x the statewide surprise
+(`MIDTERMS_STATELEG_KAPPA`), scores worse on the 2018 / 2022 backtest (39 chamber-elections). kappa 0: seat log loss 0.2166 / 0.1552,
+control Brier 0.072. Fitted kappa (0.05 / 0.07): 0.2171 / 0.1555, Brier 0.074. kappa 0.31: 0.2290 / 0.1589, Brier 0.093. Not linked.
+
+**2. Undecideds toward the trailing candidate (implemented; switched OFF: `model.UND_TRAIL_K = None`; the user's decision).** On, each
+race poll's margin moves by k x margin x (100 - D - R) / (D + R) before the sponsor lean is removed. k < 0 moves it toward whichever
+candidate trails. k comes from `model.und_trail_fit(before=cycle)`: 538 raw_polls, Senate and governor, non-partisan, last 60 days,
+cycle fixed effects; walk-forward -0.96 (2006, from 1998-2004 only), -0.45 (2010), -0.25 (2014), -0.24 (2018, 2022), -0.22 (2024 and
+live). Scored against the model as it is:
+
+| harness | n | log loss | Brier | CRPS | margin MAE | 80 % cov. |
+|---|---|---|---|---|---|---|
+| governors (adopted prior) | 234 races, 1,086 race-dates | -0.0003 (2/10; 0.99 / 1.00) | +0.0001 (3/10; 0.51 / 0.72) | +0.18 (2/10; 0.008 / <0.001) | +0.24 (0.014 / <0.001) | 79.6 -> 76.0 % |
+| Senate (private live harness, walk-forward prior) | 326 races, 1,528 race-dates | +0.0031 (1/10; 0.006 / <0.001) | +0.0006 (2/10; 0.031 / 0.002) | +0.26 (0/10; 0.002 / <0.001) | +0.34 (0/10; 0.002 / <0.001) | 79.6 -> 77.1 % |
+
+It makes the race means worse in both offices. They are already too close to 50-50 (results run about 2 points more lopsided), and
+the switch pulls them further in. Direction check: it is not a party lean. Mean shift of the race means is +0.03 points (governors)
+and +0.05 (Senate); races the model had the Democrat leading move -0.66 / -0.51, races it had the Republican leading +0.65 / +0.65
+(n 510 / 576 governor, 795 / 733 Senate race-dates). 2026 effect if switched on (live k -0.22): VT +0.5 points (25.5 -> 28.3 % for
+Janoo), AK -0.3, NM -0.3, AL +0.3, NE +0.3, TN +0.6, ME -0.3; FL Jolly v Donalds +0.06 points (38.5 -> 38.9 %); Senate ID +1.0 points
+(7.1 -> 8.5 %), all other Senate races within 0.25 points. Headlines unchanged (Senate P(51+) 68.2 -> 68.0 %, governors 66.9 -> 66.8 %).
+
+**3. Poll entries checked.** Neither is a data error, so no override was added.
+- Vermont, University of New Hampshire, Sept 17-21 2026: Janoo (D) 49, Scott (R) 43 (6 % undecided). Every source carries the same
+  numbers and the same party labels: VoteHub (Janoo / Scott answers), Wikipedia's 2026 Vermont page (Scott (R) 43, Janoo (D) 49,
+  829 LV), the New York Times feed via pollresults.org (D+6), and Polling USA on Bluesky. So the party and name mapping is right; it
+  is a surprising published result, not a transcription error. It contrasts with Braun Research / Vermont Public in the same weeks
+  (Scott 44-34 LV), and the robust blend weighs the two accordingly. One minor VoteHub slip: it gives UNH's June Scott-Janoo question
+  n 511, where Wikipedia has 887 LV. Sample size is not used by the model.
+- Illinois: the only general-election poll in any source (VoteHub, Wikipedia, pollresults.org) is Victory Research, Nov 20-24 2025,
+  Pritzker 54-34. The other 2026 Illinois polls are Republican primary polls. It is past the 150-day window, so Illinois runs on its
+  prior (Pritzker +26). That is the correct treatment of a race nobody has polled since November, not an error.
 
 ## Pollster shared error (implemented, switched off)
 

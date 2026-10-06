@@ -71,6 +71,7 @@ def main():
                                "money_d": None if pd.isna(r.get("money_d")) else round(float(r["money_d"])), "money_r": None if pd.isna(r.get("money_r")) else round(float(r["money_r"])), "p": [round(float(x), 3) for x in pgrid[i]],
                                **({"rcv": RC.house_note(r)} if RC.applies("house", r["seat"]) else {})})
     M.RECORD_OFFICE = "senate"
+    SN.JOINT = SN.joint_setup(20000) if SN.JOINT_ON else None        # same-state Senate / governor component (off: README)
     SS, smg, sout = SN.run(E_now, nat_z=ZS)
     sen = {"E0": E0, "E_now": E_now, "nat_slope": SN.NAT_SLOPE, "now": {"p51plus": round(sout["p_dem_51plus"], 3), "p_r_lose": round(sout["p_r_lose"], 3), "mean": round(sout["dem_seats_mean"], 1)}, "now_d": SN.NOW_D, "now_r": SN.NOW_R, "d_up": sout["d_up"], "r_up": sout["r_up"], "races": [], "dist": {}}
     d_up = sout["d_up"]

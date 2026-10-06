@@ -318,6 +318,7 @@ def run_asof(D, n=20000, filtered=True, verbose=False, E_override=None):
         mood = NMOOD.apply(D, approval_asof(D))          # the errors at D's lead (SEN_S_NAT set for the statewide races)
         Z, ZS = NMOOD.draws(20000)
         _State.office = "house"; s, mg, S = H.run(E_now, P=M.Params(s_nat=mood["s_house"]), n=n, nat_z=Z, asof=D)
+        SN.JOINT = SN.joint_setup(20000) if SN.JOINT_ON else None
         _State.office = "senate"; SS, smg, sout = SN.run(E_now, asof=D, nat_z=ZS)
         _State.office = "governor"; GS, gmg, ginfo = GV.run(E_now, asof=D, nat_z=ZS, refresh=False)
     finally:

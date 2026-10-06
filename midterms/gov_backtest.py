@@ -42,7 +42,7 @@ def dates(year):
     out = []
     for d in (DATES_ARCHIVE if year >= ARCHIVE_FROM else DATES_RAW):
         out.append((pd.Timestamp(EDAY[year]) - pd.Timedelta(days=1)) if d == "final" else pd.Timestamp(f"{year}-{d}"))
-    return out
+    return sorted(set(out))         # 2010: the day before the election IS Nov 1 (counted twice until 2026-10-05 evening)
 
 
 _E = None
@@ -202,6 +202,7 @@ VARIANTS = {
     "qual": _set(PRIOR_SPEC={"qual": "all"}),
     "qual_open": _set(PRIOR_SPEC={"qual": "open"}),
     "lean_t+succ+qual": _set(PRIOR_SPEC={"lean_t": True, "succ": True, "qual": "all"}),
+    "adopted+und_trail": _set(PRIOR_SPEC={"lean_t": True, "succ": True, "qual": "all"}),     # undecided allocation (2026-10-05 follow-up)
     "lean_t+succ+qual_open": _set(PRIOR_SPEC={"lean_t": True, "succ": True, "qual": "open"}),
     "lean_t+succ+race_sd_x1.15": _set(PRIOR_SPEC={"lean_t": True, "succ": True}, RACE_SD_K=1.15),
     "lean_t+succ+race_sd_x0.9": _set(PRIOR_SPEC={"lean_t": True, "succ": True}, RACE_SD_K=0.9),
@@ -211,6 +212,7 @@ VARIANTS = {
 
 
 PULL_WF = False
+UND_WF = False          # variants named *und_trail*: model.UND_TRAIL_K = und_trail_fit(before=cycle), walk-forward
 
 
 def pull_fit(before):
@@ -228,8 +230,8 @@ def pull_fit(before):
 
 def run(name, ctx=None, years=YEARS, n=10000, history=None):
     OUT.mkdir(parents=True, exist_ok=True)
-    global PULL_WF
-    PULL_WF = name.startswith("pull_wf")
+    global PULL_WF, UND_WF
+    PULL_WF = name.startswith("pull_wf"); UND_WF = "und_trail" in name
     ctx = ctx or VARIANTS[name] or _set()
     out = []
     with ctx():
@@ -240,9 +242,10 @@ def run(name, ctx=None, years=YEARS, n=10000, history=None):
         for y in years:
             GV.POLL_FIT_BEFORE = y
             if PULL_WF: GV.PULL_K = pull_fit(y)
+            M.UND_TRAIL_K = M.und_trail_fit(before=y) if UND_WF else None
             for d in dates(y):
                 out.append(run_date(y, d, H, n=n))
-    M.CAL_OVERRIDE = None; GV.POLL_FIT_BEFORE = None; GV.PULL_K = 0.0; PULL_WF = False
+    M.CAL_OVERRIDE = None; GV.POLL_FIT_BEFORE = None; GV.PULL_K = 0.0; PULL_WF = False; UND_WF = False; M.UND_TRAIL_K = None
     R = pd.concat(out, ignore_index=True); R["variant"] = name
     R.to_csv(OUT / f"rows_{name}.csv", index=False)
     return R

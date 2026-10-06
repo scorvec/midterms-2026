@@ -183,6 +183,32 @@ QUALITY_FN = None       # name -> weight multiplier from the pollster's track re
 CAL_OVERRIDE = None     # backtests: a calibration dict fitted on earlier cycles only (race_poll_calibration.calibration(before=year))
 
 
+# Undecided allocation (2026-10-05, governor review follow-up; TESTED, OFF). On 538's rated governor and Senate polls the share not
+# for the two major candidates does NOT split in proportion to their shares: regressing (result - poll margin) on margin x
+# (100 - D - R) / (D + R), with a fixed effect per cycle, gives a NEGATIVE coefficient (governor polls, last 21 days: -0.19, se 0.04) -
+# the undecided / minor-candidate share leans to the trailing candidate. UND_TRAIL_K = k moves each poll's margin by
+# k x margin x (100 - D - R) / (D + R) (k < 0: toward the trailing side, whichever party trails; symmetric in party). und_trail_fit
+# measures k on cycles before a year. None = off (the live model). Scores: README "Governor model review".
+UND_TRAIL_K = None
+_UTK = {}
+
+
+def und_trail_fit(before=None, types=("Sen-G", "Gov-G"), max_days=60):
+    """k from 538 raw_polls (even-year generals, D v R, non-partisan polls in the last `max_days`, cycles < `before`), cycle fixed effects."""
+    key = (before, types, max_days)
+    if key in _UTK: return _UTK[key]
+    from pathlib import Path
+    r = pd.read_csv(Path(__file__).resolve().parents[1] / "data" / "raw" / "538repo" / "raw_polls.csv", low_memory=False)
+    r = r[r.type_simple.isin(types) & (r.cycle % 2 == 0) & (r.time_to_election <= max_days) & r.partisan.isna()
+          & r.cand1_party.isin(["DEM", "REP"]) & r.cand2_party.isin(["DEM", "REP"]) & (r.cand1_party != r.cand2_party)]
+    if before is not None: r = r[r.cycle < before]
+    sg = np.where(r.cand1_party == "DEM", 1, -1); pm = r.margin_poll.values * sg; am = r.margin_actual.values * sg
+    two = (r.cand1_pct + r.cand2_pct).values; x = pm * (100 - two) / two
+    X = np.column_stack([pd.get_dummies(r.cycle, dtype=float).values, x])
+    _UTK[key] = float(np.linalg.lstsq(X, am - pm, rcond=None)[0][-1])
+    return _UTK[key]
+
+
 def prepare_race_polls(p: pd.DataFrame, challenger_party="D", und_params=None, third_mult=None) -> pd.DataFrame:
     """Sponsor shift + weights and a variance multiplier (vmult) for undecideds and a strong third candidate.
     und_params = (free, slope, cap) and third_mult override UND_FREE/UND_SLOPE/UND_CAP and THIRD_MULT for one office
@@ -196,6 +222,9 @@ def prepare_race_polls(p: pd.DataFrame, challenger_party="D", und_params=None, t
     p = p.copy(); sp = p["pollster"].map(lambda x: sponsor_of(x, challenger_party)); p["sponsor"] = sp
     # expected lean of each poll: the pollster's own 2016-22 record where 538 has >= 5 late polls (shrunk toward
     # the tag's sponsor effect), else the sponsor effect of its (D)/(R) tag, else 0
+    if UND_TRAIL_K and "dem" in p and "rep" in p:           # undecided allocation toward the trailing candidate (switch, OFF)
+        two = (p["dem"] + p["rep"]).astype(float); u = (100 - two).clip(lower=0)
+        p["und_shift"] = (UND_TRAIL_K * p["margin"] * u / two.where(two > 0)).fillna(0.0); p["margin"] = p["margin"] + p["und_shift"]
     p["lean"] = [lean_for(pol, tag, cal) for pol, tag in zip(p["pollster"], sp)]
     p["margin_raw"] = p["margin"]; p["margin"] = p["margin"] - p["lean"]
     und = p["und"] if "und" in p else 100 - p["dem"] - p["rep"]

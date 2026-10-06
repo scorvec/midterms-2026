@@ -25,8 +25,8 @@ POLL_SD, POLL_SYS = M.SEN_POLL_SD, M.SEN_POLL_SYS      # the Senate's per-poll a
 # a switch is on only where the harness showed a significant out-of-sample gain. Nothing here shifts either party.
 INC_FIX = False         # history(): successors who ran count as full incumbents (tested; superseded by the successor term below)
 # ADOPTED 2026-10-05 (README "Governor model review"): the lean slope's time trend, successor incumbents as their own term, nominee
-# experience (D minus R). Leak-free harness 2006-2024, 234 races x 4-6 dates, against the previous prior: log loss -0.0112 (9 of 10
-# cycles, sign-flip p 0.037), Brier -0.0045 (p 0.020), CRPS of the margin -0.26 (p 0.012), mean error -0.35 pts (p 0.016).
+# experience (D minus R). Leak-free harness 2006-2024, 234 races x 3-6 dates, against the previous prior: log loss -0.0111 (9 of 10
+# cycles, sign-flip p 0.037), Brier -0.0043 (p 0.020), CRPS of the margin -0.27 (p 0.012), mean error -0.35 pts (p 0.016).
 PRIOR_SPEC = {"lean_t": True, "succ": True, "qual": "all"}      # {} = the prior before the review
 GOV_POLL_SD = None      # per-poll governor poll error; None = the Senate's POLL_SD
 GOV_POLL_SYS = None     # race-average governor poll error (total, before the shared part is taken out); None = POLL_SYS

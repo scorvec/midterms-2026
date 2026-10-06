@@ -139,6 +139,47 @@ def blend_race(mu_prior, psd, pm, ne, vm, extra_sys=0.0):
     return (wp * mu_prior + wq * (pm if pm == pm else 0)) / (wp + wq), float(np.sqrt(1 / (wp + wq)))
 
 
+# Same-state statewide error (2026-10-05, governor review follow-up). Within a cycle, a state's Senate and governor polling errors
+# correlate 0.58 (95 % 0.46-0.68; 538 raw_polls, non-partisan polls in the last 21 days, races with 2+ polls, 149 state-years 1998-2022):
+# a shared state part of sd ~3.7 points (joint_state_sd). The two offices are simulated separately and share the national draw, which
+# already gives a state's pair of races a correlation of ~0.31 - the backtest residuals of the two harnesses show 0.32 (the shared
+# national shock is larger than the realized cycle-wide miss, so it carries the state part too). With JOINT set (joint_setup, before both simulations), every race's
+# own error becomes c x z_state + sqrt(sd^2 - c^2) x z_own, z_state one unit draw per state shared by all of the state's statewide races:
+# each race's total variance is unchanged (so every single-race number is), only the covariance between the state's races moves.
+# c is capped at 0.9 x the race's own sd. Joint backtest: README "Governor model review".
+JOINT = None
+JOINT_ON = False        # TESTED, NOT ADOPTED (2026-10-05): the joint Senate-governor backtest did not improve (README); True = build_web
+                        # and backfill call joint_setup before the statewide simulations
+
+
+def joint_state_sd(before=None):
+    """sqrt of the within-cycle covariance of the same state's Senate and governor race-average polling errors (cycles < `before`)."""
+    global _JSD
+    if "_JSD" not in globals(): _JSD = {}
+    if before in _JSD: return _JSD[before]
+    from pathlib import Path
+    r = pd.read_csv(Path(__file__).resolve().parents[1] / "data" / "raw" / "538repo" / "raw_polls.csv", low_memory=False)
+    r = r[r.type_simple.isin(["Sen-G", "Gov-G"]) & (r.cycle % 2 == 0) & (r.time_to_election <= 21) & r.partisan.isna()
+          & r.cand1_party.isin(["DEM", "REP"]) & r.cand2_party.isin(["DEM", "REP"]) & (r.cand1_party != r.cand2_party)]
+    if before is not None: r = r[r.cycle < before]
+    r = r.assign(e=(r.margin_poll - r.margin_actual) * np.where(r.cand1_party == "DEM", 1, -1))
+    m = r.groupby(["cycle", "location", "type_simple", "race_id"]).e.agg(["mean", "size"]).reset_index()
+    m = m[m["size"] >= 2].groupby(["cycle", "location", "type_simple"])["mean"].mean().unstack().dropna(subset=["Sen-G", "Gov-G"])
+    d = m - m.groupby(level=0).transform("mean")
+    _JSD[before] = float(np.sqrt(max((d["Sen-G"] * d["Gov-G"]).mean(), 0.0))) if len(d) >= 10 else 0.0
+    return _JSD[before]
+
+
+def joint_setup(n, states=None, seed=23, c=None):
+    """Shared unit t5 draws per state for the statewide simulations of one run (call with the run's n before SN.run and GV.run)."""
+    global JOINT
+    from .data_prep import _ST
+    rng = np.random.default_rng(seed); states = sorted(states or set(_ST.values()))
+    JOINT = {"c": joint_state_sd() if c is None else c,
+             "z": {st: rng.standard_t(M.T_DF, n) * np.sqrt((M.T_DF - 2) / M.T_DF) for st in states}}
+    return JOINT
+
+
 def simulate_senate(S, n=20000, seed=11, nat_z=None):
     """Margins [n, races]: shared national shock x NAT_SLOPE, group factors, white non-college factor, race residual.
     Columns used: mu, sd, h_load/c_load/a_load (0 if absent), wnc_z."""
@@ -146,7 +187,14 @@ def simulate_senate(S, n=20000, seed=11, nat_z=None):
     el = S["elast"].fillna(1.0).values[None, :] if "elast" in S else 1.0     # per-state sensitivity to the national shock
     s_sh = STATE_SHARED_MISS / NAT_SLOPE                                  # the statewide shock about zero (pts of margin / slope)
     nat = M.national_shock(n, s_sh, S["state"].values, nat_z, t) * NAT_SLOPE * el     # movement split: model.MOVE
-    res = t((n, len(S)), 1.0) * np.sqrt(S["sd"].values ** 2 + RACE_EXTRA ** 2)[None, :]
+    sd_tot = np.sqrt(S["sd"].values ** 2 + RACE_EXTRA ** 2)
+    res = t((n, len(S)), 1.0) * sd_tot[None, :]
+    if JOINT is not None:                                                  # same-state component (JOINT above)
+        for j, st in enumerate(S["state"].values):
+            z = JOINT["z"].get(st)
+            if z is None or len(z) < n: continue
+            c = min(JOINT["c"], 0.9 * sd_tot[j])
+            res[:, j] = res[:, j] * np.sqrt(sd_tot[j] ** 2 - c ** 2) / sd_tot[j] + c * z[:n]
     P = M.Params(); grp = 0.0
     for col, sd in (("h_load", P.s_hisp), ("c_load", P.s_cuban), ("a_load", P.s_asian)):       # same group shocks as the House
         if sd > 0 and col in S: grp = grp + t(n, sd)[:, None] * S[col].fillna(0).values[None, :]
