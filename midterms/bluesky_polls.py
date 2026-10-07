@@ -113,7 +113,11 @@ def parse(text):
     # against Sununu's 45 from the Pappas matchup; TSU's "statewide" 53-42 was the TX-34 district subsample). Each block is now
     # its own version; a block under a district label ("TX-15 - (Trump +18)") in a statewide post is a sub-state sample and is
     # not a statewide poll; build() averages the versions of one matchup (wiki_polls rule 3).
-    rx = r"(🔵|🔴|⚪️|⚪|🟢|🟡|🟣|🟠)\s*([^:|\n]+?):\s*([\d.]+)%"
+    # 2026-10-07: the colon after the name is optional - the feed sometimes drops it ("🔵 Peltola 51%"), and the whole block was
+    # then lost (ASR's Alaska final round 51-49 vanished, leaving only the converted first round: Peltola -1 instead of +2).
+    # Names carry no digits, so "Name 51%" splits cleanly; checked against all 951 cached posts (only 2 old posts change, both
+    # gaining the block they had lost).
+    rx = r"(🔵|🔴|⚪️|⚪|🟢|🟡|🟣|🟠)\s*([^:|\n\d]+?)(?::\s*|\s+)([\d.]+)%"
     versions, substate = [], 0
     for chunk in re.split(r"\n\s*\n", body):
         vc = [(n.strip(), PARTY.get(e, "O"), float(v)) for e, n, v in re.findall(rx, chunk)]
