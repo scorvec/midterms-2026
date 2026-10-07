@@ -4,6 +4,7 @@ each race page, prior refit on 326 races 2006-2024 (0.80 E, 0.76 lean, 10.4 inc,
 """
 import re, sys, numpy as np, pandas as pd
 from . import poll_overrides as PO
+from . import poll_corrections as PC
 from . import wiki_polls as W, model as M, rcv as RC
 from .run2026 import GROUP_B_HISP, GROUP_B_ASIAN, CUBAN_WEIGHT, HISP_GROUPS
 
@@ -246,6 +247,7 @@ def run(E, asof=None, n=20000, seed=11, nat_z=None):
             if len(man): p = pd.concat([p, man], ignore_index=True) if not p.empty else man
         if not p.empty:
             p = p[~p["dem_name"].str.contains("Generic", case=False) & ~p["rep_name"].str.contains("Generic", case=False)]
+            p = PC.apply(p, r["state"], "senate")                  # known duplicates / sponsors (data/manual/poll_corrections.csv)
             p = M.collapse_versions(p.assign(_race=r["state"]), "_race").drop(columns="_race")      # one survey, one row
             p["grade"] = 1.5; p["seat"] = r["state"]; p["margin"] = p["margin"] + SEN_POLL_BIAS - M.state_poll_correction(statewide=True).get(r["state"], 0.0)
             p = M.prepare_race_polls(p, meta.get("challenger_party", "D"))

@@ -1,0 +1,7 @@
+office,seat,pollster,end_date,action,value,note
+senate,SD,lake research,2026-09-30,drop,,feed copy of the Aug 26-30 Bengs-campaign survey dated by its release (Wikipedia; PollTracker)
+senate,SD,lake research,,sponsor,I,Bengs campaign (Wikipedia polling table)
+senate,SD,impact research,,sponsor,I,Bengs campaign
+senate,SD,public policy polling,2026-09-09,sponsor,I,Bengs campaign
+senate,SD,zenith,,sponsor,I,Bengs campaign
+governor,SD,lake research,2026-09-30,end_date,2026-08-30,same Aug 26-30 survey as the Senate poll; the feed dated it by its release

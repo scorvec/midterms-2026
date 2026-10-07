@@ -15,6 +15,7 @@ import io, json, re, urllib.request
 from pathlib import Path
 import numpy as np, pandas as pd
 from . import poll_overrides as PO
+from . import poll_corrections as PC
 from . import model as M, wiki_polls as W, rcv as RC
 ROOT = Path(__file__).resolve().parents[1]
 TWO_YEAR = {"NH", "VT"}
@@ -454,6 +455,7 @@ def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
         man = M.manual_race_polls(r.state, "governor", q if len(q) else None, names=(dn, rn))
         if RC.applies("governor", r.state): man = RC.convert_rows(man, RC.other_type_of(r.cands, (dn, rn)))
         if len(man): q = pd.concat([q, man], ignore_index=True)
+        if len(q): q = PC.apply(q, r.state, "governor")        # known duplicates / sponsors (data/manual/poll_corrections.csv)
         if len(q): q = M.collapse_versions(q.assign(_race=r.state), "_race").drop(columns="_race")       # one survey, one row
         # Hispanic / Asian swing term (2026-10-03): the House and Senate carry it and the 2025 evidence for it is itself GOVERNOR
         # races (NJ, VA), yet the governor prior had no mean term while the simulation drew the group shocks. Scaled like the
