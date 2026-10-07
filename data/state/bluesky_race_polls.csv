@@ -69,11 +69,11 @@ senate,NE,Wedgewood Polls,2026-09-16,Osborn,Ricketts,NE,I,48.0,52.0,0.0,0.0,,1.5
 senate,OH,YouGov,2026-09-10,Brown,Husted,OH,D,48.0,45.0,0.0,7.0,,1.5,2026-09-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvnoci3jec2y,,3.0,usapolling,
 senate,AK,co/efficient (R),2026-09-17,Peltola,Sullivan,AK,D,46.0,49.0,0.0,5.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvqb72utus2x,label,-3.0,usapolling,
 governor,AK,co/efficient (R),2026-09-17,Kreiss-Tomkins,Wilson,AK,D,43.0,20.0,23.0,14.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvqb6wxm2s2x,label,23.0,usapolling,
-senate,AK,Fabrizio Ward/Impact Research,2026-09-11,Peltola,Sullivan,AK,D,51.5,45.0,3.5,0.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvq76i5wik2x,,6.5,usapolling,
 senate,TX,ReaconMR/Siena,2026-09-11,Talarico,Paxton,TX,D,49.0,43.0,0.0,8.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvq76mqjvk2x,,6.0,usapolling,
 governor,TX,ReaconMR/Siena,2026-09-11,Hinojosa,Abbott,TX,D,49.0,45.0,0.0,6.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvq76mqjvk2x,,4.0,usapolling,
 governor,TX,Emerson,2026-09-14,Hinojosa,Abbott,TX,D,46.0,49.0,0.0,5.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvq765hy4c2x,,-3.0,usapolling,
 senate,MI,Emerson,2026-09-14,El-Sayed,Rogers,MI,D,48.0,46.0,0.0,6.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvq76e6gg22x,,2.0,usapolling,
+senate,AK,Fabrizio Ward/Impact Research,2026-09-11,Peltola,Sullivan,AK,D,53.0,47.0,0.0,0.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvq76i5wik2x,,6.0,usapolling,
 governor,AK,Fabrizio Ward/Impact Research,2026-09-11,Kreiss-Tomkins,Wilson,AK,D,55.0,45.0,0.0,0.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvq75rx5es2x,,10.0,usapolling,
 governor,NV,PPP (D),2026-09-15,Ford,Lombardo,NV,D,45.0,45.0,0.0,10.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvop2ew3jk2i,label,0.0,usapolling,
 senate,NC,Harper Polling,2026-09-15,Cooper,Whatley,NC,D,49.0,34.0,0.0,17.0,,1.5,2026-09-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvq76amjv22x,,15.0,usapolling,
@@ -260,12 +260,12 @@ senate,IL,PPP/Chicago News Weekly,2026-10-01,Stratton,Tracy,IL,D,49.0,36.0,0.0,1
 senate,ME,Marist,2026-10-04,Jackson,Collins,ME,D,51.0,47.0,0.0,2.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx6kgspkqk25,,4.0,usapolling,
 governor,ME,Marist,2026-10-04,Pingree,Charles,ME,D,52.0,40.0,6.0,2.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx6kgspkqk25,,12.0,usapolling,
 governor,NH,Fabrizio Ward/Impact Research,2026-09-29,Warmington,Ayotte,NH,D,45.0,52.0,0.0,3.0,1042.0,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7uctkpys2t,,-7.0,usapolling,
-senate,AK,Alaska Survey Research,2026-10-03,Peltola,Sullivan,AK,D,49.0,47.0,4.0,0.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcb3a6hwk2z,,2.0,usapolling,
 senate,MI,Quantus (R),2026-10-06,El-Sayed,Rogers,MI,D,48.0,47.0,0.0,5.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcataous22z,label,1.0,usapolling,
 senate,KS,GBAO (D),2026-10-04,Hamilton,Marshall,KS,D,47.5,42.5,3.5,6.5,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcasrofs22z,internal,5.0,usapolling,
 governor,NY,Marist,2026-10-05,Hochul,Blakeman,NY,D,53.0,42.0,0.0,5.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxb2u2ezos2y,,11.0,usapolling,
 senate,IA,Suffolk,2026-10-02,Turek,Hinson,IA,D,48.0,44.0,0.0,8.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcasjbbic2z,,4.0,usapolling,
 governor,IA,Suffolk,2026-10-02,Sand,Lahn,IA,D,55.0,43.0,0.0,2.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcasjbbic2z,,12.0,usapolling,
+senate,AK,Alaska Survey Research,2026-10-03,Peltola,Sullivan,AK,D,51.0,49.0,0.0,0.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcb3a6hwk2z,,2.0,usapolling,
 governor,CA,IVC Media,2026-09-28,Xavier Becerra,Steve Hilton,CA,D,48.0,38.0,0.0,14.0,2906.0,1.5,2026-10-05,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mx522jcj6p2p,,10.0,pollresults,lv
 governor,CA,TrueDot,2026-09-14,Xavier Becerra,Steve Hilton,CA,D,51.0,35.0,0.0,14.0,2418.0,1.5,2026-09-25,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwdy2v2uzb2t,,16.0,pollresults,rv
 governor,CA,University of California Berkeley Institute of Governmental Studies,2026-09-20,Xavier Becerra,Steve Hilton,CA,D,58.0,33.0,0.0,9.0,4512.0,1.5,2026-09-24,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwb6chwxyl2s,,25.0,pollresults,lv
