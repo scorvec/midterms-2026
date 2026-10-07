@@ -195,6 +195,16 @@ def _build(posts, days=30, carry=True):
         df = df.sort_values("posted").drop_duplicates(["office", "seat", "pollster", "end_date", "dem", "rep"], keep="first")
         # versions of one poll and matchup (full field / head-to-head, LV / RV) -> one row, averaged (wiki_polls rule 3)
         key = ["office", "seat", "pollster", "end_date", "dem_name", "rep_name"]
+        # 2026-10-07: in a ranked-choice race a published FINAL round (two-way, nothing left over) is the poll's answer and
+        # replaces its first-round versions instead of being averaged with them (ASR Alaska 10/3: 51-49 final + 47-45-8 first
+        # round averaged to +0.4 after the transfer step; rcv.prefer_final only sees rows, so the choice has to be made here)
+        from . import rcv as RCV
+        rcvr = df.apply(lambda r: RCV.applies(r.office, r.seat), axis=1)
+        fin = rcvr & (df.other.fillna(0) <= 0.5) & ((df.dem + df.rep) >= 97)
+        has_fin = fin.groupby([df[k] for k in key]).transform("any")
+        drop = rcvr & has_fin & ~fin
+        if drop.any(): print(f"  ranked-choice: {int(drop.sum())} first-round version(s) dropped for the same poll's published final round")
+        df = df[~drop]
         agg = {c: "first" for c in df.columns if c not in key}; agg.update({k: "mean" for k in ("dem", "rep", "margin", "other", "und")})
         df = df.groupby(key, as_index=False, sort=False).agg(agg); df[["dem", "rep", "other", "und"]] = df[["dem", "rep", "other", "und"]].round(1)
     print(f"Polling USA (Bluesky): {len(df)} race polls in the last {days} days - " + (df.office.value_counts().to_dict().__str__() if len(df) else ""))
