@@ -9,6 +9,9 @@ hand-entered and feed rows join, before versions collapse):
   action = sponsor  value D / R / I: the poll was paid for by that side - written as the pollster's "(X)" tag, which
                     model.sponsor_of turns into the measured sponsor shift and weight (no new adjustment of any kind)
   action = end_date value YYYY-MM-DD: the true end of fieldwork
+  action = name     value "Feed>Ballot": a candidate name the feed misspells, fixed BEFORE polls are matched to the race's
+                    nominees by surname (Polling USA's NC-1 "Davies" for Rep. Don Davis, 2026-10-07); pollster/end_date
+                    may be empty (= every poll of that race)
 Every applied row is printed, so the run log shows what changed.
 """
 import re
@@ -50,3 +53,21 @@ def apply(polls: pd.DataFrame, seat, office) -> pd.DataFrame:
             continue
         print(f"  poll correction {office} {seat}: {c.action} {c.value} on {int(hit.sum())} row(s) [{c.pollster} {c.end_date or 'any date'}] - {c.note}")
     return p[keep]
+
+
+def fix_names(df: pd.DataFrame, office) -> pd.DataFrame:
+    """Apply action=name rows (by office and seat) to dem_name / rep_name of feed rows, before nominee matching."""
+    if df is None or not len(df) or not F.exists() or "seat" not in df: return df
+    d = pd.read_csv(F, dtype=str, keep_default_na=False)
+    d = d[(d.office == office) & (d.action == "name")]
+    if not len(d): return df
+    df = df.copy()
+    for c in d.itertuples():
+        old, new = [x.strip() for x in c.value.split(">", 1)]
+        for col in ("dem_name", "rep_name"):
+            hit = (df.seat == c.seat) & (df[col].astype(str).str.strip().str.lower() == old.lower())
+            if c.pollster: hit &= df.pollster.map(_bare).str.contains(c.pollster.strip().lower(), regex=False)
+            if hit.any():
+                df.loc[hit, col] = new
+                print(f"  poll correction {office} {c.seat}: name {old} -> {new} on {int(hit.sum())} row(s) - {c.note}")
+    return df

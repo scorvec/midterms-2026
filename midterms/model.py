@@ -600,6 +600,8 @@ def manual_race_polls(state, office, existing=None, names=None):
     fb = Path(__file__).resolve().parents[1] / "data" / "state" / "bluesky_race_polls.csv"
     if fb.exists():
         b = pd.read_csv(fb, parse_dates=["end_date"]); b = b[(b.state == state) & (b.office == office)]
+        from . import poll_corrections as PC
+        b = PC.fix_names(b, office)             # feed misspellings fixed before the surname match
         if names:                                   # only the matchup actually on the ballot (surname, first five letters)
             want = {_sur5(names[0]), _sur5(names[1])}
             b = b[[{_sur5(x), _sur5(y)} == want for x, y in zip(b.dem_name, b.rep_name)]]

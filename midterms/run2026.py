@@ -109,6 +109,8 @@ def _add_bluesky_house(hp):
     except FileNotFoundError: return hp
     b = b[b.office == "house"]
     if b.empty: return hp
+    from . import poll_corrections as PC
+    b = PC.fix_names(b, "house")                 # feed misspellings fixed before the surname match (data/manual/poll_corrections.csv)
     seats = pd.read_csv("data/cache/house2026_seats.csv").set_index("seat")
     keep = []
     for r in b.itertuples():
