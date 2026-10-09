@@ -9,3 +9,6 @@ house,NC-1,,,name,Davies>Davis,Polling USA spells Rep. Don Davis "Davies" (Neigh
 house,KY-6,change research,2026-10-05,sponsor,D,the NYT feed copy is labelled Change Research (D); the Polling USA copy of the same 47-38 poll dropped the tag
 governor,FL,change research,2026-09-09,sponsor,D,same Sep 7-9 survey as the Senate question the feed tags Change Research (D) (sponsor Freedom Project USA); the governor copy dropped the tag
 governor,FL,change research,2026-09-27,sponsor,D,same late-Sep survey as the Senate question the feed tags Change Research (D); the governor copy dropped the tag
+house,NY-21,impact research,2026-10-04,sponsor,D,commissioned by the Democratic candidate (Gendebien campaign internal; NNY360 / Yahoo News 10/2026)
+senate,FL,targoz market research,2026-10-04,drop,,same Targoz Sep 28-Oct 4 survey the model also has as James Madison Institute (JMI commissioned it; Florida Politics 10/9) - one survey counted twice
+governor,FL,targoz market research,2026-10-04,drop,,same Targoz Sep 28-Oct 4 survey the model also has as James Madison Institute (JMI commissioned it; Florida Politics 10/9) - one survey counted twice
