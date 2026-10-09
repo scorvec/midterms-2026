@@ -953,3 +953,5 @@ governor,ME,The Washington Post/George Mason University School of Policy and Gov
 governor,MI,Z to A Research (D),2026-10-01,2026-10-09,polls.json
 governor,WI,Z to A Research (D),2026-10-01,2026-10-09,polls.json
 senate,ME,Rasmussen Reports (R),2026-10-08,2026-10-09,manual
+senate,SC,Rasmussen (R),2026-10-08,2026-10-09,polls.json
+governor,IA,The New York Times/Siena University,2026-06-27,2026-10-09,polls.json
