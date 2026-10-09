@@ -56,7 +56,10 @@ def main():
     Z, ZS = NMOOD.draws(20000, rho=rho_mv)                    # House draw + the statewide draw (total correlation RHO_STATEWIDE)
     M.RECORD = []; M.RECORD_OFFICE = "house"                  # poll-by-poll record for web/polls.html (model.robust_blend)
     s, mg, S = H.run(E_now, P=M.Params(s_nat=MOOD["s_house"]), n=20000, nat_z=Z); ratings = pd.read_csv("data/cache/house2026_ratings.csv")[["seat", "rating_mean"]]
-    s = s.merge(ratings, on="seat", how="left")
+    # 2026-10-09: DataFrame.merge drops .attrs (pandas 2.3), which carry the demographic-factor update (factor_mean, factor_post_sd):
+    # the about page's notes lost "today the polls put the Hispanic factor at ..." and the what-if page simulated the House with the
+    # factors' PRIOR sds instead of the posterior ones the simulation used
+    att = dict(s.attrs); s = s.merge(ratings, on="seat", how="left"); s.attrs.update(att)
     house = {"E0": E0, "E_now": E_now, "grid": GRID, "keys": [str(e) for e in GRID], "seats": [], "dist": {}}
     d0 = mg > 0
     for e in GRID:
