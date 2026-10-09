@@ -205,7 +205,7 @@ def methodology_notes(s):
              f"of the generic-ballot average against the House vote at this distance, 15 cycles 1996-2024, in either direction); errors t{M.T_DF}: national {mood['s_house']:.1f} (the vote error "
              f"plus the year-to-year error of the contested-seat intercept, {NMOOD.S_SEAT:g}), state {P.s_state:g}, urban {P.s_urban:g}, Hispanic / "
              f"Cuban / Asian group factors {P.s_hisp:g} per unit share, residual {P.s_res:g}")
-    senate = (f"mu = {SN.SEN_CONST:.1f} + {SN.NAT_SLOPE:.2f}*E + {SN.B_LEAN:.2f}*lean + {SN.C_INC:.1f}*inc, prior sd {SN.PRIOR_SD} (refit on 326 races "
+    senate = (f"mu = {SN.SEN_CONST:.1f} + {SN.NAT_SLOPE:.2f}*E + {SN.B_LEAN:.2f}*lean + {SN.C_INC:.1f}*inc, prior sd {SN.PRIOR_SD} (refit on 321 D-v-R races "
               f"2006-2024), polls from the Wikipedia race pages (per-poll sd {SN.POLL_SD}; race-level systematic {SN.race_sys():.1f} = the measured "
               f"midterm total {SN.POLL_SYS_TOTAL:g} minus the shared statewide shock drawn separately); "
               f"only polls of the candidates actually on the ballot, full field where a third candidate polls 10 %+; the margin is the main challenger "

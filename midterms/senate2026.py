@@ -1,5 +1,5 @@
 """2026 Senate: races from the Wikipedia race table (nominees, incumbents, Cook PVI x2), polls from
-each race page, prior refit on 326 races 2006-2024 (0.80 E, 0.76 lean, 10.4 inc, sd 13.4), poll blend, simulation.
+each race page, prior refit on 321 D-v-R races 2006-2024 (0.80 E, 0.79 lean, 10.0 inc, sd 12.0), poll blend, simulation.
     python -m midterms.senate2026 [E]
 """
 import re, sys, numpy as np, pandas as pd
@@ -14,8 +14,15 @@ from .run2026 import GROUP_B_HISP, GROUP_B_ASIAN, CUBAN_WEIGHT, HISP_GROUPS
 # Republican leaving one cycle out; at E +8 they sat 6.7 pts right of the race polls. Midterm-only 0.70 / presidential
 # 1.00 slopes bracket the pooled 0.80. The national shock (s_nat x NAT_SLOPE = 2.3) now also matches the measured
 # shared statewide polling miss (2.1-2.5, research/senate_error_correlation.py).
-SEN_CONST = 1.38
-B_LEAN, C_INC, PRIOR_SD, NAT_SLOPE, POLL_SD, POLL_SYS = 0.761, 10.39, 13.4, 0.80, M.SEN_POLL_SD, M.SEN_POLL_SYS
+# 2026-10-09 data fix: the 326-race fit (const 1.38, lean 0.761, inc 10.39, E 0.80, sd 13.4) included seven races that were NOT
+# D-v-R contests - an independent or third candidate took 20 %+ (Angus King ME 2012/2018/2024, Murkowski's write-in AK 2010, Crist
+# FL 2010, Pressler SD 2014, Miller AK 2016) - whose D-minus-R margins entered as R landslides of 20-58 points, and missed two races
+# whose Democrat MIT files under party_simplified OTHER (IL, MD 2022). Same specification and window on the 321 D-v-R races:
+# const 2.22, lean 0.788, inc 10.00, E 0.795, resid sd 11.99. Walk-forward check (prior alone, 10-cycle window, clean test races
+# 2010-2024): mean log score 3.936 -> 3.920; 2026 effect at the Oct 9 inputs: every prior +0.9 D, prior sd 13.4 -> 12.0, Senate
+# p_ctrl 0.713 -> 0.714 (independent races keep their own handling below).
+SEN_CONST = 2.22
+B_LEAN, C_INC, PRIOR_SD, NAT_SLOPE, POLL_SD, POLL_SYS = 0.788, 10.00, 12.0, 0.795, M.SEN_POLL_SD, M.SEN_POLL_SYS
 # Midterm race polls earn more weight (2026-09-30, user: "it would make more sense to put more weight on the state polling").
 # The shared per-race Senate polling miss is smaller in midterms: final-3-week non-partisan averages, competitive races 1998-2024,
 # systematic part 4.1 midterm v 4.7 presidential (research/senate_poll_bias.py). Live Senate backtest, POLL_SYS x 0.8
