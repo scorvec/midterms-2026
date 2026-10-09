@@ -564,6 +564,31 @@ Democratic House seats 241.1 -> 241.2, majority 88.5 % -> 88.0 %; MO-5 1.00 -> 0
 the switch needs the same lean on the 2018 and 2022 maps (VEST 2016/2020 x TIGER CD116/CD118) and the House prior refitted on it in
 place of 538's partisan lean.
 
+## Deep review changes (user decision 2026-10-09)
+
+A review on live-path, walk-forward harnesses (Senate 2006-2024, 10 cycles, 1,615 race-dates; House 2018/20/22; governors 2006-2024)
+led to three changes, each behind its constant:
+
+- **Senate prior with time-varying slopes** (`senate2026.SEN_CONST / B_LEAN / C_INC / NAT_SLOPE / PRIOR_SD`). The Senate has nationalized:
+  per-cycle fits show incumbency falling ~3.8 points per decade, the lean slope rising ~0.11 and the residual sd falling ~1.35. The prior
+  now has linear time trends in the lean and incumbency slopes (fitted on every D-v-R race 1982-2024), the national slope of the last 10
+  cycles and a trend-extrapolated residual sd; at 2026: constant 0.70, lean 0.836, incumbency 6.7, national 0.794, sd 8.8 (was 2.22 /
+  0.788 / 10.0 / 0.795 / 12.0). Against the pooled-10-cycle rule, walk-forward: log loss -0.0080 (7/10 cycles; sign-flip p 0.059, race
+  bootstrap p < 0.001), Brier -0.0026, CRPS -0.23; 2014-2024 better in 6/6 cycles, worse in 2006/2008/2012. The gain is largest in cycles
+  whose polls overstated Democrats; unpolled races show the same time pattern.
+- **Senate shared / race error re-split** (`senate2026.STATE_SHARED_MISS` 4.2 -> 3.1, `RACE_EXTRA` 0 -> 2.83). The cycle-wide statewide
+  miss is 3.1 over 1998-2022 (RMS about zero, no direction) and the model's implied correlation between race errors was 0.34 against 0.13
+  measured. Each race keeps its total spread; only the correlation falls. Race scores unchanged; seat-count PIT sd 0.265 -> 0.299
+  (uniform 0.289). Governors keep their shared miss (`GOV_SHARED_MISS` 4.2).
+- **Generic-ballot house effects shrunk less** (`generic.LAMBDA_HOUSE` 4 -> 1): predicting the next 24 days' polls, weighted RMSE 2.623 ->
+  2.551 (23/28 cases, 4/4 years; not significant on its own, year-block t 1.95).
+
+Also: governor `n_polls` counts only polls inside the 150-day window, as the Senate and House do. Oct 9 inputs, before -> after: generic
+trend 9.07 -> 9.29; House 242.1 -> 242.9 seats, majority 0.895 -> 0.901; Senate control 0.714 -> 0.727 (KS 0.45 -> 0.38, AK 0.64 -> 0.59,
+OH special 0.76 -> 0.72, ME 0.72 -> 0.74); governors 26.9, majority 0.677 -> 0.681. Tested and not adopted in the same review: dropping the
+midterm poll-error x0.8 (worse in 5/5 midterms), a larger race poll error, a larger House residual or state error, more House / governor
+poll weight (not significant).
+
 ## Credits
 
 Model and code: Shawn Corvec. Poll data belong to their pollsters. Governor results and nominees' offices: Wikipedia (CC BY-SA 4.0). Ranked-choice transfer rates are derived from the Maine

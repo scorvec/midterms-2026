@@ -1,7 +1,7 @@
 """The national environment E and its errors (2026-10-03).
 
-LIVE RULE since 2026-10-03 evening (user: "any value in using a presidential approval metric for midterms?" -> "Sure go for
-it"): APPROVAL = True. E = G + c0(L) + c1(L) * x, x = net presidential approval on Gallup's scale signed toward the Democrats
+NOT LIVE (2026-10-09 docstring fix: the switch below is APPROVAL = False - the user left it off on 2026-10-03, "Yea just leave it").
+Built 2026-10-03 (user: "any value in using a presidential approval metric for midterms?" -> "Sure go for it"), APPROVAL = True would be: E = G + c0(L) + c1(L) * x, x = net presidential approval on Gallup's scale signed toward the Democrats
 (midterms/approval_hist.py; live from our approval trend - 2.5). The generic ballot's miss depends on the president's standing:
 the average overstated Democrats more under popular Republican or unpopular Democratic presidents and less (or not at all)
 under unpopular Republican or popular Democratic ones. research/approval_value.py: corr(x, miss) +0.67 at 30 days (t 3.3, 15
