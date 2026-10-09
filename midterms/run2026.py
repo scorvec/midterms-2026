@@ -140,6 +140,9 @@ def run(E, P=None, n=20000, seed=7, asof=None, nat_z=None):
     hp = _add_bluesky_house(hp)
     if hp is not None and len(hp):                    # VoteHub / Wikipedia rows without a sponsor tag borrow it from the feeds (2026-09-30)
         from . import wiki_polls as _W; hp = _W.borrow_feed_tags(hp, "house", lambda r: r["seat"])
+    if hp is not None and len(hp):                    # known duplicates / sponsors (data/manual/poll_corrections.csv) - 2026-10-09:
+        from . import poll_corrections as PC          # the House path only ever applied the 'name' rows, so House sponsor/drop/end_date rows were silently ignored
+        hp = pd.concat([PC.apply(g, seat, "house") for seat, g in hp.groupby("seat", sort=False)], ignore_index=True)
     if hp is not None and len(hp): hp = M.collapse_versions(hp, "seat")         # one survey, one row (versions across / within sources)
     if hp is not None and len(hp):                    # persistent state polling misses (model.state_poll_correction)
         hp = hp.copy(); hp["margin"] = hp["margin"] - hp["seat"].str[:2].map(M.state_poll_correction()).fillna(0.0)
