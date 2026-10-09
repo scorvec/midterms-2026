@@ -57,6 +57,13 @@ def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
     rec, C = _poll_records()
     sysd = {"house": C["house_poll_sys"], "senate": C["sen_poll_sys"], "governor": C["gov_poll_sys"]}
     T = M.T_DF
+    # 2026-10-09: the House simulation draws the demographic factors with their POSTERIOR sds (run2026.run: model.factor_update ->
+    # dataclasses.replace(P, **post)); the page used the prior sds (Hispanic / Asian 15, WNC 11.4, urban 2) and left out the regional
+    # Hispanic factors (Texas / Florida / West, since 2026-10-04), so its House races did not reproduce the published odds
+    post = (getattr(s, "attrs", None) or {}).get("factor_post_sd") or {}
+    if post:
+        from dataclasses import replace
+        P = replace(P, **{k: float(v) for k, v in post.items() if hasattr(P, k)})
     # ---- House: model.simulate's pieces
     st_names = sorted(set(s["state"])); si = {x: i for i, x in enumerate(st_names)}
     resf = np.where(s["n_eff"].notna(), s["mu_local_sd"].astype(float).values / M.PRIOR_SD, 1.0)
@@ -65,13 +72,15 @@ def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
         fixed = bool(r.get("uncontested", False))
         row = {"seat": r["seat"], "st": si[r["state"]], "mu": _r(r["mu"]), "res": _r(P.s_res * resf[i], 3),
                "u": _r(r.get("u_load", 0) or 0, 3), "h": _r(r.get("h_load", 0) or 0, 4), "c": _r(r.get("c_load", 0) or 0, 4),
-               "a": _r(r.get("a_load", 0) or 0, 4), "w": _r(r.get("w_load", 0) or 0, 4)}
+               "a": _r(r.get("a_load", 0) or 0, 4), "w": _r(r.get("w_load", 0) or 0, 4),
+               "htx": _r(r.get("h_tx", 0) or 0, 4), "hfl": _r(r.get("h_fl", 0) or 0, 4), "hwe": _r(r.get("h_west", 0) or 0, 4)}
         if fixed: row["fix"] = "D" if r.get("winner") == "D" else "R"
         k = ("house", r["seat"])
         if k in rec: row["bl"] = rec[k]
         seats.append(row)
     house = {"states": st_names, "seats": seats, "need": 218,
-             "sd": {"nat": P.s_nat, "state": P.s_state, "urban": P.s_urban, "hisp": P.s_hisp, "cuban": P.s_cuban, "asian": P.s_asian, "wnc": P.s_wnc},
+             "sd": {"nat": P.s_nat, "state": P.s_state, "urban": P.s_urban, "hisp": P.s_hisp, "cuban": P.s_cuban, "asian": P.s_asian, "wnc": P.s_wnc,
+                    "htx": P.s_htx, "hfl": P.s_hfl, "hwest": P.s_hwest},
              "sys": sysd["house"]}
 
     def statewide(F, office, slope_mult):
