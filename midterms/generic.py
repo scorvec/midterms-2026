@@ -19,7 +19,11 @@ from pathlib import Path
 from . import data_prep as D
 
 ROOT = Path(__file__).resolve().parents[1]; RAW = ROOT / "data" / "raw" / "votehub"; CACHE = ROOT / "data" / "cache"
-KNOT_DAYS, LAMBDA_TREND, LAMBDA_HOUSE = 14, 30.0, 4.0
+# LAMBDA_HOUSE 4 -> 1 (user decision 2026-10-09, deep review): less ridge shrinkage of the pollster house effects. 538's generic archive
+# 2018-24 x 7 dates, live fit, 3-day release lag: weighted RMSE predicting the NEXT 24 days' polls (free of the polling-miss level)
+# 2.623 -> 2.551, better in 23/28 cases and 4/4 years (year-block t 1.95, 3 df - not significant on its own; most of the gain is 2018);
+# margin vs the House vote 3.61 -> 3.49. 16 was worse in every year. Live trend 9.07 -> 9.29 on the Oct 9 polls.
+KNOT_DAYS, LAMBDA_TREND, LAMBDA_HOUSE = 14, 30.0, 1.0
 
 
 # Checked corrections to VoteHub records: (pollster, start, end, population) -> fields. The raw file is re-downloaded daily, so
