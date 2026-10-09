@@ -84,9 +84,15 @@ def races():
         if (ip.startswith("Democratic") or ip.startswith("DFL")) and any(inc.split()[-1] in x for x in dem): dem = [x for x in dem if inc.split()[-1] in x] + dem
         key = (st, "special" in str(r[t.columns[0]]).lower())
         ballot = [(n.strip(), p) for n, p in re.findall(r"▌([^▌\[]+?)\s*\((Democratic|DFL|Republican|Independent|Libertarian|Green|[^)]+)\)", c)]
-        noms[key] = {"dem_nom": dem[0].strip() if dem else None, "rep_nom": rep[0].strip() if rep else None, "inc_party": "D" if (ip.startswith("Democratic") or ip.startswith("DFL")) else ("R" if ip.startswith("Republican") else "O"), "status": str(r[t.columns[6]]), "ballot": ballot}
+        # 2026-10-09: an interim appointee on the regular ballot (SC: Darline Graham, electoral history "2026 (appointed)") is an
+        # APPOINTED incumbent - the appointee rule below covered only the two hard-coded specials, so she carried the full C_INC.
+        # Appointed = the incumbent's electoral history ENDS in "(appointed)" (Hyde-Smith's "2018 (appointed) 2018 (special) 2020" is
+        # an elected incumbent).
+        hist = next((col for col in t.columns if "Electoral history" in str(col)), None)
+        appointed = bool(re.search(r"\(appointed\)\s*$", str(r[hist]).strip())) if hist else False
+        noms[key] = {"dem_nom": dem[0].strip() if dem else None, "rep_nom": rep[0].strip() if rep else None, "inc_party": "D" if (ip.startswith("Democratic") or ip.startswith("DFL")) else ("R" if ip.startswith("Republican") else "O"), "status": str(r[t.columns[6]]), "ballot": ballot, "appointed": appointed}
     R["key"] = list(zip(R["state"], R["special"]))
-    for k in ("dem_nom", "rep_nom", "inc_party", "status", "ballot"): R[k] = R["key"].map(lambda x: (noms.get(x) or {}).get(k))
+    for k in ("dem_nom", "rep_nom", "inc_party", "status", "ballot", "appointed"): R[k] = R["key"].map(lambda x: (noms.get(x) or {}).get(k))
     # the specials are not in the race table: nominees from the race page's infobox; both seats are held by
     # Republican appointees who are on the ballot (Husted for Vance, OH; Moody for Rubio, FL)
     for i, r in R[R["special"]].iterrows():
@@ -104,7 +110,8 @@ def races():
     pl = _pres_lean(); R["lean_cook"] = R["lean"]
     R["lean"] = [pl(2026, st) if pl(2026, st) == pl(2026, st) else lc for st, lc in zip(R["state"], R["lean_cook"])]
     R["inc"] = np.where(R["inc_retiring"] | R["status"].astype(str).str.contains("retiring|lost renomination|resign", case=False), 0, R["inc_party"].map({"D": 1, "R": -1}).fillna(0)).astype(float)
-    R.loc[R["status"].astype(str).str.contains("appointed incumbent running"), "inc"] *= APPOINTEE_INC
+    appointee = R["status"].astype(str).str.contains("appointed incumbent running") | R["appointed"].fillna(False).astype(bool)
+    R.loc[appointee, "inc"] *= APPOINTEE_INC                        # (0 stays 0: an appointee who is not on the ballot)
     return R.drop(columns="key")
 
 
