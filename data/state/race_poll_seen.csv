@@ -943,3 +943,13 @@ governor,IA,Emerson College,2026-10-06,2026-10-09,polls.json
 governor,ME,The Washington Post/SSPG,2026-10-05,2026-10-09,polls.json
 governor,OR,GBAO (D),2026-10-04,2026-10-09,polls.json
 house,NY-21,Impact Research (D),2026-10-04,2026-10-09,polls.json
+house,CO-4,Impact Research (D),2026-09-24,2026-10-09,polls.json
+house,NC-1,co/efficient (R),2026-10-08,2026-10-09,polls.json
+senate,AR,Grayhouse (R),2026-10-04,2026-10-09,polls.json
+senate,ME,Rasmussen Reports (R),2026-10-08,2026-10-09,polls.json
+senate,MN,Rasmussen Reports (R),2026-10-07,2026-10-09,polls.json
+governor,AZ,Equis Research,2026-10-09,2026-10-09,polls.json
+governor,ME,The Washington Post/George Mason University School of Policy and Government,2026-10-05,2026-10-09,polls.json
+governor,MI,Z to A Research (D),2026-10-01,2026-10-09,polls.json
+governor,WI,Z to A Research (D),2026-10-01,2026-10-09,polls.json
+senate,ME,Rasmussen Reports (R),2026-10-08,2026-10-09,manual
