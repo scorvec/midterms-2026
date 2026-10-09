@@ -87,7 +87,11 @@ def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
         races = []
         for _, r in F.reset_index(drop=True).iterrows():
             el = float(r["elast"]) if "elast" in F and pd.notna(r.get("elast")) else 1.0
-            row = {"st": r["state"], "mu": _r(r["mu"]), "sd": _r(r["sd"], 3), "el": _r(el * slope_mult, 4),
+            # 2026-10-09: the Senate simulation adds RACE_EXTRA to each race's own sd and draws the shared shock at STATE_SHARED_MISS;
+            # governors draw theirs at GOV_SHARED_MISS with no extra - the engine has one shared draw, so governors' loading carries the ratio
+            sd_own = float(np.hypot(r["sd"], SN.RACE_EXTRA)) if office == "senate" else float(r["sd"])
+            el_mult = 1.0 if office == "senate" else SN.GOV_SHARED_MISS / SN.STATE_SHARED_MISS
+            row = {"st": r["state"], "mu": _r(r["mu"]), "sd": _r(sd_own, 3), "el": _r(el * slope_mult * el_mult, 4),
                    "h": _r(r.get("h_load", 0) or 0, 4), "c": _r(r.get("c_load", 0) or 0, 4), "a": _r(r.get("a_load", 0) or 0, 4),
                    "z": _r(r.get("wnc_z", 0) or 0, 4)}
             if office == "senate":

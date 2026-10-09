@@ -288,7 +288,9 @@ def simulate(S, b3, n=20000, seed=13, nat_z=None):
     """Governor margins [n, races] on the shared national draw: senate2026.simulate_senate at the governors' own national slope
     (elast = b3 / NAT_SLOPE), x SHARED_K, with each race's sd x RACE_SD_K."""
     from . import senate2026 as SN
-    return SN.simulate_senate(S.assign(elast=SHARED_K * b3 / SN.NAT_SLOPE, sd=S["sd"] * RACE_SD_K), n=n, seed=seed, nat_z=nat_z)
+    # 2026-10-09: governors keep their shared miss (GOV_SHARED_MISS 4.2) and no race extra when the Senate's error is re-split
+    return SN.simulate_senate(S.assign(elast=SHARED_K * b3 / SN.NAT_SLOPE, sd=S["sd"] * RACE_SD_K), n=n, seed=seed, nat_z=nat_z,
+                              shared=SN.GOV_SHARED_MISS, extra=0.0)
 
 
 def races():
@@ -469,7 +471,8 @@ def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
         mu, sd_r, pm, ne = blend(mu_prior, r.prior_sd, qq, asof, b3, rsd)
         mu = mu + b3 * heat.get(r.state, 0.0)
         rows.append({"state": r.state, "governor": r.governor, "inc_party": r.inc_party, "inc": r.inc, "dem": dn, "rep": rn, "lean": round(r.lean, 1),
-                     "n_polls": int(len(qq)) if len(qq) else 0, "poll_margin": pm, "mu_prior": mu_prior, "prior_sd": r.prior_sd, "mu": mu, "sd": sd_r,
+                     # 2026-10-09: polls inside the blend's window only (as the Senate / House counts; IL showed its Nov 2025 poll)
+                     "n_polls": int((pd.to_datetime(qq["end_date"]) > asof - pd.Timedelta(days=M.POLL_WINDOW)).sum()) if len(qq) else 0, "poll_margin": pm, "mu_prior": mu_prior, "prior_sd": r.prior_sd, "mu": mu, "sd": sd_r,
                      "h_load": gscale * G.h_load.get(r.state, 0.0), "c_load": gscale * G.c_load.get(r.state, 0.0), "a_load": gscale * G.a_load.get(r.state, 0.0), "wnc_z": G.wnc_z.get(r.state, 0.0),
                      "group_shift": gscale * G.group_shift.get(r.state, 0.0),
                      "newest_poll": q.end_date.max().date().isoformat() if len(q) else None, "rcv": RC.NOTE if rcv_on else "", "rcv_sd": rsd})

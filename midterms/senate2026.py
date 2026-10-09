@@ -1,5 +1,5 @@
 """2026 Senate: races from the Wikipedia race table (nominees, incumbents, Cook PVI x2), polls from
-each race page, prior refit on 321 D-v-R races 2006-2024 (0.80 E, 0.79 lean, 10.0 inc, sd 12.0), poll blend, simulation.
+each race page, time-varying prior (lean / incumbency trends 1982-2024, at 2026: 0.79 E, 0.84 lean, 6.7 inc, sd 8.8), poll blend, simulation.
     python -m midterms.senate2026 [E]
 """
 import re, sys, numpy as np, pandas as pd
@@ -21,8 +21,19 @@ from .run2026 import GROUP_B_HISP, GROUP_B_ASIAN, CUBAN_WEIGHT, HISP_GROUPS
 # const 2.22, lean 0.788, inc 10.00, E 0.795, resid sd 11.99. Walk-forward check (prior alone, 10-cycle window, clean test races
 # 2010-2024): mean log score 3.936 -> 3.920; 2026 effect at the Oct 9 inputs: every prior +0.9 D, prior sd 13.4 -> 12.0, Senate
 # p_ctrl 0.713 -> 0.714 (independent races keep their own handling below).
-SEN_CONST = 2.22
-B_LEAN, C_INC, PRIOR_SD, NAT_SLOPE, POLL_SD, POLL_SYS = 0.788, 10.00, 12.0, 0.795, M.SEN_POLL_SD, M.SEN_POLL_SYS
+# TIME-VARYING PRIOR (user decision 2026-10-09, deep review). The Senate has nationalized: per-cycle fits 1982-2024 show the incumbency
+# coefficient falling ~3.8 pts per decade (17-25 in the 1980s-2000s, 4.5-9.4 in 2016-24), the lean slope rising ~0.11 per decade and the
+# residual sd falling ~1.35 per decade (15-20 -> 7-11), so a pooled 10-cycle fit is stale. Spec: margin = const + lean x (b1 + b1t t) +
+# inc x (b2 + b2t t) + NAT_SLOPE E, t = (year - 2010) / 10, fitted on every D-v-R race 1982-2024 (jungle rounds and races with a 20 %+
+# independent left out); NAT_SLOPE kept from the 10-cycle pool (2006-24, as before); residual sd extrapolated to the year by a
+# log-linear trend of the squared residuals. Evaluated at 2026 (t = 1.6): const 0.696, lean 0.7097 + 0.0792 t = 0.836, inc 12.638 -
+# 3.723 t = 6.68, E 0.794, sd 8.84. Walk-forward live-path backtest (Senate 2006-2024, 10 cycles, 1,615 race-dates, prior refitted on
+# earlier cycles only, against the pooled-10-cycle rule): log loss -0.0080 (7/10 cycles; sign-flip p 0.059, race bootstrap p <0.001),
+# Brier -0.0026, CRPS -0.23 (p 0.061 / <0.001); 2014-2024 better in 6/6 cycles, worse 2006/08/12. Caveat recorded with the user: the
+# gain is largest in the cycles whose polls overstated Democrats, but unpolled races (no polls involved) show the same time pattern.
+# Before (2026-10-09 morning, pooled 2006-24 D-v-R fit): const 2.22, lean 0.788, inc 10.00, E 0.795, sd 12.0.
+SEN_CONST = 0.696
+B_LEAN, C_INC, PRIOR_SD, NAT_SLOPE, POLL_SD, POLL_SYS = 0.836, 6.68, 8.84, 0.794, M.SEN_POLL_SD, M.SEN_POLL_SYS
 # Midterm race polls earn more weight (2026-09-30, user: "it would make more sense to put more weight on the state polling").
 # The shared per-race Senate polling miss is smaller in midterms: final-3-week non-partisan averages, competitive races 1998-2024,
 # systematic part 4.1 midterm v 4.7 presidential (research/senate_poll_bias.py). Live Senate backtest, POLL_SYS x 0.8
@@ -66,9 +77,17 @@ IND_MIN_MONEY, IND_MIN_RATIO = 1e6, 0.25
 # POLLING miss (2.1-2.5, research/senate_error_correlation.py), and the polled races that decide the chamber are ~85 %
 # poll. The House's wider 4.1 (2026-09-22) is the environment error that its mostly unpolled seats carry in full.
 SEN_S_NAT = 3.2     # the shared statewide shock in the BLEND's error split (race_sys); the simulation uses STATE_SHARED_MISS
-STATE_SHARED_MISS = 4.2     # 2026-10-03: shared statewide miss, pts of margin, about ZERO (no direction): RMS of the cycle-mean
-                            # Senate miss of the model's own race means 2018-24 (leak-free harness, no directional corrections)
-RACE_EXTRA = 0.0            # extra race-level outcome spread on top of the blend's posterior sd (set below from the harness)
+STATE_SHARED_MISS = 3.1     # shared statewide miss, pts of margin, about ZERO (no direction). 2026-10-03: 4.2 (RMS of the 2018-24 cycle-mean
+                            # Senate misses). RE-SPLIT (user decision 2026-10-09, deep review): the cycle-wide miss over a longer record is
+                            # 3.1 (538 raw_polls Senate+governor 1998-2022, RMS about zero; 3.2-3.3 on the live-path harness 2006-24) and the
+                            # model's implied correlation between race errors was 0.34 against 0.13 measured, while race-level errors were
+                            # larger than modelled. So the shared shock is 3.1 and each race gets RACE_EXTRA = sqrt(4.2^2 - 3.1^2) = 2.83 of
+                            # its own, which keeps every race's total spread (and its odds) where it was and only lowers the correlation.
+                            # Walk-forward harness 2006-24: race log loss -0.0003 / CRPS -0.004 (unchanged), seat-count PIT sd 0.265 -> 0.299
+                            # (uniform 0.289), cycle-dates inside the 10-90 % seat range 100 % -> 90 % (nominal 80 %). Senate only:
+                            # governors keep GOV_SHARED_MISS 4.2 with no extra (not tested there).
+RACE_EXTRA = 2.83           # extra race-level outcome spread on top of the blend's posterior sd (Senate; see above)
+GOV_SHARED_MISS = 4.2       # the governors' shared statewide miss (x b3 / NAT_SLOPE in gov2026.simulate), unchanged 2026-10-09
 # 2026-09-30: scaled with the House s_nat 4.1 -> 4.5 (user decision), was 2.9
 WNC_SD = 1.3        # white non-college polling-miss factor, pts per 1 sd of the state's share
 # Appointed incumbents (2026-09-22): 12 appointees on a general ballot 2006-2022 beat an OPEN-seat prior by +6.3
@@ -195,14 +214,14 @@ def joint_setup(n, states=None, seed=23, c=None):
     return JOINT
 
 
-def simulate_senate(S, n=20000, seed=11, nat_z=None):
+def simulate_senate(S, n=20000, seed=11, nat_z=None, shared=None, extra=None):
     """Margins [n, races]: shared national shock x NAT_SLOPE, group factors, white non-college factor, race residual.
     Columns used: mu, sd, h_load/c_load/a_load (0 if absent), wnc_z."""
     rng = np.random.default_rng(seed); t = lambda size, s: rng.standard_t(M.T_DF, size) * s * np.sqrt((M.T_DF - 2) / M.T_DF)
     el = S["elast"].fillna(1.0).values[None, :] if "elast" in S else 1.0     # per-state sensitivity to the national shock
-    s_sh = STATE_SHARED_MISS / NAT_SLOPE                                  # the statewide shock about zero (pts of margin / slope)
+    s_sh = (STATE_SHARED_MISS if shared is None else shared) / NAT_SLOPE  # the statewide shock about zero (pts of margin / slope)
     nat = M.national_shock(n, s_sh, S["state"].values, nat_z, t) * NAT_SLOPE * el     # movement split: model.MOVE
-    sd_tot = np.sqrt(S["sd"].values ** 2 + RACE_EXTRA ** 2)
+    sd_tot = np.sqrt(S["sd"].values ** 2 + (RACE_EXTRA if extra is None else extra) ** 2)
     res = t((n, len(S)), 1.0) * sd_tot[None, :]
     if JOINT is not None:                                                  # same-state component (JOINT above)
         for j, st in enumerate(S["state"].values):

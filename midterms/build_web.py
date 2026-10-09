@@ -222,8 +222,10 @@ def methodology_notes(s):
               f"10 of 13 cycles; not tied to turnout or to the national miss; out of sample Senate log loss -3.8 %) - governors get the same; "
               if M.STATE_DIRECTION else "no correction for the direction of a state's polling miss; ") + (
               f"heating-oil adjustment by state fuel-oil share; appointed incumbents (Husted, Moody) get {SN.APPOINTEE_INC} of the incumbency term "
-              f"(12 appointees 2006-22 averaged +6.3 over an open-seat prior); shared statewide polling miss {SN.STATE_SHARED_MISS:g} pts in either direction (the root-mean-square of the cycle-wide Senate miss "
-              f"2018-2024; race outcomes inside the model's 80 % ranges 78 % of the time with it, 67 % with the old 2.4), drawn with "
+              f"(12 appointees 2006-22 averaged +6.3 over an open-seat prior); shared statewide polling miss {SN.STATE_SHARED_MISS:g} pts in either direction (the root-mean-square of the cycle-wide statewide miss "
+              f"1998-2022) plus {SN.RACE_EXTRA:g} pts of extra race-level spread, which keeps each race's total spread of the earlier 4.2 shared "
+              f"miss but lowers the correlation between races to what past cycles show (governors keep {SN.GOV_SHARED_MISS:g}); the prior's lean "
+              f"and incumbency slopes follow their 1982-2024 trends (incumbency worth less, lean more, a tighter prior than a pooled fit), drawn with "
               f"correlation {NMOOD.RHO_STATEWIDE:g} to the House's national draw (the generic-ballot miss and the Senate's shared polling miss "
               f"correlated about +0.3 over 13 cycles, not 1)"))
     return {"house": house, "senate": senate}
