@@ -647,8 +647,13 @@ def collapse_versions(p: pd.DataFrame, race_col="seat") -> pd.DataFrame:
                 same_nums = pd.notna(p.at[i, "dem"]) and p.at[i, "dem"] == p.at[j, "dem"] and p.at[i, "rep"] == p.at[j, "rep"]
                 # within 3 days: versions of one survey (same name OR identical numbers); 4-14 days apart only the SAME
                 # pollster with IDENTICAL D and R shares counts as one poll listed twice (2026-10-04: NV governor
-                # 'Grassroots Targeting (R)' 40-52 ending 7/6 and again 7/16 was counted twice)
-                if (gap <= 3 and (same_name or same_nums)) or (same_name and same_nums): parent[find(i)] = find(j)
+                # 'Grassroots Targeting (R)' 40-52 ending 7/6 and again 7/16 was counted twice). 2026-10-09: "same pollster" there
+                # is the dedupe's own identity rule (_same_pollster), not the exact spelling - one poll under two spellings and two
+                # end dates was counted twice: MD governor 'University of Maryland, Baltimore County' 9/22 and 'University of Maryland
+                # Baltimore County Institute of Politics' 9/27, both 51-24 (79 % of the race's poll weight); IA governor 'The New York
+                # Times/Siena University' 6/17 and 'New York Times/ Siena University' 6/27, both 48-47
+                same_firm = same_name or (same_nums and _same_pollster(p.at[i, "pollster"], p.at[j, "pollster"]))
+                if (gap <= 3 and (same_name or same_nums)) or (same_firm and same_nums): parent[find(i)] = find(j)
     grp = [find(i) for i in range(len(p))]
     if len(set(grp)) == len(p): return p
     p["_g"] = grp
