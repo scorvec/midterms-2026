@@ -456,7 +456,8 @@ so this is turnout, not vote choice; mail voting is limited to voters 65 and ove
 ## Early-vote composition: North Carolina and Florida (diagnostic)
 
 DIAGNOSTIC ONLY - nothing feeds the forecast or the website. `.github/workflows/early-diag.yml` runs daily at 01:50 UTC in its
-own concurrency group, commits only `data/early/`, and every step is `continue-on-error` with a warning on failure.
+own concurrency group, commits only `data/early/`, and every step is `continue-on-error` with a warning on failure. Runtime
+about 35 s a day (North Carolina ~6 s, Florida ~2 s); the first run, which built the voter-history table, took ~3 minutes.
 
 **North Carolina** (`midterms/nc_early.py`; race and ethnicity are self-reported on the NC voter record): accepted mail and
 one-stop ballots cast by the same number of days before Election Day, 2026 against 2022 and 2024, for white, Black, other,
