@@ -1,0 +1,69 @@
+ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
+26906	11/08/2022	2022 General	State Totals	Vote-by-Mail Provided (Not Yet Returned)	435,166	677,418	29,018	403,034	1,544,636	11/23/2022 11:03AM
+26906	11/08/2022	2022 General	Alachua	Vote-by-Mail Provided (Not Yet Returned)	3,111	9,185	247	3,525	16,068	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Baker	Vote-by-Mail Provided (Not Yet Returned)	246	232	11	77	566	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Bay	Vote-by-Mail Provided (Not Yet Returned)	3,889	2,968	190	1,785	8,832	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Bradford	Vote-by-Mail Provided (Not Yet Returned)	531	498	24	192	1,245	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Brevard	Vote-by-Mail Provided (Not Yet Returned)	18,552	23,143	1,168	12,545	55,408	11/23/2022 11:03AM
+26906	11/08/2022	2022 General	Broward	Vote-by-Mail Provided (Not Yet Returned)	28,632	84,766	2,474	43,139	159,011	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Calhoun	Vote-by-Mail Provided (Not Yet Returned)	115	201	4	49	369	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Charlotte	Vote-by-Mail Provided (Not Yet Returned)	5,045	5,303	360	3,546	14,254	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Citrus	Vote-by-Mail Provided (Not Yet Returned)	4,325	3,217	212	2,056	9,810	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Clay	Vote-by-Mail Provided (Not Yet Returned)	7,146	4,961	339	3,584	16,030	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Collier	Vote-by-Mail Provided (Not Yet Returned)	9,341	6,838	373	5,419	21,971	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Columbia	Vote-by-Mail Provided (Not Yet Returned)	761	856	23	359	1,999	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	DeSoto	Vote-by-Mail Provided (Not Yet Returned)	209	220	11	104	544	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Dixie	Vote-by-Mail Provided (Not Yet Returned)	338	230	9	107	684	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Duval	Vote-by-Mail Provided (Not Yet Returned)	11,882	22,304	977	8,606	43,769	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Escambia	Vote-by-Mail Provided (Not Yet Returned)	6,900	7,662	425	3,837	18,824	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Flagler	Vote-by-Mail Provided (Not Yet Returned)	2,770	3,225	160	2,018	8,173	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Franklin	Vote-by-Mail Provided (Not Yet Returned)	260	380	23	99	762	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Gadsden	Vote-by-Mail Provided (Not Yet Returned)	359	1,772	21	274	2,426	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Gilchrist	Vote-by-Mail Provided (Not Yet Returned)	310	234	8	96	648	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Glades	Vote-by-Mail Provided (Not Yet Returned)	192	163	9	63	427	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Gulf	Vote-by-Mail Provided (Not Yet Returned)	245	271	18	92	626	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Hamilton	Vote-by-Mail Provided (Not Yet Returned)	116	221	7	59	403	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Hardee	Vote-by-Mail Provided (Not Yet Returned)	210	172	3	98	483	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Hendry	Vote-by-Mail Provided (Not Yet Returned)	276	452	16	175	919	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Hernando	Vote-by-Mail Provided (Not Yet Returned)	5,201	5,100	265	3,313	13,879	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Highlands	Vote-by-Mail Provided (Not Yet Returned)	2,048	2,225	73	1,153	5,499	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Hillsborough	Vote-by-Mail Provided (Not Yet Returned)	33,479	56,817	2,393	35,656	128,345	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Holmes	Vote-by-Mail Provided (Not Yet Returned)	339	192	3	77	611	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Indian River	Vote-by-Mail Provided (Not Yet Returned)	4,626	4,743	299	3,021	12,689	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Jackson	Vote-by-Mail Provided (Not Yet Returned)	632	977	19	165	1,793	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Jefferson	Vote-by-Mail Provided (Not Yet Returned)	153	392	4	67	616	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Lafayette	Vote-by-Mail Provided (Not Yet Returned)	95	49	1	10	155	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Lake	Vote-by-Mail Provided (Not Yet Returned)	6,613	8,208	342	5,175	20,338	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Lee	Vote-by-Mail Provided (Not Yet Returned)	17,046	15,545	804	12,578	45,973	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Leon	Vote-by-Mail Provided (Not Yet Returned)	5,218	15,624	314	4,173	25,329	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Levy	Vote-by-Mail Provided (Not Yet Returned)	894	860	53	332	2,139	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Liberty	Vote-by-Mail Provided (Not Yet Returned)	79	161	0	16	256	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Madison	Vote-by-Mail Provided (Not Yet Returned)	156	321	2	61	540	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Manatee	Vote-by-Mail Provided (Not Yet Returned)	11,131	12,493	645	8,091	32,360	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Marion	Vote-by-Mail Provided (Not Yet Returned)	7,957	8,649	352	4,313	21,271	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Martin	Vote-by-Mail Provided (Not Yet Returned)	3,825	3,496	192	2,133	9,646	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Miami-Dade	Vote-by-Mail Provided (Not Yet Returned)	44,850	79,230	3,049	54,295	181,424	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Monroe	Vote-by-Mail Provided (Not Yet Returned)	1,832	2,150	147	1,131	5,260	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Nassau	Vote-by-Mail Provided (Not Yet Returned)	3,861	2,298	175	1,650	7,984	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Okaloosa	Vote-by-Mail Provided (Not Yet Returned)	5,573	4,077	321	3,284	13,255	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Okeechobee	Vote-by-Mail Provided (Not Yet Returned)	475	450	21	191	1,137	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Orange	Vote-by-Mail Provided (Not Yet Returned)	16,084	37,685	1,423	22,401	77,593	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Osceola	Vote-by-Mail Provided (Not Yet Returned)	7,198	17,471	489	12,899	38,057	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Palm Beach	Vote-by-Mail Provided (Not Yet Returned)	26,915	64,730	2,761	34,217	128,623	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Pasco	Vote-by-Mail Provided (Not Yet Returned)	14,711	18,462	944	12,607	46,724	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Pinellas	Vote-by-Mail Provided (Not Yet Returned)	30,093	39,453	2,139	28,235	99,920	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Polk	Vote-by-Mail Provided (Not Yet Returned)	12,175	18,482	817	11,950	43,424	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Putnam	Vote-by-Mail Provided (Not Yet Returned)	1,079	1,670	49	513	3,311	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Santa Rosa	Vote-by-Mail Provided (Not Yet Returned)	5,116	3,092	284	2,266	10,758	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Sarasota	Vote-by-Mail Provided (Not Yet Returned)	10,652	13,067	591	7,799	32,109	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Seminole	Vote-by-Mail Provided (Not Yet Returned)	11,566	15,652	789	10,805	38,812	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	St. Johns	Vote-by-Mail Provided (Not Yet Returned)	6,222	6,451	335	3,578	16,586	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	St. Lucie	Vote-by-Mail Provided (Not Yet Returned)	6,260	10,749	433	5,311	22,753	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Sumter	Vote-by-Mail Provided (Not Yet Returned)	5,331	3,486	127	2,236	11,180	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Suwannee	Vote-by-Mail Provided (Not Yet Returned)	687	547	23	197	1,454	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Taylor	Vote-by-Mail Provided (Not Yet Returned)	383	376	11	88	858	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Union	Vote-by-Mail Provided (Not Yet Returned)	54	65	2	7	128	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Volusia	Vote-by-Mail Provided (Not Yet Returned)	16,425	20,470	1,115	14,259	52,269	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Wakulla	Vote-by-Mail Provided (Not Yet Returned)	507	746	27	235	1,515	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Walton	Vote-by-Mail Provided (Not Yet Returned)	1,399	839	59	531	2,828	11/23/2022  8:09AM
+26906	11/08/2022	2022 General	Washington	Vote-by-Mail Provided (Not Yet Returned)	465	394	14	111	984	11/23/2022  8:09AM

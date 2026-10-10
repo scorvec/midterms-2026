@@ -1,0 +1,28 @@
+{
+ "2022": {
+  "rows": 2275853,
+  "accepted": 2198550,
+  "no_return_date": 0,
+  "duplicate_voters_dropped": 5,
+  "after_election_day": 10694,
+  "request_types": {
+   "ONE-STOP": 2010885,
+   "MAIL": 187660
+  },
+  "through": "2022-11-08",
+  "in_history_this_election": 0.9981
+ },
+ "2024": {
+  "rows": 4700602,
+  "accepted": 4521943,
+  "no_return_date": 0,
+  "duplicate_voters_dropped": 16,
+  "after_election_day": 1175,
+  "request_types": {
+   "EARLY VOTING": 4223720,
+   "MAIL": 298207
+  },
+  "through": "2024-11-05",
+  "in_history_this_election": 0.9989
+ }
+}

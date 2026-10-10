@@ -30,7 +30,8 @@ machine. The run commits its outputs to `web/`, and the website copies them from
 7. Diagnostics that do not feed the forecast: Florida and Pennsylvania early/mail vote (`fl_early.py`, `pa_early.py`),
    Texas early-vote turnout (`tx_early.py`, a separate workflow step, off until switched on), voter registration in North Carolina and
    Pennsylvania on Mondays (`registration.py`), same-pollster poll deltas. They are uploaded as a workflow artifact, not
-   committed.
+   committed. North Carolina early ballots by race and the Florida 2024 comparison run in their own workflow
+   (`early-diag.yml`, README "Early-vote composition").
 8. Mondays: `reports/weekly_<date>.md`, which races moved in the past week and why.
 
 A publish gate (`weekly.publish_gate`) holds the outputs when a polled race suddenly has no polls or the poll counts
@@ -69,6 +70,9 @@ Committed inputs (`data/static/`) and their sources:
 | `national_mood_fit.json` | fitted coefficients only: the national-vote error s(L) (and the unused directional and approval variants), the cycles used and the late-movement slope | our fit to the generic-ballot average vs the House vote, 15 cycles 1996-2024 (538 / ABC News averages and poll archives, HuffPost Pollster archives, Gallup approval). The underlying table is not distributed; `python -m midterms.national_mood --refit` rebuilds the fit from a local copy |
 | `tx_early_sources.json` (`tx_early_2022_final.csv` planned, not built) | sources and retrieval times for the Texas tracker; the 2022 final early vote by county will be added when the tracker is switched on | Texas Secretary of State (public records as reported by the counties; attribution, no endorsement implied) |
 | `tx_county_pres2024.csv` | 2024 presidential votes by Texas county (to check the tracker's county groups) | MIT Election Data and Science Lab 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), summed by county; `tx_early baseline` |
+| `nc_early_baseline.csv` (+ `.qc.json`) | North Carolina accepted mail / one-stop ballots of the 2022 and 2024 generals, cumulative by days before Election Day (0-60), by self-reported race group and Hispanic ethnicity: counts, low-propensity and previous-general method counts, and the registered voters of each group on the same days out | NC State Board of Elections absentee files, voter-history file and weekly registration statistics (public records); aggregates only, `python -m midterms.nc_early baseline --src DIR` |
+| `fl_wayback/Stats_{43888,26906}_*.txt` | Florida Division of Elections statistics files of the 2024 general (VbmVoted 10/04, 10/09, 10/28; VbmProvided 09/16, 10/10, 10/28; EarlyVoted 10/28; finals) and the 2022 general (final) | Florida Division of Elections (public records), as captured by the Internet Archive's Wayback Machine; fetched once |
+| `fl_registration.csv` | Florida active registered voters by party at each month end (Jun-Nov 2022, Jun-Nov 2024, Jan 2026 on) | Florida Division of Elections monthly reports by county and party (public records); added by hand (dos.fl.gov needs a browser) |
 | `gov_results_2024.csv`, `gov_nominees.csv`, `gov_candidate_quality.csv`, `gov_nominee_offices.csv` | the 2024 governor results table; every governor nominee 1998-2026 with the linked article; whether each had held statewide elected office or a seat in Congress before the race, and the infobox offices read | Wikipedia yearly "United States gubernatorial elections" pages and the nominees' articles (CC BY-SA 4.0); facts derived by `midterms/gov_quality.py` (README "Governor model review") |
 | `rcv_transfers.csv`, `rcv_rates.json`, `rcv_backtest_results.csv`, `rcv_backtest_polls.csv` | ranked-choice transfers: one row per eliminated candidate (party type, first-round share, share of its ballots reaching each finalist or exhausted), the fitted rates, and the leave-one-race-out backtests | official round-by-round tabulations of the Maine Secretary of State (2nd district 2018, 2022) and the State of Alaska Division of Elections (August 2022 special general, 2022 and 2024 general elections), public records; `python -m midterms.rcv --fetch` downloads them once into `data/raw/rcv/` and rebuilds the tables, `--backtest` reruns the test |
 
@@ -448,6 +452,36 @@ k is the same weekday and the same number of days out in 2022 and 2026 (SB 2753 
 in effect for November 2026). Caveats (also in the file's `notes`): Texas has no party registration and no party data are used,
 so this is turnout, not vote choice; mail voting is limited to voters 65 and over, disabled voters and a few other groups; HB
 1217 (2023) extended weekend and last-week hours to small counties; counties' reports lag.
+
+## Early-vote composition: North Carolina and Florida (diagnostic)
+
+DIAGNOSTIC ONLY - nothing feeds the forecast or the website. `.github/workflows/early-diag.yml` runs daily at 01:50 UTC in its
+own concurrency group, commits only `data/early/`, and every step is `continue-on-error` with a warning on failure.
+
+**North Carolina** (`midterms/nc_early.py`; race and ethnicity are self-reported on the NC voter record): accepted mail and
+one-stop ballots cast by the same number of days before Election Day, 2026 against 2022 and 2024, for white, Black, other,
+undesignated and Hispanic (ethnicity field, any race) voters - each group's share of ballots, its share of ballots divided by its
+share of registered voters on the same days out (index), ballots per 1,000 registered, the share who skipped at least two of the
+three previous generals (low propensity), and what the same voters did in the previous general of the same kind (by mail /
+early in person / on Election Day / not at all; Election Day last time and early now is a mode shift, not new turnout). Inputs:
+the NCSBE absentee file of 2026 (one conditional request per run), the committed 2022 / 2024 baseline, NCSBE weekly registration
+statistics (cached), and the 2016-2024 generals reduced from NCSBE's voter-history file (voter-level, so it lives only in the
+Actions cache under `nc-hist-generals-v1`, never committed or released; rebuilt from one ~350 MB download when that entry is
+gone). Output `data/early/nc_early.json` and the day's table `data/early/nc/2026_<date>.csv` (later files show how far each day
+filled in: ~1 % for the newest day). Traps handled in the code: 2024 codes one-stop as "EARLY VOTING", RegStat folded Asian /
+multiracial / undesignated into "Other" until Dec 2023 (so those are one denominator group), 2022 mail ballots that arrived after
+Election Day, keying errors in return dates. Calendar: mail went out 60 days out in 2022 and 2026 but ~42 days out in 2024;
+one-stop opens 19 days out in all three years (Oct 15, 2026).
+
+**Florida** (`midterms/fl_early.py`; party only - race is on the Florida voter record but only in the voter extract, which the
+Division provides on request): the daily statistics files are snapshotted into `data/early/fl_stats/` (Florida keeps no
+history, so a missed day is lost) and compared with the Wayback Machine's 2024 captures at the same days out, as the returns'
+R-D margin, that margin minus the registration R-D of the latest month end, and minus the R-D of all mail ballots sent (with
+each party's return rate). Output `data/early/fl_early.json`. Hurricanes Helene (Sep 26, 2024) and Milton (Oct 9, 2024) fall on
+the 2024 baseline dates.
+
+**Georgia**: not built. The free official per-voter absentee file has no race; the voter list with race is sold; the SOS site
+and its turnout data hub (which shows turnout by race) answer automated requests with a browser challenge, which is not evaded.
 
 ## Heating-oil adjustment
 
