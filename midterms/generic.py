@@ -484,6 +484,27 @@ def _add_pollresults(M: pd.DataFrame, kind: str) -> pd.DataFrame:
         N = pd.read_csv(cache, parse_dates=["start_date", "end_date"]) if cache.exists() else pd.DataFrame()
     if N.empty: return M
     N = N.copy(); N["key"] = [series_key(R.canon(p), sp) for p, sp in zip(N["pollster"], N["sponsor"])]; keep = []
+    # 2026-10-10: the same poll under ANOTHER name from Polling USA (no n, population guessed): ONE such row ending within a
+    # day with identical D/R shares IS this post - it takes this post's name, n, population and start. Done in a first pass so
+    # every other version of the survey (RV, adults) is then compared with the corrected row whatever the post order. Before,
+    # the pollresults copy was dropped and the Polling USA one kept (wrong name, RV guessed for an LV result), so the survey's
+    # other versions entered under the second name and the survey counted twice: The Honest Poll 10/4-6 ("Honest Polling"
+    # 54-42 = its LV version), Centerline Research & Strategy 9/26-10/1 ("Centerline Research" 50-42 = its LV version),
+    # WSJ 9/16-21 ("WSJ" = Wall Street Journal 50-42).
+    # A Polling USA name that is a KNOWN, different pollster (it appears in the other sources) is a different poll, never
+    # renamed: WSJ 9/16-21 and Verasight 9/16-21 were both 50-42 (the 2026-09-30 coincidence below).
+    other_names = set(M.loc[M["src"] != "bluesky", "pollster"])
+    done = set()
+    for i, r in N.iterrows():
+        near = (M["end_date"] - r["end_date"]).abs()
+        bx = (near <= pd.Timedelta(days=1)) & (M["src"] == "bluesky") & M["n"].isna() & (M["dem"] == r["dem"]) & (M["rep"] == r["rep"])
+        bx &= (M["pollster"] == r["key"]) | ~M["pollster"].isin(other_names)
+        if int(bx.sum()) == 1:
+            j = M.index[bx][0]
+            M.loc[j, ["pollster", "n", "pop", "start_date"]] = [r["key"], float(r["n"]) if pd.notna(r["n"]) else float("nan"), r["pop"] or M.at[j, "pop"], r["start_date"]]
+            if "key" in M.columns: M.loc[j, "key"] = r["key"]
+            done.add(i)
+    N = N.drop(index=list(done))
     for _, r in N.iterrows():
         near = (M["end_date"] - r["end_date"]).abs()
         hit = (M["pollster"] == r["key"]) & (near <= pd.Timedelta(days=2))

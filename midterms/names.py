@@ -11,7 +11,7 @@ ALIASES = {"angus reid global": "angus reid", "mclaughlin & associates": "mclaug
            "atlas intel": "atlasintel", "atlasintel": "atlasintel", "daily mail": "jl partners", "j.l. partners": "jl partners", "financial times": "ft/yougov", "the bullfinch group": "bullfinch", "cnn": "cnn/ssrs", "cnn/ssrs": "cnn/ssrs", "nbc news": "nbc", "yahoo news": "yougov/yahoo", "yahoo news/yougov": "yougov/yahoo",
            # 2026-10-10: Polling USA writes "Honest Polling", pollresults.org "The Honest Poll" - one pollster. The Oct 4-6 survey
            # entered twice (pollresults RV 52-41 and Polling USA 54-42 = its LV version mislabelled RV), each at full weight.
-           "honest polling": "the honest poll"}
+           "honest polling": "the honest poll", "wsj": "wall street journal", "centerline research & strategy": "centerline research"}
 def canon(name: str) -> str:
     k = re.sub(r"\s+", " ", str(name).lower().replace("*", "")).strip()
     if k in ALIASES: return ALIASES[k]
