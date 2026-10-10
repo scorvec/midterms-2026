@@ -955,3 +955,10 @@ governor,WI,Z to A Research (D),2026-10-01,2026-10-09,polls.json
 senate,ME,Rasmussen Reports (R),2026-10-08,2026-10-09,manual
 senate,SC,Rasmussen (R),2026-10-08,2026-10-09,polls.json
 governor,IA,The New York Times/Siena University,2026-06-27,2026-10-09,polls.json
+senate,AR,GrayHouse (R),2026-10-04,2026-10-10,polls.json
+senate,MI,Wedgewood Polls,2026-10-09,2026-10-10,polls.json
+senate,MI,Z to A Research (D),2026-10-01,2026-10-10,polls.json
+senate,MN,Morning Consult (D),2026-10-07,2026-10-10,polls.json
+governor,CA,Manhattan Institute,2026-10-01,2026-10-10,polls.json
+governor,MI,Wedgewood Polls,2026-10-09,2026-10-10,polls.json
+governor,MN,Morning Consult (D),2026-10-07,2026-10-10,polls.json
