@@ -1,0 +1,69 @@
+ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
+49894	11/03/2026	2026 General	State Totals	Voted Vote-by-Mail	78,800	95,740	5,604	41,091	221,235	10/06/2026 11:01AM
+49894	11/03/2026	2026 General	Alachua	Voted Vote-by-Mail	746	1,599	64	470	2,879	10/06/2026 11:01AM
+49894	11/03/2026	2026 General	Baker	Voted Vote-by-Mail	57	20	0	8	85	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Bay	Voted Vote-by-Mail	910	541	35	266	1,752	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Bradford	Voted Vote-by-Mail	47	34	6	5	92	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Brevard	Voted Vote-by-Mail	151	229	23	109	512	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Broward	Voted Vote-by-Mail	3,778	9,273	317	3,142	16,510	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Calhoun	Voted Vote-by-Mail	27	31	0	0	58	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Charlotte	Voted Vote-by-Mail	2,605	1,886	219	1,061	5,771	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Citrus	Voted Vote-by-Mail	1,746	1,249	111	637	3,743	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Clay	Voted Vote-by-Mail	1,127	759	69	344	2,299	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Collier	Voted Vote-by-Mail	4,147	2,219	200	1,551	8,117	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Columbia	Voted Vote-by-Mail	294	196	12	55	557	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	DeSoto	Voted Vote-by-Mail	48	65	1	15	129	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Dixie	Voted Vote-by-Mail	88	44	3	16	151	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Duval	Voted Vote-by-Mail	100	182	13	56	351	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Escambia	Voted Vote-by-Mail	1,493	1,290	71	471	3,325	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Flagler	Voted Vote-by-Mail	1,226	1,279	80	540	3,125	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Franklin	Voted Vote-by-Mail	48	52	8	20	128	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Gadsden	Voted Vote-by-Mail	87	342	4	27	460	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Gilchrist	Voted Vote-by-Mail	103	41	3	14	161	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Glades	Voted Vote-by-Mail	38	26	1	12	77	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Gulf	Voted Vote-by-Mail	76	47	9	12	144	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Hamilton	Voted Vote-by-Mail	25	24	1	7	57	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Hardee	Voted Vote-by-Mail	16	17	0	5	38	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Hendry	Voted Vote-by-Mail	50	61	3	10	124	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Hernando	Voted Vote-by-Mail	1,406	1,458	72	607	3,543	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Highlands	Voted Vote-by-Mail	182	246	18	77	523	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Hillsborough	Voted Vote-by-Mail	127	263	7	114	511	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Holmes	Voted Vote-by-Mail	72	23	2	8	105	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Indian River	Voted Vote-by-Mail	1,552	1,436	148	639	3,775	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Jackson	Voted Vote-by-Mail	15	16	2	1	34	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Jefferson	Voted Vote-by-Mail	34	97	2	9	142	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Lafayette	Voted Vote-by-Mail	0	0	0	0	0	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Lake	Voted Vote-by-Mail	1,544	1,753	98	762	4,157	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Lee	Voted Vote-by-Mail	2,129	1,559	120	934	4,742	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Leon	Voted Vote-by-Mail	1,028	2,445	73	521	4,067	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Levy	Voted Vote-by-Mail	169	95	9	29	302	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Liberty	Voted Vote-by-Mail	2	3	0	0	5	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Madison	Voted Vote-by-Mail	28	80	2	15	125	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Manatee	Voted Vote-by-Mail	1,163	1,095	63	530	2,851	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Marion	Voted Vote-by-Mail	1,936	2,204	130	768	5,038	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Martin	Voted Vote-by-Mail	1,290	1,196	107	475	3,068	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Miami-Dade	Voted Vote-by-Mail	8,720	11,195	492	6,566	26,973	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Monroe	Voted Vote-by-Mail	494	509	15	170	1,188	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Nassau	Voted Vote-by-Mail	671	484	44	257	1,456	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Okaloosa	Voted Vote-by-Mail	327	258	20	173	778	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Okeechobee	Voted Vote-by-Mail	187	159	11	41	398	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Orange	Voted Vote-by-Mail	4,282	7,966	384	3,150	15,782	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Osceola	Voted Vote-by-Mail	66	116	4	43	229	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Palm Beach	Voted Vote-by-Mail	5,310	10,701	553	3,647	20,211	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Pasco	Voted Vote-by-Mail	3,714	4,048	302	1,995	10,059	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Pinellas	Voted Vote-by-Mail	4,120	3,695	289	2,075	10,179	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Polk	Voted Vote-by-Mail	4,526	4,557	276	1,728	11,087	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Putnam	Voted Vote-by-Mail	231	224	12	57	524	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Santa Rosa	Voted Vote-by-Mail	220	179	10	66	475	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Sarasota	Voted Vote-by-Mail	4,768	6,140	368	2,282	13,558	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Seminole	Voted Vote-by-Mail	1,786	2,112	142	977	5,017	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	St. Johns	Voted Vote-by-Mail	1,457	1,641	78	578	3,754	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	St. Lucie	Voted Vote-by-Mail	1,629	2,097	144	824	4,694	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Sumter	Voted Vote-by-Mail	246	309	18	126	699	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Suwannee	Voted Vote-by-Mail	229	127	10	36	402	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Taylor	Voted Vote-by-Mail	18	11	1	5	35	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Union	Voted Vote-by-Mail	23	6	1	2	32	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Volusia	Voted Vote-by-Mail	3,475	3,406	299	1,851	9,031	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Wakulla	Voted Vote-by-Mail	191	126	7	27	351	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Walton	Voted Vote-by-Mail	300	162	12	66	540	10/06/2026  8:04AM
+49894	11/03/2026	2026 General	Washington	Voted Vote-by-Mail	100	37	6	7	150	10/06/2026  8:04AM
