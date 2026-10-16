@@ -228,7 +228,7 @@ _MIT = None
 
 
 def mit():
-    """State presidential two-party totals 2020/2024 (MIT Election Lab, CC0 - the file the model's bootstrap already uses)."""
+    """State presidential two-party totals 2012-2024 (MIT Election Lab, CC0 - the file the model's bootstrap already uses)."""
     global _MIT
     if _MIT is None:
         from .bootstrap import FILES, RAW as BR
@@ -239,7 +239,7 @@ def mit():
             f.parent.mkdir(parents=True, exist_ok=True)
             B.stream(url, f)
         p = pd.read_csv(f)
-        p = p[p.year.isin([2020, 2024]) & p.party_simplified.isin(["DEMOCRAT", "REPUBLICAN"])]
+        p = p[p.year.isin([2012, 2016, 2020, 2024]) & p.party_simplified.isin(["DEMOCRAT", "REPUBLICAN"])]
         _MIT = p.pivot_table(
             index=["year", "state_po"], columns="party_simplified", values="candidatevotes", aggfunc="sum"
         )
@@ -673,6 +673,7 @@ def validate_sld(states=("PA", "MI", "WI", "NC")):
 # cycle -> (recent, previous) presidential election: the 75/25 lean of 2026, from elections held before the cycle
 HIST = {2018: (16, 12), 2022: (20, 16)}
 VEST_YEARS = (16, 20)
+TIGER20 = "https://www2.census.gov/geo/tiger/TIGER2020/CD"
 WIKI_PRES = "{} United States presidential election in {}"
 NOMINEES = {12: ("Obama", "Romney"), 16: ("Clinton", "Trump"), 20: ("Biden", "Trump")}
 # Kansas City reports apart from its counties (Jackson, Clay, Platte) in Missouri's county returns: one swing unit with them.
@@ -703,15 +704,26 @@ def vest_blocks(st, yy):
     return bv
 
 
+_CD116: dict = {}
+
+
 def cd116(st):
-    """The 116th-Congress districts (the 2018 election's map) of a state, TIGER/Line 2020."""
+    """The 116th-Congress districts (the 2018 election's map) of a state, TIGER/Line 2020 (the state file, else the national)."""
+    import urllib.error
+
     import geopandas as gpd
 
-    p = B.url_get(
-        f"https://www2.census.gov/geo/tiger/TIGER2020/CD/tl_2020_{FIPS[st]}_cd116.zip", f"tl_2020_{FIPS[st]}_cd116.zip"
-    )
-    t = gpd.read_file(f"zip://{p}").to_crs(5070)
-    return t[t["CD116FP"].map(_cd).notna()][["CD116FP", "geometry"]]
+    if st not in _CD116:
+        try:
+            p = B.url_get(f"{TIGER20}/tl_2020_{FIPS[st]}_cd116.zip", f"tl_2020_{FIPS[st]}_cd116.zip")
+            t = gpd.read_file(f"zip://{p}")
+        except urllib.error.HTTPError:
+            p = B.url_get(f"{TIGER20}/tl_2020_us_cd116.zip", "tl_2020_us_cd116.zip")
+            t = gpd.read_file(f"zip://{p}")
+            t = t[t["STATEFP"] == FIPS[st]]
+        t = t.to_crs(5070)
+        _CD116[st] = t[t["CD116FP"].map(_cd).notna()][["CD116FP", "geometry"]]
+    return _CD116[st]
 
 
 def cd116_blocks(st, t):
@@ -780,7 +792,7 @@ def wiki_county(st, yy):
         best = None
         for t in pd.read_html(io.StringIO(html)):
             cols = [" ".join(str(x) for x in c) if isinstance(c, tuple) else str(c) for c in t.columns]
-            if not re.search(r"county|parish|borough|city", cols[0], re.I):
+            if not re.search(r"county|parish|borough", cols[0], re.I):  # not the by-municipality tables
                 continue
             dc = [i for i, c in enumerate(cols) if dn in c and re.search(r"#|votes", c, re.I)]
             rc = [i for i, c in enumerate(cols) if rn in c and re.search(r"#|votes", c, re.I)]
@@ -863,12 +875,13 @@ def build_hist(states=None):
     VEST file for a year gets the other VEST year carried the same way. Each state is calibrated to its official totals (MIT)."""
     QC.clear()
     b118 = bef(118)
+    b118_st = b118["block"].str[:2]
     rows = []
     for cycle, (yn, yo) in HIST.items():
         tag = "cd116" if cycle == 2018 else "cd118"
         for st in states or sorted(FIPS):
             if cycle == 2022:  # the 118th-Congress block equivalency file
-                b = b118[b118["block"].str[:2] == FIPS[st]]
+                b = b118[b118_st == FIPS[st]]
                 bd = pd.DataFrame({"block": b["block"].values, "cd": b["cd"].map(_cd).values})
                 n_dist = bd["cd"].nunique()
             else:
