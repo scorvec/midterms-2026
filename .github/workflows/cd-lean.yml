@@ -1,0 +1,98 @@
+name: congressional-district lean build
+
+# The House prior's district leans from public precinct data (midterms/cd_lean_build.py). `hist`: the 2018 and 2022 maps the
+# prior is fitted on (data/static/cd_lean_hist.csv, qc_cd_hist.json); `2026`: the 2026 maps (cd_lean_2026.csv, qc_cd.json).
+# Downloads go to data/raw/stateleg (cached between runs, never committed); only the derived tables are committed. With
+# `states` set, only those states are built and the tables are uploaded as an artifact instead.
+on:
+  workflow_dispatch:
+    inputs:
+      build:
+        description: "hist (the 2018 and 2022 maps) or 2026"
+        type: choice
+        options: [hist, "2026"]
+        default: hist
+      states:
+        description: "Only these states, space-separated postal codes (hist only; the tables are uploaded, not committed)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cd-lean
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      PYTHONUNBUFFERED: "1"
+      BUILD: ${{ inputs.build }}
+      STATES: ${{ inputs.states }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt geopandas==1.1.1 pyogrio==0.11.1 shapely==2.1.1 pyarrow
+      - name: Restore raw cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw/stateleg
+          key: cd-lean-raw-${{ github.run_id }}
+          restore-keys: cd-lean-raw-
+      - name: Build
+        run: |
+          [[ "$STATES" =~ ^[A-Z\ ]*$ ]] || { echo "::error::states must be postal codes"; exit 1; }
+          if [ "$BUILD" = hist ]; then python -m midterms.cd_lean_build hist $STATES; else python -m midterms.cd_lean_build; fi
+      - name: Drop large downloads before caching (slim extracts are kept)
+        if: always()
+        run: |
+          find data/raw/stateleg -type f \( -name '*.csv' -o -name '*.tab' -o -name '*.zip' \) -size +40M -print -delete || true
+          du -sh data/raw/stateleg || true
+      - name: Save raw cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/raw/stateleg
+          key: cd-lean-raw-${{ github.run_id }}
+      - name: Upload tables
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cd-lean-${{ github.run_id }}
+          path: |
+            data/static/cd_lean_*.csv
+            data/static/qc_cd*.json
+          if-no-files-found: ignore
+      # snapshot + resync + push (merge-free, never rebase), like the daily run
+      - name: Commit tables
+        if: ${{ inputs.states == '' }}
+        run: |
+          set -uo pipefail
+          if [ "$BUILD" = hist ]; then paths="data/static/cd_lean_hist.csv data/static/qc_cd_hist.json"; else paths="data/static/cd_lean_2026.csv data/static/qc_cd.json"; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- $paths
+          if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+          SNAP=$(mktemp -d)
+          git diff --staged --name-only -z | tar cf "$SNAP/outs.tar" --null -T -
+          git reset -q
+          for i in 1 2 3 4 5; do
+            if ! timeout 120 git fetch -q origin "$GITHUB_REF_NAME"; then echo "fetch $i failed"; sleep 5; continue; fi
+            git reset -q --hard "origin/$GITHUB_REF_NAME"
+            tar xf "$SNAP/outs.tar"
+            git add -A -- $paths
+            if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "District lean tables ($BUILD)"
+            if timeout 180 git push -q origin "HEAD:$GITHUB_REF_NAME"; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push $i rejected; resyncing"; sleep $((i * 5))
+          done
+          exit 1

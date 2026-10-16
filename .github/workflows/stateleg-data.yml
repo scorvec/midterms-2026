@@ -49,8 +49,7 @@ jobs:
             case "$STEP" in
               build) python -m midterms.stateleg_build || rc=1 ;;
               wiki)  python -m midterms.stateleg_wiki || rc=1 ;;
-              all)   python -m midterms.stateleg_build || rc=1; python -m midterms.cd_lean_build || rc=1; python -m midterms.stateleg_wiki || rc=1 ;;
-              cd)    python -m midterms.cd_lean_build || rc=1 ;;
+              all)   python -m midterms.stateleg_build || rc=1; python -m midterms.stateleg_wiki || rc=1 ;;
               *:*)   python -m midterms.${STEP%%:*} $(echo "${STEP#*:}" | tr ',' ' ') || rc=1 ;;
               *)     python -m midterms.$STEP || rc=1 ;;
             esac
@@ -74,7 +73,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data/static/stateleg data/static/cd_lean_2026.csv data/static/qc_cd.json 2>/dev/null || git add -A data/static/stateleg || true
+          git add -A data/static/stateleg || true
           if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
           du -sh data/static/stateleg
           git commit -q -m "state-leg derived tables ($STEP)"
