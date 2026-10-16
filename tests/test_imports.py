@@ -10,16 +10,22 @@ import pytest
 import midterms
 
 PKG = Path(midterms.__file__).resolve().parent
-RUN_ON_IMPORT = {"refresh"}  # scripts that do their work when imported (python -m midterms.refresh): compiled only
+# compiled only: modules that do their work when imported, and the district-map build tools, whose workflow
+# (stateleg-geo.yml) installs the geo stack (geopandas, pyproj) that the forecast itself does not need
+COMPILE_ONLY = {
+    "refresh": "runs the refresh when imported (python -m midterms.refresh)",
+    "district_shapes": "map build tool; needs geopandas",
+    "urban": "map build tool; needs pyproj",
+}
 MODULES = sorted(m.name for m in pkgutil.iter_modules([str(PKG)]))
 
 
-@pytest.mark.parametrize("name", [m for m in MODULES if m not in RUN_ON_IMPORT])
+@pytest.mark.parametrize("name", [m for m in MODULES if m not in COMPILE_ONLY])
 def test_imports(name):
     importlib.import_module(f"midterms.{name}")
 
 
-@pytest.mark.parametrize("name", sorted(RUN_ON_IMPORT))
+@pytest.mark.parametrize("name", sorted(COMPILE_ONLY))
 def test_compiles(name):
     path = PKG / f"{name}.py"
     compile(path.read_text(encoding="utf-8"), str(path), "exec")
