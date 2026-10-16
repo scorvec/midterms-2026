@@ -9,6 +9,7 @@ import pandas as pd
 from pathlib import Path
 from . import wiki_polls as W
 from .data_prep import _ST
+from .names import clean_text
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw" / "wiki"
@@ -69,7 +70,7 @@ def _cols(t):
 
 
 def _clean(s):
-    return re.sub(r"\[.*?\]", "", str(s)).strip()
+    return re.sub(r"\[.*?\]", "", clean_text(s)).strip()
 
 
 def _pvi(s):

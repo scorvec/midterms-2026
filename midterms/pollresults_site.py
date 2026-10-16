@@ -22,6 +22,7 @@ import html as H
 import datetime as dt
 from pathlib import Path
 import pandas as pd
+from .names import clean_text
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://pollresults.org"
@@ -131,7 +132,7 @@ def race_rows(path: str):
         cells = re.findall(r"<td[^>]*>(.*?)</td>", r, re.S)
         if len(cells) < 6:
             continue
-        txt = [" ".join(H.unescape(re.sub(r"<[^>]+>", " ", c)).split()) for c in cells]
+        txt = [" ".join(clean_text(H.unescape(re.sub(r"<[^>]+>", " ", c))).split()) for c in cells]
         link = re.search(r'href="([^"]+)"', cells[-1])
         n = re.search(r"n\s*=\s*([\d,]+)\s*(LV|RV|A|V)?", txt[4])
         rows.append(

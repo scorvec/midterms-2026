@@ -18,6 +18,7 @@ import urllib.request
 import urllib.parse
 from pathlib import Path
 import pandas as pd
+from .names import clean_text
 
 ROOT = Path(__file__).resolve().parents[1]
 API = "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed"
@@ -97,7 +98,7 @@ def parse(text):
     """-> list of dict(state, office, seat, cands[(name, party, pct)], pollster, end_date, sponsor, released_late) or []"""
     from .data_prep import _ST
 
-    lines = [l.strip() for l in text.split("\n")]
+    lines = [clean_text(l).strip() for l in text.split("\n")]
     head = lines[0] if lines else ""
     m = re.match(r"^(?P<geo>[A-Za-z .]+?)\s*-\s*(?P<race>.+?)\s+Poll(?:ing|s)?:?\s*$", head)
     if not m:
@@ -476,7 +477,7 @@ _SKIP = re.compile(
 def pr_parse(text):
     from .data_prep import _ST
 
-    L = [l.strip() for l in text.split("\n")]
+    L = [clean_text(l).strip() for l in text.split("\n")]
     if len(L) < 5:
         return None
     head = re.sub(r"^\d{4}\s+", "", L[0])

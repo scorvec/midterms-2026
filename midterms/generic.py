@@ -43,8 +43,10 @@ VOTEHUB_FIX = {
 
 
 def load_votehub(kind: str) -> pd.DataFrame:
+    from .names import clean_tree
+
     with open(RAW / f"{kind}.json") as fh:
-        d = json.load(fh)
+        d = clean_tree(json.load(fh))
     rows = []
     for p_raw in d:
         p = p_raw

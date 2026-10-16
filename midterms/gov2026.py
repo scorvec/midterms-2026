@@ -467,7 +467,9 @@ def votehub_polls(refresh=True):
         from . import fetch as F
 
         F.get("https://api.votehub.com/polls?poll_type=governor", f, min_age_h=6)
-    return json.loads(f.read_text())
+    from .names import clean_tree
+
+    return clean_tree(json.loads(f.read_text()))
 
 
 def _sur(n):

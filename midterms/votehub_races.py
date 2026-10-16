@@ -25,7 +25,9 @@ def fetch(refresh=True):
         from . import fetch as F
 
         F.get(URL, f, min_age_h=6)
-    return json.loads(f.read_text())
+    from .names import clean_tree
+
+    return clean_tree(json.loads(f.read_text()))
 
 
 def build(refresh=True):

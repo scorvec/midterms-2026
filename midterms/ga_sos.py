@@ -280,7 +280,9 @@ def elections_2026():
 
 
 def _clean(n):
-    return re.sub(r"\s+", " ", re.sub(r"\(.*?\)|\bincumbent\b", "", str(n), flags=re.I)).strip()
+    from .names import clean_text
+
+    return re.sub(r"\s+", " ", re.sub(r"\(.*?\)|\bincumbent\b", "", clean_text(n), flags=re.I)).strip()
 
 
 def build():

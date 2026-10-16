@@ -18,6 +18,7 @@ import pandas as pd
 import numpy as np
 import urllib.request
 import urllib.parse
+from .names import clean_text
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / "data" / "cache" / "wiki"
@@ -90,6 +91,18 @@ def _cache_file(title):
     return CACHE / (re.sub(r"[^A-Za-z0-9]+", "_", title) + ".html")
 
 
+# every name the forecast takes from Wikipedia is read from fetch()'s HTML, and read_html decodes entities: an escaped angle
+# bracket in a cell would come out as markup in a name. The page arrives without them (a "<1%" cell parses the same as "1%")
+# and without control characters.
+_UNSAFE_HTML = re.compile(
+    r"&(?:lt|gt|#0*6[02](?![0-9])|#x0*3[ce](?![0-9a-f]));?|[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]", re.I
+)
+
+
+def _defuse(html: str) -> str:
+    return _UNSAFE_HTML.sub("", html)
+
+
 def _cached_rev(html):
     m = re.search(r'"wgCurRevisionId":(\d+)', html[:200000])
     return int(m.group(1)) if m else None
@@ -131,7 +144,7 @@ def fetch(title: str, max_age_h=None) -> str:
         if FRESH_SINCE is not None and fp.exists() and fp.stat().st_mtime < FRESH_SINCE:
             max_age_h = 0
     if fp.exists() and (time.time() - fp.stat().st_mtime) < max_age_h * 3600:
-        return fp.read_text()
+        return _defuse(fp.read_text())
     if fp.exists():  # unchanged since the cached copy? (one batched API call per 50 pages)
         old = fp.read_text()
         try:
@@ -141,7 +154,7 @@ def fetch(title: str, max_age_h=None) -> str:
             if cur is not None and cur == _cached_rev(old):
                 fp.touch()
                 _remember(title)
-                return old
+                return _defuse(old)
         except Exception as e:
             print("  wikipedia revision check failed:", str(e)[:80])
     url = "https://en.wikipedia.org/wiki/" + urllib.parse.quote(title.replace(" ", "_"))
@@ -149,7 +162,7 @@ def fetch(title: str, max_age_h=None) -> str:
     fp.write_text(html)
     _remember(title)
     time.sleep(1.0)
-    return html
+    return _defuse(html)
 
 
 _INDEX = CACHE / "titles.json"  # every title fetched into this cache (so the revision check can batch them)
@@ -302,7 +315,7 @@ def poll_tables(html: str, year: int, dem_names=(), rep_names=()):
             end = _parse_date(r[dcol[0]], year)
             if end is None:
                 continue
-            pol = re.sub(r"\[.*?\]", "", str(r[[c for c in cols if "Poll source" in c or "Pollster" in c][0]]))
+            pol = re.sub(r"\[.*?\]", "", clean_text(r[[c for c in cols if "Poll source" in c or "Pollster" in c][0]]))
             pol = _committee_tag(pol)
             # the table's "Other" share (rcv.py: candidates the poll did not name still transfer in a ranked-choice count)
             oth = [_num(r[c]) for c in cols if "Other" in c]

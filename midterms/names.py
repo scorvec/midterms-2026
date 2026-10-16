@@ -1,6 +1,25 @@
-"""Canonical pollster names: one key per pollster across the national poll feeds."""
+"""Canonical pollster names: one key per pollster across the national poll feeds; scraped text made plain."""
 
 import re
+
+# Scraped names (Wikipedia tables, the VoteHub API, poll posts) reach the published JSON and from there the pages' markup:
+# no angle brackets, and no control characters (each becomes a space).
+_UNSAFE = re.compile(r"[<>\x00-\x1f\x7f-\x9f]")
+
+
+def clean_text(s) -> str:
+    return _UNSAFE.sub(lambda m: "" if m.group() in "<>" else " ", str(s))
+
+
+def clean_tree(x):
+    """clean_text on every string of a parsed JSON feed (keys too); other values unchanged."""
+    if isinstance(x, str):
+        return clean_text(x)
+    if isinstance(x, dict):
+        return {clean_tree(k): clean_tree(v) for k, v in x.items()}
+    if isinstance(x, list):
+        return [clean_tree(v) for v in x]
+    return x
 
 
 # pollster name harmonisation across the poll feeds (VoteHub, Polling USA, pollresults.org)
@@ -85,7 +104,7 @@ ALIASES = {
 
 
 def canon(name: str) -> str:
-    k = re.sub(r"\s+", " ", str(name).lower().replace("*", "")).strip()
+    k = re.sub(r"\s+", " ", clean_text(name).lower().replace("*", "")).strip()
     if k in ALIASES:
         return ALIASES[k]
     # "Pollster - Sponsor" (a feed wrote "YouGov - CBS News") is the pollster; the sponsor travels in its own field.

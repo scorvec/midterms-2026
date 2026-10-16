@@ -1034,6 +1034,7 @@ def build_openstates():
     )
     subprocess.run(["git", "-C", str(d), "pull", "-q", "--depth", "1", "--no-rebase"], check=False)
     import yaml
+    from .names import clean_tree
 
     rows = []
     for st in STATES:
@@ -1048,7 +1049,7 @@ def build_openstates():
                         "state": st,
                         "chamber": r.get("type"),
                         "district": r.get("district"),
-                        "name": y.get("name"),
+                        "name": clean_tree(y.get("name")),
                         "party": party,
                         "id": y.get("id"),
                     }
