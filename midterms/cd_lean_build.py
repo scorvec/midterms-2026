@@ -198,13 +198,34 @@ def _block_id(s: pd.Series) -> pd.Series:
 
 def bef(n: int) -> pd.DataFrame:
     """Block -> district (CDFP) for the n-th Congress, from the Census block equivalency files. Fails when the block ids do
-    not start with state codes (they would join nothing)."""
-    pq = B.R / "bef" / f"cd{n}_v3.parquet"
+    not start with state codes or the district codes are not numbers (the tables would join nothing)."""
+    pq = B.R / "bef" / f"cd{n}_v4.parquet"
     b = pd.read_parquet(pq) if pq.exists() else _bef_build(n, pq)
-    ok = b["block"].str[:2].isin(STATE_CODES)
-    if ok.mean() < 0.99:
-        raise RuntimeError(f"CD{n} block file: {ok.mean():.1%} of block ids start with a state code, e.g. {b.head(3)}")
+    ok_block = b["block"].str[:2].isin(STATE_CODES).mean()
+    ok_cd = b["cd"].str.fullmatch(r"\d+").mean()
+    if ok_block < 0.99 or ok_cd < 0.99:
+        raise RuntimeError(
+            f"CD{n} block file: {ok_block:.1%} of block ids start with a state code, {ok_cd:.1%} of districts are numbers, e.g. {b.head(3)}"
+        )
     return b
+
+
+def _bef_table(raw: bytes, name: str, n: int):
+    """One block -> district table of a block equivalency release, read with its own delimiter and headers (releases differ:
+    comma or pipe, CDFP / CD118FP / DISTRICT, one national or one file per state); None for a member that is not one."""
+    txt = raw.decode("utf-8-sig", "replace")
+    lines = txt.split("\n", 2)
+    head = lines[0].strip()
+    sep = max("|,\t", key=head.count)
+    cols = [c.strip().strip('"').upper() for c in head.split(sep)]
+    print(f"  BEF {n}: {name}: header {head[:100]!r}, first row {lines[1].strip()[:60] if len(lines) > 1 else ''!r}")
+    gcol = next((c for c in cols if c in ("GEOID", "GEOID20", "BLOCKID")), None)
+    dcol = next((c for c in cols if re.fullmatch(r"CD\d*(FP)?|DISTRICT", c)), None)
+    if gcol is None or dcol is None:
+        return None
+    t = pd.read_csv(io.StringIO(txt), sep=sep, dtype=str)
+    t.columns = cols
+    return pd.DataFrame({"block": t[gcol].values, "cd": t[dcol].values})
 
 
 def _bef_build(n, pq):
@@ -218,27 +239,24 @@ def _bef_build(n, pq):
         p = B.url_get(u, Path(u).name)
         if p.suffix == ".zip":
             with zipfile.ZipFile(p) as z:
-                frames.extend(
-                    pd.read_csv(z.open(nm), dtype=str, sep=None, engine="python")
-                    for nm in z.namelist()
-                    if nm.lower().endswith((".txt", ".csv"))
-                )
+                print(f"  BEF {n}: {p.name} holds {z.namelist()}")
+                frames += [
+                    _bef_table(z.read(nm), nm, n) for nm in z.namelist() if nm.lower().endswith((".txt", ".csv"))
+                ]
         else:
-            frames.append(pd.read_csv(p, dtype=str, sep=None, engine="python"))
+            frames.append(_bef_table(p.read_bytes(), p.name, n))
+    frames = [f for f in frames if f is not None]
+    if not frames:
+        raise RuntimeError(f"CD{n}: no block table with a GEOID and a district column in {urls}")
     b = pd.concat(frames, ignore_index=True)
-    b.columns = [c.upper() for c in b.columns]
-    gcol = next(c for c in b.columns if c in ("GEOID", "BLOCKID", "GEOID20"))
-    dcol = next(c for c in b.columns if c.startswith("CD") or c == "DISTRICT")
-    b = b.rename(columns={gcol: "block", dcol: "cd"})[["block", "cd"]]
-    print(f"  BEF {n}: raw rows like {b.head(2).to_dict('records')}")
     b["block"] = _block_id(b["block"])
-    b["cd"] = b["cd"].astype(str).str.strip()
+    b["cd"] = b["cd"].where(b["cd"].isna(), b["cd"].astype(str).str.strip())
     n0 = len(b)
-    b = b[~b["cd"].isin(["ZZ", "98", ""])].drop_duplicates("block")  # the zip holds overlapping files
+    b = b[b["cd"].notna() & ~b["cd"].isin(["ZZ", "98", ""])].drop_duplicates("block")  # the zip holds overlapping files
     QC[f"bef{n}_rows_raw_vs_unique"] = [n0, len(b)]
     pq.parent.mkdir(parents=True, exist_ok=True)
     b.to_parquet(pq)
-    print(f"  BEF {n}: {len(b)} blocks, columns {gcol}/{dcol}")
+    print(f"  BEF {n}: {len(b)} blocks from {len(frames)} table(s), e.g. {b.head(2).to_dict('records')}")
     return b
 
 
