@@ -1,5 +1,8 @@
-"""District lean builder (cd_lean_build.py): the county-swing step that carries block votes to an election with no precinct
-shapes, and the county-name keys that match Wikipedia's county tables to FIPS codes."""
+"""District lean builder (cd_lean_build.py): the join of block votes to a block equivalency file, the county-swing step that
+carries block votes to an election with no precinct shapes, and the county-name keys that match Wikipedia's county tables to
+FIPS codes."""
+
+import zipfile
 
 import numpy as np
 import pandas as pd
@@ -10,6 +13,99 @@ from midterms import cd_lean_build as C
 
 def _blocks(rows):
     return pd.DataFrame(rows, columns=["block", "d", "r"])
+
+
+def test_block_ids_are_15_digits():
+    raw = pd.Series(["560019567001000", "1000000US560019567001001", " 560019567001002 ", "10010201001000"])
+    assert C._block_id(raw).tolist() == ["560019567001000", "560019567001001", "560019567001002", "010010201001000"]
+
+
+@pytest.mark.parametrize(
+    "raw",
+    [
+        b"GEOID,CDFP\r\n290019501001000,01\r\n290019501001001,02\r\n",  # 119th / 120th style
+        b"\xef\xbb\xbfGEOID|CD118FP\n290019501001000|01\n290019501001001|02\n",  # pipes, a byte-order mark, another header
+        b'"BLOCKID","DISTRICT"\n"290019501001000","01"\n"290019501001001","02"\n',
+    ],
+)
+def test_equivalency_table_releases(raw):
+    t = C._bef_table(raw, "member.txt", 118)
+    assert t.to_dict("list") == {"block": ["290019501001000", "290019501001001"], "cd": ["01", "02"]}
+
+
+def test_equivalency_table_skips_other_members():
+    assert C._bef_table(b"Block Equivalency File layout\nField 1: GEOID\n", "readme.txt", 118) is None
+
+
+def test_equivalency_zip_with_one_file_per_state(tmp_path, monkeypatch):
+    zp = tmp_path / "cd118.zip"
+    with zipfile.ZipFile(zp, "w") as z:
+        z.writestr("readme.txt", "Congressional district block equivalency files, one per state\n")
+        z.writestr("CD118_MO.txt", "GEOID|CDFP\n290019501001000|01\n290019501001001|ZZ\n")
+        z.writestr("CD118_WY.txt", "GEOID,CD118FP\n560019567001000,00\n")
+    monkeypatch.setattr(C, "_crawl", lambda *a: ["https://example.invalid/cd118.zip"])
+    monkeypatch.setattr(C.B, "url_get", lambda url, name: zp)
+    monkeypatch.setattr(
+        pd.DataFrame, "to_parquet", lambda self, *a, **k: None
+    )  # the cache write (pyarrow is not needed here)
+    b = C._bef_build(118, tmp_path / "cd118.parquet")
+    assert b.to_dict("list") == {"block": ["290019501001000", "560019567001000"], "cd": ["01", "00"]}
+
+
+def test_equivalency_file_check(tmp_path, monkeypatch):
+    monkeypatch.setattr(C.B, "R", tmp_path)
+    good = pd.DataFrame({"block": ["290019501001000"], "cd": ["01"]})
+    monkeypatch.setattr(C, "_bef_build", lambda n, pq: good)
+    assert C.bef(118).equals(good)
+    monkeypatch.setattr(C, "_bef_build", lambda n, pq: good.assign(cd="nan"))  # the district column read as empty
+    with pytest.raises(RuntimeError):
+        C.bef(118)
+
+
+def test_equivalency_file_joins_the_block_votes():
+    # a 118th-Congress-style table: a two-district state and an at-large one, padded codes and a water row
+    bef = pd.DataFrame(
+        {
+            "block": C._block_id(
+                pd.Series(["290010000000001", "290010000000002", "290030000000001", "560010000000001"])
+            ),
+            "cd": [" 01", "02 ", "02", "00"],
+        }
+    )
+    mo = C.bef_blocks(bef, "MO")
+    assert mo.set_index("block")["cd"].to_dict() == {
+        "290010000000001": "1",
+        "290010000000002": "2",
+        "290030000000001": "2",
+    }
+    assert C.bef_blocks(bef, "WY")["cd"].tolist() == ["1"]  # at-large 00 -> seat 1
+    bv = _blocks([("290010000000001", 60.0, 40.0), ("290010000000002", 30.0, 70.0), ("290030000000001", 50.0, 50.0)])
+    g, lost = C.seat_sums(bv, mo)
+    assert g.to_dict("index") == {"1": {"d": 60.0, "r": 40.0}, "2": {"d": 80.0, "r": 120.0}}
+    assert lost == 0.0
+    with pytest.raises(RuntimeError):
+        C.bef_blocks(bef, "VA")  # no block of the state: the files would not join
+
+
+def test_state_totals_count_every_ballot_line(tmp_path, monkeypatch):
+    from midterms import bootstrap
+
+    f = tmp_path / "mit" / "president_1976_2024.csv"
+    f.parent.mkdir()
+    f.write_text(
+        "year,state_po,candidate,party_detailed,party_simplified,candidatevotes\n"
+        "2016,NY,CLINTON,DEMOCRAT,DEMOCRAT,100\n"
+        "2016,NY,CLINTON,WORKING FAMILIES,OTHER,10\n"
+        "2016,NY,TRUMP,REPUBLICAN,REPUBLICAN,60\n"
+        "2016,NY,TRUMP,CONSERVATIVE,OTHER,20\n"
+        "2016,NY,STEIN,GREEN,OTHER,5\n"
+        "2016,NY,,DEMOCRAT,DEMOCRAT,1\n"  # an unnamed write-in row
+    )
+    monkeypatch.setattr(bootstrap, "RAW", tmp_path)
+    monkeypatch.setattr(C, "_MIT", None)
+    m, n, d, r = C.mit_state("NY", 2016)
+    assert (d, r, n) == (110.0, 80.0, 190.0)
+    assert m == pytest.approx(100 * 30 / 190)
 
 
 def test_county_carry_moves_each_block_by_its_county():
