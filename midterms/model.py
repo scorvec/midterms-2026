@@ -532,9 +532,8 @@ def heating_oil_shift(level="seat"):
 # A poll of one county / legislative / congressional district is projected statewide by uniform swing:
 #     implied statewide margin = local poll margin - (area's 2024 presidential margin - state's 2024 presidential margin)
 # and carries the area's typical differential swing as extra variance: counties of 300k-1M votes swung 2.9 (2020->24) to 4.0
-# (2016->20) pts sd away from their state (county presidential results), so SUBSTATE_SD = 4.0. A leaked internal keeps the
-# partisan-poll weight (0.58) but not the sponsor shift - the shift measures sponsors releasing flattering numbers, and a leak
-# showing the sponsor losing is the opposite selection. Rows live in data/manual/substate_polls.csv.
+# (2016->20) pts sd away from their state (county presidential results), so SUBSTATE_SD = 4.0. Leaked internals are not
+# used: their methodology is unknown and what leaks is selected. Rows live in data/manual/substate_polls.csv.
 SUBSTATE_SD = 4.0
 
 
@@ -552,7 +551,7 @@ def substate_polls(state, office, poll_sd):
     d["margin_raw"] = d.dem - d.rep
     d["margin"] = d.margin_raw - (d.geo_pres24_margin - d.state_pres24_margin)
     sp = np.where(d.sponsor.isin(["D", "R"]), SPONSOR_WEIGHT, 1.0)
-    shift = np.where((d.leaked == 1) | ~d.sponsor.isin(["D", "R"]), 0.0, np.where(d.sponsor == "D", 4.26, -4.07))
+    shift = np.where(~d.sponsor.isin(["D", "R"]), 0.0, np.where(d.sponsor == "D", 4.26, -4.07))
     d["margin"] = d.margin - shift
     d["vmult"] = (poll_sd**2 + SUBSTATE_SD**2) / poll_sd**2
     d["grade"] = 1.5 * sp / d.vmult
