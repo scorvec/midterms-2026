@@ -148,6 +148,7 @@ _GENERIC_WORDS = {
     "opinion",
     "partners",
     "&",
+    "and",
 }
 
 
@@ -155,67 +156,97 @@ def _pnorm(s):
     return re.sub(r"[^a-z0-9 &/]", "", re.sub(r"\(.*?\)", "", str(s)).lower()).strip()
 
 
-def _first_word(n):
-    """The pollster's first distinctive word ('advanced targeting research' -> 'advanced'); matching on any word let
+def _words(n):
+    """The pollster's distinctive words ('advanced targeting research' -> ('advanced',)); matching on any word let
     'targeting' tie Advanced Targeting Research to the DCCC Targeting Team."""
-    ws = [w for w in _pnorm(n).replace("/", " ").split() if w not in _GENERIC_WORDS and len(w) > 2]
-    return ws[0] if ws else ""
+    return tuple(w for w in _pnorm(n).replace("/", " ").split() if w not in _GENERIC_WORDS and len(w) > 2)
+
+
+# names the poll feeds use -> the name 538 rates the firm under (a whole name, or one partner of a joint poll)
+_RATED_AS = {
+    "ppp": "public policy polling",
+    "ppic": "public policy institute of california",
+    "gsg": "global strategy group",
+    "rutgerseagleton": "rutgers university eagleton center for public interest polling",
+    "berkeley igs": "university of california berkeley institute of governmental studies",
+    "uc berkeley institute of governmental studies": "university of california berkeley institute of governmental studies",
+    "texas public opinion research": "slingshot strategies",  # Slingshot's Texas brand
+    "dccc analytics department": "dccc targeting and analytics department",
+    "pulse science decision": "pulse decision science",  # the words swapped in a feed
+}
 
 
 def _xnorm(s):
-    """Experience-lookup key: a leading 'The' and a space after '/' are dropped and renamed schools take their old names, so
-    'The New York Times/Siena University' (the pollresults.org spelling) finds 538's 'The New York Times/Siena College'
-    (120 polls; Siena College renamed itself Siena University) instead of falling back to a first-word match on 'new'.
-    Only this lookup uses the key; other name-keyed tables keep _pnorm."""
+    """Experience-lookup key: a leading 'The', a closing 'Inc.'/'LLC' and a space after '/' are dropped, renamed schools take
+    their old names and feed names their rated ones, so 'The New York Times/Siena University' (the pollresults.org
+    spelling) finds 538's 'The New York Times/Siena College' (120 polls; Siena College renamed itself Siena University)
+    and 'Research & Polling' finds 'Research & Polling Inc.'. The pollster-rating lookups (pollster_record, whatif) share
+    the key; other name-keyed tables keep _pnorm."""
     n = re.sub(r"^the ", "", re.sub(r"/\s+", "/", _pnorm(s)))
     for new, old in (("siena university", "siena college"), ("marist university", "marist college")):  # renamed schools
         n = n.replace(new, old)
-    return n
+    return "/".join(_RATED_AS.get(x, x) for x in (re.sub(r" (inc|llc)$", "", x) for x in n.split("/")))
+
+
+VOTEHUB_FEEDS = ("generic-ballot", "approval", "us-senator", "us-representative", "governor")
+
+
+def experience_tables(votehub_polls):
+    """(538, VoteHub) experience tables, each (polls by _xnorm name, {first distinctive word: [(words, polls), ...]}, how
+    near matches combine): 538's number_polls_pollster_total per rated firm (near matches: the largest firm), and one per
+    poll in votehub_polls (near matches: all of them, one firm's spellings)."""
+    import collections
+    from pathlib import Path
+
+    def table(pairs, combine):
+        full, near = collections.Counter(), collections.defaultdict(list)
+        for k, c in pairs:
+            full[k] += c
+            w = _words(k)
+            if w:
+                near[w[0]].append((w, c))
+        return full, near, combine
+
+    rated = []
+    try:
+        r = pd.read_csv(
+            Path(__file__).resolve().parents[1] / "data" / "raw" / "538repo" / "pollster-ratings-combined.csv"
+        )
+        for n, k in zip(r.pollster, r.number_polls_pollster_total.fillna(0)):
+            # 538 files some firms under a person with the brand in brackets ("Scott Rasmussen (Rasmussen Reports)",
+            # 785 polls) - index the bracketed name too, or Rasmussen would read as a 3-poll newcomer (x1.45 variance)
+            rated += [(_xnorm(nn), int(k)) for nn in [n, *re.findall(r"\(([^)]+)\)", str(n))]]
+    except Exception:
+        pass
+    seen = collections.Counter(_xnorm(p.get("pollster")) for p in votehub_polls)
+    return table(rated, lambda c: max(c, default=0)), table(seen.items(), sum)
 
 
 def pollster_experience(name):
     global _EXP
     if _EXP is None:
-        from pathlib import Path
         import json
-        import collections
+        from pathlib import Path
 
-        R = Path(__file__).resolve().parents[1]
-        full, first = collections.Counter(), collections.Counter()
-        try:
-            r = pd.read_csv(R / "data" / "raw" / "538repo" / "pollster-ratings-combined.csv")
-            for n, k in zip(r.pollster, r.number_polls_pollster_total.fillna(0)):
-                # 538 files some firms under a person with the brand in brackets ("Scott Rasmussen (Rasmussen Reports)",
-                # 785 polls) - index the bracketed name too, or Rasmussen would read as a 3-poll newcomer (x1.45 variance)
-                import re as _re
-
-                names = [n, *_re.findall(r"\(([^)]+)\)", str(n))]
-                for nn in names:
-                    full[_xnorm(nn)] += int(k)
-                    w = _first_word(_xnorm(nn))
-                    if w:
-                        first[w] = max(first[w], int(k))
-        except Exception:
-            pass
-        for f in ("generic-ballot", "approval", "us-senator", "us-representative", "governor"):
-            fp = R / "data" / "raw" / "votehub" / f"{f}.json"
-            if not fp.exists():
-                continue
-            for p in json.loads(fp.read_text()):
-                n = _xnorm(p.get("pollster"))
-                full[n] += 1
-                w = _first_word(n)
-                if w:
-                    first[w] += 1
-        _EXP = (full, first)
-    full, first = _EXP
+        vh = Path(__file__).resolve().parents[1] / "data" / "raw" / "votehub"
+        _EXP = experience_tables(
+            p for f in VOTEHUB_FEEDS if (vh / f"{f}.json").exists() for p in json.loads((vh / f"{f}.json").read_text())
+        )
     n = _xnorm(name)
 
     def one(k):
-        if k in full:
-            return full[k]
-        w = _first_word(k)
-        return first.get(w, 0) if w else 0
+        # each source matched on its own: an exact VoteHub name must not hide the firm's 538 record under a longer name
+        # ('Mason-Dixon' = 1 VoteHub poll; 498 rated as 'Mason-Dixon Polling & Strategy'). Without an exact match, a name
+        # matches the names that start with its first two distinctive words, so 'Texas Southern University ...' does not
+        # take UT Tyler's record, nor 'Voter Sciences' Voter/Consumer Research's.
+        q = _words(k)[:2]
+        total = 0
+        for full, near, combine in _EXP:
+            if k in full:
+                total += full[k]
+            elif q:
+                total += combine([c for w, c in near.get(q[0], ()) if w[: len(q)] == q])
+        return total
 
     # a joint poll ('KSTP/SurveyUSA', 'Catawba College/YouGov') has the experience of its most experienced partner
     parts = [x.strip() for x in n.split("/") if x.strip()] if "/" in n else []

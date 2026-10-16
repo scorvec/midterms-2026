@@ -333,36 +333,17 @@ def ind_money_asof(D):
 # ------------------------------------------------------------------------------------------------ pollster experience as of D
 def experience_asof(D):
     """model._EXP with VoteHub polls created by D (538's counts are fixed)."""
-    import collections
     from . import model as M
 
-    full, first = collections.Counter(), collections.Counter()
-    r = pd.read_csv(ROOT / "data" / "raw" / "538repo" / "pollster-ratings-combined.csv")
-    import re
-
-    for n, k in zip(r.pollster, r.number_polls_pollster_total.fillna(0)):
-        for nn in [
-            n,
-            *re.findall(r"\(([^)]+)\)", str(n)),
-        ]:  # as model.pollster_experience: bracketed brands, _xnorm keys
-            full[M._xnorm(nn)] += int(k)
-            w = M._first_word(M._xnorm(nn))
-            if w:
-                first[w] = max(first[w], int(k))
     D = str(pd.Timestamp(D).date())
-    for f in ("generic-ballot", "approval", "us-senator", "us-representative", "governor"):
-        fp = ROOT / "data" / "raw" / "votehub" / f"{f}.json"
-        if not fp.exists():
-            continue
-        for p in _votehub(str(fp)):
-            if str(p.get("created_at") or p.get("end_date") or "")[:10] > D:
-                continue
-            n = M._xnorm(p.get("pollster"))
-            full[n] += 1
-            w = M._first_word(n)
-            if w:
-                first[w] += 1
-    return (full, first)
+    vh = ROOT / "data" / "raw" / "votehub"
+    return M.experience_tables(
+        p
+        for f in M.VOTEHUB_FEEDS
+        if (vh / f"{f}.json").exists()
+        for p in _votehub(str(vh / f"{f}.json"))
+        if str(p.get("created_at") or p.get("end_date") or "")[:10] <= D
+    )
 
 
 @cache
