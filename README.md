@@ -1,5 +1,9 @@
 # 2026 U.S. midterm forecast
 
+[![CI](https://github.com/scorvec/midterms-2026/actions/workflows/ci.yml/badge.svg)](https://github.com/scorvec/midterms-2026/actions/workflows/ci.yml)
+[![daily forecast](https://github.com/scorvec/midterms-2026/actions/workflows/daily.yml/badge.svg)](https://github.com/scorvec/midterms-2026/actions/workflows/daily.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 A Monte Carlo forecast of the 2026 U.S. House, Senate and governor elections, with an experimental forecast of 22 state
 legislative chambers. It is published at [scorvec.com/midterms](https://scorvec.com/midterms/); the reader-facing
 explanation is [How the forecast works](https://scorvec.com/midterms/about.html) (`web/about.html`).
@@ -155,6 +159,14 @@ python -m midterms.stateleg_backtest            # state-legislature backtest
 python -m midterms.backfill --check             # today's reconstruction against web/data/model.json
 ```
 
+Tests (`tests/`) need only the committed files and no network, and take a few seconds; CI runs them with the ruff checks
+on every code change (`.github/workflows/ci.yml`):
+
+```
+pip install pytest
+pytest
+```
+
 Switches read from the environment: `MIDTERMS_STATELEG` (state legislatures, default `on`), `MIDTERMS_STATELEG_KAPPA`
 (the tested-and-rejected state-poll signal, default `off`), `MIDTERMS_RCV` (ranked-choice handling, default `on`),
 `MIDTERMS_CD_LEAN=ours` (the public-data district lean in place of Cook PVI, default off), `TX_EARLY` (Texas tracker,
@@ -167,6 +179,7 @@ documented where it is defined.
 |---|---|
 | `midterms/` | the model (Python 3.11; `requirements.txt`); `paths.py` defines the data layout |
 | `web/` | the five pages and `whatif_engine.js`; `web/data/` holds the published outputs |
+| `tests/` | the test suite: every module imports, the early-vote profile and exposures, release dates, simulation pieces |
 | `data/static/` | small inputs derived once from public sources (below); committed |
 | `data/state/` | poll records the daily run accumulates (the feeds only reach back a few weeks); committed |
 | `data/manual/` | hand-entered polls (releases not yet in any feed) and checked corrections to scraped polls, with source URLs |

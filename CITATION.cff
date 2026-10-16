@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this forecast or its code, please cite it as below."
+type: software
+title: "2026 U.S. House, Senate and governor forecast"
+abstract: >-
+  A daily Monte Carlo forecast of the 2026 U.S. House, Senate and governor elections that blends each race's polls with a
+  fundamentals prior and simulates the elections with correlated national, state, regional and race errors, run in
+  GitHub Actions.
+authors:
+  - family-names: Corvec
+    given-names: Shawn
+repository-code: "https://github.com/scorvec/midterms-2026"
+url: "https://scorvec.com/midterms"
+license: MIT
+date-released: 2026-10-16
+keywords:
+  - elections
+  - election forecasting
+  - Monte Carlo simulation
+  - polling
+  - U.S. House
+  - U.S. Senate
