@@ -4,7 +4,6 @@ python -m midterms.wiki_inputs      # re-fetch and rebuild data/cache/*.csv
 
 import io
 import re
-import numpy as np
 import pandas as pd
 from pathlib import Path
 from . import wiki_polls as W
@@ -73,14 +72,6 @@ def _clean(s):
     return re.sub(r"\[.*?\]", "", clean_text(s)).strip()
 
 
-def _pvi(s):
-    s = _clean(s)
-    if s.upper().startswith("EVEN"):
-        return 0.0
-    m = re.match(r"([DR])\+(\d+(?:\.\d+)?)", s)
-    return (1 if m.group(1) == "D" else -1) * float(m.group(2)) if m else np.nan
-
-
 def _seat(loc):
     m = re.match(r"^(.*?)\s+(\d+|at-large)", str(loc).strip())
     return (
@@ -100,12 +91,10 @@ def house_seats(max_age_h=24):
         if not any(c.startswith("District Location") for c in cols) or not any("Status" in c for c in cols):
             continue
         t.columns = cols
-        pc = [c for c in cols if "PVI" in c][0]
         for _, r in t.iterrows():
             rows.append(
                 {
                     "loc": str(r[cols[0]]),
-                    "pvi": str(r[pc]),
                     "member": str(r[[c for c in cols if "Member" in c][0]]),
                     "party": str(r[[c for c in cols if "Party" in c][0]]),
                     "status": str(r[[c for c in cols if "Status" in c][0]]),
@@ -116,7 +105,6 @@ def house_seats(max_age_h=24):
     df = df[df["loc"].notna() & (df["loc"] != "nan")].copy()
     df["seat"] = df["loc"].map(_seat)
     df = df[df["seat"].notna()]
-    df["cook_pvi"] = df["pvi"].map(_pvi)
     st = df["status"].map(_clean)
     running = st.str.match(r"^Incumbent (renominated|advanced to general|running|re-elected)")
     party = (
@@ -143,7 +131,6 @@ def house_seats(max_age_h=24):
     )
     bad = {k: v for k, v in seats.groupby(seats["seat"].str[:2]).size().items() if v != EXPECTED.get(k, 1)}
     assert len(seats) == 435 and not bad, f"seat table off: {len(seats)} seats, mismatches {bad}"
-    seats["lean"] = 2.0 * seats["cook_pvi"]  # Cook share points -> margin units
     seats.to_csv(CACHE / "house2026_seats.csv", index=False)
     return seats
 
@@ -225,15 +212,12 @@ def senate_races(max_age_h=24):
         if not st:
             continue
         inc = _clean(r[rat.columns[2]])
-        pv = _pvi(r[rat.columns[1]])
         rows.append(
             {
                 "state": st,
                 "special": "special" in str(r[rat.columns[0]]).lower(),
                 "incumbent": inc,
                 "inc_retiring": bool(re.search(r"retiring|lost renomination|resign|appointed", inc, re.I)),
-                "cook_pvi": pv,
-                "lean": 2 * pv if pv == pv else np.nan,
                 **{f"rat_{c.split(' ')[1]}": str(r[c]) for c in rat.columns if c.startswith("Ratings")},
             }
         )

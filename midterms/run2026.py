@@ -1,18 +1,19 @@
-"""2026 House run: fundamentals prior on the 2026 maps (Wikipedia district table: Cook PVI 2026, incumbent running /
-open), demographic loadings, district polls blended in, correlated Monte Carlo at the national environment E, slider grid.
+"""2026 House run: fundamentals prior on the 2026 maps (our district lean, data_prep.partisan_lean; Wikipedia district
+table: incumbent running / open, nominees), demographic loadings, district polls blended in, correlated Monte Carlo at the
+national environment E, slider grid.
     python -m midterms.run2026 [E]
 """
 
-import os
 import sys
 import numpy as np
 import pandas as pd
+from . import data_prep as D
 from . import model as M
 
 # Hispanic / Asian swing since 2024, measured on the 2025 special and off-year elections.
 # The 2020->24 move toward Trump in Hispanic places was ~ -25 to -44 pts per unit Hispanic CVAP share; in 2025
 # it reversed fully in the higher-turnout races (NJ gov +45, VA gov +53, CA Prop 50 +82 per unit) but not in the
-# low-turnout specials (~0). A midterm electorate sits between, and the Cook PVI lean already blends 2020 with 2024,
+# low-turnout specials (~0). A midterm electorate sits between, and the district lean already blends 2020 with 2024,
 # so the value is +15 (= +1.5 pts of D margin per 10 pts of Hispanic CVAP share), Asian +11 - the lower end, because
 # the polls imply a smaller individual-level differential than the off-year results do (Hart/TelevisaUnivision
 # battlegrounds: Latino swing ~+12 vs ~+9.5 national; RGV generic ~+18) and the ecological coefficients carry the
@@ -71,17 +72,8 @@ def group_loadings(s):
 def load_seats():
     s = pd.read_csv("data/cache/house2026_seats.csv")
     s["state"] = s["seat"].str[:2]
-    if "lean" not in s or s["lean"].isna().all():
-        s["lean"] = 2.0 * s["cook_pvi"]  # Cook share points -> margin units (see wiki_inputs)
-    if os.environ.get("MIDTERMS_CD_LEAN", "cook").lower() == "ours":
-        # our own lean (cd_lean_build.py: 2024/2020 president on the 2026 maps from MEDSL / VEST / Census block files, 75/25 like
-        # Cook, margin units). Not the default: the prior coefficients were fitted on 538/Cook leans
-        try:
-            cl = pd.read_csv("data/static/cd_lean_2026.csv").set_index("seat")["lean_75_25"]
-            s["lean_cook"] = s["lean"]
-            s["lean"] = s["seat"].map(cl).fillna(s["lean"])
-        except FileNotFoundError:
-            pass
+    s["lean"] = s["seat"].map(D.partisan_lean(2026).set_index("seat")["lean"])
+    assert s["lean"].notna().all(), f"seats without a lean: {s.loc[s['lean'].isna(), 'seat'].tolist()}"
     u = pd.read_csv("data/raw/538repo/urbanization-index-2022.csv")
     u["seat"] = u["state"] + "-" + u["cd"].astype(int).astype(str)
     s = s.merge(u[["seat", "urbanindex"]], on="seat", how="left")

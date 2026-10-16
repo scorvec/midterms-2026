@@ -39,9 +39,9 @@ MOVE = None
 
 @dataclass
 class Params:
-    k0: float = 1.1  # contested-margin intercept over the national House margin (2018: -0.36, 2022: +2.61)
-    b_lean: float = 0.953
-    c_inc: float = 4.33
+    k0: float = 0.4  # contested-margin intercept over the national House margin (fit_prior: 2018 -0.79, 2022 +1.63)
+    b_lean: float = 0.918
+    c_inc: float = 4.47
     s_nat: float = 4.5  # national-environment error at ~7 weeks (generic ballot -> result), pts. Our own generic
     # estimator missed by -1.6 / +3.3 / +5.5 / +5.1 at 50 days in 2018-24 (RMS 4.2; the two
     # midterms alone 4.1). Live-path backtest 2018+2022 x 6 dates: every score improves from 2.9

@@ -4,7 +4,8 @@ Sources (all free, all under data/raw; see README):
   FEC "Federal Elections YYYY" workbooks  -> official general-election results by district / state
   FiveThirtyEight poll archives (Wayback)  -> House, Senate, generic-ballot and approval polls 2018-2024
   FiveThirtyEight raw_polls.csv           -> every rated poll with the actual result (calibration)
-  FiveThirtyEight partisan lean (2018, 2021 maps), urbanization index 2022
+  FiveThirtyEight urbanization index 2022
+  Our district lean on the 2018, 2022 and 2026 maps          -> data/static (built by cd_lean_build.py)
 
 Everything is expressed as a Democratic two-party margin in points (D% - R% of the D+R vote),
 positive = Democratic. Louisiana / California / Washington top-two races with two candidates of
@@ -15,6 +16,7 @@ from __future__ import annotations
 from pathlib import Path
 import numpy as np
 import pandas as pd
+from .paths import STATIC
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
@@ -180,38 +182,23 @@ def fec_senate(year: int) -> pd.DataFrame:
 
 
 def partisan_lean(map_year: int) -> pd.DataFrame:
-    """538 partisan lean by district: 2018 map (2018 file) or the 2022 map (2021 file). Positive = D."""
-    if map_year >= 2022:
-        # the 538 top-level district file is the pre-2022 map (no TX-37/38, CO-8, FL-28, MT-2, NC-14, OR-6);
-        # the urbanization table carries Cook PVI 2022 on the new map, same sign convention (D positive)
-        u = pd.read_csv(RAW / "538repo" / "urbanization-index-2022.csv")
-        return pd.DataFrame(
-            {"seat": u["state"] + "-" + u["cd"].astype(int).astype(str), "lean": u["pvi_22"].astype(float)}
-        )
-    p = pd.read_csv(RAW / "538repo" / "partisan_lean_DISTRICTS_2018.csv")
-    col = [c for c in p.columns if c != "district"][0]
-    v = p[col].astype(str)
-    if v.str.contains("[DR]\\+").any():  # "R+31" style
-        sign = np.where(v.str.startswith("D"), 1, -1)
-        num = pd.to_numeric(v.str.extract(r"([\d.]+)", expand=False))
-        lean = sign * num
+    """Our district lean on the map of the 2018, 2022 or 2026 election: 0.75 x (the previous presidential two-party margin minus
+    the national one) + 0.25 x the same for the election before, from public precinct returns (cd_lean_build.py). Margin
+    points, positive = D. Only elections held before `map_year` enter."""
+    if map_year == 2026:
+        t = pd.read_csv(STATIC / "cd_lean_2026.csv")
     else:
-        lean = pd.to_numeric(v)
-    out = pd.DataFrame(
-        {
-            "seat": p["district"].str.replace(
-                r"^([A-Z]{2})-0*(\d+)$", lambda m: f"{m.group(1)}-{int(m.group(2))}", regex=True
-            ),
-            "lean": lean,
-        }
-    )
-    return out
+        t = pd.read_csv(STATIC / "cd_lean_hist.csv")
+        t = t[t["cycle"] == map_year]
+    if len(t) != 435 or t["lean_75_25"].isna().any():
+        raise ValueError(f"no complete district lean for the {map_year} map ({len(t)} seats)")
+    return pd.DataFrame({"seat": t["seat"].values, "lean": t["lean_75_25"].astype(float).values})
 
 
 def urbanization() -> pd.DataFrame:
     u = pd.read_csv(RAW / "538repo" / "urbanization-index-2022.csv")
     u["seat"] = u["state"] + "-" + u["cd"].astype(int).astype(str)
-    return u[["seat", "urbanindex", "rural", "exurban", "suburban", "urban", "grouping", "pvi_22"]]
+    return u[["seat", "urbanindex", "rural", "exurban", "suburban", "urban", "grouping"]]
 
 
 def polls(kind: str) -> pd.DataFrame:
@@ -355,7 +342,7 @@ if __name__ == "__main__":
         )
         s = fec_senate(y)
         print(y, "Senate:", len(s), "states; D", (s["winner"] == "D").sum(), "R", (s["winner"] == "R").sum())
-    print(partisan_lean(2022).head(3).to_dict("records"), partisan_lean(2018).head(3).to_dict("records"))
+    print({y: partisan_lean(y).head(3).to_dict("records") for y in (2018, 2022, 2026)})
     hp = polls("house")
     print("house polls", len(hp), hp["cycle"].value_counts().to_dict())
     print(hp[hp["cycle"] == 2022][["seat", "end_date", "dem", "rep", "margin", "grade"]].head(3).to_string())

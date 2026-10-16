@@ -1,7 +1,7 @@
 """2026 Senate forecast: race table, fundamentals prior, poll blend and correlated simulation.
 
-Races from the Wikipedia race table (nominees, incumbents, Cook PVI x2), polls from each race page, a time-varying prior
-(lean / incumbency trends 1982-2024, at 2026: 0.79 E, 0.84 lean, 6.7 inc, sd 8.8).
+Races from the Wikipedia race table (nominees, incumbents), the state's presidential lean (MIT returns), polls from each race
+page, a time-varying prior (lean / incumbency trends 1982-2024, at 2026: 0.79 E, 0.84 lean, 6.7 inc, sd 8.8).
     python -m midterms.senate2026 [E]
 """
 
@@ -155,14 +155,13 @@ def races():
             if R.at[i, "rep_nom"] and str(r["incumbent"]).split()[-1] in str(R.at[i, "rep_nom"])
             else r["status"]
         )
-    # lean on the same definition B_LEAN was fitted on (mean of the two previous presidential margins vs the nation, 50/50, MIT
-    # returns); 2 x Cook PVI weights 2024 at 75 % and is rounded to whole points (rms 1.0, up to 1.9 pts off: NC, OR, OK, NE, MN).
-    # Cook is the fallback.
+    # lean on the same definition B_LEAN was fitted on: the mean of the two previous presidential margins against the nation's
+    # (50/50, MIT returns)
     from .gov2026 import _pres_lean
 
     pl = _pres_lean()
-    R["lean_cook"] = R["lean"]
-    R["lean"] = [pl(2026, st) if pl(2026, st) == pl(2026, st) else lc for st, lc in zip(R["state"], R["lean_cook"])]
+    R["lean"] = [pl(2026, st) for st in R["state"]]
+    assert R["lean"].notna().all(), f"states without a lean: {R.loc[R['lean'].isna(), 'state'].tolist()}"
     R["inc"] = np.where(
         R["inc_retiring"] | R["status"].astype(str).str.contains("retiring|lost renomination|resign", case=False),
         0,
@@ -580,7 +579,7 @@ if __name__ == "__main__":
                 "special",
                 "incumbent",
                 "inc",
-                "cook_pvi",
+                "lean",
                 "dem_nom",
                 "rep_nom",
                 "n_polls",

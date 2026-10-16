@@ -114,7 +114,7 @@ def main():
                 "member": None if pd.isna(r.get("member")) else str(r["member"]),
                 "inc": int(r["inc"]),
                 "open": bool(r["open"]),
-                "cook_pvi": float(r["cook_pvi"]),
+                "lean": round(float(r["lean"]), 1),
                 "mu": round(float(r["mu"]), 2),
                 "n_polls": (0 if pd.isna(r.get("n")) else int(r["n"])),
                 "poll_margin": (None if pd.isna(r.get("poll_margin")) else round(float(r["poll_margin"]), 1)),
@@ -192,7 +192,7 @@ def main():
                 "incumbent": r["incumbent"],
                 "inc_party": r["inc_party"],
                 "inc": round(float(r["inc"]), 2),
-                "cook_pvi": None if pd.isna(r["cook_pvi"]) else float(r["cook_pvi"]),
+                "lean": round(float(r["lean"]), 1),
                 "dem": r["challenger"] or r["dem_nom"],
                 "dem_party": r["challenger_party"] or "D",
                 "rep": r.get("republican") or r["rep_nom"],
@@ -453,7 +453,7 @@ def methodology_notes(s):
     hr = M.heat_retail()
     und_max = 100 * (M.UND_SLOPE * (M.UND_CAP - M.UND_FREE))
     house = (
-        f"mu = {P.k0:.1f} + {b:.2f}*lean + {c:.1f}*inc + E (lean = 2 x Cook PVI 2026), fundraising: + {mm:.2f} x log(D / R individual contributions "
+        f"mu = {P.k0:.1f} + {b:.2f}*lean + {c:.1f}*inc + E (lean = 0.75 x (2024 president - nation) + 0.25 x (2020 president - nation) on the 2026 maps, margin points, from precinct returns; fitted on the same lean on the 2018 and 2022 maps), fundraising: + {mm:.2f} x log(D / R individual contributions "
         f"through June 30, $10k floor) - out of sample it cut competitive-seat error 5.5 % (2018) and 3.8 % (2022), and moves incumbency from "
         f"{c:.1f} to {cm:.1f}; race polls from the state pages blended by precision (per-poll sd {M.HOUSE_POLL_SD}, shared {M.HOUSE_POLL_SYS}; a poll's "
         f"precision fades with a {M.AGE_HALF:.0f}-day half-life, no hard window); seats with no Democrat or no Republican on the ballot are decided "

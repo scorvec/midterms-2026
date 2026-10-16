@@ -33,15 +33,17 @@ The size of past misses, in either direction, sets the national error s(L), whic
 opinion movement is scaled state by state by how much of the vote is already banked (`early_vote.py`).
 
 **House** (`model.py`, `run2026.py`). Each seat's expected Democratic two-party margin starts from a fundamentals prior:
-the district's partisan lean (Cook PVI on the 2026 maps), incumbency and the nominees' fundraising through June 30
-(`money.py`), fitted on the contested seats of 2018 and 2022, plus the national environment. Demographic terms carry the
-Hispanic and Asian swing since 2024, with Texas, Florida and Western Hispanic factors, white non-college and
-urbanization factors; the district polls update those factors (`model.factor_update`). Race polls are corrected before
-they are blended, with the corrections measured on 538's archive of rated polls (`race_poll_calibration.py`): sponsored
-polls are shifted and down-weighted, each pollster's measured lean is removed, polls with many undecided or third-party
-respondents and polls from inexperienced pollsters get more variance, older polls fade (63-day half-life, 150-day
-window), and several versions of one survey count once. The blend is a Student-t (robust) update, so a poll that
-disagrees with everything else counts for less until other polls confirm it.
+the district's partisan lean (our own, from precinct returns: 0.75 x its 2024 presidential margin against the nation's +
+0.25 x the same for 2020, on the 2026 maps; `cd_lean_build.py`), incumbency and the nominees' fundraising through June
+30 (`money.py`), fitted on the contested seats of 2018 and 2022 with the same lean on those elections' maps, plus the
+national environment. Demographic terms carry the Hispanic and Asian swing since 2024, with Texas, Florida and Western
+Hispanic factors, white non-college and urbanization factors; the district polls update those factors
+(`model.factor_update`). Race polls are corrected before they are blended, with the corrections measured on 538's
+archive of rated polls (`race_poll_calibration.py`): sponsored polls are shifted and down-weighted, each pollster's
+measured lean is removed, polls with many undecided or third-party respondents and polls from inexperienced pollsters
+get more variance, older polls fade (63-day half-life, 150-day window), and several versions of one survey count once.
+The blend is a Student-t (robust) update, so a poll that disagrees with everything else counts for less until other
+polls confirm it.
 
 **Senate** (`senate2026.py`). The same pipeline with a prior refitted on every Democrat-v-Republican Senate race
 1982-2024, with linear time trends in the lean and incumbency slopes (the Senate has nationalized). Independent
@@ -81,11 +83,13 @@ Changes to the model are scored on leak-free, walk-forward harnesses that run th
 the information available then. [Model notes](#model-notes) records the scores, including what was tested and left off.
 
 - **House and Senate** (the track record on the about page, `build_web.BACKTEST_NOTE`; computed before the Senate error
-  re-split below, with a shared statewide miss of 4.2). House, each year forecast from the other years' data: on
-  September 15 the model gave Democrats 227 seats (10-90 % range 202-257) in 2018 against 235 won, and 213 (191-234) in
-  2022 against 213; over 12 dates from July to November the result fell inside the 10-90 % range every time. Senate,
-  2018-2024 at 6 dates each: the seat count fell inside the 10-90 % range at all 24; in all four cycles the Senate polls
-  missed toward the Republicans - a direction the model deliberately does not assume.
+  re-split below, with a shared statewide miss of 4.2, and with the 538 / Cook district leans the House prior used
+  before its own lean - on the live-path harness that switch moved the September 15 calls by about a seat, see [District
+  lean](#district-lean-the-house-prior)). House, each year forecast from the other years' data: on September 15 the
+  model gave Democrats 227 seats (10-90 % range 202-257) in 2018 against 235 won, and 213 (191-234) in 2022 against 213;
+  over 12 dates from July to November the result fell inside the 10-90 % range every time. Senate, 2018-2024 at 6 dates
+  each: the seat count fell inside the 10-90 % range at all 24; in all four cycles the Senate polls missed toward the
+  Republicans - a direction the model deliberately does not assume.
 - **Governors** (`gov_backtest.py`): every race 2006-2024 at up to six dates (234 races, 1,086 race-dates, 10 cycles);
   see [Governor model review](#governor-model-review) for the scores.
 - **State legislatures** (`stateleg_backtest.py`): 2018 and 2022 on October 1; see [State legislatures](#state-legislatures-experimental).
@@ -107,7 +111,7 @@ can start scheduled runs late). It runs `python -m midterms.bootstrap`, then `py
 2. National polls: VoteHub's open API (generic ballot, approval and race-poll catalogues), Polling USA and Political Poll
    Bot posts on Bluesky, pollresults.org and hand-entered releases; `generic.py` refits the generic-ballot trend.
 3. UF Election Lab early-vote counts (`early_vote.py`) and EIA's weekly residential heating-oil price (`heating_oil.py`).
-4. Wikipedia: the House seat table (2026 maps, incumbents, PVI), race ratings, every Senate and governor race page and the
+4. Wikipedia: the House seat table (2026 maps, incumbents, nominees), race ratings, every Senate and governor race page and the
    50 state House-election pages; VoteHub and pollresults.org race polls; the Bluesky feeds (`refresh.py`).
 5. `build_web.py`: the House, Senate, governor and state-legislature simulations -> `web/data/model.json`, `polls.json`,
    `whatif.json`, `stateleg_seats.json`.
@@ -172,9 +176,8 @@ pytest
 
 Switches read from the environment: `MIDTERMS_STATELEG` (state legislatures, default `on`), `MIDTERMS_STATELEG_KAPPA`
 (the tested-and-rejected state-poll signal, default `off`), `MIDTERMS_RCV` (ranked-choice handling, default `on`),
-`MIDTERMS_CD_LEAN=ours` (the public-data district lean in place of Cook PVI, default off), `TX_EARLY` (Texas tracker,
-default off) and `MIDTERMS_FORCE_PUBLISH`. Model switches that were tested and left off are module constants, each
-documented where it is defined.
+`TX_EARLY` (Texas tracker, default off) and `MIDTERMS_FORCE_PUBLISH`. Model switches that were tested and left off are
+module constants, each documented where it is defined.
 
 ## Repository layout
 
@@ -207,8 +210,8 @@ Committed inputs (`data/static/`):
 | `national_mood_fit.json` | fitted coefficients only: the national-vote error s(L) (and the unused directional and approval variants), the cycles used and the late-movement slope | fit of the generic-ballot average to the House vote, 15 cycles 1996-2024 (538 / ABC News averages and poll archives, HuffPost Pollster archives, Gallup approval). The underlying table is not distributed; `python -m midterms.national_mood --refit` rebuilds the fit from it |
 | `gov_results_2024.csv`, `gov_nominees.csv`, `gov_candidate_quality.csv`, `gov_nominee_offices.csv` | 2024 governor results; every governor nominee 1998-2026 with the linked article; whether each had held statewide elected office or a seat in Congress, and the infobox offices read | Wikipedia yearly "United States gubernatorial elections" pages and the nominees' articles (CC BY-SA 4.0); `gov_quality.py` |
 | `rcv_transfers.csv`, `rcv_rates.json`, `rcv_backtest_results.csv`, `rcv_backtest_polls.csv` | ranked-choice transfers per eliminated candidate, the fitted rates, the leave-one-race-out backtests | official round-by-round tabulations of the Maine Secretary of State (2nd district 2018, 2022) and the State of Alaska Division of Elections (August 2022 special general, 2022 and 2024 generals), public records; `python -m midterms.rcv --fetch` downloads them into `data/raw/rcv/` and rebuilds the tables |
-| `cd_lean_2026.csv`, `qc_cd.json` | 2024 and 2020 presidential margins for all 435 seats on the 2026 maps, with every check (built, not used by default) | MEDSL 2024 precinct returns (CC0), VEST 2020 (CC BY 4.0), Census block equivalency files (public domain); `cd_lean_build.py` |
-| `cd_lean_hist.csv`, `qc_cd_hist.json` | the same lean on the maps of the 2018 election (2016 and 2012 president) and the 2022 election (2020 and 2016), with every check (built, not used by default) | VEST 2016 and 2020 (CC BY 4.0), Census TIGER/Line 116th-Congress districts, 118th-Congress block equivalency file and 2020 blocks (public domain), MIT state totals (CC0); 2012 county results from Wikipedia's state pages (CC BY-SA 4.0, so the 2012 columns are CC BY-SA 4.0); `cd_lean_build.py hist` |
+| `cd_lean_2026.csv`, `qc_cd.json` | the House prior's district lean on the 2026 maps: 2024 and 2020 presidential margins for all 435 seats, with every check | MEDSL 2024 precinct returns (CC0), VEST 2020 (CC BY 4.0), Census block equivalency files (public domain); `cd_lean_build.py` |
+| `cd_lean_hist.csv`, `qc_cd_hist.json` | the same lean on the maps of the 2018 election (2016 and 2012 president) and the 2022 election (2020 and 2016), on which the prior is fitted, with every check | VEST 2016 and 2020 (CC BY 4.0), Census TIGER/Line 116th-Congress districts, 118th-Congress block equivalency file and 2020 blocks (public domain), MIT state totals (CC0); 2012 county results from Wikipedia's state pages (CC BY-SA 4.0, so the 2012 columns are CC BY-SA 4.0); `cd_lean_build.py hist` |
 | `stateleg/` | state-legislature leans, results, sitting legislators, fitted parameters, backtest and audits | see [State legislatures](#state-legislatures-experimental) |
 | `nc_early_baseline.csv` (+ `.qc.json`) | North Carolina accepted mail / one-stop ballots of the 2022 and 2024 generals by days out and race / ethnicity group, with propensity counts and the registered voters of each group | NC State Board of Elections absentee files, voter-history file and registration statistics (public records); aggregates only, `python -m midterms.nc_early baseline --src DIR` |
 | `fl_wayback/`, `fl_registration.csv` | Florida statistics files of the 2024 and 2022 generals; active registered voters by party at month ends | Florida Division of Elections (public records); the 2024 / 2022 files as captured by the Internet Archive's Wayback Machine, the registration figures from the monthly county-and-party reports |
@@ -593,20 +596,56 @@ TIGER/Line 2025 districts (the maps in force for 2026), except the Michigan Sena
 which is flagged on its map; each New Hampshire floterial is drawn as the outline of the base districts whose towns vote
 in it.
 
-### Congressional-district lean from public data (built, not used)
+### District lean (the House prior)
 
-`cd_lean_build.py` -> `data/static/cd_lean_2026.csv`: 2024 and 2020 presidential two-party margins for all 435 seats on the
-2026 maps and a 75/25 lean like Cook's, as a public-data replacement for Cook PVI (proprietary). Redrawn states are found
-from the Census 119th v 120th Congress block equivalency files. Unchanged states use MEDSL 2024 precinct rows by their U.S.
-House label, where the file matches the official state totals and the presidential vote sits on labelled precinct rows.
-Redrawn states (and files that fail those checks): VEST 2020 precincts -> 2020 blocks -> 120th-Congress districts, carried
-to 2024 by the county-by-district swing on the labels. Each state is calibrated to its official totals (`qc_cd.json` lists
-every check and shift). The Census 120th-Congress block file does not follow court orders, so `cd_lean_build.MAP_STATUS`
-records the map in force per state with a dated source; Missouri uses its 2022 lines (the U.S. Supreme Court blocked the
-2025 map on 2026-09-25). Against Cook PVI: seats on unchanged maps agree to rms 0.9 points (r 0.9996), redrawn seats rms
-3.8, almost all of it Missouri; without Missouri rms 1.1 over all 435. `MIDTERMS_CD_LEAN=ours` switches the House prior to
-it; it stays off because the prior's coefficients were fitted on 538 / Cook leans, and a backtest needs the same lean on
-the 2018 and 2022 maps.
+`cd_lean_build.py` builds the House prior's district lean from public precinct returns: 0.75 x the most recent presidential
+two-party margin minus the nation's + 0.25 x the same for the election before, using only elections held before the cycle
+- the 2026 maps from 2024 and 2020 (`cd_lean_2026.csv`), the maps of the 2022 election from 2020 and 2016 and of the 2018
+election from 2016 and 2012 (`cd_lean_hist.csv`, on which the prior is fitted). The national margins are the 50-state sums
+of the same tables. Every state is calibrated to its official totals, each nominee's votes on every ballot line (MIT's
+party code leaves out New York's fusion lines through 2016).
+
+**2026 maps.** Redrawn states are found from the Census 119th v 120th Congress block equivalency files. Unchanged states
+use MEDSL 2024 precinct rows by their U.S. House label, where the file matches the official state totals and the
+presidential vote sits on labelled precinct rows. Redrawn states (and files that fail those checks): VEST 2020 precincts
+-> 2020 blocks -> 120th-Congress districts, carried to 2024 by the county-by-district swing on the labels (`qc_cd.json`
+lists every check and shift). The Census 120th-Congress block file does not follow court orders, so
+`cd_lean_build.MAP_STATUS` records the map in force per state with a dated source; Missouri uses its 2022 lines (the U.S.
+Supreme Court blocked the 2025 map on 2026-09-25). For comparison only, against 2 x Cook PVI: rms 1.09 points over all 435
+(0.93 on unchanged maps, 1.29 on redrawn ones), mean +0.25, r 0.9994.
+
+**2018 and 2022 maps.** VEST 2016 and 2020 precincts -> 2020 blocks -> the 118th-Congress block equivalency file (2022) or
+the TIGER/Line 116th-Congress districts by each block's internal point (2018). VEST has no 2012 files and MEDSL's county
+returns sit behind a Dataverse guestbook, so 2012 is the 2016 block votes moved by each county's 2012-16 swing and turnout
+change, with the county results from Wikipedia's state pages (every state's table matches its official totals within 1 %).
+Checked against The Downballot's published presidential results by district (a check only; their figures are not used or
+redistributed): 2016 on the 2018 maps rms 0.16 points (largest 1.7, MO-5), 2020 on the 2022 maps rms 0.23 (3.4, LA-6),
+2012 on the 2018 maps rms 2.5 (10, TX-7: the county step cannot see swings inside the large metro counties), so the 2018
+lean is within rms 0.63 (2.5) of the same lean from their figures. The 2016 vote alone would be off by rms 2.45 (7.6). The
+county step measured where both elections are known (2016 rebuilt from the 2020 blocks): rms 2.7 by district. 538's
+published leans for the same maps differ by rms 3.3 (2018 partisan lean, which also weights state legislative results;
+largest in West Virginia and Kentucky) and 2.4 (the PVI column of its 2022 urbanization index).
+
+**Fit** (`model.fit_prior`, contested seats 2018 and 2022, n 795; the 538 / Cook leans it replaced in brackets): lean slope
+0.918 (0.951), incumbency 4.47 (4.58), residual sd 7.35 (7.41); with fundraising (`money.coefficients`) 0.855 (0.889), 3.34
+(3.51) and 1.31 (1.25) per unit of the log money ratio. `Params.k0`, the contested-margin intercept over the national House
+margin, is 0.4 (2018 -0.79, 2022 +1.63); the 1.1 it replaced came from an earlier fit - the same definition gives 0.78 on
+the old leans. Fundraising still helps out of sample on the new lean (all-seat RMSE fit on one cycle and scored on the
+other: -5.6 % in 2018, -2.6 % in 2022).
+
+**Backtest.** The live House path (`model.house_blend`, `factor_update`, `simulate`) on 2018 and 2022, each year forecast
+from the other's fit (slopes, k0, fundraising), 538's House polls as released, the generic-ballot average at the lead, 7
+dates from August 1 to the day before the election (5,565 seat-dates):
+
+| lean | log loss | Brier | CRPS | margin MAE | 80 % cov. | Sep 15, 2018 (235 won) | Sep 15, 2022 (213 won) |
+|---|---|---|---|---|---|---|---|
+| 538 / Cook | 0.1153 | 0.0353 | 3.642 | 4.98 | 0.854 | 221 (197-247) | 212 (190-233) |
+| ours | 0.1113 | 0.0338 | 3.593 | 4.93 | 0.866 | 222 (198-249) | 212 (189-233) |
+
+Ours is better in both cycles on all three scores (log loss 2018 -0.0070, 2022 -0.0009; race bootstrap p 0.13, Brier 0.055,
+CRPS 0.20): with two cycles not a significant gain, and not a loss. The seat count is inside the 10-90 % range at all 14
+dates with either lean. On the inputs of 16 October 2026 the switch moved the House from 241.7 to 241.2 Democratic seats
+(P(majority) 0.894 -> 0.888): +0.7 seats from the lean with k0 refitted on both leans, -1.1 from replacing the stale k0.
 
 ### Early-vote diagnostics
 

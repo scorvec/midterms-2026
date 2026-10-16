@@ -156,3 +156,39 @@ def test_county_carry_kansas_city_unit():
 )
 def test_county_name_keys(name, key):
     assert C._cname(name) == key
+
+
+@pytest.mark.parametrize("year", [2018, 2022, 2026])
+def test_every_seat_of_the_map_has_a_lean(year):
+    from midterms import data_prep as D
+    from midterms.wiki_inputs import EXPECTED
+
+    lean = D.partisan_lean(year)
+    assert len(lean) == 435 and lean["seat"].is_unique and np.isfinite(lean["lean"]).all()
+    if year >= 2022:  # the 2020 apportionment
+        n = lean["seat"].str[:2].value_counts()
+        assert all(n[st] == EXPECTED.get(st, 1) for st in n.index)
+
+
+@pytest.mark.parametrize("cycle", sorted(C.HIST))
+def test_hist_lean_uses_only_earlier_elections(cycle):
+    yn, yo = C.HIST[cycle]
+    assert yo < yn < cycle % 100
+    h = pd.read_csv(C.STATIC / "cd_lean_hist.csv")
+    h = h[h["cycle"] == cycle]
+    later = [y for y in (12, 16, 20) if y not in (yn, yo)]
+    assert h[[f"pres{y}{s}" for y in later for s in ("_d", "_r")]].isna().all().all()
+
+    def nat(y):
+        return 100 * (h[f"pres{y}_d"].sum() - h[f"pres{y}_r"].sum()) / (h[f"pres{y}_d"].sum() + h[f"pres{y}_r"].sum())
+
+    want = 0.75 * (h[f"pres{yn}_margin"] - nat(yn)) + 0.25 * (h[f"pres{yo}_margin"] - nat(yo))
+    assert np.allclose(h["lean_75_25"], want, atol=0.01)
+
+
+def test_no_cook_pvi_is_published():
+    from pathlib import Path
+
+    web = Path(C.STATIC).parents[1] / "web" / "data"
+    for f in [web / "model.json", *sorted((web / "history").glob("model_*.json"))]:
+        assert '"cook_pvi"' not in f.read_text(), f.name

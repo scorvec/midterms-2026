@@ -1,6 +1,6 @@
-"""Our own congressional-district presidential lean on the 2026 maps (all 435 seats) and on the maps of the 2018 and 2022
-elections, from public data only - a replacement candidate for Cook PVI (proprietary). One-time builds in GitHub Actions
-(.github/workflows/cd-lean.yml); not used by the House model unless MIDTERMS_CD_LEAN=ours.
+"""The House prior's congressional-district presidential lean (data_prep.partisan_lean) on the 2026 maps (all 435 seats) and
+on the maps of the 2018 and 2022 elections it is fitted on, from public data only. One-time builds in GitHub Actions
+(.github/workflows/cd-lean.yml).
 
 Method (2026 maps)
   * Which states changed their map for 2026: the Census 119th- vs 120th-Congress block equivalency files (block -> district),
@@ -155,7 +155,7 @@ MAP_STATUS = {
         "map": 120,
         "in_force": "2023 legislature map, Supreme Court lifted the injunction (May 11 / June 2, 2026)",
         "source": "Bloomberg Law 'What we know about the race to redraw 2026 lines' (checked 2026-10-05)",
-        "bef120": "unverified - the seat table and our lean disagree on AL-2 (Cook R+7, ours R+10)",
+        "bef120": "unverified - AL-2 comes out ~6 margin points more Republican than published leans of the 2023 map",
     },
     "LA": {
         "map": 120,

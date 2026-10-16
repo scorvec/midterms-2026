@@ -7,8 +7,7 @@ daily run (`actions/cache` keeps data/raw between runs, so normally nothing is d
 Sources (all historical, none changes):
   538 / ABC News poll archives (CC BY 4.0): projects.fivethirtyeight.com/polls/data/*_historical.csv, which no longer
       exist at the source, from the Internet Archive's copies of 2025-03-06
-  538 data repository (CC BY 4.0): github.com/fivethirtyeight/data - raw_polls, pollster ratings, partisan lean 2018,
-      urbanization index 2022
+  538 data repository (CC BY 4.0): github.com/fivethirtyeight/data - raw_polls, pollster ratings, urbanization index 2022
   FEC "Federal Elections" results workbooks 2018/2020/2022 (public domain)
   MIT Election Data and Science Lab, U.S. President 1976-2024 (Harvard Dataverse doi:10.7910/DVN/42MVDX, CC0)
   538 archived pollster-rating vintages + the pollresults.org API's pollster table (pollster_quality.fetch_sources)
@@ -57,11 +56,6 @@ FILES = [
     ),
     ("538repo/raw_polls.csv", GH + "pollster-ratings/raw_polls.csv", None),
     ("538repo/pollster-ratings-combined.csv", GH + "pollster-ratings/pollster-ratings-combined.csv", None),
-    (
-        "538repo/partisan_lean_DISTRICTS_2018.csv",
-        GH + "partisan-lean/2018/fivethirtyeight_partisan_lean_DISTRICTS.csv",
-        None,
-    ),
     ("538repo/urbanization-index-2022.csv", GH + "district-urbanization-index-2022/urbanization-index-2022.csv", None),
     ("fec/federalelections2018.xlsx", FEC.format(2018), "dae569593e446d0b7d1e0aee2d1fc79b"),
     ("fec/federalelections2020.xlsx", FEC.format(2020), "ed533051916a6d12b1dbec5dee92eb84"),
@@ -76,7 +70,6 @@ FILES = [
 GIT_SHA = {
     "538repo/raw_polls.csv": "08735ea503ad64c67cfa285fd75c0a270fdca245",
     "538repo/pollster-ratings-combined.csv": "6ca53b1aa5ac70b081a62f4e7430cf300d1b1743",
-    "538repo/partisan_lean_DISTRICTS_2018.csv": "381f9525cdb5e9696a41d2b4a20b42d252a9fa51",
     "538repo/urbanization-index-2022.csv": "4de582ef4c21cd9b6f5b31e42c19ea048548b498",
 }
 
