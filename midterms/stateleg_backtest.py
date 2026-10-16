@@ -9,7 +9,7 @@ no directional correction, the national error at that lead (national_mood), and 
 (538 poll archive, 45 days before Oct 1) against the governor prior, as the live model reads its Senate/governor race pulls.
 Scores: per seat (slot) Brier and log loss, chamber control Brier and calls, seat-count error; baselines: the chamber's current
 majority holds, each seat stays with the party that won it last time (2018; same maps) or goes with the sign of its lean (2022).
-Writes data/static/stateleg/backtest.json.
+Writes data/static/stateleg/backtest.json; published() turns it into the chamber-control scores the pages quote (model.json).
 """
 
 from __future__ import annotations
@@ -22,6 +22,13 @@ from .paths import RAW
 
 ASOF = {2018: "2018-10-01", 2022: "2022-10-01"}
 ELECTION = {2018: "2018-11-06", 2022: "2022-11-08"}
+BACKTEST = SLM.SL / "backtest.json"
+# chambers in the order they joined the forecast; web/about.html and web/legislatures.html quote each group's scores
+GROUPS = {
+    "original": [(st, ch) for st in ("MI", "MN", "WI", "AZ", "PA", "NH", "NC") for ch in ("upper", "lower")],
+    "houses": [("GA", "lower"), ("IA", "lower"), ("TX", "lower")],
+    "later": [("CA", "upper"), ("CA", "lower"), ("KY", "upper"), ("KY", "lower"), ("TX", "upper")],
+}
 
 
 def generic_E(cycle):
@@ -229,6 +236,39 @@ def run_cycle(cycle, n=10000, seed=3, arm="base"):
     }
 
 
+def scored(out, arm):
+    """The chamber rows of one arm that count in the scores: full district data and a majority outcome (no tie)."""
+    return [c for r in out if r.get("arm") == arm for c in r.get("chambers", []) if c["scored"] and c["outcome"] != "T"]
+
+
+def control_scores(rows):
+    """Chamber control over chamber rows: the model's Brier and log loss, the Brier of the naive "current majority holds"
+    call, and counts of calls right (model, naive) and of seat counts inside the 80 % range."""
+    return {
+        "n": len(rows),
+        "brier": float(np.mean([c["brier"] for c in rows])),
+        "naive_brier": float(np.mean([float(c["prev_majority"] != c["outcome"]) for c in rows])),
+        "logloss": float(
+            np.mean([-np.log(min(max(c["p_d"] if c["outcome"] == "D" else 1 - c["p_d"], 1e-3), 1)) for c in rows])
+        ),
+        "calls": sum(bool(c["call_ok"]) for c in rows),
+        "naive_calls": sum(bool(c["naive_ok"]) for c in rows),
+        "in80": sum(c["p10"] <= c["actual_d"] <= c["p90"] for c in rows),
+    }
+
+
+def published():
+    """Chamber-control scores of the committed backtest per GROUPS, arm "base" (the live model: no state-poll signal), for
+    model.json, so every page quotes the same run."""
+    rows = scored(json.loads(BACKTEST.read_text()), "base")
+    name = {(st, ch): nm for st, ch, nm, *_ in SLM.CHAMBERS}
+    out = {}
+    for g, keys in GROUPS.items():
+        s = control_scores([c for c in rows if c["chamber"] in {name[k] for k in keys}])
+        out[g] = {k: round(v, 3) if isinstance(v, float) else v for k, v in s.items() if k != "logloss"}
+    return out
+
+
 def main():
     out = []
     for cyc in (2018, 2022):
@@ -249,36 +289,24 @@ def main():
             print(pd.DataFrame(r["chambers"]).to_string(index=False))
     # summary: chamber control Brier (model) v the naive "current majority holds" call, scored chambers only
     for arm in ("base", "state"):
-        rows = [
-            c for r in out if r.get("arm") == arm for c in r.get("chambers", []) if c["scored"] and c["outcome"] != "T"
-        ]
+        rows = scored(out, arm)
         if not rows:
             continue
-        bm = np.mean([c["brier"] for c in rows])
-        bn = np.mean([float(c["prev_majority"] != c["outcome"]) for c in rows])
-        calls = np.mean([bool(c["call_ok"]) for c in rows])
-        naive = np.mean([bool(c["naive_ok"]) for c in rows])
-        ll = np.mean([-np.log(min(max(c["p_d"] if c["outcome"] == "D" else 1 - c["p_d"], 1e-3), 1)) for c in rows])
-        inband = np.mean([c["p10"] <= c["actual_d"] <= c["p90"] for c in rows])
+        s = control_scores(rows)
+        n = s["n"]
         print(
-            f"[{arm}] {len(rows)} chamber-elections: control Brier {bm:.3f} (naive {bn:.3f}), log loss {ll:.3f}, calls right {calls:.0%} "
-            f"(naive {naive:.0%}), seat count inside 80% range {inband:.0%}"
+            f"[{arm}] {n} chamber-elections: control Brier {s['brier']:.3f} (naive {s['naive_brier']:.3f}), log loss {s['logloss']:.3f}, "
+            f"calls right {s['calls'] / n:.0%} (naive {s['naive_calls'] / n:.0%}), seat count inside 80% range {s['in80'] / n:.0%}"
         )
         out.append(
             {
                 "summary": arm,
-                "n": len(rows),
-                "brier": round(bm, 4),
-                "naive_brier": round(bn, 4),
-                "logloss": round(ll, 4),
-                "calls": round(calls, 3),
-                "naive_calls": round(naive, 3),
-                "in80": round(inband, 3),
+                "n": n,
+                **{k: round(s[k], 4) for k in ("brier", "naive_brier", "logloss")},
+                **{k: round(s[k] / n, 3) for k in ("calls", "naive_calls", "in80")},
             }
         )
-    (SLM.SL / "backtest.json").write_text(
-        json.dumps(out, indent=1, default=lambda o: bool(o) if isinstance(o, (np.bool_,)) else str(o))
-    )
+    BACKTEST.write_text(json.dumps(out, indent=1, default=lambda o: bool(o) if isinstance(o, (np.bool_,)) else str(o)))
 
 
 if __name__ == "__main__":

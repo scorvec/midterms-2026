@@ -483,16 +483,19 @@ national slope g = 0.77, 2-year state swing error 4.8 (state error 3.4), between
 **Backtest** (`python -m midterms.stateleg_backtest`, `data/static/stateleg/backtest.json`): 2018 and 2022 on October 1,
 Klarner parameters from earlier elections only, the lean slope from the other cycle, E = the 538 generic-ballot average with
 no correction, who is on the ballot from the candidate records. The original 14 chambers (24 chamber-elections with full
-district data): control Brier 0.118 against 0.250 for "the current majority holds" (calls right 79 % v 75 %), seat
-count inside the 80 % range 23 of 24. The Georgia, Iowa and Texas Houses (5 chamber-elections with complete district data):
-all called right, as the current-majority rule also was; seat count inside the 80 % range 5/5. The California and Kentucky
-chambers and the Texas Senate (10 chamber-elections): all called right, as the current-majority rule; seat count inside the
-80 % range 8 of 10. No published forecaster's chamber calls were scored (none available under a usable licence).
+district data): control Brier 0.115 against 0.250 for "the current majority holds", called right in 20 of 24 (the
+current-majority rule: 18), seat count inside the 80 % range 23 of 24. The Georgia, Iowa and Texas Houses (5 chamber-elections
+with complete district data): all called right, as the current-majority rule also was; Brier 0.007; seat count inside the
+80 % range 5/5. The California and Kentucky chambers and the Texas Senate (10 chamber-elections): all called right, as the
+current-majority rule; seat count inside the 80 % range 8 of 10. The daily run publishes these per-group scores from
+`backtest.json` (`stateleg_backtest.published`, `state_legislatures.backtest` in `model.json`), and `about.html` and
+`legislatures.html` quote them from there. No published forecaster's chamber calls were scored (none available under a
+usable licence).
 
 **State-poll signal** (tested, not adopted; `MIDTERMS_STATELEG_KAPPA=on` restores it). The legislative state swing residual
 tracks the state's statewide polling miss (slope -0.31, se 0.05; 360 state-cycles 1998-2020), and a fitted link kappa x
-the state's Senate / governor surprise (kappa 0.074, se 0.024) changed seat log loss by +0.002 (2018) and -0.001 (2022) and
-control Brier 0.119 -> 0.125: no measurable gain.
+the state's Senate / governor surprise (kappa 0.074, se 0.024) changed seat log loss by +0.0005 (2018) and +0.0003 (2022)
+and the original 14 chambers' control Brier 0.115 -> 0.119 (arm "state" of `backtest.json`): no measurable gain.
 
 **Coverage.** `stateleg_scan.py` reads every 2026 chamber page (`data/static/stateleg/coverage_scan.csv`) and checks the
 candidates (`stateleg_scan.check` -> `pending_check.csv`): a chamber is added only when the page has a general-election
@@ -591,4 +594,6 @@ affiliated with or endorsed by any of the sources.
 
 ## License
 
-Code: [MIT](LICENSE). Data keep the terms of their sources, listed above.
+Code: [MIT](LICENSE). Data keep the terms of their sources, listed above. Race polls taken from Wikipedia's race pages are
+used under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); `web/data/polls.json`, `web/data/whatif.json`
+and the poll page (`web/polls.html`) republish them, as checked, corrected and weighted by the model, under the same licence.
