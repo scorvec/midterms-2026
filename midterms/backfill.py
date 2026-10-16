@@ -138,7 +138,7 @@ def race_records():
 @cache
 def _race_index():
     R = race_records()
-    return dict(R.groupby(["office", "seat"]))
+    return {k: g for k, g in R.groupby(["office", "seat"])}  # noqa: C416  dict(groupby) calls GroupBy.keys, the key list
 
 
 _REL = {}
@@ -190,7 +190,7 @@ def generic_frame():
     ]
     T = pd.DataFrame(recs, columns=["key", "end", "rec", "first"])
     T["end"] = T["end"].dt.normalize()
-    idx = dict(T.groupby("key"))
+    idx = {k: g for k, g in T.groupby("key")}  # noqa: C416  dict(groupby) calls GroupBy.keys, the key name
     rel = []
     for k, e in zip(G["pollster"], G["end_date"].dt.normalize()):
         g = idx.get(k)
