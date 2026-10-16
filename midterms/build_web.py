@@ -502,8 +502,8 @@ def methodology_notes(s):
         f"Cuban / Asian group factors {P.s_hisp:g} per unit share, residual {P.s_res:g}"
     )
     senate = (
-        f"mu = {SN.SEN_CONST:.1f} + {SN.NAT_SLOPE:.2f}*E + {SN.B_LEAN:.2f}*lean + {SN.C_INC:.1f}*inc, prior sd {SN.PRIOR_SD} (refit on 321 D-v-R races "
-        f"2006-2024), polls from the Wikipedia race pages (per-poll sd {SN.POLL_SD}; race-level systematic {SN.race_sys():.1f} = the measured "
+        f"mu = {SN.SEN_CONST:.1f} + {SN.NAT_SLOPE:.2f}*E + {SN.B_LEAN:.2f}*lean + {SN.C_INC:.1f}*inc, prior sd {SN.PRIOR_SD} (D-v-R races 1982-2024 with "
+        f"time-trending lean and incumbency slopes, evaluated at 2026), polls from the Wikipedia race pages (per-poll sd {SN.POLL_SD}; race-level systematic {SN.race_sys():.1f} = the measured "
         f"midterm total {SN.POLL_SYS_TOTAL:g} minus the shared statewide shock drawn separately); "
         f"only polls of the candidates actually on the ballot, full field where a third candidate polls 10 %+; the margin is the main challenger "
         f"minus the Republican - an independent where no Democrat is on the ballot (NE, ID, SD) or the independent leads the Democrat (MT). "
