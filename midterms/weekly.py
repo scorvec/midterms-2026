@@ -52,14 +52,14 @@ def refresh():
 
         print("early-vote snapshot:", _ev.fetch().name)
     except Exception as e:
-        print("early-vote snapshot failed (yesterday's is used):", str(e)[:120])
+        print("::warning::early-vote snapshot failed (yesterday's is used):", str(e)[:120])
     try:  # EIA weekly residential heating-oil price (heating_oil.py) - before build_web
         from . import heating_oil as _ho
 
         _s = _ho.fetch()
         print("heating oil: EIA", _s.date.max().date(), _s.price.iloc[-1])
     except Exception as e:
-        print("heating-oil fetch failed (the cached series is used):", str(e)[:120])
+        print("::warning::heating-oil fetch failed (the cached series is used):", str(e)[:120])
     from . import refresh as _r  # noqa: F401  runs on import: Wikipedia inputs, race polls, VoteHub races, build_web
 
 
@@ -285,19 +285,19 @@ def main(argv):
             [sys.executable, "-m", "midterms.backfill", "--ensure"], cwd=str(ROOT), check=False, timeout=3600
         )
         if r.returncode:
-            print("backfill failed, exit", r.returncode)
+            print("::warning::backfill failed, exit", r.returncode)
         try:
             from . import ledger as _lg
 
             _lg.update()  # first-seen dates of race polls (release dates for the backfill)
         except Exception as e:
-            print("poll ledger failed:", str(e)[:120])
+            print("::warning::poll ledger failed:", str(e)[:120])
         try:  # per-race chance over time for the race panels (~2 s)
             from . import race_history as _rh
 
             _rh.build()
         except Exception as e:
-            print("race history failed:", str(e)[:120])
+            print("::warning::race history failed:", str(e)[:120])
         summary()
         try:  # early / mail vote snapshots, diagnostic only (nothing feeds the forecast). Daily
             # because Florida publishes only the current day's statistics files - a missed day is gone
@@ -305,20 +305,20 @@ def main(argv):
 
             print("FL early-vote snapshot:", [p.name for p in _fl.snapshot()])
         except Exception as e:
-            print("FL early-vote snapshot failed:", str(e)[:120])
+            print("::warning::FL early-vote snapshot failed:", str(e)[:120])
         try:
             from . import pa_early as _pa
 
             _pa.pace()
             print("PA mail-ballot pace written")
         except Exception as e:
-            print("PA mail-ballot pace failed:", str(e)[:120])
+            print("::warning::PA mail-ballot pace failed:", str(e)[:120])
         if not daily or monday:  # voter registration, NC + PA (registration.py), diagnostic only, weekly
             r = subprocess.run(
                 [sys.executable, "-m", "midterms.registration"], cwd=str(ROOT), check=False, timeout=3600
             )
             if r.returncode:
-                print("registration failed, exit", r.returncode)
+                print("::warning::registration failed, exit", r.returncode)
     if not daily or monday:
         if daily and snap is not None:
             old = week_ago_snapshot(snap)

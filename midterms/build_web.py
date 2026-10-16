@@ -68,7 +68,7 @@ def main():
             "k": {s_: round(v, 3) for s_, v in M.MOVE["k"].items()},
         }
     except Exception as e:
-        print(f"  !! early-vote movement split off ({e})")
+        print(f"::warning::early-vote movement split off ({e})")
         M.MOVE = None
         rho_mv = None
     Z, ZS = NMOOD.draws(20000, rho=rho_mv)  # House draw + the statewide draw (total correlation RHO_STATEWIDE)
@@ -311,7 +311,7 @@ def main():
             )
         out["governor"] = gov
     except Exception as ex:
-        print("governors skipped:", str(ex)[:120])
+        print("::warning::governors skipped:", str(ex)[:120])
     from . import stateleg as SLG  # state legislatures (stateleg.py): MIDTERMS_STATELEG=on only
 
     if SLG.ON:
@@ -334,13 +334,13 @@ def main():
 
                 SLX.export(sl, sl_seats, out.get("asof"))
             except Exception as ex:
-                print("  !! stateleg seats export failed:", str(ex)[:160])
+                print("::warning::stateleg seats export failed:", str(ex)[:160])
             print("State legislatures:", "; ".join(f"{c['name']} D {c['p_d']:.2f}" for c in sl["chambers"]))
         except Exception as ex:
             import traceback
 
             traceback.print_exc()
-            print("state legislatures skipped:", str(ex)[:160])
+            print("::warning::state legislatures skipped:", str(ex)[:160])
     with open("web/data/model.json", "w") as fh:
         json.dump(out, fh, separators=(",", ":"))
     polls_page(out, gm, E_now, BIAS)
@@ -359,7 +359,7 @@ def main():
             MOOD,
         )
     except Exception as ex:
-        print("  !! whatif export failed:", str(ex)[:160])
+        print("::warning::whatif export failed:", str(ex)[:160])
     if "governor" in out:
         print("Governors:", out["governor"]["now"])
 
