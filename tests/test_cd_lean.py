@@ -87,6 +87,27 @@ def test_equivalency_file_joins_the_block_votes():
         C.bef_blocks(bef, "VA")  # no block of the state: the files would not join
 
 
+def test_state_totals_count_every_ballot_line(tmp_path, monkeypatch):
+    from midterms import bootstrap
+
+    f = tmp_path / "mit" / "president_1976_2024.csv"
+    f.parent.mkdir()
+    f.write_text(
+        "year,state_po,candidate,party_detailed,party_simplified,candidatevotes\n"
+        "2016,NY,CLINTON,DEMOCRAT,DEMOCRAT,100\n"
+        "2016,NY,CLINTON,WORKING FAMILIES,OTHER,10\n"
+        "2016,NY,TRUMP,REPUBLICAN,REPUBLICAN,60\n"
+        "2016,NY,TRUMP,CONSERVATIVE,OTHER,20\n"
+        "2016,NY,STEIN,GREEN,OTHER,5\n"
+        "2016,NY,,DEMOCRAT,DEMOCRAT,1\n"  # an unnamed write-in row
+    )
+    monkeypatch.setattr(bootstrap, "RAW", tmp_path)
+    monkeypatch.setattr(C, "_MIT", None)
+    m, n, d, r = C.mit_state("NY", 2016)
+    assert (d, r, n) == (110.0, 80.0, 190.0)
+    assert m == pytest.approx(100 * 30 / 190)
+
+
 def test_county_carry_moves_each_block_by_its_county():
     bv = _blocks([("290010000000001", 60.0, 40.0), ("290010000000002", 30.0, 70.0), ("290030000000001", 50.0, 50.0)])
     # county 29001: 90 D / 110 R in the block votes (margin -10) -> 120 D / 80 R (margin +20, turnout x1.0)

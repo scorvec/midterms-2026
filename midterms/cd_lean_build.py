@@ -264,7 +264,9 @@ _MIT = None
 
 
 def mit():
-    """State presidential two-party totals 2012-2024 (MIT Election Lab, CC0 - the file the model's bootstrap already uses)."""
+    """State presidential two-party totals 2012-2024 (MIT Election Lab, CC0 - the file the model's bootstrap already uses): each
+    nominee's votes on every ballot line. MIT's party code counts only the Democratic and Republican lines, which leaves out
+    New York's fusion lines through 2016 (Working Families, Conservative...: 3.3 points of the 2016 margin)."""
     global _MIT
     if _MIT is None:
         from .bootstrap import FILES, RAW as BR
@@ -275,9 +277,13 @@ def mit():
             f.parent.mkdir(parents=True, exist_ok=True)
             B.stream(url, f)
         p = pd.read_csv(f)
-        p = p[p.year.isin([2012, 2016, 2020, 2024]) & p.party_simplified.isin(["DEMOCRAT", "REPUBLICAN"])]
-        _MIT = p.pivot_table(
-            index=["year", "state_po"], columns="party_simplified", values="candidatevotes", aggfunc="sum"
+        p = p[p.year.isin([2012, 2016, 2020, 2024]) & p["candidate"].notna()]
+        key = ["year", "state_po", "candidate"]
+        nom = p[p.party_simplified.isin(["DEMOCRAT", "REPUBLICAN"])][[*key, "party_simplified"]].drop_duplicates(key)
+        _MIT = (
+            p.drop(columns="party_simplified")
+            .merge(nom, on=key)
+            .pivot_table(index=["year", "state_po"], columns="party_simplified", values="candidatevotes", aggfunc="sum")
         )
     return _MIT
 
