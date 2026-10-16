@@ -623,7 +623,7 @@ def _record(
                 "lean": _f0(x.get("lean")),
                 "state_corr": float(corr.get(seat[:2], 0.0)) if "[" not in str(x["pollster"]) else 0.0,
                 "adjusted": float(y[i]),
-                "sponsor": str(x.get("sponsor") or ""),
+                "sponsor": str(x["sponsor"]) if pd.notna(x.get("sponsor")) and x.get("sponsor") else "",
                 "vmult": round(_f0(x.get("vmult")) or 1.0, 3),
                 "experience": exp_k,
                 "precision": round(float(q[i]), 3),
