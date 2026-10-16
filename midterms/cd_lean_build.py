@@ -96,6 +96,7 @@ ABBR = {
     "56": "WY",
 }
 FIPS = {v: k for k, v in ABBR.items()}
+STATE_CODES = {*ABBR, "11", "72"}  # with DC and Puerto Rico, which the block files also carry
 QC: dict = {}
 # Which congressional map is in force for November 2026, per a dated source (sources checked 2026-10-05). The Census 120th-Congress
 # block equivalency file records the maps states adopted and does not follow later court orders. "map": 119 = the 2024 (119th-Congress)
@@ -188,11 +189,25 @@ def _crawl(url, depth, pat, seen=None):
     return out
 
 
+def _block_id(s: pd.Series) -> pd.Series:
+    """Census block GEOIDs as 15-digit strings, whatever a release wraps them in: a summary-level prefix ('1000000US...'),
+    separators, spaces or dropped leading zeros."""
+    d = s.astype(str).str.strip().str.replace(r"\D", "", regex=True)
+    return d.str[-15:].str.zfill(15)
+
+
 def bef(n: int) -> pd.DataFrame:
-    """Block -> district (CDFP) for the n-th Congress, from the Census block equivalency files."""
-    pq = B.R / "bef" / f"cd{n}_v2.parquet"
-    if pq.exists():
-        return pd.read_parquet(pq)
+    """Block -> district (CDFP) for the n-th Congress, from the Census block equivalency files. Fails when the block ids do
+    not start with state codes (they would join nothing)."""
+    pq = B.R / "bef" / f"cd{n}_v3.parquet"
+    b = pd.read_parquet(pq) if pq.exists() else _bef_build(n, pq)
+    ok = b["block"].str[:2].isin(STATE_CODES)
+    if ok.mean() < 0.99:
+        raise RuntimeError(f"CD{n} block file: {ok.mean():.1%} of block ids start with a state code, e.g. {b.head(3)}")
+    return b
+
+
+def _bef_build(n, pq):
     urls = _crawl(MAPF, 3, rf"cd_?{n}.*\.(zip|txt)$")
     print(f"  BEF {n}: {urls[:6]}")
     if not urls:
@@ -215,6 +230,9 @@ def bef(n: int) -> pd.DataFrame:
     gcol = next(c for c in b.columns if c in ("GEOID", "BLOCKID", "GEOID20"))
     dcol = next(c for c in b.columns if c.startswith("CD") or c == "DISTRICT")
     b = b.rename(columns={gcol: "block", dcol: "cd"})[["block", "cd"]]
+    print(f"  BEF {n}: raw rows like {b.head(2).to_dict('records')}")
+    b["block"] = _block_id(b["block"])
+    b["cd"] = b["cd"].astype(str).str.strip()
     n0 = len(b)
     b = b[~b["cd"].isin(["ZZ", "98", ""])].drop_duplicates("block")  # the zip holds overlapping files
     QC[f"bef{n}_rows_raw_vs_unique"] = [n0, len(b)]
@@ -683,7 +701,17 @@ COUNTY_ALIAS = {("VA", "bedfordcity"): "51019", ("SD", "shannon"): "46102", ("MO
 
 
 def _cd(c):
-    return str(max(int(c), 1)) if str(c).isdigit() else None
+    c = str(c).strip()
+    return str(max(int(c), 1)) if c.isdigit() else None
+
+
+def bef_blocks(b, st):
+    """One state's block -> district rows of a block equivalency table (at-large '00' -> '1'); fails when none has a district."""
+    q = b[b["block"].str.startswith(FIPS[st])]
+    out = pd.DataFrame({"block": q["block"].values, "cd": q["cd"].map(_cd).values})
+    if out["cd"].isna().all():
+        raise RuntimeError(f"{st}: no block of the equivalency table has a district ({len(q)} rows, e.g. {q.head(3)})")
+    return out
 
 
 def vest_blocks(st, yy):
@@ -875,14 +903,12 @@ def build_hist(states=None):
     VEST file for a year gets the other VEST year carried the same way. Each state is calibrated to its official totals (MIT)."""
     QC.clear()
     b118 = bef(118)
-    b118_st = b118["block"].str[:2]
     rows = []
     for cycle, (yn, yo) in HIST.items():
         tag = "cd116" if cycle == 2018 else "cd118"
         for st in states or sorted(FIPS):
             if cycle == 2022:  # the 118th-Congress block equivalency file
-                b = b118[b118_st == FIPS[st]]
-                bd = pd.DataFrame({"block": b["block"].values, "cd": b["cd"].map(_cd).values})
+                bd = bef_blocks(b118, st)
                 n_dist = bd["cd"].nunique()
             else:
                 t = cd116(st)
@@ -914,6 +940,10 @@ def build_hist(states=None):
             seats = {}
             for yy, bv in got.items():
                 g, lost = seat_sums(bv, bd)
+                if len(g) != n_dist or not (g["d"] + g["r"]).gt(0).all():  # the block votes and the map do not join
+                    raise RuntimeError(
+                        f"{cycle} {st} 20{yy}: votes reach {len(g)} of {n_dist} districts ({lost:.0f} unassigned)"
+                    )
                 QC[f"unassigned_votes_{cycle}_{st}_{yy}"] = lost
                 d_, r_ = g["d"].sum(), g["r"].sum()
                 m_off, n_off, _, _ = mit_state(st, 2000 + yy)
@@ -935,7 +965,8 @@ def build_hist(states=None):
                 e = 100 * (g["d"] - g["r"]) / (g["d"] + g["r"]) - 100 * (ex["d"] - ex["r"]) / (ex["d"] + ex["r"])
                 QC.setdefault("countyswing_check_2016_from_2020_cd116", {})[st] = [round(float(v), 2) for v in e]
             print(f"  {cycle} {st}: {len(seats)} districts ({', '.join(f'20{y} {how[y]}' for y in sorted(how))})")
-    D = pd.DataFrame(rows)
+    votes = [f"pres{yy}{s}" for yy in (12, 16, 20) for s in ("_d", "_r")]
+    D = pd.DataFrame(rows).reindex(columns=["cycle", "seat", *votes, *(f"method{yy}" for yy in (12, 16, 20))])
     D["st"] = D["seat"].str[:2]
     QC["state_calibration_shift"] = {}
     for (cycle, st), q in D.groupby(["cycle", "st"]):
@@ -969,8 +1000,8 @@ def build_hist(states=None):
     if e:
         QC["countyswing_check_rms"] = {"n": len(e), "rms": round(float(np.sqrt(np.mean(np.square(e)))), 3)}
     compare_538(D)
-    cols = ["cycle", "seat"] + [f"{p}{yy}{s}" for yy in (12, 16, 20) for p, s in (("pres", "_d"), ("pres", "_r"))]
-    cols += [f"pres{yy}_margin" for yy in (12, 16, 20)] + [f"method{yy}" for yy in (12, 16, 20)] + ["lean_75_25"]
+    cols = ["cycle", "seat", *votes, *(f"pres{yy}_margin" for yy in (12, 16, 20))]
+    cols += [*(f"method{yy}" for yy in (12, 16, 20)), "lean_75_25"]
     D = D.reindex(columns=cols).sort_values(
         ["cycle", "seat"], key=lambda s: s.map(_seat_key) if s.name == "seat" else s
     )

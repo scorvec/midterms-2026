@@ -1,5 +1,6 @@
-"""District lean builder (cd_lean_build.py): the county-swing step that carries block votes to an election with no precinct
-shapes, and the county-name keys that match Wikipedia's county tables to FIPS codes."""
+"""District lean builder (cd_lean_build.py): the join of block votes to a block equivalency file, the county-swing step that
+carries block votes to an election with no precinct shapes, and the county-name keys that match Wikipedia's county tables to
+FIPS codes."""
 
 import numpy as np
 import pandas as pd
@@ -10,6 +11,36 @@ from midterms import cd_lean_build as C
 
 def _blocks(rows):
     return pd.DataFrame(rows, columns=["block", "d", "r"])
+
+
+def test_block_ids_are_15_digits():
+    raw = pd.Series(["560019567001000", "1000000US560019567001001", " 560019567001002 ", "10010201001000"])
+    assert C._block_id(raw).tolist() == ["560019567001000", "560019567001001", "560019567001002", "010010201001000"]
+
+
+def test_equivalency_file_joins_the_block_votes():
+    # a 118th-Congress-style table: a two-district state and an at-large one, padded codes and a water row
+    bef = pd.DataFrame(
+        {
+            "block": C._block_id(
+                pd.Series(["290010000000001", "290010000000002", "290030000000001", "560010000000001"])
+            ),
+            "cd": [" 01", "02 ", "02", "00"],
+        }
+    )
+    mo = C.bef_blocks(bef, "MO")
+    assert mo.set_index("block")["cd"].to_dict() == {
+        "290010000000001": "1",
+        "290010000000002": "2",
+        "290030000000001": "2",
+    }
+    assert C.bef_blocks(bef, "WY")["cd"].tolist() == ["1"]  # at-large 00 -> seat 1
+    bv = _blocks([("290010000000001", 60.0, 40.0), ("290010000000002", 30.0, 70.0), ("290030000000001", 50.0, 50.0)])
+    g, lost = C.seat_sums(bv, mo)
+    assert g.to_dict("index") == {"1": {"d": 60.0, "r": 40.0}, "2": {"d": 80.0, "r": 120.0}}
+    assert lost == 0.0
+    with pytest.raises(RuntimeError):
+        C.bef_blocks(bef, "VA")  # no block of the state: the files would not join
 
 
 def test_county_carry_moves_each_block_by_its_county():
