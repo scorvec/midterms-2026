@@ -44,8 +44,10 @@ window), and several versions of one survey count once. The blend is a Student-t
 disagrees with everything else counts for less until other polls confirm it.
 
 **Senate** (`senate2026.py`). The same pipeline with a prior refitted on every Democrat-v-Republican Senate race
-1982-2024, with linear time trends in the lean and incumbency slopes (the Senate has nationalized). Funded independent
-challengers, appointed incumbents and split anti-Republican fields have their own rules. A common trend estimated across
+1982-2024, with linear time trends in the lean and incumbency slopes (the Senate has nationalized). Independent
+challengers (a wider prior; 12 points more for one with no Democrat on the ballot and at least a quarter of the Republican's
+money, see [Independent challengers](#independent-challengers)), appointed incumbents and split anti-Republican fields have
+their own rules. A common trend estimated across
 all of this year's Senate polls brings older polls up to date. Control is counted the way it is settled: 50-50 goes to
 the Republicans while the vice president is a Republican, and independent winners are assumed to abstain (the page also
 shows the answer if they side with either party).
@@ -404,6 +406,63 @@ Measured, not used:
   race's own level and each pollster's lean, shifts every older poll by the shared movement since it was taken.
   Walk-forward 2006-2024: log loss -0.0035 (8/10 cycles). The same adjustment taken from the generic-ballot average, or
   applied to governor races, made the forecasts worse, so it is used for the Senate only.
+
+### Independent challengers
+
+Four 2026 Senate races have an independent as the main challenger: Nebraska, Idaho and South Dakota with no Democrat on
+the ballot, Montana with one (`senate2026.IND_SHIFT`, `IND_SHIFT_SD`, `IND_MIN_RATIO`, `SPLIT_PRIOR_MULT`). Measured on every
+Senate race since 1988 and every governor race since 1998 with no Democrat on the ballot (MIT and Wikipedia results; Sanders
+and Mississippi's 2008 special, Democrats in all but label, aside), against the D-v-R prior fitted without the race's cycle
+(the Senate form on the cycles before it; the governor prior on the other cycles), at the actual national vote:
+
+| race | June 30 money (x the Republican's) | independent minus Republican | prior | above the prior |
+|---|---|---|---|---|
+| Orman, Kansas 2014 | $0.63M (0.45x) | -11.1 | -38.5 | +27.4 |
+| McMullin, Utah 2022 | $3.25M (0.85x) | -10.9 | -31.6 | +20.8 |
+| Osborn, Nebraska 2024 | $1.58M (1.00x) | -6.7 | -31.0 | +24.3 |
+| Walker, Alaska governor 2014 | (state filings) | +2.3 | -30.7 | +33.0 |
+| Harrington, Arkansas 2020 | $0 | -33.1 | -31.7 | -1.4 |
+| O'Hara, Mississippi 2002 | none | -69.2 | -32.3 | -36.8 |
+| Spannaus, Virginia 1990 | none | -63.3 | -21.9 | -41.5 |
+| Steve Osborn, Indiana 2006 | none | -74.8 | -25.7 | -49.1 |
+
+- **Prior, no Democrat on the ballot.** Being an independent explains nothing (all eight: mean -2.9, sd 34); money does: the
+  four with a campaign finished +26.4 above the prior (sd 5.2, 95 % 18 to 35), the four without -1 to -49. "Funded" is at
+  least a quarter of the Republican's June 30 money, with no dollar floor: the earlier $1M floor would have filed Orman with
+  the unfunded. The record places the cut only between no money and Orman's ($0.63M, over $0.8M in 2026 dollars; 0.45x):
+  Nebraska ($5.5M, 0.74x) is well clear, South Dakota ($0.78M, 0.58x) and Idaho ($0.60M, 0.29x) fall in that untested range
+  and now qualify. Early polling strength separates the groups too, but the polls already enter the blend, so the prior does
+  not condition on them. On the live-path backtest (next point) dropping the floor touches one race, Kansas 2014, and scores worse there
+  (log loss +0.11 two to four weeks out): Orman led his final polls by 3 and lost by 11, with Kansas's governor polls 6 points
+  off the same way.
+- **Size of the shift.** The prior moves by 12, not the measured +26. Live path (that prior at the generic-ballot average,
+  each race's own polls, leave-one-race-out, the four funded races): shifts 0 / 12 / 26 score log loss 0.507 / 0.551 /
+  0.617 two to four weeks out and 0.636 / 0.549 / 0.503 five to nine weeks out. Late in 2014 and 2024 these races' polls ran
+  ahead of the results, as those cycles' D-v-R polls did, so a prior further below the polls scored better late; four races
+  in three cycles cannot settle it. The shift sd 9 (prior sd 12.6 in all) is wider than the group's spread (5.2, 95 % 2.9 to 19).
+- **Polls.** In the four funded races the non-partisan average of the final three weeks missed by +2.8 for the independent
+  (Kansas +11.4, Alaska -1.2, Utah -2.0, Nebraska +2.9; se 3.1): +0.1 (se 3.0) net of the same cycle's D-v-R statewide polling
+  miss and -1.2 (se 3.1, three races) net of the same state's D-v-R race that year (Kansas governor 2014 +6.4, Nebraska's other
+  Senate race 2024 +6.7). Their spread (RMS 5.1 net of the cycle) is that of D-v-R races in those cycles (3.8-6.4). The
+  independent's margin fell from the 22-60-day average to the final three weeks in all four (mean -4.2, se 1.7), -1.2 (se 0.7,
+  three races) net of the cycle's D-v-R movement. Undecided and minor-party voters went 67 % to the Republican between the final
+  polls and the result, against 71 % in D-v-R races in red states (lean below -15; 168 races). So there is no independent
+  poll bias, extra variance or late fade to add: these misses follow the cycle and the state, which the shared statewide shock
+  already carries.
+- **Sponsors.** An independent's own polls ran +5.5 for the independent (se 2.1; 13 polls, 4 races) against the same race's
+  non-partisan polls within 21 days, like the Democratic sponsor effect (+4.3) the model removes from them. Democratic-sponsored
+  polls in independent races ran -3.0 (se 2.8; 12 polls, 6 races; race-level se 4.0) and keep the independent's-side tag: too
+  few races to drop it.
+- **A Democrat on the ballot too (Montana).** The margin comes from full-field polls only (independent minus Republican; the
+  Democrat is in the poll's third-party share, which adds variance), and the D-v-R prior is kept, widened x2. Independents who
+  outpolled a Democrat on the same ballot (King, Maine 2012, 2018, 2024; Crist, Florida 2010; Cutler, Maine 2010; Chafee, Rhode
+  Island 2010; Ventura, Minnesota 1998; Pollina, Vermont 2008) finished -2.4 from that prior (sd 12.9, se 4.6): no shift, and the
+  x2 sd (17.7) covers the spread. Late consolidation toward the stronger anti-Republican candidate is not measured: in the two
+  such races in 538's archive (Maine 2018 and 2024) the trailing Democrat gained 3-5 points on the final polls, and third-place
+  independents (8 races 2018-2022) lost 3.0 (se 1.5); the earlier three-way races have no poll file here.
+- **Correlation.** No shared independent error in the simulation: the two funded independents of one cycle (2014) missed in
+  opposite directions (+8.3 and -5.2 net of the cycle), and their misses track the same state's D-v-R misses, which the
+  simulation's shared statewide shock already gives every race.
 
 ### Tested and left off
 

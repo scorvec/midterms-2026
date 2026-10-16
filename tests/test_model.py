@@ -1,4 +1,5 @@
-"""Core simulation pieces (model.py, national_mood.py) and pollster identity (model._same_pollster, names.canon)."""
+"""Core simulation pieces (model.py, national_mood.py), the Senate's funded-independent gate and pollster identity
+(model._same_pollster, names.canon)."""
 
 import numpy as np
 import pandas as pd
@@ -7,6 +8,7 @@ import pytest
 from midterms import model as M
 from midterms import names as R
 from midterms import national_mood as NM
+from midterms import senate2026 as SN
 
 
 def test_national_z_is_unit_t5():
@@ -45,6 +47,13 @@ def test_summarize_majority():
     assert s["dem_seats_mean"] == pytest.approx(np.mean(seats))
     assert s["p_dem_majority"] == 0.5  # 218 of 435
     assert M.summarize(mg, None, shift=-2.0)["dem_seats_mean"] == 0.0
+
+
+def test_funded_independent_gate():
+    assert SN.ind_funded(0.63e6, 1.42e6)  # Orman 2014: under $1M, 0.45x the Republican
+    assert not SN.ind_funded(0.0, 3.0e6)  # Harrington 2020: no campaign money
+    assert not SN.ind_funded(0.2e6, 1.0e6)  # under a quarter of the Republican's
+    assert not SN.ind_funded(float("nan"), 2.0e6) and not SN.ind_funded(1.0e6, float("nan"))  # money not on file
 
 
 def test_robust_blend_moves_toward_the_polls():

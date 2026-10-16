@@ -109,7 +109,10 @@ def sponsor_of(pollster, challenger_party="D"):
     """'D' / 'R' = poll sponsored by the challenger's side / the Republican's; '' = independent or bipartisan.
     Wikipedia marks sponsors in the pollster name: 'Public Policy Polling (D)'. A joint (R)/(D) poll is
     bipartisan. With an independent challenger, a Democratic or the independent's own poll is challenger-sponsored
-    (Democrats back Osborn, Bengs, Achilles)."""
+    (Democrats back Osborn, Bengs, Achilles). In past independent races (538 polls 2014-24, against the same race's non-partisan
+    polls within 21 days) the independent's own polls ran +5.5 for the independent (se 2.1; 13 polls, 4 races), in line with the
+    D sponsor effect; Democratic-sponsored ones ran -3.0 (se 2.8; 12 polls, 6 races; race-level se 4.0) - too few races to
+    drop their tag."""
     tags = set(re.findall(r"\((D|R|I)\)", str(pollster)))
     if len(tags) != 1:
         return ""

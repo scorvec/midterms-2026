@@ -55,17 +55,24 @@ NOW_D, NOW_R = 47, 53  # current Senate (independents with the Democrats)
 
 
 # Independent challengers. The prior is fitted on D-v-R races only. With no Democrat on the ballot the prior mean of a funded
-# independent moves by IND_SHIFT and its sd takes the class's spread; with a Democrat also on the ballot (a split anti-Republican
-# vote, MT) there is no precedent and the prior is widened instead. Every 1976-2024 Senate race whose top non-Republican was not a
-# Democrat (MIT results, Cook-style lean from the two previous presidential races), against an R-incumbent prior, splits by whether
-# the independent funded a campaign, not by being an independent: Osborn NE 2024 +24.8 (June 30 money $1.58M, 1.00x the
-# Republican), McMullin UT 2022 +20.6 ($3.25M, 0.85x), Orman KS 2014 +21.3 - but Harrington AR 2020 -4.0 ($0.00M), O'Hara MS 2002
-# -43.7, Spannaus VA 1990 -53.1. Averaging the three successes alone (+20.3) is a selection effect: they are known because they
-# overperformed. So the shift applies only to a funded independent (>= $1M and >= 25 % of the Republican's June 30 money, which
-# every historical success clears and the flops fail) and is shrunk n/(n+k) for n=3 precedents, with the sd widened to carry the
-# class's real spread. An unfunded independent gets the plain D-v-R prior, widened.
+# independent moves by IND_SHIFT and the sd of every such prior widens by IND_SHIFT_SD; with a Democrat also on the ballot (a split
+# anti-Republican vote, MT) the D-v-R prior is kept and widened x SPLIT_PRIOR_MULT. Every Senate race 1988-2024 with no Democrat on
+# the ballot (MIT results; Sanders and Musgrove, Democrats in all but label, aside) and the one such governor race since 1998,
+# against the D-v-R prior fitted without the race's cycle (this form on the cycles before it; Walker: gov2026.Prior on the other
+# cycles) at the actual national vote, splits by money, not by being an independent: the four with a campaign beat it by Orman KS
+# 2014 +27.4 (June 30 money $0.63M, 0.45x the Republican's), McMullin UT 2022 +20.8 ($3.25M, 0.85x), Osborn NE 2024 +24.3 ($1.58M,
+# 1.00x) and Walker AK 2014 (governor) +33.0 - mean +26.4, sd 5.2, 95 % 18-35 - and the four with none ran Harrington AR 2020
+# -1.4, O'Hara MS 2002 -36.8, Spannaus VA 1990 -41.5, Osborn (Libertarian) IN 2006 -49.1. A $1M floor misfiled Orman, so funded =
+# >= IND_MIN_RATIO of the Republican's money; the record only places the cut between no money and Orman's ($0.63M, over $0.8M in
+# 2026 dollars; 0.45x), the range in which ID (0.29x, $0.60M) and SD (0.58x, $0.78M) fall. The shift is not the class mean: on the
+# live path (that prior at the generic-ballot average, the race's own polls, shift sd 9, the four races leave-one-out) shifts 0 /
+# 12 / 26 score log loss 0.507 / 0.551 / 0.617 2-4 weeks out and 0.636 / 0.549 / 0.503 5-9 weeks out - late in 2014 and 2024 these
+# races' polls ran ahead of the results, as the cycles' D-v-R polls did - so 12 stays; IND_SHIFT_SD 9 is wider than the class's
+# spread (5.2, 95 % 2.9-19), which four races cannot pin down. Independents who outpolled a Democrat on the same ballot (King ME
+# 2012/18/24, Crist FL 2010, Cutler ME 2010, Chafee RI 2010, Ventura MN 1998, Pollina VT 2008) finished -2.4 (sd 12.9, se 4.6) from
+# the D-v-R prior in their margin over the Republican: no shift, and the x2 prior sd (17.7) covers that spread.
 IND_SHIFT, IND_SHIFT_SD, SPLIT_PRIOR_MULT = 12.0, 9.0, 2.0
-IND_MIN_MONEY, IND_MIN_RATIO = 1e6, 0.25
+IND_MIN_RATIO = 0.25
 # In the Senate the shared term is calibrated to the measured shared statewide polling miss, and the polled races that decide the
 # chamber are ~85 % poll; the House's wider national error is the environment error that its mostly unpolled seats carry in full.
 SEN_S_NAT = (
@@ -202,6 +209,12 @@ def ind_money(state):
     gi = q[q.side == "C"].money
     gr = q[q.side == "R"].money
     return (float(gi.iloc[0]) if len(gi) else float("nan"), float(gr.iloc[0]) if len(gr) else float("nan"))
+
+
+def ind_funded(mi, mr):
+    """The funded-independent gate (see IND_MIN_RATIO): both sums on file and the independent's at least IND_MIN_RATIO of the
+    Republican's."""
+    return bool(mi == mi and mr == mr and mi > 0 and mi >= IND_MIN_RATIO * mr)
 
 
 def blend_race(mu_prior, psd, pm, ne, vm, extra_sys=0.0):
@@ -485,8 +498,7 @@ def run(E, asof=None, n=20000, seed=11, nat_z=None):
                 prior_note = "independent, Democrat also on the ballot: prior widened x2"
             else:
                 mi, mr = ind_money(r["state"])
-                funded = mi == mi and mr == mr and mi >= IND_MIN_MONEY and mi >= IND_MIN_RATIO * mr
-                if funded:
+                if ind_funded(mi, mr):
                     mu_prior += IND_SHIFT
                     prior_note = (
                         f"funded independent, no Democrat: prior +{IND_SHIFT} (${mi / 1e6:.1f}M, {mi / mr:.2f}x)"
