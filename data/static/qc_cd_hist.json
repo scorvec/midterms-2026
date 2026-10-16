@@ -108,7 +108,7 @@
   "ratio": 1.0
  },
  "blocks_vs_mit_2018_AZ_16": {
-  "margin_diff": -0.002,
+  "margin_diff": 0.0,
   "ratio": 1.0
  },
  "blocks_vs_mit_2018_CA_12": {
@@ -320,12 +320,12 @@
   "ratio": 1.0
  },
  "blocks_vs_mit_2018_NY_12": {
-  "margin_diff": -3.352,
-  "ratio": 1.0679
+  "margin_diff": 0.017,
+  "ratio": 1.0027
  },
  "blocks_vs_mit_2018_NY_16": {
-  "margin_diff": -3.278,
-  "ratio": 1.0679
+  "margin_diff": -0.0,
+  "ratio": 1.0
  },
  "blocks_vs_mit_2018_OH_12": {
   "margin_diff": -0.053,
@@ -448,7 +448,7 @@
   "ratio": 1.0
  },
  "blocks_vs_mit_2022_AZ_16": {
-  "margin_diff": -0.002,
+  "margin_diff": 0.0,
   "ratio": 1.0
  },
  "blocks_vs_mit_2022_AZ_20": {
@@ -672,8 +672,8 @@
   "ratio": 1.0
  },
  "blocks_vs_mit_2022_NY_16": {
-  "margin_diff": -3.278,
-  "ratio": 1.0679
+  "margin_diff": -0.0,
+  "ratio": 1.0
  },
  "blocks_vs_mit_2022_NY_20": {
   "margin_diff": 0.021,
@@ -855,7 +855,7 @@
  "countyswing_NJ_16_to_12_state_change_share": 0.0,
  "countyswing_NM_16_to_12_state_change_share": 0.0,
  "countyswing_NV_16_to_12_state_change_share": 0.0,
- "countyswing_NY_16_to_12_state_change_share": 1.0,
+ "countyswing_NY_16_to_12_state_change_share": 0.0,
  "countyswing_OH_16_to_12_state_change_share": 0.0,
  "countyswing_OK_16_to_12_state_change_share": 0.0,
  "countyswing_OR_16_to_12_state_change_share": 0.0,
@@ -888,13 +888,13 @@
   "AZ": [
    -0.89,
    1.36,
-   -6.51,
+   -6.52,
    0.49,
    3.6,
    2.26,
    -6.37,
    2.03,
-   2.39
+   2.38
   ],
   "CA": [
    0.37,
@@ -1395,11 +1395,11 @@
  "n_seats_2022": 435,
  "national_two_party_margin": {
   "2018": {
-   "2012": 3.933,
-   "2016": 2.208
+   "2012": 3.736,
+   "2016": 2.02
   },
   "2022": {
-   "2016": 2.208,
+   "2016": 2.02,
    "2020": 4.358
   }
  },
@@ -1411,13 +1411,10 @@
   "2018_ME_2012": 0.109,
   "2018_MI_2012": 0.285,
   "2018_NJ_2012": -0.055,
-  "2018_NY_2012": 3.352,
-  "2018_NY_2016": 3.278,
   "2018_OH_2012": 0.053,
   "2018_RI_2012": 0.066,
   "2018_UT_2012": -0.292,
   "2018_WI_2012": -0.106,
-  "2022_NY_2016": 3.278,
   "2022_VA_2020": -0.092
  },
  "unassigned_votes_2018_AL_12": 0.0,
@@ -1596,35 +1593,35 @@
  "unassigned_votes_2022_WV_20": 0.0,
  "vs_538_partisan_lean_2018": {
   "largest": {
-   "KY-1": 9.6,
-   "KY-2": 9.5,
-   "NY-10": 9.8,
-   "NY-12": 11.5,
-   "RI-2": 10.0,
-   "WV-1": 12.1,
-   "WV-2": 11.6,
-   "WV-3": 12.1
+   "KY-1": 9.4,
+   "KY-2": 9.3,
+   "KY-4": 8.9,
+   "KY-5": 9.2,
+   "RI-2": 9.8,
+   "WV-1": 11.9,
+   "WV-2": 11.4,
+   "WV-3": 11.9
   },
-  "mean": 0.44,
+  "mean": 0.428,
   "n": 435,
-  "r": 0.9961,
-  "rms": 3.474
+  "r": 0.99613,
+  "rms": 3.331
  },
  "vs_538_pvi_22": {
   "largest": {
-   "LA-6": 16.1,
-   "RI-1": 7.1,
+   "LA-6": 16.0,
+   "MD-8": 6.4,
+   "RI-1": 7.0,
    "RI-2": 7.5,
-   "TX-13": 6.3,
-   "TX-25": 6.7,
+   "TX-25": 6.6,
    "TX-8": 6.6,
    "WV-1": 11.5,
    "WV-2": 8.7
   },
-  "mean": 0.307,
+  "mean": 0.305,
   "n": 435,
-  "r": 0.99771,
-  "rms": 2.35
+  "r": 0.99768,
+  "rms": 2.354
  },
  "wiki_county_AL_2012": {
   "d_vs_official": 1.0,
@@ -1859,12 +1856,12 @@
   "used": true
  },
  "wiki_county_NY_2012": {
-  "d_vs_official": 1.0374,
+  "d_vs_official": 1.0031,
   "duplicate_fips": [],
-  "r_vs_official": 1.1201,
+  "r_vs_official": 1.002,
   "rows": 62,
   "unknown_names": [],
-  "used": false
+  "used": true
  },
  "wiki_county_OH_2012": {
   "d_vs_official": 1.0,
