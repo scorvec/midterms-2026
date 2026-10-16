@@ -39,11 +39,11 @@ jobs:
       PYTHONUNBUFFERED: "1"
       TZ: America/New_York            # "today" = the New York date (the run's asof and snapshot names)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
@@ -56,7 +56,7 @@ jobs:
       # the newest. Losing it only costs time (bootstrap re-downloads, the backfill rebuilds in ~10 min) - except the
       # day-by-day diagnostic snapshots (FL statistics files, UF counts), which nothing in the forecast needs.
       - name: Restore data cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: |
             data/raw
@@ -105,7 +105,7 @@ jobs:
 
       - name: Save data cache
         if: ${{ always() && steps.run.outcome != 'cancelled' }}
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: |
             data/raw
@@ -146,7 +146,7 @@ jobs:
 
       - name: Upload diagnostics
         if: ${{ always() && steps.run.outcome != 'cancelled' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: diagnostics-${{ github.run_id }}
           retention-days: 30
