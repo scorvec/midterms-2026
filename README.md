@@ -594,4 +594,6 @@ affiliated with or endorsed by any of the sources.
 
 ## License
 
-Code: [MIT](LICENSE). Data keep the terms of their sources, listed above.
+Code: [MIT](LICENSE). Data keep the terms of their sources, listed above. Race polls taken from Wikipedia's race pages are
+used under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); `web/data/polls.json`, `web/data/whatif.json`
+and the poll page (`web/polls.html`) republish them, as checked, corrected and weighted by the model, under the same licence.
