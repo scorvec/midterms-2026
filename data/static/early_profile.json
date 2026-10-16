@@ -1,0 +1,97 @@
+{
+ "description": "Timing profile h(tau) = (1 - tau/W)^P of pre-Election-Day ballots (early_vote.profile_fit): W, P fitted to the 2024 national path; check_2026 = the 2026 path so far (banked share of 2022 turnout) against that shape with its scale free. Source: UF Election Lab national early-vote tables (2024 via Wayback Machine captures); only derived shares are stored.",
+ "W": 40.0,
+ "P": 2.9,
+ "fitted": "2026-10-16",
+ "fit_2024": {
+  "points": [
+   [
+    0,
+    1.0
+   ],
+   [
+    1,
+    0.908
+   ],
+   [
+    2,
+    0.8742
+   ],
+   [
+    28,
+    0.0279
+   ],
+   [
+    34,
+    0.0093
+   ],
+   [
+    41,
+    0.002
+   ],
+   [
+    45,
+    0.0
+   ],
+   [
+    55,
+    0.0
+   ],
+   [
+    59,
+    0.0
+   ]
+  ],
+  "rms": 0.0084
+ },
+ "check_2026": {
+  "points": [
+   [
+    18,
+    0.0595
+   ],
+   [
+    19,
+    0.0493
+   ],
+   [
+    27,
+    0.0153
+   ],
+   [
+    29,
+    0.0117
+   ],
+   [
+    30,
+    0.0105
+   ],
+   [
+    31,
+    0.0103
+   ],
+   [
+    32,
+    0.0077
+   ],
+   [
+    34,
+    0.0049
+   ],
+   [
+    42,
+    0.0006
+   ],
+   [
+    46,
+    0.0001
+   ]
+  ],
+  "scale": 0.337,
+  "rms": 0.0034
+ },
+ "previous": {
+  "W": 46.0,
+  "P": 3.0
+ }
+}

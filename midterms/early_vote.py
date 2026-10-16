@@ -30,16 +30,22 @@ Inputs:
   * the historical national pre-Election-Day share per cycle (Census CPS voting supplement via MIT Election Data + Science Lab:
     in-person Election Day 89 % in 1996, 60 % in 2018, 31 % in 2020, 50 % in 2022; mail 29 % + early in person 31 % in 2024);
     1998-2016 linearly interpolated between 1996 and 2018 (no published per-year national series was found);
-  * the timing profile h(tau) = (1 - tau / W)^P (share of a state's pre-Election-Day ballots cast by tau days out; W 46 days ~
-    when mail ballots go out, P 3 back-loads it). An assumption until the daily 2026 snapshots can fit it; the same profile is
-    used for the history and for 2026, so most of it cancels in k_s. A state's path runs from its banked share now to
-    max(2022 share, banked now) on Election Day along the remaining part of h.
+  * the timing profile h(tau) = (1 - tau / W)^P (share of a cycle's pre-Election-Day ballots cast by tau days out), fitted
+    by profile_fit() to the one complete national path UF's tables give - 2024, from Wayback Machine captures, normalised by
+    the Election-Day total (data/static/early_profile.json: W 40.0, P 2.90; the earlier assumption W 46, P 3 ran ahead of it
+    mid-campaign, 6 % in by 28 days out against 2.8 % measured). The 2026 path so far follows the same shape with its scale
+    left free (its final share is not known yet). One national profile ignores voting mode: North Carolina's in-person-heavy
+    path stays near zero until one-stop voting opens ~19 days out, Pennsylvania's mail path rises from ~35 days. The same
+    profile is used for the history and for 2026, so most of it cancels in k_s. A state's path runs from its banked share now
+    to max(2022 share, banked now) on Election Day along the remaining part of h; a past cycle's path is its final share
+    times h, i.e. already F h(L) banked at L days out.
 """
 
 from __future__ import annotations
 import csv
 import io
 import json
+import time
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -49,7 +55,9 @@ RAW = ROOT / "data" / "raw" / "early_vote"
 SHARE_JSON = ROOT / "data" / "static" / "early_share_2022.json"
 UF_URL = "https://election.lab.ufl.edu/data-downloads/earlyvote/2026/US.csv"
 ELECTION = pd.Timestamp("2026-11-03")
-W, P_SHAPE = 46.0, 3.0
+PROFILE_JSON = ROOT / "data" / "static" / "early_profile.json"  # the fitted timing profile (profile_fit)
+_PROFILE = json.loads(PROFILE_JSON.read_text())
+W, P_SHAPE = float(_PROFILE["W"]), float(_PROFILE["P"])
 HIST_PRE = {1996: 0.11, 2018: 0.40, 2020: 0.69, 2022: 0.50, 2024: 0.60}
 for _y in range(1998, 2018, 2):
     HIST_PRE[_y] = round(0.11 + (0.40 - 0.11) * (_y - 1996) / (2018 - 1996), 3)
@@ -135,9 +143,9 @@ def turnout_2022() -> dict:
     }
 
 
-def h(tau):
-    """Share of a cycle's pre-Election-Day ballots already cast tau days before the election."""
-    return np.clip(1 - np.asarray(tau, float) / W, 0, 1) ** P_SHAPE
+def h(tau, w=None, p=None):
+    """Share of a cycle's pre-Election-Day ballots already cast tau days before the election (the fitted W, P unless given)."""
+    return np.clip(1 - np.asarray(tau, float) / (W if w is None else w), 0, 1) ** (P_SHAPE if p is None else p)
 
 
 def exposure(F_end, L, F_now=0.0):
@@ -154,10 +162,11 @@ def exposure(F_end, L, F_now=0.0):
 
 
 def hist_exposure(L, years=None):
-    """Mean exposure of the cycles behind the measured movement (the national_mood table's years)."""
+    """Mean exposure of the cycles behind the measured movement (the national_mood table's years). Each cycle had already
+    banked its final share times h(L) by L days out, so its path is F h(tau) - not a path starting from zero at L."""
     if years is None:
         years = json.loads(FIT_JSON.read_text())["years"]
-    return float(np.mean([exposure(HIST_PRE[y], L) for y in years]))
+    return float(np.mean([exposure(HIST_PRE[y], L, HIST_PRE[y] * float(h(L))) for y in years]))
 
 
 def move_var(L) -> float:
@@ -213,6 +222,98 @@ def setup(n, s_house, s_state, rho, asof=None, seed=29):
     return rho_r
 
 
+def wayback_captures(year: int) -> list[Path]:
+    """UF's national table for `year` as the Wayback Machine captured it, one file per capture day, into RAW/wayback. UF keeps
+    no dated history of its tables, and a fit needs the path of a whole cycle; captures never change, so each is fetched once."""
+    from . import fetch as F
+
+    src = f"election.lab.ufl.edu/data-downloads/earlyvote/{year}/US.csv"
+    have = sorted((RAW / "wayback").glob(f"uf_{year}_*.csv"))
+    stamps = None
+    for attempt in range(3):  # the capture index answers 503 when busy
+        try:
+            cdx = F.open_url(
+                f"https://web.archive.org/cdx/search/cdx?url={src}&output=json&fl=timestamp&filter=statuscode:200"
+                "&collapse=timestamp:8",
+                timeout=90,
+            )
+            stamps = [ts for (ts,) in json.loads(cdx)[1:]]
+            break
+        except Exception as e:
+            print(f"  Wayback index {year}: {e}")
+            time.sleep(20 * (attempt + 1))
+    if stamps is None:  # the captures already stored are the same files
+        return have
+    out = []
+    for ts in stamps:
+        p = RAW / "wayback" / f"uf_{year}_{ts}.csv"
+        if not p.exists():
+            time.sleep(2)  # gentle on the archive
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_bytes(F.open_url(f"https://web.archive.org/web/{ts}id_/https://{src}", timeout=90))
+        out.append(p)
+    return out
+
+
+def national_path(files, election) -> dict:
+    """{days out (0-60): ballots cast} summed over the states of UF national tables; the newest file of a day wins. File
+    names end in the capture or snapshot day: uf_<year>_<YYYYMMDDhhmmss>.csv or uf_<year>_<YYYY-MM-DD>.csv."""
+    path = {}
+    for p in sorted(files, key=lambda q: q.stem.split("_", 2)[2].replace("-", "")):
+        stamp = p.stem.split("_", 2)[2]
+        tau = int((pd.Timestamp(election) - pd.Timestamp(stamp[:10] if "-" in stamp else stamp[:8])).days)
+        if not 0 <= tau <= 60:
+            continue
+        rows = csv.DictReader(io.StringIO(p.read_text(encoding="utf-8-sig")))
+        path[tau] = sum(int(float(r["voted_all"])) for r in rows if r.get("voted_all") not in (None, "", "NA"))
+    return path
+
+
+def profile_fit(write=True) -> dict:
+    """Fit W, P of h to the 2024 national path (share of the Election-Day total by days out, from the Wayback captures) and
+    report how the 2026 path so far fits that shape with its own scale (the 2026 final share is not known yet). Writes
+    PROFILE_JSON; only shares are stored - UF's tables themselves are not republished (CC BY-NC-ND 4.0)."""
+    from scipy.optimize import minimize
+
+    p24 = national_path(wayback_captures(2024), "2024-11-05")
+    us24 = sorted((t, v / p24[0]) for t, v in p24.items())
+    p26 = national_path(wayback_captures(2026) + sorted(RAW.glob("uf_2026_*.csv")), ELECTION)
+    t22 = sum(turnout_2022().values())
+    us26 = sorted((t, v / t22) for t, v in p26.items() if v > 0)
+    r = minimize(
+        lambda x: sum((float(h(t, *x)) - s) ** 2 for t, s in us24),
+        [W, P_SHAPE],
+        method="Nelder-Mead",
+        options=dict(xatol=1e-4, fatol=1e-12),
+    )
+    w, p = (float(v) for v in r.x)
+    H = np.array([float(h(t, w, p)) for t, _ in us26])
+    b = np.array([s for _, s in us26])
+    scale = float(b @ H / (H @ H))
+    rec = {
+        "description": "Timing profile h(tau) = (1 - tau/W)^P of pre-Election-Day ballots (early_vote.profile_fit): W, P fitted "
+        "to the 2024 national path; check_2026 = the 2026 path so far (banked share of 2022 turnout) against that shape "
+        "with its scale free. Source: UF Election Lab national early-vote tables (2024 via Wayback Machine captures); "
+        "only derived shares are stored.",
+        "W": round(w, 1),
+        "P": round(p, 2),
+        "fitted": pd.Timestamp.today().strftime("%Y-%m-%d"),
+        "fit_2024": {
+            "points": [[t, round(s, 4)] for t, s in us24],
+            "rms": round(float(np.sqrt(r.fun / len(us24))), 4),
+        },
+        "check_2026": {
+            "points": [[t, round(s, 4)] for t, s in us26],
+            "scale": round(scale, 3),
+            "rms": round(float(np.sqrt(np.mean((b - scale * H) ** 2))), 4),
+        },
+        "previous": {"W": 46.0, "P": 3.0},
+    }
+    if write:
+        PROFILE_JSON.write_text(json.dumps(rec, indent=1) + "\n")
+    return rec
+
+
 def kvec(states) -> np.ndarray:
     from . import model as M
 
@@ -225,6 +326,10 @@ if __name__ == "__main__":
 
     if "--fetch" in sys.argv:
         print("snapshot:", fetch())
+    if "profile" in sys.argv:  # refit the timing profile (Wayback captures + the local 2026 snapshots)
+        rec = profile_fit()
+        print(f"W {rec['W']}  P {rec['P']}  2024 rms {rec['fit_2024']['rms']}  2026 check {rec['check_2026']}")
+        sys.exit(0)
     k = k_factors()
     meta = k.pop("_meta")
     sh = share_2022()
