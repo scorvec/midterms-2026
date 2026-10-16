@@ -43,7 +43,7 @@ ON = os.environ.get("MIDTERMS_STATELEG", "on").lower() in (
 )  # experimental; MIDTERMS_STATELEG=off turns it off
 # The state-poll signal (kappa x the pull of the state's Senate / governor polls, and kappa x their simulated surprise) is fitted
 # (kappa 0.074, se 0.024) and implemented, but tested and not adopted: in the 2018/2022 backtest it changed seat log loss
-# by +0.002 / -0.001 and chamber-control Brier 0.119 -> 0.125. Off unless MIDTERMS_STATELEG_KAPPA=on.
+# by +0.0005 / +0.0003 and the original 14 chambers' control Brier 0.115 -> 0.119. Off unless MIDTERMS_STATELEG_KAPPA=on.
 KAPPA_ON = os.environ.get("MIDTERMS_STATELEG_KAPPA", "off").lower() in ("on", "1", "true")
 T_DF = 5
 

@@ -329,6 +329,12 @@ def main():
                 gmg if "governor" in out else None,
             )
             out["state_legislatures"] = sl
+            try:  # the backtest scores about.html and legislatures.html quote (stateleg_backtest.published)
+                from . import stateleg_backtest as SLB
+
+                sl["backtest"] = SLB.published()
+            except Exception as ex:
+                print("::warning::stateleg backtest scores skipped:", str(ex)[:160])
             try:  # per-seat file for the district maps (stateleg_seats.py)
                 from . import stateleg_seats as SLX
 
