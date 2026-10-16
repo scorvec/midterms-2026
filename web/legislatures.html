@@ -68,7 +68,8 @@ path.so{fill:none;stroke:#5c5a55;stroke-width:.8;vector-effect:non-scaling-strok
 .lg svg{width:30px;height:14px;flex:none;border-radius:2px}
 .tip{position:fixed;pointer-events:none;background:#1b1d22;color:#fff;font-size:14.5px;line-height:1.4;padding:7px 10px;border-radius:6px;display:none;max-width:min(340px,calc(100vw - 24px));z-index:9}
 .tip b{font-weight:600}.tip .tm{color:#d6d3cc}
-</style></head><body><main class="wi">
+</style><script data-goatcounter="https://scorvec.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+" crossorigin="anonymous"></script>
+</head><body><main class="wi">
 <div class="head"><h1>State legislatures, 2026</h1><a href="index.html">&larr; Congress and governors</a></div>
 <p class="lede" id="lede">Chances of control of twenty-two state legislative chambers.</p>
 <div class="xp"><b>Experimental.</b> This part of the forecast is new and rests on less evidence than the Congress and governor forecasts.
@@ -144,8 +145,8 @@ fetch("data/model.json?"+Date.now()).then(r=>{if(!r.ok)throw new Error("model.js
   }
 }).catch(e=>{console.error(e);document.getElementById("grid").innerHTML="<p class='note'>The forecast could not be loaded. Reload the page to try again.</p>"});
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" integrity="sha384-9dCJK6nh7skY14HrcvlLYlFga9/MehJjL9ONWRflmiXNRuf8p2jiF4Y5PR881PTq" crossorigin="anonymous"></script>
 <script>
 /* District maps (data-driven): every chamber in data/stateleg_seats.json that data/stateleg_geo/index.json maps to a state file
    (data/stateleg_geo/{ST}.topo.json, loaded when first shown) gets a map; chambers added later appear once both files carry them. */
