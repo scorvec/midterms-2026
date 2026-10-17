@@ -100,6 +100,10 @@ ALIASES = {
     # pollresults.org wrote Fox News's Oct 9-12 national poll as "Beacon Research/Shaw & Company Research";
     # the Jan and Apr polls (and every Fox state poll) are "... Shaw & Co. Research" - one pollster, one house effect.
     "beacon research/shaw & company research": "beacon research/shaw & co. research",
+    # Short forms in the Polling USA posts: one pollster each, so the poll takes its pollster's house effect and rating
+    # (Big Data Poll F, Clarity Campaign Labs B/C; under the short name it was unrated).
+    "big data": "big data poll",
+    "clarity campaign": "clarity campaign labs",
 }
 
 

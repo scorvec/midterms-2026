@@ -6,7 +6,9 @@ Model (per series): y_i = trend(t_i) + house[pollster_i] + pop[population_i] + p
            and by centring on the pollsters of the last 90 days, each weighted by the square root of its poll count),
            so a change in WHO is polling does not move the trend
   pop    : likely / registered / adult offsets (likely voters are the reference)
-  weights: sqrt(sample size), capped; internal and partisan-sponsored polls down-weighted x0.5
+  weights: sqrt(sample size), capped; internal and partisan-sponsored polls down-weighted x0.5; x the pollster's quality
+           rating; lowered for pollsters that scatter about the trend; precision halving every 60 days of age; and no
+           pollster's polls carrying more than 15 % of today's value
 Everything is in Democratic-minus-Republican points (generic) or approve-minus-disapprove (approval).
 Calibration on the 538 archives: the same estimator run on the 2018-2024 generic polls, evaluated at
 election day against the national House two-party margin (data_prep.national_house_vote, the definition the
@@ -54,6 +56,30 @@ CENTRE_POW = 0.5
 # its sample sizes dwarf the others'), and rewarding it multiplied Morning Consult's weight by 1.8 on top of the size cap (one
 # release at 44 % of the trend's influence, 2026-10-17). The precision factor is therefore capped at 1 (user decision).
 PVAR_K0 = 5
+# Two discounts follow PVAR in the weight chain; the 95 % band treats them as judgements, not poll noise. Same harness (538's
+# generic archive 2018-24 x 7 dates, 3-day lag; next-24-day poll RMSE / margin vs the House vote; year-block t, 3 df), before
+# them and quality weighting 2.576 / 3.523.
+# AGE_HALF_LIFE (days; None = off): a poll's precision halves every AGE_HALF_LIFE days of age at the fit date, and the trend's
+# penalty with it (fit), so today's value leans on the newest polls: the mean age of its positive influence 33 -> 24 days in
+# the backtest, 118 -> 37 days for the 2026 generic trend with quality and the cap on (the last 14 days' share 0.61 -> 0.69).
+# Alone 30 / 45 / 60 / 90 days: 2.594 / 2.575 / 2.568 / 2.565, margin 3.470 / 3.483 / 3.492 / 3.502 (30 days: margin better
+# in 4/4 years, p 0.02, next polls worse, n.s.); with quality weighting and the share cap 2.583 / 2.568 / 2.565 / 2.568, margin
+# 3.431-3.438 (n.s.). A looser trend leans on the newest polls by extrapolating their slope instead (the last three weeks'
+# influence 1.02 -> 1.18, older polls negative): LAMBDA_TREND 10 alone 2.564 / 3.466, with quality and the cap 2.600 / 3.373;
+# KNOT_DAYS 7 2.566 / 3.417 and 2.611 / 3.368 (all n.s.). 60 days scores best on the next polls in the combination.
+AGE_HALF_LIFE = 60
+# SHARE_CAP (None = off): no pollster's polls carry more than this share of today's value. A pollster's share is the summed
+# positive influence of its polls on today's value (the poll page's "influence on today"); its older polls enter with negative
+# influence through its own house effect and are not netted against it (net, each pollster is near its centring weight). A
+# pollster over the cap has all its polls' precision scaled down until it sits at the cap (share_cap_scale), the others rising
+# with the renormalisation. A judgement rule, not a backtest result: one weekly tracker carried 0.36 of the 2026 generic trend
+# (Morning Consult, 2026-10-17), and with quality and age weighting on the leading pollster of a backtest date carries 0.19-0.83
+# (YouGov, July 2024). Alone 0.10 / 0.15 / 0.20: next polls 2.604 / 2.600 / 2.597 (0.15 worse in 4/4 years, year t -2.8, p 0.07),
+# margin 3.367 / 3.437 / 3.483 (n.s.). With quality and age weighting it binds at all 28 backtest dates (2-7 pollsters, weight
+# multipliers 0.12-0.99, trend moved -0.9 to +1.2 points). All three together: next polls 2.565 (better at 15/28 dates and in
+# 2/4 years; year t -0.4, p 0.72; 2024 2.19 -> 2.50), margin 3.436 (14/28 dates, 2/4 years, p 0.78; 2018 3.09 -> 1.94, 2024
+# 4.10 -> 4.51).
+SHARE_CAP = 0.15
 
 
 # Checked corrections to VoteHub records: (pollster, start, end, population) -> fields. The raw file is re-downloaded daily, so
@@ -128,13 +154,18 @@ POP_RANK = {"lv": 0, "rv": 1, "v": 2, "a": 3}
 # Backtest (538 archive 2018/20/22/24 x 6 dates, the POLLSTER_POP_LAMBDA harness; ratings as known before each election):
 #   RMSE vs the House margin    off 3.924 | Rasmussen+Big Data tagged REP 4.049 (3/24 cases better, year-block p 0.32)
 #   exclude D/F (score <= 1.2) 4.059 (2/24, p 0.41) | exclude bottom decile 3.964 | Big Data excluded 3.938 (0/5 changed better)
-#   weight (score/3)**g: g 1 3.922, 2 3.838, 4 3.687 (LOYO picks 4; year-block p 0.41; 2024 worse 4.21 -> 4.62; the gain is a
-#   shift toward D in 2018) and the bias-free next-3-weeks poll prediction gets worse at every g (2.506 -> 2.59 / 2.65 / 2.72)
-#   + low-rated house effects shrunk less (ridge x weight): 3.78-3.94, same story.
-# Nothing significant -> no quality weighting, no exclusion, and the partisan tags removed (the fitted house effect already
-# carries a pollster's lean, e.g. Big Data +1.2, Rasmussen -0.25). The switches stay available:
+# -> no exclusion and no partisan tags (the fitted house effect already carries a pollster's lean, e.g. Big Data +1.2,
+# Rasmussen -0.25). Quality WEIGHTING is on: each poll's weight x (score/3)**QUALITY_GAMMA (unrated = 1.5;
+# pollster_quality.weight), the house-effect ridge scaled by the same factor squared (fit) and the "typical pollster" counted
+# quality-weighted. Without the ridge scaling a down-weighted pollster's house effect is also pulled toward zero and its own next
+# polls are mispredicted. 538 archive 2018-24 x 7 dates, 3-day lag, next-24-day poll RMSE / margin vs the House vote, off 2.576 /
+# 3.523: gamma 1 / 2 / 3 / 4 without the ridge scaling 2.648 / 2.700 / 2.733 / 2.776 (worse in 0/4 years; gamma 4 year t -3.8,
+# p 0.03); with it 2.572 / 2.574 / 2.580 / 2.596 (p >= 0.63) and margin 3.452 / 3.388 / 3.337 / 3.286 (p >= 0.40; the gain is
+# mostly 2018, 3.09 -> 2.21 at gamma 2). Gamma 2 takes most of the margin gain before the next polls slip: a C+ pollster (1.8)
+# keeps 0.36 of its weight, B (2.2) 0.54, A+ (3.0) 1. On 2026-10-17 it moved the generic trend D+8.6 -> D+9.3 and approval
+# -21.1 -> -22.5, through the trend's recent movement (re-centring the level alone: 0.06).
 KNOWN_LEAN = {}  # pollster key -> partisan tag forced in merged(), e.g. {"rasmussen": "REP"}; empty = off
-QUALITY_GAMMA = None  # poll weight x (score/3)**gamma (unrated = 1.5); None = off
+QUALITY_GAMMA = 2  # poll weight x (score/3)**gamma (unrated = 1.5); None = off
 QUALITY_EXCLUDE_BELOW = (
     None  # drop polls whose pollster scores <= this (1.2 = D+ or worse; Big Data = F 0.5); None = off
 )
@@ -380,6 +411,26 @@ def pop_lead_mult(df, t1):
     return m
 
 
+def share_cap_scale(X, w, Pen, a, ip, cap, tol=1e-4, iters=100):
+    """Per-pollster weight multipliers (<= 1) that hold every pollster's share of a . beta at or below `cap`. A pollster's share
+    is the summed positive influence of its polls, d(a . beta)/d y_i > 0, over the total influence (1); its older polls enter
+    with negative influence through its own house effect and are not netted against it. Each pollster over the cap has its
+    polls' precision w**2 multiplied by cap / share and the fit re-solved until it sits at the cap; the others rise with the
+    renormalisation."""
+    P = int(ip.max()) + 1
+    s = np.ones(P)
+    for _ in range(iters):
+        ws = w * s[ip]
+        Xw = X * ws[:, None]
+        infl = (Xw @ np.linalg.solve(Xw.T @ Xw + Pen, a)) * ws
+        sh = np.bincount(ip, weights=np.clip(infl, 0, None), minlength=P) / infl.sum()
+        on = (sh > cap) | (s < 1)
+        if not (np.abs(sh[on] - cap) > tol).any():
+            break
+        s[on] = np.minimum(s[on] * np.sqrt(cap / np.maximum(sh[on], 1e-9)), 1.0)
+    return s
+
+
 def fit(
     df: pd.DataFrame,
     t0=None,
@@ -400,6 +451,8 @@ def fit(
     freq_pow="default",
     centre_pow="default",
     pvar_k0="default",
+    half_life="default",
+    share_cap="default",
 ):
     """Joint fit → dict(trend: DataFrame(date, value), house: Series, pop: dict, resid_sd, n)."""
     wl = WITHIN_GAP_LAMBDA if lam_wg == "default" else lam_wg
@@ -511,15 +564,16 @@ def fit(
         w = w * df["qw"].fillna(1.0).values  # pollster-quality weight (pollster_quality.weight), if set
     if POP_LEAD:
         w = w * pop_lead_mult(df, t1)  # lead-dependent RV / adult discount (off; see POP_LEAD)
-    # penalties: second differences on the trend knots, ridge on house effects (weighted so sparse pollsters shrink more)
+    # penalties: second differences on the trend knots, ridge on house effects (so sparse pollsters shrink more). The ridge
+    # scales with the square of the pollster's quality weight, as its polls' precision does, so down-weighting a pollster
+    # does not also pull its house effect toward zero (which mispredicts its own next polls; see QUALITY_GAMMA).
     Dm = np.zeros((K - 2, K))
     for i in range(K - 2):
         Dm[i, i : i + 3] = [1, -2, 1]
     Pen = np.zeros((X.shape[1], X.shape[1]))
     Pen[:K, :K] = lam_t * Dm.T @ Dm
-    Pen[K : K + P, K : K + P] = lam_h * np.diag(
-        df.groupby("pollster")["hpen"].first().reindex(pollsters).fillna(1.0).values if "hpen" in df else np.ones(P)
-    )
+    hq = (df["qw"].fillna(1.0) ** 2).groupby(df["pollster"]).mean().reindex(pollsters).values if "qw" in df else 1.0
+    Pen[K : K + P, K : K + P] = lam_h * np.diag(np.ones(P) * hq)
     Pen[K + P :, K + P :] = 0.5 * np.eye(X.shape[1] - K - P)
     if NI:
         j = K + P + len(pops)
@@ -546,6 +600,56 @@ def fit(
         tp = ((ex.sum() + k0 * tau2) / (ex.count() + k0)).clip(lower=0.25)
         wv = (w / base) / np.sqrt(s2 + tp.reindex(df["pollster"].values).values)
         w = np.minimum(wv * w.mean() / wv.mean(), w)  # noisy pollsters come down; nobody goes above the size weight
+    # Discounts on top of the precision weights: the age weight (precision halves every AGE_HALF_LIFE days) and the pollster
+    # share cap below. They are judgements, not a statement about a poll's noise, so the band and resid_sd use w / disc.
+    # The trend's penalty at each knot takes the same age factor, so the past keeps its flexibility: with a fixed penalty the
+    # year-old polls (1 % of their precision) left the 2026 trend flattened by up to 2 (generic) and 6 points (approval).
+    hl = AGE_HALF_LIFE if half_life == "default" else half_life
+    disc = np.ones(len(df))
+    if hl is not None:
+        disc = 0.5 ** (np.clip(T - t, 0, None) / (2 * hl))
+        w = w * disc
+        kage = 0.5 ** (np.clip(T - knots[1:-1], 0, None) / hl)  # each second difference sits at an interior knot
+        Pen[:K, :K] = lam_t * Dm.T @ (kage[:, None] * Dm)
+    # The trend's level is the "typical pollster": the house effects are centred on the pollsters of the last 90 days, each
+    # weighted by its poll count (quality-weighted when set) ** CENTRE_POW. Today's value is a_now . beta: the trend's hat
+    # weights at T plus that centring.
+    rq = df[df["end_date"] >= t1 - pd.Timedelta(days=90)]
+    recent = (
+        rq.groupby("pollster")["qw"].sum().sort_values(ascending=False) if "qw" in df else rq["pollster"].value_counts()
+    )  # quality-weighted count when set
+    recent = recent[recent > 0] ** (CENTRE_POW if centre_pow == "default" else centre_pow)
+    cvec = np.zeros(P)
+    if len(recent):
+        cvec[[pi[p] for p in recent.index]] = recent.values / recent.sum()
+
+    def _drift_vec(a, tt, scale):
+        if ND:
+            hv = hatd(float(tt))
+            for c, (p_, k) in enumerate(dcols):
+                a[jd + c] = cvec[p_] * hv[k] * scale
+
+    def hat(tt):
+        return np.clip(
+            np.where(
+                tt <= knots,
+                (tt - np.r_[knots[0] - knot_days, knots[:-1]]) / knot_days,
+                (np.r_[knots[1:], knots[-1] + knot_days] - tt) / knot_days,
+            ),
+            0,
+            1,
+        )
+
+    a_now = np.zeros(X.shape[1])
+    hn = hat(float(T))
+    a_now[:K] = hn
+    a_now[K : K + P] = cvec * hn.sum()
+    _drift_vec(a_now, float(T), hn.sum())
+    ip = df["pollster"].map(pi).values
+    cap = SHARE_CAP if share_cap == "default" else share_cap
+    sw = share_cap_scale(X, w, Pen, a_now, ip, cap) if cap is not None else np.ones(P)
+    disc = disc * sw[ip]
+    w = w * sw[ip]
     nu = ROBUST_NU if robust_nu == "default" else robust_nu
     w0 = w.copy()
     rhs0 = np.zeros(X.shape[1])
@@ -574,19 +678,11 @@ def fit(
     house_lvl = house.copy()
     if ND:
         house = house + drift_at(T)
-    rq = df[df["end_date"] >= t1 - pd.Timedelta(days=90)]
-    recent = (
-        rq.groupby("pollster")["qw"].sum().sort_values(ascending=False) if "qw" in df else rq["pollster"].value_counts()
-    )  # quality-weighted count when set
-    recent = recent[recent > 0] ** (CENTRE_POW if centre_pow == "default" else centre_pow)
-    rc = house[recent.index].mul(recent).sum() / recent.sum() if len(recent) else 0.0
-    cn = pd.Series(0.0, index=pollsters)
-    if len(recent):
-        cn[recent.index] = recent.values / recent.sum()
+    rc = float(house.values @ cvec)
     beta_fit = beta.copy()  # the fitted coefficients before the centring below moves level between trend and house
     house_path = None
     if ND:  # the typical recent pollster's level moves with its drift: rc per trend knot
-        rck = np.array([float((house_lvl.values + drift_at(kk)) @ cn.values) for kk in knots])
+        rck = np.array([float((house_lvl.values + drift_at(kk)) @ cvec) for kk in knots])
         house = house - rc
         beta[:K] += rck
         act = sorted({pollsters[p_] for p_, _ in dcols})
@@ -601,23 +697,16 @@ def fit(
     # residuals from the fit itself: the centring shifts beta[:K] by rc but not beta's house block, so y - X @ beta would
     # carry a -rc offset in every row and inflate resid_sd (2.03 v 1.94) and the band's s2 by ~10 %
     resid = y - X @ beta_fit
-    # 95 % band: sandwich covariance of the penalised fit,
-    # Cov = s2 A^-1 (Xw'Xw) A^-1, with the trend level's pollster centring (rc) carried through as a linear combination.
+    # 95 % band: sandwich covariance of the penalised fit with poll variances s2 / wn**2 (wn = w / disc, the noise weights),
+    # Cov = s2 A^-1 Xw' diag(disc**2) Xw A^-1, with the trend level's pollster centring (rc) carried through as a linear
+    # combination. Without discounts this is s2 A^-1 (Xw'Xw) A^-1.
     A = Xw.T @ Xw + Pen
     Ai = np.linalg.inv(A)
     H = Xw @ Ai @ Xw.T
     edf = float(np.trace(H))
-    s2 = float(np.sum((w * resid) ** 2) / max(len(y) - edf, 1.0))
-    Cov = s2 * Ai @ (Xw.T @ Xw) @ Ai
-    cvec = np.zeros(P)
-    if len(recent):
-        cvec[[pi[p] for p in recent.index]] = recent.values / recent.sum()
-
-    def _drift_vec(a, tt, scale):
-        if ND:
-            hv = hatd(float(tt))
-            for c, (p_, k) in enumerate(dcols):
-                a[jd + c] = cvec[p_] * hv[k] * scale
+    wn = w / disc
+    s2 = float(np.sum((wn * resid) ** 2) / max(len(y) - edf, 1.0))
+    Cov = s2 * Ai @ (Xw.T @ (Xw * disc[:, None] ** 2)) @ Ai
 
     def se_at(basis_row, tt=None):  # basis_row: length-K hat weights of a date
         a = np.zeros(X.shape[1])
@@ -628,26 +717,9 @@ def fit(
         return float(np.sqrt(max(a @ Cov @ a, 0.0)))
 
     trend["se"] = [se_at(np.eye(K)[k], knots[k]) for k in range(K)]
-
-    def hat(tt):
-        return np.clip(
-            np.where(
-                tt <= knots,
-                (tt - np.r_[knots[0] - knot_days, knots[:-1]]) / knot_days,
-                (np.r_[knots[1:], knots[-1] + knot_days] - tt) / knot_days,
-            ),
-            0,
-            1,
-        )
-
-    se_now = se_at(hat(float(T)), float(T))
+    se_now = se_at(hn, float(T))
     # each poll's influence on today's trend value (for the poll page): today = a . beta, beta = Ai Xw' (w y), so
     # d today / d y_i = (a Ai Xw')_i w_i. These add to ~1; a poll far in the past has ~0, a recent large one the most.
-    a_now = np.zeros(X.shape[1])
-    hn = hat(float(T))
-    a_now[:K] = hn
-    a_now[K : K + P] = cvec * hn.sum()
-    _drift_vec(a_now, float(T), hn.sum())
     infl = (a_now @ Ai @ Xw.T) * w
     pw = pd.DataFrame(
         {
@@ -661,6 +733,8 @@ def fit(
             "partisan": part.sum(1) > 0,
             "overlap_w": df["ovw"].values if "ovw" in df else 1.0,
             "variant_w": df["vw"].values if "vw" in df else 1.0,
+            "quality_w": df["qw"].fillna(1.0).values if "qw" in df else 1.0,
+            "share_w": sw[ip],
             "influence": infl,
             "house": [float(house.get(pp, 0.0)) for pp in df["pollster"].values],
         }
@@ -675,7 +749,7 @@ def fit(
         "pop_gap": gaps,
         "partisan": float(beta[-1]) if not PARTISAN_SIGNED else 0.0,
         "partisan_signed": dict(zip(("DEM", "REP", "INT"), map(float, beta[-3:]))) if PARTISAN_SIGNED else None,
-        "resid_sd": float(np.sqrt(np.average(resid**2, weights=w))),
+        "resid_sd": float(np.sqrt(np.average(resid**2, weights=wn))),
         "house_path": house_path,
         "n": len(df),
         "t0": t0,
@@ -1189,6 +1263,8 @@ def main():
                 "sample_w": round(float(r.sample_w), 3),
                 "overlap_w": round(float(r.overlap_w), 3),
                 "variant_w": round(float(r.variant_w), 3),
+                "quality_w": round(float(r.quality_w), 3),
+                "share_w": round(float(r.share_w), 3),
                 "w": round(float(r.w), 3),
                 "influence": round(float(r.influence), 4),
             }

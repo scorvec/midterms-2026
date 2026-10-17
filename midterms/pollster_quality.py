@@ -1,4 +1,4 @@
-"""Pollster quality ratings, recorded for reference (no quality weighting is switched on).
+"""Pollster quality ratings: they weight the national generic-ballot and approval polls (generic.QUALITY_GAMMA).
 
 One quality score per pollster on 538's star scale (0.5 = F ... 3.0 = A+), kept separate from the partisan tag:
 
@@ -13,8 +13,9 @@ One quality score per pollster on 538's star scale (0.5 = F ... 3.0 = A+), kept 
     "Quinnipiac University (B+)"), harvested from the feed into data/cache/pollster_grades_pollresults.csv (not committed).
     Only the derived per-pollster score (538 star scale, the most recent grade) is kept in the repository:
     data/state/pollster_scores.csv (key, score). Its race pages carry an empty grade column.
-  These ratings are recorded, not used: no quality weighting or exclusion is switched on (generic.QUALITY_GAMMA /
-  QUALITY_EXCLUDE_BELOW are None; backtests found no significant gain).
+  Used for the national trends only: each generic-ballot and approval poll's weight is multiplied by (score / 3) ** 2
+  (weight() below; generic.QUALITY_GAMMA, backtest there). No pollster is excluded (generic.QUALITY_EXCLUDE_BELOW is None),
+  and race polls do not use these ratings (they carry each pollster's measured lean and experience; model.py).
   No other free source: Silver Bulletin's ratings are paywalled (not scraped); 538's site is gone (archived files only).
 
 Names: a 2026 poll's pollster is mapped through names.canon to a canonical key; the key is joined to 538's pollster_rating_id

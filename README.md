@@ -27,7 +27,11 @@ commits its outputs to `web/`; the pages are static, and every position of the "
 other people's averages: a penalised piecewise-linear trend (knots every 14 days), one house effect per pollster
 (ridge-shrunk, centred), likely / registered / adult offsets and a partisan-sponsor offset. Each poll sits at the
 midpoint of its field period, and the versions of one survey (for example likely and registered voters) count as one
-poll. The trend is taken as it stands: there is no correction for the direction of a polling miss.
+poll. A poll's weight is the square root of its sample size (capped at 1,500), lowered for a pollster whose polls scatter
+about the trend more than sampling explains, times the pollster's quality rating squared (score out of 3; a C+ pollster keeps
+0.36 of its weight); its precision halves every 60 days of age, and no pollster's polls may carry more than 15 % of today's
+value. The approval trend is fitted the same way. The trend is taken as it stands: there is no correction for the direction
+of a polling miss.
 The size of past misses, in either direction, sets the national error s(L), which grows with the days L to the election
 (fitted on the 15 House elections 1996-2024; `data/static/national_mood_fit.json`). The part of that error that is late
 opinion movement is scaled state by state by how much of the vote is already banked (`early_vote.py`).
@@ -227,7 +231,8 @@ groups and the block equivalency file of the map in force (`demog.cd_blocks`; pu
 `data/state/` holds poll toplines as posted by the feeds (Polling USA, pollresults.org - poll data from The New York Times,
 CC BY 4.0), `race_poll_seen.csv` (the date each race poll first appeared on the forecast page), the Center Square generic
 ballot series used to confirm held polls (`source_watch.py`) and `pollster_scores.csv` (a numeric score per pollster from
-pollresults.org's letter grades; recorded only, not used to weight polls; the grades themselves are not committed).
+pollresults.org's letter grades; it weights the national generic-ballot and approval polls, not race polls; the grades
+themselves are not committed).
 
 Downloaded at run time (never committed): the 538 poll archives and data repository files (CC BY 4.0), FEC results
 workbooks, MIT Election Lab presidential returns (CC0), VoteHub, Wikipedia (CC BY-SA 4.0), Bluesky posts, pollresults.org,
@@ -288,6 +293,35 @@ carries the same evidence.
 - **House effects shrunk lightly** (`generic.LAMBDA_HOUSE = 1` rather than 4): predicting the next 24 days' polls on 538's
   generic archive 2018-2024 at 7 dates, weighted RMSE 2.623 -> 2.551 (23 of 28 cases, 4 of 4 years; not significant on its
   own, year-block t 1.95).
+- **Poll weights: quality, age and a cap per pollster** (`generic.QUALITY_GAMMA = 2`, `AGE_HALF_LIFE = 60`, `SHARE_CAP =
+  0.15`). Same harness (538's generic archive 2018-2024, 7 dates a cycle, 3-day release lag): weighted RMSE of the next 24
+  days' polls and the trend's miss of the national House margin, 2.576 / 3.523 without the three. None of the differences
+  below is significant (year-block t on four elections, 3 df).
+
+  | change | next 24 days' polls (better in: dates, years; p) | margin vs House vote (better in: dates, years; p) |
+  |---|---|---|
+  | quality weight (score/3)^2 | 2.574 (12/28, 2/4; 0.78) | 3.388 (14/28, 2/4; 0.52) |
+  | age weight, 60-day precision half-life | 2.568 (14/28, 1/4; 0.77) | 3.492 (18/28, 3/4; 0.12) |
+  | 15 % share cap | 2.600 (12/28, 0/4; 0.07) | 3.437 (16/28, 3/4; 0.64) |
+  | all three | 2.565 (15/28, 2/4; 0.72) | 3.436 (14/28, 2/4; 0.78) |
+
+  The quality weight scales each pollster's house-effect ridge by the same factor squared; without that, a down-weighted
+  pollster's house effect is also pulled toward zero and the next polls get worse at every exponent (2.70 at 2, worse in
+  4/4 years). Exponents 1, 3 and 4 score 2.572 / 2.580 / 2.596 and 3.452 / 3.337 / 3.286; 2 takes most of the margin gain
+  before the next polls start to slip, and scores best on the next polls with the other two on. The age weight discounts the
+  trend's smoothness penalty by the same factor, so the trend through past months keeps its shape (with a fixed penalty,
+  year-old polls at 1 % of their precision flattened the 2026 trend by up to 2 points, approval by 6). Half-lives of 30, 45
+  and 90 days score 2.583 / 2.568 / 2.568 with the other two on; a looser trend (`LAMBDA_TREND` 10 instead of 30: 2.564 /
+  3.466 alone, 2.600 / 3.373 with the other two) or weekly knots (2.566 / 3.417, 2.611 / 3.368) lean on recent polls by
+  extrapolating their slope instead. The margin gain of the three together comes from 2018 (3.09 -> 1.94) and 2020 (4.00 ->
+  3.80); 2024 is worse on both counts (next polls 2.19 -> 2.50, margin 4.10 -> 4.51). The cap is a judgement rule, not a
+  backtest result. A pollster's share is the summed positive influence of its polls on today's value (the poll page's
+  "influence on today"), and over the cap all its polls' precision is scaled down until it sits at the cap. Morning
+  Consult's weekly tracker carried 0.36 of the generic trend on 17 October 2026, and with the quality and age weights on,
+  the leading pollster of a backtest date carries 0.19-0.83. The cap binds at all 28 backtest dates, on 2-7 pollsters at a
+  time, and moves the trend by -0.9 to +1.2 points. On 17 October 2026 the three moved the generic trend from D+8.6 to
+  about D+9.6 and approval from -21.1 to about -22.9, and Morning Consult's share from 0.36 to 0.15 (generic) and from 0.25
+  to 0.10 (approval).
 - **Gallup party identification** (tested, not adopted). Gallup's leaned party-ID gap (adults) was tested as a predictor of
   the national House vote alongside the generic-ballot average G, leave-one-election-out 1996-2024 (n 15). Gallup's
   quarterly series is not openly published, so the annual series is the proxy. V ~ G: MAE 1.91 / RMSE 2.29; + the

@@ -1,10 +1,11 @@
-"""Core simulation pieces (model.py, national_mood.py), the Senate's funded-independent gate and pollster identity
-(model._same_pollster, names.canon)."""
+"""Core simulation pieces (model.py, national_mood.py), the Senate's funded-independent gate, pollster identity
+(model._same_pollster, names.canon) and the national trend's pollster share cap (generic.fit)."""
 
 import numpy as np
 import pandas as pd
 import pytest
 
+from midterms import generic as G
 from midterms import model as M
 from midterms import names as R
 from midterms import national_mood as NM
@@ -123,3 +124,30 @@ def test_national_house_vote_is_the_one_definition():
     v = D.national_house_vote()
     assert v[2018] > 8 and v[2022] < 0 and v[2024] < 0
     assert set(v.index) >= {1996, 2024}
+
+
+def test_generic_share_cap():
+    """A weekly tracker with large samples carries more than SHARE_CAP of today's trend uncapped; capped, its polls'
+    positive influence sits at the cap and the influences still add to today's value."""
+    rng = np.random.default_rng(3)
+    start = pd.Timestamp("2026-03-01")
+    rows = [("tracker", start + pd.Timedelta(days=7 * k), 15000.0) for k in range(30)]
+    rows += [(f"p{j}", start + pd.Timedelta(days=30 * k + 2 * j), 1000.0) for j in range(12) for k in range(7)]
+    df = pd.DataFrame(rows, columns=["pollster", "end_date", "n"])
+    df["pop"], df["internal"], df["partisan"] = "lv", False, None
+    df["y"] = (
+        5 + 0.01 * (df["end_date"] - start).dt.days - 2.0 * (df["pollster"] == "tracker") + rng.normal(0, 2, len(df))
+    )
+    t1 = df["end_date"].max()
+
+    def shares(F):
+        pw = F["pw"]
+        return pw["influence"].clip(lower=0).groupby(pw["pollster"]).sum() / pw["influence"].sum()
+
+    off = shares(G.fit(df, t1=t1, share_cap=None))
+    assert off.idxmax() == "tracker" and off["tracker"] > 0.2
+    F = G.fit(df, t1=t1, share_cap=0.15)
+    on = shares(F)
+    assert on["tracker"] == pytest.approx(0.15, abs=1e-3) and on.max() <= 0.15 + 1e-3
+    assert F["pw"].groupby("pollster")["share_w"].first()["tracker"] < 1
+    assert F["pw"]["influence"].sum() == pytest.approx(1.0, abs=1e-6)
