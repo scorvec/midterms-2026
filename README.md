@@ -34,7 +34,10 @@ value. The approval trend is fitted the same way. The trend is taken as it stand
 of a polling miss.
 The size of past misses, in either direction, sets the national error s(L), which grows with the days L to the election
 (fitted on the 15 House elections 1996-2024; `data/static/national_mood_fit.json`). The part of that error that is late
-opinion movement is scaled state by state by how much of the vote is already banked (`early_vote.py`).
+opinion movement is scaled state by state by how much of the vote is already banked (`early_vote.py`), and so is the
+part of each race's own error that is late movement in that race (0.25 pts² a day, measured on 538's raw_polls from how
+polls of the same race by different pollsters drift apart over the final two months; `data/static/race_move_fit.json`).
+A state banking at the historical pace keeps its total error; one banking faster gets tighter, one banking slower wider.
 
 **House** (`model.py`, `run2026.py`). Each seat's expected Democratic two-party margin starts from a fundamentals prior:
 the district's partisan lean (our own, from precinct returns: 0.75 x its 2024 presidential margin against the nation's +
@@ -223,6 +226,9 @@ Committed inputs (`data/static/`):
 | `nc_early_baseline.csv` (+ `.qc.json`) | North Carolina accepted mail / one-stop ballots of the 2022 and 2024 generals by days out and race / ethnicity group, with propensity counts and the registered voters of each group | NC State Board of Elections absentee files, voter-history file and registration statistics (public records); aggregates only, `python -m midterms.nc_early baseline --src DIR` |
 | `fl_wayback/`, `fl_registration.csv` | Florida statistics files of the 2024 and 2022 generals; active registered voters by party at month ends | Florida Division of Elections (public records); the 2024 / 2022 files as captured by the Internet Archive's Wayback Machine, the registration figures from the monthly county-and-party reports |
 | `ga_wayback_2022.json`, `ga_county_baselines.csv` | Georgia 2022 early-vote composition at each day of in-person voting; each county's 2022 governor and 2024 presidential margin | georgiavotes.com 2022 pages as captured by the Wayback Machine; MEDSL 2022 returns and 2024 county presidential results |
+| `race_move_fit.json` | a race's own late movement, pts² of margin a day (the total, its national part, the bootstrap sd) | 538 raw_polls (CC BY 4.0), Senate + governor generals 1998-2022; `python -c "from midterms import early_vote; early_vote.race_move_fit()"` |
+| `nc_tracker/` | North Carolina accepted mail / one-stop ballots of the 2018-2024 generals by days out, method, party, race, age and county, with each year's registered voters, the 2022 early voters' 2018 / 2020 participation, the party paces of 2008-2024 and each county's 2024 presidential margin | NC State Board of Elections absentee files, registration statistics, voter history and precinct results (public records); aggregates only, `python -m midterms.nc_tracker history --src DIR` |
+| `early_gate.json` | the backtest that keeps the early-vote party mix out of the forecast (North Carolina, 5 scoreable cycles) | the tables above and 538 raw_polls; `python -m midterms.nc_tracker gate` |
 | `tx_early_sources.json`, `tx_county_pres2024.csv` | sources for the Texas tracker; 2024 presidential votes by Texas county | Texas Secretary of State (public records); MIT Election Data and Science Lab 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), summed by county |
 
 `web/data/districts_2026.topo.json` (district shapes) is built by `district_shapes.py` from Census 2020 cartographic block
@@ -709,10 +715,21 @@ CRPS 0.20): with two cycles not a significant gain, and not a loss. The seat cou
 dates with either lean. On the inputs of 16 October 2026 the switch moved the House from 241.7 to 241.2 Democratic seats
 (P(majority) 0.894 -> 0.888): +0.7 seats from the lean with k0 refitted on both leans, -1.1 from replacing the stale k0.
 
-### Early-vote diagnostics
+### Early vote
 
-None of these feeds the forecast or the website. Votes cast before Election Day enter the model only through the
-early-vote movement split described above.
+None of these feeds the forecast. Votes cast before Election Day enter the model only through the early-vote movement
+split described above (national and race-level). `web/early-vote.html` publishes North Carolina, Georgia and Florida
+(`early_page.py` assembles `web/data/early_vote.json` in `early-diag.yml`; the site sync copies it).
+
+**North Carolina, published** (`nc_tracker.py`): accepted mail and one-stop ballots of 2026 against the 2018 and 2022
+midterms and the 2020 and 2024 presidential years on the same number of days out, by party, age, race, county (against
+each county's 2024 presidential margin) and whether the voters voted in the previous two generals; rates are per
+registered voter of the same group on that year's rolls (2018-2024 committed in `data/static/nc_tracker/`; 2026 from the
+morning's file, this week's registration file reduced again only when the board replaces it, and `nc_early`'s cached
+voter history). **The gate**: the party mix of the early vote (D - R share of ballots banked by L days out, minus the
+same on the rolls, change from the previous cycle of the same kind) against North Carolina's statewide poll miss, 2012-2022:
+5 scoreable cycles, r -0.72 at 17 days (p 0.17), -0.27 at 10, -0.22 at 5, the sign opposite to the usual reading. No skill,
+so it stays out of the forecast (`data/static/early_gate.json`); rerun after 2026.
 
 **North Carolina** (`nc_early.py`, `early-diag.yml`; race and ethnicity are self-reported on the NC voter record): accepted
 mail and one-stop ballots by days before Election Day, 2026 against 2022 and 2024, for white, Black, other, undesignated

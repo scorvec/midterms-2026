@@ -302,14 +302,19 @@ def simulate_senate(S, n=20000, seed=11, nat_z=None, shared=None, extra=None):
     ) / NAT_SLOPE  # the statewide shock about zero (pts of margin / slope)
     nat = M.national_shock(n, s_sh, S["state"].values, nat_z, t) * NAT_SLOPE * el  # movement split: model.MOVE
     sd_tot = np.sqrt(S["sd"].values ** 2 + (RACE_EXTRA if extra is None else extra) ** 2)
-    res = t((n, len(S)), 1.0) * sd_tot[None, :]
-    if JOINT is not None:  # same-state component (JOINT above)
+    u = t((n, len(S)), 1.0)
+    # same-state component (JOINT above): c of each race's sd is shared with the state's other statewide race
+    c = np.zeros(len(S))
+    zj = np.zeros((n, len(S)))
+    if JOINT is not None:
         for j, st in enumerate(S["state"].values):
             z = JOINT["z"].get(st)
             if z is None or len(z) < n:
                 continue
-            c = min(JOINT["c"], 0.9 * sd_tot[j])
-            res[:, j] = res[:, j] * np.sqrt(sd_tot[j] ** 2 - c**2) / sd_tot[j] + c * z[:n]
+            c[j] = min(JOINT["c"], 0.9 * sd_tot[j])
+            zj[:, j] = z[:n]
+    # the race's own part, with its late movement split out and scaled by the state's banked early vote (model.race_shock)
+    res = M.race_shock(u, np.sqrt(sd_tot**2 - c**2), S["state"].values, seed) + zj * c[None, :]
     P = M.Params()
     grp = 0.0
     for col, sd in (

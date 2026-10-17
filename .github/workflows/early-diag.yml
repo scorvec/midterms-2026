@@ -1,7 +1,12 @@
 name: early vote diagnostics
 
-# Diagnostic only - nothing here feeds the forecast or the website, and this workflow never touches the forecast outputs
-# (its own concurrency group; it commits data/early/ only, which the site sync does not copy).
+# Nothing here feeds the forecast, and this workflow never touches the forecast outputs (its own concurrency group). It
+# commits data/early/ (the diagnostics below) and web/data/early_vote.json, the data of web/early-vote.html, which the site
+# sync publishes with the other midterm pages:
+#   North Carolina (published) midterms/nc_tracker.py: 2026 against 2018-2024 at the same days out by party, age, race,
+#                   county and vote history, from the same NCSBE files (2018-2024 committed in data/static/nc_tracker/; the
+#                   weekly registration file is reduced again only when the board replaces it; the voter history is
+#                   nc_early's cached table). midterms/early_page.py assembles the page data from it, Georgia and Florida.
 #   North Carolina  midterms/nc_early.py: accepted mail / one-stop ballots by self-reported race and ethnicity, 2026 vs
 #                   2022 and 2024 on the same days out (NCSBE absentee file, one conditional request per run; the 2022 /
 #                   2024 baseline is the committed table data/static/nc_early_baseline.csv). Propensity needs the
@@ -17,10 +22,12 @@ name: early vote diagnostics
 #                   gender, 2022 behaviour; 2022 at the same day of in-person voting from the Wayback Machine, fetched once into
 #                   data/static/ga_wayback_2022.json (gaps: dispatch with ga_wayback_fill). The official per-voter files
 #                   have no race or sit behind a browser check.
-# NCSBE refreshes the absentee file about 05:15 ET; Florida recompiles through the day. 01:50 UTC = 21:50 ET catches both.
+# NCSBE refreshes the absentee file about 05:15 ET; Florida recompiles through the day. 01:50 UTC = 21:50 ET catches both;
+# 11:50 UTC (07:50 ET) publishes the morning's North Carolina file the same day.
 on:
   schedule:
     - cron: "50 1 * * *"
+    - cron: "50 11 * * *"
   workflow_dispatch:
     inputs:
       harvest_fl_cache:
@@ -107,24 +114,37 @@ jobs:
           python -m midterms.nc_early || echo "::warning::North Carolina early-vote diagnostic failed (diagnostic only)"
           echo "North Carolina step took $(( $(date +%s) - start )) s"
 
+      - name: North Carolina tracker (published)
+        timeout-minutes: 20
+        continue-on-error: true
+        run: python -m midterms.nc_tracker || echo "::warning::North Carolina tracker failed (the page keeps yesterday's)"
+
+      # the 11:50 UTC slot is for North Carolina's morning file only: Georgia's site is read once a day, Florida's files at night
       - name: Georgia 2022 baseline from the Wayback Machine (once, gaps on request)
-        if: ${{ hashFiles('data/static/ga_wayback_2022.json') == '' || inputs.ga_wayback_fill }}
+        if: ${{ github.event.schedule != '50 11 * * *' && (hashFiles('data/static/ga_wayback_2022.json') == '' || inputs.ga_wayback_fill) }}
         timeout-minutes: 40
         continue-on-error: true
         run: python -m midterms.ga_early wayback || echo "::warning::Georgia 2022 baseline fetch failed (diagnostic only)"
 
       - name: Georgia composition vs 2022 (diagnostic)
+        if: ${{ github.event.schedule != '50 11 * * *' }}
         timeout-minutes: 5
         continue-on-error: true
         run: python -m midterms.ga_early || echo "::warning::Georgia early-vote diagnostic failed (diagnostic only)"
 
       - name: Florida by party (diagnostic)
+        if: ${{ github.event.schedule != '50 11 * * *' }}
         timeout-minutes: 10
         continue-on-error: true
         run: |
           start=$(date +%s)
           python -m midterms.fl_early || echo "::warning::Florida early-vote diagnostic failed (diagnostic only)"
           echo "Florida step took $(( $(date +%s) - start )) s"
+
+      - name: Early-vote page data
+        timeout-minutes: 5
+        continue-on-error: true
+        run: python -m midterms.early_page || echo "::warning::early-vote page data failed (the page keeps yesterday's)"
 
       - name: Save the North Carolina voter-history table
         if: ${{ always() && steps.nchist.outputs.cache-hit != 'true' && hashFiles('data/cache/nc_hist_generals.csv.gz') != '' }}
@@ -148,8 +168,9 @@ jobs:
       - name: Commit diagnostics
         run: |
           set -uo pipefail
-          paths="data/early data/static/ga_wayback_2022.json"
-          [ -e data/static/ga_wayback_2022.json ] || paths="data/early"
+          paths="data/early web/data/early_vote.json data/static/ga_wayback_2022.json"
+          [ -e data/static/ga_wayback_2022.json ] || paths="data/early web/data/early_vote.json"
+          [ -e web/data/early_vote.json ] || paths="${paths/ web\/data\/early_vote.json/}"
           [ -d data/early ] || { echo "nothing written"; exit 0; }
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -163,7 +184,7 @@ jobs:
             tar xf "$SNAP/outs.tar"
             git add -A -- $paths
             if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
-            git commit -q -m "Early-vote diagnostics $(date +%F)"
+            git commit -q -m "Early vote $(date +%F)"
             if timeout 180 git push -q origin "HEAD:$GITHUB_REF_NAME"; then echo "pushed on attempt $i"; exit 0; fi
             echo "push $i rejected; resyncing and retrying"; sleep $((i * 5))
           done

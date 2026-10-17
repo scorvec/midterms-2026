@@ -1,0 +1,9 @@
+{
+ "q_total": 0.3207,
+ "q_total_sd": 0.1366,
+ "q_national": 0.0743,
+ "q_race": 0.2465,
+ "pairs": 78262,
+ "races": 646,
+ "source": "538 raw_polls (git blob 08735ea), Sen-G + Gov-G D v R 1998-2022, polls <= 60 days, pairs of pollsters"
+}
