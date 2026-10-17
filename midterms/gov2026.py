@@ -53,10 +53,17 @@ AGE_HALF = None  # governor poll staleness half-life (days); None = model.AGE_HA
 
 def _pres_lean():
     p = pd.read_csv(ROOT / "data" / "raw" / "mit" / "president_1976_2024.csv")
-    p = p[p.party_simplified.isin(["DEMOCRAT", "REPUBLICAN"])]
-    v = p.pivot_table(index=["year", "state_po"], columns="party_simplified", values="candidatevotes", aggfunc="sum")
+    # each nominee's votes on every ballot line: MIT files New York's fusion lines (Working Families, Conservative,
+    # Independence...) under OTHER through 2016: 1-5 points of the state's margin (2016: 3.3)
+    key = ["year", "state_po", "candidate"]
+    dr = p.party_simplified.isin(["DEMOCRAT", "REPUBLICAN"])
+    nom = p[dr & p.candidate.notna()][[*key, "party_simplified"]].drop_duplicates(key)
+    p = p.merge(nom.rename(columns={"party_simplified": "party"}), on=key, how="left")
+    p["party"] = p.party_simplified.where(dr, p.party)
+    p = p[p.party.notna()]
+    v = p.pivot_table(index=["year", "state_po"], columns="party", values="candidatevotes", aggfunc="sum")
     m = (100 * (v.DEMOCRAT - v.REPUBLICAN) / (v.DEMOCRAT + v.REPUBLICAN)).rename("m").reset_index()
-    nat = p.groupby(["year", "party_simplified"]).candidatevotes.sum().unstack()
+    nat = p.groupby(["year", "party"]).candidatevotes.sum().unstack()
     nat = 100 * (nat.DEMOCRAT - nat.REPUBLICAN) / (nat.DEMOCRAT + nat.REPUBLICAN)
     m["rel"] = m.m - m.year.map(nat)
 

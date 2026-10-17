@@ -156,7 +156,8 @@ def races():
             else r["status"]
         )
     # lean on the same definition B_LEAN was fitted on: the mean of the two previous presidential margins against the nation's
-    # (50/50, MIT returns)
+    # (50/50, MIT returns). The fit predates counting New York's fusion lines, which moves only New York before 2020; the 2026
+    # leans are the same either way.
     from .gov2026 import _pres_lean
 
     pl = _pres_lean()
