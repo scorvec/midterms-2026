@@ -35,8 +35,10 @@ KNOT_DAYS, LAMBDA_TREND, LAMBDA_HOUSE = 14, 30.0, 1.0
 # k ** FREQ_POW, k = its pollster's polls within +-FREQ_DAYS. Tested 2026-10-17 on 538's 2018-24 generic archive (7 dates a year,
 # 3-day lag; next-24-day poll RMSE / margin vs the House vote, live 2.551 / 3.494): FREQ 14 d ^0.5 2.676 / 3.587 (worse in 4/4
 # years, year t -2.5), 28 d 2.719 / 3.668, 14 d ^1 2.834 / 3.551; N_CAP 1500 2.573 / 3.481 (n.s.). The house effects already
-# remove a tracker's level, so its frequent large polls are clean reads of the trend's movement: both stay off.
-N_CAP, FREQ_DAYS, FREQ_POW = 3000, None, 0.5
+# remove a tracker's level, so its frequent large polls are clean reads of the trend's movement: the frequency penalty stays
+# off. N_CAP is 1500 (2026-10-17, user decision): at 3000 one Morning Consult release (n ~18,000) carried 44 % of the day's
+# trend, and the backtest cannot tell 1500 from 3000, so the cap that keeps any single poll from dominating wins.
+N_CAP, FREQ_DAYS, FREQ_POW = 1500, None, 0.5
 # The trend's level is the "typical pollster": the house effects of the pollsters of the last 90 days, centred on their mean
 # weighted by poll count ** CENTRE_POW. By count (1) a weekly tracker set the level - Morning Consult carried 0.34 of the
 # 2026-10-16 trend's influence; 0.5 adopted 2026-10-17: same test 2.560 / 3.487, one vote per pollster (0) 2.563 / 3.520,
@@ -47,8 +49,10 @@ CENTRE_POW = 0.5
 # prior; the weight is 1 / sd (rescaled to the mean of the sqrt(n) weights, so the penalties keep their balance), times the
 # partisan / overlap / variant / quality multipliers. A large tracker keeps its size only as far as its own scatter allows.
 # Adopted 2026-10-17 at 5: next-24-day poll RMSE 2.560 -> 2.540 (better in 18/28 cases, 3/4 years, year t +1.1, n.s.), margin vs
-# the House vote 3.487 -> 3.540 (n.s.); prior 3 / 10 / 20 polls the same within 0.002. It lowers noisy pollsters and leaves
-# Morning Consult's weight (its 2026 polls track the other pollsters' trend within 0.8 pt, the tightest of any).
+# the House vote 3.487 -> 3.540 (n.s.); prior 3 / 10 / 20 polls the same within 0.002. It lowers noisy pollsters. It must not
+# RAISE anyone: a weekly tracker's small scatter about the trend is partly its own doing (its house effect absorbs its level and
+# its sample sizes dwarf the others'), and rewarding it multiplied Morning Consult's weight by 1.8 on top of the size cap (one
+# release at 44 % of the trend's influence, 2026-10-17). The precision factor is therefore capped at 1 (user decision).
 PVAR_K0 = 5
 
 
@@ -541,7 +545,7 @@ def fit(
         tau2 = max(float(np.mean(r**2 - s2)), 0.25)
         tp = ((ex.sum() + k0 * tau2) / (ex.count() + k0)).clip(lower=0.25)
         wv = (w / base) / np.sqrt(s2 + tp.reindex(df["pollster"].values).values)
-        w = wv * w.mean() / wv.mean()
+        w = np.minimum(wv * w.mean() / wv.mean(), w)  # noisy pollsters come down; nobody goes above the size weight
     nu = ROBUST_NU if robust_nu == "default" else robust_nu
     w0 = w.copy()
     rhs0 = np.zeros(X.shape[1])
