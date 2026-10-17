@@ -42,6 +42,14 @@ N_CAP, FREQ_DAYS, FREQ_POW = 3000, None, 0.5
 # 2026-10-16 trend's influence; 0.5 adopted 2026-10-17: same test 2.560 / 3.487, one vote per pollster (0) 2.563 / 3.520,
 # neither distinguishable from 1 on four elections.
 CENTRE_POW = 0.5
+# Per-pollster error (PVAR_K0; None = off): after a first fit each poll's variance is its sampling variance 1e4 x 0.95 / n plus
+# its pollster's excess scatter about the fit, that excess shrunk toward the all-pollster value with PVAR_K0 polls' worth of
+# prior; the weight is 1 / sd (rescaled to the mean of the sqrt(n) weights, so the penalties keep their balance), times the
+# partisan / overlap / variant / quality multipliers. A large tracker keeps its size only as far as its own scatter allows.
+# Adopted 2026-10-17 at 5: next-24-day poll RMSE 2.560 -> 2.540 (better in 18/28 cases, 3/4 years, year t +1.1, n.s.), margin vs
+# the House vote 3.487 -> 3.540 (n.s.); prior 3 / 10 / 20 polls the same within 0.002. It lowers noisy pollsters and leaves
+# Morning Consult's weight (its 2026 polls track the other pollsters' trend within 0.8 pt, the tightest of any).
+PVAR_K0 = 5
 
 
 # Checked corrections to VoteHub records: (pollster, start, end, population) -> fields. The raw file is re-downloaded daily, so
@@ -387,6 +395,7 @@ def fit(
     freq_days="default",
     freq_pow="default",
     centre_pow="default",
+    pvar_k0="default",
 ):
     """Joint fit → dict(trend: DataFrame(date, value), house: Series, pop: dict, resid_sd, n)."""
     wl = WITHIN_GAP_LAMBDA if lam_wg == "default" else lam_wg
@@ -522,6 +531,17 @@ def fit(
         av = (DR[:, c0:c1] * (w**2)[:, None]).sum(0)
         av = av / av.sum()
         Pen[jd + c0 : jd + c1, jd + c0 : jd + c1] = lhd * Dp + 1e4 * np.outer(av, av)
+    k0 = PVAR_K0 if pvar_k0 == "default" else pvar_k0
+    if k0 is not None:
+        base = np.sqrt(np.clip(df["n"].fillna(600).astype(float).values, 100, ncap) / 1000.0)
+        Xw = X * w[:, None]
+        r = y - X @ np.linalg.solve(Xw.T @ Xw + Pen, Xw.T @ (y * w))
+        s2 = 1e4 * 0.95 / np.clip(df["n"].fillna(600).astype(float).values, 100, None)
+        ex = pd.Series(r**2 - s2).groupby(df["pollster"].values)
+        tau2 = max(float(np.mean(r**2 - s2)), 0.25)
+        tp = ((ex.sum() + k0 * tau2) / (ex.count() + k0)).clip(lower=0.25)
+        wv = (w / base) / np.sqrt(s2 + tp.reindex(df["pollster"].values).values)
+        w = wv * w.mean() / wv.mean()
     nu = ROBUST_NU if robust_nu == "default" else robust_nu
     w0 = w.copy()
     rhs0 = np.zeros(X.shape[1])
