@@ -1,8 +1,8 @@
 ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
-49894	11/03/2026	2026 General	State Totals	Voted Vote-by-Mail	241,826	286,787	16,423	124,403	669,439	10/15/2026  8:04AM
+49894	11/03/2026	2026 General	State Totals	Voted Vote-by-Mail	241,909	286,862	16,423	124,427	669,621	10/15/2026 11:01AM
 49894	11/03/2026	2026 General	Alachua	Voted Vote-by-Mail	1,606	4,066	152	1,076	6,900	10/15/2026  8:04AM
 49894	11/03/2026	2026 General	Baker	Voted Vote-by-Mail	242	73	3	26	344	10/15/2026  8:04AM
-49894	11/03/2026	2026 General	Bay	Voted Vote-by-Mail	1,995	1,139	88	556	3,778	10/14/2026  8:04AM
+49894	11/03/2026	2026 General	Bay	Voted Vote-by-Mail	2,058	1,208	88	576	3,930	10/15/2026 11:01AM
 49894	11/03/2026	2026 General	Bradford	Voted Vote-by-Mail	172	119	7	25	323	10/15/2026  8:04AM
 49894	11/03/2026	2026 General	Brevard	Voted Vote-by-Mail	8,081	7,984	584	3,808	20,457	10/15/2026  8:04AM
 49894	11/03/2026	2026 General	Broward	Voted Vote-by-Mail	7,975	21,402	709	7,039	37,125	10/15/2026  8:04AM
@@ -46,7 +46,7 @@ ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	T
 49894	11/03/2026	2026 General	Monroe	Voted Vote-by-Mail	1,332	1,385	54	438	3,209	10/15/2026  8:04AM
 49894	11/03/2026	2026 General	Nassau	Voted Vote-by-Mail	1,611	1,151	99	604	3,465	10/15/2026  8:04AM
 49894	11/03/2026	2026 General	Okaloosa	Voted Vote-by-Mail	1,131	802	54	405	2,392	10/15/2026  8:04AM
-49894	11/03/2026	2026 General	Okeechobee	Voted Vote-by-Mail	348	267	18	69	702	10/14/2026  8:04AM
+49894	11/03/2026	2026 General	Okeechobee	Voted Vote-by-Mail	368	273	18	73	732	10/15/2026 11:01AM
 49894	11/03/2026	2026 General	Orange	Voted Vote-by-Mail	10,015	18,009	832	7,245	36,101	10/15/2026  8:04AM
 49894	11/03/2026	2026 General	Osceola	Voted Vote-by-Mail	2,475	4,422	212	2,083	9,192	10/15/2026  8:04AM
 49894	11/03/2026	2026 General	Palm Beach	Voted Vote-by-Mail	14,444	30,304	1,520	10,188	56,456	10/15/2026  8:04AM
