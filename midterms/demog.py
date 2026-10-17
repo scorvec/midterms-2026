@@ -518,12 +518,17 @@ def heat_oil_shares():
 # ---------------------------------------------------------------- the MAP_FROM_CD119 states straight from the Census API
 def _api_districts(fips: str, variables: list) -> pd.DataFrame:
     """One Census API request: `variables` for every congressional district of the state (119th-Congress geography in the
-    2020-2024 release) -> numeric DataFrame indexed by seat (ST-n). No key is needed at this volume."""
+    2020-2024 release) -> numeric DataFrame indexed by seat (ST-n). The API requires a key (free, api.census.gov/data/key_signup.html):
+    the environment variable CENSUS_API_KEY (the workflow's secret of that name); never printed."""
+    import os
     from .fetch import open_url
 
-    # the API reads %20, not +, in "congressional district"; its errors come back as plain text, so show them
+    key = os.environ.get("CENSUS_API_KEY", "").strip()
+    if not key:
+        raise SystemExit("CENSUS_API_KEY is not set (the Census API answers 'Missing Key' without one)")
+    # the API reads %20, not +, in "congressional district"; its errors come back as HTML / text, so show them (key excluded)
     q = urllib.parse.urlencode(
-        {"get": ",".join(variables), "for": "congressional district:*", "in": f"state:{fips}"},
+        {"get": ",".join(variables), "for": "congressional district:*", "in": f"state:{fips}", "key": key},
         quote_via=urllib.parse.quote,
     )
     raw = open_url(f"{CENSUS_API}?{q}", timeout=120)

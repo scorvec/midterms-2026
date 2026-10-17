@@ -50,7 +50,13 @@ jobs:
         run: python -m midterms.urban
       - name: District shapes
         run: python -m midterms.district_shapes
+      # needs the CENSUS_API_KEY secret (a free api.census.gov key); without it this step fails and the job is marked failed
+      # at the end, but the urbanization index and the shapes built above are still committed
       - name: Demographic tables of the states on their 119th-Congress lines
+        id: patch
+        continue-on-error: true
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
         run: python -m midterms.demog --patch-cd119
       - name: Save raw cache
         if: always()
@@ -96,3 +102,7 @@ jobs:
             echo "push $i rejected; resyncing"; sleep $((i * 5))
           done
           exit 1
+      - name: Fail when the demographic tables were not rebuilt
+        if: ${{ steps.patch.outcome == 'failure' }}
+        run: |
+          echo "::error::the Census API step failed (is the CENSUS_API_KEY secret set?); the urbanization index and shapes were committed"; exit 1

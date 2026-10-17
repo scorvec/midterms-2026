@@ -268,6 +268,7 @@ sources and a test keeps the two in step.
 | secret | used by | needed for |
 |---|---|---|
 | `OPENFEC_API_KEY` | `fec_money.py`, only on a manual run with `fec_refresh` | re-pulling June 30 fundraising (an [api.data.gov](https://api.open.fec.gov/developers/) key) |
+| `CENSUS_API_KEY` | `demog.patch_cd119`, only in `district-inputs.yml` | the demographic tables of a state back on its old lines, from the Census API (a free [api.census.gov](https://api.census.gov/data/key_signup.html) key) |
 
 The daily run needs no secret; it commits with the workflow's own `GITHUB_TOKEN`.
 
