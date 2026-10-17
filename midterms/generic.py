@@ -3,8 +3,8 @@
 Model (per series): y_i = trend(t_i) + house[pollster_i] + pop[population_i] + partisan_i * s + e_i
   trend  : piecewise-linear in time with knots every 14 days, second-difference penalty (Whittaker)
   house  : one effect per pollster, ridge-shrunk toward zero (sum-to-zero enforced through the penalty
-           and by centring on the weighted pollster mean), so a change in WHO is polling does not move
-           the trend
+           and by centring on the pollsters of the last 90 days, each weighted by the square root of its poll count),
+           so a change in WHO is polling does not move the trend
   pop    : likely / registered / adult offsets (likely voters are the reference)
   weights: sqrt(sample size), capped; internal and partisan-sponsored polls down-weighted x0.5
 Everything is in Democratic-minus-Republican points (generic) or approve-minus-disapprove (approval).
@@ -31,6 +31,17 @@ CACHE = ROOT / "data" / "cache"
 # better in 23/28 cases and 4/4 years (year-block t 1.95, 3 df - not significant on its own; most of the gain is 2018); margin vs
 # the House vote 3.61 -> 3.49. A penalty of 16 was worse in every year.
 KNOT_DAYS, LAMBDA_TREND, LAMBDA_HOUSE = 14, 30.0, 1.0
+# Sample-size weight sqrt(n / 1000) with n clipped to [100, N_CAP]. FREQ_DAYS (None = off) divides each poll's weight by
+# k ** FREQ_POW, k = its pollster's polls within +-FREQ_DAYS. Tested 2026-10-17 on 538's 2018-24 generic archive (7 dates a year,
+# 3-day lag; next-24-day poll RMSE / margin vs the House vote, live 2.551 / 3.494): FREQ 14 d ^0.5 2.676 / 3.587 (worse in 4/4
+# years, year t -2.5), 28 d 2.719 / 3.668, 14 d ^1 2.834 / 3.551; N_CAP 1500 2.573 / 3.481 (n.s.). The house effects already
+# remove a tracker's level, so its frequent large polls are clean reads of the trend's movement: both stay off.
+N_CAP, FREQ_DAYS, FREQ_POW = 3000, None, 0.5
+# The trend's level is the "typical pollster": the house effects of the pollsters of the last 90 days, centred on their mean
+# weighted by poll count ** CENTRE_POW. By count (1) a weekly tracker set the level - Morning Consult carried 0.34 of the
+# 2026-10-16 trend's influence; 0.5 adopted 2026-10-17: same test 2.560 / 3.487, one vote per pollster (0) 2.563 / 3.520,
+# neither distinguishable from 1 on four elections.
+CENTRE_POW = 0.5
 
 
 # Checked corrections to VoteHub records: (pollster, start, end, population) -> fields. The raw file is re-downloaded daily, so
@@ -372,6 +383,10 @@ def fit(
     hd_order="default",
     hd_knot="default",
     house_prior=None,
+    n_cap="default",
+    freq_days="default",
+    freq_pow="default",
+    centre_pow="default",
 ):
     """Joint fit → dict(trend: DataFrame(date, value), house: Series, pop: dict, resid_sd, n)."""
     wl = WITHIN_GAP_LAMBDA if lam_wg == "default" else lam_wg
@@ -465,9 +480,16 @@ def fit(
     ND = DR.shape[1]
     X = np.hstack([B, H, Q, IQ, DR, part])
     y = df["y"].values
+    ncap = N_CAP if n_cap == "default" else n_cap
     w = (
-        np.sqrt(np.clip(df["n"].fillna(600).astype(float), 100, 3000) / 1000.0) * np.where(part.sum(1) > 0, 0.5, 1.0)
+        np.sqrt(np.clip(df["n"].fillna(600).astype(float), 100, ncap) / 1000.0) * np.where(part.sum(1) > 0, 0.5, 1.0)
     ).values
+    fdays = FREQ_DAYS if freq_days == "default" else freq_days
+    if fdays:
+        fpow = FREQ_POW if freq_pow == "default" else freq_pow
+        ip = df["pollster"].map(pi).values
+        k = np.array([np.sum((ip == ip[i]) & (np.abs(t - t[i]) <= fdays)) for i in range(len(df))], float)
+        w = w / k**fpow
     if "ovw" in df:
         w = w * df["ovw"].values
     if "vw" in df:
@@ -532,7 +554,7 @@ def fit(
     recent = (
         rq.groupby("pollster")["qw"].sum().sort_values(ascending=False) if "qw" in df else rq["pollster"].value_counts()
     )  # quality-weighted count when set
-    recent = recent[recent > 0]
+    recent = recent[recent > 0] ** (CENTRE_POW if centre_pow == "default" else centre_pow)
     rc = house[recent.index].mul(recent).sum() / recent.sum() if len(recent) else 0.0
     cn = pd.Series(0.0, index=pollsters)
     if len(recent):
@@ -611,7 +633,7 @@ def fit(
             "n": df["n"].values,
             "y": y,
             "w": w,
-            "sample_w": np.sqrt(np.clip(df["n"].fillna(600).astype(float), 100, 3000) / 1000.0).values,
+            "sample_w": np.sqrt(np.clip(df["n"].fillna(600).astype(float), 100, ncap) / 1000.0).values,
             "partisan": part.sum(1) > 0,
             "overlap_w": df["ovw"].values if "ovw" in df else 1.0,
             "variant_w": df["vw"].values if "vw" in df else 1.0,
