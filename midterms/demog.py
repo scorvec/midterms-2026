@@ -307,6 +307,14 @@ def fetch_geo():
             dest.parent.mkdir(parents=True, exist_ok=True)
             stream(url, dest)
             print(f"  fetched {dest.name} ({dest.stat().st_size / 1e6:.1f} MB)")
+    # 538's 2022 urbanization index, the scale urban.py maps its index onto (one of bootstrap's fixed inputs)
+    from .bootstrap import FILES, RAW as BOOT_RAW
+
+    dest, url, _ = next(f for f in FILES if f[0] == "538repo/urbanization-index-2022.csv")
+    if not (BOOT_RAW / dest).exists():
+        (BOOT_RAW / dest).parent.mkdir(parents=True, exist_ok=True)
+        stream(url, BOOT_RAW / dest)
+        print(f"  fetched {dest}")
 
 
 # ---------------------------------------------------------------- tract -> district weights

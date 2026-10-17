@@ -41,6 +41,7 @@ jobs:
           path: |
             data/raw/geo
             data/raw/stateleg/bef
+            data/raw/538repo
           key: district-inputs-raw-${{ github.run_id }}
           restore-keys: district-inputs-raw-
       - name: Fetch the geography inputs
@@ -58,6 +59,7 @@ jobs:
           path: |
             data/raw/geo
             data/raw/stateleg/bef
+            data/raw/538repo
           key: district-inputs-raw-${{ github.run_id }}
       - name: Upload outputs
         if: always()
