@@ -8,7 +8,8 @@
       party against registration, against the ballots sent and against 2024 at the same days out.
 
 How banked ballots enter the forecast (early_vote.py's per-state factors) is read by the page from model.json itself.
-A state whose input is missing is left out; nothing here is needed by the forecast.
+A state whose input is missing is left out; nothing here is needed by the forecast. It reads committed files only (no
+download), so it runs both in the cloud session after nc_tracker and in early-diag.yml after Georgia and Florida.
 
     python -m midterms.early_page
 """
