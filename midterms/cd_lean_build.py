@@ -460,7 +460,7 @@ def main():
     b119, b120 = bef(119), bef(120)
     m = b119.merge(b120, on="block", how="outer", suffixes=("119", "120"))
     m["st"] = m["block"].str[:2].map(ABBR)
-    changed = m.groupby("st").apply(lambda q: float((q["cd119"] != q["cd120"]).mean()))
+    changed = m.groupby("st")[["cd119", "cd120"]].apply(lambda q: float((q["cd119"] != q["cd120"]).mean()))
     redrawn_bef = sorted(changed[changed > 0.001].index)
     QC["redrawn_states_in_bef120"] = {s: round(float(changed[s]), 4) for s in redrawn_bef}
     QC["map_status"] = MAP_STATUS

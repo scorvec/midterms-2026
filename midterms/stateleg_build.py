@@ -748,7 +748,7 @@ def build_2026():
                 cw = cw.merge(sw, left_on="county_fips", right_index=True, how="left")
                 cw["swing"] = cw["swing"].fillna(sw.mean())
                 s = (
-                    cw.groupby("district")
+                    cw.groupby("district")[["swing", "n"]]
                     .apply(lambda q: np.average(q["swing"], weights=q["n"]) if q["n"].sum() > 0 else np.nan)
                     .rename("swing")
                 )

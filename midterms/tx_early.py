@@ -15,8 +15,8 @@ Sources (Texas Secretary of State; public records, data supplied by the county e
     Only the county summary is read; the per-voter rosters behind the same portal are never requested.
   * 2022 general (Nov 8, 2022; early voting Mon Oct 24 - Fri Nov 4): the SOS legacy portal (elections 2020-2025),
       https://earlyvoting.texas-election.com/Elections/getElectionDetails.do
-    a Struts form (GET getElectionDetails.do -> POST getElectionEVDates.do -> POST getEVDetails.do per date) whose county
-    table _baseline_2022 parses into data/static/tx_early_2022.csv (not built: the portal blocks automated access, below).
+    a Struts form whose county table would give the day-by-day series data/static/tx_early_2022.csv (summary() reads it if
+    it ever exists; not built: the portal blocks automated access, below).
   * county groups are checked against the 2024 presidential result by county: MIT Election Data and Science Lab 2024
     precinct returns, doi:10.7910/DVN/NYTPDU (CC0), summed by county -> data/static/tx_county_pres2024.csv.
 
@@ -29,7 +29,7 @@ Aug 1, 2027); the SOS calendar for Nov 3, 2026 keeps Oct 19-30.
 
 Off by default: nothing runs or fetches unless TX_EARLY=on (repository variable TX_EARLY in daily.yml). The 2022
 comparison is planned as the final 2022 early vote by county (see the TODO in _final_2022); the day-by-day 2022 portal
-blocks automated access, so its parser (parse_legacy_table, tested on a real 2022 table) is kept for reference only.
+blocks automated access.
 
     TX_EARLY=on python -m midterms.tx_early            # daily: snapshot (from Oct 19) + summary -> web/data/tx_early.json
     TX_EARLY=on python -m midterms.tx_early baseline   # one-time, GitHub Actions only (needs a workflow; none is installed)
@@ -39,13 +39,9 @@ from __future__ import annotations
 
 import base64
 import datetime as dt
-import http.cookiejar
-import io
 import json
 import os
-import re
 import sys
-import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -389,182 +385,6 @@ def summary() -> dict | None:
 # one-time baseline (GitHub Actions only)
 
 
-class _Legacy:
-    """Cookie session for the legacy Struts portal: identifying User-Agent, one request at a time, 2 s apart."""
-
-    def __init__(self, save: Path):
-        from . import fetch as F
-
-        self.F, self.save = F, save
-        self.op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
-        save.mkdir(parents=True, exist_ok=True)
-
-    def req(self, action: str, data: dict | None = None, name: str | None = None) -> str:
-        time.sleep(2)
-        url = f"{LEGACY}/{action}"
-        h = {"User-Agent": self.F.UA, "Referer": f"{LEGACY}/getElectionDetails.do"}
-        body = urllib.parse.urlencode(data).encode() if data is not None else None
-        if body:
-            h["Content-Type"] = "application/x-www-form-urlencoded"
-        try:
-            with self.op.open(urllib.request.Request(url, data=body, headers=h), timeout=120) as r:
-                b = r.read()
-        except urllib.error.HTTPError as e:
-            snippet = re.sub(r"\s+", " ", e.read(600).decode("utf-8", "replace"))
-            raise RuntimeError(
-                f"{action}: HTTP {e.code} (server {e.headers.get('Server')}, cf-ray {e.headers.get('CF-RAY')}): {snippet[:300]}"
-            ) from e
-        self.F.count(url, len(b))
-        if name:
-            (self.save / name).write_bytes(b)  # county tables only (no voter data); kept for the run's artifact
-        return b.decode("utf-8", "replace")
-
-
-def _norm(h) -> str:
-    h = " ".join(str(x) for x in h) if isinstance(h, tuple) else str(h)
-    return re.sub(r"\s+", " ", h.upper().replace("-", " ").replace("_", " ")).strip()
-
-
-def parse_legacy_table(html: str) -> pd.DataFrame:
-    """County turnout table of getEVDetails.do: columns located by their headers (County, Registered Voters, # In Person
-    On <date>, Cumulative In-Person Voters, Cumulative % In-Person, Cumulative By Mail Voters, Cumulative In-Person And
-    Mail Voters, Cumulative Percent Early Voting)."""
-    best = None
-    for tbl in pd.read_html(io.StringIO(html), thousands=",", flavor="lxml"):
-        t = tbl
-        if all(isinstance(c, int) for c in t.columns) and len(t):  # header in the first row instead of <th>
-            t = t.iloc[1:].set_axis([str(x) for x in t.iloc[0]], axis=1)
-        cols = [_norm(c) for c in t.columns]
-        if (
-            any("COUNTY" in c for c in cols)
-            and any("MAIL" in c for c in cols)
-            and (best is None or len(t) > len(best[0]))
-        ):
-            best = (t, cols)
-    if best is None:
-        raise ValueError("no county turnout table in the page")
-    t, cols = best
-    m = {}
-    for i, h in enumerate(cols):
-        if "%" in h or "PERCENT" in h:
-            continue
-        if "COUNTY" in h:
-            m.setdefault("county", i)
-        elif "REGISTERED" in h or h == "VOTERS":
-            m.setdefault("registered", i)
-        elif "MAIL" in h and ("IN PERSON" in h or "TOTAL" in h or " AND " in h):
-            m.setdefault("total_pub", i)
-        elif "MAIL" in h:
-            m.setdefault("mail_cum", i)
-        elif "IN PERSON" in h and "CUMULATIVE" in h:
-            m.setdefault("in_person_cum", i)
-        elif "IN PERSON" in h:
-            m.setdefault("in_person_on_date", i)
-    need = {"county", "registered", "in_person_cum", "mail_cum"}
-    if not need <= set(m):
-        raise ValueError(f"columns not found: {sorted(need - set(m))} in {cols}")
-    D = pd.DataFrame({k: t.iloc[:, i] for k, i in m.items()})
-    D["county"] = D["county"].astype(str).str.strip().str.upper()
-    for k in m:
-        if k != "county":
-            D[k] = D[k].map(_num)
-    return D
-
-
-def _baseline_2022(force: bool) -> dict:
-    if BASE_2022.exists() and not force:
-        print("  2022 baseline already committed; skipped (--force to rebuild)")
-        return json.loads(SOURCES.read_text()).get("tx_early_2022", {}) if SOURCES.exists() else {}
-    S = _Legacy(RAW / "legacy2022")
-    page = S.req("getElectionDetails.do", name="election_index.html")
-    opts = re.findall(r'<option[^>]*value="?(\d+)"?[^>]*>\s*([^<]+?)\s*<', page)
-    el = [
-        (i, n)
-        for i, n in opts
-        if "2022" in n and "GENERAL" in n.upper() and "NOV" in n.upper() and "SPECIAL" not in n.upper()
-    ]
-    if len(el) != 1:
-        raise SystemExit(f"2022 general not found uniquely among {len(opts)} elections: {opts[:60]}")
-    eid, ename = el[0]
-    print(f"  legacy portal: {ename} (idElection {eid})")
-    page = S.req("getElectionEVDates.do", {"idElection": eid}, name=f"{eid}_dates.html")
-    listed = sorted(
-        {dt.date.fromisoformat(x) for x in re.findall(r'value=["\']?(\d{4}-\d{2}-\d{2}) 00:00:00\.0', page)}
-    )
-    evd = [d for d in listed if CAL[2022]["first"] <= d <= CAL[2022]["last"]]
-    print(f"  {len(listed)} dates listed, {len(evd)} in the early-voting period: {evd[:1]} .. {evd[-1:]}")
-    if not evd:
-        raise SystemExit(f"no early-voting dates in getElectionEVDates.do (listed: {listed})")
-    parts, checks = [], []
-    for d in evd:
-        html = S.req(
-            "getEVDetails.do",
-            {
-                "idElection": eid,
-                "selectedDate": f"{d} 00:00:00.0",
-                "electionDate": "",
-                "earlyVoteFlag": "true",
-                "downloadElectionFileCSVFlag": "false",
-                "idTown": "",
-            },
-            name=f"{eid}_{d}.html",
-        )
-        T = parse_legacy_table(html)
-        sw = T[T.county.isin(["STATEWIDE", "TOTAL", "TOTALS"])]
-        T = T[~T.county.isin(["STATEWIDE", "TOTAL", "TOTALS", "", "NAN"])]
-        if T.county.nunique() < 254:
-            raise SystemExit(f"{d}: only {T.county.nunique()} counties parsed")
-        T["date"] = d
-        parts.append(T)
-        tot = T.in_person_cum.fillna(0) + T.mail_cum.fillna(0)
-        chk = {"date": str(d), "counties": int(T.county.nunique()), "ev_sum": int(tot.sum())}
-        if len(sw):
-            chk["statewide_row"] = int(sw.in_person_cum.fillna(0).iloc[0] + sw.mail_cum.fillna(0).iloc[0])
-        if "total_pub" in T:
-            chk["rows_total_mismatch"] = int(((T.total_pub - tot).abs() > 0.5).sum())
-        checks.append(chk)
-        print("   ", chk)
-    D = _with_days(pd.concat(parts, ignore_index=True), 2022)
-    cols = [
-        "ev_day",
-        "date",
-        "days_out",
-        "county",
-        "registered",
-        "in_person_on_date",
-        "in_person_cum",
-        "mail_cum",
-        "total_cum",
-    ]
-    for c in cols[4:]:
-        if c not in D:
-            D[c] = float("nan")
-        D[c] = D[c].round().astype("Int64")
-    D = D.sort_values(["ev_day", "county"])[cols]
-    D.to_csv(BASE_2022, index=False)
-    print(
-        f"  wrote {BASE_2022.relative_to(ROOT)}: {len(D)} rows, {D.county.nunique()} counties, {D.ev_day.nunique()} days"
-    )
-    return {
-        "file": "data/static/tx_early_2022.csv",
-        "source": f"{LEGACY}/getElectionDetails.do",
-        "publisher": "Texas Secretary of State, Elections Division (Early Voting Turnout 2020-2025 portal)",
-        "election": ename,
-        "idElection": eid,
-        "early_voting_dates": [str(d) for d in evd],
-        "retrieved_utc": dt.datetime.now(dt.UTC).strftime("%Y-%m-%dT%H:%MZ"),
-        "rows": len(D),
-        "counties": int(D.county.nunique()),
-        "days": int(D.ev_day.nunique()),
-        "dates_listed": [str(d) for d in listed],
-        "checks": checks,
-        "terms": "public records supplied by the county election officials (SOS: data are posted as reported by the "
-        "counties); information on Texas state websites may be copied with attribution and without implying "
-        "endorsement (SOS link policy, sos.state.tx.us/linkpolicy.shtml). Derived county totals only; no voter "
-        "rosters were requested.",
-    }
-
-
 def _pres_2024(force: bool = False) -> dict:
     """2024 president by county from MEDSL's 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), the same file the
     state-legislature build uses (stateleg_build.dv_get / medsl_load; the workflow restores that build's raw cache, so
@@ -614,39 +434,6 @@ def _pres_2024(force: bool = False) -> dict:
     }
 
 
-def _probe_2026() -> dict:
-    """Records what the SOS portal lists for the 2026 general (id, early-voting dates); one request."""
-    from . import fetch as F
-
-    try:
-        idx = _decode(F.open_url(_civix_url(type="EVR_ELECTION"), timeout=60))
-    except Exception as e:
-        return {"error": str(e)[:200]}
-    RAW.mkdir(parents=True, exist_ok=True)
-    (RAW / "election_index_probe.json").write_text(json.dumps(idx, indent=1)[:2_000_000])
-    el = find_2026(idx)
-    names = [f"{e.get('election_name')} ({e.get('election_date')})" for e in (idx or {}).get("elections") or []]
-    if not el:
-        return {"found": False, "elections_listed": names}
-    ev = [x["date"] for x in el.get("early_voting_dates") or []]
-    print(
-        f"  2026 general in the SOS index: {el.get('election_name')} id {el.get('id')}, EV dates {ev[:1]}..{ev[-1:]} ({len(ev)})"
-    )
-    return {
-        "found": True,
-        "id": el.get("id"),
-        "election_name": el.get("election_name"),
-        "early_voting_dates": ev,
-        "counties": len(el.get("counties") or []),
-        "index_date_updated": idx.get("date_updated"),
-        "retrieved_utc": dt.datetime.now(dt.UTC).strftime("%Y-%m-%dT%H:%MZ"),
-    }
-
-
-RESULTS = "https://results.texas-election.com/static/data"  # SOS election results 2019-2024 (static JSON / PDF reports)
-FINAL_2022 = STATIC / "tx_early_2022_final.csv"
-
-
 def _final_2022(force: bool = False) -> dict:
     """2022 general, final early vote by county. Not built yet: the tracker is off (TX_EARLY).
 
@@ -671,7 +458,7 @@ def _final_2022(force: bool = False) -> dict:
 
 def baseline(force: bool = False) -> None:
     if os.environ.get("GITHUB_ACTIONS") != "true":
-        raise SystemExit("the baseline downloads run in GitHub Actions only (.github/workflows/tx-early-baseline.yml)")
+        raise SystemExit("the baseline downloads run in GitHub Actions only (no workflow is installed yet)")
     from . import fetch as F
 
     src = json.loads(SOURCES.read_text()) if SOURCES.exists() else {}

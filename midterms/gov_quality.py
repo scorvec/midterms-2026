@@ -353,9 +353,9 @@ def fetch():
     Q.to_csv(QUALITY, index=False)
     pd.DataFrame(orows).to_csv(OFFICES, index=False)
     print(f"{len(Q)} nominees, {Q.has_page.sum()} articles read, experienced {Q.experienced.sum()} -> {QUALITY}")
-    from . import fetch as F2
+    from . import fetch as F
 
-    F2.report()
+    F.report()
 
 
 def results2024():

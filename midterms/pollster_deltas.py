@@ -107,8 +107,10 @@ def compute(df: pd.DataFrame, F: dict, window=WINDOW, max_gap=MAX_GAP, asof=None
     # the SRS formula overstates poll-to-poll noise (weighted panels, trackers): rescale so that the excess over the trend's
     # change has a robust sd of 1 across every consecutive same-population pair in the series (in-sample calibration)
     Hh = pd.DataFrame(hist)
-    zr = (Hh["delta"] - Hh["trend_delta"]) / Hh["sd"]
-    scale = float(1.4826 * np.median(np.abs(zr - np.median(zr)))) if len(Hh) >= 20 else 1.0
+    scale = 1.0
+    if len(Hh) >= 20:  # (an empty history has no columns: a sparse series early in a cycle keeps the SRS scale)
+        zr = (Hh["delta"] - Hh["trend_delta"]) / Hh["sd"]
+        scale = float(1.4826 * np.median(np.abs(zr - np.median(zr))))
     for r in pairs:
         r["sd"] = round(r["sd"] * scale, 2)
     P = pd.DataFrame(pairs)

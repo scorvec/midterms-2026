@@ -162,7 +162,8 @@ def load_absentee(src, year: int, file_date: dt.date | None = None) -> tuple[pd.
         qc["future_return_dates_dropped"] = int(bad.sum())
         d = d[~bad]
     n0 = len(d)
-    d = d.drop_duplicates("ncid", keep="first")
+    # a voter with two accepted rows (a spoiled and reissued ballot): keep the latest return, whatever the file's row order
+    d = d.sort_values("rtn", kind="stable").drop_duplicates("ncid", keep="last")
     qc["duplicate_voters_dropped"] = n0 - len(d)
     d["days_out"] = (pd.Timestamp(ED[year]) - d["rtn"]).dt.days
     qc["after_election_day"] = int((d["days_out"] < 0).sum())

@@ -73,15 +73,6 @@ def is_inc_mark(s):
     return bool(re.search(r"\((i|inc|incumbent)\)", str(s), re.I))
 
 
-def surname(n):
-    p = [
-        x
-        for x in re.sub(r"[^A-Za-z' -]", " ", clean_name(n)).split()
-        if x.lower() not in ("jr", "sr", "ii", "iii", "iv")
-    ]
-    return p[-1].lower() if p else ""
-
-
 def norm_dist(st, ch, s):
     s = str(s)
     m = re.search(r"(\d+)\s*([AB])?\b", s)
@@ -159,7 +150,8 @@ def from_boxes(boxes, k=1):
                     q = sorted(q, key=lambda r: -(_votes(r[2]) or 0))
                 rows += q[:k]
                 break
-    return [(p, n) for p, n, _ in rows if not re.search(r"write-in|total|other", n, re.I)], src
+    # summary rows, not candidates - anchored at the start of the cell (a substring match would drop a Strother or a Totaro)
+    return [(p, n) for p, n, _ in rows if not re.search(r"^(write-in|total|other)\b", n.strip(), re.I)], src
 
 
 PROSE = True
@@ -356,14 +348,10 @@ def build(states=None, debug=False):
                 src = recs.get(d, {}).get("source", "")
                 nd_ = sum(p == "D" for p, _ in c) if c else None
                 nr_ = sum(p == "R" for p, _ in c) if c else None
-                if src == "prose":
+                if src == "prose":  # the page's explicit "no candidate" statements, None where it says nothing
                     kn = recs[d].get("known", {})
                     nd_ = kn.get("D")
                     nr_ = kn.get("R")
-                    if nd_ == 0 or nr_ == 0:
-                        pass
-                    nd_ = nd_ if nd_ is not None else None
-                    nr_ = nr_ if nr_ is not None else None
                 if (
                     src in ("primary winners", "candidate list")
                 ):  # a party with no contested primary has no box: absence is not evidence (prose keeps its explicit zeros)

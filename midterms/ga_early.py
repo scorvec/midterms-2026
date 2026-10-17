@@ -33,7 +33,7 @@ import json
 import re
 import sys
 import time
-from datetime import date, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -233,17 +233,17 @@ def compare(rec):
         res["metro_atlanta_share"] = {"2026": round(float(s26[met].sum()), 4), "2022": round(float(s22[met].sum()), 4)}
         res["metro_vs_2022_pct"] = round(100 * (cur[met].sum() / cmp_[met].sum() - 1), 1) if cmp_[met].sum() else None
         res["rest_vs_2022_pct"] = round(100 * (cur[~met].sum() / cmp_[~met].sum() - 1), 1) if cmp_[~met].sum() else None
-    # composition against 2022 at the same days out (Wayback baseline, nearest day within 1)
+    # composition against 2022 at the same day of in-person voting (Wayback baseline; no match, no comparison)
     base = json.loads(WAY.read_text()) if WAY.exists() else []
-    base = [r for r in base if r.get("ev_day")]
-    near = min(base, key=lambda r: abs(r["ev_day"] - res["ev_day"]), default=None) if base and res["ev_day"] else None
-    if near and near["ev_day"] == res["ev_day"]:
+    near = next((r for r in base if r.get("ev_day") and r["ev_day"] == res["ev_day"]), None) if res["ev_day"] else None
+    if near:
         comp = {}
         for grp in ("race", "age", "gender"):
             a, z = share(rec.get(grp, {})), share(near.get(grp, {}))
             comp[grp] = {k: {"2026": round(a[k], 4), "2022": round(z.get(k, float("nan")), 4)} for k in a}
         pa, pz = rec.get("previous_general", {}), near.get("previous_general", {})
-        if pa and pz:
+        # the block parses key by key: a page that gave only the "voted early" line has no "none" (skipped) count
+        if pa.get("none") is not None and pz.get("none") is not None and rec.get("total") and near.get("total"):
             comp["skipped_previous_midterm"] = {
                 "2026": round(pa["none"] / rec["total"], 4),
                 "2022": round(pz["none"] / near["total"], 4),
@@ -276,7 +276,7 @@ def main():
         except Exception as ex:
             print(f"  {f.name}: {ex!r}"[:120])
     out = {
-        "generated": datetime.utcnow().strftime("%Y-%m-%dT%H:%MZ"),
+        "generated": datetime.now(UTC).strftime("%Y-%m-%dT%H:%MZ"),
         "source": "georgiavotes.com (from GA SOS absentee files)",
         "diagnostic_only": True,
         "feeds_forecast": False,

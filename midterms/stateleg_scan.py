@@ -8,6 +8,7 @@ one-party seats (Klarner). Writes data/static/stateleg/coverage_scan.csv.
 
 from __future__ import annotations
 
+import sys
 import pandas as pd
 from . import wiki_polls as W, stateleg_wiki as SW, stateleg as SLM
 from .fetch import report
@@ -130,10 +131,6 @@ def main():
     report()
 
 
-if __name__ == "__main__" and "check" not in __import__("sys").argv:
-    main()
-
-
 def check():
     """Checks for the PENDING chambers: seats up (2024 rule) = the districts the page lists; every up district has a lean and
     complete trusted slates; one-party seats against 2024 (MEDSL) and 2022 (Klarner); sitting members for held seats."""
@@ -205,5 +202,5 @@ def check():
     report()
 
 
-if __name__ == "__main__" and "check" in __import__("sys").argv:
-    check()
+if __name__ == "__main__":
+    check() if "check" in sys.argv else main()

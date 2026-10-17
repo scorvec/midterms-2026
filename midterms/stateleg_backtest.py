@@ -150,7 +150,7 @@ def run_cycle(cycle, n=10000, seed=3, arm="base"):
     if sig:
         mean_all = np.mean(np.stack(list(sig.values())), 0)
         sig = {s: v - mean_all for s, v in sig.items()}
-    S = q.rename(columns={"n_d": "n_d", "n_r": "n_r"})
+    S = q
     m, _mu = SLM.simulate(S, P, n, rng, nat=P["g"] * sE * Z, state_sig=sig, shift=pull or None)
     W = SLM.seats_won(S, m, P, rng)
     H = held_seats(cycle)
