@@ -12,6 +12,18 @@
 #     batched deploy publishes the commit.
 # summary.json (the site's homepage panel) is written by this repository (midterms/weekly.py summary()).
 # Files are read at the commit SHA of this repository's main (immutable raw URLs, so no CDN staleness).
+# Pulls the published forecast from the public model repository (scorvec/midterms-2026, built daily by its own
+# .github/workflows/daily.yml) into the site's midterms/ folder and re-applies the site chrome:
+#   * copy web/index.html, about.html, polls.html, whatif.html, whatif_engine.js and web/data/{model, summary, polls,
+#     race_history, whatif, districts_2026.topo}.json into midterms/ and midterms/data/; legislatures.html, its
+#     data/stateleg_seats.json and data/stateleg_geo/ (index.json + the per-state TopoJSON it lists) when published;
+#   * drop any robots noindex tag (a guard; the model repo's pages carry none);
+#   * stamp the site header/footer: apply_chrome.stamp_all(only={the four midterms pages});
+#   * commit only midterms/ (path-limited), snapshot + resync on every push attempt, never rebase;
+#   * dispatch pages.yml like the other site workflows.
+# summary.json (the homepage panel) is written by the model repository (midterms/weekly.py summary()); no text
+# substitutions are needed.
+# Files are read at the commit SHA of the model repo's main (immutable raw URLs, so no CDN staleness).
 name: midterms sync
 
 on:
@@ -37,11 +49,11 @@ jobs:
     env:
       MODEL_REPO: scorvec/midterms-2026
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
 
@@ -57,7 +69,7 @@ jobs:
           for f in index.html about.html polls.html whatif.html whatif_engine.js; do
             curl -fsSL --retry 3 -o "$tmp/$f" "$base/$f"
           done
-          # legislatures.html (state legislative chambers, experimental) is optional
+          # legislatures.html (state legislative chambers, experimental) - optional until the model repo publishes it
           for f in legislatures.html; do
             curl -fsSL --retry 3 -o "$tmp/$f" "$base/$f" || rm -f "$tmp/$f"
           done
@@ -125,7 +137,7 @@ jobs:
             if ! timeout 120 git fetch origin main; then echo "fetch $i failed"; sleep 5; continue; fi
             git reset --hard origin/main
             tar xf "$SNAP/outs.tar" 2>/dev/null || true
-            # the pages come from the model repo, but their chrome is the site's: re-stamp it from main's current
+            # the pages come from the model repo, but their chrome is the site's: re-stamp it from main's CURRENT
             # apply_chrome.py so a menu change pushed during this run is not reverted
             python -c "import sys; sys.path.insert(0, 'scripts/site'); import apply_chrome as A; A.stamp_all(only={'midterms/index.html', 'midterms/about.html', 'midterms/polls.html', 'midterms/whatif.html', 'midterms/legislatures.html'}, quiet=True)" || echo "::warning::chrome re-stamp failed"
             git add -A midterms
