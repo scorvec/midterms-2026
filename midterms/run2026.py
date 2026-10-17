@@ -78,11 +78,17 @@ def load_seats():
     u["seat"] = u["state"] + "-" + u["cd"].astype(int).astype(str)
     s = s.merge(u[["seat", "urbanindex"]], on="seat", how="left")
     # redrawn states: 538's 2022 file is keyed by district number, so those seats would carry an unrelated old district's
-    # value (CA-41, MO-5, TN-9 off by 1.6-1.8 index units). midterms/urban.py rebuilds the index on the 2026 map (r 0.994 with
-    # 538 on 214 unchanged seats, mapped to its scale); used for the states whose map changed
+    # value (CA-41, TN-9 off by 1.6-1.8 index units). midterms/urban.py rebuilds the index on the 2026 map (r 0.994 with 538
+    # on the unchanged seats, mapped to its scale); used where the 2026 district is not the 2022 one: the states the lean
+    # build marks redrawn between the 119th and 120th Congress (cd_lean_2026.csv) and the 2024 redraws. A state whose new
+    # map was struck down (Missouri) is not marked and keeps 538's values, which are its 2022 districts.
     try:
+        from .demog import REDRAWN_2024
+
         u26 = pd.read_csv("data/static/urbanization_2026.csv").set_index("seat")["urbanindex"]
-        redrawn = s["state"].isin(["AL", "CA", "FL", "GA", "LA", "MO", "NC", "NY", "OH", "TN", "TX", "UT"])
+        lean = pd.read_csv("data/static/cd_lean_2026.csv")
+        states = set(lean.loc[lean["redrawn"].astype(bool), "seat"].str[:2]) | set(REDRAWN_2024)
+        redrawn = s["state"].isin(states)
         s.loc[redrawn, "urbanindex"] = s.loc[redrawn, "seat"].map(u26)
     except FileNotFoundError:
         pass
@@ -158,7 +164,7 @@ def _add_bluesky_house(hp):
 def run(E, P=None, n=20000, seed=7, asof=None, nat_z=None):
     asof = asof or pd.Timestamp.today().normalize()
     P = P or M.Params()
-    b, c, _k, _sd = M.fit_prior((2018, 2022))
+    fit = M.fit_prior((2018, 2022))
     s = load_seats()
     from . import money as MON
 
@@ -188,9 +194,8 @@ def run(E, P=None, n=20000, seed=7, asof=None, nat_z=None):
     if hp is not None and len(hp):  # persistent state polling misses (model.state_poll_correction)
         hp = hp.copy()
         hp["margin"] = hp["margin"] - hp["seat"].str[:2].map(M.state_poll_correction()).fillna(0.0)
-    s = M.house_blend(
-        s, E, P, b, c, polls=hp, asof=asof, money=mon, mcoef=(MON.coefficients() if mon is not None else None)
-    )
+    mcoef = MON.coefficients() if mon is not None else None
+    s = M.house_blend(s, E, P, fit, polls=hp, asof=asof, money=mon, mcoef=mcoef)
     # latent-factor update from the district polls (model.factor_update): second pass with the shifted priors
     upd = M.factor_update(s, P)
     if len(upd) == 3 and np.any(upd[0] != 0):
@@ -199,17 +204,17 @@ def run(E, P=None, n=20000, seed=7, asof=None, nat_z=None):
         s0["fshift"] = shift
         s1 = load_seats()
         s1["group_shift"] = s1["group_shift"] + s1["seat"].map(dict(zip(s0.seat, s0.fshift))).fillna(0)
-        s = M.house_blend(
-            s1, E, P, b, c, polls=hp, asof=asof, money=mon, mcoef=(MON.coefficients() if mon is not None else None)
-        )
+        s = M.house_blend(s1, E, P, fit, polls=hp, asof=asof, money=mon, mcoef=mcoef)
         s["factor_shift"] = s["seat"].map(dict(zip(s0.seat, s0.fshift)))
         from dataclasses import replace
 
         P = replace(P, **post)
         s.attrs["factor_mean"] = fmean
         s.attrs["factor_post_sd"] = post
-    s["heat_oil_shift"] = s["seat"].map(M.heating_oil_shift("seat")).fillna(0.0)
-    s["mu"] = s["mu"] + s["heat_oil_shift"]  # forward, post-blend
+    # forward, post-blend; the share of the price change still unpriced depends on each seat's newest poll
+    heat = M.heating_oil_shift("seat", asof, M.newest_poll_dates(hp, asof))
+    s["heat_oil_shift"] = s["seat"].map(heat).fillna(0.0)
+    s["mu"] = s["mu"] + s["heat_oil_shift"]
     mg = M.simulate(s, P, n=n, seed=seed, nat_z=nat_z)
     S = M.summarize(mg, s)
     return s, mg, S

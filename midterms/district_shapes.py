@@ -1,9 +1,10 @@
 """2026 congressional district shapes for the forecast page's House map.
 
-The 2025-26 mid-decade redraws (TX CA MO NC OH UT FL AL TN LA...) are not in any published cartographic file, so the districts
-are rebuilt from the Census CD120 block equivalency file: each 2020 block group goes to the district holding most of its blocks,
-block groups are dissolved into districts (cartographic 1:500k block-group shapes, water-clipped), then simplified with
-mapshaper to web TopoJSON. Block groups split between districts land in one of them, which is invisible at national scale.
+The 2025-26 mid-decade redraws (TX CA NC OH UT FL AL TN LA...) are not in any published cartographic file, so the districts
+are rebuilt from the Census block equivalency file of the map in force (demog.cd_blocks: the 120th-Congress file, Missouri on
+its 2022 lines): each 2020 block group goes to the district holding most of its blocks, block groups are dissolved into
+districts (cartographic 1:500k block-group shapes, water-clipped), then simplified with mapshaper to web TopoJSON. Block groups
+split between districts land in one of them, which is invisible at national scale.
     python -m midterms.district_shapes      -> web/data/districts_2026.topo.json
 """
 
@@ -18,10 +19,9 @@ GEO = ROOT / "data" / "raw" / "geo"
 
 
 def main():
-    from .demog import FIPS
+    from .demog import FIPS, cd_blocks
 
-    b = pd.read_csv(GEO / "NationalCD120.txt", dtype=str, usecols=["GEOID", "CDFP"])
-    b = b[~b.CDFP.isin(["ZZ", "98"])]
+    b = cd_blocks(120)
     b["bg"] = b.GEOID.str[:12]
     cnt = (
         b.groupby(["bg", "CDFP"])
@@ -32,7 +32,9 @@ def main():
         .drop_duplicates("bg")
     )
     cnt["seat"] = cnt.bg.str[:2].map(FIPS) + "-" + pd.to_numeric(cnt.CDFP).clip(lower=1).astype(int).astype(str)
-    g = gpd.read_file(GEO / "shapes" / "cb_2020_us_bg_500k.shp", columns=["GEOID", "geometry"])
+    shp = GEO / "shapes" / "cb_2020_us_bg_500k.shp"
+    src = str(shp) if shp.exists() else f"zip://{shp.with_suffix('.zip')}"  # demog.fetch_geo keeps the zip
+    g = gpd.read_file(src, columns=["GEOID", "geometry"])
     g = g.merge(cnt[["bg", "seat"]], left_on="GEOID", right_on="bg", how="inner")
     d = g.dissolve(by="seat", as_index=False)[["seat", "geometry"]]
     d["geometry"] = d.geometry.buffer(0)

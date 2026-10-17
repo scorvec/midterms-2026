@@ -123,7 +123,9 @@ def nat_pres():
 
 
 def nat_house():
-    return pd.read_csv(STATIC / "house_national_vote_1946.csv").set_index("year")["E"].to_dict()
+    from .data_prep import national_house_vote
+
+    return national_house_vote().to_dict()
 
 
 def klarner():

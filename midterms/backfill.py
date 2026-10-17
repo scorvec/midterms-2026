@@ -16,8 +16,9 @@ with only the information released by D:
   * FEC money: reports with coverage through June 30 (the live cut) that the FEC had received by D (latest version of each
     report filed by D); a candidate with no report received by D is missing (no money term), not $0;
   * pollster experience (model.pollster_experience): VoteHub polls created by D;
-  * heating-oil adjustment: the EIA weekly Maine residential heating-oil price as published on or before D
-    (model.heat_retail(asof=D); outside the October-March survey season the last week is held).
+  * heating-oil adjustment: the EIA weekly Maine residential heating-oil price as published on or before D (the models take
+    asof = D; outside the October-March survey season the last week is held);
+  * the early-vote movement split (early_vote.setup, as build_web): the UF early-vote snapshot on or before D, the lead at D.
 Not as of D (hindsight): nominees, ballots and incumbents' retirement status are today's (the race
 tables are only kept in their current version); poll selection by on-ballot candidates therefore keeps pre-primary polls of
 the eventual matchup; pollster tags borrowed from feed copies; the 538-based calibrations (fixed, fitted on past cycles anyway).
@@ -74,6 +75,7 @@ METHOD_FILES = [
     "backfill.py",
     "national_mood.py",
     "heating_oil.py",
+    "early_vote.py",
     "names.py",
     "rcv.py",
 ]
@@ -238,14 +240,6 @@ def approval_asof(D):
     return round(float(GN.trend_at(F, F["t1"])), 2)
 
 
-@lru_cache(maxsize=1)
-def bias():
-    import inspect
-    from . import build_web as B
-
-    return float(re.search(r"\n\s*BIAS = (-?[\d.]+)", inspect.getsource(B.main)).group(1))
-
-
 # ------------------------------------------------------------------------------------------------ money as of D
 @lru_cache(maxsize=1)
 def _report_table():
@@ -375,8 +369,9 @@ def _memo_df(fn):
         if key not in cache:
             cache[key] = fn(*a, **k)
         v = cache[key]
-        if isinstance(v, tuple):
-            return tuple(x.copy() if hasattr(x, "copy") else x for x in v)
+        if isinstance(v, tuple):  # a plain tuple of frames, or a NamedTuple (model.PriorFit) that keeps its type
+            parts = [x.copy() if hasattr(x, "copy") else x for x in v]
+            return type(v)(*parts) if hasattr(v, "_fields") else tuple(parts)
         return v.copy() if hasattr(v, "copy") else v
 
     return w
@@ -429,8 +424,6 @@ def run_asof(D, n=20000, filtered=True, verbose=False, E_override=None):
     t0 = time.time()
     _State.D = D if filtered else None
     M._EXP = experience_asof(D) if filtered else None
-    M.HEAT_RETAIL = M.heat_retail(asof=D) if filtered else None
-    M.HEAT_LIVE = not filtered  # EIA price as of D
     seat_money, ind_money = MON.seat_money, SN.ind_money
     if filtered:
         sm = seat_money_asof(D)
@@ -440,10 +433,16 @@ def run_asof(D, n=20000, filtered=True, verbose=False, E_override=None):
         E_now, gnow, glast = generic_E(D if filtered else pd.Timestamp("2100-01-01"))
         if E_override is not None:
             E_now = float(E_override)
-        from . import national_mood as NMOOD
+        from . import early_vote as EV, national_mood as NMOOD
 
         mood = NMOOD.apply(D, approval_asof(D))  # the errors at D's lead (SEN_S_NAT set for the statewide races)
-        Z, ZS = NMOOD.draws(20000)
+        # the early-vote movement split as build_web runs it, with the snapshot and lead of D; off when the inputs are missing
+        try:
+            rho_mv = EV.setup(20000, mood["s_house"], SN.STATE_SHARED_MISS / SN.NAT_SLOPE, NMOOD.RHO_STATEWIDE, asof=D)
+        except Exception as e:
+            print(f"  movement split off for {D.date()} ({str(e)[:80]})")
+            M.MOVE, rho_mv = None, None
+        Z, ZS = NMOOD.draws(20000, rho=rho_mv)
         _State.office = "house"
         s, mg, _S = H.run(E_now, P=M.Params(s_nat=mood["s_house"]), n=n, nat_z=Z, asof=D)
         SN.JOINT = SN.joint_setup(20000) if SN.JOINT_ON else None
@@ -453,8 +452,7 @@ def run_asof(D, n=20000, filtered=True, verbose=False, E_override=None):
         GS, gmg, _ginfo = GV.run(E_now, asof=D, nat_z=ZS, refresh=False)
     finally:
         MON.seat_money, SN.ind_money = seat_money, ind_money
-        M.HEAT_RETAIL = None
-        M.HEAT_LIVE = True
+        M.MOVE = None
         _State.D = None
         M._EXP = None
     out = _pack(D, E_now, gnow, glast, s, mg, SS, smg, sout, GS, gmg)
@@ -506,10 +504,6 @@ def _pack(D, E_now, gnow, glast, s, mg, SS, smg, sout, GS, gmg):
     }  # (gov2026's n_polls counts every poll, not those released by D)
 
 
-def _init():
-    pass
-
-
 # ------------------------------------------------------------------------------------------------ method stamp / storage
 def method_stamp():
     h = hashlib.sha1()
@@ -534,7 +528,6 @@ def dates(start=START, end=None):
 
 
 def build(ds, rebuild=False):
-    _init()
     OUT.mkdir(parents=True, exist_ok=True)
     stamp = method_stamp()
     meta_f = OUT / "meta.json"
@@ -568,7 +561,6 @@ def ensure_current():
 
 def check():
     """Today's reconstruction against the published web/data/model.json."""
-    _init()
     m = json.loads((ROOT / "web" / "data" / "model.json").read_text())
     D = m["asof"]
     r = run_asof(D, verbose=True)

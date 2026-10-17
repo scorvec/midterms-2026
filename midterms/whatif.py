@@ -1,9 +1,9 @@
 """Data for the "What if?" page (web/whatif.html): an educational tool for seeing how the forecast changes under other assumptions.
 
 The page re-runs the simulation in the browser. It needs each race's ingredients, not just its odds:
-  * every race's published mean and the pieces of its error (shared statewide / national shock, group factors, own error),
-    exactly as model.simulate (House) and senate2026.simulate_senate (Senate, governors) draw them, so the page's defaults
-    reproduce the published forecast;
+  * every race's published mean and the pieces of its error (shared statewide / national shock, the early-vote movement split
+    of that shock, group factors, own error), as model.simulate (House) and senate2026.simulate_senate (Senate, governors)
+    draw them, so the page's defaults reproduce the published forecast (the page draws 5,000 simulations to the model's 20,000);
   * for every polled race, its fundamentals prior and each poll's adjusted margin, error and robustness discount (from the
     poll record behind polls.html), so the page can re-blend when a slider changes how polls count. A precision-weighted
     blend reproduces the model's Student-t posteriors to 0.1 pt RMS (max 0.3); the page adds only the
@@ -76,7 +76,7 @@ def _poll_records():
 
 
 def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
-    from . import model as M, senate2026 as SN, gov2026 as GV
+    from . import model as M, senate2026 as SN, gov2026 as GV, national_mood as NMOOD
 
     rec, C = _poll_records()
     sysd = {"house": C["house_poll_sys"], "senate": C["sen_poll_sys"], "governor": C["gov_poll_sys"]}
@@ -92,7 +92,7 @@ def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
     # ---- House: model.simulate's pieces
     st_names = sorted(set(s["state"]))
     si = {x: i for i, x in enumerate(st_names)}
-    resf = np.where(s["n_eff"].notna(), s["mu_local_sd"].astype(float).values / M.PRIOR_SD, 1.0)
+    resf = np.where(s["n_eff"].notna(), s["mu_local_sd"].astype(float).values / s["prior_sd"].astype(float).values, 1.0)
     seats = []
     for i, r in s.reset_index(drop=True).iterrows():
         fixed = bool(r.get("uncontested", False))
@@ -135,19 +135,21 @@ def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
         "sys": sysd["house"],
     }
 
-    def statewide(F, office, slope_mult):
+    def statewide(F, office, shared, slope):
+        """shared: the statewide shock the office's simulation draws (pts of margin, before its national slope - the sd
+        senate2026.simulate_senate passes to model.national_shock, so the movement split applies to it as in the model); slope:
+        the office's national slope (NAT_SLOPE for the Senate, b3 for governors). The engine draws shared x slope."""
         races = []
         for _, r in F.reset_index(drop=True).iterrows():
             el = float(r["elast"]) if "elast" in F and pd.notna(r.get("elast")) else 1.0
-            # the Senate simulation adds RACE_EXTRA to each race's own sd and draws the shared shock at STATE_SHARED_MISS;
-            # governors draw theirs at GOV_SHARED_MISS with no extra - the engine has one shared draw, so governors' loading carries the ratio
+            # the Senate simulation adds RACE_EXTRA to each race's own sd; governors draw no extra
             sd_own = float(np.hypot(r["sd"], SN.RACE_EXTRA)) if office == "senate" else float(r["sd"])
-            el_mult = 1.0 if office == "senate" else SN.GOV_SHARED_MISS / SN.STATE_SHARED_MISS
             row = {
                 "st": r["state"],
                 "mu": _r(r["mu"]),
                 "sd": _r(sd_own, 3),
-                "el": _r(el * slope_mult * el_mult, 4),
+                "ssh": _r(shared, 4),
+                "sl": _r(slope * el, 4),
                 "h": _r(r.get("h_load", 0) or 0, 4),
                 "c": _r(r.get("c_load", 0) or 0, 4),
                 "a": _r(r.get("a_load", 0) or 0, 4),
@@ -171,7 +173,7 @@ def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
 
     pm = M.Params()
     sen = {
-        "races": statewide(SS, "senate", 1.0),
+        "races": statewide(SS, "senate", SN.STATE_SHARED_MISS / SN.NAT_SLOPE, SN.NAT_SLOPE),
         "holdD": SN.NOW_D - d_up,
         "holdR": None,
         "sys": sysd["senate"],
@@ -180,13 +182,27 @@ def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
     sen["holdR"] = 100 - sen["holdD"] - len(sen["races"])
     gov = (
         {
-            "races": statewide(GS, "governor", float(gslope) / SN.NAT_SLOPE),
+            # gov2026.simulate: shared GOV_SHARED_MISS / NAT_SLOPE, elast b3 / NAT_SLOPE -> the shock reaches a race at b3
+            "races": statewide(GS, "governor", SN.GOV_SHARED_MISS / SN.NAT_SLOPE, SN.NAT_SLOPE),
             "holdD": GV.NOW_D - gov_up_d,
             "need": 26,
             "sys": sysd["governor"],
             "slope": float(gslope),
         }
         if GS is not None
+        else None
+    )
+    # the early-vote movement split (model.MOVE, early_vote.setup): the national and statewide shocks are the rest of each
+    # shock x the House / statewide draw + the movement sd m x a shared movement draw x the state's exposure k; the two main
+    # draws are correlated rho_r so that the total correlation stays national_mood.RHO_STATEWIDE
+    mv = M.MOVE
+    move = (
+        {
+            "m": round(float(mv["m"]), 4),
+            "rho_r": float(mv["meta"].get("rho_r", NMOOD.RHO_STATEWIDE)),
+            "k": {st: round(float(v), 4) for st, v in mv["k"].items()},
+        }
+        if mv is not None
         else None
     )
     doc = {
@@ -196,10 +212,11 @@ def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
         "shared": {
             "state_miss": SN.STATE_SHARED_MISS,
             "nat_slope": SN.NAT_SLOPE,
-            "rho": 0.3,
+            "rho": NMOOD.RHO_STATEWIDE,
             "group_sd": {"hisp": pm.s_hisp, "cuban": pm.s_cuban, "asian": pm.s_asian},
             "wnc_sd": SN.WNC_SD,
         },
+        "move": move,
         "house": house,
         "senate": sen,
         "governor": gov,

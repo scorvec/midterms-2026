@@ -261,9 +261,8 @@ def main():
         "polls": polls,
         "house": house,
         "senate": sen,
-        "notes": {**methodology_notes(s), "backtests": ""},
+        "notes": {**methodology_notes(s, SS), "backtests": BACKTEST_NOTE},
     }
-    out["notes"]["backtests"] = BACKTEST_NOTE
     out["mood"] = MOOD
     out["national_vote"] = national_vote(E_now, MOOD, Z)
     try:  # governors (midterms/gov2026.py), same national draw
@@ -435,27 +434,29 @@ def national_vote(E_now, MOOD, Z):
     }
 
 
-def methodology_notes(s):
-    """The about page's technical notes, with every number read from the live constants so the text cannot fall behind
-    the model."""
+def methodology_notes(s, SS=None):
+    """The about page's technical notes, with every number read from the live fit and constants so the text cannot fall
+    behind the model. s: the House seat table; SS: the Senate race table (its Maine heating-oil shift is quoted)."""
     from . import money as MON
     from .race_poll_calibration import OUT as CAL_PATH
     from . import national_mood as NMOOD
 
     mood = NMOOD.mapping()
     P = M.Params()
-    b, c, _, _ = M.fit_prior((2018, 2022))
+    fit = M.fit_prior((2018, 2022))
+    b, c = fit.b_lean, fit.c_inc
     _bm, cm, mm, _, _ = MON.coefficients()
     cal = json.loads(CAL_PATH.read_text())
     spd, spr = cal["sponsor"]["D"]["lean"], -cal["sponsor"]["R"]["lean"]
     fm = s.attrs.get("factor_mean", {}) if hasattr(s, "attrs") else {}
-    heat = M.heating_oil_shift("state")
+    heat_me = float(SS.set_index("state")["heat_oil_shift"].get("ME", 0.0)) if SS is not None else 0.0
     hr = M.heat_retail()
     und_max = 100 * (M.UND_SLOPE * (M.UND_CAP - M.UND_FREE))
     house = (
-        f"mu = {P.k0:.1f} + {b:.2f}*lean + {c:.1f}*inc + E (lean = 0.75 x (2024 president - nation) + 0.25 x (2020 president - nation) on the 2026 maps, margin points, from precinct returns; fitted on the same lean on the 2018 and 2022 maps), fundraising: + {mm:.2f} x log(D / R individual contributions "
+        f"mu = {fit.k0:.2f} + {b:.2f}*lean + {c:.1f}*inc + E, prior sd {fit.sd:.1f} (lean = 0.75 x (2024 president - nation) + 0.25 x (2020 president - nation) on the 2026 maps, margin points, from precinct returns; "
+        f"fitted on the contested seats of 2018 and 2022 with the same lean on those maps, the intercept = the fitted year intercepts minus those years' national House vote), fundraising: + {mm:.2f} x log(D / R individual contributions "
         f"through June 30, $10k floor) - out of sample it cut competitive-seat error 5.5 % (2018) and 3.8 % (2022), and moves incumbency from "
-        f"{c:.1f} to {cm:.1f}; race polls from the state pages blended by precision (per-poll sd {M.HOUSE_POLL_SD}, shared {M.HOUSE_POLL_SYS}; a poll's "
+        f"{c:.1f} to {cm:.1f}; race polls from the state pages blended by precision (per-poll sd {M.HOUSE_POLL_SD}, shared {M.HOUSE_POLL_SYS}, Student-t with {M.ROBUST_NU} degrees of freedom; a poll's "
         f"precision fades with a {M.AGE_HALF:.0f}-day half-life, no hard window); seats with no Democrat or no Republican on the ballot are decided "
         f"(CA-40 R-v-R, D-v-D top-two), an independent incumbent facing only a Democrat (CA-6) keeps incumbency; every race poll (House and Senate) "
         f"is corrected for its pollster's measured lean (538's 2016-22 record, shrunk) or, failing that, its sponsor tag: D-sponsored polls ran "
@@ -487,11 +488,12 @@ def methodology_notes(s):
             else ""
         )
         + (
-            f"; heating-oil adjustment (judgment, not backtested): fuel-oil household share x retail heating-oil rise (EIA weekly Maine "
+            f"; heating-oil adjustment (judgment, not backtested): fuel-oil household share x the year's change in retail heating oil (EIA weekly Maine "
             f"residential price ${hr['now']:.2f} for the week of {hr['now_date']}"
             + ("" if hr["in_season"] else " - EIA's survey runs October to March, so the last published week is held")
             + f", v ${hr['yr_ago']:.2f} a year earlier) x {M.HEAT_GAL:.0f} gal x {M.HEAT_PTS_PER_DOLLAR * 1000:.2f} pts per $1,000 x the share not "
-            f"yet in polls, against the president's party (Maine {heat.get('ME', 0.0):+.1f})"
+            f"yet in the race's polls (the change since its newest poll in full, the change before that at {100 * M.HEAT_UNPRICED:.0f} %; a race with no polls "
+            f"{100 * M.HEAT_UNPRICED:.0f} %), in either direction, against the president's party (Maine Senate {heat_me:+.2f})"
             if hr
             else "; heating-oil adjustment off (EIA price unavailable)"
         )
@@ -528,9 +530,11 @@ def methodology_notes(s):
         )
         + (
             f"heating-oil adjustment by state fuel-oil share; appointed incumbents (Husted, Moody) get {SN.APPOINTEE_INC} of the incumbency term "
-            f"(12 appointees 2006-22 averaged +6.3 over an open-seat prior); shared statewide polling miss {SN.STATE_SHARED_MISS:g} pts in either direction (the root-mean-square of the cycle-wide statewide miss "
-            f"1998-2022) plus {SN.RACE_EXTRA:g} pts of extra race-level spread, which keeps each race's total spread of the earlier 4.2 shared "
-            f"miss but lowers the correlation between races to what past cycles show (governors keep {SN.GOV_SHARED_MISS:g}); the prior's lean "
+            f"(12 appointees 2006-22 averaged +6.3 over an open-seat prior); the simulation draws a shared statewide polling miss of {SN.STATE_SHARED_MISS:g} pts "
+            f"in either direction (the root-mean-square of the cycle-wide statewide miss 1998-2022) plus {SN.RACE_EXTRA:g} pts of extra race-level spread, "
+            f"on top of the {SN.race_sys():.1f} the blend keeps - together more than the measured race-average miss; the split was tuned on the "
+            f"walk-forward backtest, where it scored seat counts better calibrated and the correlation between races closer to the 0.13 past cycles show "
+            f"(governors keep {SN.GOV_SHARED_MISS:g} with no extra); the prior's lean "
             f"and incumbency slopes follow their 1982-2024 trends (incumbency worth less, lean more, a tighter prior than a pooled fit), drawn with "
             f"correlation {NMOOD.RHO_STATEWIDE:g} to the House's national draw (the generic-ballot miss and the Senate's shared polling miss "
             f"correlated about +0.3 over 13 cycles, not 1)"

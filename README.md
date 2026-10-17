@@ -42,8 +42,9 @@ Hispanic factors, white non-college and urbanization factors; the district polls
 archive of rated polls (`race_poll_calibration.py`): sponsored polls are shifted and down-weighted, each pollster's
 measured lean is removed, polls with many undecided or third-party respondents and polls from inexperienced pollsters
 get more variance, older polls fade (63-day half-life, 150-day window), and several versions of one survey count once.
-The blend is a Student-t (robust) update, so a poll that disagrees with everything else counts for less until other
-polls confirm it.
+The blend is a Student-t (robust) update against the fit's own prior sd, so a poll that disagrees with everything else
+counts for less until other polls confirm it; the measured poll errors enter as standard deviations (the t scale is
+adjusted for the degrees of freedom).
 
 **Senate** (`senate2026.py`). The same pipeline with a prior refitted on every Democrat-v-Republican Senate race
 1982-2024, with linear time trends in the lean and incumbency slopes (the Senate has nationalized). Independent
@@ -96,7 +97,8 @@ the information available then. [Model notes](#model-notes) records the scores, 
 - **Ranked-choice transfers** (`python -m midterms.rcv --backtest`): each count predicted from its official first round with
   rates fitted on the other counts (`web/about.html#rcv`).
 - **Reconstructed history** (`backfill.py`): the history lines on the forecast page are the current model run as of
-  every past date with only the polls released by then. `python -m midterms.backfill --check` reruns today's
+  every past date with only the polls released by then, the fundraising reports received, the pollster experience, the
+  heating-oil price and the early-vote snapshot of that date. `python -m midterms.backfill --check` reruns today's
   reconstruction and compares it with `web/data/model.json`.
 
 Where cycles are compared, significance is judged per election cycle, since a cycle shares one national miss: an exact
@@ -143,6 +145,7 @@ Other workflows:
 | `stateleg-geo.yml` | builds the district maps `web/data/stateleg_geo/` from Census TIGER/Line when the chamber list or the district leans change |
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
 | `cd-lean.yml` | manual: the congressional-district leans (`cd_lean_build.py`) on the 2026 maps or on the 2018 and 2022 maps |
+| `district-inputs.yml` | manual: the urbanization index, the House map shapes and (for states back on their old lines) the demographic tables on the maps in force for 2026 (`demog.cd_blocks`); dispatch after a court ruling changes a state's map |
 
 ## Run it yourself
 
@@ -160,7 +163,7 @@ The first run downloads every source page and takes longer than a daily run. Ind
 ```
 python -m midterms.generic                      # generic-ballot and approval trends -> data/cache/generic_model.json
 python -m midterms.build_web                    # simulate from the cached inputs -> web/data/
-python -m midterms.backtest 2022 2022-09-15     # House model as of a date in a past cycle, scored
+python -m midterms.backtest 2022 2022-09-15     # the live House path as of a date in a past cycle, scored
 python -m midterms.gov_backtest all             # governor harness: every variant, then the report
 python -m midterms.stateleg_backtest            # state-legislature backtest
 python -m midterms.backfill --check             # today's reconstruction against web/data/model.json
@@ -200,9 +203,9 @@ Committed inputs (`data/static/`):
 
 | file | contents | source / licence |
 |---|---|---|
-| `district_groups_2026.csv`, `state_groups.csv`, `district_wnc_2026.csv` | citizen voting-age population by Hispanic / Asian origin group, white non-college share, per 2026 district and state | U.S. Census Bureau ACS 2020-2024 5-year tables + PUMS, 120th-Congress block equivalency (public domain); built by `demog.py` |
-| `district_heat_oil_2026.csv`, `state_heat_oil.csv` | share of households heating with fuel oil / kerosene | ACS B25040 (public domain); `demog.heat_oil_shares` |
-| `urbanization_2026.csv` | urbanization index on the 2026 maps | 538 urbanization index 2022 (CC BY 4.0) carried to the new maps with Census block-group populations; `urban.py` |
+| `district_groups_2026.csv`, `state_groups.csv`, `district_wnc_2026.csv` | citizen voting-age population by Hispanic / Asian origin group, white non-college share, per 2026 district and state | U.S. Census Bureau ACS 2020-2024 5-year tables + PUMS, the block equivalency file of the map in force (`demog.cd_blocks`: the 120th Congress, Missouri on its 119th-Congress lines after the Supreme Court blocked its 2025 map); built by `demog.py`, the Missouri rows from the Census API's district tables (`demog.patch_cd119`) |
+| `district_heat_oil_2026.csv`, `state_heat_oil.csv` | share of households heating with fuel oil / kerosene | ACS B25040 (public domain); `demog.heat_oil_shares`, Missouri as above |
+| `urbanization_2026.csv` | urbanization index on the 2026 maps | 538 urbanization index 2022 (CC BY 4.0) carried to the maps in force with Census block-group populations; `urban.py` |
 | `early_share_2022.json` | each state's share of 2022 ballots cast before Election Day | U.S. EAC 2022 EAVS (public domain); `early_vote.py` |
 | `early_profile.json` | the timing profile of pre-Election-Day ballots (W, P of h(tau) = (1 - tau/W)^P) with the derived shares it was fitted to | UF Election Lab national early-vote tables (2024 via Wayback Machine captures; shares only, the tables are not redistributed); `python -m midterms.early_vote profile` |
 | `fec_june30_{2018,2022,2026}.csv`, `fec_senate_june30_2026.csv`, `fec_reports_2026.csv`, `fec_nominees_2026.csv` | candidate fundraising through June 30 (House nominees; Senate nominees for the funded-independent rule) | FEC / OpenFEC (public domain); the House files are built by `fec_money.py` |
@@ -219,7 +222,7 @@ Committed inputs (`data/static/`):
 | `tx_early_sources.json`, `tx_county_pres2024.csv` | sources for the Texas tracker; 2024 presidential votes by Texas county | Texas Secretary of State (public records); MIT Election Data and Science Lab 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), summed by county |
 
 `web/data/districts_2026.topo.json` (district shapes) is built by `district_shapes.py` from Census 2020 cartographic block
-groups and the 120th-Congress block equivalency files (public domain).
+groups and the block equivalency file of the map in force (`demog.cd_blocks`; public domain).
 
 `data/state/` holds poll toplines as posted by the feeds (Polling USA, pollresults.org - poll data from The New York Times,
 CC BY 4.0), `race_poll_seen.csv` (the date each race poll first appeared on the forecast page), the Center Square generic
@@ -255,7 +258,10 @@ held is downloaded again, and `fetch.py` prints its request and byte totals per 
 The one-time builders (`demog.py`, `urban.py`, `district_shapes.py`, `cd_lean_build.py`, `stateleg_build.py`,
 `fec_money.py`) need large downloads (ACS summary files and PUMS, Census geography, precinct returns; several GB) or an
 API key and are not part of the daily run; their docstrings list the exact inputs. The geographic builders also need
-GeoPandas (the state-legislature workflows install it), and `district_shapes.py` runs mapshaper through `npx`.
+GeoPandas (the state-legislature and `district-inputs.yml` workflows install it), and `district_shapes.py` runs mapshaper
+through `npx`. Every 2026 district input reads the map through `demog.cd_blocks`, which places the states whose adopted map a
+court blocked (`demog.MAP_FROM_CD119`: Missouri) on their 119th-Congress lines; `cd_lean_build.MAP_STATUS` holds the dated
+sources and a test keeps the two in step.
 
 ### Secrets
 
@@ -409,10 +415,15 @@ Measured, not used:
   cycles, 1,615 race-dates): log loss -0.0079 (7/10 cycles; sign-flip p 0.061, race bootstrap p < 0.001), Brier -0.0025,
   CRPS -0.23; 2014-2024 better in 6/6 cycles, worse in 2006, 2008 and 2012. The gain is largest in cycles whose polls
   overstated Democrats; unpolled races show the same time pattern.
-- **Shared and race errors** (`STATE_SHARED_MISS` 3.1, `RACE_EXTRA` 2.83). The cycle-wide statewide miss is 3.1 over
-  1998-2022 (RMS about zero, no direction), and a single 4.2 shared shock implied a correlation between race errors of
-  0.34 against 0.13 measured. Each race keeps its total spread (sqrt(3.1^2 + 2.83^2) = 4.2); only the correlation falls.
-  Race scores unchanged; seat-count PIT sd 0.265 -> 0.299 (uniform 0.289). Governors keep `GOV_SHARED_MISS` 4.2.
+- **Shared and race errors** (`STATE_SHARED_MISS` 3.1, `RACE_EXTRA` 2.83, `SEN_S_NAT`). Two settings tuned separately on
+  the harness, which do not reconcile arithmetically and are documented as such in `senate2026.py`: each race's blend nets
+  a lead-dependent shared part (`SEN_S_NAT` x the national slope, about 2.3 points three weeks out) out of the measured
+  midterm race-average miss of 4.0, keeping about 3.3 as its own systematic error; the simulation then draws a fixed
+  3.1-point shared shock (the RMS cycle-wide statewide miss 1998-2022, about zero) and adds 2.83 points of race-level
+  spread, so a race's systematic spread is about 5.3 points. Against a single 4.2 shared shock (which implied a
+  correlation between race errors of 0.34 against 0.13 measured) race scores were unchanged and the seat-count PIT sd
+  moved 0.265 -> 0.299 (uniform 0.289); the deep review had found race-level errors larger than modelled. Governors
+  keep `GOV_SHARED_MISS` 4.2 with no extra.
 - **Midterm poll error** (`MIDTERM_POLL_SYS_K` 0.8): the shared per-race Senate polling miss is smaller in midterms (4.1
   v 4.7 in presidential years); scaling it by the measured ratio improved log loss in all five midterms 2006-2022 and is
   applied in midterm years only.
@@ -528,11 +539,14 @@ assumes no direction and widens the state-level error instead.
 
 ### Heating-oil adjustment
 
-A judgment term, not backtested (no past cycle had a comparable price shock): the rise in retail heating oil over the past
-year, times each district's (state's) share of oil-heated homes, times a typical household's 650 gallons, at 0.78
-generic-ballot points per dollar of gasoline spread over 750 gallons, times the share not yet priced into the polls,
-against the president's party (`model.heating_oil_shift`). The price is EIA's weekly Maine No. 2 heating oil residential
-price; EIA's survey runs from October to March, and outside the season the last published week is held.
+A judgment term, not backtested (no past cycle had a comparable price shock): the change in retail heating oil over the
+past year, times each district's (state's) share of oil-heated homes, times a typical household's 650 gallons, at 0.78
+generic-ballot points per dollar of gasoline spread over 750 gallons, times the part of the change not yet in the race's
+polls, against the president's party (`model.heating_oil_shift`; a fall enters with the opposite sign). The unpriced part is
+race-specific (`model.unpriced_change`): the change since the race's newest poll was fielded counts in full, the change before
+it at half (`HEAT_UNPRICED`); a race without polls takes half of the whole change. The price is EIA's weekly Maine No. 2
+heating oil residential price; EIA's survey runs from October to March, and outside the season the last published week is
+held. The reconstructed history evaluates it at each past date.
 
 ### State legislatures (experimental)
 
@@ -639,10 +653,12 @@ largest in West Virginia and Kentucky) and 2.4 (the PVI column of its 2022 urban
 
 **Fit** (`model.fit_prior`, contested seats 2018 and 2022, n 795; the 538 / Cook leans it replaced in brackets): lean slope
 0.918 (0.951), incumbency 4.47 (4.58), residual sd 7.35 (7.41); with fundraising (`money.coefficients`) 0.855 (0.889), 3.34
-(3.51) and 1.31 (1.25) per unit of the log money ratio. `Params.k0`, the contested-margin intercept over the national House
-margin, is 0.4 (2018 -0.79, 2022 +1.63); the 1.1 it replaced came from an earlier fit - the same definition gives 0.78 on
-the old leans. Fundraising still helps out of sample on the new lean (all-seat RMSE fit on one cycle and scored on the
-other: -5.6 % in 2018, -2.6 % in 2022).
+(3.51) and 1.31 (1.25) per unit of the log money ratio. Nothing about the prior is a stored constant: every run refits it,
+and the intercept k0 (the contested-margin intercept over the national House vote, `data_prep.national_house_vote`) and the
+prior sd come out of the same fit - 0.42 (2018 -0.79, 2022 +1.63) and 7.35 today. Until October 2026 the blend used a
+hand-copied prior sd of 6.7 and k0 of 0.4 from the earlier 538 / Cook fit, so the switch of lean had left the polls weighed
+against a prior 20 % tighter than the fit said. Fundraising still helps out of sample on the new lean (all-seat RMSE fit on
+one cycle and scored on the other: -5.6 % in 2018, -2.6 % in 2022).
 
 **Backtest.** The live House path (`model.house_blend`, `factor_update`, `simulate`) on 2018 and 2022, each year forecast
 from the other's fit (slopes, k0, fundraising), 538's House polls as released, the generic-ballot average at the lead, 7

@@ -73,22 +73,23 @@ NOW_D, NOW_R = 47, 53  # current Senate (independents with the Democrats)
 # the D-v-R prior in their margin over the Republican: no shift, and the x2 prior sd (17.7) covers that spread.
 IND_SHIFT, IND_SHIFT_SD, SPLIT_PRIOR_MULT = 12.0, 9.0, 2.0
 IND_MIN_RATIO = 0.25
-# In the Senate the shared term is calibrated to the measured shared statewide polling miss, and the polled races that decide the
+# Statewide poll error, in two places that were tuned separately on the walk-forward harness and do not reconcile
+# arithmetically - say so rather than pretend the second is derived from the first:
+#   * the blend (race_sys) takes the measured midterm race-average miss (POLL_SYS_TOTAL 4.0) and nets out the shared part it
+#     expects the simulation to draw, SEN_S_NAT x NAT_SLOPE; SEN_S_NAT follows the lead (national_mood.apply sets it to 3.2/4.5 of
+#     the national-vote error, 2.9 about three weeks out), so race_sys is about 3.3 then;
+#   * the simulation draws a FIXED shared shock of STATE_SHARED_MISS = 3.1 points (not SEN_S_NAT x NAT_SLOPE) and adds RACE_EXTRA
+#     2.83 to every race's own spread, so a race's systematic spread is about sqrt(3.3^2 + 3.1^2 + 2.83^2) = 5.3 points, above the
+#     measured 4.0. The harness preferred that: against a single 4.2 shared shock, race log loss -0.0003 / CRPS -0.004
+#     (unchanged), seat-count PIT sd 0.265 -> 0.299 (uniform 0.289), cycle-dates inside the 10-90 % seat range 100 % -> 90 %
+#     (nominal 80 %); and the deep review found race-level errors larger than modelled while the implied correlation between
+#     race errors (0.34 at a 4.2 shared shock) was above the 0.13 measured. The 3.1 is the RMS cycle-wide statewide miss
+#     1998-2022 (538 raw_polls Senate + governor, about zero; 3.2-3.3 on the harness 2006-24); 4.2 is the RMS of the 2018-24
+#     Senate cycle means alone, and 2.83 = sqrt(4.2^2 - 3.1^2). Senate only: governors keep GOV_SHARED_MISS 4.2 with no extra.
+# In the Senate the shared term is sized to the measured shared statewide polling miss, and the polled races that decide the
 # chamber are ~85 % poll; the House's wider national error is the environment error that its mostly unpolled seats carry in full.
-SEN_S_NAT = (
-    3.2  # the shared statewide shock in the blend's error split (race_sys); the simulation uses STATE_SHARED_MISS
-)
-STATE_SHARED_MISS = (
-    3.1  # shared statewide miss, pts of margin, about zero (no direction). The cycle-wide miss over a long record is
-)
-# 3.1 (538 raw_polls Senate+governor 1998-2022, RMS about zero; 3.2-3.3 on the live-path harness 2006-24); the
-# RMS of the 2018-24 cycle-mean Senate misses alone is 4.2, and with 4.2 the model's implied correlation between
-# race errors was 0.34 against 0.13 measured, while race-level errors were larger than modelled. So the shared
-# shock is 3.1 and each race gets RACE_EXTRA = sqrt(4.2^2 - 3.1^2) = 2.83 of its own, which keeps every race's
-# total spread (and its odds) and only lowers the correlation. Walk-forward harness 2006-24 against a 4.2 shared
-# shock: race log loss -0.0003 / CRPS -0.004 (unchanged), seat-count PIT sd 0.265 -> 0.299 (uniform 0.289),
-# cycle-dates inside the 10-90 % seat range 100 % -> 90 % (nominal 80 %). Senate only: governors keep
-# GOV_SHARED_MISS 4.2 with no extra (not tested there).
+SEN_S_NAT = 3.2  # the shared statewide shock netted out of the blend's race error (race_sys); set per lead by national_mood.apply
+STATE_SHARED_MISS = 3.1  # the shared statewide shock the simulation draws, pts of margin, about zero (no direction)
 RACE_EXTRA = 2.83  # extra race-level outcome spread on top of the blend's posterior sd (Senate; see above)
 GOV_SHARED_MISS = 4.2  # the governors' shared statewide miss (x b3 / NAT_SLOPE in gov2026.simulate)
 WNC_SD = 1.3  # white non-college polling-miss factor, pts per 1 sd of the state's share
@@ -381,11 +382,16 @@ def common_trend(polls, asof, knot=CT_KNOT, lam=CT_LAM, window=CT_WINDOW):
 
 
 def common_trend_adjust(collected, asof):
+    def real(p):  # the race's own polls, not the projected sub-state rows (model.substate_polls flags them _sub)
+        if "_sub" not in p:
+            return p
+        return p[~p["_sub"].astype("boolean").fillna(False).astype(bool)]
+
     pool = pd.concat(
         [
-            p[~p.get("_sub", pd.Series(False, index=p.index)).fillna(False).astype(bool)].assign(
-                race=r["state"] + ("-sp" if r["special"] else "")
-            )[["race", "pollster", "end_date", "margin"]]
+            real(p).assign(race=r["state"] + ("-sp" if r["special"] else ""))[
+                ["race", "pollster", "end_date", "margin"]
+            ]
             for r, p, _ in collected
             if not p.empty
         ],
@@ -477,6 +483,12 @@ def run(E, asof=None, n=20000, seed=11, nat_z=None):
         collected.append((r, p, meta))
     if SEN_COMMON_TREND and collected:
         collected = common_trend_adjust(collected, asof)
+    # heating-oil shift (generic-ballot points, reaching a Senate race at NAT_SLOPE as E does): the unpriced part depends on
+    # each race's newest poll. The state is the key (one Senate race per state this year; a race's poll rows carry seat = state)
+    newest = {}
+    for _r, p, _ in collected:
+        newest.update(M.newest_poll_dates(p, asof))
+    heat = M.heating_oil_shift("state", asof, newest)
     for r, p, meta in collected:
         pa = M.poll_average(p, asof) if not p.empty else pd.DataFrame()
         pm, ne, np_, vm = (
@@ -517,11 +529,7 @@ def run(E, asof=None, n=20000, seed=11, nat_z=None):
             )  # robust Student-t race blend
         else:
             mu, sd = blend_race(mu_prior, psd, pm, ne, vm, rsd)
-        # heating-oil shift is in generic-ballot points: it reaches a Senate race at NAT_SLOPE, as E does (governors use their own
-        # slope b[3])
-        mu = mu + NAT_SLOPE * M.heating_oil_shift("state").get(r["state"], 0.0) * (
-            1.0 if meta.get("challenger_party", "D") in ("D", "I") else 0.0
-        )
+        mu = mu + NAT_SLOPE * heat.get(r["state"], 0.0)
         rows.append(
             {
                 **r.to_dict(),
@@ -541,6 +549,7 @@ def run(E, asof=None, n=20000, seed=11, nat_z=None):
                 "mu": mu,
                 "sd": sd,
                 "newest_poll": (p["end_date"].max().date().isoformat() if not p.empty else None),
+                "heat_oil_shift": NAT_SLOPE * heat.get(r["state"], 0.0),
                 "rcv": RC.NOTE if rcv_on else "",
                 "rcv_sd": rsd,
             }

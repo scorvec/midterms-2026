@@ -12,26 +12,47 @@ Sources (all Census, all bulk files; the Census API now needs a key):
   ACS 2020-2024 5-year PUMS persons (data/raw/acs/csv_pus.zip): CVAP rate (18+ and citizen) by group,
     per PUMA shrunk to the state. Needed because origin tables count everyone: Venezuelans in Doral are
     mostly not citizens, Cubans mostly are, and the tract tables do not cross origin with citizenship.
-  120th Congress block equivalency (data/raw/geo/NationalCD120.txt): the 2026 maps, incl. the 2025-26
-    redraws (AL CA FL LA NC OH TN TX UT). Census 2020 block-group population centres (CenPop2020_Mean_BG)
-    weight each tract's block groups; the ~3 % of people in block groups split by a district line are
-    shared by block count.
+  120th Congress block equivalency (cd_blocks: data/raw/geo/NationalCD120.txt, or the parquet copy
+    cd_lean_build downloads): the 2026 maps, incl. the 2025-26 redraws (AL CA FL LA NC OH TN TX UT) - with
+    the states whose adopted map a court blocked (MAP_FROM_CD119: Missouri) on their 119th-Congress lines.
+    Census 2020 block-group population centres (CenPop2020_Mean_BG) weight each tract's block groups; the
+    ~3 % of people in block groups split by a district line are shared by block count.
+  For the MAP_FROM_CD119 states the three district tables can also be patched straight from the Census API's
+  119th-Congress district rows (patch_cd119; the daily workflow district-inputs.yml does this), which needs no
+  tract files.
 
 Group CVAP in a tract = (Hispanic or Asian CVAP of the tract) x the group's share of that CVAP, where the
 share is pop_g x rate_g / sum_h pop_h x rate_h, so the groups always add up to the published CVAP.
 
 Run: python -m midterms.demog [--validate]   -> data/cache/district_groups_2026.csv
+     python -m midterms.demog --fetch-geo     -> the block files, block-group population centres and shapes into data/raw
+     python -m midterms.demog --patch-cd119   -> the MAP_FROM_CD119 states' rows of the three data/static district tables
 """
 
 from __future__ import annotations
+import json
 import sys
+import urllib.parse
 import zipfile
 import numpy as np
 import pandas as pd
 from .data_prep import ROOT, RAW, CACHE
+from .paths import STATIC
 
 ACS = RAW / "acs"
 GEO = RAW / "geo"
+# Which congressional map is in force for 2026 where the Census 120th-Congress block equivalency file does not say: the file
+# records the plans states adopted and does not follow later court orders. Missouri's 2025 map was blocked by the U.S. Supreme
+# Court on 2026-09-25; it votes on its 2022 lines, which are the 119th-Congress districts. cd_lean_build.MAP_STATUS carries the
+# dated sources for every redrawn state (tests keep the two in step).
+MAP_FROM_CD119 = frozenset({"29"})  # state FIPS codes whose 2026 districts are their 119th-Congress lines
+# Maps that changed between the 2022 election (538's urbanization file, the 118th Congress) and the 2024 election (CD119):
+# AL (court-ordered map), GA, LA, NC, NY. With the states the lean build marks redrawn between CD119 and CD120, the set of states
+# whose 2026 district is not the 2022 one (run2026.load_seats, urban.main).
+REDRAWN_2024 = frozenset({"AL", "GA", "LA", "NC", "NY"})
+CENSUS_API = (
+    "https://api.census.gov/data/2024/acs/acs5"  # ACS 2020-2024 5-year: congressional districts are the 119th Congress
+)
 
 HISP_GROUPS = {  # PUMS HISP codes -> group ; B03001 lines -> group
     "mexican": ([2], [4]),
@@ -236,11 +257,62 @@ def tract_rates(tracts: pd.Index) -> pd.DataFrame:
     return R.fillna(nat)
 
 
+# ---------------------------------------------------------------- which district a block is in
+def _bef_raw(congress: int) -> pd.DataFrame:
+    """Block -> district (GEOID, CDFP) of one Congress as the Census filed it: data/raw/geo/NationalCD1xx.txt when present,
+    else the parquet copy cd_lean_build.bef downloads (block, cd). Unassigned blocks (ZZ, 98) dropped."""
+    f = GEO / f"NationalCD{congress}.txt"
+    if f.exists():
+        b = pd.read_csv(f, dtype=str, usecols=["GEOID", "CDFP"])
+    else:
+        from . import cd_lean_build as C
+
+        b = C.bef(congress).rename(columns={"block": "GEOID", "cd": "CDFP"})[["GEOID", "CDFP"]]
+    return b[~b.CDFP.isin(["ZZ", "98"])]
+
+
+def cd_blocks(congress: int = 120) -> pd.DataFrame:
+    """Block -> district (GEOID, CDFP) of the map in force: congress 120 = the 2026 maps, with the MAP_FROM_CD119 states on their
+    119th-Congress lines; congress 119 (or 118) as filed. Every builder of a 2026 district input reads the map through here."""
+    b = _bef_raw(congress)
+    if congress == 120 and MAP_FROM_CD119:
+        old = _bef_raw(119)
+        st = b.GEOID.str[:2]
+        b = pd.concat([b[~st.isin(MAP_FROM_CD119)], old[old.GEOID.str[:2].isin(MAP_FROM_CD119)]], ignore_index=True)
+    return b
+
+
+def fetch_geo():
+    """The small geography inputs of the district builders (idempotent; GitHub Actions, district-inputs.yml): the block files of
+    the 119th and 120th Congresses (cd_lean_build.bef), the 2020 block-group population centres and the 2020 cartographic
+    block-group shapes. The ACS tract files and PUMS the full demographic build needs are not fetched here."""
+    from . import cd_lean_build as C
+    from .stateleg_build import stream
+
+    for n in (119, 120):
+        if not (GEO / f"NationalCD{n}.txt").exists():
+            C.bef(n)
+    GEO.mkdir(parents=True, exist_ok=True)
+    for dest, url in (
+        (
+            GEO / "CenPop2020_Mean_BG.txt",
+            "https://www2.census.gov/geo/docs/reference/cenpop2020/blkgrp/CenPop2020_Mean_BG.txt",
+        ),
+        (
+            GEO / "shapes" / "cb_2020_us_bg_500k.zip",
+            "https://www2.census.gov/geo/tiger/GENZ2020/shp/cb_2020_us_bg_500k.zip",
+        ),
+    ):
+        if not dest.exists():
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            stream(url, dest)
+            print(f"  fetched {dest.name} ({dest.stat().st_size / 1e6:.1f} MB)")
+
+
 # ---------------------------------------------------------------- tract -> district weights
-def tract_district_weights(bef="NationalCD120.txt") -> pd.DataFrame:
-    """(tract, state, cd, w): share of the tract's 2020 population in each district."""
-    b = pd.read_csv(GEO / bef, dtype=str, usecols=["GEOID", "CDFP"])
-    b = b[~b.CDFP.isin(["ZZ", "98"])]
+def tract_district_weights(congress: int = 120) -> pd.DataFrame:
+    """(tract, state, cd, w): share of the tract's 2020 population in each district of the map in force (cd_blocks)."""
+    b = cd_blocks(congress)
     b["bg"] = b.GEOID.str[:12]
     nb = b.groupby(["bg", "CDFP"]).size().rename("nblk").reset_index()
     nb["frac"] = nb.nblk / nb.groupby("bg").nblk.transform("sum")
@@ -288,8 +360,8 @@ def fill_missing_tracts(f: pd.DataFrame, need: pd.Index) -> pd.DataFrame:
     return pd.concat([f, add])
 
 
-def build(bef="NationalCD120.txt", out_name="district_groups_2026.csv") -> pd.DataFrame:
-    w = tract_district_weights(bef)
+def build(congress: int = 120, out_name="district_groups_2026.csv") -> pd.DataFrame:
+    w = tract_district_weights(congress)
     f = fill_missing_tracts(acs_frame("1400000"), pd.Index(w.tract.unique()))
     g = group_cvap(f, tract_rates(f.index))
     m = w.merge(g, left_on="tract", right_index=True, how="left").fillna(0)
@@ -305,7 +377,7 @@ def build(bef="NationalCD120.txt", out_name="district_groups_2026.csv") -> pd.Da
 
 def validate():
     """Same method on the 119th-Congress map vs the Census's own CD119 tables (direct, not built from tracts)."""
-    d = build("NationalCD119.txt", "district_groups_cd119_check.csv").set_index("seat")
+    d = build(119, "district_groups_cd119_check.csv").set_index("seat")
     f = acs_frame("5001900")
     f = f[f.index.str[2:4].str.isdigit() & (f.index.str[2:4] != "98") & f.index.str[:2].isin(list(FIPS))]
     st = f.index.str[:2]
@@ -376,25 +448,10 @@ def build_states(out_name="state_groups.csv") -> pd.DataFrame:
     return g
 
 
-if __name__ == "__main__":
-    if "--validate" in sys.argv:
-        validate()
-    else:
-        d = build()
-        print(len(d), "seats")
-        print(
-            d.sort_values("sh_hisp", ascending=False)[
-                ["seat", "cvap", "sh_hisp", "sh_mexican", "sh_cuban", "sh_puerto_rican"]
-            ]
-            .head(12)
-            .to_string(index=False)
-        )
-
-
-def district_wnc(bef="NationalCD120.txt", out_name="district_wnc_2026.csv") -> pd.DataFrame:
+def district_wnc(congress: int = 120, out_name="district_wnc_2026.csv") -> pd.DataFrame:
     """White non-college share per district, the House twin of state_groups.sh_wnc: White non-Hispanic
     CVAP share x (1 - BA+ share of adults 25+), both aggregated from tracts through the block-equivalency weights."""
-    w = tract_district_weights(bef)
+    w = tract_district_weights(congress)
     f = acs_frame("1400000")[["cvap", "cvap_wnh"]]
     e = _table("b15003", "1400000", [1, 22, 23, 24, 25])
     t = f.join(pd.DataFrame({"a25": e[1], "ba": e[[22, 23, 24, 25]].sum(axis=1)}), how="left").fillna(0)
@@ -410,9 +467,9 @@ def district_wnc(bef="NationalCD120.txt", out_name="district_wnc_2026.csv") -> p
     return g
 
 
-def district_youth(bef="NationalCD120.txt", out_name="district_youth_2026.csv") -> pd.DataFrame:
+def district_youth(congress: int = 120, out_name="district_youth_2026.csv") -> pd.DataFrame:
     """Share of adults (18+) aged 18-29 per district, from ACS B01001 tracts through the block-equivalency weights."""
-    w = tract_district_weights(bef)
+    w = tract_district_weights(congress)
     a = _table("b01001", "1400000", range(1, 50))
     kids = a[[3, 4, 5, 6, 27, 28, 29, 30]].sum(axis=1)
     young = a[[7, 8, 9, 10, 11, 31, 32, 33, 34, 35]].sum(axis=1)
@@ -431,7 +488,7 @@ def heat_oil_shares():
     """Share of occupied housing units heated mainly by fuel oil / kerosene (ACS B25040 line 5 of line 1), per 2026 seat
     (tracts through the block-equivalency weights) and per state (direct state rows), for the heating-oil price adjustment
     (model.heating_oil_shift)."""
-    w = tract_district_weights("NationalCD120.txt")
+    w = tract_district_weights(120)
     t = _table("b25040", "1400000", [1, 5]).rename(columns={1: "hh", 5: "oil"})
     m = w.merge(t, left_on="tract", right_index=True, how="inner")
     for c in ("hh", "oil"):
@@ -448,3 +505,107 @@ def heat_oil_shares():
         (ROOT / "data" / "static" / "state_heat_oil.csv"), index=False, float_format="%.5g"
     )
     return g, s
+
+
+# ---------------------------------------------------------------- the MAP_FROM_CD119 states straight from the Census API
+def _api_districts(fips: str, variables: list) -> pd.DataFrame:
+    """One Census API request: `variables` for every congressional district of the state (119th-Congress geography in the
+    2020-2024 release) -> numeric DataFrame indexed by seat (ST-n). No key is needed at this volume."""
+    from .fetch import open_url
+
+    q = urllib.parse.urlencode({"get": ",".join(variables), "for": "congressional district:*", "in": f"state:{fips}"})
+    rows = json.loads(open_url(f"{CENSUS_API}?{q}", timeout=120))
+    df = pd.DataFrame(rows[1:], columns=rows[0])
+    cd = pd.to_numeric(df["congressional district"], errors="coerce")
+    df = df[cd.notna() & (cd != 98)]  # 98 = not defined
+    seats = FIPS[fips] + "-" + cd[df.index].astype(int).clip(lower=1).astype(str)
+    return df[variables].apply(pd.to_numeric, errors="coerce").set_axis(seats)
+
+
+def direct_cd119(fips: str) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """The three district tables (groups, white non-college, heating oil) for one state from the Census API's 119th-Congress
+    district rows: CVAP (B05003 and its Hispanic / Asian / White-NH tables), education (B15003) and heating fuel (B25040). The
+    district's Hispanic and Asian CVAP are split by origin in the state's proportions (state_groups.csv; the tract build uses
+    PUMA-level citizenship rates - the states this covers are low-Hispanic, where the difference is a few hundred people)."""
+    cv = [9, 11, 20, 22]  # citizens 18+: male native, male naturalized, female native, female naturalized
+    t = _api_districts(
+        fips,
+        [f"{tab}_{line:03d}E" for tab in ("B05003", "B05003I", "B05003D", "B05003H") for line in cv]
+        + [f"B15003_{line:03d}E" for line in (1, 22, 23, 24, 25)]
+        + ["B25040_001E", "B25040_005E"],
+    )
+    f = pd.DataFrame(
+        {
+            "cvap": sum(t[f"B05003_{line:03d}E"] for line in cv),
+            "cvap_hisp": sum(t[f"B05003I_{line:03d}E"] for line in cv),
+            "cvap_asian": sum(t[f"B05003D_{line:03d}E"] for line in cv),
+            "cvap_wnh": sum(t[f"B05003H_{line:03d}E"] for line in cv),
+        }
+    )
+    st = pd.read_csv(STATIC / "state_groups.csv").set_index("state").loc[FIPS[fips]]
+    for names, tot in ((list(HISP_GROUPS), "cvap_hisp"), ([*ASIAN_GROUPS, "other_asian"], "cvap_asian")):
+        for n in names:
+            f["cvap_" + n] = f[tot] * (float(st["cvap_" + n]) / float(st[tot]) if float(st[tot]) > 0 else 0.0)
+    g = f.copy()
+    for c in f.columns:
+        if c != "cvap":
+            g["sh_" + c.removeprefix("cvap_")] = f[c] / f["cvap"]
+    g = g.rename_axis("seat").reset_index()
+    wnc = pd.DataFrame(
+        {
+            "seat": f.index,
+            "sh_wnh": (f["cvap_wnh"] / f["cvap"]).values,
+            "college": (sum(t[f"B15003_{line:03d}E"] for line in (22, 23, 24, 25)) / t["B15003_001E"]).values,
+        }
+    )
+    wnc["sh_wnc"] = wnc["sh_wnh"] * (1 - wnc["college"])
+    heat = pd.DataFrame(
+        {"seat": f.index, "hh": t["B25040_001E"].values, "sh_oil": (t["B25040_005E"] / t["B25040_001E"]).values}
+    )
+    tot = float(f["cvap"].sum()) / float(st["cvap"]) - 1
+    assert abs(tot) < 0.02, f"{FIPS[fips]}: district CVAP sums to {100 * (1 + tot):.1f} % of the state table's"
+    return g, wnc, heat
+
+
+def patch_cd119(states=MAP_FROM_CD119):
+    """Rewrite the rows of the MAP_FROM_CD119 states in data/static/district_groups_2026.csv, district_wnc_2026.csv and
+    district_heat_oil_2026.csv from direct_cd119 (every other row untouched; the states' seat count must not change)."""
+    for fips in sorted(states):
+        g, wnc, heat = direct_cd119(fips)
+        st = FIPS[fips]
+        for name, rows in (
+            ("district_groups_2026.csv", g),
+            ("district_wnc_2026.csv", wnc),
+            ("district_heat_oil_2026.csv", heat),
+        ):
+            p = STATIC / name
+            old = pd.read_csv(p)
+            mine = old["seat"].str.startswith(st + "-")
+            assert mine.sum() == len(rows), f"{name}: {st} has {int(mine.sum())} rows, the API {len(rows)} districts"
+            new = rows.reindex(columns=old.columns)
+            assert not new.isna().any().any(), (
+                f"{name}: {st} rows incomplete - {new.columns[new.isna().any()].tolist()}"
+            )
+            at = int(np.flatnonzero(mine.values)[0])
+            out = pd.concat([old[~mine].iloc[:at], new, old[~mine].iloc[at:]], ignore_index=True)
+            out.to_csv(p, index=False, float_format="%.5g")
+            print(f"  {name}: {st} rows rebuilt on the 119th-Congress lines ({len(new)} districts)")
+
+
+if __name__ == "__main__":
+    if "--validate" in sys.argv:
+        validate()
+    elif "--fetch-geo" in sys.argv:
+        fetch_geo()
+    elif "--patch-cd119" in sys.argv:
+        patch_cd119()
+    else:
+        d = build()
+        print(len(d), "seats")
+        print(
+            d.sort_values("sh_hisp", ascending=False)[
+                ["seat", "cvap", "sh_hisp", "sh_mexican", "sh_cuban", "sh_puerto_rican"]
+            ]
+            .head(12)
+            .to_string(index=False)
+        )

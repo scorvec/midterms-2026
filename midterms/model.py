@@ -16,19 +16,20 @@ import re
 import numpy as np
 import pandas as pd
 from dataclasses import dataclass
+from typing import NamedTuple
 from . import data_prep as D
 
 # Poll error splits into a part every poll in a race shares (systematic) and a per-poll part. From
 # 538 raw_polls, polls in the last 60 days, races with >= 3 polls (2014-2022):
 #   Senate: within-race sd 4.0-4.3, systematic 3.5-6.1 (use 5.0);  House: within 5.4-6.9, systematic 2.9-5.3 (use 4.3)
-# Averaging n polls only shrinks the within-race part; the systematic part is the floor.
+# Averaging n polls only shrinks the within-race part; the systematic part is the floor. Both are standard deviations;
+# robust_blend turns the per-poll one into the Student-t scale that has that sd.
 HOUSE_POLL_SD = 5.6  # within-race, per poll
 HOUSE_POLL_SYS = 4.3
 SEN_POLL_SD = 4.2
 SEN_POLL_SYS = 5.0
 SPREAD_FREE = 6.0  # weighted sd of a race's polls that costs nothing (ordinary sampling + house effects)
 SPREAD_SCALE = 6.0  # each further 6 pts of disagreement doubles the poll variance
-PRIOR_SD = 6.7  # fundamentals residual, contested seats 2018+2022 (5.7 in |lean|<5)
 HALF_LIFE = 21.0  # poll recency weight, days
 T_DF = 5
 # Movement split (midterms/early_vote.py): None = one national draw x s_nat (backtests, backfill). When set by
@@ -39,14 +40,12 @@ MOVE = None
 
 @dataclass
 class Params:
-    k0: float = 0.4  # contested-margin intercept over the national House margin (fit_prior: 2018 -0.79, 2022 +1.63)
-    b_lean: float = 0.918
-    c_inc: float = 4.47
-    s_nat: float = 4.5  # national-environment error at ~7 weeks (generic ballot -> result), pts. Our own generic
-    # estimator missed by -1.6 / +3.3 / +5.5 / +5.1 at 50 days in 2018-24 (RMS 4.2; the two
-    # midterms alone 4.1). Live-path backtest 2018+2022 x 6 dates: every score improves from 2.9
-    # to 4.1 - PIT dev 0.198 -> 0.159, 80 % band coverage 10/12 -> 12/12, Brier 0.0382 -> 0.0379 -
-    # but that is two national draws. The live value sits a little above the measured RMS.
+    """Error sizes of the House simulation. The fundamentals prior itself (lean and incumbency slopes, the intercept k0 and the
+    prior sd) is not a parameter: fit_prior returns it from the 2018 and 2022 results each run."""
+
+    s_nat: float = 4.5  # national-environment error, pts: a placeholder for stand-alone runs. The live run and the
+    # reconstructed history pass national_mood's s_house for the as-of lead (the RMS generic-ballot miss at that
+    # lead, 15 cycles, plus the seat intercept's year-to-year error); 4.5 is its value about three weeks out.
     s_state: float = 2.5  # shared state error
     s_urban: float = 2.0  # urban/rural factor sd per unit loading (loading = urbanindex z-score)
     s_res: float = 5.0  # idiosyncratic race error; total race sd ~ sqrt(2.5^2+2^2+5^2) ~ 5.9 + national
@@ -70,8 +69,20 @@ class Params:
     s_wnc: float = 11.4
 
 
-def fit_prior(years=(2018, 2022), exclude=None):
-    """OLS of contested margins on lean + incumbency with year intercepts; returns (b_lean, c_inc, {year: intercept}, resid sd)."""
+class PriorFit(NamedTuple):
+    """The House fundamentals prior: mu = k0 + b_lean x lean + c_inc x inc + E, prior sd `sd`."""
+
+    b_lean: float
+    c_inc: float
+    k0: float  # the contested-margin intercept over the national House vote, mean of the fitted years
+    sd: float  # residual sd of the contested seats = the prior sd the poll blend uses
+    intercepts: dict  # year -> fitted year intercept (k0 + that year's national House vote)
+
+
+def fit_prior(years=(2018, 2022), exclude=None) -> PriorFit:
+    """OLS of contested margins on lean + incumbency with year intercepts. k0 is each year's intercept minus the national
+    House two-party vote of that year (data_prep.national_house_vote, the one definition used throughout), averaged;
+    nothing about the prior is a stored constant, so a change of lean or results cannot leave a stale value behind."""
     rows = []
     for y in years:
         if y == exclude:
@@ -87,7 +98,10 @@ def fit_prior(years=(2018, 2022), exclude=None):
     X = np.column_stack([C["lean"], C["inc"]] + [(C["year"] == y).astype(float) for y in yrs])
     b, *_ = np.linalg.lstsq(X, C["margin"], rcond=None)
     res = C["margin"] - X @ b
-    return b[0], b[1], {y: b[2 + i] for i, y in enumerate(yrs)}, float(res.std())
+    V = D.national_house_vote()
+    icpt = {int(y): float(b[2 + i]) for i, y in enumerate(yrs)}
+    k0 = float(np.mean([icpt[y] - V[y] for y in icpt]))
+    return PriorFit(float(b[0]), float(b[1]), k0, float(res.std()), icpt)
 
 
 # ---- race-poll corrections, measured on 538 raw_polls: House/Senate/Governor generals 1998-2022,
@@ -176,6 +190,10 @@ _RATED_AS = {
     "texas public opinion research": "slingshot strategies",  # Slingshot's Texas brand
     "dccc analytics department": "dccc targeting and analytics department",
     "pulse science decision": "pulse decision science",  # the words swapped in a feed
+    # sponsors named in place of their pollster (the same identities _PALIAS uses for the duplicate checks): without them a
+    # sponsor-named row reads as a brand-new pollster (variance x1.75)
+    "pennlive": "bravo group",  # PennLive's Pennsylvania polls are Bravo Group's
+    "independent center voice": "bullfinch group",  # the Independent Center's polls are The Bullfinch Group's
 }
 
 
@@ -424,22 +442,22 @@ def state_poll_correction(year=2026, statewide=False):
 
 
 # Heating-oil price shock (judgment adjustment, not backtested - no past cycle had a comparable shock).
-# shift (D margin, against the president's party) = fuel-oil household share x dP x GAL x PTS_PER_DOLLAR x UNPRICED
-#   dP              retail heating oil now minus a year ago (EIA weekly Maine residential No. 2 price, midterms/heating_oil.py)
+# shift (D margin, against the president's party) = fuel-oil household share x dP x GAL x PTS_PER_DOLLAR x unpriced
+#   dP              retail heating oil now minus a year ago (EIA weekly Maine residential No. 2 price, midterms/heating_oil.py);
+#                   a fall enters the same way with the opposite sign (the term is symmetric)
 #   GAL 650         gallons a year for a typical oil-heated home (New England)
 #   PTS_PER_DOLLAR  0.78 generic pts per $1/gal of gasoline (-2.5 net approval per $1 x 0.31 generic pts per approval pt)
 #                   spread over ~750 gal of household gasoline a year -> 0.00104 pts per $ of annual household cost
-#   UNPRICED 0.5    most of the season's oil is delivered Dec-Mar; by Nov 3 voters have seen the fall fill and pre-buy
-#                   prices, and fuel-price effects show up in polls within weeks - so half is taken as not yet in the polls
-# Applied after the poll blend (a forward adjustment of the final margin), House by district share, Senate by state share.
+#   unpriced        the part of the year's change the race's polls have not seen (unpriced_change): the change since the race's
+#                   newest poll was fielded in full, the change before it at HEAT_UNPRICED - most of the season's oil is
+#                   delivered Dec-Mar; by Nov 3 voters have seen the fall fill and pre-buy prices, and fuel-price effects reach
+#                   polls within weeks, so half of what the polls could have seen is taken as not yet in them. A race without
+#                   polls has priced nothing in its blend, but its fundamentals prior carries no fuel signal either: it takes
+#                   HEAT_UNPRICED of the whole change.
+# Applied after the poll blend (a forward adjustment of the final margin), House by district share, Senate and governors by
+# state share. "now" = the newest EIA weekly price on or before the as-of date, "yr_ago" = the price a year before that week;
+# EIA's residential survey runs October-March, so outside the season the last published week is held (heat_retail "in_season").
 HEAT_GAL, HEAT_PTS_PER_DOLLAR, HEAT_UNPRICED, PRESIDENT_PARTY = 650.0, 0.78 / 750.0, 0.5, "R"
-# Retail inputs (heat_retail): "now" = the newest EIA weekly price on or before the run date, "yr_ago" = the EIA price a year
-# before that week, "at_polls" = the price when the Maine polls were fielded (HEAT_POLLS_DATE): the rise after that date is
-# wholly unpriced, the rise before it half-priced. (Forecasts issued before 2026-10-04 used a hand-set Maine retail survey
-# value moved by heating-oil futures instead.) EIA's residential survey runs October-March, so outside the season the
-# last published week is held (heat_retail()["in_season"] False) - including for "at_polls" when the polls fell between seasons.
-HEAT_POLLS_DATE = "2026-09-08"
-HEAT_RETAIL = None  # set by backfill.run_asof for a past date (with HEAT_LIVE False); None = read the EIA series live
 
 
 # State poll-error size: the systematic poll sd in robust_blend is multiplied per state by how large that state's past misses
@@ -467,14 +485,10 @@ def state_sys_mult():
     return _STATE_SYS
 
 
-HEAT_LIVE = True  # False while backfill.run_asof sets HEAT_RETAIL for a past date itself
-
-
 def heat_retail(asof=None):
-    """{"now", "now_date", "yr_ago", "at_polls", "in_season", "source"} from the EIA weekly Maine residential heating-oil price
-    as of `asof` (default today); None when the EIA series is unavailable (the adjustment is then off)."""
-    if not HEAT_LIVE:
-        return None if HEAT_RETAIL is None else dict(HEAT_RETAIL)
+    """{"now", "now_date", "yr_ago", "yr_ago_date", "in_season", "source"} from the EIA weekly Maine residential heating-oil
+    price as of `asof` (default today; the reconstructed history passes its date); None when the series is unavailable (the
+    adjustment is then off)."""
     from . import heating_oil as HO
 
     s = HO.series()
@@ -489,23 +503,29 @@ def heat_retail(asof=None):
     )  # the same survey week a year earlier (EIA weeks are Mondays)
     if ago is None:
         return None
-    # the polls had priced everything up to their fieldwork; before that date "at_polls" is simply the price then
-    at = HO.price_asof(s, min(D, pd.Timestamp(HEAT_POLLS_DATE))) if D >= pd.Timestamp(HEAT_POLLS_DATE) else now  # noqa: SIM300  D is the as-of date, not a constant
     return {
         "now": round(now[1], 3),
         "now_date": str(now[0].date()),
         "yr_ago": round(ago[1], 3),
         "yr_ago_date": str(ago[0].date()),
-        "at_polls": round(at[1], 3),
-        "at_polls_date": str(at[0].date()),
         "in_season": bool((D - now[0]).days <= 10),
         "source": HO.LABEL,
     }
 
 
-def heating_oil_shift(level="seat"):
-    """{seat or state: D-margin shift}. Positive helps the Democrat while the president is a Republican."""
+def unpriced_change(now, at_polls, yr_ago, base=HEAT_UNPRICED):
+    """The part of the year's price change ($/gal, signed) a race's polls have not seen: the change since the newest poll was
+    fielded (price `at_polls`) in full, the change before it at `base`. A price that rose before the polls and fell back since
+    nets out; a fall enters with the opposite sign."""
+    return float((now - at_polls) + base * (at_polls - yr_ago))
+
+
+def heating_oil_shift(level="seat", asof=None, newest_poll=None):
+    """{seat or state: D-margin shift} as of `asof`. Positive helps the Democrat while the president is a Republican.
+    newest_poll: {seat or state: end date of the race's newest poll in the blend} - a race not in it has no polls and takes
+    HEAT_UNPRICED of the whole change; a race with polls takes the change since that date in full."""
     from pathlib import Path
+    from . import heating_oil as HO
 
     f = (
         Path(__file__).resolve().parents[1]
@@ -515,20 +535,36 @@ def heating_oil_shift(level="seat"):
     )
     if not f.exists():
         return {}
-    d = pd.read_csv(f)
-    sign = 1.0 if PRESIDENT_PARTY == "R" else -1.0
-    R = heat_retail()
+    R = heat_retail(asof)
     if R is None:
         return {}
-    dp = R["now"] - R["yr_ago"]
-    if dp <= 0:
-        return {}
-    unpriced = (R["now"] - R["at_polls"]) / dp + HEAT_UNPRICED * (
-        R["at_polls"] - R["yr_ago"]
-    ) / dp  # 0.20 + 0.5 x 0.80 = 0.60
-    k = sign * max(dp, 0.0) * HEAT_GAL * HEAT_PTS_PER_DOLLAR * unpriced
+    s = HO.series()
+    now_week = pd.Timestamp(R["now_date"])
+    d = pd.read_csv(f)
     key = "seat" if level == "seat" else "state"
-    return dict(zip(d[key], (d.sh_oil * k).round(3)))
+    k = (1.0 if PRESIDENT_PARTY == "R" else -1.0) * HEAT_GAL * HEAT_PTS_PER_DOLLAR  # pts of D margin per $/gal unpriced
+    no_polls = unpriced_change(R["now"], R["now"], R["yr_ago"])
+    changes, out = {}, {}
+    for race, sh_oil in zip(d[key], d["sh_oil"]):
+        pdate = (newest_poll or {}).get(race)
+        if pdate is None or pd.isna(pdate):
+            dp = no_polls
+        else:
+            t = min(pd.Timestamp(pdate).normalize(), now_week)  # polls fielded after the newest EIA week saw its price
+            if t not in changes:
+                at = HO.price_asof(s, t)
+                changes[t] = unpriced_change(R["now"], at[1] if at else R["now"], R["yr_ago"])
+            dp = changes[t]
+        out[race] = round(float(sh_oil) * k * dp, 3)
+    return out
+
+
+def newest_poll_dates(polls, asof, key="seat"):
+    """{race: newest poll end date on or before asof} for heating_oil_shift (None-safe)."""
+    if polls is None or not len(polls) or key not in polls or "end_date" not in polls:
+        return {}
+    p = polls[pd.to_datetime(polls["end_date"]) <= pd.Timestamp(asof)]
+    return pd.to_datetime(p["end_date"]).groupby(p[key]).max().to_dict()
 
 
 # Sub-state polls: in a large state a poll of one area still carries statewide information.
@@ -660,7 +696,7 @@ def _record(
                 "vmult": round(_f0(x.get("vmult")) or 1.0, 3),
                 "experience": exp_k,
                 "precision": round(float(q[i]), 3),
-                "sd": round(float(s[i]), 2),
+                "sd": round(float(s[i] * np.sqrt(nu / (nu - 2))), 2),  # the poll's error as a standard deviation
                 "discount": round(float(disc[i] * nu / (nu + 1)), 3),
                 "share": round(float(w[i] / w.sum()), 3),
                 **({"pollster_block": int((gid == gid[i]).sum())} if gid is not None and tau else {}),
@@ -740,7 +776,9 @@ def robust_blend(mu_prior, prior_sd, polls, asof, poll_sd, poll_sys, nu):
     # carries 1/vmult; multiplying the variance by vmult again would square every penalty (a new pollster's x1.75 would become
     # x3.06, a 25 %-undecided poll's x1.59 x2.53). Live Senate backtest 2018-24 x 6 dates, twice -> once: log loss 0.1618 ->
     # 0.1602, better in 19/24 cases and in every cycle (cycle-block t 2.5); House 2018/22 a wash (0.1179 -> 0.1177).
-    s = poll_sd * np.sqrt(1.0 / np.clip(q, 1e-3, None))
+    # poll_sd is a standard deviation (measured on 538's archive); the Student-t scale with that sd is poll_sd x sqrt((nu-2)/nu)
+    # (0.89 at nu 10 - used as the scale directly, every poll's error would have been 12 % wider than measured)
+    s = poll_sd * np.sqrt((nu - 2) / nu) * np.sqrt(1.0 / np.clip(q, 1e-3, None))
     y = p["margin"].values.astype(float)
     th = np.arange(mu_prior - 5 * prior_sd - 20, mu_prior + 5 * prior_sd + 20, 0.25)
     de = np.linspace(-4 * poll_sys, 4 * poll_sys, 49)
@@ -1090,8 +1128,8 @@ def poll_average(polls: pd.DataFrame, asof, window=None, half_life=HALF_LIFE, sp
 
 
 def national_env(asof, cycle, window=30):
-    """Generic-ballot average (D-R) over the last `window` days -> expected national House two-party margin.
-    Bias: the final generic average ran +0.1 (2018) and +2.1 (2022) too Democratic against the result; use -1."""
+    """Generic-ballot average (D-R) of 538's archive over the last `window` days before `asof` -> the national House
+    two-party margin a past-cycle run takes as E. No directional correction, as in the live model (national_mood.DIRECTION)."""
     g = D.polls("generic")
     g = g[g["cycle"] == cycle]
     asof = pd.Timestamp(asof)
@@ -1099,60 +1137,51 @@ def national_env(asof, cycle, window=30):
     if q.empty:
         return np.nan, 0
     w = 0.5 ** (((asof - q["end_date"]).dt.days) / HALF_LIFE) * (q["grade"].fillna(1.5).clip(0.5, 3) / 2)
-    return float(np.average(q["margin"], weights=w)) - 1.0, len(q)
+    return float(np.average(q["margin"], weights=w)), len(q)
 
 
 def build_house(year, asof, P: Params, prior_years=(2018, 2022), loyo=True, E=None):
-    """Seat table for the House: lean, incumbency, prior mu, poll blend, final mu (at the national E), plus factor loadings."""
+    """Seat table of a past House election on the live path (house_blend): the FEC results and our lean on that election's
+    map, the prior fitted on the other cycle(s) (loyo), 538's district polls of the cycle as of `asof` with their sponsor tags,
+    E from the generic-ballot archive (national_env) unless given. Columns as run2026's table, plus the result (margin, winner)."""
     h = D.fec_house(year)
-    pl = D.partisan_lean(year)
-    u = D.urbanization() if year >= 2022 else None
-    b, c, _k, _sd = fit_prior(prior_years, exclude=(year if loyo else None))
+    s = h.merge(D.partisan_lean(year), on="seat", how="left")
+    s["state"] = s["seat"].str[:2]
+    s["inc"] = s["inc_party"].map({"D": 1, "R": -1}).fillna(0)
+    fit = fit_prior(prior_years, exclude=(year if loyo else None))
     if E is None:
         E, _n_g = national_env(asof, year)
-    m = h.merge(pl, on="seat", how="left")
-    m["inc"] = m["inc_party"].map({"D": 1, "R": -1}).fillna(0)
-    m["mu_prior"] = P.k0 + b * m["lean"] + c * m["inc"] + E
     hp = D.polls("house")
-    hp = hp[(hp["cycle"] == year) & (hp["stage"].astype(str).str.lower() == "general")]
-    pa = poll_average(hp, asof)
-    m = m.merge(pa, on="seat", how="left")
-    # blend: local part only (the national E is shared); poll sd per race = poll_sd / sqrt(n_eff)
-    poll_var = P.poll_sd**2 / m["n_eff"].fillna(1.0) + P.poll_sys**2  # shared error does not average away
-    wq = np.where(m["n_eff"].notna(), 1.0 / poll_var, 0.0)
-    wp = 1.0 / (PRIOR_SD**2)
-    m["mu"] = np.where(
-        m["n_eff"].notna(), (wp * m["mu_prior"] + wq * m["poll_margin"].fillna(0)) / (wp + wq), m["mu_prior"]
-    )
-    m["mu_local_sd"] = np.sqrt(1.0 / (wp + wq))
-    if u is not None:
-        m = m.merge(u[["seat", "urbanindex"]], on="seat", how="left")
-        m["u_load"] = (m["urbanindex"] - m["urbanindex"].mean()) / m["urbanindex"].std()
+    hp = hp[(hp["cycle"] == year) & (hp["stage"].astype(str).str.lower() == "general")].copy()
+    hp["pollster"] = hp["pollster"].astype(str) + hp["partisan"].map({"DEM": " (D)", "REP": " (R)"}).fillna("")
+    s = house_blend(s, E, P, fit, polls=hp[["seat", "pollster", "end_date", "margin", "dem", "rep"]], asof=asof)
+    if year >= 2022:
+        s = s.merge(D.urbanization()[["seat", "urbanindex"]], on="seat", how="left")
+        s["u_load"] = ((s["urbanindex"] - s["urbanindex"].mean()) / s["urbanindex"].std()).fillna(0)
     else:
-        m["u_load"] = 0.0
-    m["E"] = E
-    m["b_lean"], m["c_inc"] = b, c
-    return m
+        s["u_load"] = 0.0
+    return s
 
 
 def house_blend(
-    s: pd.DataFrame, E: float, P: Params, b: float, c: float, polls=None, asof=None, money=None, mcoef=None
+    s: pd.DataFrame, E: float, P: Params, fit: PriorFit, polls=None, asof=None, money=None, mcoef=None
 ) -> pd.DataFrame:
     """The House prior + poll blend, shared by the live run (run2026) and the House backtests, so the two cannot drift
-    apart. s: seat table with seat, lean, inc (and optionally group_shift);
+    apart. s: seat table with seat, lean, inc (and optionally group_shift); fit: fit_prior's PriorFit (k0, slopes, prior sd);
     polls: race polls with seat, pollster, end_date, margin, dem, rep (raw - corrected here); money: seat, lr[, money_d, money_r];
-    mcoef: money.coefficients(...) -> (b, c, m, lr0, delta)."""
+    mcoef: money.coefficients(...) -> (b, c, m, lr0, delta). Adds prior_sd (the sd the blend weighed the polls against)."""
     s = s.copy()
-    s["mu_prior"] = P.k0 + b * s["lean"] + c * s["inc"] + E
+    s["mu_prior"] = fit.k0 + fit.b_lean * s["lean"] + fit.c_inc * s["inc"] + E
     if money is not None and mcoef is not None:
         bm, cm, mm, lr0, delta = mcoef
         s = s.merge(money, on="seat", how="left")
         has = s["lr"].notna()
         s.loc[has, "mu_prior"] = (
-            P.k0 + delta + bm * s.loc[has, "lean"] + cm * s.loc[has, "inc"] + mm * (s.loc[has, "lr"] - lr0) + E
+            fit.k0 + delta + bm * s.loc[has, "lean"] + cm * s.loc[has, "inc"] + mm * (s.loc[has, "lr"] - lr0) + E
         )
     if "group_shift" in s:
         s["mu_prior"] = s["mu_prior"] + s["group_shift"].fillna(0)  # before the blend: race polls already see the swing
+    s["prior_sd"] = fit.sd
     pa = pd.DataFrame(columns=["seat", "poll_margin", "n_eff", "n", "vmult", "spread"])
     if polls is not None and len(polls):
         q = polls.copy()
@@ -1165,7 +1194,7 @@ def house_blend(
     )
     has = s["n_eff"].notna().values
     wq = np.where(has, 1.0 / poll_var, 0.0)
-    wp = 1.0 / (PRIOR_SD**2)
+    wp = 1.0 / (fit.sd**2)
     s["mu"] = np.where(
         has, (wp * s["mu_prior"] + wq * s["poll_margin"].astype(float).fillna(0)) / (wp + wq), s["mu_prior"]
     )
@@ -1175,7 +1204,7 @@ def house_blend(
         for i in np.where(has)[0]:
             mu, sd = robust_blend(
                 s["mu_prior"].iat[i],
-                PRIOR_SD,
+                fit.sd,
                 pq[pq["seat"] == s["seat"].iat[i]],
                 asof,
                 P.poll_sd,
@@ -1220,7 +1249,7 @@ def factor_update(s: pd.DataFrame, P: Params):
         P.poll_sd**2 * s["vmult"].astype(float).fillna(1).values / s["n_eff"].astype(float).fillna(1).values
         + P.poll_sys**2
     )
-    w = np.where(pol, 1 / (pv + PRIOR_SD**2), 0.0)
+    w = np.where(pol, 1 / (pv + s["prior_sd"].astype(float).values ** 2), 0.0)
     r = np.where(pol, (s["poll_margin"] - s["mu_prior"]).astype(float).fillna(0).values, 0.0)
     if w.sum() == 0:
         return np.zeros(len(s)), {}
@@ -1264,7 +1293,9 @@ def simulate(seats: pd.DataFrame, P: Params, n=20000, seed=1, nat_z=None):
     ):
         if col in seats and sd > 0:
             urb = urb + t(n, sd)[:, None] * seats[col].fillna(0).values[None, :]
-    res = t((n, k), P.s_res) * np.where(seats["n_eff"].notna(), seats["mu_local_sd"].values / PRIOR_SD, 1.0)[None, :]
+    # a polled seat's own error shrinks by the blend's posterior sd over its prior sd (an unpolled seat keeps s_res)
+    own = np.where(seats["n_eff"].notna(), seats["mu_local_sd"].values / seats["prior_sd"].values, 1.0)
+    res = t((n, k), P.s_res) * own[None, :]
     mg = seats["mu"].values[None, :] + nat + st + urb + res
     fixed = seats["uncontested"].values
     if fixed.any():

@@ -27,8 +27,12 @@ URL = f"https://www.eia.gov/dnav/pet/hist_xls/{SERIES}w.xls"
 CSV = ROOT / "data" / "cache" / "eia_heating_oil_me.csv"
 
 
+_SERIES = None  # the history, read once per process (model.heating_oil_shift asks for it once per race)
+
+
 def fetch() -> pd.DataFrame:
     """Download the full weekly history (~70 KB) and write data/cache/eia_heating_oil_me.csv (date, price)."""
+    global _SERIES
     from . import fetch as F  # conditional request: EIA answers 304 while the workbook is unchanged
 
     raw = F.get(URL, ROOT / "data" / "raw" / "eia" / f"{SERIES}w.xls", timeout=60)[0]
@@ -42,13 +46,18 @@ def fetch() -> pd.DataFrame:
         raise ValueError(f"EIA heating-oil history too short ({len(d)} rows)")
     CSV.parent.mkdir(parents=True, exist_ok=True)
     d.to_csv(CSV, index=False)
+    _SERIES = d
     return d
 
 
 def series() -> pd.DataFrame | None:
     """The weekly history (fetched if the cache is missing); None when neither works."""
+    global _SERIES
+    if _SERIES is not None:
+        return _SERIES
     if CSV.exists():
-        return pd.read_csv(CSV, parse_dates=["date"])
+        _SERIES = pd.read_csv(CSV, parse_dates=["date"])
+        return _SERIES
     try:
         return fetch()
     except Exception as e:

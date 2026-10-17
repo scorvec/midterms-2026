@@ -165,8 +165,10 @@ def history():
     Columns: margin, inc (INC_FIX picks inc_fix or inc_old), lean, E, the nominees (dn, rn), the largest other candidate's share
     (oth_max), and the same state's previous governor race within 4 years (prev_*; inc_same = the incumbent on the ballot won it).
     USE_2024 adds 2024 from the committed derived table."""
+    from .data_prep import national_house_vote
+
     lean = _pres_lean()
-    E = pd.read_csv(ROOT / "data" / "static" / "house_national_vote_1946.csv").set_index("year").E
+    E = national_house_vote()
     rows = []
     for y in range(1998, 2023, 2):
         rows += parse_results(y, W.fetch(f"{y} United States gubernatorial elections", max_age_h=10**6))
@@ -723,7 +725,6 @@ def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
     R["prior_sd"] = sd_f
     # nominee = the highest-polling candidate of each party in the newest polls; the D-R poll margin is theirs
     corr = M.state_poll_correction(statewide=True)
-    heat = M.heating_oil_shift("state")
     G = SN.state_loadings()
     sd_poll = poll_errors()[0]
     rows = []
@@ -763,7 +764,9 @@ def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
         rcv_on = RC.applies("governor", r.state)
         rsd = RC.race_sd(qq, asof) if rcv_on and len(qq) else 0.0  # ranked-choice transfer sd
         mu, sd_r, pm, _ne = blend(mu_prior, r.prior_sd, qq, asof, b3, rsd)
-        mu = mu + b3 * heat.get(r.state, 0.0)
+        # heating-oil shift at the governors' own national slope; the unpriced share depends on the race's newest poll
+        heat = M.heating_oil_shift("state", asof, M.newest_poll_dates(qq, asof)).get(r.state, 0.0)
+        mu = mu + b3 * heat
         rows.append(
             {
                 "state": r.state,
@@ -788,6 +791,7 @@ def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
                 "wnc_z": G.wnc_z.get(r.state, 0.0),
                 "group_shift": gscale * G.group_shift.get(r.state, 0.0),
                 "newest_poll": q.end_date.max().date().isoformat() if len(q) else None,
+                "heat_oil_shift": b3 * heat,
                 "rcv": RC.NOTE if rcv_on else "",
                 "rcv_sd": rsd,
             }

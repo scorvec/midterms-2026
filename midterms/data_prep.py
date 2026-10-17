@@ -195,6 +195,13 @@ def partisan_lean(map_year: int) -> pd.DataFrame:
     return pd.DataFrame({"seat": t["seat"].values, "lean": t["lean_75_25"].astype(float).values})
 
 
+def national_house_vote() -> pd.Series:
+    """The national House two-party margin (D - R, points) by election year, data/static/house_national_vote_1946.csv:
+    the one definition of the national vote the model uses everywhere - the House prior's intercept (model.fit_prior), the
+    generic-ballot calibration (generic.calibrate_history), the governor and state-legislature priors."""
+    return pd.read_csv(STATIC / "house_national_vote_1946.csv").set_index("year")["E"].astype(float)
+
+
 def urbanization() -> pd.DataFrame:
     u = pd.read_csv(RAW / "538repo" / "urbanization-index-2022.csv")
     u["seat"] = u["state"] + "-" + u["cd"].astype(int).astype(str)

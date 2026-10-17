@@ -8,9 +8,9 @@ Model (per series): y_i = trend(t_i) + house[pollster_i] + pop[population_i] + p
   pop    : likely / registered / adult offsets (likely voters are the reference)
   weights: sqrt(sample size), capped; internal and partisan-sponsored polls down-weighted x0.5
 Everything is in Democratic-minus-Republican points (generic) or approve-minus-disapprove (approval).
-Calibration on the 538 archives: the same estimator run on 2018 and 2022 generic polls, evaluated at
-election day against the actual national House two-party margin (+8.46, -3.30 from the FEC totals),
-gives the bias and error to carry into the seat model.
+Calibration on the 538 archives: the same estimator run on the 2018-2024 generic polls, evaluated at
+election day against the national House two-party margin (data_prep.national_house_vote, the definition the
+whole model uses), gives the error to carry into the seat model.
     python -m midterms.generic
 """
 
@@ -693,23 +693,9 @@ def calibrate_history():
     election-day trend with the actual national House two-party margin."""
     g = D.polls("generic")
     out = {}
-    # actual national House two-party margins: 2018/2022 from the FEC totals in this repo; 2020 from the FEC
-    # 2020 workbook (computed below when present); 2024 from the FEC summary (R 49.8 / D 47.2 -> -2.7)
-    actuals = {2018: 8.46, 2020: None, 2022: -3.30, 2024: -2.7}
-    try:
-        h20 = D.fec_house(2020)
-        actuals[2020] = round(
-            100 * (h20["dem_votes"].sum() - h20["rep_votes"].sum()) / (h20["dem_votes"].sum() + h20["rep_votes"].sum()),
-            2,
-        )
-    except Exception:
-        actuals[2020] = 3.1
-    for cyc, actual, eday in (
-        (2018, actuals[2018], "2018-11-06"),
-        (2020, actuals[2020], "2020-11-03"),
-        (2022, actuals[2022], "2022-11-08"),
-        (2024, actuals[2024], "2024-11-05"),
-    ):
+    actuals = D.national_house_vote()  # the national House two-party margin, one definition for the whole model
+    for cyc, eday in ((2018, "2018-11-06"), (2020, "2020-11-03"), (2022, "2022-11-08"), (2024, "2024-11-05")):
+        actual = round(float(actuals[cyc]), 2)
         q = g[g["cycle"] == cyc].copy()
         q = q[q["end_date"] >= f"{cyc}-03-01"]
         if len(q) < 30:

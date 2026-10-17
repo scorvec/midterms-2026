@@ -34,10 +34,12 @@ Only the fitted coefficients are distributed (data/static/national_mood_fit.json
 Errors built on it:
   * House: s_house = sqrt(s(L)^2 + S_SEAT^2). The seat model's contested-seat intercept over the national vote moves from year to
     year (2018 -0.34, 2020 -1.07, 2022 +1.93; sd 1.56, inflated for three years to 2.0) - an error the national vote does not carry.
-  * Senate/governors: the shared statewide polling shock scales with s(L) (SEN_PER_HOUSE = 3.2 / 4.5), and it is drawn with
-    correlation RHO_STATEWIDE to the House draw: the generic-ballot miss and the Senate's shared polling miss correlated +0.29
-    at election day, +0.31 at 14 days, +0.07 at 30 days over 13 cycles (538 raw_polls) - not the 1.0 one shared draw implies.
-    Each race's own systematic poll error is the measured total minus that shared part (senate2026.race_sys).
+  * Senate/governors: the shared part each race's blend nets out of its systematic poll error scales with s(L)
+    (senate2026.SEN_S_NAT = SEN_PER_HOUSE x s, SEN_PER_HOUSE = 3.2 / 4.5; senate2026.race_sys). The simulation itself draws a
+    fixed shared shock (senate2026.STATE_SHARED_MISS 3.1; governors 4.2) - the two were tuned separately on the harness and
+    the comment there says how they fail to reconcile. The statewide draw is correlated RHO_STATEWIDE with the House draw:
+    the generic-ballot miss and the Senate's shared polling miss correlated +0.29 at election day, +0.31 at 14 days, +0.07
+    at 30 days over 13 cycles (538 raw_polls) - not the 1.0 one shared draw implies.
 
 Evidence for the fitted mapping on the live harnesses (leak-free: pollster leans and c, s refitted without the test cycle;
 old = E = G - 2, House s 4.5, Senate shared 3.2):

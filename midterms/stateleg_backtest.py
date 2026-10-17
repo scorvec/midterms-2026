@@ -32,8 +32,9 @@ GROUPS = {
 
 
 def generic_E(cycle):
+    """538's generic-ballot average at the as-of date, no directional correction (model.national_env)."""
     E, _n = M.national_env(pd.Timestamp(ASOF[cycle]), cycle)
-    return E + 1.0  # national_env subtracts a 1-pt pro-D bias; the live model takes no direction
+    return E
 
 
 def s_E(cycle):

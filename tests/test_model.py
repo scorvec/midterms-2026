@@ -91,3 +91,35 @@ def test_same_pollster(a, b, same):
 @pytest.mark.parametrize("name", ["Siena College", "Quinnipiac University", "YouGov/Economist", "cygnal"])
 def test_canon_is_idempotent(name):
     assert R.canon(R.canon(name)) == R.canon(name)
+
+
+def test_unpriced_change():
+    b = M.HEAT_UNPRICED
+    # the change since the newest poll in full, the change before it at the base share
+    assert M.unpriced_change(now=5.0, at_polls=5.0, yr_ago=3.0) == pytest.approx(
+        2.0 * b
+    )  # the polls saw the whole rise
+    assert M.unpriced_change(now=5.0, at_polls=3.0, yr_ago=3.0) == pytest.approx(2.0)  # the whole rise came after them
+    assert M.unpriced_change(now=5.0, at_polls=4.0, yr_ago=3.0) == pytest.approx(1.0 + b)
+    # a price that rose before the polls and fell back since: the fall is unseen, the rise half seen
+    assert M.unpriced_change(now=3.0, at_polls=5.0, yr_ago=3.0) == pytest.approx(-2.0 + 2.0 * b)
+    assert M.unpriced_change(now=3.0, at_polls=3.0, yr_ago=3.0) == 0.0
+    # symmetric: a fall is the same arithmetic with the opposite sign
+    assert M.unpriced_change(now=3.0, at_polls=4.0, yr_ago=5.0) == pytest.approx(-(1.0 + b))
+
+
+def test_newest_poll_dates():
+    p = pd.DataFrame(
+        {"seat": ["GA", "GA", "NC"], "end_date": pd.to_datetime(["2026-10-01", "2026-10-09", "2026-10-20"])}
+    )
+    got = M.newest_poll_dates(p, pd.Timestamp("2026-10-15"))
+    assert got == {"GA": pd.Timestamp("2026-10-09")}  # the newest on or before the as-of date; NC's poll is later
+    assert M.newest_poll_dates(None, pd.Timestamp("2026-10-15")) == {}
+
+
+def test_national_house_vote_is_the_one_definition():
+    from midterms import data_prep as D
+
+    v = D.national_house_vote()
+    assert v[2018] > 8 and v[2022] < 0 and v[2024] < 0
+    assert set(v.index) >= {1996, 2024}
