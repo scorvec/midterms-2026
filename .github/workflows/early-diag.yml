@@ -47,11 +47,11 @@ jobs:
       PYTHONUNBUFFERED: "1"
       TZ: America/New_York
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
@@ -61,7 +61,7 @@ jobs:
 
       - name: Restore the daily run's cache (one-time Florida harvest)
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.harvest_fl_cache }}
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: |
             data/raw
@@ -84,13 +84,13 @@ jobs:
 
       - name: Restore the North Carolina voter-history table
         id: nchist
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: data/cache/nc_hist_generals.csv.gz
           key: nc-hist-generals-v1
 
       - name: Restore early-vote downloads
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: |
             data/raw/ncsbe
@@ -128,14 +128,14 @@ jobs:
 
       - name: Save the North Carolina voter-history table
         if: ${{ always() && steps.nchist.outputs.cache-hit != 'true' && hashFiles('data/cache/nc_hist_generals.csv.gz') != '' }}
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: data/cache/nc_hist_generals.csv.gz
           key: nc-hist-generals-v1
 
       - name: Save early-vote downloads
         if: ${{ always() }}
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: |
             data/raw/ncsbe
