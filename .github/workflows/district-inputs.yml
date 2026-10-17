@@ -23,20 +23,20 @@ jobs:
     env:
       PYTHONUNBUFFERED: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: "20"
       - name: Install dependencies
         run: pip install -r requirements.txt geopandas==1.1.1 pyogrio==0.11.1 shapely==2.1.1 pyarrow
       - name: Restore raw cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: |
             data/raw/geo
@@ -60,7 +60,7 @@ jobs:
         run: python -m midterms.demog --patch-cd119
       - name: Save raw cache
         if: always()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: |
             data/raw/geo
@@ -69,7 +69,7 @@ jobs:
           key: district-inputs-raw-${{ github.run_id }}
       - name: Upload outputs
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: district-inputs-${{ github.run_id }}
           path: |
