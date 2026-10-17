@@ -521,8 +521,16 @@ def _api_districts(fips: str, variables: list) -> pd.DataFrame:
     2020-2024 release) -> numeric DataFrame indexed by seat (ST-n). No key is needed at this volume."""
     from .fetch import open_url
 
-    q = urllib.parse.urlencode({"get": ",".join(variables), "for": "congressional district:*", "in": f"state:{fips}"})
-    rows = json.loads(open_url(f"{CENSUS_API}?{q}", timeout=120))
+    # the API reads %20, not +, in "congressional district"; its errors come back as plain text, so show them
+    q = urllib.parse.urlencode(
+        {"get": ",".join(variables), "for": "congressional district:*", "in": f"state:{fips}"},
+        quote_via=urllib.parse.quote,
+    )
+    raw = open_url(f"{CENSUS_API}?{q}", timeout=120)
+    try:
+        rows = json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise RuntimeError(f"Census API did not return JSON for state {fips}: {raw[:300]!r}") from e
     df = pd.DataFrame(rows[1:], columns=rows[0])
     cd = pd.to_numeric(df["congressional district"], errors="coerce")
     df = df[cd.notna() & (cd != 98)]  # 98 = not defined
