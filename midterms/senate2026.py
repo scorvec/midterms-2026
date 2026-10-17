@@ -1,7 +1,7 @@
 """2026 Senate forecast: race table, fundamentals prior, poll blend and correlated simulation.
 
 Races from the Wikipedia race table (nominees, incumbents), the state's presidential lean (MIT returns), polls from each race
-page, a time-varying prior (lean / incumbency trends 1982-2024, at 2026: 0.79 E, 0.84 lean, 6.7 inc, sd 8.8).
+page, a time-varying prior (lean / incumbency trends 1982-2024, at 2026: 0.795 E, 0.84 lean, 6.7 inc, sd 8.8).
     python -m midterms.senate2026 [E]
 """
 
@@ -23,13 +23,13 @@ from .run2026 import GROUP_B_HISP, GROUP_B_ASIAN, CUBAN_WEIGHT, HISP_GROUPS
 # decade (15-20 -> 7-11), so a pooled 10-cycle fit is stale. Spec: margin = const + lean x (b1 + b1t t) + inc x (b2 + b2t t) +
 # NAT_SLOPE E, t = (year - 2010) / 10, fitted on every D-v-R race 1982-2024 (jungle rounds and races with a 20 %+ independent left
 # out); NAT_SLOPE from the 10-cycle pool (2006-24); residual sd extrapolated to the year by a log-linear trend of the squared
-# residuals. Evaluated at 2026 (t = 1.6): const 0.696, lean 0.7097 + 0.0792 t = 0.836, inc 12.638 - 3.723 t = 6.68, E 0.794, sd 8.84.
+# residuals. Evaluated at 2026 (t = 1.6): const 0.656, lean 0.7104 + 0.0794 t = 0.837, inc 12.670 - 3.715 t = 6.73, E 0.795, sd 8.79.
 # Walk-forward live-path backtest (Senate 2006-2024, 10 cycles, 1,615 race-dates, prior refitted on earlier cycles only) against the
-# pooled 2006-24 D-v-R fit (const 2.22, lean 0.788, inc 10.00, E 0.795, sd 12.0): log loss -0.0080 (7/10 cycles; sign-flip p 0.059,
-# race bootstrap p <0.001), Brier -0.0026, CRPS -0.23 (p 0.061 / <0.001); 2014-2024 better in 6/6 cycles, worse 2006/08/12. Caveat:
+# pooled 2006-24 D-v-R fit (const 2.27, lean 0.785, inc 10.08, E 0.795, sd 12.1): log loss -0.0079 (7/10 cycles; sign-flip p 0.061,
+# race bootstrap p <0.001), Brier -0.0025, CRPS -0.23 (p 0.064 / <0.001); 2014-2024 better in 6/6 cycles, worse 2006/08/12. Caveat:
 # the gain is largest in the cycles whose polls overstated Democrats, but unpolled races (no polls involved) show the same time pattern.
-SEN_CONST = 0.696
-B_LEAN, C_INC, PRIOR_SD, NAT_SLOPE, POLL_SD, POLL_SYS = 0.836, 6.68, 8.84, 0.794, M.SEN_POLL_SD, M.SEN_POLL_SYS
+SEN_CONST = 0.656
+B_LEAN, C_INC, PRIOR_SD, NAT_SLOPE, POLL_SD, POLL_SYS = 0.837, 6.73, 8.79, 0.795, M.SEN_POLL_SD, M.SEN_POLL_SYS
 # Midterm race polls earn more weight. The shared per-race Senate polling miss is smaller in midterms: final-3-week non-partisan
 # averages, competitive races 1998-2024, systematic part 4.1 midterm v 4.7 presidential. Senate backtest, POLL_SYS x 0.8 (2018-24 on
 # the live-path harness, 2006-16 on raw_polls with the true E):
@@ -156,8 +156,7 @@ def races():
             else r["status"]
         )
     # lean on the same definition B_LEAN was fitted on: the mean of the two previous presidential margins against the nation's
-    # (50/50, MIT returns). The fit predates counting New York's fusion lines, which moves only New York before 2020; the 2026
-    # leans are the same either way.
+    # (50/50, MIT returns, each nominee's votes on every ballot line)
     from .gov2026 import _pres_lean
 
     pl = _pres_lean()

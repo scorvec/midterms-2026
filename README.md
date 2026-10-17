@@ -288,6 +288,17 @@ carries the same evidence.
   permutation p 0.06); + the two-year change 2.04 / 2.41 (worse). Midterms only (n 7): no variant helps. No significant
   out-of-sample gain. The per-year series is not distributed (Gallup does not allow republishing its tables); source:
   Gallup, "Party Affiliation" trend, retrieved October 2026.
+- **Uncontested seats** (tested, not adopted). The raw national House vote that the national-mood fit targets is distorted
+  by seats without a D-v-R contest (2018: 29 D-only and 2 R-only seats plus same-party top-two generals; D 6.0M votes there,
+  R 0.6M) and by Florida's unopposed races, which record no vote. A one-off test (October 2026) imputed every such seat
+  (23-97 a cycle) from its nearest contested result on the same lines, else a safe-seat model (masked contested seats:
+  margin RMSE 11.0, safe-seat fallback 18.0), giving an adjusted vote 1.6 points either side of the raw one over 1996-2024
+  (2018: D+8.7 -> D+7.7). The national error falls (4.27 -> 3.90 at 29 days), but scored against the same target the adjusted
+  vote does not forecast better (log score -0.022 per cycle, 7/15 cycles better, permutation p 0.29). A seat harness's gain
+  (p 0.008) comes entirely from the intercept moving 0.27 points toward the Republicans, the generic ballot's historical
+  Democratic overstatement that the no-direction rule excludes; the live-path House backtest (2018-2022) is a wash. Sources:
+  MIT Election Data and Science Lab, U.S. House 1976-2018 (CC0); FEC "Federal Elections" 2018-2022 and the House Clerk's
+  2024 election statistics (public domain).
 
 ### Governor model review
 
@@ -393,9 +404,9 @@ Measured, not used:
 - **Time-varying prior** (`senate2026.SEN_CONST`, `B_LEAN`, `C_INC`, `NAT_SLOPE`, `PRIOR_SD`). Per-cycle fits show the
   incumbency coefficient falling about 3.8 points per decade, the lean slope rising about 0.11 and the residual sd falling
   about 1.35. The prior has linear time trends in the lean and incumbency slopes, fitted on every D-v-R race 1982-2024, the
-  national slope of the last 10 cycles and a trend-extrapolated residual sd; at 2026: constant 0.70, lean 0.836,
-  incumbency 6.7, national 0.794, sd 8.8. Against the pooled 10-cycle fit on the walk-forward harness (Senate 2006-2024, 10
-  cycles, 1,615 race-dates): log loss -0.0080 (7/10 cycles; sign-flip p 0.059, race bootstrap p < 0.001), Brier -0.0026,
+  national slope of the last 10 cycles and a trend-extrapolated residual sd; at 2026: constant 0.66, lean 0.837,
+  incumbency 6.7, national 0.795, sd 8.8. Against the pooled 10-cycle fit on the walk-forward harness (Senate 2006-2024, 10
+  cycles, 1,615 race-dates): log loss -0.0079 (7/10 cycles; sign-flip p 0.061, race bootstrap p < 0.001), Brier -0.0025,
   CRPS -0.23; 2014-2024 better in 6/6 cycles, worse in 2006, 2008 and 2012. The gain is largest in cycles whose polls
   overstated Democrats; unpolled races show the same time pattern.
 - **Shared and race errors** (`STATE_SHARED_MISS` 3.1, `RACE_EXTRA` 2.83). The cycle-wide statewide miss is 3.1 over
