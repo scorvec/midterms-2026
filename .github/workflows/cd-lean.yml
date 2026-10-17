@@ -33,17 +33,17 @@ jobs:
       BUILD: ${{ inputs.build }}
       STATES: ${{ inputs.states }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
       - name: Install dependencies
         run: pip install -r requirements.txt geopandas==1.1.1 pyogrio==0.11.1 shapely==2.1.1 pyarrow
       - name: Restore raw cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: data/raw/stateleg
           key: cd-lean-raw-${{ github.run_id }}
@@ -59,13 +59,13 @@ jobs:
           du -sh data/raw/stateleg || true
       - name: Save raw cache
         if: always()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: data/raw/stateleg
           key: cd-lean-raw-${{ github.run_id }}
       - name: Upload tables
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cd-lean-${{ github.run_id }}
           path: |
