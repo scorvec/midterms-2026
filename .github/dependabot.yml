@@ -10,3 +10,8 @@ updates:
     schedule: { interval: weekly, day: monday }
     groups:
       python: { patterns: ["*"] }
+    # pandas 3 (copy-on-write, string dtype) is a deliberate upgrade, verified with the offline build and the history check,
+    # not a weekly bump; the group stays on the 2.x line so its PRs keep passing CI
+    ignore:
+      - dependency-name: pandas
+        update-types: ["version-update:semver-major"]

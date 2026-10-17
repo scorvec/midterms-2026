@@ -1047,8 +1047,9 @@ def collapse_versions(p: pd.DataFrame, race_col="seat") -> pd.DataFrame:
                     pd.notna(p.at[i, "dem"]) and p.at[i, "dem"] == p.at[j, "dem"] and p.at[i, "rep"] == p.at[j, "rep"]
                 )
                 # within 3 days: versions of one survey (same name or identical numbers); 4-14 days apart only the same
-                # pollster with identical D and R shares counts as one poll listed twice (NV governor 'Grassroots Targeting (R)'
-                # 40-52 ending 7/6 and again 7/16). "Same pollster" there is the dedupe's own identity rule (_same_pollster), not
+                # pollster with identical D and R shares and no differing sample size counts as one poll listed twice (NV governor
+                # 'Grassroots Targeting (R)' 40-52 ending 7/6 and again 7/16; a tracker that repeats its toplines two weeks later
+                # carries another n and stays two polls). "Same pollster" there is the dedupe's own identity rule (_same_pollster), not
                 # the exact spelling - one poll can appear under two spellings and two end dates: MD governor 'University of
                 # Maryland, Baltimore County' 9/22 and 'University of Maryland Baltimore County Institute of Politics' 9/27, both
                 # 51-24; IA governor 'The New York Times/Siena University' 6/17 and 'New York Times/ Siena University' 6/27, both
@@ -1069,7 +1070,7 @@ def collapse_versions(p: pd.DataFrame, race_col="seat") -> pd.DataFrame:
                     and p.at[i, "n"] != p.at[j, "n"]
                 )
                 cross_name = same_nums and not n_differ
-                if (gap <= 3 and (same_name or same_firm or cross_name)) or (same_firm and same_nums):
+                if (gap <= 3 and (same_name or same_firm or cross_name)) or (same_firm and same_nums and not n_differ):
                     parent[find(i)] = find(j)
     grp = [find(i) for i in range(len(p))]
     if len(set(grp)) == len(p):

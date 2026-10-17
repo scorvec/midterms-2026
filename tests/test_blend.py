@@ -96,16 +96,26 @@ def test_collapse_versions():
             ("TX", "Grassroots Targeting (R)", 30, 40, 52, 600),
             ("TX", "Emerson College", 40, 47, 46, 900),  # a different survey
             ("TX", "Emerson College", 60, 46, 47, 950),
+            (
+                "TX",
+                "Morning Consult",
+                70,
+                45,
+                44,
+                1500,
+            ),  # a tracker repeating its toplines 10 days later with another n: two polls
+            ("TX", "Morning Consult", 80, 45, 44, 1700),
         ]
     )
     out = M.collapse_versions(p, "seat")
-    assert len(out) == 6
+    assert len(out) == 8
     marist = out[out.pollster.str.startswith("Marist")]
     assert len(marist) == 1 and marist.iloc[0]["pollster"] == "Marist (D)"  # the tagged spelling and the latest date
     assert marist.iloc[0]["dem"] == pytest.approx(49.5) and marist.iloc[0]["end_date"] == ASOF - pd.Timedelta(days=1)
     assert (out.pollster == "Suffolk University").sum() == 1 and (out.pollster == "Rasmussen Reports").sum() == 1
     assert (out.pollster == "Grassroots Targeting (R)").sum() == 1
     assert (out.pollster == "Emerson College").sum() == 2
+    assert (out.pollster == "Morning Consult").sum() == 2
 
 
 def test_robust_blend_scale_is_a_standard_deviation():
