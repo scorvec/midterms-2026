@@ -1,15 +1,14 @@
 office,seat,pollster,end_date,dem_name,rep_name,state,challenger_party,dem,rep,other,und,n,grade,posted,released_late,uri,tag_src,margin,src,pop
-senate,ID,Advanced Targeting Research,2026-09-16,Achillies,Risch,ID,I,50.0,39.0,0.0,11.0,,1.5,2026-09-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvra6cybjk2d,,11.0,usapolling,
+senate,KS,Emerson,2026-09-16,Hamilton,Marshall,KS,D,45.0,43.0,4.0,8.0,,1.5,2026-09-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvslddx67c2x,,2.0,usapolling,
 senate,GA,Quantus (R),2026-09-16,Ossoff,Collins,GA,D,49.0,45.0,0.0,6.0,,1.5,2026-09-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvsulorgfs2c,label,4.0,usapolling,
 senate,MI,InsiderAdvantage (R),2026-09-17,El-Sayed,Rogers,MI,D,47.0,45.0,0.0,8.0,,1.5,2026-09-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvslexnbts2x,label,2.0,usapolling,
-senate,KS,Emerson,2026-09-16,Hamilton,Marshall,KS,D,45.0,43.0,4.0,8.0,,1.5,2026-09-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvslddx67c2x,,2.0,usapolling,
+governor,KS,Emerson,2026-09-16,Holscher,Masterson,KS,D,44.0,51.0,0.0,5.0,,1.5,2026-09-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvsldppbec2x,,-7.0,usapolling,
 senate,NH,InsiderAdvantage (R),2026-09-17,Pappas,Sununu,NH,D,48.0,40.0,0.0,12.0,,1.5,2026-09-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvsldzy6qs2x,label,8.0,usapolling,
 senate,NC,InsiderAdvantage (R),2026-09-17,Cooper,Whatley,NC,D,48.0,43.0,0.0,9.0,,1.5,2026-09-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvslefhzb22x,label,5.0,usapolling,
-governor,KS,Emerson,2026-09-16,Holscher,Masterson,KS,D,44.0,51.0,0.0,5.0,,1.5,2026-09-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mvsldppbec2x,,-7.0,usapolling,
-house,VA-1,DCCC (D),2026-09-17,Taylor,Whittman,VA,D,46.0,47.0,0.0,7.0,,1.5,2026-09-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mw2n5rsths2r,internal,-1.0,usapolling,
 house,TX-9,Republican Internal (R),2026-09-15,Rehmet,Wambsganss,TX,D,53.0,39.0,0.0,8.0,,1.5,2026-09-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mw2oyhvav222,committee,14.0,usapolling,
 house,TX-9,Republican Internal (R),2026-09-15,Hinojosa,Abbott,TX,D,49.0,40.0,0.0,11.0,,1.5,2026-09-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mw2oyhvav222,committee,9.0,usapolling,
 house,TX-9,Republican Internal (R),2026-09-15,Talarico,Paxton,TX,D,52.0,41.0,0.0,7.0,,1.5,2026-09-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mw2oyhvav222,committee,11.0,usapolling,
+house,VA-1,DCCC (D),2026-09-17,Taylor,Whittman,VA,D,46.0,47.0,0.0,7.0,,1.5,2026-09-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mw2n5rsths2r,internal,-1.0,usapolling,
 governor,CT,co/efficient (R),2026-09-17,Lamont,Fazio,CT,D,48.0,41.0,0.0,11.0,,1.5,2026-09-22,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mw5bh7vtyc2h,label,7.0,usapolling,
 governor,MI,Suffolk,2026-09-20,Benson,James,MI,D,51.0,34.0,0.0,15.0,,1.5,2026-09-22,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mw4vyitcck2h,,17.0,usapolling,
 senate,MT,Aspect Strategic (I),2026-09-15,Bodnar,Alme,MT,I,32.0,44.0,17.0,7.0,,1.5,2026-09-22,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mw4sqasjgs2h,internal,-12.0,usapolling,
@@ -550,7 +549,6 @@ house,CO-5,Global Strategy Group (D),2026-07-21,Killin,Crank,CO,D,44.0,45.0,0.0,
 house,FL-11,MDW Communications,2026-07-30,Pericola,Strada,FL,D,41.8,42.1,0.0,16.1,1044.0,1.5,2026-07-30,False,https://floridapolitics.com/archives/811237-poll-shows-james-pericola-leading-cd-11-dem-field-in-potential-dead-heat-with-joe-strada/,,-0.30000000000000426,pollresults_site,lv
 house,FL-13,"Fabrizio, Lee & Associates",2026-08-06,Leela Gray,Paulina Luna,FL,D,41.0,49.0,0.0,10.0,400.0,1.5,2026-08-06,False,https://floridapolitics.com/archives/814114-anna-paulina-luna-leads-leela-gray-in-likely-general-election-matchup-clouding-dems-hope-for-a-flip/,,-8.0,pollresults_site,lv
 house,FL-13,GQR (D),2026-08-06,Leela Gray,Paulina Luna,FL,D,44.0,47.0,0.0,9.0,500.0,1.5,2026-08-06,False,https://www.semafor.com/article/08/14/2026/democrats-eye-republican-held-florida-district,,-3.0,pollresults_site,lv
-house,FL-13,Public Policy Polling,2026-05-20,Leela Gray,Paulina Luna,FL,D,39.0,41.0,0.0,20.0,616.0,1.5,2026-05-20,False,https://drive.google.com/file/d/1QmLb0R6yalmHpjHvxOF-R-7AKy3eG1ij/view,,-2.0,pollresults_site,rv
 house,FL-16,SEA Polling (D),2026-08-29,Kirschner,Gruters,FL,D,40.0,39.0,0.0,21.0,400.0,1.5,2026-08-29,False,https://kellykirschner.com/wp-content/uploads/2026/09/0926-FL-16-Polling-Memo-1.pdf,,1.0,pollresults_site,lv
 house,FL-22,Tavern Research (D),2026-08-12,Dandiya,Askar,FL,D,50.0,50.0,0.0,0.0,551.0,1.5,2026-08-12,False,https://242750075.fs1.hubspotusercontent-na2.net/hubfs/242750075/FL-22%20General%20Toplines%20%E2%80%94%20Aug%2019_NEW.pdf,,0.0,pollresults_site,lv
 house,FL-27,Bendixen & Amandi International (D),2026-08-30,Eliott Rodriguez,Salazar,FL,D,45.0,45.0,0.0,10.0,600.0,1.5,2026-08-30,False,https://www.politico.com/newsletters/weekly-score/2026/09/14/the-2028-redistricting-fight-is-already-kicking-off-01073884,,0.0,pollresults_site,lv
