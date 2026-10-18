@@ -46,6 +46,7 @@ VOTERS = HOST + "VoterRequestsTV/COUNTY_active_TV.zip"
 ELECTION_DAY = {2026: dt.date(2026, 11, 3), 2024: dt.date(2024, 11, 5), 2022: dt.date(2022, 11, 8)}
 EV_WINDOW = (dt.date(2026, 10, 17), dt.date(2026, 10, 30))
 PARTIES = ("DEM", "REP", "NP", "OTH")
+BATCH_SHARE = 0.05  # a day holding 5 % of the last month's returns opens the matched comparison
 # the county's file layouts (TechDocs: evlayout.pdf, mblayout.pdf, voterlistfilelayout.pdf), used when a file has no header
 EV_COLS = ["IDNUMBER", "NAME", "PRECINCT", "PARTY", "PARTY ABBR", "CONGRESS", "ASSEMBLY", "SENATE", "COMMISSION",
            "EDUCATION", "REGENT", "SCHOOL", "WARD", "TOWNSHIP", "STATUS", "EV SITE", "ELECTION CODE", "ACTIVITY DATE"]  # fmt: skip
@@ -210,6 +211,17 @@ def at_days_out(B: pd.DataFrame, year: int, kind: str, days_out: int) -> dict | 
     return out
 
 
+def logged_from(B: pd.DataFrame, year: int) -> int | None:
+    """Days out from which an earlier year's mail returns can be matched: the county logs the ballots of the first weeks
+    in one batch (2022: 38,493 on 23 Oct after a few dozen a day; 2024: 79,418 on 19 Oct), so before that day "the same
+    days out" compares with almost nothing. The first day holding a BATCH_SHARE of the month before Election Day."""
+    m = B[(B.year == year) & (B.kind == "mail")].groupby("day")["n"].sum()
+    ed = pd.Timestamp(ELECTION_DAY[year])
+    window = m[(m.index > ed - pd.Timedelta(days=31)) & (m.index < ed)]
+    big = window[window >= BATCH_SHARE * window.sum()]
+    return int((ed - big.index.min()).days) if len(big) else None
+
+
 def run(today: dt.date | None = None) -> dict:
     today = today or dt.date.today()
     voters = table(get(VOTERS, "voters_active.zip", min_age_h=20), VOTER_COLS, ["REGISTRATION_NUM", "PARTY_REG"])
@@ -248,6 +260,10 @@ def run(today: dt.date | None = None) -> dict:
                 "through": str(m_last), "days_out": days_out}  # fmt: skip
     res_mail["vs_registration_pts"] = round(res_mail["R_minus_D_pct"] - reg["R_minus_D_pct"], 2)
     for y in (2024, 2022):
+        start = logged_from(B, y)
+        if start is not None and days_out > start:
+            res_mail[f"vs_{y}_from"] = start  # matched once that year's first batch is in
+            continue
         b = at_days_out(B, y, "mail", days_out)
         if b and b["total"]:
             res_mail[f"vs_{y}"] = {"returned": b, "R_minus_D_pct": r_minus_d(b),
