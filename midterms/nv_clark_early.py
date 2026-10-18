@@ -103,7 +103,7 @@ def party(s: pd.Series) -> pd.Series:
     out = pd.Series("OTH", index=s.index)
     out[u.str.startswith("DEM") | (u == "D")] = "DEM"
     out[u.str.startswith("REP") | (u == "R")] = "REP"
-    out[u.str.startswith("NON") | u.isin(["NP", "NPP"])] = "NP"
+    out[u.str.startswith("NON") | (u == "NP")] = "NP"
     return out
 
 
@@ -145,6 +145,25 @@ def mail_returns(raw: bytes) -> pd.DataFrame:
     d = d[d["day"].notna() & (code != "UND")]
     d = d.sort_values("day").drop_duplicates("IDNUMBER")
     return pd.DataFrame({"party": party(d["VOTER_REG_PARTY"]).values, "day": d["day"].values, "snp": d["snp"].values})
+
+
+def written(meta: Path) -> dt.datetime | None:
+    """When the county wrote a downloaded file (its Last-Modified, in Nevada time)."""
+    from email.utils import parsedate_to_datetime
+    from zoneinfo import ZoneInfo
+
+    try:
+        lm = parsedate_to_datetime(json.loads(meta.read_text())["last_modified"])
+    except (OSError, KeyError, TypeError, ValueError):
+        return None
+    return lm.astimezone(ZoneInfo("America/Los_Angeles"))
+
+
+def complete_through(meta: Path) -> dt.date | None:
+    """The last whole day a nightly file holds: written() less the 20 hours before a night's rebuild (a file written at
+    23:30 holds that day; one written in the morning holds only the day before)."""
+    w = written(meta)
+    return (w - dt.timedelta(hours=20)).date() if w else None
 
 
 def counts(p: pd.Series) -> dict:
@@ -199,12 +218,17 @@ def run(today: dt.date | None = None) -> dict:
     reg_party = reg_party[~reg_party.index.duplicated()]
     print("  Clark voter list: party values", voters["PARTY_REG"].value_counts().head(8).to_dict(), flush=True)
     reg = counts(reg_party)
-    meta = RAW / "voters_active.zip.http.json"
-    reg_date = (json.loads(meta.read_text()).get("last_modified") if meta.exists() else None) or str(today)
-    reg |= {"R_minus_D_pct": r_minus_d(reg), "as_of": reg_date}
+    w = written(RAW / "voters_active.zip.http.json")
+    reg |= {"R_minus_D_pct": r_minus_d(reg), "as_of": str(w.date() if w else today)}
     del voters
 
     m = mail_returns(get(MAIL[2026], "mbreq2026.zip"))
+    if cut := complete_through(RAW / "mbreq2026.zip.http.json"):  # the day the file was written may be partial
+        print(
+            f"  Clark mail 2026: {int((m['day'] > cut).sum())} returns after {cut} (incomplete day) left out",
+            flush=True,
+        )
+        m = m[m["day"] <= cut]
     print("  Clark mail 2026: returned", len(m), "through", m["day"].max(), flush=True)
     ev = []
     for d in pd.date_range(EV_WINDOW[0], min(EV_WINDOW[1], today - dt.timedelta(days=1))).date:
