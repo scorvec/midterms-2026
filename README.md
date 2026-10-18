@@ -721,9 +721,8 @@ dates with either lean. On the inputs of 16 October 2026 the switch moved the Ho
 
 None of these feeds the forecast. Votes cast before Election Day enter the model only through the early-vote movement
 split described above (national and race-level). `web/early-vote.html` publishes North Carolina, Georgia and Florida
-(`early_page.py` assembles `web/data/early_vote.json` from committed files; the site sync copies it). North Carolina's
-tracker data are grabbed in a Claude cloud session and only its aggregates are pushed (the project's rule for new data:
-downloads in the session, transformed data to GitHub).
+(`early_page.py` assembles `web/data/early_vote.json` from committed files; the site sync copies it). All of it runs
+nightly in `early-diag.yml`; only aggregates are committed.
 
 **North Carolina, published** (`nc_tracker.py`): accepted mail and one-stop ballots of 2026 against the 2018 and 2022
 midterms and the 2020 and 2024 presidential years on the same number of days out, by party, age, race, county (against

@@ -31,11 +31,10 @@ the D v R polls of the last 21 days, 538 raw_polls; President, Senate, Governor)
 than last time came before polls that ran too Democratic, 2016 and 2020). The gate stays shut; data/static/early_gate.json
 keeps the table and the page shows today's reading beside it. Rerun after 2026 adds a sixth cycle.
 
-Where it runs: the project's rule is that data are grabbed in a Claude cloud session and GitHub receives transformed data
-only. So the daily step runs in the session, never in Actions: download the morning's NCSBE file there, then commit and
-push data/early/nc_tracker/ and web/data/early_vote.json (python -m midterms.early_page) - aggregates only.
+Where it runs: nightly in early-diag.yml, after nc_early.py (which has fetched the morning's absentee file), then
+early_page.py; the workflow commits data/early/nc_tracker/ and web/data/early_vote.json - aggregates only.
 
-    python -m midterms.nc_tracker                      # daily, in the session: 2026 tables (data/early/nc_tracker/)
+    python -m midterms.nc_tracker                      # daily: 2026 tables (data/early/nc_tracker/)
     python -m midterms.nc_tracker history --src DIR    # one-time: 2008-2024 into data/static/nc_tracker/ (NCSBE zips in DIR)
     python -m midterms.nc_tracker gate                 # the backtest -> data/static/early_gate.json (needs raw_polls)
 """

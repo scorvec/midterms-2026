@@ -3,10 +3,11 @@ name: early vote diagnostics
 # Nothing here feeds the forecast, and this workflow never touches the forecast outputs (its own concurrency group). It
 # commits data/early/ (the diagnostics below) and web/data/early_vote.json, the data of web/early-vote.html, which the site
 # sync publishes with the other midterm pages. midterms/early_page.py reassembles that file from committed data only.
-# North Carolina's published tracker (midterms/nc_tracker.py) is NOT run here: its data are grabbed in a Claude cloud
-# session, and only the transformed tables (data/early/nc_tracker/) and the page data are pushed (the project's rule:
-# downloads happen in the session, GitHub receives transformed data only).
-#   North Carolina  midterms/nc_early.py: accepted mail / one-stop ballots by self-reported race and ethnicity, 2026 vs
+#   North Carolina  midterms/nc_tracker.py, the published tracker: the same morning absentee file (cached: no second
+#                   request) by party, age, race, county and vote history against 2018-2024 (data/early/nc_tracker/,
+#                   aggregates only); this week's statewide registration file, downloaded only when the board replaces it
+#                   (one HEAD request a run against data/early/nc_tracker/reg_2026.json).
+#                   midterms/nc_early.py: accepted mail / one-stop ballots by self-reported race and ethnicity, 2026 vs
 #                   2022 and 2024 on the same days out (NCSBE absentee file, one conditional request per run; the 2022 /
 #                   2024 baseline is the committed table data/static/nc_early_baseline.csv). Propensity needs the
 #                   2016-2024 generals from NCSBE's voter-history file: reduced once to data/cache/nc_hist_generals.csv.gz
@@ -125,6 +126,14 @@ jobs:
           python -m midterms.nc_early || echo "::warning::North Carolina early-vote diagnostic failed (diagnostic only)"
           echo "North Carolina step took $(( $(date +%s) - start )) s"
 
+      - name: North Carolina tracker (the published page)
+        timeout-minutes: 25
+        continue-on-error: true
+        run: |
+          start=$(date +%s)
+          python -m midterms.nc_tracker || echo "::warning::North Carolina tracker failed (the page keeps yesterday's tables)"
+          echo "North Carolina tracker took $(( $(date +%s) - start )) s"
+
       - name: Georgia 2022 baseline from the Wayback Machine (once, gaps on request)
         if: ${{ hashFiles('data/static/ga_wayback_2022.json') == '' || inputs.ga_wayback_fill }}
         timeout-minutes: 40
@@ -149,8 +158,8 @@ jobs:
         continue-on-error: true
         run: python -m midterms.nv_clark_early || echo "::warning::Clark County early-vote diagnostic failed (diagnostic only)"
 
-      # reassembles web/data/early_vote.json from committed files (North Carolina's tables pushed from the session, tonight's
-      # Georgia and Florida readings): no download
+      # reassembles web/data/early_vote.json from tonight's North Carolina, Georgia, Florida and Clark County readings: no
+      # download
       - name: Early-vote page data
         timeout-minutes: 5
         continue-on-error: true

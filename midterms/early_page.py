@@ -13,7 +13,7 @@
 
 How banked ballots enter the forecast (early_vote.py's per-state factors) is read by the page from model.json itself.
 A state whose input is missing is left out; nothing here is needed by the forecast. It reads committed files only (no
-download), so it runs both in the cloud session after nc_tracker and in early-diag.yml after Georgia, Florida and Nevada.
+download); early-diag.yml runs it after the North Carolina, Georgia, Florida and Nevada steps.
 
     python -m midterms.early_page
 """
