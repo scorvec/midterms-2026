@@ -11,6 +11,8 @@ County's Election Department (about 70 % of the state's voters) publishes its ow
     rebuilt weekly). Voters the list does not hold yet (registered since it was written) count as unmatched;
   * 2024's in-person file, for the turnout by day of early voting (2024's own party at the time is not published, so it is
     compared on totals only).
+  * all of it by congressional district, through the voter list's CONGRESS field: NV-1, NV-3 and Clark's part of NV-4, each
+    against its own active voters.
 NV mails a ballot to every active voter, so the mail read against registration is the party-intensity read (as Florida's
 "vs ballots sent"). Only counts leave the runner: the voter-level files stay in data/raw/nv_clark (Actions cache), the
 2022 / 2024 day-by-day counts are reduced once into data/static/nv_clark_baseline.csv.
@@ -114,7 +116,8 @@ def table(raw: bytes, layout: list[str], cols: list[str]) -> pd.DataFrame:
         name = max(z.namelist(), key=lambda n: z.getinfo(n).file_size)
         text = z.read(name)
     first = text[: text.find(b"\n")].decode("latin-1").upper()
-    head = any(c in first for c in cols)
+    fields = [f.strip().strip('"').strip() for f in first.split(",")]
+    head = sum(f in layout for f in fields) >= 2  # a header row names the layout's fields, a data row does not
     if not head and first.count(",") + 1 != len(layout):
         raise ValueError(f"{name}: {first.count(',') + 1} fields and no header, the layout has {len(layout)}")
     kw = {"header": 0} if head else {"header": None, "names": layout}
@@ -137,7 +140,7 @@ def get(url: str, name: str, min_age_h: float | None = None) -> bytes:
 
 
 def mail_returns(raw: bytes) -> pd.DataFrame:
-    """One row per returned ballot (first return per voter): party, day received, signature-missing flag."""
+    """One row per returned ballot (first return per voter): voter id, party, day received, signature-missing flag."""
     d = table(raw, MAIL_COLS, ["IDNUMBER", "VOTER_REG_PARTY", "BALLOT_RECEIVE_DATE", "RETURN_CODE"])
     code = d["RETURN_CODE"].fillna("").str.strip().str.upper()
     d = d.assign(
@@ -145,7 +148,26 @@ def mail_returns(raw: bytes) -> pd.DataFrame:
     )
     d = d[d["day"].notna() & (code != "UND")]
     d = d.sort_values("day").drop_duplicates("IDNUMBER")
-    return pd.DataFrame({"party": party(d["VOTER_REG_PARTY"]).values, "day": d["day"].values, "snp": d["snp"].values})
+    return pd.DataFrame(
+        {
+            "id": voter_id(d["IDNUMBER"]).values,
+            "party": party(d["VOTER_REG_PARTY"]).values,
+            "day": d["day"].values,
+            "snp": d["snp"].values,
+        }
+    )
+
+
+def district(s: pd.Series) -> pd.Series:
+    """The voter list's congressional district -> "NV-1" ... (None where it carries no number)."""
+    n = s.fillna("").astype(str).str.extract(r"(\d+)", expand=False)
+    return n.map(lambda x: f"NV-{int(x)}" if isinstance(x, str) else None)
+
+
+def by_district(p: pd.Series, cd: pd.Series) -> dict:
+    """{district: party counts} of a party Series indexed by voter id, through the voter list's districts."""
+    d = pd.DataFrame({"party": p.values, "cd": p.index.map(cd)}).dropna(subset=["cd"])
+    return {k: counts(g["party"]) for k, g in d.groupby("cd")}
 
 
 def written(meta: Path) -> dt.datetime | None:
@@ -224,14 +246,20 @@ def logged_from(B: pd.DataFrame, year: int) -> int | None:
 
 def run(today: dt.date | None = None) -> dict:
     today = today or dt.date.today()
-    voters = table(get(VOTERS, "voters_active.zip", min_age_h=20), VOTER_COLS, ["REGISTRATION_NUM", "PARTY_REG"])
+    voters = table(
+        get(VOTERS, "voters_active.zip", min_age_h=20), VOTER_COLS, ["REGISTRATION_NUM", "PARTY_REG", "CONGRESS"]
+    )
     voters = voters.dropna(subset=["REGISTRATION_NUM"]).drop_duplicates("REGISTRATION_NUM")
     reg_party = pd.Series(party(voters["PARTY_REG"]).values, index=voter_id(voters["REGISTRATION_NUM"]))
     reg_party = reg_party[~reg_party.index.duplicated()]
+    reg_cd = pd.Series(district(voters["CONGRESS"]).values, index=voter_id(voters["REGISTRATION_NUM"]))
+    reg_cd = reg_cd[~reg_cd.index.duplicated()]
+    print("  Clark voter list: districts", voters["CONGRESS"].value_counts().head(6).to_dict(), flush=True)
     print("  Clark voter list: party values", voters["PARTY_REG"].value_counts().head(8).to_dict(), flush=True)
     reg = counts(reg_party)
     w = written(RAW / "voters_active.zip.http.json")
     reg |= {"R_minus_D_pct": r_minus_d(reg), "as_of": str(w.date() if w else today)}
+    cds = by_district(reg_party, reg_cd)
     del voters
 
     m = mail_returns(get(MAIL[2026], "mbreq2026.zip"))
@@ -306,6 +334,23 @@ def run(today: dt.date | None = None) -> dict:
             f"  Clark in-person: {len(E)} voters over {len(ev)} days, {ip['unmatched']} not on the voter list",
             flush=True,
         )
+    # by congressional district (NV-1 and NV-3 lie inside Clark, NV-4 only partly): each against its own rolls
+    mail_cd = by_district(pd.Series(m["party"].values, index=m["id"].values), reg_cd)
+    ip_cd = by_district(pd.Series(pt.values, index=E["IDNUMBER"].values).dropna(), reg_cd) if ev else {}
+    res["districts"] = {}
+    for k in sorted(cds):
+        rg, ml, ip_k = cds[k], mail_cd.get(k), ip_cd.get(k)
+        row = {"registration": rg | {"R_minus_D_pct": r_minus_d(rg)}}
+        for name, c in (("mail", ml), ("in_person", ip_k)):
+            if c and c["total"]:
+                row[name] = c | {
+                    "R_minus_D_pct": r_minus_d(c),
+                    "vs_registration_pts": round(r_minus_d(c) - r_minus_d(rg), 2),
+                }
+        both = {q: (ml or {}).get(q, 0) + (ip_k or {}).get(q, 0) for q in (*PARTIES, "total")}
+        if both["total"]:
+            row["combined"] = {"total": both["total"], "R_minus_D_pct": r_minus_d(both)}
+        res["districts"][k] = row
     EARLY.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(res, separators=(",", ":"), allow_nan=False, default=str))
     return res

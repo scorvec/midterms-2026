@@ -9,7 +9,7 @@
       voting opens, its ballots by party the same way (and mail and early together on the same compile);
   nv  nv_clark_early's latest reading (data/early/nv_clark_early.json; Clark County Election Department files): mail
       ballots returned by party against registration and against 2022 / 2024 at the same days out, in-person early voters
-      by party (joined to the voter list) and against 2024's turnout on the same day.
+      by party (joined to the voter list) and against 2024's turnout on the same day; both by congressional district.
 
 How banked ballots enter the forecast (early_vote.py's per-state factors) is read by the page from model.json itself.
 A state whose input is missing is left out; nothing here is needed by the forecast. It reads committed files only (no
@@ -89,7 +89,7 @@ def nevada() -> dict | None:
     v = _read(EARLY / "nv_clark_early.json")
     if not v:
         return None
-    keep = ("through", "days_out", "registration", "mail", "in_person", "combined", "source")
+    keep = ("through", "days_out", "registration", "mail", "in_person", "combined", "districts", "source")
     return {k: v[k] for k in keep if k in v}
 
 
