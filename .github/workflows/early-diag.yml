@@ -1,7 +1,11 @@
 name: early vote diagnostics
 
-# Diagnostic only - nothing here feeds the forecast or the website, and this workflow never touches the forecast outputs
-# (its own concurrency group; it commits data/early/ only, which the site sync does not copy).
+# Nothing here feeds the forecast, and this workflow never touches the forecast outputs (its own concurrency group). It
+# commits data/early/ (the diagnostics below) and web/data/early_vote.json, the data of web/early-vote.html, which the site
+# sync publishes with the other midterm pages. midterms/early_page.py reassembles that file from committed data only.
+# North Carolina's published tracker (midterms/nc_tracker.py) is NOT run here: its data are grabbed in a Claude cloud
+# session, and only the transformed tables (data/early/nc_tracker/) and the page data are pushed (the project's rule:
+# downloads happen in the session, GitHub receives transformed data only).
 #   North Carolina  midterms/nc_early.py: accepted mail / one-stop ballots by self-reported race and ethnicity, 2026 vs
 #                   2022 and 2024 on the same days out (NCSBE absentee file, one conditional request per run; the 2022 /
 #                   2024 baseline is the committed table data/static/nc_early_baseline.csv). Propensity needs the
@@ -126,6 +130,13 @@ jobs:
           python -m midterms.fl_early || echo "::warning::Florida early-vote diagnostic failed (diagnostic only)"
           echo "Florida step took $(( $(date +%s) - start )) s"
 
+      # reassembles web/data/early_vote.json from committed files (North Carolina's tables pushed from the session, tonight's
+      # Georgia and Florida readings): no download
+      - name: Early-vote page data
+        timeout-minutes: 5
+        continue-on-error: true
+        run: python -m midterms.early_page || echo "::warning::early-vote page data failed (the page keeps yesterday's)"
+
       - name: Save the North Carolina voter-history table
         if: ${{ always() && steps.nchist.outputs.cache-hit != 'true' && hashFiles('data/cache/nc_hist_generals.csv.gz') != '' }}
         uses: actions/cache/save@v6
@@ -148,8 +159,9 @@ jobs:
       - name: Commit diagnostics
         run: |
           set -uo pipefail
-          paths="data/early data/static/ga_wayback_2022.json"
-          [ -e data/static/ga_wayback_2022.json ] || paths="data/early"
+          paths="data/early web/data/early_vote.json data/static/ga_wayback_2022.json"
+          [ -e data/static/ga_wayback_2022.json ] || paths="data/early web/data/early_vote.json"
+          [ -e web/data/early_vote.json ] || paths="${paths/ web\/data\/early_vote.json/}"
           [ -d data/early ] || { echo "nothing written"; exit 0; }
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -163,7 +175,7 @@ jobs:
             tar xf "$SNAP/outs.tar"
             git add -A -- $paths
             if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
-            git commit -q -m "Early-vote diagnostics $(date +%F)"
+            git commit -q -m "Early vote $(date +%F)"
             if timeout 180 git push -q origin "HEAD:$GITHUB_REF_NAME"; then echo "pushed on attempt $i"; exit 0; fi
             echo "push $i rejected; resyncing and retrying"; sleep $((i * 5))
           done

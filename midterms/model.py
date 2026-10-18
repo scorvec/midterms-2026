@@ -35,6 +35,7 @@ T_DF = 5
 # Movement split (midterms/early_vote.py): None = one national draw x s_nat (backtests, backfill). When set by
 # early_vote.setup: {z: unit national movement draw, m: measured movement sd (national pts), k: {state: exposure factor}}; the
 # national shock becomes z_rest x sqrt(s^2 - m^2) + z x m x k_state, so banked early votes damp a late swing state by state.
+# m_race (when set): each race's own late movement sd, split out of the race error the same way (race_shock).
 MOVE = None
 
 
@@ -1296,7 +1297,7 @@ def simulate(seats: pd.DataFrame, P: Params, n=20000, seed=1, nat_z=None):
             urb = urb + t(n, sd)[:, None] * seats[col].fillna(0).values[None, :]
     # a polled seat's own error shrinks by the blend's posterior sd over its prior sd (an unpolled seat keeps s_res)
     own = np.where(seats["n_eff"].notna(), seats["mu_local_sd"].values / seats["prior_sd"].values, 1.0)
-    res = t((n, k), P.s_res) * own[None, :]
+    res = race_shock(t((n, k), 1.0), P.s_res * own, states, seed)
     mg = seats["mu"].values[None, :] + nat + st + urb + res
     fixed = seats["uncontested"].values
     if fixed.any():
@@ -1332,6 +1333,21 @@ def national_shock(n, s, states, nat_z=None, t=None):
     base = (t(n, r) if nat_z is None else np.asarray(nat_z) * r)[:, None]
     k = np.array([mv["k"].get(st, 1.0) for st in states], float)
     return base + np.asarray(mv["z"][:n])[:, None] * m * k[None, :]
+
+
+def race_shock(u, sd, states, seed):
+    """[n, races] race-level error from unit draws u [n, races] and each race's sd: u x sd, or (MOVE set with m_race) the
+    rest u x sqrt(sd^2 - mr^2) plus an own movement draw x mr x k_state, mr = min(m_race, 0.9 sd): a ballot already cast is
+    shielded from a late race-level swing as from a national one (early_vote.py). The movement draws come from their own
+    generator, so every other draw of a run is unchanged."""
+    sd = np.broadcast_to(np.asarray(sd, float), (u.shape[1],))
+    mv = MOVE
+    if mv is None or not mv.get("m_race") or len(mv["z"]) < u.shape[0]:
+        return u * sd[None, :]
+    mr = np.minimum(mv["m_race"], 0.9 * sd)
+    k = np.array([mv["k"].get(st, 1.0) for st in states], float)
+    z = np.random.default_rng(seed + 7919).standard_t(T_DF, u.shape) * np.sqrt((T_DF - 2) / T_DF)
+    return u * np.sqrt(sd**2 - mr**2)[None, :] + z * (mr * k)[None, :]
 
 
 def national_z(n, seed=5):

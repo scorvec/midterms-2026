@@ -1,0 +1,102 @@
+{
+ "open": false,
+ "reason": "no detectable skill: 5 scoreable cycles, no lead significant, and the sign opposite to the usual reading",
+ "measure": "change from the previous cycle of the same kind in (D - R share of ballots banked by L days out) minus (D - R share of the rolls), points",
+ "outcome": "NC statewide poll miss, result minus the mean D v R poll of the last 21 days (538 raw_polls), D - R",
+ "leads": {
+  "17": {
+   "n": 5,
+   "r": -0.725,
+   "p": 0.166
+  },
+  "10": {
+   "n": 5,
+   "r": -0.267,
+   "p": 0.664
+  },
+  "5": {
+   "n": 5,
+   "r": -0.22,
+   "p": 0.722
+  }
+ },
+ "rows": [
+  {
+   "year": 2012,
+   "previous": 2008,
+   "poll_miss": 0.82,
+   "comp_17": 7.05,
+   "change_17": -4.99,
+   "comp_10": 6.11,
+   "change_10": -7.37,
+   "comp_5": 3.85,
+   "change_5": -5.25
+  },
+  {
+   "year": 2014,
+   "previous": 2010,
+   "poll_miss": -2.09,
+   "comp_17": -10.83,
+   "change_17": -0.48,
+   "comp_10": 4.98,
+   "change_10": 11.88,
+   "comp_5": 4.49,
+   "change_5": 9.03
+  },
+  {
+   "year": 2016,
+   "previous": 2012,
+   "poll_miss": -4.38,
+   "comp_17": 11.08,
+   "change_17": 4.03,
+   "comp_10": 3.69,
+   "change_10": -2.43,
+   "comp_5": 0.95,
+   "change_5": -2.9
+  },
+  {
+   "year": 2018,
+   "previous": 2014,
+   "poll_miss": null,
+   "comp_17": 4.76,
+   "change_17": 15.59,
+   "comp_10": 4.14,
+   "change_10": -0.84,
+   "comp_5": 4.28,
+   "change_5": -0.21
+  },
+  {
+   "year": 2020,
+   "previous": 2016,
+   "poll_miss": -4.55,
+   "comp_17": 16.19,
+   "change_17": 5.11,
+   "comp_10": 5.18,
+   "change_10": 1.49,
+   "comp_5": 1.22,
+   "change_5": 0.27
+  },
+  {
+   "year": 2022,
+   "previous": 2018,
+   "poll_miss": 0.69,
+   "comp_17": 7.17,
+   "change_17": 2.41,
+   "comp_10": 4.31,
+   "change_10": 0.17,
+   "comp_5": 3.11,
+   "change_5": -1.17
+  },
+  {
+   "year": 2024,
+   "previous": 2020,
+   "poll_miss": null,
+   "comp_17": -0.05,
+   "change_17": -16.25,
+   "comp_10": -2.47,
+   "change_10": -7.65,
+   "comp_5": -2.65,
+   "change_5": -3.87
+  }
+ ]
+}

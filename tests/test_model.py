@@ -1,6 +1,8 @@
 """Core simulation pieces (model.py, national_mood.py), the Senate's funded-independent gate, pollster identity
 (model._same_pollster, names.canon) and the national trend's pollster share cap (generic.fit)."""
 
+import json
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -151,3 +153,43 @@ def test_generic_share_cap():
     assert on["tracker"] == pytest.approx(0.15, abs=1e-3) and on.max() <= 0.15 + 1e-3
     assert F["pw"].groupby("pollster")["share_w"].first()["tracker"] < 1
     assert F["pw"]["influence"].sum() == pytest.approx(1.0, abs=1e-6)
+
+
+def test_race_shock(monkeypatch):
+    """Race-level movement split: off -> u x sd; on -> the movement part of each race scaled by its state's k, capped at
+    0.9 sd, the total kept where k = 1."""
+    n = 200_000
+    u = M.national_z(n, seed=3)[:, None] * np.ones((1, 3))  # the off case needs no independent columns
+    sd = np.array([5.0, 5.0, 1.0])
+    states = np.array(["AZ", "MS", "TX"])
+    monkeypatch.setattr(M, "MOVE", None)
+    assert np.allclose(M.race_shock(u, sd, states, seed=1), u * sd[None, :])
+    rng = np.random.default_rng(4)
+    u = rng.standard_t(M.T_DF, (n, 3)) * np.sqrt((M.T_DF - 2) / M.T_DF)
+    monkeypatch.setattr(M, "MOVE", {"z": np.zeros(n), "m": 1.0, "m_race": 2.0, "k": {"AZ": 0.5, "TX": 1.0}})
+    got = M.race_shock(u, sd, states, seed=1)
+    want_var = [5.0**2 - 4.0 + 4.0 * 0.25, 5.0**2, 1.0]  # AZ damped; MS without a factor keeps 1; TX capped at 0.9 sd
+    assert np.allclose(got.var(0), want_var, rtol=0.02)
+    # same unit draws -> the rest of the error is the old draw rescaled: other draws of a run are unchanged
+    assert np.corrcoef(got[:, 1], u[:, 1])[0, 1] > 0.9
+
+
+def test_senate_race_shock_keeps_joint_component(monkeypatch):
+    """With the split on, the same-state component shared with the governor's race is still c x JOINT z."""
+    n = 50_000
+    S = pd.DataFrame({"state": ["AZ", "GA"], "mu": [0.0, 0.0], "sd": [4.0, 4.0], "wnc_z": [0.0, 0.0]})
+    monkeypatch.setattr(SN, "JOINT", {"c": 2.0, "z": {"AZ": M.national_z(n, seed=8), "GA": M.national_z(n, seed=9)}})
+    monkeypatch.setattr(M, "MOVE", {"z": np.zeros(n), "m": 0.0, "m_race": 1.5, "k": {"AZ": 0.6, "GA": 1.0}})
+    mg = SN.simulate_senate(S, n=n, extra=0.0, nat_z=np.zeros(n))
+    assert np.corrcoef(mg[:, 0], SN.JOINT["z"]["AZ"])[0, 1] == pytest.approx(2.0 / mg[:, 0].std(), abs=0.02)
+    assert mg[:, 0].var() == pytest.approx(16.0 - 2.25 + 2.25 * 0.36, rel=0.03)  # AZ banks faster: tighter
+    assert mg[:, 1].var() == pytest.approx(16.0, rel=0.03)
+
+
+def test_race_move_fit_file():
+    from midterms import early_vote as EV
+
+    rec = json.loads(EV.RACE_FIT_JSON.read_text())
+    assert 0.0 < rec["q_race"] <= rec["q_total"] and rec["q_national"] > 0
+    assert EV.race_move_var(17) == pytest.approx(rec["q_race"] * 17)
+    assert EV.race_move_var(90) == pytest.approx(rec["q_race"] * EV.MOVE_LEAD_MAX)  # the fitted range

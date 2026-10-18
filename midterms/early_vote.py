@@ -21,6 +21,17 @@ swing; one that banks less (Mississippi, Alabama, New Hampshire) is more exposed
 how anyone voted is assumed. The rest of the national error (polling error, the seat intercept) is untouched: it applies to every
 ballot whenever it was cast.
 
+Race-level movement. A race moves on its own too (a debate, a scandal, a late ad buy), and a banked ballot is just as shielded
+from that. Measured on 538's raw_polls (Senate and governor generals 1998-2022, D v R, polls within 60 days of the election): for
+two polls of the same race by different pollsters, E[(e_i - e_j)^2] = sampling + house effects + q_total |t_i - t_j|, so the slope
+of the squared difference of their errors on the days between them is the race margin's daily movement variance (sampling
+variance 1e4 (1/n_i + 1/n_j) removed, every race weighted equally, race-clustered bootstrap). Netting out the national part
+(the national q x NAT_SLOPE^2) leaves the race's own movement, q_race (race_move_fit -> data/static/race_move_fit.json: about
+0.25 pts^2 a day, a 2 pt sd over the last 17 days). Like the national figure it was measured on cycles that already had early
+voting, so it is the diluted movement and takes the same per-state factor k_s: each race's own error is split into a movement
+part sqrt(q_race L) x k_s and the rest (model.race_shock). A state banking at the historical pace keeps its total error; one
+banking faster gets tighter, one banking slower wider. Nothing here moves any margin.
+
 Inputs:
   * banked now: UF Election Lab 2026 early vote (election.lab.ufl.edu/data-downloads/earlyvote/2026/US.csv: voted_all, turn_2022),
     snapshot per day in data/raw/early_vote/uf_2026_<date>.csv (fetch());
@@ -63,6 +74,8 @@ for _y in range(1998, 2018, 2):
     HIST_PRE[_y] = round(0.11 + (0.40 - 0.11) * (_y - 1996) / (2018 - 1996), 3)
 FIT_JSON = ROOT / "data" / "static" / "national_mood_fit.json"  # cycles + movement slope (national_mood.refit)
 MOVE_LEAD_MAX = 60  # the random-walk fit uses leads <= 60 days (the forecast's range from here on)
+RACE_FIT_JSON = ROOT / "data" / "static" / "race_move_fit.json"  # race-level movement (race_move_fit)
+RAW_POLLS = ROOT / "data" / "raw" / "538repo" / "raw_polls.csv"
 
 
 def fetch(day=None):
@@ -176,6 +189,72 @@ def move_var(L) -> float:
     return q * max(float(L), 0.0)
 
 
+def race_move_var(L) -> float:
+    """A race's own measured (diluted) movement variance over the last L days, pts of margin squared: q_race x L."""
+    q = float(json.loads(RACE_FIT_JSON.read_text())["q_race"])
+    return q * min(max(float(L), 0.0), MOVE_LEAD_MAX)
+
+
+def race_move_fit(write=True, n_boot=300, seed=1) -> dict:
+    """q_race from 538's raw_polls (see the module docstring): Senate + governor generals, D v R, polls within MOVE_LEAD_MAX
+    days, sample 200-5000; every pair of polls of one race by two different pollsters; slope of (e_i - e_j)^2 minus the
+    sampling variance on |t_i - t_j|, each race weighted equally; race-clustered bootstrap sd. The national part, the
+    national_mood movement slope x NAT_SLOPE^2, is netted out."""
+    from . import senate2026 as SN
+
+    d = pd.read_csv(RAW_POLLS)
+    d = d[
+        d.type_simple.isin(["Sen-G", "Gov-G"])
+        & d.cand1_party.eq("DEM")
+        & d.cand2_party.eq("REP")
+        & d.samplesize.between(200, 5000)
+        & (d.time_to_election <= MOVE_LEAD_MAX)
+    ]
+    rows = []
+    for rid, g in d.groupby("race_id"):
+        if len(g) < 2:
+            continue
+        e = (g.margin_poll - g.margin_actual).values
+        t, n, ps = g.time_to_election.values, g.samplesize.values.astype(float), g.pollster.values
+        i, j = np.triu_indices(len(g), 1)
+        keep = ps[i] != ps[j]  # one pollster's repeat polls share a house effect
+        rows.append(
+            pd.DataFrame(
+                {
+                    "dt": np.abs(t[i] - t[j])[keep],
+                    "y": ((e[i] - e[j]) ** 2 - 1e4 * (1 / n[i] + 1 / n[j]))[keep],
+                    "race": rid,
+                }
+            )
+        )
+    P = pd.concat(rows, ignore_index=True)
+    w = (1 / P.groupby("race").race.transform("size")).values
+
+    def slope(idx):
+        X = np.c_[np.ones(len(idx)), P.dt.values[idx]] * np.sqrt(w[idx])[:, None]
+        return float(np.linalg.lstsq(X, P.y.values[idx] * np.sqrt(w[idx]), rcond=None)[0][1])
+
+    allidx = np.arange(len(P))
+    q_total = slope(allidx)
+    grp = P.groupby("race").indices
+    races = list(grp)
+    rng = np.random.default_rng(seed)
+    boot = [slope(np.concatenate([grp[r] for r in rng.choice(races, len(races))])) for _ in range(n_boot)]
+    q_nat = float(json.loads(FIT_JSON.read_text())["move_q"]) * SN.NAT_SLOPE**2
+    rec = {
+        "q_total": round(q_total, 4),
+        "q_total_sd": round(float(np.std(boot)), 4),
+        "q_national": round(q_nat, 4),
+        "q_race": round(max(q_total - q_nat, 0.0), 4),
+        "pairs": len(P),
+        "races": int(P.race.nunique()),
+        "source": "538 raw_polls (git blob 08735ea), Sen-G + Gov-G D v R 1998-2022, polls <= 60 days, pairs of pollsters",
+    }
+    if write:
+        RACE_FIT_JSON.write_text(json.dumps(rec, indent=1))
+    return rec
+
+
 def k_factors(asof=None, states=None) -> dict:
     """{state: k_s} with k_s^2 = I_s(L) / I_hist(L); plus diagnostics under '_meta'."""
     asof = pd.Timestamp(asof or pd.Timestamp.today()).normalize()
@@ -192,6 +271,7 @@ def k_factors(asof=None, states=None) -> dict:
         "lead": L,
         "I_hist": round(Ih, 2),
         "m2": round(move_var(L), 3),
+        "m_race": round(float(np.sqrt(race_move_var(L))), 3),
         "banked_states": len(bk),
         "snapshot": max(
             (p.stem[-10:] for p in RAW.glob("uf_2026_*.csv") if pd.Timestamp(p.stem[-10:]) <= asof), default=None
@@ -201,7 +281,7 @@ def k_factors(asof=None, states=None) -> dict:
 
 
 def setup(n, s_house, s_state, rho, asof=None, seed=29):
-    """Turn the movement split on for this run: model.MOVE = {z, m, k}. Returns the correlation the remaining House and
+    """Turn the movement split on for this run: model.MOVE = {z, m, m_race, k}. Returns the correlation the remaining House and
     statewide draws need so that the House-statewide correlation of the turnout-weighted national average stays `rho`
     (national_mood.RHO_STATEWIDE, the measured correlation of the total misses):
         rho * T_h * T_s = (m kbar)^2 + rho_r * r_h * r_s,   T = sqrt(r^2 + (m kbar)^2),   kbar = 2022-turnout-weighted mean k.
@@ -218,7 +298,13 @@ def setup(n, s_house, s_state, rho, asof=None, seed=29):
     Th, Ts = np.sqrt(rh**2 + mk2), np.sqrt(rs**2 + mk2)
     rho_r = float(np.clip((rho * Th * Ts - mk2) / (rh * rs), -0.99, 0.99))
     meta["kbar"] = round(kbar, 3)
-    M.MOVE = {"z": M.national_z(n, seed), "m": float(np.sqrt(m2)), "k": k, "meta": {**meta, "rho_r": round(rho_r, 3)}}
+    M.MOVE = {
+        "z": M.national_z(n, seed),
+        "m": float(np.sqrt(m2)),
+        "m_race": float(meta["m_race"]),  # each race's own late movement (model.race_shock)
+        "k": k,
+        "meta": {**meta, "rho_r": round(rho_r, 3)},
+    }
     return rho_r
 
 
