@@ -150,7 +150,8 @@ def load_votehub(kind: str) -> pd.DataFrame:
 FIELD_PREP = True
 VARIANT_MODE = "split"  # 2018-24 at 6 leads: old RMSE 4.10 (midterms 4.00), keep-LV-only 4.15 (4.12), split 3.97 (3.65)
 POP_RANK = {"lv": 0, "rv": 1, "v": 2, "a": 3}
-# Pollster quality vs partisan tags. Ratings: midterms/pollster_quality.py (538 archived ratings by vintage, pollresults.org grades).
+# Pollster quality vs partisan tags. Ratings: midterms/pollster_quality.py (538 archived ratings by vintage, pollresults.org grades,
+# editorial ratings).
 # Backtest (538 archive 2018/20/22/24 x 6 dates, the POLLSTER_POP_LAMBDA harness; ratings as known before each election):
 #   RMSE vs the House margin    off 3.924 | Rasmussen+Big Data tagged REP 4.049 (3/24 cases better, year-block p 0.32)
 #   exclude D/F (score <= 1.2) 4.059 (2/24, p 0.41) | exclude bottom decile 3.964 | Big Data excluded 3.938 (0/5 changed better)

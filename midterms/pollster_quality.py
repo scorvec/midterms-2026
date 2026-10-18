@@ -20,7 +20,8 @@ One quality score per pollster on 538's star scale (0.5 = F ... 3.0 = A+), kept 
 
 Names: a 2026 poll's pollster is mapped through names.canon to a canonical key; the key is joined to 538's pollster_rating_id
 via the pollresults.org API (it carries 538's rating id per poll), the 538 poll archives and the rating files themselves.
-Live score = the pollresults.org grade where it has one (current), else the 538 Jan-2024 stars, else unrated.
+Live score = an editorial rating where one is set (EDITORIAL), else the pollresults.org grade where it has one (current),
+else the 538 Jan-2024 stars, else unrated.
 
     python -m midterms.pollster_quality        -> tables + 2026 coverage
 """
@@ -338,6 +339,12 @@ SPONSOR_ALIAS = {
 }
 
 
+# Editorial ratings that replace the source grade: canonical key -> letter. SurveyMonkey's 2026 polls are the NBC News
+# Decision Desk polls (17-19k a wave on its online panel, full toplines published), rated with YouGov and Ipsos rather than
+# at the D+ pollresults.org gives SurveyMonkey.
+EDITORIAL = {"surveymonkey": "B"}
+
+
 def live_rating(pollster: str) -> dict:
     """{'score', 'grade', 'source'} for a 2026 poll's pollster string (sponsor tags like ' (R)' ignored)."""
     global _LIVE
@@ -350,6 +357,9 @@ def live_rating(pollster: str) -> dict:
     if s in memo:
         return memo[s]
     k = R.canon(s)
+    if k in EDITORIAL:
+        memo[s] = {"score": LETTER[EDITORIAL[k]], "grade": EDITORIAL[k], "source": "editorial"}
+        return memo[s]
     out = {"score": np.nan, "grade": None, "source": None}
     cands = [k, norm(s), R.canon(norm(s))]
     cands += [SPONSOR_ALIAS[c] for c in cands if c in SPONSOR_ALIAS]
