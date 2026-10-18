@@ -14,8 +14,8 @@ name: early vote diagnostics
 #                   that cache entry is gone (one ~350 MB download).
 #   Florida         midterms/fl_early.py: the Division of Elections' party statistics files, one conditional request per
 #                   file per run, snapshotted into data/early/fl_stats/ (a missed day is gone: Florida keeps no history);
-#                   2024 at matched days out from Wayback captures (data/static/fl_wayback/; more days: dispatch with
-#                   fl_wayback_fill), registration from data/static/fl_registration.csv.
+#                   2024 at matched days out from Wayback captures (data/static/fl_wayback/), registration from
+#                   data/static/fl_registration.csv.
 #   Georgia         midterms/ga_early.py: georgiavotes.com's home page once a day (pages are open to crawlers,
 #                   /api/ is not and is never used): totals and county counts against 2022 at the same point, race / age /
 #                   gender, 2022 behaviour; 2022 at the same day of in-person voting from the Wayback Machine, fetched once into
@@ -33,10 +33,6 @@ on:
         default: false
       ga_wayback_fill:
         description: "Try again the Wayback captures of the 2022 Georgia site that are not in data/static/ga_wayback_2022.json yet"
-        type: boolean
-        default: false
-      fl_wayback_fill:
-        description: "Fetch the Wayback captures of Florida's 2024 statistics files that are not in data/static/fl_wayback yet"
         type: boolean
         default: false
 
@@ -126,12 +122,6 @@ jobs:
         continue-on-error: true
         run: python -m midterms.ga_early || echo "::warning::Georgia early-vote diagnostic failed (diagnostic only)"
 
-      - name: Florida 2024 captures from the Wayback Machine (on request)
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.fl_wayback_fill }}
-        timeout-minutes: 40
-        continue-on-error: true
-        run: python -m midterms.fl_early wayback || echo "::warning::Florida 2024 capture fetch failed (diagnostic only)"
-
       - name: Florida by party (diagnostic)
         timeout-minutes: 10
         continue-on-error: true
@@ -169,8 +159,8 @@ jobs:
       - name: Commit diagnostics
         run: |
           set -uo pipefail
-          paths="data/early web/data/early_vote.json data/static/fl_wayback data/static/ga_wayback_2022.json"
-          [ -e data/static/ga_wayback_2022.json ] || paths="data/early web/data/early_vote.json data/static/fl_wayback"
+          paths="data/early web/data/early_vote.json data/static/ga_wayback_2022.json"
+          [ -e data/static/ga_wayback_2022.json ] || paths="data/early web/data/early_vote.json"
           [ -e web/data/early_vote.json ] || paths="${paths/ web\/data\/early_vote.json/}"
           [ -d data/early ] || { echo "nothing written"; exit 0; }
           git config user.name "github-actions[bot]"

@@ -9,8 +9,8 @@ the statewide result. What is public:
     early-diag workflow; the daily forecast run keeps its own copy in data/raw/fl_stats, read here too).
   * 2024 at matched days out: the Wayback Machine's captures of the same files for the 2024 general (election 43888),
     fetched into data/static/fl_wayback/ (VbmVoted compiled 10/04, 10/09, 10/28; VbmProvided 09/16, 10/10, 10/28;
-    EarlyVoted 10/28; plus the final files); `wayback` adds any other day's capture the archive holds. 2022 (26906) was
-    captured only after the election (final totals).
+    EarlyVoted 10/28 - every capture the archive holds of them in October 2024 - plus the final files). 2022 (26906)
+    was captured only after the election (final totals).
   * registration by party (active voters, month end): DOS monthly reports, data/static/fl_registration.csv. dos.fl.gov is
     behind a browser check, so new months are added by hand from the DOS workbook (no automated fetch).
   * race is not in any of this. It is self-reported on the Florida voter record, but only the monthly voter extract carries
@@ -29,7 +29,6 @@ Traps: Hurricane Helene (26 Sep 2024) and Milton (landfall 9 Oct 2024) hit the 2
 dates; VbmProvided and VbmVoted compile at different times, so "requests" pairs files at most one day apart (flagged).
 
     python -m midterms.fl_early              # snapshot (data/early/fl_stats), compare, write data/early/fl_early.json
-    python -m midterms.fl_early wayback      # 2024 captures not yet in data/static/fl_wayback (incremental)
 """
 
 from __future__ import annotations
@@ -94,55 +93,6 @@ def snapshot(dest: Path = RAW) -> list[Path]:
         p.write_bytes(raw)
         got.append(p)
     return got
-
-
-def wayback() -> int:
-    """The Wayback Machine's captures of the 2024 general's statistics files (1 Oct - 5 Nov 2024) not yet in WAYBACK:
-    the last capture of each day of each file, kept when it parses (a State Totals row, 67 counties). Incremental: a
-    capture that fails is tried again on the next fill. Returns the number of files added."""
-    import tempfile
-    import time
-
-    from . import fetch as F
-
-    election = ELECTIONS[2024][0]
-    have = {(p.name.split("_")[2], p.stem.rsplit("_wb", 1)[1][:8]) for p in WAYBACK.glob(f"Stats_{election}_*_wb*.txt")}
-    added = 0
-    for kind in KINDS:
-        url = BASE.format(election, kind).split("://", 1)[1]
-        cdx = (
-            f"https://web.archive.org/cdx/search/cdx?url={url}&from=20241001&to=20241105&output=json"
-            "&fl=timestamp&filter=statuscode:200"
-        )
-        for k in range(4):
-            try:
-                stamps = sorted(r[0] for r in json.loads(F.open_url(cdx, timeout=180) or b"[]")[1:])
-                break
-            except Exception as ex:
-                print(f"  {kind}: capture index try {k + 1} failed: {ex!r}"[:120])
-                if k == 3:
-                    raise
-                time.sleep(60)
-        last = {}
-        for ts in stamps:
-            last[ts[:8]] = ts  # the day's last capture
-        todo = [ts for day, ts in sorted(last.items()) if (kind, day) not in have]
-        print(f"  {kind}: {len(stamps)} captures on {len(last)} days, {len(todo)} days to fetch")
-        for ts in todo:
-            try:
-                raw = F.open_url(f"https://web.archive.org/web/{ts}id_/https://{url}", timeout=90)
-                with tempfile.NamedTemporaryFile(suffix=".txt") as tmp:
-                    Path(tmp.name).write_bytes(raw)
-                    r = read_stats(Path(tmp.name))
-                if not r or r["counties"] != 67 or r["election"] != election or r["kind"] != kind:
-                    print(f"  {kind} {ts}: not a complete statistics file, skipped")
-                    continue
-                (WAYBACK / f"Stats_{election}_{kind}_wb{ts}.txt").write_bytes(raw)
-                added += 1
-                print(f"  {kind} {ts}: compiled {r['compiled']:%Y-%m-%d %H:%M}, {r['total']:,} ballots")
-            except Exception as ex:
-                print(f"  {kind} {ts} failed: {ex!r}"[:120])
-    return added
 
 
 def read_stats(path: Path) -> dict | None:
@@ -348,10 +298,7 @@ def show(res: dict):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "wayback":
-        print(f"{wayback()} Florida 2024 captures added")
-    else:
-        show(run())
+    show(run())
     from . import fetch as _F
 
     _F.report()
