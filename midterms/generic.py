@@ -1051,9 +1051,10 @@ def _add_manual(M: pd.DataFrame, kind: str) -> pd.DataFrame:
     """Hand-entered national polls (data/manual/{generic,approval}_polls.csv; e.g. a release read from the pollster's
     site before any feed has it). Columns: pollster, start_date, end_date, n, pop, dem, rep, partisan
     (REP / DEM / empty), source. Applied LAST, after data/manual/poll_corrections.csv, and dropped automatically once any
-    source carries the same pollster ending within 3 days, so a feed or VoteHub copy always wins - unless a correction drops
-    that copy (e.g. Polling USA posting RMG/Napolitan's likely-voter ballot under the pollster's usual RV label: the feed
-    rows are dropped and both populations are hand-entered)."""
+    source carries the same poll - same pollster, ending within 3 days, same population, both toplines within a point - so a
+    feed or VoteHub copy always wins, while another poll from the same firm (Reuters/Ipsos beside ABC/Post/Ipsos) does not
+    knock the hand entry out; unless a correction drops that copy (e.g. Polling USA posting RMG/Napolitan's likely-voter
+    ballot under the pollster's usual RV label: the feed rows are dropped and both populations are hand-entered)."""
     from . import names as R
 
     f = MANUAL / f"{kind}_polls.csv"
@@ -1063,7 +1064,14 @@ def _add_manual(M: pd.DataFrame, kind: str) -> pd.DataFrame:
     rows = []
     for r in d.itertuples():
         key = R.canon(r.pollster)
-        if ((M["pollster"] == key) & ((M["end_date"] - r.end_date).abs() <= pd.Timedelta(days=3))).any():
+        copy = (
+            (M["pollster"] == key)
+            & ((M["end_date"] - r.end_date).abs() <= pd.Timedelta(days=3))
+            & (M["pop"].astype(str) == str(r.pop).lower())
+            & ((M["dem"] - float(r.dem)).abs() <= 1)
+            & ((M["rep"] - float(r.rep)).abs() <= 1)
+        )
+        if copy.any():
             print(f"  manual {kind}: {r.pollster} {r.end_date.date()} now in another source - hand entry dropped")
             continue
         rows.append(

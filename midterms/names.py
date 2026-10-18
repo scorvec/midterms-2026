@@ -39,8 +39,16 @@ ALIASES = {
     "harvard caps/harrisx": "harrisx",
     "2way/harrisx": "harrisx",
     "forbes/harrisx": "harrisx",
-    "wash post/ipsos": "ipsos/wapo",
-    "abc/wash post/ipsos": "ipsos/wapo",
+    # Ipsos fields the ABC News / Washington Post polls on its KnowledgePanel as it does Reuters'; the feeds file them under
+    # several names (VoteHub: "ipsos" with the sponsors apart, or "washington post/abc news/ipsos"), and one firm under
+    # three keys split its house effect and escaped the per-pollster share cap
+    "wash post/ipsos": "ipsos",
+    "washington post/ipsos": "ipsos",
+    "abc/wash post/ipsos": "ipsos",
+    "abc news/washington post/ipsos": "ipsos",
+    "washington post/abc news/ipsos": "ipsos",
+    "abc news/the washington post/ipsos": "ipsos",
+    "the washington post/abc news/ipsos": "ipsos",
     "i&i/tipp": "tipp",
     "tipp insights": "tipp",
     "npr/pbs/marist": "marist",
