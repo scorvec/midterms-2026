@@ -689,6 +689,7 @@ def _record(
                 "rep": None if pd.isna(x.get("rep")) else float(x["rep"]),
                 "und": None if pd.isna(x.get("und")) else float(x["und"]),
                 "other": None if pd.isna(x.get("other")) else float(x.get("other") or 0),
+                "n": int(x["n"]) if pd.notna(x.get("n")) and x["n"] > 0 else None,  # sample size (poll_spread.py)
                 "published": pub,
                 "lean": _f0(x.get("lean")),
                 "state_corr": float(corr.get(seat[:2], 0.0)) if "[" not in str(x["pollster"]) else 0.0,
