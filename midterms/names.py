@@ -49,6 +49,10 @@ ALIASES = {
     "washington post/abc news/ipsos": "ipsos",
     "abc news/the washington post/ipsos": "ipsos",
     "the washington post/abc news/ipsos": "ipsos",
+    # NBC News fields its Decision Desk polls through SurveyMonkey
+    "nbc news/surveymonkey": "surveymonkey",
+    "nbc news decision desk/surveymonkey": "surveymonkey",
+    "nbc/surveymonkey": "surveymonkey",
     "i&i/tipp": "tipp",
     "tipp insights": "tipp",
     "npr/pbs/marist": "marist",

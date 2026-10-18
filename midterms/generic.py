@@ -1049,8 +1049,8 @@ MANUAL = ROOT / "data" / "manual"
 
 def _add_manual(M: pd.DataFrame, kind: str) -> pd.DataFrame:
     """Hand-entered national polls (data/manual/{generic,approval}_polls.csv; e.g. a release read from the pollster's
-    site before any feed has it). Columns: pollster, start_date, end_date, n, pop, dem, rep, partisan
-    (REP / DEM / empty), source. Applied LAST, after data/manual/poll_corrections.csv, and dropped automatically once any
+    site before any feed has it). Columns: pollster, start_date, end_date, n, pop, dem, rep (approval: approve,
+    disapprove), partisan (REP / DEM / empty), source. Applied LAST, after data/manual/poll_corrections.csv, and dropped automatically once any
     source carries the same poll - same pollster, ending within 3 days, same population, both toplines within a point - so a
     feed or VoteHub copy always wins, while another poll from the same firm (Reuters/Ipsos beside ABC/Post/Ipsos) does not
     knock the hand entry out; unless a correction drops that copy (e.g. Polling USA posting RMG/Napolitan's likely-voter
