@@ -123,7 +123,7 @@ can start scheduled runs late). It runs `python -m midterms.bootstrap`, then `py
 4. Wikipedia: the House seat table (2026 maps, incumbents, nominees), race ratings, every Senate and governor race page and the
    50 state House-election pages; VoteHub and pollresults.org race polls; the Bluesky feeds (`refresh.py`).
 5. `build_web.py`: the House, Senate, governor and state-legislature simulations -> `web/data/model.json`, `polls.json`,
-   `whatif.json`, `stateleg_seats.json`.
+   `whatif.json`, `stateleg_seats.json`, and the herding check `poll_spread.json` (diagnostic, see [Poll spread](#poll-spread-herding-check)).
 6. The daily snapshot `web/data/history/model_<date>.json`; the reconstructed history (`backfill.py`, rebuilt only when the
    methodology files change), `web/data/race_history.json` and `web/data/summary.json` (the site's homepage panel).
 7. Diagnostics that do not feed the forecast (Florida and Pennsylvania early / mail vote, North Carolina and Pennsylvania
@@ -228,6 +228,7 @@ Committed inputs (`data/static/`):
 | `ga_wayback_2022.json`, `ga_county_baselines.csv` | Georgia 2022 early-vote composition at each day of in-person voting; each county's 2022 governor and 2024 presidential margin | georgiavotes.com 2022 pages as captured by the Wayback Machine; MEDSL 2022 returns and 2024 county presidential results |
 | `race_move_fit.json` | a race's own late movement, pts² of margin a day (the total, its national part, the bootstrap sd) | 538 raw_polls (CC BY 4.0), Senate + governor generals 1998-2022; `python -c "from midterms import early_vote; early_vote.race_move_fit()"` |
 | `nc_tracker/` | North Carolina accepted mail / one-stop ballots of the 2018-2024 generals by days out, method, party, race, age and county, with each year's registered voters, the 2022 early voters' 2018 / 2020 participation, the party paces of 2008-2024 and each county's 2024 presidential margin | NC State Board of Elections absentee files, registration statistics, voter history and precinct results (public records); aggregates only, `python -m midterms.nc_tracker history --src DIR` |
+| `poll_spread_hist.json` | the herding check's benchmark: for each Senate / governor race of 1998-2022 with >= 4 pollsters in the last 21 days, how far its polls spread against sampling error | 538 raw_polls (CC BY 4.0); `python -m midterms.poll_spread --hist` |
 | `early_gate.json` | the backtest that keeps the early-vote party mix out of the forecast (North Carolina, 5 scoreable cycles) | the tables above and 538 raw_polls; `python -m midterms.nc_tracker gate` |
 | `nv_clark_baseline.csv` | Clark County, Nevada, mail ballots returned by registered party and day in the 2022 and 2024 generals, and 2024 in-person early voters by day (counts only) | Clark County Election Department return files (public records); `nv_clark_early.py` |
 | `tx_early_sources.json`, `tx_county_pres2024.csv` | sources for the Texas tracker; 2024 presidential votes by Texas county | Texas Secretary of State (public records); MIT Election Data and Science Lab 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), summed by county |
@@ -766,6 +767,23 @@ exurbs, the Rio Grande Valley and border, the swing suburbs Tarrant and Fort Ben
 Texas has no party registration, so this is turnout, not vote choice. The 2022 comparison is not built: the SOS's 2022
 day-by-day portal and its results site answered GitHub Actions with a Cloudflare browser challenge, which is not evaded.
 The planned end point, the final 2022 early vote by county, is described in `tx_early._final_2022`.
+
+### Poll spread (herding check)
+
+`poll_spread.py`, a diagnostic that does not feed the forecast. Herding is pollsters steering toward the average (weighting
+choices, or holding back a result that looks like an outlier); its mark is polls that agree more closely than their sample
+sizes allow, as in the 2024 presidential swing states. For each Senate and governor race with at least 4 pollsters in the
+last 21 days (each pollster's newest poll, published D-R margin), the sum of squared gaps from the race's weighted mean in
+units of each poll's sampling variance, `1e4 (d + r - (d - r)^2) / n`, divided by k - 1, is 1 when the polls differ by
+sampling error only. Real polls differ more (house effects, likely-voter screens, timing): over 1998-2022 the pooled ratio was
+1.48 for Senate races and 1.83 for governor races, and no cycle's Senate polls pooled below 1.08 (2020).
+`web/data/poll_spread.json` gives each race's ratio and `p_low` (the chance of polls this close under sampling error alone)
+and, per office, the pooled ratio and `p_hist`, the share of same-size draws of 1998-2022 races that pool at least as low.
+
+A tight race is not a warning of a miss by itself: over the 342 benchmark races the ratio is unrelated to how far the
+average missed (Spearman 0.02; tightest third 4.2 points, widest third 4.2), and a cycle's pooled ratio is unrelated to
+that cycle's average miss. What herding costs is information: polls that lean on each other count for less than their
+number, which the forecast already allows for by treating a race's polls as sharing one systematic error.
 
 ## Credits
 
