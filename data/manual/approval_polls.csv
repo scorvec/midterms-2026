@@ -1,0 +1,3 @@
+pollster,start_date,end_date,n,pop,dem,rep,partisan,source
+SurveyMonkey,2026-09-28,2026-10-12,19135,a,34,66,,"NBC News Decision Desk/SurveyMonkey, Trump job approval among adults 34-66 (approve in the dem column, disapprove in the rep column); 19,135 adults online, MoE 2.6; https://www.nbcnews.com/politics/2026-election/poll-americans-anxious-pessimistic-deeply-unhappy-trump-ahead-midterms-rcna603064 (released 2026-10-18)"
+SurveyMonkey,2026-09-28,2026-10-12,18061,rv,39,61,,"NBC News Decision Desk/SurveyMonkey, Trump job approval among registered voters 39-61, n 18,061; topline https://www.documentcloud.org/documents/28819497-nbc-news-decision-desk-poll-october-2026-topline-final/"

@@ -1,0 +1,22 @@
+office,seat,pollster,end_date,action,value,note
+senate,SD,lake research,2026-09-30,drop,,feed copy of the Aug 26-30 Bengs-campaign survey dated by its release (Wikipedia; PollTracker)
+senate,SD,lake research,,sponsor,I,Bengs campaign (Wikipedia polling table)
+senate,SD,impact research,,sponsor,I,Bengs campaign
+senate,SD,public policy polling,2026-09-09,sponsor,I,Bengs campaign
+senate,SD,zenith,,sponsor,I,Bengs campaign
+governor,SD,lake research,2026-09-30,end_date,2026-08-30,same Aug 26-30 survey as the Senate poll; the feed dated it by its release
+house,NC-1,,,name,Davies>Davis,Polling USA spells Rep. Don Davis "Davies" (Neighborhood Research 10/6)
+house,KY-6,change research,2026-10-05,sponsor,D,the NYT feed copy is labelled Change Research (D); the Polling USA copy of the same 47-38 poll dropped the tag
+governor,FL,change research,2026-09-09,sponsor,D,same Sep 7-9 survey as the Senate question the feed tags Change Research (D) (sponsor Freedom Project USA); the governor copy dropped the tag
+governor,FL,change research,2026-09-27,sponsor,D,same late-Sep survey as the Senate question the feed tags Change Research (D); the governor copy dropped the tag
+house,NY-21,impact research,2026-10-04,sponsor,D,commissioned by the Democratic candidate (Gendebien campaign internal; NNY360 / Yahoo News 10/2026)
+senate,FL,targoz market research,2026-10-04,drop,,same Targoz Sep 28-Oct 4 survey the model also has as James Madison Institute (JMI commissioned it; Florida Politics 10/9) - one survey counted twice
+governor,FL,targoz market research,2026-10-04,drop,,same Targoz Sep 28-Oct 4 survey the model also has as James Madison Institute (JMI commissioned it; Florida Politics 10/9) - one survey counted twice
+generic,US,noble predictive,2026-10-07,hold,centersquare:Oct 2026,"Polling USA + pollresults.org 2026-10-10 post the Center Square Voters' Voice Oct 5-7 wave as 47-42, but no October ballot number is published (Center Square ran tariff + socialism stories only; the cited dashboard ends at the Aug 12-16 wave, also 47-42) - held until the dashboard shows an Oct 2026 wave (midterms/source_watch.py), then back in at the published numbers"
+governor,FL,change research,2026-10-10,sponsor,D,Oct 8-10 Freedom Project USA / Change Research survey (920 LV) - same sponsor as the Sep 9 and Sep 27 polls; the governor copy in the feeds carries no tag
+house,TX-15,barbara jordan,2026-07-30,drop,,VoteHub copy of the TSU South Texas CD poll fielded Aug 18-22 (Wikipedia; TSU report SouthTexasCDs2026.pdf): same n and shares; dated by the TSU statewide wave
+house,TX-28,barbara jordan,2026-07-30,drop,,VoteHub copy of the TSU South Texas CD poll fielded Aug 18-22 (Wikipedia; TSU report SouthTexasCDs2026.pdf): same n and shares; dated by the TSU statewide wave
+house,TX-34,barbara jordan,2026-07-30,drop,,VoteHub copy of the TSU South Texas CD poll fielded Aug 18-22 (Wikipedia; TSU report SouthTexasCDs2026.pdf): same n and shares; dated by the TSU statewide wave
+house,FL-13,fabrizio,2026-07-22,drop,,VoteHub copy (no sponsor tag) of the Fabrizio Lee (R) Luna poll fielded Aug 4-6 (Wikipedia; Fabrizio memo Aug 14): same n and shares
+generic,US,rmg,2026-09-15,drop,,"Polling USA's 52-46 'RMG / Sept 15' post is Napolitan's LIKELY-voter ballot (Sep 8-15; 'Generic Ballot: First Likely Voter Numbers Have Dems Ahead 6', napolitannews.org) but the feed copy took RMG's usual RV label and a 3-day field; both populations are hand-entered in generic_polls.csv"
+generic,US,rmg,2026-10-13,drop,,"Polling USA's 54-43 'RMG / Oct 13' post (2026-10-14) is the likely-voter number (Napolitan graphic: Likely Voters 54-43, LV w/o leaners 52-41, Oct 12-13); the feed would label it RV - both populations hand-entered in generic_polls.csv"

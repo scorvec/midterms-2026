@@ -1,0 +1,2985 @@
+dbe,method,party,race,age,n
+-15,Mail,DEM,Black,41-65,1
+-15,Mail,REP,Black,41-65,1
+-9,Mail,DEM,Black,18-25,1
+-9,Mail,DEM,Black,41-65,1
+-9,Mail,DEM,Black,66+,3
+-9,Mail,DEM,Other,26-40,3
+-9,Mail,DEM,Other,41-65,1
+-9,Mail,DEM,White,18-25,3
+-9,Mail,DEM,White,26-40,2
+-9,Mail,DEM,White,41-65,3
+-9,Mail,OTH,Other,26-40,1
+-9,Mail,OTH,Other,66+,1
+-9,Mail,OTH,White,18-25,1
+-9,Mail,REP,Black,41-65,1
+-9,Mail,REP,Other,18-25,3
+-9,Mail,REP,Other,26-40,1
+-9,Mail,REP,Other,41-65,2
+-9,Mail,REP,White,18-25,3
+-9,Mail,REP,White,26-40,5
+-9,Mail,REP,White,66+,1
+-9,Mail,UNA,Black,18-25,1
+-9,Mail,UNA,Black,26-40,4
+-9,Mail,UNA,Black,41-65,3
+-9,Mail,UNA,Other,18-25,2
+-9,Mail,UNA,Other,26-40,4
+-9,Mail,UNA,Other,41-65,1
+-9,Mail,UNA,Other,66+,2
+-9,Mail,UNA,White,18-25,5
+-9,Mail,UNA,White,26-40,4
+-9,Mail,UNA,White,41-65,6
+-8,Mail,DEM,Black,18-25,1
+-8,Mail,DEM,Black,26-40,1
+-8,Mail,DEM,Black,41-65,1
+-8,Mail,DEM,Black,66+,1
+-8,Mail,DEM,Other,26-40,1
+-8,Mail,DEM,Other,41-65,1
+-8,Mail,DEM,White,18-25,1
+-8,Mail,DEM,White,26-40,2
+-8,Mail,DEM,White,41-65,1
+-8,Mail,DEM,White,66+,1
+-8,Mail,OTH,Other,26-40,1
+-8,Mail,REP,Other,18-25,1
+-8,Mail,REP,Other,26-40,1
+-8,Mail,REP,Other,41-65,3
+-8,Mail,REP,White,18-25,1
+-8,Mail,REP,White,26-40,2
+-8,Mail,REP,White,41-65,2
+-8,Mail,REP,White,66+,2
+-8,Mail,UNA,Other,18-25,4
+-8,Mail,UNA,Other,26-40,3
+-8,Mail,UNA,Other,41-65,1
+-8,Mail,UNA,Other,66+,2
+-8,Mail,UNA,White,18-25,6
+-8,Mail,UNA,White,26-40,3
+-8,Mail,UNA,White,66+,1
+-7,Mail,DEM,Black,26-40,2
+-7,Mail,DEM,Black,41-65,3
+-7,Mail,DEM,Black,66+,6
+-7,Mail,DEM,Other,26-40,2
+-7,Mail,DEM,White,18-25,2
+-7,Mail,DEM,White,26-40,3
+-7,Mail,DEM,White,41-65,1
+-7,Mail,DEM,White,66+,5
+-7,Mail,OTH,Black,18-25,1
+-7,Mail,REP,Black,18-25,1
+-7,Mail,REP,Black,41-65,1
+-7,Mail,REP,Other,18-25,3
+-7,Mail,REP,Other,26-40,2
+-7,Mail,REP,White,18-25,4
+-7,Mail,REP,White,26-40,3
+-7,Mail,REP,White,41-65,1
+-7,Mail,REP,White,66+,2
+-7,Mail,UNA,Black,26-40,2
+-7,Mail,UNA,Black,41-65,3
+-7,Mail,UNA,Black,66+,1
+-7,Mail,UNA,Other,18-25,3
+-7,Mail,UNA,Other,26-40,9
+-7,Mail,UNA,Other,41-65,2
+-7,Mail,UNA,Other,66+,2
+-7,Mail,UNA,White,18-25,11
+-7,Mail,UNA,White,26-40,3
+-7,Mail,UNA,White,41-65,2
+-7,Mail,UNA,White,66+,1
+-6,Mail,DEM,Black,26-40,1
+-6,Mail,DEM,Other,18-25,2
+-6,Mail,DEM,Other,26-40,2
+-6,Mail,DEM,Other,41-65,1
+-6,Mail,DEM,White,18-25,5
+-6,Mail,DEM,White,26-40,4
+-6,Mail,DEM,White,41-65,2
+-6,Mail,DEM,White,66+,1
+-6,Mail,OTH,Other,66+,1
+-6,Mail,REP,Other,26-40,1
+-6,Mail,REP,Other,41-65,3
+-6,Mail,REP,White,18-25,2
+-6,Mail,REP,White,41-65,2
+-6,Mail,UNA,Black,41-65,1
+-6,Mail,UNA,Other,18-25,2
+-6,Mail,UNA,Other,26-40,2
+-6,Mail,UNA,Other,41-65,2
+-6,Mail,UNA,White,18-25,3
+-6,Mail,UNA,White,26-40,3
+-4,Mail,REP,Other,18-25,1
+-4,Mail,REP,Other,41-65,1
+-4,Mail,REP,White,18-25,2
+-4,Mail,REP,White,66+,1
+-4,Mail,UNA,Other,26-40,2
+-4,Mail,UNA,White,26-40,1
+-3,Mail,DEM,Black,18-25,2
+-3,Mail,DEM,Black,26-40,8
+-3,Mail,DEM,Black,41-65,6
+-3,Mail,DEM,Black,66+,4
+-3,Mail,DEM,Other,18-25,4
+-3,Mail,DEM,Other,26-40,12
+-3,Mail,DEM,Other,41-65,8
+-3,Mail,DEM,Other,66+,2
+-3,Mail,DEM,White,18-25,19
+-3,Mail,DEM,White,26-40,15
+-3,Mail,DEM,White,41-65,5
+-3,Mail,DEM,White,66+,6
+-3,Mail,OTH,Other,26-40,1
+-3,Mail,OTH,White,18-25,1
+-3,Mail,OTH,White,26-40,1
+-3,Mail,OTH,White,66+,1
+-3,Mail,REP,Other,18-25,6
+-3,Mail,REP,Other,26-40,10
+-3,Mail,REP,Other,41-65,4
+-3,Mail,REP,White,18-25,45
+-3,Mail,REP,White,26-40,32
+-3,Mail,REP,White,41-65,26
+-3,Mail,REP,White,66+,16
+-3,Mail,UNA,Black,18-25,1
+-3,Mail,UNA,Black,26-40,9
+-3,Mail,UNA,Black,41-65,3
+-3,Mail,UNA,Other,18-25,15
+-3,Mail,UNA,Other,26-40,23
+-3,Mail,UNA,Other,41-65,12
+-3,Mail,UNA,Other,66+,2
+-3,Mail,UNA,White,18-25,48
+-3,Mail,UNA,White,26-40,45
+-3,Mail,UNA,White,41-65,25
+-3,Mail,UNA,White,66+,11
+-2,Mail,DEM,Black,18-25,1
+-2,Mail,DEM,Black,26-40,6
+-2,Mail,DEM,Black,41-65,2
+-2,Mail,DEM,Black,66+,4
+-2,Mail,DEM,Other,18-25,2
+-2,Mail,DEM,Other,26-40,6
+-2,Mail,DEM,Other,41-65,1
+-2,Mail,DEM,White,18-25,4
+-2,Mail,DEM,White,26-40,2
+-2,Mail,DEM,White,41-65,2
+-2,Mail,DEM,White,66+,5
+-2,Mail,OTH,Black,26-40,1
+-2,Mail,OTH,Other,18-25,1
+-2,Mail,OTH,Other,26-40,1
+-2,Mail,REP,Other,18-25,4
+-2,Mail,REP,Other,26-40,4
+-2,Mail,REP,White,18-25,8
+-2,Mail,REP,White,26-40,13
+-2,Mail,REP,White,41-65,6
+-2,Mail,REP,White,66+,5
+-2,Mail,UNA,Black,18-25,1
+-2,Mail,UNA,Black,26-40,3
+-2,Mail,UNA,Black,41-65,2
+-2,Mail,UNA,Other,18-25,2
+-2,Mail,UNA,Other,26-40,11
+-2,Mail,UNA,Other,41-65,2
+-2,Mail,UNA,White,18-25,11
+-2,Mail,UNA,White,26-40,11
+-2,Mail,UNA,White,41-65,6
+-2,Mail,UNA,White,66+,6
+-1,Mail,DEM,Black,18-25,5
+-1,Mail,DEM,Black,26-40,3
+-1,Mail,DEM,Black,41-65,4
+-1,Mail,DEM,Black,66+,6
+-1,Mail,DEM,Other,18-25,8
+-1,Mail,DEM,Other,26-40,5
+-1,Mail,DEM,Other,41-65,2
+-1,Mail,DEM,Other,66+,6
+-1,Mail,DEM,White,18-25,14
+-1,Mail,DEM,White,26-40,11
+-1,Mail,DEM,White,41-65,14
+-1,Mail,DEM,White,66+,11
+-1,Mail,OTH,Other,18-25,3
+-1,Mail,OTH,Other,26-40,2
+-1,Mail,OTH,Other,41-65,1
+-1,Mail,OTH,White,26-40,3
+-1,Mail,OTH,White,41-65,1
+-1,Mail,REP,Black,26-40,2
+-1,Mail,REP,Other,18-25,1
+-1,Mail,REP,Other,26-40,8
+-1,Mail,REP,Other,41-65,2
+-1,Mail,REP,Other,66+,3
+-1,Mail,REP,White,18-25,20
+-1,Mail,REP,White,26-40,15
+-1,Mail,REP,White,41-65,30
+-1,Mail,REP,White,66+,24
+-1,Mail,UNA,Black,18-25,6
+-1,Mail,UNA,Black,26-40,6
+-1,Mail,UNA,Black,41-65,2
+-1,Mail,UNA,Black,66+,1
+-1,Mail,UNA,Other,18-25,14
+-1,Mail,UNA,Other,26-40,20
+-1,Mail,UNA,Other,41-65,10
+-1,Mail,UNA,Other,66+,2
+-1,Mail,UNA,White,18-25,35
+-1,Mail,UNA,White,26-40,32
+-1,Mail,UNA,White,41-65,24
+-1,Mail,UNA,White,66+,15
+0,Mail,DEM,Black,18-25,506
+0,Mail,DEM,Black,26-40,734
+0,Mail,DEM,Black,41-65,780
+0,Mail,DEM,Black,66+,687
+0,Mail,DEM,Other,18-25,520
+0,Mail,DEM,Other,26-40,776
+0,Mail,DEM,Other,41-65,442
+0,Mail,DEM,Other,66+,179
+0,Mail,DEM,White,18-25,940
+0,Mail,DEM,White,26-40,1104
+0,Mail,DEM,White,41-65,688
+0,Mail,DEM,White,66+,669
+0,Mail,OTH,Black,18-25,11
+0,Mail,OTH,Black,26-40,24
+0,Mail,OTH,Black,41-65,17
+0,Mail,OTH,Black,66+,1
+0,Mail,OTH,Other,18-25,31
+0,Mail,OTH,Other,26-40,65
+0,Mail,OTH,Other,41-65,23
+0,Mail,OTH,White,18-25,64
+0,Mail,OTH,White,26-40,96
+0,Mail,OTH,White,41-65,44
+0,Mail,OTH,White,66+,8
+0,Mail,REP,Black,18-25,11
+0,Mail,REP,Black,26-40,37
+0,Mail,REP,Black,41-65,36
+0,Mail,REP,Black,66+,9
+0,Mail,REP,Other,18-25,201
+0,Mail,REP,Other,26-40,404
+0,Mail,REP,Other,41-65,252
+0,Mail,REP,Other,66+,88
+0,Mail,REP,White,18-25,1215
+0,Mail,REP,White,26-40,953
+0,Mail,REP,White,41-65,971
+0,Mail,REP,White,66+,894
+0,Mail,UNA,Black,18-25,354
+0,Mail,UNA,Black,26-40,487
+0,Mail,UNA,Black,41-65,272
+0,Mail,UNA,Black,66+,61
+0,Mail,UNA,Other,18-25,927
+0,Mail,UNA,Other,26-40,1196
+0,Mail,UNA,Other,41-65,731
+0,Mail,UNA,Other,66+,185
+0,Mail,UNA,White,18-25,2403
+0,Mail,UNA,White,26-40,2112
+0,Mail,UNA,White,41-65,1408
+0,Mail,UNA,White,66+,606
+1,Mail,DEM,Black,18-25,207
+1,Mail,DEM,Black,26-40,317
+1,Mail,DEM,Black,41-65,403
+1,Mail,DEM,Black,66+,418
+1,Mail,DEM,Other,18-25,275
+1,Mail,DEM,Other,26-40,425
+1,Mail,DEM,Other,41-65,246
+1,Mail,DEM,Other,66+,125
+1,Mail,DEM,White,18-25,664
+1,Mail,DEM,White,26-40,813
+1,Mail,DEM,White,41-65,555
+1,Mail,DEM,White,66+,654
+1,Mail,OTH,Black,18-25,4
+1,Mail,OTH,Black,26-40,5
+1,Mail,OTH,Black,41-65,2
+1,Mail,OTH,Black,66+,1
+1,Mail,OTH,Other,18-25,12
+1,Mail,OTH,Other,26-40,18
+1,Mail,OTH,Other,41-65,16
+1,Mail,OTH,Other,66+,4
+1,Mail,OTH,White,18-25,20
+1,Mail,OTH,White,26-40,35
+1,Mail,OTH,White,41-65,21
+1,Mail,OTH,White,66+,8
+1,Mail,REP,Black,18-25,3
+1,Mail,REP,Black,26-40,7
+1,Mail,REP,Black,41-65,16
+1,Mail,REP,Black,66+,6
+1,Mail,REP,Other,18-25,87
+1,Mail,REP,Other,26-40,144
+1,Mail,REP,Other,41-65,145
+1,Mail,REP,Other,66+,83
+1,Mail,REP,White,18-25,782
+1,Mail,REP,White,26-40,554
+1,Mail,REP,White,41-65,804
+1,Mail,REP,White,66+,780
+1,Mail,UNA,Black,18-25,149
+1,Mail,UNA,Black,26-40,170
+1,Mail,UNA,Black,41-65,139
+1,Mail,UNA,Black,66+,46
+1,Mail,UNA,Other,18-25,522
+1,Mail,UNA,Other,26-40,590
+1,Mail,UNA,Other,41-65,466
+1,Mail,UNA,Other,66+,137
+1,Mail,UNA,White,18-25,1476
+1,Mail,UNA,White,26-40,1332
+1,Mail,UNA,White,41-65,1136
+1,Mail,UNA,White,66+,622
+2,Mail,DEM,Black,18-25,58
+2,Mail,DEM,Black,26-40,89
+2,Mail,DEM,Black,41-65,103
+2,Mail,DEM,Black,66+,79
+2,Mail,DEM,Other,18-25,85
+2,Mail,DEM,Other,26-40,102
+2,Mail,DEM,Other,41-65,67
+2,Mail,DEM,Other,66+,31
+2,Mail,DEM,White,18-25,108
+2,Mail,DEM,White,26-40,175
+2,Mail,DEM,White,41-65,124
+2,Mail,DEM,White,66+,120
+2,Mail,OTH,Black,18-25,2
+2,Mail,OTH,Black,41-65,1
+2,Mail,OTH,Other,18-25,2
+2,Mail,OTH,Other,26-40,4
+2,Mail,OTH,Other,41-65,4
+2,Mail,OTH,White,18-25,5
+2,Mail,OTH,White,26-40,8
+2,Mail,OTH,White,41-65,9
+2,Mail,OTH,White,66+,2
+2,Mail,REP,Black,18-25,1
+2,Mail,REP,Black,26-40,2
+2,Mail,REP,Black,41-65,6
+2,Mail,REP,Black,66+,3
+2,Mail,REP,Other,18-25,12
+2,Mail,REP,Other,26-40,31
+2,Mail,REP,Other,41-65,28
+2,Mail,REP,Other,66+,12
+2,Mail,REP,White,18-25,177
+2,Mail,REP,White,26-40,121
+2,Mail,REP,White,41-65,189
+2,Mail,REP,White,66+,150
+2,Mail,UNA,Black,18-25,38
+2,Mail,UNA,Black,26-40,47
+2,Mail,UNA,Black,41-65,50
+2,Mail,UNA,Black,66+,11
+2,Mail,UNA,Other,18-25,129
+2,Mail,UNA,Other,26-40,139
+2,Mail,UNA,Other,41-65,117
+2,Mail,UNA,Other,66+,35
+2,Mail,UNA,White,18-25,326
+2,Mail,UNA,White,26-40,289
+2,Mail,UNA,White,41-65,209
+2,Mail,UNA,White,66+,124
+3,In person,DEM,Black,18-25,5607
+3,In person,DEM,Black,26-40,12764
+3,In person,DEM,Black,41-65,19109
+3,In person,DEM,Black,66+,4456
+3,In person,DEM,Black,Unknown,1
+3,In person,DEM,Other,18-25,3273
+3,In person,DEM,Other,26-40,4893
+3,In person,DEM,Other,41-65,4687
+3,In person,DEM,Other,66+,848
+3,In person,DEM,White,18-25,2933
+3,In person,DEM,White,26-40,7729
+3,In person,DEM,White,41-65,9653
+3,In person,DEM,White,66+,3389
+3,In person,OTH,Black,18-25,177
+3,In person,OTH,Black,26-40,316
+3,In person,OTH,Black,41-65,164
+3,In person,OTH,Black,66+,10
+3,In person,OTH,Other,18-25,211
+3,In person,OTH,Other,26-40,306
+3,In person,OTH,Other,41-65,208
+3,In person,OTH,Other,66+,12
+3,In person,OTH,White,18-25,294
+3,In person,OTH,White,26-40,832
+3,In person,OTH,White,41-65,534
+3,In person,OTH,White,66+,62
+3,In person,REP,Black,18-25,209
+3,In person,REP,Black,26-40,424
+3,In person,REP,Black,41-65,590
+3,In person,REP,Black,66+,103
+3,In person,REP,Other,18-25,1513
+3,In person,REP,Other,26-40,3374
+3,In person,REP,Other,41-65,4194
+3,In person,REP,Other,66+,667
+3,In person,REP,White,18-25,8452
+3,In person,REP,White,26-40,16252
+3,In person,REP,White,41-65,27628
+3,In person,REP,White,66+,6327
+3,In person,REP,White,Unknown,1
+3,In person,UNA,Black,18-25,2974
+3,In person,UNA,Black,26-40,5260
+3,In person,UNA,Black,41-65,4977
+3,In person,UNA,Black,66+,465
+3,In person,UNA,Other,18-25,6416
+3,In person,UNA,Other,26-40,7669
+3,In person,UNA,Other,41-65,7625
+3,In person,UNA,Other,66+,904
+3,In person,UNA,White,18-25,9689
+3,In person,UNA,White,26-40,19047
+3,In person,UNA,White,41-65,22562
+3,In person,UNA,White,66+,3910
+3,Mail,DEM,Black,18-25,260
+3,Mail,DEM,Black,26-40,380
+3,Mail,DEM,Black,41-65,491
+3,Mail,DEM,Black,66+,457
+3,Mail,DEM,Other,18-25,309
+3,Mail,DEM,Other,26-40,433
+3,Mail,DEM,Other,41-65,346
+3,Mail,DEM,Other,66+,171
+3,Mail,DEM,White,18-25,787
+3,Mail,DEM,White,26-40,916
+3,Mail,DEM,White,41-65,755
+3,Mail,DEM,White,66+,849
+3,Mail,OTH,Black,18-25,7
+3,Mail,OTH,Black,26-40,17
+3,Mail,OTH,Black,41-65,9
+3,Mail,OTH,Other,18-25,4
+3,Mail,OTH,Other,26-40,14
+3,Mail,OTH,Other,41-65,20
+3,Mail,OTH,Other,66+,4
+3,Mail,OTH,White,18-25,38
+3,Mail,OTH,White,26-40,59
+3,Mail,OTH,White,41-65,36
+3,Mail,OTH,White,66+,7
+3,Mail,REP,Black,18-25,7
+3,Mail,REP,Black,26-40,14
+3,Mail,REP,Black,41-65,25
+3,Mail,REP,Black,66+,7
+3,Mail,REP,Other,18-25,93
+3,Mail,REP,Other,26-40,141
+3,Mail,REP,Other,41-65,182
+3,Mail,REP,Other,66+,96
+3,Mail,REP,White,18-25,809
+3,Mail,REP,White,26-40,605
+3,Mail,REP,White,41-65,1144
+3,Mail,REP,White,66+,1004
+3,Mail,UNA,Black,18-25,176
+3,Mail,UNA,Black,26-40,204
+3,Mail,UNA,Black,41-65,180
+3,Mail,UNA,Black,66+,49
+3,Mail,UNA,Other,18-25,578
+3,Mail,UNA,Other,26-40,671
+3,Mail,UNA,Other,41-65,614
+3,Mail,UNA,Other,66+,189
+3,Mail,UNA,White,18-25,1751
+3,Mail,UNA,White,26-40,1489
+3,Mail,UNA,White,41-65,1519
+3,Mail,UNA,White,66+,756
+4,In person,DEM,Black,18-25,4803
+4,In person,DEM,Black,26-40,11614
+4,In person,DEM,Black,41-65,19768
+4,In person,DEM,Black,66+,6435
+4,In person,DEM,Other,18-25,3206
+4,In person,DEM,Other,26-40,5096
+4,In person,DEM,Other,41-65,5165
+4,In person,DEM,Other,66+,1270
+4,In person,DEM,White,18-25,3318
+4,In person,DEM,White,26-40,10337
+4,In person,DEM,White,41-65,14322
+4,In person,DEM,White,66+,7441
+4,In person,OTH,Black,18-25,153
+4,In person,OTH,Black,26-40,245
+4,In person,OTH,Black,41-65,152
+4,In person,OTH,Black,66+,7
+4,In person,OTH,Other,18-25,187
+4,In person,OTH,Other,26-40,344
+4,In person,OTH,Other,41-65,226
+4,In person,OTH,Other,66+,19
+4,In person,OTH,White,18-25,323
+4,In person,OTH,White,26-40,985
+4,In person,OTH,White,41-65,703
+4,In person,OTH,White,66+,73
+4,In person,REP,Black,18-25,196
+4,In person,REP,Black,26-40,431
+4,In person,REP,Black,41-65,626
+4,In person,REP,Black,66+,158
+4,In person,REP,Other,18-25,1683
+4,In person,REP,Other,26-40,3733
+4,In person,REP,Other,41-65,4987
+4,In person,REP,Other,66+,1090
+4,In person,REP,White,18-25,9639
+4,In person,REP,White,26-40,21286
+4,In person,REP,White,41-65,38562
+4,In person,REP,White,66+,13026
+4,In person,REP,White,Unknown,2
+4,In person,UNA,Black,18-25,2605
+4,In person,UNA,Black,26-40,4769
+4,In person,UNA,Black,41-65,5220
+4,In person,UNA,Black,66+,724
+4,In person,UNA,Other,18-25,6551
+4,In person,UNA,Other,26-40,8784
+4,In person,UNA,Other,41-65,8974
+4,In person,UNA,Other,66+,1275
+4,In person,UNA,White,18-25,10749
+4,In person,UNA,White,26-40,25233
+4,In person,UNA,White,41-65,32575
+4,In person,UNA,White,66+,8704
+4,Mail,DEM,Black,18-25,180
+4,Mail,DEM,Black,26-40,287
+4,Mail,DEM,Black,41-65,478
+4,Mail,DEM,Black,66+,548
+4,Mail,DEM,Other,18-25,216
+4,Mail,DEM,Other,26-40,338
+4,Mail,DEM,Other,41-65,250
+4,Mail,DEM,Other,66+,150
+4,Mail,DEM,White,18-25,551
+4,Mail,DEM,White,26-40,697
+4,Mail,DEM,White,41-65,692
+4,Mail,DEM,White,66+,930
+4,Mail,OTH,Black,18-25,2
+4,Mail,OTH,Black,26-40,7
+4,Mail,OTH,Black,41-65,8
+4,Mail,OTH,Black,66+,1
+4,Mail,OTH,Other,18-25,11
+4,Mail,OTH,Other,26-40,14
+4,Mail,OTH,Other,41-65,6
+4,Mail,OTH,Other,66+,3
+4,Mail,OTH,White,18-25,27
+4,Mail,OTH,White,26-40,38
+4,Mail,OTH,White,41-65,36
+4,Mail,OTH,White,66+,11
+4,Mail,REP,Black,18-25,6
+4,Mail,REP,Black,26-40,6
+4,Mail,REP,Black,41-65,13
+4,Mail,REP,Black,66+,8
+4,Mail,REP,Other,18-25,85
+4,Mail,REP,Other,26-40,133
+4,Mail,REP,Other,41-65,164
+4,Mail,REP,Other,66+,104
+4,Mail,REP,White,18-25,637
+4,Mail,REP,White,26-40,461
+4,Mail,REP,White,41-65,1078
+4,Mail,REP,White,66+,1190
+4,Mail,UNA,Black,18-25,133
+4,Mail,UNA,Black,26-40,128
+4,Mail,UNA,Black,41-65,141
+4,Mail,UNA,Black,66+,52
+4,Mail,UNA,Other,18-25,343
+4,Mail,UNA,Other,26-40,478
+4,Mail,UNA,Other,41-65,463
+4,Mail,UNA,Other,66+,173
+4,Mail,UNA,White,18-25,1269
+4,Mail,UNA,White,26-40,1049
+4,Mail,UNA,White,41-65,1230
+4,Mail,UNA,White,66+,845
+5,In person,DEM,Black,18-25,3307
+5,In person,DEM,Black,26-40,7098
+5,In person,DEM,Black,41-65,14730
+5,In person,DEM,Black,66+,6095
+5,In person,DEM,Other,18-25,2138
+5,In person,DEM,Other,26-40,3064
+5,In person,DEM,Other,41-65,3491
+5,In person,DEM,Other,66+,1052
+5,In person,DEM,White,18-25,2282
+5,In person,DEM,White,26-40,6788
+5,In person,DEM,White,41-65,10385
+5,In person,DEM,White,66+,7628
+5,In person,OTH,Black,18-25,94
+5,In person,OTH,Black,26-40,176
+5,In person,OTH,Black,41-65,112
+5,In person,OTH,Black,66+,14
+5,In person,OTH,Other,18-25,114
+5,In person,OTH,Other,26-40,216
+5,In person,OTH,Other,41-65,171
+5,In person,OTH,Other,66+,12
+5,In person,OTH,White,18-25,206
+5,In person,OTH,White,26-40,619
+5,In person,OTH,White,41-65,512
+5,In person,OTH,White,66+,75
+5,In person,REP,Black,18-25,161
+5,In person,REP,Black,26-40,281
+5,In person,REP,Black,41-65,442
+5,In person,REP,Black,66+,140
+5,In person,REP,Other,18-25,1060
+5,In person,REP,Other,26-40,2380
+5,In person,REP,Other,41-65,3582
+5,In person,REP,Other,66+,1045
+5,In person,REP,White,18-25,6096
+5,In person,REP,White,26-40,13720
+5,In person,REP,White,41-65,29761
+5,In person,REP,White,66+,14233
+5,In person,UNA,Black,18-25,1693
+5,In person,UNA,Black,26-40,3008
+5,In person,UNA,Black,41-65,3772
+5,In person,UNA,Black,66+,615
+5,In person,UNA,Other,18-25,4382
+5,In person,UNA,Other,26-40,5253
+5,In person,UNA,Other,41-65,6013
+5,In person,UNA,Other,66+,1226
+5,In person,UNA,White,18-25,6850
+5,In person,UNA,White,26-40,15728
+5,In person,UNA,White,41-65,24029
+5,In person,UNA,White,66+,9516
+5,Mail,DEM,Black,18-25,191
+5,Mail,DEM,Black,26-40,232
+5,Mail,DEM,Black,41-65,428
+5,Mail,DEM,Black,66+,478
+5,Mail,DEM,Other,18-25,180
+5,Mail,DEM,Other,26-40,324
+5,Mail,DEM,Other,41-65,243
+5,Mail,DEM,Other,66+,151
+5,Mail,DEM,White,18-25,537
+5,Mail,DEM,White,26-40,695
+5,Mail,DEM,White,41-65,735
+5,Mail,DEM,White,66+,935
+5,Mail,OTH,Black,18-25,4
+5,Mail,OTH,Black,26-40,3
+5,Mail,OTH,Black,41-65,1
+5,Mail,OTH,Black,66+,1
+5,Mail,OTH,Other,18-25,9
+5,Mail,OTH,Other,26-40,11
+5,Mail,OTH,Other,41-65,9
+5,Mail,OTH,Other,66+,2
+5,Mail,OTH,White,18-25,18
+5,Mail,OTH,White,26-40,41
+5,Mail,OTH,White,41-65,35
+5,Mail,OTH,White,66+,15
+5,Mail,REP,Black,18-25,5
+5,Mail,REP,Black,26-40,10
+5,Mail,REP,Black,41-65,18
+5,Mail,REP,Black,66+,6
+5,Mail,REP,Other,18-25,66
+5,Mail,REP,Other,26-40,132
+5,Mail,REP,Other,41-65,199
+5,Mail,REP,Other,66+,96
+5,Mail,REP,White,18-25,590
+5,Mail,REP,White,26-40,456
+5,Mail,REP,White,41-65,1039
+5,Mail,REP,White,66+,1257
+5,Mail,UNA,Black,18-25,113
+5,Mail,UNA,Black,26-40,126
+5,Mail,UNA,Black,41-65,163
+5,Mail,UNA,Black,66+,56
+5,Mail,UNA,Other,18-25,340
+5,Mail,UNA,Other,26-40,426
+5,Mail,UNA,Other,41-65,441
+5,Mail,UNA,Other,66+,181
+5,Mail,UNA,White,18-25,1125
+5,Mail,UNA,White,26-40,1065
+5,Mail,UNA,White,41-65,1277
+5,Mail,UNA,White,66+,997
+6,In person,DEM,Black,18-25,3371
+6,In person,DEM,Black,26-40,7396
+6,In person,DEM,Black,41-65,15099
+6,In person,DEM,Black,66+,6771
+6,In person,DEM,Other,18-25,2258
+6,In person,DEM,Other,26-40,3272
+6,In person,DEM,Other,41-65,3758
+6,In person,DEM,Other,66+,1176
+6,In person,DEM,White,18-25,2567
+6,In person,DEM,White,26-40,7496
+6,In person,DEM,White,41-65,11981
+6,In person,DEM,White,66+,9148
+6,In person,OTH,Black,18-25,92
+6,In person,OTH,Black,26-40,159
+6,In person,OTH,Black,41-65,124
+6,In person,OTH,Black,66+,8
+6,In person,OTH,Other,18-25,116
+6,In person,OTH,Other,26-40,198
+6,In person,OTH,Other,41-65,142
+6,In person,OTH,Other,66+,21
+6,In person,OTH,White,18-25,276
+6,In person,OTH,White,26-40,627
+6,In person,OTH,White,41-65,489
+6,In person,OTH,White,66+,96
+6,In person,REP,Black,18-25,101
+6,In person,REP,Black,26-40,250
+6,In person,REP,Black,41-65,396
+6,In person,REP,Black,66+,114
+6,In person,REP,Other,18-25,1084
+6,In person,REP,Other,26-40,2354
+6,In person,REP,Other,41-65,3765
+6,In person,REP,Other,66+,1078
+6,In person,REP,White,18-25,6481
+6,In person,REP,White,26-40,14413
+6,In person,REP,White,41-65,32195
+6,In person,REP,White,66+,16637
+6,In person,UNA,Black,18-25,1713
+6,In person,UNA,Black,26-40,2909
+6,In person,UNA,Black,41-65,3658
+6,In person,UNA,Black,66+,666
+6,In person,UNA,Other,18-25,4231
+6,In person,UNA,Other,26-40,5382
+6,In person,UNA,Other,41-65,6269
+6,In person,UNA,Other,66+,1388
+6,In person,UNA,White,18-25,7299
+6,In person,UNA,White,26-40,16634
+6,In person,UNA,White,41-65,26312
+6,In person,UNA,White,66+,11471
+6,Mail,DEM,Black,18-25,144
+6,Mail,DEM,Black,26-40,223
+6,Mail,DEM,Black,41-65,415
+6,Mail,DEM,Black,66+,508
+6,Mail,DEM,Other,18-25,177
+6,Mail,DEM,Other,26-40,327
+6,Mail,DEM,Other,41-65,241
+6,Mail,DEM,Other,66+,129
+6,Mail,DEM,White,18-25,442
+6,Mail,DEM,White,26-40,567
+6,Mail,DEM,White,41-65,654
+6,Mail,DEM,White,66+,926
+6,Mail,OTH,Black,18-25,3
+6,Mail,OTH,Black,26-40,4
+6,Mail,OTH,Black,41-65,3
+6,Mail,OTH,Black,66+,2
+6,Mail,OTH,Other,18-25,9
+6,Mail,OTH,Other,26-40,9
+6,Mail,OTH,Other,41-65,8
+6,Mail,OTH,Other,66+,3
+6,Mail,OTH,White,18-25,15
+6,Mail,OTH,White,26-40,37
+6,Mail,OTH,White,41-65,33
+6,Mail,OTH,White,66+,5
+6,Mail,REP,Black,18-25,3
+6,Mail,REP,Black,26-40,9
+6,Mail,REP,Black,41-65,8
+6,Mail,REP,Black,66+,8
+6,Mail,REP,Other,18-25,55
+6,Mail,REP,Other,26-40,101
+6,Mail,REP,Other,41-65,155
+6,Mail,REP,Other,66+,94
+6,Mail,REP,White,18-25,452
+6,Mail,REP,White,26-40,377
+6,Mail,REP,White,41-65,997
+6,Mail,REP,White,66+,1213
+6,Mail,UNA,Black,18-25,86
+6,Mail,UNA,Black,26-40,115
+6,Mail,UNA,Black,41-65,141
+6,Mail,UNA,Black,66+,54
+6,Mail,UNA,Other,18-25,302
+6,Mail,UNA,Other,26-40,380
+6,Mail,UNA,Other,41-65,403
+6,Mail,UNA,Other,66+,178
+6,Mail,UNA,White,18-25,938
+6,Mail,UNA,White,26-40,888
+6,Mail,UNA,White,41-65,1125
+6,Mail,UNA,White,66+,982
+7,In person,DEM,Black,18-25,3005
+7,In person,DEM,Black,26-40,6788
+7,In person,DEM,Black,41-65,15539
+7,In person,DEM,Black,66+,7782
+7,In person,DEM,Other,18-25,2019
+7,In person,DEM,Other,26-40,3018
+7,In person,DEM,Other,41-65,3839
+7,In person,DEM,Other,66+,1388
+7,In person,DEM,White,18-25,2457
+7,In person,DEM,White,26-40,7488
+7,In person,DEM,White,41-65,12739
+7,In person,DEM,White,66+,11406
+7,In person,OTH,Black,18-25,82
+7,In person,OTH,Black,26-40,139
+7,In person,OTH,Black,41-65,85
+7,In person,OTH,Black,66+,11
+7,In person,OTH,Other,18-25,111
+7,In person,OTH,Other,26-40,187
+7,In person,OTH,Other,41-65,146
+7,In person,OTH,Other,66+,26
+7,In person,OTH,White,18-25,218
+7,In person,OTH,White,26-40,594
+7,In person,OTH,White,41-65,481
+7,In person,OTH,White,66+,108
+7,In person,REP,Black,18-25,125
+7,In person,REP,Black,26-40,232
+7,In person,REP,Black,41-65,451
+7,In person,REP,Black,66+,140
+7,In person,REP,Other,18-25,1107
+7,In person,REP,Other,26-40,2435
+7,In person,REP,Other,41-65,3801
+7,In person,REP,Other,66+,1315
+7,In person,REP,White,18-25,6477
+7,In person,REP,White,26-40,14455
+7,In person,REP,White,41-65,34892
+7,In person,REP,White,66+,21426
+7,In person,UNA,Black,18-25,1498
+7,In person,UNA,Black,26-40,2680
+7,In person,UNA,Black,41-65,3631
+7,In person,UNA,Black,66+,784
+7,In person,UNA,Other,18-25,3713
+7,In person,UNA,Other,26-40,4871
+7,In person,UNA,Other,41-65,6282
+7,In person,UNA,Other,66+,1568
+7,In person,UNA,White,18-25,6924
+7,In person,UNA,White,26-40,15637
+7,In person,UNA,White,41-65,27165
+7,In person,UNA,White,66+,14133
+7,Mail,DEM,Black,18-25,77
+7,Mail,DEM,Black,26-40,149
+7,Mail,DEM,Black,41-65,296
+7,Mail,DEM,Black,66+,362
+7,Mail,DEM,Other,18-25,94
+7,Mail,DEM,Other,26-40,154
+7,Mail,DEM,Other,41-65,172
+7,Mail,DEM,Other,66+,108
+7,Mail,DEM,White,18-25,288
+7,Mail,DEM,White,26-40,412
+7,Mail,DEM,White,41-65,529
+7,Mail,DEM,White,66+,825
+7,Mail,OTH,Black,18-25,4
+7,Mail,OTH,Black,41-65,2
+7,Mail,OTH,Other,18-25,1
+7,Mail,OTH,Other,26-40,4
+7,Mail,OTH,Other,41-65,4
+7,Mail,OTH,Other,66+,1
+7,Mail,OTH,White,18-25,6
+7,Mail,OTH,White,26-40,21
+7,Mail,OTH,White,41-65,18
+7,Mail,OTH,White,66+,10
+7,Mail,REP,Black,18-25,1
+7,Mail,REP,Black,26-40,7
+7,Mail,REP,Black,41-65,18
+7,Mail,REP,Black,66+,6
+7,Mail,REP,Other,18-25,39
+7,Mail,REP,Other,26-40,71
+7,Mail,REP,Other,41-65,113
+7,Mail,REP,Other,66+,73
+7,Mail,REP,White,18-25,314
+7,Mail,REP,White,26-40,255
+7,Mail,REP,White,41-65,671
+7,Mail,REP,White,66+,1022
+7,Mail,UNA,Black,18-25,48
+7,Mail,UNA,Black,26-40,58
+7,Mail,UNA,Black,41-65,92
+7,Mail,UNA,Black,66+,43
+7,Mail,UNA,Other,18-25,187
+7,Mail,UNA,Other,26-40,243
+7,Mail,UNA,Other,41-65,287
+7,Mail,UNA,Other,66+,143
+7,Mail,UNA,White,18-25,530
+7,Mail,UNA,White,26-40,605
+7,Mail,UNA,White,41-65,796
+7,Mail,UNA,White,66+,806
+8,In person,DEM,Black,18-25,3083
+8,In person,DEM,Black,26-40,6958
+8,In person,DEM,Black,41-65,18417
+8,In person,DEM,Black,66+,9553
+8,In person,DEM,Other,18-25,1827
+8,In person,DEM,Other,26-40,2929
+8,In person,DEM,Other,41-65,3990
+8,In person,DEM,Other,66+,1528
+8,In person,DEM,White,18-25,2450
+8,In person,DEM,White,26-40,7343
+8,In person,DEM,White,41-65,13317
+8,In person,DEM,White,66+,12574
+8,In person,OTH,Black,18-25,91
+8,In person,OTH,Black,26-40,131
+8,In person,OTH,Black,41-65,108
+8,In person,OTH,Black,66+,16
+8,In person,OTH,Other,18-25,80
+8,In person,OTH,Other,26-40,169
+8,In person,OTH,Other,41-65,141
+8,In person,OTH,Other,66+,24
+8,In person,OTH,White,18-25,216
+8,In person,OTH,White,26-40,539
+8,In person,OTH,White,41-65,542
+8,In person,OTH,White,66+,122
+8,In person,REP,Black,18-25,116
+8,In person,REP,Black,26-40,264
+8,In person,REP,Black,41-65,522
+8,In person,REP,Black,66+,210
+8,In person,REP,Other,18-25,1042
+8,In person,REP,Other,26-40,2449
+8,In person,REP,Other,41-65,4421
+8,In person,REP,Other,66+,1567
+8,In person,REP,White,18-25,6908
+8,In person,REP,White,26-40,14378
+8,In person,REP,White,41-65,38884
+8,In person,REP,White,66+,25030
+8,In person,UNA,Black,18-25,1508
+8,In person,UNA,Black,26-40,2508
+8,In person,UNA,Black,41-65,4043
+8,In person,UNA,Black,66+,852
+8,In person,UNA,Other,18-25,3458
+8,In person,UNA,Other,26-40,4723
+8,In person,UNA,Other,41-65,6674
+8,In person,UNA,Other,66+,1678
+8,In person,UNA,White,18-25,6699
+8,In person,UNA,White,26-40,14916
+8,In person,UNA,White,41-65,29000
+8,In person,UNA,White,66+,16374
+8,Mail,DEM,Black,18-25,99
+8,Mail,DEM,Black,26-40,189
+8,Mail,DEM,Black,41-65,371
+8,Mail,DEM,Black,66+,491
+8,Mail,DEM,Other,18-25,198
+8,Mail,DEM,Other,26-40,228
+8,Mail,DEM,Other,41-65,267
+8,Mail,DEM,Other,66+,140
+8,Mail,DEM,White,18-25,531
+8,Mail,DEM,White,26-40,595
+8,Mail,DEM,White,41-65,615
+8,Mail,DEM,White,66+,1183
+8,Mail,OTH,Black,18-25,3
+8,Mail,OTH,Black,26-40,5
+8,Mail,OTH,Black,41-65,2
+8,Mail,OTH,Other,18-25,6
+8,Mail,OTH,Other,26-40,8
+8,Mail,OTH,Other,41-65,7
+8,Mail,OTH,Other,66+,2
+8,Mail,OTH,White,18-25,13
+8,Mail,OTH,White,26-40,24
+8,Mail,OTH,White,41-65,28
+8,Mail,OTH,White,66+,6
+8,Mail,REP,Black,18-25,3
+8,Mail,REP,Black,26-40,6
+8,Mail,REP,Black,41-65,8
+8,Mail,REP,Black,66+,18
+8,Mail,REP,Other,18-25,55
+8,Mail,REP,Other,26-40,103
+8,Mail,REP,Other,41-65,138
+8,Mail,REP,Other,66+,113
+8,Mail,REP,White,18-25,448
+8,Mail,REP,White,26-40,414
+8,Mail,REP,White,41-65,969
+8,Mail,REP,White,66+,1391
+8,Mail,UNA,Black,18-25,89
+8,Mail,UNA,Black,26-40,116
+8,Mail,UNA,Black,41-65,121
+8,Mail,UNA,Black,66+,44
+8,Mail,UNA,Other,18-25,249
+8,Mail,UNA,Other,26-40,362
+8,Mail,UNA,Other,41-65,354
+8,Mail,UNA,Other,66+,190
+8,Mail,UNA,White,18-25,878
+8,Mail,UNA,White,26-40,837
+8,Mail,UNA,White,41-65,978
+8,Mail,UNA,White,66+,1126
+9,In person,DEM,Black,18-25,1291
+9,In person,DEM,Black,26-40,2270
+9,In person,DEM,Black,41-65,6304
+9,In person,DEM,Black,66+,1844
+9,In person,DEM,Other,18-25,822
+9,In person,DEM,Other,26-40,1129
+9,In person,DEM,Other,41-65,1639
+9,In person,DEM,Other,66+,382
+9,In person,DEM,White,18-25,1194
+9,In person,DEM,White,26-40,2841
+9,In person,DEM,White,41-65,5200
+9,In person,DEM,White,66+,2331
+9,In person,OTH,Black,18-25,27
+9,In person,OTH,Black,26-40,40
+9,In person,OTH,Black,41-65,25
+9,In person,OTH,Black,66+,4
+9,In person,OTH,Other,18-25,31
+9,In person,OTH,Other,26-40,56
+9,In person,OTH,Other,41-65,64
+9,In person,OTH,Other,66+,7
+9,In person,OTH,White,18-25,77
+9,In person,OTH,White,26-40,157
+9,In person,OTH,White,41-65,140
+9,In person,OTH,White,66+,18
+9,In person,REP,Black,18-25,31
+9,In person,REP,Black,26-40,65
+9,In person,REP,Black,41-65,132
+9,In person,REP,Black,66+,29
+9,In person,REP,Other,18-25,343
+9,In person,REP,Other,26-40,621
+9,In person,REP,Other,41-65,1306
+9,In person,REP,Other,66+,248
+9,In person,REP,White,18-25,2291
+9,In person,REP,White,26-40,3090
+9,In person,REP,White,41-65,9953
+9,In person,REP,White,66+,3170
+9,In person,UNA,Black,18-25,647
+9,In person,UNA,Black,26-40,857
+9,In person,UNA,Black,41-65,1457
+9,In person,UNA,Black,66+,172
+9,In person,UNA,Other,18-25,1434
+9,In person,UNA,Other,26-40,1605
+9,In person,UNA,Other,41-65,2695
+9,In person,UNA,Other,66+,427
+9,In person,UNA,White,18-25,2806
+9,In person,UNA,White,26-40,4482
+9,In person,UNA,White,41-65,8771
+9,In person,UNA,White,66+,2408
+9,Mail,DEM,Black,18-25,38
+9,Mail,DEM,Black,26-40,47
+9,Mail,DEM,Black,41-65,107
+9,Mail,DEM,Black,66+,85
+9,Mail,DEM,Other,18-25,71
+9,Mail,DEM,Other,26-40,107
+9,Mail,DEM,Other,41-65,79
+9,Mail,DEM,Other,66+,43
+9,Mail,DEM,White,18-25,197
+9,Mail,DEM,White,26-40,199
+9,Mail,DEM,White,41-65,213
+9,Mail,DEM,White,66+,242
+9,Mail,OTH,Black,26-40,2
+9,Mail,OTH,Other,18-25,2
+9,Mail,OTH,Other,26-40,6
+9,Mail,OTH,Other,66+,1
+9,Mail,OTH,White,18-25,4
+9,Mail,OTH,White,26-40,10
+9,Mail,OTH,White,41-65,3
+9,Mail,REP,Black,18-25,1
+9,Mail,REP,Black,26-40,4
+9,Mail,REP,Black,41-65,2
+9,Mail,REP,Black,66+,3
+9,Mail,REP,Other,18-25,17
+9,Mail,REP,Other,26-40,27
+9,Mail,REP,Other,41-65,40
+9,Mail,REP,Other,66+,20
+9,Mail,REP,White,18-25,147
+9,Mail,REP,White,26-40,105
+9,Mail,REP,White,41-65,252
+9,Mail,REP,White,66+,278
+9,Mail,UNA,Black,18-25,26
+9,Mail,UNA,Black,26-40,29
+9,Mail,UNA,Black,41-65,41
+9,Mail,UNA,Black,66+,8
+9,Mail,UNA,Other,18-25,116
+9,Mail,UNA,Other,26-40,126
+9,Mail,UNA,Other,41-65,131
+9,Mail,UNA,Other,66+,45
+9,Mail,UNA,White,18-25,321
+9,Mail,UNA,White,26-40,247
+9,Mail,UNA,White,41-65,341
+9,Mail,UNA,White,66+,281
+10,In person,DEM,Black,18-25,1876
+10,In person,DEM,Black,26-40,3876
+10,In person,DEM,Black,41-65,11417
+10,In person,DEM,Black,66+,3795
+10,In person,DEM,Other,18-25,1070
+10,In person,DEM,Other,26-40,1756
+10,In person,DEM,Other,41-65,2502
+10,In person,DEM,Other,66+,577
+10,In person,DEM,White,18-25,1657
+10,In person,DEM,White,26-40,4790
+10,In person,DEM,White,41-65,8478
+10,In person,DEM,White,66+,3632
+10,In person,OTH,Black,18-25,55
+10,In person,OTH,Black,26-40,65
+10,In person,OTH,Black,41-65,52
+10,In person,OTH,Black,66+,6
+10,In person,OTH,Other,18-25,43
+10,In person,OTH,Other,26-40,107
+10,In person,OTH,Other,41-65,86
+10,In person,OTH,Other,66+,14
+10,In person,OTH,White,18-25,136
+10,In person,OTH,White,26-40,292
+10,In person,OTH,White,41-65,278
+10,In person,OTH,White,66+,49
+10,In person,REP,Black,18-25,64
+10,In person,REP,Black,26-40,131
+10,In person,REP,Black,41-65,255
+10,In person,REP,Black,66+,62
+10,In person,REP,Other,18-25,518
+10,In person,REP,Other,26-40,1164
+10,In person,REP,Other,41-65,2283
+10,In person,REP,Other,66+,488
+10,In person,REP,White,18-25,4359
+10,In person,REP,White,26-40,6886
+10,In person,REP,White,41-65,20931
+10,In person,REP,White,66+,6502
+10,In person,UNA,Black,18-25,939
+10,In person,UNA,Black,26-40,1483
+10,In person,UNA,Black,41-65,2638
+10,In person,UNA,Black,66+,363
+10,In person,UNA,Other,18-25,2037
+10,In person,UNA,Other,26-40,2639
+10,In person,UNA,Other,41-65,4228
+10,In person,UNA,Other,66+,620
+10,In person,UNA,White,18-25,4597
+10,In person,UNA,White,26-40,8062
+10,In person,UNA,White,41-65,16203
+10,In person,UNA,White,66+,4183
+10,Mail,DEM,Black,18-25,51
+10,Mail,DEM,Black,26-40,59
+10,Mail,DEM,Black,41-65,217
+10,Mail,DEM,Black,66+,176
+10,Mail,DEM,Other,18-25,80
+10,Mail,DEM,Other,26-40,133
+10,Mail,DEM,Other,41-65,139
+10,Mail,DEM,Other,66+,68
+10,Mail,DEM,White,18-25,223
+10,Mail,DEM,White,26-40,317
+10,Mail,DEM,White,41-65,364
+10,Mail,DEM,White,66+,510
+10,Mail,OTH,Black,26-40,1
+10,Mail,OTH,Black,41-65,1
+10,Mail,OTH,Black,66+,1
+10,Mail,OTH,Other,18-25,3
+10,Mail,OTH,Other,26-40,11
+10,Mail,OTH,Other,41-65,6
+10,Mail,OTH,Other,66+,6
+10,Mail,OTH,White,18-25,8
+10,Mail,OTH,White,26-40,20
+10,Mail,OTH,White,41-65,15
+10,Mail,OTH,White,66+,6
+10,Mail,REP,Black,18-25,2
+10,Mail,REP,Black,26-40,2
+10,Mail,REP,Black,41-65,7
+10,Mail,REP,Black,66+,4
+10,Mail,REP,Other,18-25,19
+10,Mail,REP,Other,26-40,39
+10,Mail,REP,Other,41-65,84
+10,Mail,REP,Other,66+,66
+10,Mail,REP,White,18-25,183
+10,Mail,REP,White,26-40,215
+10,Mail,REP,White,41-65,539
+10,Mail,REP,White,66+,699
+10,Mail,UNA,Black,18-25,23
+10,Mail,UNA,Black,26-40,46
+10,Mail,UNA,Black,41-65,70
+10,Mail,UNA,Black,66+,28
+10,Mail,UNA,Other,18-25,138
+10,Mail,UNA,Other,26-40,172
+10,Mail,UNA,Other,41-65,234
+10,Mail,UNA,Other,66+,106
+10,Mail,UNA,White,18-25,410
+10,Mail,UNA,White,26-40,442
+10,Mail,UNA,White,41-65,675
+10,Mail,UNA,White,66+,573
+11,In person,DEM,Black,18-25,2817
+11,In person,DEM,Black,26-40,6055
+11,In person,DEM,Black,41-65,17502
+11,In person,DEM,Black,66+,9698
+11,In person,DEM,Other,18-25,1627
+11,In person,DEM,Other,26-40,2774
+11,In person,DEM,Other,41-65,4013
+11,In person,DEM,Other,66+,1529
+11,In person,DEM,White,18-25,2615
+11,In person,DEM,White,26-40,8041
+11,In person,DEM,White,41-65,15454
+11,In person,DEM,White,66+,13313
+11,In person,OTH,Black,18-25,82
+11,In person,OTH,Black,26-40,110
+11,In person,OTH,Black,41-65,109
+11,In person,OTH,Black,66+,13
+11,In person,OTH,Other,18-25,73
+11,In person,OTH,Other,26-40,142
+11,In person,OTH,Other,41-65,153
+11,In person,OTH,Other,66+,28
+11,In person,OTH,White,18-25,188
+11,In person,OTH,White,26-40,521
+11,In person,OTH,White,41-65,480
+11,In person,OTH,White,66+,114
+11,In person,REP,Black,18-25,97
+11,In person,REP,Black,26-40,215
+11,In person,REP,Black,41-65,515
+11,In person,REP,Black,66+,163
+11,In person,REP,Other,18-25,1035
+11,In person,REP,Other,26-40,2462
+11,In person,REP,Other,41-65,4521
+11,In person,REP,Other,66+,1511
+11,In person,REP,White,18-25,7706
+11,In person,REP,White,26-40,15359
+11,In person,REP,White,41-65,43428
+11,In person,REP,White,66+,25403
+11,In person,UNA,Black,18-25,1371
+11,In person,UNA,Black,26-40,2245
+11,In person,UNA,Black,41-65,4083
+11,In person,UNA,Black,66+,886
+11,In person,UNA,Other,18-25,3442
+11,In person,UNA,Other,26-40,4466
+11,In person,UNA,Other,41-65,7093
+11,In person,UNA,Other,66+,1638
+11,In person,UNA,White,18-25,7383
+11,In person,UNA,White,26-40,15535
+11,In person,UNA,White,41-65,32740
+11,In person,UNA,White,66+,16740
+11,Mail,DEM,Black,18-25,60
+11,Mail,DEM,Black,26-40,92
+11,Mail,DEM,Black,41-65,246
+11,Mail,DEM,Black,66+,351
+11,Mail,DEM,Other,18-25,94
+11,Mail,DEM,Other,26-40,138
+11,Mail,DEM,Other,41-65,189
+11,Mail,DEM,Other,66+,128
+11,Mail,DEM,White,18-25,341
+11,Mail,DEM,White,26-40,372
+11,Mail,DEM,White,41-65,590
+11,Mail,DEM,White,66+,1073
+11,Mail,OTH,Black,18-25,4
+11,Mail,OTH,Black,26-40,1
+11,Mail,OTH,Black,66+,1
+11,Mail,OTH,Other,18-25,2
+11,Mail,OTH,Other,26-40,5
+11,Mail,OTH,Other,41-65,6
+11,Mail,OTH,Other,66+,1
+11,Mail,OTH,White,18-25,8
+11,Mail,OTH,White,26-40,10
+11,Mail,OTH,White,41-65,30
+11,Mail,OTH,White,66+,12
+11,Mail,REP,Black,26-40,2
+11,Mail,REP,Black,41-65,4
+11,Mail,REP,Black,66+,5
+11,Mail,REP,Other,18-25,43
+11,Mail,REP,Other,26-40,64
+11,Mail,REP,Other,41-65,120
+11,Mail,REP,Other,66+,103
+11,Mail,REP,White,18-25,280
+11,Mail,REP,White,26-40,246
+11,Mail,REP,White,41-65,815
+11,Mail,REP,White,66+,1347
+11,Mail,UNA,Black,18-25,36
+11,Mail,UNA,Black,26-40,51
+11,Mail,UNA,Black,41-65,81
+11,Mail,UNA,Black,66+,35
+11,Mail,UNA,Other,18-25,156
+11,Mail,UNA,Other,26-40,228
+11,Mail,UNA,Other,41-65,303
+11,Mail,UNA,Other,66+,156
+11,Mail,UNA,White,18-25,591
+11,Mail,UNA,White,26-40,542
+11,Mail,UNA,White,41-65,931
+11,Mail,UNA,White,66+,1091
+12,In person,DEM,Black,18-25,2284
+12,In person,DEM,Black,26-40,4933
+12,In person,DEM,Black,41-65,16752
+12,In person,DEM,Black,66+,11805
+12,In person,DEM,Other,18-25,1296
+12,In person,DEM,Other,26-40,2267
+12,In person,DEM,Other,41-65,3484
+12,In person,DEM,Other,66+,1631
+12,In person,DEM,White,18-25,2105
+12,In person,DEM,White,26-40,6521
+12,In person,DEM,White,41-65,14618
+12,In person,DEM,White,66+,17362
+12,In person,OTH,Black,18-25,62
+12,In person,OTH,Black,26-40,105
+12,In person,OTH,Black,41-65,70
+12,In person,OTH,Black,66+,10
+12,In person,OTH,Other,18-25,72
+12,In person,OTH,Other,26-40,146
+12,In person,OTH,Other,41-65,124
+12,In person,OTH,Other,66+,28
+12,In person,OTH,White,18-25,181
+12,In person,OTH,White,26-40,456
+12,In person,OTH,White,41-65,443
+12,In person,OTH,White,66+,141
+12,In person,REP,Black,18-25,74
+12,In person,REP,Black,26-40,193
+12,In person,REP,Black,41-65,438
+12,In person,REP,Black,66+,220
+12,In person,REP,Other,18-25,819
+12,In person,REP,Other,26-40,1879
+12,In person,REP,Other,41-65,3803
+12,In person,REP,Other,66+,1738
+12,In person,REP,White,18-25,5465
+12,In person,REP,White,26-40,12584
+12,In person,REP,White,41-65,39168
+12,In person,REP,White,66+,32618
+12,In person,UNA,Black,18-25,1096
+12,In person,UNA,Black,26-40,1887
+12,In person,UNA,Black,41-65,3645
+12,In person,UNA,Black,66+,987
+12,In person,UNA,Other,18-25,2723
+12,In person,UNA,Other,26-40,3507
+12,In person,UNA,Other,41-65,5819
+12,In person,UNA,Other,66+,2061
+12,In person,UNA,White,18-25,5355
+12,In person,UNA,White,26-40,12279
+12,In person,UNA,White,41-65,28744
+12,In person,UNA,White,66+,21685
+12,Mail,DEM,Black,18-25,80
+12,Mail,DEM,Black,26-40,141
+12,Mail,DEM,Black,41-65,344
+12,Mail,DEM,Black,66+,403
+12,Mail,DEM,Other,18-25,144
+12,Mail,DEM,Other,26-40,226
+12,Mail,DEM,Other,41-65,283
+12,Mail,DEM,Other,66+,181
+12,Mail,DEM,White,18-25,399
+12,Mail,DEM,White,26-40,532
+12,Mail,DEM,White,41-65,751
+12,Mail,DEM,White,66+,1349
+12,Mail,OTH,Black,18-25,2
+12,Mail,OTH,Black,26-40,3
+12,Mail,OTH,Black,41-65,8
+12,Mail,OTH,Black,66+,1
+12,Mail,OTH,Other,18-25,3
+12,Mail,OTH,Other,26-40,15
+12,Mail,OTH,Other,41-65,6
+12,Mail,OTH,Other,66+,2
+12,Mail,OTH,White,18-25,13
+12,Mail,OTH,White,26-40,17
+12,Mail,OTH,White,41-65,26
+12,Mail,OTH,White,66+,16
+12,Mail,REP,Black,18-25,6
+12,Mail,REP,Black,26-40,7
+12,Mail,REP,Black,41-65,16
+12,Mail,REP,Black,66+,12
+12,Mail,REP,Other,18-25,38
+12,Mail,REP,Other,26-40,71
+12,Mail,REP,Other,41-65,158
+12,Mail,REP,Other,66+,138
+12,Mail,REP,White,18-25,321
+12,Mail,REP,White,26-40,307
+12,Mail,REP,White,41-65,1031
+12,Mail,REP,White,66+,1546
+12,Mail,UNA,Black,18-25,60
+12,Mail,UNA,Black,26-40,56
+12,Mail,UNA,Black,41-65,107
+12,Mail,UNA,Black,66+,48
+12,Mail,UNA,Other,18-25,228
+12,Mail,UNA,Other,26-40,284
+12,Mail,UNA,Other,41-65,372
+12,Mail,UNA,Other,66+,235
+12,Mail,UNA,White,18-25,650
+12,Mail,UNA,White,26-40,640
+12,Mail,UNA,White,41-65,1220
+12,Mail,UNA,White,66+,1474
+13,In person,DEM,Black,18-25,2088
+13,In person,DEM,Black,26-40,4642
+13,In person,DEM,Black,41-65,17362
+13,In person,DEM,Black,66+,14189
+13,In person,DEM,Other,18-25,1156
+13,In person,DEM,Other,26-40,2124
+13,In person,DEM,Other,41-65,3570
+13,In person,DEM,Other,66+,1845
+13,In person,DEM,White,18-25,2020
+13,In person,DEM,White,26-40,6657
+13,In person,DEM,White,41-65,14747
+13,In person,DEM,White,66+,20180
+13,In person,OTH,Black,18-25,61
+13,In person,OTH,Black,26-40,76
+13,In person,OTH,Black,41-65,77
+13,In person,OTH,Black,66+,14
+13,In person,OTH,Other,18-25,53
+13,In person,OTH,Other,26-40,104
+13,In person,OTH,Other,41-65,110
+13,In person,OTH,Other,66+,29
+13,In person,OTH,White,18-25,137
+13,In person,OTH,White,26-40,422
+13,In person,OTH,White,41-65,411
+13,In person,OTH,White,66+,191
+13,In person,REP,Black,18-25,63
+13,In person,REP,Black,26-40,169
+13,In person,REP,Black,41-65,425
+13,In person,REP,Black,66+,214
+13,In person,REP,Other,18-25,744
+13,In person,REP,Other,26-40,1837
+13,In person,REP,Other,41-65,3822
+13,In person,REP,Other,66+,1944
+13,In person,REP,White,18-25,5173
+13,In person,REP,White,26-40,11983
+13,In person,REP,White,41-65,40808
+13,In person,REP,White,66+,38144
+13,In person,UNA,Black,18-25,950
+13,In person,UNA,Black,26-40,1759
+13,In person,UNA,Black,41-65,3623
+13,In person,UNA,Black,66+,1241
+13,In person,UNA,Other,18-25,2450
+13,In person,UNA,Other,26-40,3342
+13,In person,UNA,Other,41-65,5796
+13,In person,UNA,Other,66+,2291
+13,In person,UNA,White,18-25,5040
+13,In person,UNA,White,26-40,12077
+13,In person,UNA,White,41-65,29944
+13,In person,UNA,White,66+,25946
+13,Mail,DEM,Black,18-25,57
+13,Mail,DEM,Black,26-40,119
+13,Mail,DEM,Black,41-65,266
+13,Mail,DEM,Black,66+,421
+13,Mail,DEM,Other,18-25,74
+13,Mail,DEM,Other,26-40,166
+13,Mail,DEM,Other,41-65,192
+13,Mail,DEM,Other,66+,155
+13,Mail,DEM,White,18-25,247
+13,Mail,DEM,White,26-40,405
+13,Mail,DEM,White,41-65,510
+13,Mail,DEM,White,66+,1032
+13,Mail,OTH,Black,18-25,1
+13,Mail,OTH,Black,26-40,1
+13,Mail,OTH,Black,66+,1
+13,Mail,OTH,Other,18-25,3
+13,Mail,OTH,Other,26-40,9
+13,Mail,OTH,Other,41-65,4
+13,Mail,OTH,Other,66+,1
+13,Mail,OTH,White,18-25,7
+13,Mail,OTH,White,26-40,11
+13,Mail,OTH,White,41-65,17
+13,Mail,OTH,White,66+,9
+13,Mail,REP,Black,18-25,1
+13,Mail,REP,Black,26-40,7
+13,Mail,REP,Black,41-65,16
+13,Mail,REP,Black,66+,12
+13,Mail,REP,Other,18-25,27
+13,Mail,REP,Other,26-40,73
+13,Mail,REP,Other,41-65,117
+13,Mail,REP,Other,66+,116
+13,Mail,REP,White,18-25,233
+13,Mail,REP,White,26-40,224
+13,Mail,REP,White,41-65,818
+13,Mail,REP,White,66+,1289
+13,Mail,UNA,Black,18-25,42
+13,Mail,UNA,Black,26-40,52
+13,Mail,UNA,Black,41-65,80
+13,Mail,UNA,Black,66+,49
+13,Mail,UNA,Other,18-25,137
+13,Mail,UNA,Other,26-40,190
+13,Mail,UNA,Other,41-65,256
+13,Mail,UNA,Other,66+,177
+13,Mail,UNA,White,18-25,407
+13,Mail,UNA,White,26-40,433
+13,Mail,UNA,White,41-65,834
+13,Mail,UNA,White,66+,1003
+14,In person,DEM,Black,18-25,2194
+14,In person,DEM,Black,26-40,4668
+14,In person,DEM,Black,41-65,19717
+14,In person,DEM,Black,66+,18115
+14,In person,DEM,Other,18-25,1140
+14,In person,DEM,Other,26-40,2078
+14,In person,DEM,Other,41-65,3700
+14,In person,DEM,Other,66+,2270
+14,In person,DEM,White,18-25,2123
+14,In person,DEM,White,26-40,6591
+14,In person,DEM,White,41-65,16003
+14,In person,DEM,White,66+,24597
+14,In person,OTH,Black,18-25,48
+14,In person,OTH,Black,26-40,85
+14,In person,OTH,Black,41-65,87
+14,In person,OTH,Black,66+,12
+14,In person,OTH,Other,18-25,57
+14,In person,OTH,Other,26-40,96
+14,In person,OTH,Other,41-65,106
+14,In person,OTH,Other,66+,32
+14,In person,OTH,White,18-25,162
+14,In person,OTH,White,26-40,379
+14,In person,OTH,White,41-65,465
+14,In person,OTH,White,66+,159
+14,In person,REP,Black,18-25,78
+14,In person,REP,Black,26-40,162
+14,In person,REP,Black,41-65,448
+14,In person,REP,Black,66+,279
+14,In person,REP,Other,18-25,671
+14,In person,REP,Other,26-40,1616
+14,In person,REP,Other,41-65,3862
+14,In person,REP,Other,66+,2147
+14,In person,REP,Other,Unknown,1
+14,In person,REP,White,18-25,4781
+14,In person,REP,White,26-40,10821
+14,In person,REP,White,41-65,41976
+14,In person,REP,White,66+,45887
+14,In person,UNA,Black,18-25,974
+14,In person,UNA,Black,26-40,1628
+14,In person,UNA,Black,41-65,3939
+14,In person,UNA,Black,66+,1561
+14,In person,UNA,Other,18-25,2322
+14,In person,UNA,Other,26-40,3125
+14,In person,UNA,Other,41-65,5693
+14,In person,UNA,Other,66+,2615
+14,In person,UNA,White,18-25,4752
+14,In person,UNA,White,26-40,11562
+14,In person,UNA,White,41-65,30432
+14,In person,UNA,White,66+,31501
+14,Mail,DEM,Black,18-25,42
+14,Mail,DEM,Black,26-40,85
+14,Mail,DEM,Black,41-65,197
+14,Mail,DEM,Black,66+,305
+14,Mail,DEM,Other,18-25,75
+14,Mail,DEM,Other,26-40,82
+14,Mail,DEM,Other,41-65,124
+14,Mail,DEM,Other,66+,109
+14,Mail,DEM,White,18-25,215
+14,Mail,DEM,White,26-40,277
+14,Mail,DEM,White,41-65,344
+14,Mail,DEM,White,66+,808
+14,Mail,OTH,Black,41-65,1
+14,Mail,OTH,Other,18-25,3
+14,Mail,OTH,Other,26-40,4
+14,Mail,OTH,Other,41-65,6
+14,Mail,OTH,Other,66+,1
+14,Mail,OTH,White,18-25,3
+14,Mail,OTH,White,26-40,17
+14,Mail,OTH,White,41-65,15
+14,Mail,OTH,White,66+,7
+14,Mail,REP,Black,26-40,3
+14,Mail,REP,Black,41-65,6
+14,Mail,REP,Black,66+,5
+14,Mail,REP,Other,18-25,21
+14,Mail,REP,Other,26-40,34
+14,Mail,REP,Other,41-65,85
+14,Mail,REP,Other,66+,70
+14,Mail,REP,White,18-25,215
+14,Mail,REP,White,26-40,167
+14,Mail,REP,White,41-65,526
+14,Mail,REP,White,66+,985
+14,Mail,UNA,Black,18-25,31
+14,Mail,UNA,Black,26-40,36
+14,Mail,UNA,Black,41-65,47
+14,Mail,UNA,Black,66+,27
+14,Mail,UNA,Other,18-25,88
+14,Mail,UNA,Other,26-40,135
+14,Mail,UNA,Other,41-65,166
+14,Mail,UNA,Other,66+,121
+14,Mail,UNA,White,18-25,326
+14,Mail,UNA,White,26-40,317
+14,Mail,UNA,White,41-65,614
+14,Mail,UNA,White,66+,797
+15,In person,DEM,Black,18-25,2197
+15,In person,DEM,Black,26-40,4989
+15,In person,DEM,Black,41-65,24216
+15,In person,DEM,Black,66+,22050
+15,In person,DEM,Other,18-25,1134
+15,In person,DEM,Other,26-40,2077
+15,In person,DEM,Other,41-65,4101
+15,In person,DEM,Other,66+,2660
+15,In person,DEM,White,18-25,2134
+15,In person,DEM,White,26-40,6726
+15,In person,DEM,White,41-65,16968
+15,In person,DEM,White,66+,26146
+15,In person,OTH,Black,18-25,67
+15,In person,OTH,Black,26-40,83
+15,In person,OTH,Black,41-65,118
+15,In person,OTH,Black,66+,18
+15,In person,OTH,Other,18-25,59
+15,In person,OTH,Other,26-40,109
+15,In person,OTH,Other,41-65,117
+15,In person,OTH,Other,66+,24
+15,In person,OTH,White,18-25,152
+15,In person,OTH,White,26-40,357
+15,In person,OTH,White,41-65,421
+15,In person,OTH,White,66+,156
+15,In person,REP,Black,18-25,71
+15,In person,REP,Black,26-40,171
+15,In person,REP,Black,41-65,518
+15,In person,REP,Black,66+,274
+15,In person,REP,Other,18-25,734
+15,In person,REP,Other,26-40,1612
+15,In person,REP,Other,41-65,4138
+15,In person,REP,Other,66+,2486
+15,In person,REP,White,18-25,4969
+15,In person,REP,White,26-40,10429
+15,In person,REP,White,41-65,43556
+15,In person,REP,White,66+,50795
+15,In person,UNA,Black,18-25,1007
+15,In person,UNA,Black,26-40,1764
+15,In person,UNA,Black,41-65,4542
+15,In person,UNA,Black,66+,1759
+15,In person,UNA,Other,18-25,2199
+15,In person,UNA,Other,26-40,3102
+15,In person,UNA,Other,41-65,6055
+15,In person,UNA,Other,66+,2799
+15,In person,UNA,White,18-25,5011
+15,In person,UNA,White,26-40,11174
+15,In person,UNA,White,41-65,31695
+15,In person,UNA,White,66+,33387
+15,Mail,DEM,Black,18-25,62
+15,Mail,DEM,Black,26-40,91
+15,Mail,DEM,Black,41-65,291
+15,Mail,DEM,Black,66+,443
+15,Mail,DEM,Other,18-25,97
+15,Mail,DEM,Other,26-40,159
+15,Mail,DEM,Other,41-65,176
+15,Mail,DEM,Other,66+,141
+15,Mail,DEM,White,18-25,280
+15,Mail,DEM,White,26-40,363
+15,Mail,DEM,White,41-65,618
+15,Mail,DEM,White,66+,1233
+15,Mail,OTH,Black,41-65,2
+15,Mail,OTH,Other,18-25,2
+15,Mail,OTH,Other,26-40,7
+15,Mail,OTH,Other,41-65,5
+15,Mail,OTH,Other,66+,4
+15,Mail,OTH,White,18-25,6
+15,Mail,OTH,White,26-40,10
+15,Mail,OTH,White,41-65,24
+15,Mail,OTH,White,66+,12
+15,Mail,REP,Black,26-40,3
+15,Mail,REP,Black,41-65,9
+15,Mail,REP,Black,66+,6
+15,Mail,REP,Other,18-25,39
+15,Mail,REP,Other,26-40,74
+15,Mail,REP,Other,41-65,121
+15,Mail,REP,Other,66+,97
+15,Mail,REP,White,18-25,285
+15,Mail,REP,White,26-40,251
+15,Mail,REP,White,41-65,869
+15,Mail,REP,White,66+,1587
+15,Mail,UNA,Black,18-25,40
+15,Mail,UNA,Black,26-40,56
+15,Mail,UNA,Black,41-65,65
+15,Mail,UNA,Black,66+,42
+15,Mail,UNA,Other,18-25,163
+15,Mail,UNA,Other,26-40,220
+15,Mail,UNA,Other,41-65,273
+15,Mail,UNA,Other,66+,202
+15,Mail,UNA,White,18-25,524
+15,Mail,UNA,White,26-40,511
+15,Mail,UNA,White,41-65,856
+15,Mail,UNA,White,66+,1246
+16,In person,DEM,Black,18-25,747
+16,In person,DEM,Black,26-40,1551
+16,In person,DEM,Black,41-65,6632
+16,In person,DEM,Black,66+,3694
+16,In person,DEM,Other,18-25,519
+16,In person,DEM,Other,26-40,852
+16,In person,DEM,Other,41-65,1575
+16,In person,DEM,Other,66+,486
+16,In person,DEM,White,18-25,976
+16,In person,DEM,White,26-40,2614
+16,In person,DEM,White,41-65,5802
+16,In person,DEM,White,66+,4359
+16,In person,OTH,Black,18-25,21
+16,In person,OTH,Black,26-40,21
+16,In person,OTH,Black,41-65,18
+16,In person,OTH,Black,66+,2
+16,In person,OTH,Other,18-25,15
+16,In person,OTH,Other,26-40,25
+16,In person,OTH,Other,41-65,38
+16,In person,OTH,Other,66+,9
+16,In person,OTH,White,18-25,38
+16,In person,OTH,White,26-40,91
+16,In person,OTH,White,41-65,95
+16,In person,OTH,White,66+,22
+16,In person,REP,Black,18-25,30
+16,In person,REP,Black,26-40,39
+16,In person,REP,Black,41-65,109
+16,In person,REP,Black,66+,52
+16,In person,REP,Other,18-25,206
+16,In person,REP,Other,26-40,335
+16,In person,REP,Other,41-65,1088
+16,In person,REP,Other,66+,347
+16,In person,REP,White,18-25,1461
+16,In person,REP,White,26-40,1984
+16,In person,REP,White,41-65,9013
+16,In person,REP,White,66+,5120
+16,In person,UNA,Black,18-25,437
+16,In person,UNA,Black,26-40,521
+16,In person,UNA,Black,41-65,1435
+16,In person,UNA,Black,66+,286
+16,In person,UNA,Other,18-25,958
+16,In person,UNA,Other,26-40,1063
+16,In person,UNA,Other,41-65,2361
+16,In person,UNA,Other,66+,538
+16,In person,UNA,White,18-25,1986
+16,In person,UNA,White,26-40,3196
+16,In person,UNA,White,41-65,8523
+16,In person,UNA,White,66+,4266
+16,Mail,DEM,Black,18-25,29
+16,Mail,DEM,Black,26-40,24
+16,Mail,DEM,Black,41-65,52
+16,Mail,DEM,Black,66+,83
+16,Mail,DEM,Other,18-25,20
+16,Mail,DEM,Other,26-40,46
+16,Mail,DEM,Other,41-65,67
+16,Mail,DEM,Other,66+,39
+16,Mail,DEM,White,18-25,92
+16,Mail,DEM,White,26-40,123
+16,Mail,DEM,White,41-65,140
+16,Mail,DEM,White,66+,208
+16,Mail,OTH,Black,41-65,1
+16,Mail,OTH,Other,18-25,1
+16,Mail,OTH,Other,41-65,1
+16,Mail,OTH,White,18-25,2
+16,Mail,OTH,White,26-40,5
+16,Mail,OTH,White,41-65,4
+16,Mail,OTH,White,66+,4
+16,Mail,REP,Black,18-25,1
+16,Mail,REP,Black,26-40,1
+16,Mail,REP,Black,41-65,3
+16,Mail,REP,Black,66+,3
+16,Mail,REP,Other,18-25,5
+16,Mail,REP,Other,26-40,12
+16,Mail,REP,Other,41-65,40
+16,Mail,REP,Other,66+,21
+16,Mail,REP,White,18-25,77
+16,Mail,REP,White,26-40,51
+16,Mail,REP,White,41-65,169
+16,Mail,REP,White,66+,235
+16,Mail,UNA,Black,18-25,13
+16,Mail,UNA,Black,26-40,14
+16,Mail,UNA,Black,41-65,21
+16,Mail,UNA,Black,66+,8
+16,Mail,UNA,Other,18-25,48
+16,Mail,UNA,Other,26-40,53
+16,Mail,UNA,Other,41-65,87
+16,Mail,UNA,Other,66+,44
+16,Mail,UNA,White,18-25,165
+16,Mail,UNA,White,26-40,124
+16,Mail,UNA,White,41-65,232
+16,Mail,UNA,White,66+,271
+17,In person,DEM,Black,18-25,1437
+17,In person,DEM,Black,26-40,2928
+17,In person,DEM,Black,41-65,14073
+17,In person,DEM,Black,66+,7437
+17,In person,DEM,Other,18-25,862
+17,In person,DEM,Other,26-40,1596
+17,In person,DEM,Other,41-65,2903
+17,In person,DEM,Other,66+,923
+17,In person,DEM,White,18-25,1852
+17,In person,DEM,White,26-40,5325
+17,In person,DEM,White,41-65,11933
+17,In person,DEM,White,66+,7568
+17,In person,OTH,Black,18-25,31
+17,In person,OTH,Black,26-40,39
+17,In person,OTH,Black,41-65,78
+17,In person,OTH,Black,66+,6
+17,In person,OTH,Other,18-25,24
+17,In person,OTH,Other,26-40,50
+17,In person,OTH,Other,41-65,68
+17,In person,OTH,Other,66+,19
+17,In person,OTH,White,18-25,86
+17,In person,OTH,White,26-40,238
+17,In person,OTH,White,41-65,277
+17,In person,OTH,White,66+,51
+17,In person,REP,Black,18-25,37
+17,In person,REP,Black,26-40,108
+17,In person,REP,Black,41-65,333
+17,In person,REP,Black,66+,124
+17,In person,REP,Other,18-25,445
+17,In person,REP,Other,26-40,857
+17,In person,REP,Other,41-65,2508
+17,In person,REP,Other,66+,763
+17,In person,REP,White,18-25,3619
+17,In person,REP,White,26-40,5651
+17,In person,REP,White,41-65,26194
+17,In person,REP,White,66+,13657
+17,In person,UNA,Black,18-25,696
+17,In person,UNA,Black,26-40,1164
+17,In person,UNA,Black,41-65,3061
+17,In person,UNA,Black,66+,678
+17,In person,UNA,Other,18-25,1507
+17,In person,UNA,Other,26-40,2075
+17,In person,UNA,Other,41-65,4529
+17,In person,UNA,Other,66+,973
+17,In person,UNA,White,18-25,3934
+17,In person,UNA,White,26-40,7086
+17,In person,UNA,White,41-65,20052
+17,In person,UNA,White,66+,8763
+17,Mail,DEM,Black,18-25,36
+17,Mail,DEM,Black,26-40,37
+17,Mail,DEM,Black,41-65,120
+17,Mail,DEM,Black,66+,167
+17,Mail,DEM,Other,18-25,68
+17,Mail,DEM,Other,26-40,79
+17,Mail,DEM,Other,41-65,108
+17,Mail,DEM,Other,66+,77
+17,Mail,DEM,White,18-25,182
+17,Mail,DEM,White,26-40,228
+17,Mail,DEM,White,41-65,387
+17,Mail,DEM,White,66+,620
+17,Mail,OTH,Black,18-25,1
+17,Mail,OTH,Black,26-40,1
+17,Mail,OTH,Black,41-65,1
+17,Mail,OTH,Other,18-25,5
+17,Mail,OTH,Other,26-40,7
+17,Mail,OTH,Other,41-65,6
+17,Mail,OTH,Other,66+,1
+17,Mail,OTH,White,18-25,4
+17,Mail,OTH,White,26-40,12
+17,Mail,OTH,White,41-65,22
+17,Mail,OTH,White,66+,3
+17,Mail,REP,Black,18-25,1
+17,Mail,REP,Black,26-40,3
+17,Mail,REP,Black,41-65,7
+17,Mail,REP,Black,66+,6
+17,Mail,REP,Other,18-25,17
+17,Mail,REP,Other,26-40,24
+17,Mail,REP,Other,41-65,50
+17,Mail,REP,Other,66+,50
+17,Mail,REP,White,18-25,148
+17,Mail,REP,White,26-40,112
+17,Mail,REP,White,41-65,411
+17,Mail,REP,White,66+,686
+17,Mail,UNA,Black,18-25,10
+17,Mail,UNA,Black,26-40,21
+17,Mail,UNA,Black,41-65,34
+17,Mail,UNA,Black,66+,28
+17,Mail,UNA,Other,18-25,97
+17,Mail,UNA,Other,26-40,114
+17,Mail,UNA,Other,41-65,147
+17,Mail,UNA,Other,66+,110
+17,Mail,UNA,White,18-25,318
+17,Mail,UNA,White,26-40,231
+17,Mail,UNA,White,41-65,544
+17,Mail,UNA,White,66+,650
+18,In person,DEM,Black,18-25,1758
+18,In person,DEM,Black,26-40,4179
+18,In person,DEM,Black,41-65,22105
+18,In person,DEM,Black,66+,22290
+18,In person,DEM,Other,18-25,1199
+18,In person,DEM,Other,26-40,2045
+18,In person,DEM,Other,41-65,4062
+18,In person,DEM,Other,66+,2493
+18,In person,DEM,White,18-25,2552
+18,In person,DEM,White,26-40,6944
+18,In person,DEM,White,41-65,18383
+18,In person,DEM,White,66+,24874
+18,In person,OTH,Black,18-25,37
+18,In person,OTH,Black,26-40,59
+18,In person,OTH,Black,41-65,83
+18,In person,OTH,Black,66+,13
+18,In person,OTH,Other,18-25,53
+18,In person,OTH,Other,26-40,99
+18,In person,OTH,Other,41-65,106
+18,In person,OTH,Other,66+,19
+18,In person,OTH,White,18-25,149
+18,In person,OTH,White,26-40,304
+18,In person,OTH,White,41-65,452
+18,In person,OTH,White,66+,139
+18,In person,REP,Black,18-25,57
+18,In person,REP,Black,26-40,160
+18,In person,REP,Black,41-65,563
+18,In person,REP,Black,66+,322
+18,In person,REP,Other,18-25,629
+18,In person,REP,Other,26-40,1455
+18,In person,REP,Other,41-65,4294
+18,In person,REP,Other,66+,2426
+18,In person,REP,White,18-25,5435
+18,In person,REP,White,26-40,9912
+18,In person,REP,White,41-65,46085
+18,In person,REP,White,66+,48466
+18,In person,UNA,Black,18-25,921
+18,In person,UNA,Black,26-40,1463
+18,In person,UNA,Black,41-65,4581
+18,In person,UNA,Black,66+,1860
+18,In person,UNA,Other,18-25,2369
+18,In person,UNA,Other,26-40,2947
+18,In person,UNA,Other,41-65,6368
+18,In person,UNA,Other,66+,2795
+18,In person,UNA,White,18-25,5914
+18,In person,UNA,White,26-40,11082
+18,In person,UNA,White,41-65,33586
+18,In person,UNA,White,66+,31777
+18,Mail,DEM,Black,18-25,57
+18,Mail,DEM,Black,26-40,77
+18,Mail,DEM,Black,41-65,269
+18,Mail,DEM,Black,66+,426
+18,Mail,DEM,Other,18-25,72
+18,Mail,DEM,Other,26-40,132
+18,Mail,DEM,Other,41-65,181
+18,Mail,DEM,Other,66+,157
+18,Mail,DEM,White,18-25,267
+18,Mail,DEM,White,26-40,327
+18,Mail,DEM,White,41-65,622
+18,Mail,DEM,White,66+,1328
+18,Mail,OTH,Black,26-40,2
+18,Mail,OTH,Black,41-65,6
+18,Mail,OTH,Other,18-25,2
+18,Mail,OTH,Other,26-40,4
+18,Mail,OTH,Other,41-65,6
+18,Mail,OTH,Other,66+,1
+18,Mail,OTH,White,18-25,10
+18,Mail,OTH,White,26-40,22
+18,Mail,OTH,White,41-65,27
+18,Mail,OTH,White,66+,8
+18,Mail,REP,Black,18-25,2
+18,Mail,REP,Black,26-40,6
+18,Mail,REP,Black,41-65,14
+18,Mail,REP,Black,66+,6
+18,Mail,REP,Other,18-25,30
+18,Mail,REP,Other,26-40,65
+18,Mail,REP,Other,41-65,102
+18,Mail,REP,Other,66+,103
+18,Mail,REP,White,18-25,205
+18,Mail,REP,White,26-40,196
+18,Mail,REP,White,41-65,835
+18,Mail,REP,White,66+,1508
+18,Mail,UNA,Black,18-25,27
+18,Mail,UNA,Black,26-40,33
+18,Mail,UNA,Black,41-65,66
+18,Mail,UNA,Black,66+,48
+18,Mail,UNA,Other,18-25,110
+18,Mail,UNA,Other,26-40,185
+18,Mail,UNA,Other,41-65,275
+18,Mail,UNA,Other,66+,166
+18,Mail,UNA,White,18-25,398
+18,Mail,UNA,White,26-40,395
+18,Mail,UNA,White,41-65,858
+18,Mail,UNA,White,66+,1281
+19,In person,DEM,Black,18-25,1665
+19,In person,DEM,Black,26-40,3922
+19,In person,DEM,Black,41-65,26109
+19,In person,DEM,Black,66+,33440
+19,In person,DEM,Other,18-25,1063
+19,In person,DEM,Other,26-40,1858
+19,In person,DEM,Other,41-65,4223
+19,In person,DEM,Other,66+,3406
+19,In person,DEM,White,18-25,2229
+19,In person,DEM,White,26-40,6212
+19,In person,DEM,White,41-65,17253
+19,In person,DEM,White,66+,29270
+19,In person,OTH,Black,18-25,33
+19,In person,OTH,Black,26-40,55
+19,In person,OTH,Black,41-65,97
+19,In person,OTH,Black,66+,31
+19,In person,OTH,Other,18-25,39
+19,In person,OTH,Other,26-40,89
+19,In person,OTH,Other,41-65,121
+19,In person,OTH,Other,66+,50
+19,In person,OTH,White,18-25,109
+19,In person,OTH,White,26-40,299
+19,In person,OTH,White,41-65,399
+19,In person,OTH,White,66+,180
+19,In person,REP,Black,18-25,70
+19,In person,REP,Black,26-40,167
+19,In person,REP,Black,41-65,681
+19,In person,REP,Black,66+,491
+19,In person,REP,Other,18-25,537
+19,In person,REP,Other,26-40,1307
+19,In person,REP,Other,41-65,4167
+19,In person,REP,Other,66+,3354
+19,In person,REP,White,18-25,3899
+19,In person,REP,White,26-40,8270
+19,In person,REP,White,41-65,42658
+19,In person,REP,White,66+,59484
+19,In person,UNA,Black,18-25,771
+19,In person,UNA,Black,26-40,1408
+19,In person,UNA,Black,41-65,5214
+19,In person,UNA,Black,66+,2651
+19,In person,UNA,Other,18-25,1827
+19,In person,UNA,Other,26-40,2563
+19,In person,UNA,Other,41-65,5792
+19,In person,UNA,Other,66+,3515
+19,In person,UNA,White,18-25,4438
+19,In person,UNA,White,26-40,8768
+19,In person,UNA,White,41-65,29838
+19,In person,UNA,White,66+,36169
+19,Mail,DEM,Black,18-25,43
+19,Mail,DEM,Black,26-40,53
+19,Mail,DEM,Black,41-65,213
+19,Mail,DEM,Black,66+,389
+19,Mail,DEM,Other,18-25,66
+19,Mail,DEM,Other,26-40,105
+19,Mail,DEM,Other,41-65,150
+19,Mail,DEM,Other,66+,148
+19,Mail,DEM,White,18-25,196
+19,Mail,DEM,White,26-40,267
+19,Mail,DEM,White,41-65,491
+19,Mail,DEM,White,66+,1092
+19,Mail,OTH,Black,18-25,1
+19,Mail,OTH,Black,26-40,2
+19,Mail,OTH,Black,41-65,1
+19,Mail,OTH,Other,26-40,6
+19,Mail,OTH,Other,41-65,5
+19,Mail,OTH,White,18-25,5
+19,Mail,OTH,White,26-40,7
+19,Mail,OTH,White,41-65,9
+19,Mail,OTH,White,66+,7
+19,Mail,REP,Black,18-25,3
+19,Mail,REP,Black,26-40,2
+19,Mail,REP,Black,41-65,5
+19,Mail,REP,Black,66+,4
+19,Mail,REP,Other,18-25,18
+19,Mail,REP,Other,26-40,40
+19,Mail,REP,Other,41-65,99
+19,Mail,REP,Other,66+,80
+19,Mail,REP,White,18-25,180
+19,Mail,REP,White,26-40,129
+19,Mail,REP,White,41-65,668
+19,Mail,REP,White,66+,1233
+19,Mail,UNA,Black,18-25,27
+19,Mail,UNA,Black,26-40,31
+19,Mail,UNA,Black,41-65,75
+19,Mail,UNA,Black,66+,48
+19,Mail,UNA,Other,18-25,108
+19,Mail,UNA,Other,26-40,127
+19,Mail,UNA,Other,41-65,231
+19,Mail,UNA,Other,66+,156
+19,Mail,UNA,White,18-25,353
+19,Mail,UNA,White,26-40,296
+19,Mail,UNA,White,41-65,808
+19,Mail,UNA,White,66+,1165
+20,Mail,DEM,Black,18-25,32
+20,Mail,DEM,Black,26-40,47
+20,Mail,DEM,Black,41-65,124
+20,Mail,DEM,Black,66+,152
+20,Mail,DEM,Other,18-25,41
+20,Mail,DEM,Other,26-40,52
+20,Mail,DEM,Other,41-65,86
+20,Mail,DEM,Other,66+,73
+20,Mail,DEM,White,18-25,100
+20,Mail,DEM,White,26-40,123
+20,Mail,DEM,White,41-65,270
+20,Mail,DEM,White,66+,634
+20,Mail,OTH,Black,41-65,2
+20,Mail,OTH,Other,18-25,1
+20,Mail,OTH,Other,26-40,2
+20,Mail,OTH,Other,41-65,4
+20,Mail,OTH,Other,66+,1
+20,Mail,OTH,White,18-25,2
+20,Mail,OTH,White,26-40,11
+20,Mail,OTH,White,41-65,7
+20,Mail,OTH,White,66+,3
+20,Mail,REP,Black,18-25,1
+20,Mail,REP,Black,26-40,2
+20,Mail,REP,Black,41-65,2
+20,Mail,REP,Black,66+,2
+20,Mail,REP,Other,18-25,11
+20,Mail,REP,Other,26-40,25
+20,Mail,REP,Other,41-65,42
+20,Mail,REP,Other,66+,40
+20,Mail,REP,White,18-25,85
+20,Mail,REP,White,26-40,67
+20,Mail,REP,White,41-65,311
+20,Mail,REP,White,66+,667
+20,Mail,UNA,Black,18-25,13
+20,Mail,UNA,Black,26-40,21
+20,Mail,UNA,Black,41-65,27
+20,Mail,UNA,Black,66+,22
+20,Mail,UNA,Other,18-25,66
+20,Mail,UNA,Other,26-40,80
+20,Mail,UNA,Other,41-65,108
+20,Mail,UNA,Other,66+,84
+20,Mail,UNA,White,18-25,174
+20,Mail,UNA,White,26-40,176
+20,Mail,UNA,White,41-65,330
+20,Mail,UNA,White,66+,551
+21,Mail,DEM,Black,18-25,34
+21,Mail,DEM,Black,26-40,49
+21,Mail,DEM,Black,41-65,140
+21,Mail,DEM,Black,66+,217
+21,Mail,DEM,Other,18-25,36
+21,Mail,DEM,Other,26-40,73
+21,Mail,DEM,Other,41-65,97
+21,Mail,DEM,Other,66+,90
+21,Mail,DEM,White,18-25,150
+21,Mail,DEM,White,26-40,141
+21,Mail,DEM,White,41-65,274
+21,Mail,DEM,White,66+,638
+21,Mail,OTH,Black,41-65,3
+21,Mail,OTH,Other,18-25,2
+21,Mail,OTH,Other,26-40,5
+21,Mail,OTH,Other,41-65,2
+21,Mail,OTH,Other,66+,1
+21,Mail,OTH,White,18-25,3
+21,Mail,OTH,White,26-40,9
+21,Mail,OTH,White,41-65,9
+21,Mail,OTH,White,66+,4
+21,Mail,REP,Black,26-40,1
+21,Mail,REP,Black,41-65,3
+21,Mail,REP,Black,66+,4
+21,Mail,REP,Other,18-25,15
+21,Mail,REP,Other,26-40,39
+21,Mail,REP,Other,41-65,74
+21,Mail,REP,Other,66+,48
+21,Mail,REP,White,18-25,117
+21,Mail,REP,White,26-40,105
+21,Mail,REP,White,41-65,372
+21,Mail,REP,White,66+,741
+21,Mail,UNA,Black,18-25,9
+21,Mail,UNA,Black,26-40,17
+21,Mail,UNA,Black,41-65,33
+21,Mail,UNA,Black,66+,20
+21,Mail,UNA,Other,18-25,67
+21,Mail,UNA,Other,26-40,82
+21,Mail,UNA,Other,41-65,100
+21,Mail,UNA,Other,66+,82
+21,Mail,UNA,White,18-25,203
+21,Mail,UNA,White,26-40,198
+21,Mail,UNA,White,41-65,383
+21,Mail,UNA,White,66+,694
+22,Mail,DEM,Black,18-25,15
+22,Mail,DEM,Black,26-40,32
+22,Mail,DEM,Black,41-65,86
+22,Mail,DEM,Black,66+,180
+22,Mail,DEM,Other,18-25,51
+22,Mail,DEM,Other,26-40,63
+22,Mail,DEM,Other,41-65,80
+22,Mail,DEM,Other,66+,67
+22,Mail,DEM,White,18-25,110
+22,Mail,DEM,White,26-40,123
+22,Mail,DEM,White,41-65,246
+22,Mail,DEM,White,66+,569
+22,Mail,OTH,Black,18-25,1
+22,Mail,OTH,Black,26-40,1
+22,Mail,OTH,Other,18-25,2
+22,Mail,OTH,Other,26-40,3
+22,Mail,OTH,Other,41-65,1
+22,Mail,OTH,Other,66+,1
+22,Mail,OTH,White,18-25,4
+22,Mail,OTH,White,26-40,3
+22,Mail,OTH,White,41-65,6
+22,Mail,OTH,White,66+,2
+22,Mail,REP,Black,18-25,1
+22,Mail,REP,Black,26-40,1
+22,Mail,REP,Black,41-65,3
+22,Mail,REP,Black,66+,4
+22,Mail,REP,Other,18-25,15
+22,Mail,REP,Other,26-40,30
+22,Mail,REP,Other,41-65,39
+22,Mail,REP,Other,66+,46
+22,Mail,REP,White,18-25,67
+22,Mail,REP,White,26-40,78
+22,Mail,REP,White,41-65,303
+22,Mail,REP,White,66+,658
+22,Mail,UNA,Black,18-25,13
+22,Mail,UNA,Black,26-40,23
+22,Mail,UNA,Black,41-65,20
+22,Mail,UNA,Black,66+,17
+22,Mail,UNA,Other,18-25,52
+22,Mail,UNA,Other,26-40,76
+22,Mail,UNA,Other,41-65,127
+22,Mail,UNA,Other,66+,66
+22,Mail,UNA,White,18-25,155
+22,Mail,UNA,White,26-40,140
+22,Mail,UNA,White,41-65,311
+22,Mail,UNA,White,66+,595
+23,Mail,DEM,Black,26-40,1
+23,Mail,DEM,Black,41-65,9
+23,Mail,DEM,Black,66+,17
+23,Mail,DEM,Other,18-25,8
+23,Mail,DEM,Other,26-40,9
+23,Mail,DEM,Other,41-65,12
+23,Mail,DEM,Other,66+,9
+23,Mail,DEM,White,18-25,9
+23,Mail,DEM,White,26-40,9
+23,Mail,DEM,White,41-65,28
+23,Mail,DEM,White,66+,21
+23,Mail,OTH,Other,18-25,1
+23,Mail,OTH,Other,26-40,2
+23,Mail,OTH,White,26-40,2
+23,Mail,REP,Black,41-65,2
+23,Mail,REP,Other,18-25,2
+23,Mail,REP,Other,26-40,1
+23,Mail,REP,Other,41-65,5
+23,Mail,REP,Other,66+,1
+23,Mail,REP,White,18-25,3
+23,Mail,REP,White,26-40,8
+23,Mail,REP,White,41-65,25
+23,Mail,REP,White,66+,28
+23,Mail,UNA,Black,18-25,2
+23,Mail,UNA,Black,26-40,1
+23,Mail,UNA,Black,41-65,3
+23,Mail,UNA,Other,18-25,12
+23,Mail,UNA,Other,26-40,13
+23,Mail,UNA,Other,41-65,16
+23,Mail,UNA,Other,66+,10
+23,Mail,UNA,White,18-25,11
+23,Mail,UNA,White,26-40,26
+23,Mail,UNA,White,41-65,22
+23,Mail,UNA,White,66+,27
+24,Mail,DEM,Black,18-25,9
+24,Mail,DEM,Black,26-40,29
+24,Mail,DEM,Black,41-65,81
+24,Mail,DEM,Black,66+,128
+24,Mail,DEM,Other,18-25,32
+24,Mail,DEM,Other,26-40,48
+24,Mail,DEM,Other,41-65,66
+24,Mail,DEM,Other,66+,40
+24,Mail,DEM,White,18-25,93
+24,Mail,DEM,White,26-40,101
+24,Mail,DEM,White,41-65,199
+24,Mail,DEM,White,66+,357
+24,Mail,OTH,Black,66+,1
+24,Mail,OTH,Other,26-40,3
+24,Mail,OTH,Other,41-65,3
+24,Mail,OTH,White,18-25,2
+24,Mail,OTH,White,26-40,3
+24,Mail,OTH,White,41-65,4
+24,Mail,OTH,White,66+,5
+24,Mail,REP,Black,26-40,2
+24,Mail,REP,Black,41-65,3
+24,Mail,REP,Black,66+,1
+24,Mail,REP,Other,18-25,7
+24,Mail,REP,Other,26-40,14
+24,Mail,REP,Other,41-65,26
+24,Mail,REP,Other,66+,27
+24,Mail,REP,White,18-25,35
+24,Mail,REP,White,26-40,46
+24,Mail,REP,White,41-65,185
+24,Mail,REP,White,66+,415
+24,Mail,UNA,Black,18-25,9
+24,Mail,UNA,Black,26-40,11
+24,Mail,UNA,Black,41-65,22
+24,Mail,UNA,Black,66+,9
+24,Mail,UNA,Other,18-25,37
+24,Mail,UNA,Other,26-40,39
+24,Mail,UNA,Other,41-65,82
+24,Mail,UNA,Other,66+,45
+24,Mail,UNA,White,18-25,101
+24,Mail,UNA,White,26-40,122
+24,Mail,UNA,White,41-65,212
+24,Mail,UNA,White,66+,361
+25,Mail,DEM,Black,18-25,17
+25,Mail,DEM,Black,26-40,36
+25,Mail,DEM,Black,41-65,159
+25,Mail,DEM,Black,66+,282
+25,Mail,DEM,Other,18-25,45
+25,Mail,DEM,Other,26-40,103
+25,Mail,DEM,Other,41-65,134
+25,Mail,DEM,Other,66+,96
+25,Mail,DEM,White,18-25,136
+25,Mail,DEM,White,26-40,220
+25,Mail,DEM,White,41-65,414
+25,Mail,DEM,White,66+,942
+25,Mail,OTH,Black,18-25,1
+25,Mail,OTH,Black,41-65,1
+25,Mail,OTH,Other,26-40,4
+25,Mail,OTH,Other,41-65,6
+25,Mail,OTH,White,18-25,3
+25,Mail,OTH,White,26-40,5
+25,Mail,OTH,White,41-65,9
+25,Mail,OTH,White,66+,14
+25,Mail,REP,Black,18-25,1
+25,Mail,REP,Black,26-40,2
+25,Mail,REP,Black,41-65,5
+25,Mail,REP,Black,66+,5
+25,Mail,REP,Other,18-25,13
+25,Mail,REP,Other,26-40,24
+25,Mail,REP,Other,41-65,61
+25,Mail,REP,Other,66+,84
+25,Mail,REP,White,18-25,82
+25,Mail,REP,White,26-40,100
+25,Mail,REP,White,41-65,499
+25,Mail,REP,White,66+,1056
+25,Mail,UNA,Black,18-25,13
+25,Mail,UNA,Black,26-40,18
+25,Mail,UNA,Black,41-65,47
+25,Mail,UNA,Black,66+,47
+25,Mail,UNA,Other,18-25,55
+25,Mail,UNA,Other,26-40,94
+25,Mail,UNA,Other,41-65,173
+25,Mail,UNA,Other,66+,150
+25,Mail,UNA,White,18-25,197
+25,Mail,UNA,White,26-40,220
+25,Mail,UNA,White,41-65,580
+25,Mail,UNA,White,66+,988
+26,Mail,DEM,Black,18-25,10
+26,Mail,DEM,Black,26-40,26
+26,Mail,DEM,Black,41-65,120
+26,Mail,DEM,Black,66+,256
+26,Mail,DEM,Other,18-25,31
+26,Mail,DEM,Other,26-40,44
+26,Mail,DEM,Other,41-65,72
+26,Mail,DEM,Other,66+,91
+26,Mail,DEM,White,18-25,82
+26,Mail,DEM,White,26-40,121
+26,Mail,DEM,White,41-65,281
+26,Mail,DEM,White,66+,743
+26,Mail,OTH,Black,41-65,3
+26,Mail,OTH,Other,18-25,2
+26,Mail,OTH,Other,26-40,2
+26,Mail,OTH,Other,41-65,1
+26,Mail,OTH,White,18-25,5
+26,Mail,OTH,White,26-40,9
+26,Mail,OTH,White,41-65,6
+26,Mail,OTH,White,66+,8
+26,Mail,REP,Black,18-25,2
+26,Mail,REP,Black,41-65,4
+26,Mail,REP,Black,66+,4
+26,Mail,REP,Other,18-25,13
+26,Mail,REP,Other,26-40,15
+26,Mail,REP,Other,41-65,61
+26,Mail,REP,Other,66+,62
+26,Mail,REP,White,18-25,67
+26,Mail,REP,White,26-40,73
+26,Mail,REP,White,41-65,369
+26,Mail,REP,White,66+,882
+26,Mail,UNA,Black,18-25,9
+26,Mail,UNA,Black,26-40,15
+26,Mail,UNA,Black,41-65,36
+26,Mail,UNA,Black,66+,25
+26,Mail,UNA,Other,18-25,26
+26,Mail,UNA,Other,26-40,52
+26,Mail,UNA,Other,41-65,101
+26,Mail,UNA,Other,66+,103
+26,Mail,UNA,White,18-25,113
+26,Mail,UNA,White,26-40,159
+26,Mail,UNA,White,41-65,340
+26,Mail,UNA,White,66+,744
+27,Mail,DEM,Black,18-25,13
+27,Mail,DEM,Black,26-40,29
+27,Mail,DEM,Black,41-65,97
+27,Mail,DEM,Black,66+,188
+27,Mail,DEM,Other,18-25,16
+27,Mail,DEM,Other,26-40,67
+27,Mail,DEM,Other,41-65,88
+27,Mail,DEM,Other,66+,100
+27,Mail,DEM,White,18-25,73
+27,Mail,DEM,White,26-40,114
+27,Mail,DEM,White,41-65,293
+27,Mail,DEM,White,66+,836
+27,Mail,OTH,Black,18-25,1
+27,Mail,OTH,Other,18-25,1
+27,Mail,OTH,Other,26-40,6
+27,Mail,OTH,Other,41-65,3
+27,Mail,OTH,Other,66+,1
+27,Mail,OTH,White,18-25,4
+27,Mail,OTH,White,26-40,5
+27,Mail,OTH,White,41-65,5
+27,Mail,OTH,White,66+,6
+27,Mail,REP,Black,26-40,2
+27,Mail,REP,Black,41-65,3
+27,Mail,REP,Black,66+,6
+27,Mail,REP,Other,18-25,8
+27,Mail,REP,Other,26-40,18
+27,Mail,REP,Other,41-65,62
+27,Mail,REP,Other,66+,66
+27,Mail,REP,White,18-25,59
+27,Mail,REP,White,26-40,84
+27,Mail,REP,White,41-65,386
+27,Mail,REP,White,66+,887
+27,Mail,UNA,Black,18-25,4
+27,Mail,UNA,Black,26-40,16
+27,Mail,UNA,Black,41-65,35
+27,Mail,UNA,Black,66+,26
+27,Mail,UNA,Other,18-25,35
+27,Mail,UNA,Other,26-40,72
+27,Mail,UNA,Other,41-65,124
+27,Mail,UNA,Other,66+,124
+27,Mail,UNA,White,18-25,125
+27,Mail,UNA,White,26-40,154
+27,Mail,UNA,White,41-65,439
+27,Mail,UNA,White,66+,772
+28,Mail,DEM,Black,18-25,13
+28,Mail,DEM,Black,26-40,27
+28,Mail,DEM,Black,41-65,107
+28,Mail,DEM,Black,66+,241
+28,Mail,DEM,Other,18-25,26
+28,Mail,DEM,Other,26-40,54
+28,Mail,DEM,Other,41-65,70
+28,Mail,DEM,Other,66+,82
+28,Mail,DEM,White,18-25,91
+28,Mail,DEM,White,26-40,94
+28,Mail,DEM,White,41-65,235
+28,Mail,DEM,White,66+,717
+28,Mail,OTH,Black,18-25,1
+28,Mail,OTH,Black,26-40,2
+28,Mail,OTH,Other,26-40,8
+28,Mail,OTH,Other,41-65,2
+28,Mail,OTH,Other,66+,1
+28,Mail,OTH,White,18-25,4
+28,Mail,OTH,White,26-40,5
+28,Mail,OTH,White,41-65,3
+28,Mail,OTH,White,66+,3
+28,Mail,REP,Black,18-25,1
+28,Mail,REP,Black,41-65,9
+28,Mail,REP,Black,66+,4
+28,Mail,REP,Other,18-25,6
+28,Mail,REP,Other,26-40,18
+28,Mail,REP,Other,41-65,57
+28,Mail,REP,Other,66+,68
+28,Mail,REP,White,18-25,53
+28,Mail,REP,White,26-40,89
+28,Mail,REP,White,41-65,336
+28,Mail,REP,White,66+,814
+28,Mail,UNA,Black,18-25,4
+28,Mail,UNA,Black,26-40,24
+28,Mail,UNA,Black,41-65,31
+28,Mail,UNA,Black,66+,26
+28,Mail,UNA,Other,18-25,48
+28,Mail,UNA,Other,26-40,50
+28,Mail,UNA,Other,41-65,103
+28,Mail,UNA,Other,66+,72
+28,Mail,UNA,White,18-25,99
+28,Mail,UNA,White,26-40,143
+28,Mail,UNA,White,41-65,318
+28,Mail,UNA,White,66+,656
+29,Mail,DEM,Black,18-25,15
+29,Mail,DEM,Black,26-40,44
+29,Mail,DEM,Black,41-65,136
+29,Mail,DEM,Black,66+,277
+29,Mail,DEM,Other,18-25,45
+29,Mail,DEM,Other,26-40,77
+29,Mail,DEM,Other,41-65,114
+29,Mail,DEM,Other,66+,135
+29,Mail,DEM,White,18-25,93
+29,Mail,DEM,White,26-40,202
+29,Mail,DEM,White,41-65,372
+29,Mail,DEM,White,66+,1031
+29,Mail,OTH,Black,26-40,1
+29,Mail,OTH,Black,41-65,2
+29,Mail,OTH,Other,18-25,2
+29,Mail,OTH,Other,26-40,5
+29,Mail,OTH,Other,41-65,5
+29,Mail,OTH,White,18-25,3
+29,Mail,OTH,White,26-40,6
+29,Mail,OTH,White,41-65,13
+29,Mail,OTH,White,66+,11
+29,Mail,REP,Black,18-25,1
+29,Mail,REP,Black,26-40,3
+29,Mail,REP,Black,41-65,9
+29,Mail,REP,Black,66+,7
+29,Mail,REP,Other,18-25,11
+29,Mail,REP,Other,26-40,28
+29,Mail,REP,Other,41-65,85
+29,Mail,REP,Other,66+,89
+29,Mail,REP,White,18-25,76
+29,Mail,REP,White,26-40,115
+29,Mail,REP,White,41-65,538
+29,Mail,REP,White,66+,1214
+29,Mail,UNA,Black,18-25,10
+29,Mail,UNA,Black,26-40,17
+29,Mail,UNA,Black,41-65,49
+29,Mail,UNA,Black,66+,31
+29,Mail,UNA,Other,18-25,53
+29,Mail,UNA,Other,26-40,96
+29,Mail,UNA,Other,41-65,172
+29,Mail,UNA,Other,66+,169
+29,Mail,UNA,White,18-25,159
+29,Mail,UNA,White,26-40,202
+29,Mail,UNA,White,41-65,512
+29,Mail,UNA,White,66+,1015
+30,Mail,DEM,Black,26-40,2
+30,Mail,DEM,Black,41-65,4
+30,Mail,DEM,Black,66+,6
+30,Mail,DEM,Other,18-25,2
+30,Mail,DEM,Other,26-40,6
+30,Mail,DEM,Other,41-65,10
+30,Mail,DEM,Other,66+,6
+30,Mail,DEM,White,18-25,11
+30,Mail,DEM,White,26-40,11
+30,Mail,DEM,White,41-65,25
+30,Mail,DEM,White,66+,17
+30,Mail,OTH,Other,41-65,1
+30,Mail,OTH,White,26-40,1
+30,Mail,REP,Black,66+,1
+30,Mail,REP,Other,18-25,1
+30,Mail,REP,Other,26-40,2
+30,Mail,REP,Other,41-65,1
+30,Mail,REP,Other,66+,2
+30,Mail,REP,White,18-25,4
+30,Mail,REP,White,26-40,2
+30,Mail,REP,White,41-65,8
+30,Mail,REP,White,66+,21
+30,Mail,UNA,Black,41-65,1
+30,Mail,UNA,Black,66+,1
+30,Mail,UNA,Other,18-25,5
+30,Mail,UNA,Other,26-40,9
+30,Mail,UNA,Other,41-65,9
+30,Mail,UNA,Other,66+,11
+30,Mail,UNA,White,18-25,2
+30,Mail,UNA,White,26-40,8
+30,Mail,UNA,White,41-65,15
+30,Mail,UNA,White,66+,18
+31,Mail,DEM,Black,18-25,4
+31,Mail,DEM,Black,26-40,12
+31,Mail,DEM,Black,41-65,19
+31,Mail,DEM,Black,66+,35
+31,Mail,DEM,Other,18-25,9
+31,Mail,DEM,Other,26-40,15
+31,Mail,DEM,Other,41-65,27
+31,Mail,DEM,Other,66+,21
+31,Mail,DEM,White,18-25,11
+31,Mail,DEM,White,26-40,33
+31,Mail,DEM,White,41-65,78
+31,Mail,DEM,White,66+,160
+31,Mail,OTH,Other,18-25,1
+31,Mail,OTH,Other,26-40,2
+31,Mail,OTH,Other,41-65,1
+31,Mail,OTH,Other,66+,1
+31,Mail,OTH,White,26-40,1
+31,Mail,OTH,White,41-65,2
+31,Mail,REP,Black,26-40,1
+31,Mail,REP,Black,41-65,1
+31,Mail,REP,Black,66+,2
+31,Mail,REP,Other,18-25,5
+31,Mail,REP,Other,26-40,6
+31,Mail,REP,Other,41-65,14
+31,Mail,REP,Other,66+,12
+31,Mail,REP,White,18-25,7
+31,Mail,REP,White,26-40,21
+31,Mail,REP,White,41-65,77
+31,Mail,REP,White,66+,196
+31,Mail,UNA,Black,18-25,3
+31,Mail,UNA,Black,26-40,3
+31,Mail,UNA,Black,41-65,4
+31,Mail,UNA,Black,66+,5
+31,Mail,UNA,Other,18-25,16
+31,Mail,UNA,Other,26-40,18
+31,Mail,UNA,Other,41-65,47
+31,Mail,UNA,Other,66+,28
+31,Mail,UNA,White,18-25,37
+31,Mail,UNA,White,26-40,46
+31,Mail,UNA,White,41-65,93
+31,Mail,UNA,White,66+,198
+32,Mail,DEM,Black,18-25,17
+32,Mail,DEM,Black,26-40,20
+32,Mail,DEM,Black,41-65,92
+32,Mail,DEM,Black,66+,183
+32,Mail,DEM,Other,18-25,24
+32,Mail,DEM,Other,26-40,54
+32,Mail,DEM,Other,41-65,69
+32,Mail,DEM,Other,66+,99
+32,Mail,DEM,White,18-25,51
+32,Mail,DEM,White,26-40,84
+32,Mail,DEM,White,41-65,243
+32,Mail,DEM,White,66+,578
+32,Mail,OTH,Black,18-25,1
+32,Mail,OTH,Black,26-40,1
+32,Mail,OTH,Black,41-65,1
+32,Mail,OTH,Other,18-25,2
+32,Mail,OTH,Other,26-40,5
+32,Mail,OTH,Other,41-65,2
+32,Mail,OTH,White,18-25,3
+32,Mail,OTH,White,26-40,2
+32,Mail,OTH,White,41-65,5
+32,Mail,OTH,White,66+,2
+32,Mail,REP,Black,26-40,2
+32,Mail,REP,Black,41-65,4
+32,Mail,REP,Black,66+,2
+32,Mail,REP,Other,18-25,8
+32,Mail,REP,Other,26-40,15
+32,Mail,REP,Other,41-65,41
+32,Mail,REP,Other,66+,59
+32,Mail,REP,White,18-25,37
+32,Mail,REP,White,26-40,56
+32,Mail,REP,White,41-65,313
+32,Mail,REP,White,66+,747
+32,Mail,UNA,Black,18-25,3
+32,Mail,UNA,Black,26-40,13
+32,Mail,UNA,Black,41-65,23
+32,Mail,UNA,Black,66+,18
+32,Mail,UNA,Other,18-25,37
+32,Mail,UNA,Other,26-40,46
+32,Mail,UNA,Other,41-65,119
+32,Mail,UNA,Other,66+,97
+32,Mail,UNA,White,18-25,79
+32,Mail,UNA,White,26-40,121
+32,Mail,UNA,White,41-65,316
+32,Mail,UNA,White,66+,613
+33,Mail,DEM,Black,18-25,13
+33,Mail,DEM,Black,26-40,11
+33,Mail,DEM,Black,41-65,99
+33,Mail,DEM,Black,66+,228
+33,Mail,DEM,Other,18-25,23
+33,Mail,DEM,Other,26-40,54
+33,Mail,DEM,Other,41-65,95
+33,Mail,DEM,Other,66+,80
+33,Mail,DEM,White,18-25,44
+33,Mail,DEM,White,26-40,121
+33,Mail,DEM,White,41-65,262
+33,Mail,DEM,White,66+,796
+33,Mail,OTH,Black,26-40,1
+33,Mail,OTH,Black,66+,1
+33,Mail,OTH,Other,26-40,2
+33,Mail,OTH,Other,41-65,2
+33,Mail,OTH,Other,66+,1
+33,Mail,OTH,White,18-25,3
+33,Mail,OTH,White,26-40,4
+33,Mail,OTH,White,41-65,4
+33,Mail,OTH,White,66+,3
+33,Mail,REP,Black,26-40,4
+33,Mail,REP,Black,41-65,3
+33,Mail,REP,Black,66+,4
+33,Mail,REP,Other,18-25,4
+33,Mail,REP,Other,26-40,10
+33,Mail,REP,Other,41-65,73
+33,Mail,REP,Other,66+,60
+33,Mail,REP,White,18-25,36
+33,Mail,REP,White,26-40,56
+33,Mail,REP,White,41-65,315
+33,Mail,REP,White,66+,784
+33,Mail,UNA,Black,18-25,5
+33,Mail,UNA,Black,26-40,12
+33,Mail,UNA,Black,41-65,25
+33,Mail,UNA,Black,66+,20
+33,Mail,UNA,Other,18-25,24
+33,Mail,UNA,Other,26-40,52
+33,Mail,UNA,Other,41-65,122
+33,Mail,UNA,Other,66+,107
+33,Mail,UNA,White,18-25,84
+33,Mail,UNA,White,26-40,143
+33,Mail,UNA,White,41-65,335
+33,Mail,UNA,White,66+,653
+34,Mail,DEM,Black,18-25,5
+34,Mail,DEM,Black,26-40,12
+34,Mail,DEM,Black,41-65,79
+34,Mail,DEM,Black,66+,185
+34,Mail,DEM,Other,18-25,20
+34,Mail,DEM,Other,26-40,58
+34,Mail,DEM,Other,41-65,65
+34,Mail,DEM,Other,66+,53
+34,Mail,DEM,White,18-25,54
+34,Mail,DEM,White,26-40,126
+34,Mail,DEM,White,41-65,208
+34,Mail,DEM,White,66+,505
+34,Mail,OTH,Black,18-25,1
+34,Mail,OTH,Black,41-65,1
+34,Mail,OTH,Other,26-40,1
+34,Mail,OTH,Other,41-65,3
+34,Mail,OTH,White,18-25,2
+34,Mail,OTH,White,26-40,2
+34,Mail,OTH,White,41-65,4
+34,Mail,OTH,White,66+,1
+34,Mail,REP,Black,41-65,3
+34,Mail,REP,Black,66+,4
+34,Mail,REP,Other,18-25,6
+34,Mail,REP,Other,26-40,26
+34,Mail,REP,Other,41-65,40
+34,Mail,REP,Other,66+,50
+34,Mail,REP,White,18-25,33
+34,Mail,REP,White,26-40,51
+34,Mail,REP,White,41-65,218
+34,Mail,REP,White,66+,530
+34,Mail,UNA,Black,18-25,2
+34,Mail,UNA,Black,26-40,10
+34,Mail,UNA,Black,41-65,28
+34,Mail,UNA,Black,66+,23
+34,Mail,UNA,Other,18-25,29
+34,Mail,UNA,Other,26-40,56
+34,Mail,UNA,Other,41-65,89
+34,Mail,UNA,Other,66+,79
+34,Mail,UNA,White,18-25,58
+34,Mail,UNA,White,26-40,100
+34,Mail,UNA,White,41-65,240
+34,Mail,UNA,White,66+,510
+35,Mail,DEM,Black,18-25,1
+35,Mail,DEM,Black,26-40,9
+35,Mail,DEM,Black,41-65,54
+35,Mail,DEM,Black,66+,92
+35,Mail,DEM,Other,18-25,8
+35,Mail,DEM,Other,26-40,24
+35,Mail,DEM,Other,41-65,56
+35,Mail,DEM,Other,66+,49
+35,Mail,DEM,White,18-25,19
+35,Mail,DEM,White,26-40,46
+35,Mail,DEM,White,41-65,140
+35,Mail,DEM,White,66+,305
+35,Mail,OTH,Black,66+,1
+35,Mail,OTH,Other,26-40,2
+35,Mail,OTH,Other,66+,1
+35,Mail,OTH,White,18-25,1
+35,Mail,OTH,White,26-40,4
+35,Mail,OTH,White,41-65,2
+35,Mail,REP,Black,18-25,1
+35,Mail,REP,Black,41-65,4
+35,Mail,REP,Black,66+,2
+35,Mail,REP,Other,18-25,4
+35,Mail,REP,Other,26-40,5
+35,Mail,REP,Other,41-65,22
+35,Mail,REP,Other,66+,29
+35,Mail,REP,White,18-25,12
+35,Mail,REP,White,26-40,35
+35,Mail,REP,White,41-65,134
+35,Mail,REP,White,66+,381
+35,Mail,UNA,Black,18-25,1
+35,Mail,UNA,Black,26-40,6
+35,Mail,UNA,Black,41-65,15
+35,Mail,UNA,Black,66+,14
+35,Mail,UNA,Other,18-25,20
+35,Mail,UNA,Other,26-40,24
+35,Mail,UNA,Other,41-65,52
+35,Mail,UNA,Other,66+,55
+35,Mail,UNA,White,18-25,35
+35,Mail,UNA,White,26-40,61
+35,Mail,UNA,White,41-65,170
+35,Mail,UNA,White,66+,298
+36,Mail,DEM,Black,18-25,8
+36,Mail,DEM,Black,26-40,14
+36,Mail,DEM,Black,41-65,77
+36,Mail,DEM,Black,66+,125
+36,Mail,DEM,Other,18-25,17
+36,Mail,DEM,Other,26-40,43
+36,Mail,DEM,Other,41-65,66
+36,Mail,DEM,Other,66+,49
+36,Mail,DEM,White,18-25,28
+36,Mail,DEM,White,26-40,72
+36,Mail,DEM,White,41-65,164
+36,Mail,DEM,White,66+,320
+36,Mail,OTH,Black,41-65,1
+36,Mail,OTH,Black,66+,1
+36,Mail,OTH,Other,26-40,1
+36,Mail,OTH,Other,41-65,7
+36,Mail,OTH,White,18-25,1
+36,Mail,OTH,White,41-65,4
+36,Mail,OTH,White,66+,2
+36,Mail,REP,Black,41-65,5
+36,Mail,REP,Black,66+,1
+36,Mail,REP,Other,18-25,6
+36,Mail,REP,Other,26-40,24
+36,Mail,REP,Other,41-65,24
+36,Mail,REP,Other,66+,30
+36,Mail,REP,White,18-25,21
+36,Mail,REP,White,26-40,51
+36,Mail,REP,White,41-65,204
+36,Mail,REP,White,66+,361
+36,Mail,UNA,Black,18-25,4
+36,Mail,UNA,Black,26-40,12
+36,Mail,UNA,Black,41-65,15
+36,Mail,UNA,Black,66+,14
+36,Mail,UNA,Other,18-25,28
+36,Mail,UNA,Other,26-40,50
+36,Mail,UNA,Other,41-65,58
+36,Mail,UNA,Other,66+,38
+36,Mail,UNA,White,18-25,44
+36,Mail,UNA,White,26-40,101
+36,Mail,UNA,White,41-65,182
+36,Mail,UNA,White,66+,332
+37,Mail,DEM,Black,26-40,1
+37,Mail,DEM,Black,41-65,1
+37,Mail,DEM,Black,66+,2
+37,Mail,DEM,Other,18-25,3
+37,Mail,DEM,Other,26-40,13
+37,Mail,DEM,Other,41-65,11
+37,Mail,DEM,Other,66+,1
+37,Mail,DEM,White,18-25,8
+37,Mail,DEM,White,26-40,12
+37,Mail,DEM,White,41-65,18
+37,Mail,DEM,White,66+,3
+37,Mail,OTH,Other,66+,1
+37,Mail,OTH,White,66+,1
+37,Mail,REP,Other,41-65,1
+37,Mail,REP,White,18-25,1
+37,Mail,REP,White,26-40,3
+37,Mail,REP,White,41-65,5
+37,Mail,UNA,Black,18-25,1
+37,Mail,UNA,Black,26-40,3
+37,Mail,UNA,Black,41-65,2
+37,Mail,UNA,Other,18-25,16
+37,Mail,UNA,Other,26-40,9
+37,Mail,UNA,Other,41-65,7
+37,Mail,UNA,Other,66+,6
+37,Mail,UNA,White,18-25,4
+37,Mail,UNA,White,26-40,11
+37,Mail,UNA,White,41-65,10
+37,Mail,UNA,White,66+,6
+38,Mail,DEM,Black,18-25,1
+38,Mail,DEM,Black,26-40,3
+38,Mail,DEM,Black,41-65,10
+38,Mail,DEM,Black,66+,5
+38,Mail,DEM,Other,18-25,16
+38,Mail,DEM,Other,26-40,27
+38,Mail,DEM,Other,41-65,29
+38,Mail,DEM,Other,66+,11
+38,Mail,DEM,White,18-25,21
+38,Mail,DEM,White,26-40,37
+38,Mail,DEM,White,41-65,50
+38,Mail,DEM,White,66+,27
+38,Mail,OTH,Other,18-25,1
+38,Mail,OTH,Other,26-40,4
+38,Mail,OTH,Other,41-65,3
+38,Mail,OTH,White,18-25,2
+38,Mail,OTH,White,26-40,1
+38,Mail,OTH,White,41-65,2
+38,Mail,REP,Other,18-25,2
+38,Mail,REP,Other,26-40,7
+38,Mail,REP,Other,41-65,9
+38,Mail,REP,White,18-25,5
+38,Mail,REP,White,26-40,9
+38,Mail,REP,White,41-65,11
+38,Mail,REP,White,66+,11
+38,Mail,UNA,Black,26-40,4
+38,Mail,UNA,Black,41-65,8
+38,Mail,UNA,Black,66+,1
+38,Mail,UNA,Other,18-25,24
+38,Mail,UNA,Other,26-40,23
+38,Mail,UNA,Other,41-65,32
+38,Mail,UNA,Other,66+,21
+38,Mail,UNA,White,18-25,28
+38,Mail,UNA,White,26-40,28
+38,Mail,UNA,White,41-65,49
+38,Mail,UNA,White,66+,21
+39,Mail,DEM,Black,18-25,3
+39,Mail,DEM,Black,26-40,4
+39,Mail,DEM,Black,41-65,22
+39,Mail,DEM,Black,66+,23
+39,Mail,DEM,Other,18-25,11
+39,Mail,DEM,Other,26-40,31
+39,Mail,DEM,Other,41-65,37
+39,Mail,DEM,Other,66+,17
+39,Mail,DEM,White,18-25,16
+39,Mail,DEM,White,26-40,41
+39,Mail,DEM,White,41-65,57
+39,Mail,DEM,White,66+,55
+39,Mail,OTH,Black,18-25,1
+39,Mail,OTH,Black,41-65,1
+39,Mail,OTH,Black,66+,1
+39,Mail,OTH,Other,18-25,2
+39,Mail,OTH,Other,26-40,1
+39,Mail,OTH,Other,41-65,4
+39,Mail,OTH,White,26-40,2
+39,Mail,OTH,White,41-65,2
+39,Mail,OTH,White,66+,1
+39,Mail,REP,Black,26-40,1
+39,Mail,REP,Other,18-25,2
+39,Mail,REP,Other,26-40,7
+39,Mail,REP,Other,41-65,9
+39,Mail,REP,Other,66+,4
+39,Mail,REP,White,18-25,4
+39,Mail,REP,White,26-40,23
+39,Mail,REP,White,41-65,23
+39,Mail,REP,White,66+,36
+39,Mail,UNA,Black,18-25,2
+39,Mail,UNA,Black,26-40,3
+39,Mail,UNA,Black,41-65,4
+39,Mail,UNA,Black,66+,2
+39,Mail,UNA,Other,18-25,10
+39,Mail,UNA,Other,26-40,25
+39,Mail,UNA,Other,41-65,29
+39,Mail,UNA,Other,66+,14
+39,Mail,UNA,White,18-25,12
+39,Mail,UNA,White,26-40,21
+39,Mail,UNA,White,41-65,40
+39,Mail,UNA,White,66+,45
+40,Mail,DEM,Black,26-40,2
+40,Mail,DEM,Black,41-65,5
+40,Mail,DEM,Black,66+,10
+40,Mail,DEM,Other,18-25,7
+40,Mail,DEM,Other,26-40,14
+40,Mail,DEM,Other,41-65,16
+40,Mail,DEM,Other,66+,11
+40,Mail,DEM,White,18-25,9
+40,Mail,DEM,White,26-40,23
+40,Mail,DEM,White,41-65,42
+40,Mail,DEM,White,66+,50
+40,Mail,OTH,Other,26-40,1
+40,Mail,OTH,Other,41-65,1
+40,Mail,OTH,White,26-40,1
+40,Mail,OTH,White,66+,1
+40,Mail,REP,Black,26-40,1
+40,Mail,REP,Other,18-25,1
+40,Mail,REP,Other,26-40,3
+40,Mail,REP,Other,41-65,9
+40,Mail,REP,Other,66+,2
+40,Mail,REP,White,18-25,4
+40,Mail,REP,White,26-40,8
+40,Mail,REP,White,41-65,31
+40,Mail,REP,White,66+,21
+40,Mail,UNA,Black,26-40,1
+40,Mail,UNA,Black,41-65,1
+40,Mail,UNA,Black,66+,2
+40,Mail,UNA,Other,18-25,11
+40,Mail,UNA,Other,26-40,20
+40,Mail,UNA,Other,41-65,16
+40,Mail,UNA,Other,66+,8
+40,Mail,UNA,White,18-25,4
+40,Mail,UNA,White,26-40,25
+40,Mail,UNA,White,41-65,37
+40,Mail,UNA,White,66+,46
+41,Mail,DEM,Black,18-25,2
+41,Mail,DEM,Black,26-40,6
+41,Mail,DEM,Black,41-65,7
+41,Mail,DEM,Black,66+,6
+41,Mail,DEM,Other,18-25,29
+41,Mail,DEM,Other,26-40,64
+41,Mail,DEM,Other,41-65,106
+41,Mail,DEM,Other,66+,31
+41,Mail,DEM,White,18-25,33
+41,Mail,DEM,White,26-40,106
+41,Mail,DEM,White,41-65,122
+41,Mail,DEM,White,66+,52
+41,Mail,OTH,Other,18-25,1
+41,Mail,OTH,Other,26-40,1
+41,Mail,OTH,Other,41-65,4
+41,Mail,OTH,White,26-40,2
+41,Mail,OTH,White,41-65,1
+41,Mail,REP,Black,41-65,1
+41,Mail,REP,Other,18-25,5
+41,Mail,REP,Other,26-40,17
+41,Mail,REP,Other,41-65,12
+41,Mail,REP,Other,66+,2
+41,Mail,REP,White,18-25,4
+41,Mail,REP,White,26-40,15
+41,Mail,REP,White,41-65,27
+41,Mail,REP,White,66+,7
+41,Mail,UNA,Black,26-40,3
+41,Mail,UNA,Black,41-65,6
+41,Mail,UNA,Black,66+,1
+41,Mail,UNA,Other,18-25,31
+41,Mail,UNA,Other,26-40,54
+41,Mail,UNA,Other,41-65,72
+41,Mail,UNA,Other,66+,32
+41,Mail,UNA,White,18-25,38
+41,Mail,UNA,White,26-40,75
+41,Mail,UNA,White,41-65,119
+41,Mail,UNA,White,66+,47
+42,Mail,DEM,Black,26-40,3
+42,Mail,DEM,Black,41-65,7
+42,Mail,DEM,Black,66+,2
+42,Mail,DEM,Other,18-25,21
+42,Mail,DEM,Other,26-40,43
+42,Mail,DEM,Other,41-65,55
+42,Mail,DEM,Other,66+,24
+42,Mail,DEM,White,18-25,29
+42,Mail,DEM,White,26-40,63
+42,Mail,DEM,White,41-65,80
+42,Mail,DEM,White,66+,47
+42,Mail,OTH,Black,41-65,1
+42,Mail,OTH,Other,26-40,3
+42,Mail,OTH,Other,41-65,3
+42,Mail,OTH,Other,66+,1
+42,Mail,OTH,White,26-40,2
+42,Mail,OTH,White,41-65,1
+42,Mail,OTH,White,66+,1
+42,Mail,REP,Other,18-25,2
+42,Mail,REP,Other,26-40,7
+42,Mail,REP,Other,41-65,17
+42,Mail,REP,Other,66+,5
+42,Mail,REP,White,18-25,10
+42,Mail,REP,White,26-40,28
+42,Mail,REP,White,41-65,18
+42,Mail,REP,White,66+,10
+42,Mail,UNA,Black,26-40,3
+42,Mail,UNA,Black,41-65,5
+42,Mail,UNA,Other,18-25,23
+42,Mail,UNA,Other,26-40,34
+42,Mail,UNA,Other,41-65,45
+42,Mail,UNA,Other,66+,21
+42,Mail,UNA,White,18-25,20
+42,Mail,UNA,White,26-40,54
+42,Mail,UNA,White,41-65,65
+42,Mail,UNA,White,66+,33
+43,Mail,DEM,Black,18-25,2
+43,Mail,DEM,Black,26-40,8
+43,Mail,DEM,Black,41-65,10
+43,Mail,DEM,Black,66+,6
+43,Mail,DEM,Other,18-25,18
+43,Mail,DEM,Other,26-40,43
+43,Mail,DEM,Other,41-65,62
+43,Mail,DEM,Other,66+,36
+43,Mail,DEM,White,18-25,31
+43,Mail,DEM,White,26-40,62
+43,Mail,DEM,White,41-65,106
+43,Mail,DEM,White,66+,61
+43,Mail,OTH,Other,26-40,4
+43,Mail,OTH,Other,41-65,2
+43,Mail,OTH,Other,66+,1
+43,Mail,OTH,White,26-40,5
+43,Mail,OTH,White,41-65,1
+43,Mail,REP,Black,18-25,1
+43,Mail,REP,Black,66+,1
+43,Mail,REP,Other,18-25,2
+43,Mail,REP,Other,26-40,15
+43,Mail,REP,Other,41-65,16
+43,Mail,REP,Other,66+,7
+43,Mail,REP,White,18-25,5
+43,Mail,REP,White,26-40,20
+43,Mail,REP,White,41-65,34
+43,Mail,REP,White,66+,9
+43,Mail,UNA,Black,18-25,1
+43,Mail,UNA,Black,26-40,1
+43,Mail,UNA,Black,41-65,7
+43,Mail,UNA,Black,66+,2
+43,Mail,UNA,Other,18-25,28
+43,Mail,UNA,Other,26-40,37
+43,Mail,UNA,Other,41-65,55
+43,Mail,UNA,Other,66+,16
+43,Mail,UNA,White,18-25,28
+43,Mail,UNA,White,26-40,62
+43,Mail,UNA,White,41-65,68
+43,Mail,UNA,White,66+,21
+44,Mail,DEM,Black,41-65,3
+44,Mail,DEM,Other,18-25,5
+44,Mail,DEM,Other,26-40,16
+44,Mail,DEM,Other,41-65,13
+44,Mail,DEM,Other,66+,8
+44,Mail,DEM,White,18-25,15
+44,Mail,DEM,White,26-40,15
+44,Mail,DEM,White,41-65,23
+44,Mail,DEM,White,66+,9
+44,Mail,REP,Black,26-40,1
+44,Mail,REP,Other,26-40,4
+44,Mail,REP,Other,41-65,5
+44,Mail,REP,Other,66+,1
+44,Mail,REP,White,18-25,2
+44,Mail,REP,White,26-40,2
+44,Mail,REP,White,41-65,4
+44,Mail,REP,White,66+,2
+44,Mail,UNA,Black,18-25,1
+44,Mail,UNA,Black,66+,1
+44,Mail,UNA,Other,18-25,12
+44,Mail,UNA,Other,26-40,7
+44,Mail,UNA,Other,41-65,15
+44,Mail,UNA,Other,66+,8
+44,Mail,UNA,White,18-25,10
+44,Mail,UNA,White,26-40,16
+44,Mail,UNA,White,41-65,7
+44,Mail,UNA,White,66+,12
+45,Mail,DEM,Black,26-40,4
+45,Mail,DEM,Black,41-65,1
+45,Mail,DEM,Black,66+,2
+45,Mail,DEM,Other,18-25,8
+45,Mail,DEM,Other,26-40,21
+45,Mail,DEM,Other,41-65,16
+45,Mail,DEM,Other,66+,11
+45,Mail,DEM,White,18-25,13
+45,Mail,DEM,White,26-40,33
+45,Mail,DEM,White,41-65,44
+45,Mail,DEM,White,66+,25
+45,Mail,OTH,Other,26-40,2
+45,Mail,OTH,White,18-25,1
+45,Mail,OTH,White,41-65,1
+45,Mail,REP,Black,26-40,1
+45,Mail,REP,Other,18-25,4
+45,Mail,REP,Other,26-40,7
+45,Mail,REP,Other,41-65,4
+45,Mail,REP,Other,66+,2
+45,Mail,REP,White,18-25,2
+45,Mail,REP,White,26-40,9
+45,Mail,REP,White,41-65,7
+45,Mail,REP,White,66+,3
+45,Mail,UNA,Black,26-40,1
+45,Mail,UNA,Black,41-65,1
+45,Mail,UNA,Other,18-25,10
+45,Mail,UNA,Other,26-40,19
+45,Mail,UNA,Other,41-65,25
+45,Mail,UNA,Other,66+,10
+45,Mail,UNA,White,18-25,7
+45,Mail,UNA,White,26-40,26
+45,Mail,UNA,White,41-65,27
+45,Mail,UNA,White,66+,8

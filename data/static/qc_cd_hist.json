@@ -1,0 +1,1970 @@
+{
+ "blocks_AL_16_vote_coverage": 1.0,
+ "blocks_AL_20_vote_coverage": 1.0,
+ "blocks_AR_16_vote_coverage": 1.0,
+ "blocks_AR_20_vote_coverage": 1.0,
+ "blocks_AZ_16_vote_coverage": 1.0,
+ "blocks_AZ_20_vote_coverage": 1.0,
+ "blocks_CA_16_vote_coverage": 1.0,
+ "blocks_CA_20_vote_coverage": 1.0,
+ "blocks_CO_16_vote_coverage": 1.0,
+ "blocks_CO_20_vote_coverage": 1.0,
+ "blocks_CT_16_vote_coverage": 1.0,
+ "blocks_CT_20_vote_coverage": 1.0,
+ "blocks_FL_16_vote_coverage": 1.0,
+ "blocks_FL_20_vote_coverage": 1.0,
+ "blocks_GA_16_vote_coverage": 1.0,
+ "blocks_GA_20_vote_coverage": 1.0,
+ "blocks_HI_16_vote_coverage": 1.0,
+ "blocks_HI_20_vote_coverage": 1.0,
+ "blocks_IA_16_vote_coverage": 1.0,
+ "blocks_IA_20_vote_coverage": 1.0,
+ "blocks_ID_16_vote_coverage": 1.0,
+ "blocks_ID_20_vote_coverage": 1.0,
+ "blocks_IL_16_vote_coverage": 1.0,
+ "blocks_IL_20_vote_coverage": 1.0,
+ "blocks_IN_16_vote_coverage": 1.0,
+ "blocks_IN_20_vote_coverage": 1.0,
+ "blocks_KS_16_vote_coverage": 1.0,
+ "blocks_KS_20_vote_coverage": 1.0,
+ "blocks_KY_16_vote_coverage": 1.0,
+ "blocks_KY_20_vote_coverage": 1.0,
+ "blocks_LA_16_vote_coverage": 1.0,
+ "blocks_LA_20_vote_coverage": 1.0,
+ "blocks_MA_16_vote_coverage": 1.0,
+ "blocks_MA_20_vote_coverage": 1.0,
+ "blocks_MD_16_vote_coverage": 1.0,
+ "blocks_MD_20_vote_coverage": 1.0,
+ "blocks_ME_16_vote_coverage": 1.0,
+ "blocks_ME_20_vote_coverage": 1.0,
+ "blocks_MI_16_vote_coverage": 1.0,
+ "blocks_MI_20_vote_coverage": 1.0,
+ "blocks_MN_16_vote_coverage": 1.0,
+ "blocks_MN_20_vote_coverage": 1.0,
+ "blocks_MO_16_vote_coverage": 1.0,
+ "blocks_MO_20_vote_coverage": 1.0,
+ "blocks_MS_16_vote_coverage": 1.0,
+ "blocks_MS_20_vote_coverage": 1.0,
+ "blocks_MT_16_vote_coverage": 1.0,
+ "blocks_MT_20_vote_coverage": 1.0,
+ "blocks_NC_16_vote_coverage": 1.0,
+ "blocks_NC_20_vote_coverage": 1.0,
+ "blocks_NE_16_vote_coverage": 1.0,
+ "blocks_NE_20_vote_coverage": 1.0,
+ "blocks_NH_16_vote_coverage": 1.0,
+ "blocks_NH_20_vote_coverage": 1.0,
+ "blocks_NJ_16_vote_coverage": 1.0,
+ "blocks_NJ_20_vote_coverage": 1.0,
+ "blocks_NM_16_vote_coverage": 1.0,
+ "blocks_NM_20_vote_coverage": 1.0,
+ "blocks_NV_16_vote_coverage": 1.0,
+ "blocks_NV_20_vote_coverage": 1.0,
+ "blocks_NY_16_vote_coverage": 1.0,
+ "blocks_NY_20_vote_coverage": 1.0,
+ "blocks_OH_16_vote_coverage": 1.0,
+ "blocks_OH_20_vote_coverage": 1.0,
+ "blocks_OK_16_vote_coverage": 1.0,
+ "blocks_OK_20_vote_coverage": 1.0,
+ "blocks_OR_16_vote_coverage": 1.0,
+ "blocks_OR_20_vote_coverage": 1.0,
+ "blocks_PA_16_vote_coverage": 1.0,
+ "blocks_PA_20_vote_coverage": 1.0,
+ "blocks_RI_16_vote_coverage": 1.0,
+ "blocks_RI_20_vote_coverage": 1.0,
+ "blocks_SC_16_vote_coverage": 1.0,
+ "blocks_SC_20_vote_coverage": 1.0,
+ "blocks_TN_16_vote_coverage": 1.0,
+ "blocks_TN_20_vote_coverage": 1.0,
+ "blocks_TX_16_vote_coverage": 1.0,
+ "blocks_TX_20_vote_coverage": 1.0,
+ "blocks_UT_16_vote_coverage": 1.0,
+ "blocks_UT_20_vote_coverage": 1.0,
+ "blocks_VA_16_vote_coverage": 1.0,
+ "blocks_VA_20_vote_coverage": 1.0,
+ "blocks_WA_16_vote_coverage": 1.0,
+ "blocks_WA_20_vote_coverage": 1.0,
+ "blocks_WI_16_vote_coverage": 1.0,
+ "blocks_WI_20_vote_coverage": 1.0,
+ "blocks_WV_16_vote_coverage": 1.0,
+ "blocks_WV_20_vote_coverage": 1.0,
+ "blocks_vs_mit_2018_AL_12": {
+  "margin_diff": -0.035,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_AL_16": {
+  "margin_diff": -0.009,
+  "ratio": 1.0002
+ },
+ "blocks_vs_mit_2018_AR_12": {
+  "margin_diff": -0.008,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_AR_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_AZ_12": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_AZ_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_CA_12": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_CA_16": {
+  "margin_diff": -0.004,
+  "ratio": 0.9998
+ },
+ "blocks_vs_mit_2018_CO_12": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_CO_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_CT_12": {
+  "margin_diff": -0.013,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_CT_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_FL_12": {
+  "margin_diff": -0.003,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_FL_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_GA_12": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_GA_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_HI_12": {
+  "margin_diff": -0.024,
+  "ratio": 0.9989
+ },
+ "blocks_vs_mit_2018_HI_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_IA_12": {
+  "margin_diff": -0.003,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_IA_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_ID_12": {
+  "margin_diff": 0.582,
+  "ratio": 0.9944
+ },
+ "blocks_vs_mit_2018_ID_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_IL_12": {
+  "margin_diff": -0.02,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_IL_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_IN_12": {
+  "margin_diff": -0.077,
+  "ratio": 1.0014
+ },
+ "blocks_vs_mit_2018_IN_16": {
+  "margin_diff": 0.003,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_KS_12": {
+  "margin_diff": 0.106,
+  "ratio": 0.9968
+ },
+ "blocks_vs_mit_2018_KS_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_KY_12": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_KY_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_LA_12": {
+  "margin_diff": -0.065,
+  "ratio": 0.9994
+ },
+ "blocks_vs_mit_2018_LA_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MA_12": {
+  "margin_diff": 0.005,
+  "ratio": 1.0002
+ },
+ "blocks_vs_mit_2018_MA_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MD_12": {
+  "margin_diff": -0.001,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MD_16": {
+  "margin_diff": 0.011,
+  "ratio": 0.9999
+ },
+ "blocks_vs_mit_2018_ME_12": {
+  "margin_diff": -0.109,
+  "ratio": 0.9958
+ },
+ "blocks_vs_mit_2018_ME_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MI_12": {
+  "margin_diff": -0.285,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MI_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MN_12": {
+  "margin_diff": -0.01,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MN_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MO_12": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MO_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MS_12": {
+  "margin_diff": -0.038,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_MS_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NC_12": {
+  "margin_diff": -0.005,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NC_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NE_12": {
+  "margin_diff": -0.001,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NE_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NH_12": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NH_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NJ_12": {
+  "margin_diff": 0.055,
+  "ratio": 1.0012
+ },
+ "blocks_vs_mit_2018_NJ_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NM_12": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NM_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NV_12": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NV_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_NY_12": {
+  "margin_diff": 0.017,
+  "ratio": 1.0027
+ },
+ "blocks_vs_mit_2018_NY_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_OH_12": {
+  "margin_diff": -0.053,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_OH_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_OK_12": {
+  "margin_diff": -0.001,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_OK_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_OR_12": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_OR_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_PA_12": {
+  "margin_diff": -0.025,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_PA_16": {
+  "margin_diff": -0.014,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_RI_12": {
+  "margin_diff": -0.066,
+  "ratio": 0.9993
+ },
+ "blocks_vs_mit_2018_RI_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_SC_12": {
+  "margin_diff": -0.016,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_SC_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_TN_12": {
+  "margin_diff": -0.001,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_TN_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_TX_12": {
+  "margin_diff": -0.002,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_TX_16": {
+  "margin_diff": 0.002,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_UT_12": {
+  "margin_diff": 0.292,
+  "ratio": 0.9944
+ },
+ "blocks_vs_mit_2018_UT_16": {
+  "margin_diff": -0.002,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_VA_12": {
+  "margin_diff": 0.009,
+  "ratio": 0.9993
+ },
+ "blocks_vs_mit_2018_VA_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_WA_12": {
+  "margin_diff": -0.001,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_WA_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_WI_12": {
+  "margin_diff": 0.106,
+  "ratio": 0.999
+ },
+ "blocks_vs_mit_2018_WI_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_WV_12": {
+  "margin_diff": -0.002,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2018_WV_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_AL_16": {
+  "margin_diff": -0.009,
+  "ratio": 1.0002
+ },
+ "blocks_vs_mit_2022_AL_20": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_AR_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_AR_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_AZ_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_AZ_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_CA_16": {
+  "margin_diff": -0.004,
+  "ratio": 0.9998
+ },
+ "blocks_vs_mit_2022_CA_20": {
+  "margin_diff": 0.001,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_CO_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_CO_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_CT_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_CT_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_FL_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_FL_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_GA_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_GA_20": {
+  "margin_diff": 0.018,
+  "ratio": 1.0002
+ },
+ "blocks_vs_mit_2022_HI_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_HI_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_IA_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_IA_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_ID_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_ID_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_IL_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_IL_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_IN_16": {
+  "margin_diff": 0.003,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_IN_20": {
+  "margin_diff": -0.006,
+  "ratio": 1.0001
+ },
+ "blocks_vs_mit_2022_KS_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_KS_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_KY_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_KY_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_LA_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_LA_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MA_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MA_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MD_16": {
+  "margin_diff": 0.011,
+  "ratio": 0.9999
+ },
+ "blocks_vs_mit_2022_MD_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_ME_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_ME_20": {
+  "margin_diff": -0.004,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MI_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MI_20": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MN_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MN_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MO_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MO_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MS_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MS_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MT_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_MT_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NC_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NC_20": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NE_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NE_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NH_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NH_20": {
+  "margin_diff": 0.001,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NJ_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NJ_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NM_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NM_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NV_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NV_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NY_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_NY_20": {
+  "margin_diff": 0.021,
+  "ratio": 1.0025
+ },
+ "blocks_vs_mit_2022_OH_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_OH_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_OK_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_OK_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_OR_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_OR_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_PA_16": {
+  "margin_diff": -0.014,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_PA_20": {
+  "margin_diff": 0.021,
+  "ratio": 1.0004
+ },
+ "blocks_vs_mit_2022_RI_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_RI_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_SC_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_SC_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_TN_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_TN_20": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_TX_16": {
+  "margin_diff": 0.002,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_TX_20": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_UT_16": {
+  "margin_diff": -0.002,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_UT_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_VA_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_VA_20": {
+  "margin_diff": 0.092,
+  "ratio": 0.9998
+ },
+ "blocks_vs_mit_2022_WA_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_WA_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_WI_16": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_WI_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_WV_16": {
+  "margin_diff": -0.0,
+  "ratio": 1.0
+ },
+ "blocks_vs_mit_2022_WV_20": {
+  "margin_diff": 0.0,
+  "ratio": 1.0
+ },
+ "cd116_AL_blocks_outside_districts": 0,
+ "cd116_AR_blocks_outside_districts": 0,
+ "cd116_AZ_blocks_outside_districts": 0,
+ "cd116_CA_blocks_outside_districts": 0,
+ "cd116_CO_blocks_outside_districts": 0,
+ "cd116_CT_blocks_outside_districts": 81,
+ "cd116_FL_blocks_outside_districts": 0,
+ "cd116_GA_blocks_outside_districts": 0,
+ "cd116_HI_blocks_outside_districts": 0,
+ "cd116_IA_blocks_outside_districts": 0,
+ "cd116_ID_blocks_outside_districts": 0,
+ "cd116_IL_blocks_outside_districts": 78,
+ "cd116_IN_blocks_outside_districts": 0,
+ "cd116_KS_blocks_outside_districts": 0,
+ "cd116_KY_blocks_outside_districts": 0,
+ "cd116_LA_blocks_outside_districts": 0,
+ "cd116_MA_blocks_outside_districts": 0,
+ "cd116_MD_blocks_outside_districts": 0,
+ "cd116_ME_blocks_outside_districts": 0,
+ "cd116_MI_blocks_outside_districts": 23,
+ "cd116_MN_blocks_outside_districts": 0,
+ "cd116_MO_blocks_outside_districts": 0,
+ "cd116_MS_blocks_outside_districts": 0,
+ "cd116_NC_blocks_outside_districts": 0,
+ "cd116_NE_blocks_outside_districts": 0,
+ "cd116_NH_blocks_outside_districts": 0,
+ "cd116_NJ_blocks_outside_districts": 0,
+ "cd116_NM_blocks_outside_districts": 0,
+ "cd116_NV_blocks_outside_districts": 0,
+ "cd116_NY_blocks_outside_districts": 0,
+ "cd116_OH_blocks_outside_districts": 0,
+ "cd116_OK_blocks_outside_districts": 0,
+ "cd116_OR_blocks_outside_districts": 0,
+ "cd116_PA_blocks_outside_districts": 0,
+ "cd116_RI_blocks_outside_districts": 0,
+ "cd116_SC_blocks_outside_districts": 0,
+ "cd116_TN_blocks_outside_districts": 0,
+ "cd116_TX_blocks_outside_districts": 0,
+ "cd116_UT_blocks_outside_districts": 0,
+ "cd116_VA_blocks_outside_districts": 0,
+ "cd116_WA_blocks_outside_districts": 0,
+ "cd116_WI_blocks_outside_districts": 0,
+ "cd116_WV_blocks_outside_districts": 0,
+ "countyswing_AL_16_to_12_state_change_share": 0.0,
+ "countyswing_AR_16_to_12_state_change_share": 0.0,
+ "countyswing_AZ_16_to_12_state_change_share": 0.0,
+ "countyswing_CA_16_to_12_state_change_share": 0.0,
+ "countyswing_CO_16_to_12_state_change_share": 0.0,
+ "countyswing_CT_16_to_12_state_change_share": 0.0,
+ "countyswing_FL_16_to_12_state_change_share": 0.0,
+ "countyswing_GA_16_to_12_state_change_share": 0.0,
+ "countyswing_HI_16_to_12_state_change_share": 0.0,
+ "countyswing_IA_16_to_12_state_change_share": 0.0,
+ "countyswing_ID_16_to_12_state_change_share": 0.0169,
+ "countyswing_IL_16_to_12_state_change_share": 0.0,
+ "countyswing_IN_16_to_12_state_change_share": 0.0,
+ "countyswing_KS_16_to_12_state_change_share": 0.0,
+ "countyswing_KY_16_to_12_state_change_share": 0.0,
+ "countyswing_LA_16_to_12_state_change_share": 0.0015,
+ "countyswing_MA_16_to_12_state_change_share": 0.0,
+ "countyswing_MD_16_to_12_state_change_share": 0.0,
+ "countyswing_ME_16_to_12_state_change_share": 0.0,
+ "countyswing_MI_16_to_12_state_change_share": 0.0,
+ "countyswing_MN_16_to_12_state_change_share": 0.0,
+ "countyswing_MO_16_to_12_state_change_share": 0.0,
+ "countyswing_MS_16_to_12_state_change_share": 0.0,
+ "countyswing_NC_16_to_12_state_change_share": 0.0,
+ "countyswing_NE_16_to_12_state_change_share": 0.0,
+ "countyswing_NH_16_to_12_state_change_share": 0.0,
+ "countyswing_NJ_16_to_12_state_change_share": 0.0,
+ "countyswing_NM_16_to_12_state_change_share": 0.0,
+ "countyswing_NV_16_to_12_state_change_share": 0.0,
+ "countyswing_NY_16_to_12_state_change_share": 0.0,
+ "countyswing_OH_16_to_12_state_change_share": 0.0,
+ "countyswing_OK_16_to_12_state_change_share": 0.0,
+ "countyswing_OR_16_to_12_state_change_share": 0.0,
+ "countyswing_PA_16_to_12_state_change_share": 0.0,
+ "countyswing_RI_16_to_12_state_change_share": 0.0,
+ "countyswing_SC_16_to_12_state_change_share": 0.0,
+ "countyswing_TN_16_to_12_state_change_share": 0.0,
+ "countyswing_TX_16_to_12_state_change_share": 0.0,
+ "countyswing_UT_16_to_12_state_change_share": 0.036,
+ "countyswing_VA_16_to_12_state_change_share": 0.0,
+ "countyswing_WA_16_to_12_state_change_share": 0.0,
+ "countyswing_WI_16_to_12_state_change_share": 0.0,
+ "countyswing_WV_16_to_12_state_change_share": 0.0,
+ "countyswing_check_2016_from_2020_cd116": {
+  "AL": [
+   0.0,
+   0.86,
+   0.15,
+   -0.18,
+   -0.0,
+   3.68,
+   -2.53
+  ],
+  "AR": [
+   -0.02,
+   0.0,
+   0.12,
+   -0.11
+  ],
+  "AZ": [
+   -0.89,
+   1.36,
+   -6.52,
+   0.49,
+   3.6,
+   2.26,
+   -6.37,
+   2.03,
+   2.38
+  ],
+  "CA": [
+   0.37,
+   1.34,
+   0.36,
+   0.28,
+   0.83,
+   -0.75,
+   1.68,
+   -1.12,
+   -1.95,
+   5.4,
+   -4.09,
+   -0.19,
+   0.0,
+   -4.95,
+   6.95,
+   5.15,
+   0.01,
+   8.5,
+   -0.24,
+   4.12,
+   -0.97,
+   -5.6,
+   0.96,
+   1.43,
+   0.44,
+   -0.94,
+   4.21,
+   -4.58,
+   -6.45,
+   7.16,
+   -0.68,
+   -0.72,
+   4.9,
+   4.45,
+   -7.98,
+   -1.07,
+   7.52,
+   -0.39,
+   -6.29,
+   8.21,
+   -6.82,
+   -0.68,
+   2.13,
+   4.27,
+   -0.55,
+   6.49,
+   -12.24,
+   3.73,
+   -2.3,
+   -1.26,
+   4.3,
+   7.19,
+   0.52
+  ],
+  "CO": [
+   0.18,
+   -1.05,
+   0.05,
+   1.58,
+   0.01,
+   0.04,
+   0.31
+  ],
+  "CT": [
+   -0.57,
+   1.09,
+   -0.1,
+   -0.59,
+   0.27
+  ],
+  "FL": [
+   -0.0,
+   -0.3,
+   -0.04,
+   0.63,
+   -0.59,
+   -2.95,
+   1.29,
+   2.07,
+   -0.12,
+   1.04,
+   0.7,
+   0.42,
+   -2.52,
+   0.0,
+   4.22,
+   -2.0,
+   2.99,
+   -6.54,
+   -2.59,
+   6.01,
+   -0.09,
+   2.4,
+   -2.38,
+   -0.21,
+   0.8,
+   0.03,
+   -1.17
+  ],
+  "GA": [
+   -0.03,
+   0.84,
+   2.29,
+   -0.04,
+   -1.99,
+   2.17,
+   -1.24,
+   1.12,
+   -1.45,
+   -3.83,
+   7.28,
+   2.16,
+   0.7,
+   0.81
+  ],
+  "HI": [
+   -0.11,
+   0.1
+  ],
+  "IA": [
+   0.0,
+   0.0,
+   0.6,
+   0.0
+  ],
+  "ID": [
+   0.72,
+   0.04
+  ],
+  "IL": [
+   -1.18,
+   -1.02,
+   -1.13,
+   -0.7,
+   -0.18,
+   2.71,
+   0.6,
+   0.62,
+   -1.64,
+   1.52,
+   0.72,
+   1.04,
+   -2.53,
+   2.2,
+   3.42,
+   -0.56,
+   -0.93,
+   1.62
+  ],
+  "IN": [
+   -0.13,
+   -0.03,
+   0.16,
+   -0.23,
+   1.51,
+   -0.05,
+   -1.56,
+   0.0,
+   0.06
+  ],
+  "KS": [
+   0.01,
+   -0.03,
+   0.01,
+   0.0
+  ],
+  "KY": [
+   -0.0,
+   0.06,
+   0.06,
+   0.23,
+   0.01,
+   -0.02
+  ],
+  "LA": [
+   0.84,
+   -2.15,
+   -0.01,
+   0.08,
+   -0.14,
+   0.64
+  ],
+  "MA": [
+   0.53,
+   -0.61,
+   -0.79,
+   0.93,
+   0.37,
+   2.81,
+   -3.0,
+   1.29,
+   -1.46
+  ],
+  "MD": [
+   0.52,
+   -0.41,
+   1.41,
+   -1.45,
+   2.08,
+   -0.88,
+   -2.04,
+   0.73
+  ],
+  "ME": [
+   0.06,
+   -0.05
+  ],
+  "MI": [
+   -0.05,
+   0.5,
+   5.83,
+   0.84,
+   -2.81,
+   -4.51,
+   0.31,
+   -0.23,
+   0.33,
+   -0.14,
+   -0.02,
+   0.7,
+   1.17,
+   0.85
+  ],
+  "MN": [
+   0.08,
+   -0.05,
+   3.0,
+   0.05,
+   -2.09,
+   -0.24,
+   -0.09,
+   -0.08
+  ],
+  "MO": [
+   -1.97,
+   3.73,
+   0.04,
+   -0.06,
+   -0.32,
+   0.48,
+   0.01,
+   -0.38
+  ],
+  "MS": [
+   -0.04,
+   -0.74,
+   1.11,
+   -0.0
+  ],
+  "NC": [
+   -0.28,
+   -0.55,
+   0.45,
+   -1.95,
+   -0.58,
+   2.37,
+   0.46,
+   -0.44,
+   0.09,
+   0.47,
+   -0.07,
+   0.36,
+   1.61
+  ],
+  "NE": [
+   0.09,
+   -0.2,
+   0.0
+  ],
+  "NH": [
+   0.19,
+   -0.21
+  ],
+  "NJ": [
+   -0.14,
+   -0.87,
+   4.59,
+   0.45,
+   0.47,
+   1.75,
+   -0.76,
+   2.42,
+   -2.52,
+   3.18,
+   -5.4,
+   -5.07
+  ],
+  "NM": [
+   -0.05,
+   0.17,
+   0.02
+  ],
+  "NV": [
+   -3.34,
+   -0.03,
+   3.11,
+   0.21
+  ],
+  "NY": [
+   1.42,
+   -0.51,
+   1.78,
+   3.63,
+   -5.09,
+   -0.92,
+   -3.62,
+   0.99,
+   0.77,
+   0.6,
+   0.08,
+   -0.71,
+   0.16,
+   -0.07,
+   0.15,
+   -0.39,
+   -0.02,
+   -0.06,
+   -1.37,
+   2.24,
+   1.35,
+   -0.74,
+   0.51,
+   0.23,
+   -5.39,
+   2.14,
+   1.13
+  ],
+  "OH": [
+   -1.59,
+   -0.0,
+   -1.92,
+   2.06,
+   -0.7,
+   2.88,
+   1.45,
+   4.21,
+   1.75,
+   -2.26,
+   -0.51,
+   1.98,
+   0.45,
+   -0.01,
+   0.03,
+   -1.39
+  ],
+  "OK": [
+   0.04,
+   -0.06,
+   0.02,
+   0.45,
+   -0.43
+  ],
+  "OR": [
+   0.21,
+   2.3,
+   -0.63,
+   -0.09,
+   0.38
+  ],
+  "PA": [
+   0.15,
+   0.18,
+   0.31,
+   -0.5,
+   -0.54,
+   0.05,
+   0.26,
+   0.0,
+   2.35,
+   -1.55,
+   -3.15,
+   2.48,
+   -0.0,
+   -0.43,
+   -0.63,
+   -0.02,
+   0.1,
+   0.97
+  ],
+  "RI": [
+   -0.38,
+   0.4
+  ],
+  "SC": [
+   2.93,
+   1.83,
+   -0.07,
+   0.21,
+   0.51,
+   -2.89,
+   0.23
+  ],
+  "TN": [
+   0.02,
+   -0.02,
+   -0.04,
+   4.04,
+   0.04,
+   1.92,
+   3.78,
+   3.62,
+   -2.08
+  ],
+  "TX": [
+   0.06,
+   5.09,
+   -0.04,
+   0.75,
+   -0.06,
+   -0.56,
+   1.18,
+   1.8,
+   3.5,
+   -5.73,
+   0.0,
+   7.92,
+   -2.38,
+   3.44,
+   3.15,
+   -0.74,
+   5.88,
+   1.06,
+   8.65,
+   0.52,
+   -4.5,
+   -14.33,
+   10.04,
+   -5.56,
+   6.86,
+   3.95,
+   -9.94,
+   -0.82,
+   -1.51,
+   1.79,
+   1.72,
+   2.53,
+   1.9,
+   6.63,
+   4.7,
+   -11.43
+  ],
+  "UT": [
+   0.55,
+   -1.96,
+   3.88,
+   -3.54
+  ],
+  "VA": [
+   1.7,
+   2.86,
+   -3.97,
+   0.77,
+   -0.72,
+   -0.66,
+   -0.13,
+   0.21,
+   0.83,
+   -1.13,
+   -0.05
+  ],
+  "WA": [
+   2.32,
+   1.26,
+   0.39,
+   1.74,
+   2.05,
+   2.03,
+   1.81,
+   0.19,
+   2.68,
+   -1.0
+  ],
+  "WI": [
+   0.61,
+   -0.15,
+   0.01,
+   -1.47,
+   2.0,
+   0.06,
+   0.01,
+   -0.06
+  ],
+  "WV": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "countyswing_check_rms": {
+  "n": 428,
+  "rms": 2.706
+ },
+ "missing_2018": [],
+ "missing_2022": [],
+ "n_seats_2018": 435,
+ "n_seats_2022": 435,
+ "national_two_party_margin": {
+  "2018": {
+   "2012": 3.736,
+   "2016": 2.02
+  },
+  "2022": {
+   "2016": 2.02,
+   "2020": 4.358
+  }
+ },
+ "state_calibration_shift": {
+  "2018_ID_2012": -0.582,
+  "2018_IN_2012": 0.077,
+  "2018_KS_2012": -0.106,
+  "2018_LA_2012": 0.065,
+  "2018_ME_2012": 0.109,
+  "2018_MI_2012": 0.285,
+  "2018_NJ_2012": -0.055,
+  "2018_OH_2012": 0.053,
+  "2018_RI_2012": 0.066,
+  "2018_UT_2012": -0.292,
+  "2018_WI_2012": -0.106,
+  "2022_VA_2020": -0.092
+ },
+ "unassigned_votes_2018_AL_12": 0.0,
+ "unassigned_votes_2018_AL_16": 0.0,
+ "unassigned_votes_2018_AR_12": 0.0,
+ "unassigned_votes_2018_AR_16": 0.0,
+ "unassigned_votes_2018_AZ_12": 0.0,
+ "unassigned_votes_2018_AZ_16": 0.0,
+ "unassigned_votes_2018_CA_12": 0.0,
+ "unassigned_votes_2018_CA_16": 0.0,
+ "unassigned_votes_2018_CO_12": 0.0,
+ "unassigned_votes_2018_CO_16": 0.0,
+ "unassigned_votes_2018_CT_12": 0.0,
+ "unassigned_votes_2018_CT_16": 0.0,
+ "unassigned_votes_2018_FL_12": 0.0,
+ "unassigned_votes_2018_FL_16": 0.0,
+ "unassigned_votes_2018_GA_12": 0.0,
+ "unassigned_votes_2018_GA_16": 0.0,
+ "unassigned_votes_2018_HI_12": 0.0,
+ "unassigned_votes_2018_HI_16": 0.0,
+ "unassigned_votes_2018_IA_12": 0.0,
+ "unassigned_votes_2018_IA_16": 0.0,
+ "unassigned_votes_2018_ID_12": 0.0,
+ "unassigned_votes_2018_ID_16": 0.0,
+ "unassigned_votes_2018_IL_12": 0.0,
+ "unassigned_votes_2018_IL_16": 0.0,
+ "unassigned_votes_2018_IN_12": 0.0,
+ "unassigned_votes_2018_IN_16": 0.0,
+ "unassigned_votes_2018_KS_12": 0.0,
+ "unassigned_votes_2018_KS_16": 0.0,
+ "unassigned_votes_2018_KY_12": 0.0,
+ "unassigned_votes_2018_KY_16": 0.0,
+ "unassigned_votes_2018_LA_12": 0.0,
+ "unassigned_votes_2018_LA_16": 0.0,
+ "unassigned_votes_2018_MA_12": 0.0,
+ "unassigned_votes_2018_MA_16": 0.0,
+ "unassigned_votes_2018_MD_12": 0.0,
+ "unassigned_votes_2018_MD_16": 0.0,
+ "unassigned_votes_2018_ME_12": 0.0,
+ "unassigned_votes_2018_ME_16": 0.0,
+ "unassigned_votes_2018_MI_12": 0.0,
+ "unassigned_votes_2018_MI_16": 0.0,
+ "unassigned_votes_2018_MN_12": 0.0,
+ "unassigned_votes_2018_MN_16": 0.0,
+ "unassigned_votes_2018_MO_12": 0.0,
+ "unassigned_votes_2018_MO_16": 0.0,
+ "unassigned_votes_2018_MS_12": 0.0,
+ "unassigned_votes_2018_MS_16": 0.0,
+ "unassigned_votes_2018_NC_12": 0.0,
+ "unassigned_votes_2018_NC_16": 0.0,
+ "unassigned_votes_2018_NE_12": 0.0,
+ "unassigned_votes_2018_NE_16": 0.0,
+ "unassigned_votes_2018_NH_12": 0.0,
+ "unassigned_votes_2018_NH_16": 0.0,
+ "unassigned_votes_2018_NJ_12": 0.0,
+ "unassigned_votes_2018_NJ_16": 0.0,
+ "unassigned_votes_2018_NM_12": 0.0,
+ "unassigned_votes_2018_NM_16": 0.0,
+ "unassigned_votes_2018_NV_12": 0.0,
+ "unassigned_votes_2018_NV_16": 0.0,
+ "unassigned_votes_2018_NY_12": 0.0,
+ "unassigned_votes_2018_NY_16": 0.0,
+ "unassigned_votes_2018_OH_12": 0.0,
+ "unassigned_votes_2018_OH_16": 0.0,
+ "unassigned_votes_2018_OK_12": 0.0,
+ "unassigned_votes_2018_OK_16": 0.0,
+ "unassigned_votes_2018_OR_12": 0.0,
+ "unassigned_votes_2018_OR_16": 0.0,
+ "unassigned_votes_2018_PA_12": 0.0,
+ "unassigned_votes_2018_PA_16": 0.0,
+ "unassigned_votes_2018_RI_12": 0.0,
+ "unassigned_votes_2018_RI_16": 0.0,
+ "unassigned_votes_2018_SC_12": 0.0,
+ "unassigned_votes_2018_SC_16": 0.0,
+ "unassigned_votes_2018_TN_12": 0.0,
+ "unassigned_votes_2018_TN_16": 0.0,
+ "unassigned_votes_2018_TX_12": 0.0,
+ "unassigned_votes_2018_TX_16": 0.0,
+ "unassigned_votes_2018_UT_12": 0.0,
+ "unassigned_votes_2018_UT_16": 0.0,
+ "unassigned_votes_2018_VA_12": 0.0,
+ "unassigned_votes_2018_VA_16": 0.0,
+ "unassigned_votes_2018_WA_12": 0.0,
+ "unassigned_votes_2018_WA_16": 0.0,
+ "unassigned_votes_2018_WI_12": 0.0,
+ "unassigned_votes_2018_WI_16": 0.0,
+ "unassigned_votes_2018_WV_12": 0.0,
+ "unassigned_votes_2018_WV_16": 0.0,
+ "unassigned_votes_2022_AL_16": 0.0,
+ "unassigned_votes_2022_AL_20": 0.0,
+ "unassigned_votes_2022_AR_16": 0.0,
+ "unassigned_votes_2022_AR_20": 0.0,
+ "unassigned_votes_2022_AZ_16": 0.0,
+ "unassigned_votes_2022_AZ_20": 0.0,
+ "unassigned_votes_2022_CA_16": 0.0,
+ "unassigned_votes_2022_CA_20": 0.0,
+ "unassigned_votes_2022_CO_16": 0.0,
+ "unassigned_votes_2022_CO_20": 0.0,
+ "unassigned_votes_2022_CT_16": 0.0,
+ "unassigned_votes_2022_CT_20": 0.0,
+ "unassigned_votes_2022_FL_16": 0.0,
+ "unassigned_votes_2022_FL_20": 0.0,
+ "unassigned_votes_2022_GA_16": 0.0,
+ "unassigned_votes_2022_GA_20": 0.0,
+ "unassigned_votes_2022_HI_16": 0.0,
+ "unassigned_votes_2022_HI_20": 0.0,
+ "unassigned_votes_2022_IA_16": 0.0,
+ "unassigned_votes_2022_IA_20": 0.0,
+ "unassigned_votes_2022_ID_16": 0.0,
+ "unassigned_votes_2022_ID_20": 0.0,
+ "unassigned_votes_2022_IL_16": 0.0,
+ "unassigned_votes_2022_IL_20": 0.0,
+ "unassigned_votes_2022_IN_16": 0.0,
+ "unassigned_votes_2022_IN_20": 0.0,
+ "unassigned_votes_2022_KS_16": 0.0,
+ "unassigned_votes_2022_KS_20": 0.0,
+ "unassigned_votes_2022_KY_16": 0.0,
+ "unassigned_votes_2022_KY_20": 0.0,
+ "unassigned_votes_2022_LA_16": 0.0,
+ "unassigned_votes_2022_LA_20": 0.0,
+ "unassigned_votes_2022_MA_16": 0.0,
+ "unassigned_votes_2022_MA_20": 0.0,
+ "unassigned_votes_2022_MD_16": 0.0,
+ "unassigned_votes_2022_MD_20": 0.0,
+ "unassigned_votes_2022_ME_16": 0.0,
+ "unassigned_votes_2022_ME_20": 0.0,
+ "unassigned_votes_2022_MI_16": 0.0,
+ "unassigned_votes_2022_MI_20": 0.0,
+ "unassigned_votes_2022_MN_16": 0.0,
+ "unassigned_votes_2022_MN_20": 0.0,
+ "unassigned_votes_2022_MO_16": 0.0,
+ "unassigned_votes_2022_MO_20": 0.0,
+ "unassigned_votes_2022_MS_16": 0.0,
+ "unassigned_votes_2022_MS_20": 0.0,
+ "unassigned_votes_2022_MT_16": 0.0,
+ "unassigned_votes_2022_MT_20": 0.0,
+ "unassigned_votes_2022_NC_16": 0.0,
+ "unassigned_votes_2022_NC_20": 0.0,
+ "unassigned_votes_2022_NE_16": 0.0,
+ "unassigned_votes_2022_NE_20": 0.0,
+ "unassigned_votes_2022_NH_16": 0.0,
+ "unassigned_votes_2022_NH_20": 0.0,
+ "unassigned_votes_2022_NJ_16": 0.0,
+ "unassigned_votes_2022_NJ_20": 0.0,
+ "unassigned_votes_2022_NM_16": 0.0,
+ "unassigned_votes_2022_NM_20": 0.0,
+ "unassigned_votes_2022_NV_16": 0.0,
+ "unassigned_votes_2022_NV_20": 0.0,
+ "unassigned_votes_2022_NY_16": 0.0,
+ "unassigned_votes_2022_NY_20": 0.0,
+ "unassigned_votes_2022_OH_16": 0.0,
+ "unassigned_votes_2022_OH_20": 0.0,
+ "unassigned_votes_2022_OK_16": 0.0,
+ "unassigned_votes_2022_OK_20": 0.0,
+ "unassigned_votes_2022_OR_16": 0.0,
+ "unassigned_votes_2022_OR_20": 0.0,
+ "unassigned_votes_2022_PA_16": 0.0,
+ "unassigned_votes_2022_PA_20": 0.0,
+ "unassigned_votes_2022_RI_16": 0.0,
+ "unassigned_votes_2022_RI_20": 0.0,
+ "unassigned_votes_2022_SC_16": 0.0,
+ "unassigned_votes_2022_SC_20": 0.0,
+ "unassigned_votes_2022_TN_16": 0.0,
+ "unassigned_votes_2022_TN_20": 0.0,
+ "unassigned_votes_2022_TX_16": 0.0,
+ "unassigned_votes_2022_TX_20": 0.0,
+ "unassigned_votes_2022_UT_16": 0.0,
+ "unassigned_votes_2022_UT_20": 0.0,
+ "unassigned_votes_2022_VA_16": 0.0,
+ "unassigned_votes_2022_VA_20": 0.0,
+ "unassigned_votes_2022_WA_16": 0.0,
+ "unassigned_votes_2022_WA_20": 0.0,
+ "unassigned_votes_2022_WI_16": 0.0,
+ "unassigned_votes_2022_WI_20": 0.0,
+ "unassigned_votes_2022_WV_16": 0.0,
+ "unassigned_votes_2022_WV_20": 0.0,
+ "vs_538_partisan_lean_2018": {
+  "largest": {
+   "KY-1": 9.4,
+   "KY-2": 9.3,
+   "KY-4": 8.9,
+   "KY-5": 9.2,
+   "RI-2": 9.8,
+   "WV-1": 11.9,
+   "WV-2": 11.4,
+   "WV-3": 11.9
+  },
+  "mean": 0.428,
+  "n": 435,
+  "r": 0.99613,
+  "rms": 3.331
+ },
+ "vs_538_pvi_22": {
+  "largest": {
+   "LA-6": 16.0,
+   "MD-8": 6.4,
+   "RI-1": 7.0,
+   "RI-2": 7.5,
+   "TX-25": 6.6,
+   "TX-8": 6.6,
+   "WV-1": 11.5,
+   "WV-2": 8.7
+  },
+  "mean": 0.305,
+  "n": 435,
+  "r": 0.99768,
+  "rms": 2.354
+ },
+ "wiki_county_AL_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 67,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_AR_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 75,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_AZ_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 15,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_CA_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 58,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_CO_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 64,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_CT_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 8,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_FL_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 67,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_GA_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 159,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_HI_2012": {
+  "d_vs_official": 0.9988,
+  "duplicate_fips": [],
+  "r_vs_official": 0.9994,
+  "rows": 5,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_IA_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 99,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_ID_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 44,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_IL_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 102,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_IN_2012": {
+  "d_vs_official": 1.0012,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0016,
+  "rows": 92,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_KS_2012": {
+  "d_vs_official": 0.9981,
+  "duplicate_fips": [],
+  "r_vs_official": 0.9959,
+  "rows": 105,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_KY_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 120,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_LA_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 64,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_MA_2012": {
+  "d_vs_official": 1.0002,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0001,
+  "rows": 14,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_MD_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 24,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_ME_2012": {
+  "d_vs_official": 0.9948,
+  "duplicate_fips": [],
+  "r_vs_official": 0.9971,
+  "rows": 16,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_MI_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 83,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_MN_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 87,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_MO_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 115,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_MS_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 82,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_NC_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 100,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_NE_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 93,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_NH_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 10,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_NJ_2012": {
+  "d_vs_official": 1.0018,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0004,
+  "rows": 21,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_NM_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 33,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_NV_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 17,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_NY_2012": {
+  "d_vs_official": 1.0031,
+  "duplicate_fips": [],
+  "r_vs_official": 1.002,
+  "rows": 62,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_OH_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 88,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_OK_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 77,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_OR_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 36,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_PA_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 67,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_RI_2012": {
+  "d_vs_official": 0.999,
+  "duplicate_fips": [],
+  "r_vs_official": 0.9997,
+  "rows": 5,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_SC_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 46,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_TN_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 95,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_TX_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 254,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_UT_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 29,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_VA_2012": {
+  "d_vs_official": 0.9994,
+  "duplicate_fips": [],
+  "r_vs_official": 0.9992,
+  "rows": 133,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_WA_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 39,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_WI_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 0.9979,
+  "rows": 72,
+  "unknown_names": [],
+  "used": true
+ },
+ "wiki_county_WV_2012": {
+  "d_vs_official": 1.0,
+  "duplicate_fips": [],
+  "r_vs_official": 1.0,
+  "rows": 55,
+  "unknown_names": [],
+  "used": true
+ }
+}

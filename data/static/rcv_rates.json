@@ -1,0 +1,33 @@
+{
+ "lambda": 0.38128333333333336,
+ "lambda_sd": 0.18307330292105467,
+ "n_partisan": 12,
+ "n_partisan_r": 10,
+ "n_partisan_d": 2,
+ "other": 0.062725,
+ "other_sd": 0.26316644131297084,
+ "n_other": 4,
+ "races": 13,
+ "by_type_D": {
+  "n": 2,
+  "to_nonrep": 0.539,
+  "to_rep": 0.116,
+  "exhausted": 0.345,
+  "net_sd": 0.223
+ },
+ "by_type_O": {
+  "n": 4,
+  "to_nonrep": 0.348,
+  "to_rep": 0.285,
+  "exhausted": 0.367,
+  "net_sd": 0.263
+ },
+ "by_type_R": {
+  "n": 10,
+  "to_nonrep": 0.12,
+  "to_rep": 0.493,
+  "exhausted": 0.387,
+  "net_sd": 0.187
+ },
+ "source": "Maine Secretary of State and Alaska Division of Elections ranked-choice tabulations 2018-2024 (midterms/rcv.py; data/static/rcv_transfers.csv)"
+}

@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: weekly, day: monday }
+    groups:
+      actions: { patterns: ["*"] }
+  - package-ecosystem: pip
+    directory: /
+    schedule: { interval: weekly, day: monday }
+    groups:
+      python: { patterns: ["*"] }
+    # pandas 3 (copy-on-write, string dtype) is a deliberate upgrade, verified with the offline build and the history check,
+    # not a weekly bump; the group stays on the 2.x line so its PRs keep passing CI
+    ignore:
+      - dependency-name: pandas
+        update-types: ["version-update:semver-major"]
+      # numpy 2.5 requires Python 3.12; the workflows run 3.11 (requirements.txt), so numpy stays on 2.4 until that moves
+      - dependency-name: numpy
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
