@@ -1111,3 +1111,7 @@ senate,MN,Trafalgar Group (R),2026-10-15,2026-10-17,polls.json
 senate,NH,National Public Affairs (R),2026-10-12,2026-10-17,polls.json
 governor,CT,Wesleyan University/YouGov,2026-10-12,2026-10-17,polls.json
 governor,NE,Public Policy Polling (D),2026-10-14,2026-10-17,polls.json
+senate,TX,CBS News/YouGov,2026-10-16,2026-10-18,polls.json
+governor,TX,CBS News/YouGov,2026-10-16,2026-10-18,polls.json
+senate,TX,CBS News/YouGov,2026-10-16,2026-10-18,manual
+governor,TX,CBS News/YouGov,2026-10-16,2026-10-18,manual
