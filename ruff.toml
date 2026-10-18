@@ -1,0 +1,17 @@
+line-length = 120
+target-version = "py311"
+
+[lint]
+select = ["E", "W", "F", "B", "UP", "C4", "SIM", "PIE", "RUF", "PLE", "PLW", "PERF"]
+ignore = [
+    "E501",     # the formatter wraps code at 120; long comments, docstrings, URLs and literal strings are left intact
+    "E741",     # short names in the dense parsers: l = a line or table-line number, O = the Open States table, I = the index file
+    "B905",     # zip() over sequences that have equal lengths by construction
+    "C408",     # dict(key=value) is used deliberately for keyword-style tables
+    "RUF001", "RUF002", "RUF003",  # degree signs, minus signs and Greek letters are intended
+    "RUF022",   # __all__ grouped by topic
+    "PLW0603",  # module-level caches and run switches are part of the cross-module interface (backfill sets model._EXP,
+                # refresh resets pollster_quality._LIVE, build_web sets senate2026.JOINT); functools.cache cannot be reset that way
+    "RUF015",   # [x for x in cols if ...][0] on scraped tables: a missing column raises IndexError ("list index out of range"),
+                # which the callers' `except Exception` logs print; next() would raise a StopIteration with an empty message
+]

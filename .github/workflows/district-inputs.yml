@@ -1,0 +1,108 @@
+name: district inputs (2026 maps)
+
+# Rebuilds the per-district inputs that come from the Census block equivalency files on the maps in force for 2026
+# (midterms/demog.py cd_blocks: the 120th-Congress file, with the states whose adopted map a court blocked - Missouri - on their
+# 119th-Congress lines): the urbanization index (urban.py), the House map shapes (district_shapes.py) and, for those states,
+# the demographic tables from the Census API's district rows (demog.patch_cd119). The full demographic build from ACS tract
+# files and PUMS is not run here (several GB; `python -m midterms.demog`). Dispatch after a court ruling changes a state's map.
+# Downloads are cached in data/raw (never committed); only the derived tables and the map file are committed.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: district-inputs
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: pip install -r requirements.txt geopandas==1.1.1 pyogrio==0.11.1 shapely==2.1.1 pyarrow
+      - name: Restore raw cache
+        uses: actions/cache/restore@v6
+        with:
+          path: |
+            data/raw/geo
+            data/raw/stateleg/bef
+            data/raw/538repo
+          key: district-inputs-raw-${{ github.run_id }}
+          restore-keys: district-inputs-raw-
+      - name: Fetch the geography inputs
+        run: python -m midterms.demog --fetch-geo
+      - name: Urbanization index
+        run: python -m midterms.urban
+      - name: District shapes
+        run: python -m midterms.district_shapes
+      # needs the CENSUS_API_KEY secret (a free api.census.gov key); without it this step fails and the job is marked failed
+      # at the end, but the urbanization index and the shapes built above are still committed
+      - name: Demographic tables of the states on their 119th-Congress lines
+        id: patch
+        continue-on-error: true
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+        run: python -m midterms.demog --patch-cd119
+      - name: Save raw cache
+        if: always()
+        uses: actions/cache/save@v6
+        with:
+          path: |
+            data/raw/geo
+            data/raw/stateleg/bef
+            data/raw/538repo
+          key: district-inputs-raw-${{ github.run_id }}
+      - name: Upload outputs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: district-inputs-${{ github.run_id }}
+          path: |
+            data/static/urbanization_2026.csv
+            data/static/district_groups_2026.csv
+            data/static/district_wnc_2026.csv
+            data/static/district_heat_oil_2026.csv
+            web/data/districts_2026.topo.json
+          if-no-files-found: ignore
+      # snapshot + resync + push (merge-free, never rebase), like the daily run
+      - name: Commit outputs
+        run: |
+          set -uo pipefail
+          paths="data/static/urbanization_2026.csv data/static/district_groups_2026.csv data/static/district_wnc_2026.csv data/static/district_heat_oil_2026.csv web/data/districts_2026.topo.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- $paths
+          if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+          SNAP=$(mktemp -d)
+          git diff --staged --name-only -z | tar cf "$SNAP/outs.tar" --null -T -
+          git reset -q
+          for i in 1 2 3 4 5; do
+            if ! timeout 120 git fetch -q origin "$GITHUB_REF_NAME"; then echo "fetch $i failed"; sleep 5; continue; fi
+            git reset -q --hard "origin/$GITHUB_REF_NAME"
+            tar xf "$SNAP/outs.tar"
+            git add -A -- $paths
+            if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "District inputs on the maps in force for 2026"
+            if timeout 180 git push -q origin "HEAD:$GITHUB_REF_NAME"; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push $i rejected; resyncing"; sleep $((i * 5))
+          done
+          exit 1
+      - name: Fail when the demographic tables were not rebuilt
+        if: ${{ steps.patch.outcome == 'failure' }}
+        run: |
+          echo "::error::the Census API step failed (is the CENSUS_API_KEY secret set?); the urbanization index and shapes were committed"; exit 1

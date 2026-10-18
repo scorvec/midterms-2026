@@ -1,0 +1,851 @@
+seat,party,name,cand_id,fec_name,how
+AL-1,R,Jerry Carl,H0AL01055,"CARL, JERRY LEE, JR",file: state+party+surname
+AL-1,D,Clyde Jones Jr.,H6AL01094,"JONES, CLYDE W MR. JR",file: state+party+surname
+AL-2,D,Shomari Figures,H4AL02170,"FIGURES, SHOMARI C.",file: state+party+surname
+AL-2,R,Rhett Marques,H6AL01086,"MARQUES, RHETT",file: state+party+surname
+AL-3,D,Lee McInnis,H6AL03199,"MCINNIS, VICTOR LEE",file: state+party+surname
+AL-3,R,Mike Rogers,H2AL03032,"ROGERS, MICHAEL",file: state+party+surname
+AL-4,R,Robert Aderholt,H6AL04098,"ADERHOLT, ROBERT B. REP.",file: state+party+surname
+AL-4,D,Amanda Pusczek,H6AL05228,"PUSCZEK, AMANDA NOELLE",file: state+party+surname
+AL-5,D,Andrew Sneed,H6AL05244,"SNEED, ANDREW RANKIN GUYTON",file: state+party+surname
+AL-5,R,Dale Strong,H2AL05102,"STRONG, DALE WHITNEY",file: state+party+surname
+AL-6,D,Maurice Mercer,H6AL06184,"MERCER, MAURICE",file: state+party+surname
+AL-6,R,Gary Palmer,H4AL06098,"PALMER, GARY",file: state+party+surname
+AL-7,R,Ammie Akin,H6AL07208,"AKIN, AMMIE",file: state+party+surname
+AL-7,D,Terri Sewell,H0AL07086,"SEWELL, TERRI A.",file: state+party+surname
+AK-1,R,Nick Begich III,H2AK01083,"BEGICH, NICHOLAS III",file: state+party+surname
+AK-1,D,Eric Hafner,H4AK00164,"ERIC, HAFNER",api search
+AZ-1,R,Jay Feely,H6AZ05190,"FEELY, THOMAS JAMES",file: state+party+surname
+AZ-1,D,Amish Shah,H4AZ01194,"SHAH, AMISH DR.",file: state+party+surname
+AZ-2,R,Eli Crane,H2AZ01354,"CRANE, ELI",file: state+party+surname
+AZ-2,D,Jonathan Nez,H4AZ02184,"NEZ, JONATHAN MICHAEL",file: state+party+surname
+AZ-3,D,Yassamin Ansari,H4AZ03109,"ANSARI, YASSAMIN",file: state+party+surname
+AZ-4,R,Zuhdi Jasser,H4AZ04115,"JASSER, M. ZUHDI",file: state+party+surname
+AZ-4,D,Greg Stanton,H8AZ09040,"STANTON, GREG",file: state+party+surname
+AZ-5,R,Mark Lamb,H6AZ05265,"LAMB, MARK",file: state+party+surname
+AZ-5,D,Elizabeth Lee,H6AZ05216,"JAMES, CHRISTOPHER LEE",file: +district
+AZ-6,R,Juan Ciscomani,H2AZ02360,"CISCOMANI, JUAN",file: state+party+surname
+AZ-6,D,JoAnna Mendoza,H6AZ06099,"MENDOZA, JOANNA",file: state+party+surname
+AZ-7,R,Daniel Butierez,H4AZ07134,"BUTIEREZ, DANIEL",file: state+party+surname
+AZ-7,D,Adelita Grijalva,H6AZ07121,"GRIJALVA, ADELITA",file: state+party+surname
+AZ-8,R,Abraham Hamadeh,H4AZ08108,"HAMADEH, ABRAHAM",file: state+party+surname
+AZ-8,D,Bernadette Greene-Placentia,,,unmatched
+AZ-9,R,Paul Gosar,H0AZ01259,"GOSAR, PAUL DR.",file: state+party+surname
+AZ-9,D,Dani Sterbinsky,H6AZ09085,"STERBINSKY, DANIELLE",file: state+party+surname
+AR-1,R,Rick Crawford,H0AR01083,"CRAWFORD, ERIC ALAN RICK",file: state+party+surname
+AR-1,D,Terri Green,H6AR01155,"GREEN, TERRI YARBROUGH DR.",file: state+party+surname
+AR-2,R,French Hill,H4AR02141,"HILL, JAMES FRENCH",file: state+party+surname
+AR-2,D,Chris Jones,H6AR02286,"JONES, CHRIS",file: state+party+surname
+AR-3,D,Robb Ryerse,H6AR03128,"RYERSE, ROBB",file: state+party+surname
+AR-3,R,Steve Womack,H0AR03055,"WOMACK, STEPHEN A THE HON",file: state+party+surname
+AR-4,D,James Russell,H6AR04084,"RUSSELL, JAMES RICHARD MR III",file: state+party+surname
+AR-4,R,Bruce Westerman,H4AR04048,"WESTERMAN, BRUCE",file: state+party+surname
+CA-1,R,James Gallagher,H6CA01285,"GALLAGHER, JAMES",file: state+party+surname
+CA-1,D,Mike McGuire,H6CA01269,"MCGUIRE, MIKE",file: state+party+surname
+CA-2,D,Jared Huffman,H2CA06259,"HUFFMAN, JARED",file: state+party+surname
+CA-2,R,Robin Littau,H6CA02309,"LITTAU, ROBIN",api search
+CA-3,D,Ami Bera,H0CA03078,"BERA, AMERISH",file: state+party+surname
+CA-3,R,Robb Tucker,H6CA03174,"TUCKER, ROBB",file: state+party+surname
+CA-4,D,Eric Jones,H6CA04222,"JONES, ERIC",file: state+party+surname
+CA-5,D,Michael Masuda,H6CA05377,"MASUDA, MICHAEL",file: state+party+surname
+CA-5,R,Tom McClintock,H8CA04152,"MCCLINTOCK, THOMAS",file: state+party+surname
+CA-6,D,Richard Pan,H6CA03158,"PAN, RICHARD DR.",file: state+party+surname
+CA-7,D,Doris Matsui,H6CA05195,"MATSUI, DORIS",file: state+party+surname
+CA-8,D,John Garamendi,H0CA10149,"GARAMENDI, JOHN",file: state+party+surname
+CA-8,R,Rudy Recile,H2CA00153,"RECILE, RUDY",file: state+party+surname
+CA-9,D,Josh Harder,H8CA10126,"HARDER, JOSH",file: state+party+surname
+CA-9,R,John McBride,H4CA09101,"MCBRIDE, JOHN",file: state+party+surname
+CA-10,D,Mark DeSaulnier,H0CA10073,"DESAULNIER, MARK",file: state+party+surname
+CA-10,R,Jeff Frese,H6CA10187,"FRESE, JEFFREY",api search
+CA-11,D,Connie Chan,H6CA11268,"CHAN, CONNIE",file: state+party+surname
+CA-12,D,Jamie Joyce,H6CA12209,"JOYCE, JAMIE",file: state+party+surname
+CA-13,D,Adam Gray,H2CA13115,"GRAY, ADAM C.",file: state+party+surname
+CA-13,R,Kevin Lincoln,H4CA09093,"LINCOLN, KEVIN J II",file: state+party+surname
+CA-14,D,Melissa Hernandez,H6CA14163,"HERNANDEZ, MELISSA",file: state+party+surname
+CA-15,R,Charles Hoelter,H6CA15194,"HOELTER, CHARLES",api search
+CA-15,D,Kevin Mullin,H2CA14162,"MULLIN, KEVIN",file: state+party+surname
+CA-16,D,Sam Liccardo,H4CA16197,"LICCARDO, SAM T.",file: state+party+surname
+CA-16,R,Peter Soulé,H6CA16176,"SOULE, PETER SUNDIN MR.",file: state+party+surname
+CA-17,D,Ro Khanna,H4CA12055,"KHANNA, ROHIT",file: state+party+surname
+CA-17,R,Ritesh Tandon,H0CA17193,"TANDON, RITESH",file: state+party+surname
+CA-18,R,Shane Lewis,H6CA18172,"LEWIS, SHANE",file: state+party+surname
+CA-18,D,Zoe Lofgren,H4CA16049,"LOFGREN, ZOE",file: state+party+surname
+CA-19,D,Jimmy Panetta,H6CA20152,"PANETTA, JIMMY",file: state+party+surname
+CA-19,R,Peter Coe Verbica,H6CA19154,"VERBICA, PETER COE",file: state+party+surname
+CA-20,R,Vince Fong,H4CA20181,"FONG, VINCE",file: state+party+surname
+CA-20,D,Sandra Van Scotter,H6CA20228,"VAN SCOTTER, SANDRA",file: state+party+surname
+CA-21,D,Jim Costa,H4CA20082,"COSTA, JIM",file: state+party+surname
+CA-21,R,Kyle Kirkland,H6CA13199,"KIRKLAND, KYLE",file: state+party+surname
+CA-22,R,David Valadao,H2CA20094,"VALADAO, DAVID",file: state+party+surname
+CA-22,D,Randy Villegas,H6CA22190,"VILLEGAS, RANDY",file: state+party+surname
+CA-23,D,Tessa Lynn Hodge,H6CA23230,"HODGE, TESSA LYNN",file: state+party+surname
+CA-23,R,Jay Obernolte,H0CA08135,"OBERNOLTE, JAY",file: state+party+surname
+CA-24,D,Salud Carbajal,H6CA24303,"CARBAJAL, SALUD O.",file: state+party+surname
+CA-24,R,Bob Smith,H6CA24345,"SMITH, ROBERT BOB J",file: state+party+surname
+CA-25,R,Joe Males,H6CA25219,"MALES, JOE",file: state+party+surname
+CA-25,D,Raul Ruiz,H2CA36439,"RUIZ, RAUL DR.",file: state+party+surname
+CA-26,R,Sam Gallucci,H6CA26241,"GALLUCCI, SAMUEL",file: state+party+surname
+CA-26,D,Jacqui Irwin,H6CA26266,"IRWIN, JACQUI V",file: state+party+surname
+CA-27,R,Jason Gibbs,H6CA27306,"GIBBS, JASON",file: state+party+surname
+CA-27,D,George Whitesides,H4CA27111,"WHITESIDES, GEORGE",file: state+party+surname
+CA-28,D,Judy Chu,H0CA32101,"CHU, JUDY",file: state+party+surname
+CA-28,R,April Verlato,H4CA28127,"VERLATO, APRIL",file: state+party+surname
+CA-29,D,Angelica Dueñas,H8CA29100,"DUENAS, ANGELICA MARIA",file: state+party+surname
+CA-30,D,Laura Friedman,H4CA30149,"FRIEDMAN, LAURA",file: state+party+surname
+CA-30,R,Scott Meyers,H6CA30250,"MEYERS, SCOTT ALAN",file: state+party+surname
+CA-31,R,Eric Ching,H2CA39151,"CHING, ERIC J",file: state+party+surname
+CA-31,D,Gil Cisneros,H8CA39174,"CISNEROS, GILBERT",file: state+party+surname
+CA-32,D,Brad Sherman,H6CA24113,"SHERMAN, BRAD",file: state+party+surname
+CA-32,R,Larry Thompson,H4CA32137,"THOMPSON, LARRY",file: state+party+surname
+CA-33,D,Pete Aguilar,H2CA31125,"AGUILAR, PETE",file: state+party+surname
+CA-33,R,Stephanie Vargas,H6CA33114,"VARGAS, STEPHANIE M.",api search
+CA-34,D,Jimmy Gomez,H8CA34266,"GOMEZ, JIMMY",file: state+party+surname
+CA-35,R,Mike Cargile,H0CA35146,"CARGILE, MIKE",file: state+party+surname
+CA-35,D,Norma Torres,H4CA35031,"TORRES, NORMA",file: state+party+surname
+CA-36,R,Houston Brignano,H6CA36208,"BRIGNANO, HOUSTON",file: state+party+surname
+CA-36,D,Ted Lieu,H4CA33119,"LIEU, TED",file: state+party+surname
+CA-37,D,Sydney Kamlager-Dove,H2CA37304,"KAMLAGER-DOVE, SYDNEY",file: state+party+surname
+CA-38,R,Pedro Casas,H4CA31212,"CASAS, PEDRO ANTONIO",api search
+CA-38,D,Hilda Solis,H6CA38139,"SOLIS, HILDA",file: state+party+surname
+CA-39,R,Steve Manos,H6CA39145,"MANOS, STEVE",api search
+CA-39,D,Mark Takano,H2CA43245,"TAKANO, MARK",file: state+party+surname
+CA-40,R,Ken Calvert,H2CA37023,"CALVERT, KEN",file: state+party+surname
+CA-41,R,Mitch Clemmons,H2CA38260,"CLEMMONS, MITCHELL",file: +district
+CA-41,D,Linda Sánchez,H2CA39078,"SANCHEZ, LINDA",file: +district
+CA-42,R,Brian Burley,H0CA48172,"BURLEY, BRIAN J MR.",file: state+party+surname
+CA-42,D,Robert Garcia,H2CA47188,"GARCIA, ROBERT",file: +district
+CA-43,R,Cristian Morales,H6CA43188,"MORALES, CRISTIAN",api search
+CA-43,D,Maxine Waters,H4CA23011,"WATERS, MAXINE MS",file: state+party+surname
+CA-44,R,Genevieve Angel,H6CA44210,"ANGEL, GENEVIEVE",file: state+party+surname
+CA-44,D,Nanette Barragán,H6CA44103,"BARRAGAN, NANETTE",file: state+party+surname
+CA-45,D,Derek Tran,H4CA45170,"TRAN, DEREK",file: state+party+surname
+CA-45,R,Chuong Vo,H6CA45191,"VO, CHUONG",file: +district
+CA-46,D,Lou Correa,H6CA46116,"CORREA, LOU",file: state+party+surname
+CA-46,R,David Pan,H4CA46137,"PAN, DAVID",file: state+party+surname
+CA-47,R,Jenny Le Roux,H6CA47114,"LE ROUX, JENNY RAE",file: state+party+surname
+CA-47,D,Dave Min,H4CA47085,"MIN, DAVE",file: state+party+surname
+CA-48,R,Jim Desmond,H6CA49128,"DESMOND, JIM",file: state+party+surname
+CA-48,D,Marni von Wilpert,H6CA48310,"VON WILPERT, MARNI",file: state+party+surname
+CA-49,R,Armen Kurdian,H6CA49169,"KURDIAN, ARMEN",file: state+party+surname
+CA-49,D,Mike Levin,H8CA49058,"LEVIN, MIKE",file: state+party+surname
+CA-50,R,Steve Cohen,,,unmatched
+CA-50,D,Scott Peters,H2CA52089,"PETERS, SCOTT",file: state+party+surname
+CA-51,R,Ricardo Cabrera,H6CA51140,"CABRERA, RICARDO",api search
+CA-51,D,Sara Jacobs,H8CA49074,"JACOBS, SARA",file: state+party+surname
+CA-52,R,Jeff Belle,H6CA52163,"BELLE, JEFFERY MR",file: state+party+surname
+CA-52,D,Juan Vargas,H2CA50026,"VARGAS, JUAN C.",file: state+party+surname
+CO-1,D,Melat Kiros,H6CO01273,"KIROS, MELAT",file: state+party+surname
+CO-1,R,Christy Peterson,H6CO01331,"PETERSON, CHRISTY",file: state+party+surname
+CO-2,R,Kelley Dennison,H6CO02206,"DENNISON, KELLEY ANNE",api search
+CO-2,D,Joe Neguse,H8CO02160,"NEGUSE, JOSEPH",file: state+party+surname
+CO-3,R,Jeff Hurd,H4CO03357,"HURD, JEFFREY",file: state+party+surname
+CO-3,D,Dwayne Romero,H6CO03253,"ROMERO, DWAYNE",file: state+party+surname
+CO-4,R,Lauren Boebert,H0CO03165,"BOEBERT, LAUREN",file: state+party+surname
+CO-4,D,Eileen Laubacher,H6CO04202,"LAUBACHER, EILEEN",file: state+party+surname
+CO-5,R,Jeff Crank,H6CO05142,"CRANK, JEFF",file: state+party+surname
+CO-5,D,Jessica Killin,H6CO05324,"KILLIN, JESSICA WILLOW",file: state+party+surname
+CO-6,R,Jason Clark,H6CO06165,"CLARK, JASON",api search
+CO-6,D,Jason Crow,H8CO06229,"CROW, JASON",file: state+party+surname
+CO-7,R,Tim Bennett,H6CO07122,"BENNETT, TIMOTHY",file: state+party+surname
+CO-7,D,Brittany Pettersen,H8CO07045,"PETTERSEN, BRITTANY LOUISE",file: state+party+surname
+CO-8,R,Gabe Evans,H4CO08034,"EVANS, TIMOTHY GABRIEL JOSEPH",file: state+party+surname
+CO-8,D,Manny Rutinel,H6CO08013,"RUTINEL, MANNY",file: state+party+surname
+CT-1,D,Luke Bronin,H6CT01206,"BRONIN, LUKE",file: state+party+surname
+CT-1,R,Amy Chai,H2CT03102,"CHAI, AMY FOGELSTROM DR",file: state+party+surname
+CT-2,R,George Austin,H6CT02196,"AUSTIN, GEORGE PATRICK",file: state+party+surname
+CT-2,D,Joe Courtney,H2CT02112,"COURTNEY, JOSEPH",file: state+party+surname
+CT-3,D,Rosa DeLauro,H0CT03072,"DELAURO, ROSA L",file: state+party+surname
+CT-3,R,Chris Lancia,H6CT03178,"LANCIA, CHRISTOPHER JOHN MR.",file: state+party+surname
+CT-4,R,Michael Goldstein,H6CT04143,"GOLDSTEIN, MICHAEL",file: state+party+surname
+CT-4,D,Jim Himes,H8CT04172,"HIMES, JIM",file: state+party+surname
+CT-5,D,Jahana Hayes,H8CT05245,"HAYES, JAHANA",file: state+party+surname
+CT-5,R,Chris Shea,H6CT05231,"SHEA, CHRIS",file: state+party+surname
+DE-1,R,Joseph Arminio,H6DE01121,"ARMINIO, JOSEPH DR. JOE PH.D.",file: state+party+surname
+DE-1,D,Sarah McBride,H4DE00045,"MCBRIDE, SARAH ELIZABETH",file: state+party+surname
+FL-1,R,Jimmy Patronis,H6FL01390,"PATRONIS, JIMMY JR.",file: state+party+surname
+FL-1,D,Gay Valimont,H4FL01197,"VALIMONT, JENNIFER GAY",file: state+party+surname
+FL-2,D,Amanda Green,H6FL02299,"GREEN, AMANDA MARIE",file: state+party+surname
+FL-2,R,Austin Rogers,H6FL02331,"ROGERS, AUSTIN",file: state+party+surname
+FL-3,R,Kat Cammack,H0FL03175,"CAMMACK, KAT",file: state+party+surname
+FL-3,D,Seth Harp,H6FL03099,"HARP, SETH ALLAN",file: state+party+surname
+FL-4,R,Aaron Bean,H2FL04211,"BEAN, AARON P.",file: state+party+surname
+FL-4,D,LaShonda Holloway,H6FL05193,"HOLLOWAY, LASHONDA J",file: state+party+surname
+FL-5,D,Rachel Grage,H6FL05250,"GRAGE, RACHEL",file: state+party+surname
+FL-5,R,John Rutherford,H6FL04105,"RUTHERFORD, JOHN",file: state+party+surname
+FL-6,R,Randy Fine,H6FL06258,"FINE, RANDY",file: state+party+surname
+FL-6,D,Eric Yonce,H6FL06340,"YONCE, ERIC",file: state+party+surname
+FL-7,D,Bale Dalton,H6FL07215,"DALTON, BALE",file: state+party+surname
+FL-7,R,Ryan Elijah,H6FL07231,"ELIJAH, RYAN",file: state+party+surname
+FL-8,R,Mike Haridopolos,H4FL08168,"HARIDOPOLOS, MIKE",file: state+party+surname
+FL-8,D,Jennifer Jenkins,H6FL06399,"JENKINS, JENNIFER",file: state+party+surname
+FL-9,R,Dan Green,H6FL09294,"GREEN, DAN",file: state+party+surname
+FL-9,D,Darren Soto,H6FL09179,"SOTO, DARREN",file: state+party+surname
+FL-10,D,Maxwell Frost,H2FL10259,"FROST, MAXWELL ALEJANDRO",file: state+party+surname
+FL-11,D,James Pericola,H6FL11357,"PERICOLA, JAMES",file: state+party+surname
+FL-11,R,Joe Strada,H6FL11332,"STRADA, JOE",file: state+party+surname
+FL-12,R,Gus Bilirakis,H6FL09070,"BILIRAKIS, GUS M",file: state+party+surname
+FL-12,D,Kimberly Overman,H6FL15200,"OVERMAN, KIMBERLY",file: state+party+surname
+FL-13,D,Leela Gray,H6FL13312,"GRAY, LEELA J",file: state+party+surname
+FL-13,R,Anna Paulina Luna,H0FL13158,"PAULINA LUNA, ANNA",file: state+party+surname
+FL-14,R,Mike Beltran,H6FL14237,"BELTRAN, MIKE",file: state+party+surname
+FL-14,D,Kathy Castor,H6FL11126,"CASTOR, KATHY",file: state+party+surname
+FL-15,R,Laurel Lee,H2FL15241,"LEE, LAUREL",file: +district
+FL-15,D,Robert People,H6FL15168,"PEOPLE, ROBERT",file: state+party+surname
+FL-16,R,Sydney Gruters,H6FL16141,"GRUTERS, SYDNEY",file: state+party+surname
+FL-16,D,Kelly Kirschner,H6FL16158,"KIRSCHNER, KELLY",file: state+party+surname
+FL-17,D,Matthew Montavon,H4FL17060,"MONTAVON, MATTHEW",file: state+party+surname
+FL-17,R,Greg Steube,H8FL17053,"STEUBE, GREG",file: state+party+surname
+FL-18,R,Scott Franklin,H0FL15104,"FRANKLIN, SCOTT MR.",file: state+party+surname
+FL-18,D,Curtis Gibson,H6FL18212,"GIBSON, CURTIS",file: state+party+surname
+FL-19,D,Victor Arias,H6FL19277,"ARIAS, VICTOR M.",file: state+party+surname
+FL-19,R,Jim Schwartzel,H6FL19137,"SCHWARTZEL, JIM",file: state+party+surname
+FL-20,R,Brent Andersen,H6FL20143,"ANDERSEN, BRENT",file: state+party+surname
+FL-20,D,Debbie Wasserman Schultz,H4FL20023,"WASSERMAN SCHULTZ, DEBBIE",file: state+party+surname
+FL-21,D,James Martin,H6FL21075,"MARTIN, JAMES",file: state+party+surname
+FL-21,R,Brian Mast,H6FL18097,"MAST, BRIAN",file: state+party+surname
+FL-22,R,Casey Askar,H6FL22248,"ASKAR, CASEY",file: state+party+surname
+FL-22,D,Pia Dandiya,H6FL21059,"DANDIYA, PIA",file: state+party+surname
+FL-23,R,Deborah Adeimy,H2FL21132,"ADEIMY, DEBORAH",file: state+party+surname
+FL-23,D,Lois Frankel,H2FL14053,"FRANKEL, LOIS J.",file: state+party+surname
+FL-24,R,Te Mayonna Brown,H6FL14203,"BROWN, TE",file: state+party+surname
+FL-24,D,Oliver Gilbert,H6FL24095,"GILBERT, OLIVER G. III",file: state+party+surname
+FL-25,D,Jared Moskowitz,H2FL22171,"MOSKOWITZ, JARED",file: state+party+surname
+FL-25,R,Scott Singer,H6FL23188,"SINGER, SCOTT M.",file: state+party+surname
+FL-26,R,Mario Díaz-Balart,H2FL25018,"DIAZ-BALART, MARIO",file: state+party+surname
+FL-26,D,Nicole Locklin,H6FL26058,"LOCKLIN, NICOLE",file: state+party+surname
+FL-27,D,Eliott Rodriguez,H6FL27098,"RODRIGUEZ, ELIOTT",file: state+party+surname
+FL-27,R,María Elvira Salazar,H8FL27185,"SALAZAR, MARIA ELVIRA",file: state+party+surname
+FL-28,D,Phil Ehr,H4FL28042,"EHR, PHIL",file: state+party+surname
+FL-28,R,Carlos Giménez,H0FL26036,"GIMENEZ, CARLOS",file: state+party+surname
+GA-1,D,Amanda Hollowell,H6GA01158,"HOLLOWELL, AMANDA",file: state+party+surname
+GA-1,R,Jim Kingston,H6GA01109,"KINGSTON, JAMES MORRIS",file: state+party+surname
+GA-2,D,Sanford Bishop,H2GA02031,"BISHOP, SANFORD",file: state+party+surname
+GA-2,R,Matt Day,H6GA01182,"DAY, MATT",file: state+party+surname
+GA-3,R,Brian Jack,H4GA03126,"JACK, BRIAN",file: state+party+surname
+GA-3,D,Maura Keller,H4GA03100,"KELLER, MAURA",file: state+party+surname
+GA-4,R,James Duffie,,,unmatched
+GA-4,D,Hank Johnson,H6GA04129,"JOHNSON, HENRY C. 'HANK'",file: +district
+GA-5,R,John Oscar Salvesen,,,unmatched
+GA-5,D,Nikema Williams,H0GA05301,"WILLIAMS, NIKEMA N.",file: state+party+surname
+GA-6,R,Kevin Martin,H6GA06181,"MARTIN, KEVIN EUGENE",file: state+party+surname
+GA-6,D,Lucy McBath,H8GA06393,"MCBATH, LUCIA KAY MS.",file: state+party+surname
+GA-7,D,Tony Kozycki,H6GA07221,"KOZYCKI, ANTHONY LAWRENCE",file: state+party+surname
+GA-7,R,Rich McCormick,H0GA07273,"MCCORMICK, RICHARD DEAN DR.",file: state+party+surname
+GA-8,D,Kelly Esti,H6GA08138,"ESTI, KELLY DR",file: state+party+surname
+GA-8,R,Austin Scott,H0GA08099,"SCOTT, JAMES AUSTIN",file: state+party+surname
+GA-9,R,Andrew Clyde,H0GA09246,"CLYDE, ANDREW",file: state+party+surname
+GA-9,D,Caitlyn Gegen,H6GA09284,"GEGEN, CAITLYN",file: state+party+surname
+GA-10,D,Pam Delancy,H6GA10183,"DELANCY, PAMELA MRS",file: state+party+surname
+GA-10,R,Houston Gaines,H6GA10175,"GAINES, HOUSTON",file: state+party+surname
+GA-11,R,John Cowan,H0GA14048,"COWAN, JOHN",file: state+party+surname
+GA-11,D,Chris Harden,H6GA11116,"HARDEN, CHRISTOPHER MATTHEW",file: state+party+surname
+GA-12,R,Rick Allen,H2GA12121,"ALLEN, RICHARD W",file: +district
+GA-12,D,Ceretta Smith,H6GA12080,"SMITH, CERETTA",file: state+party+surname
+GA-13,R,Jonathan Chavez,H2GA04201,"CHAVEZ, JONATHAN",api search
+GA-13,D,Jasmine Clark,H6GA13070,"CLARK, JASMINE",file: state+party+surname
+GA-14,R,Clay Fuller,H0GA14030,"FULLER, CLAY",file: state+party+surname
+GA-14,D,Shawn Harris,H4GA14057,"HARRIS, SHAWN",file: state+party+surname
+HI-1,D,Ed Case,H2HI02128,"CASE, EDWARD",file: state+party+surname
+HI-1,R,Adriel Lam,H6HI01360,"LAM, ADRIEL C",api search
+HI-2,R,Brenton Awa,H6HI02426,"AWA, BRENTON",file: state+party+surname
+HI-2,D,Jill Tokuda,H2HI02581,"TOKUDA, JILL NAOMI",file: state+party+surname
+ID-1,R,Russ Fulcher,H8ID01124,"FULCHER, RUSSELL",file: state+party+surname
+ID-1,D,Kaylee Peterson,H2ID01192,"PETERSON, KAYLEE JADE",file: state+party+surname
+ID-2,D,Ellie Gilbreath,H6ID02274,"GILBREATH, ELINOR",file: state+party+surname
+ID-2,R,Mike Simpson,H8ID02064,"SIMPSON, MICHAEL",file: state+party+surname
+IL-1,D,Jonathan Jackson,H2IL01349,"JACKSON, JONATHAN",file: +district
+IL-1,R,Christian Maxwell,H6IL01191,"MAXWELL, CHRISTIAN",file: state+party+surname
+IL-2,D,Donna Miller,H6IL02355,"MILLER, DONNA",file: state+party+surname
+IL-2,R,Michael Noack,H6IL02389,"NOACK, MICHAEL SCOTT",api search
+IL-3,R,Angel Oakley,H6IL03163,"OAKLEY, ANGEL",file: state+party+surname
+IL-3,D,Delia Ramirez,H2IL03162,"RAMIREZ, DELIA",file: state+party+surname
+IL-4,R,Lupe Castillo,H4IL04117,"CASTILLO, LUPE",api search
+IL-4,D,Patty Garcia,H6IL04153,"GARCIA, PATTY",file: +district
+IL-5,R,Tommy Hanson,H2IL05241,"HANSON, TOMMY",api search
+IL-5,D,Mike Quigley,H0IL05096,"QUIGLEY, MIKE",file: state+party+surname
+IL-6,D,Sean Casten,H8IL06139,"CASTEN, SEAN",file: state+party+surname
+IL-6,R,Niki Conforti,H2IL06090,"CONFORTI, NIKI",file: state+party+surname
+IL-7,D,La Shawn Ford,H6IL07354,"FORD, LA SHAWN K",file: +district
+IL-7,R,Chad Koppie,H2IL08203,"KOPPIE, CHAD",file: state+party+surname
+IL-8,D,Melissa Bean,H6IL08329,"BEAN, MELISSA LUBURICH",file: state+party+surname
+IL-8,R,Jennifer Davis,H6IL08311,"DAVIS, JENNIFER",file: +district
+IL-9,D,Daniel Biss,H6IL09228,"BISS, DANIEL",file: state+party+surname
+IL-9,R,John Elleson,H8IL09224,"ELLESON, JOHN",api search
+IL-10,R,Carl Lambrecht,H6IL10176,"LAMBRECHT, CARL",api search
+IL-10,D,Brad Schneider,H2IL10068,"SCHNEIDER, BRADLEY S.",file: state+party+surname
+IL-11,D,Bill Foster,H8IL14067,"FOSTER, G. WILLIAM (BILL)",file: state+party+surname
+IL-11,R,Jeff Walter,H6IL11166,"WALTER, JEFFREY D",file: state+party+surname
+IL-12,R,Mike Bost,H4IL12060,"BOST, MICHAEL",file: state+party+surname
+IL-12,D,Julie Fortier,H6IL12131,"FORTIER, JULIE DR.",file: state+party+surname
+IL-13,D,Nikki Budzinski,H2IL13153,"BUDZINSKI, NIKKI",file: state+party+surname
+IL-13,R,Jeff Wilson,H6IL13154,"WILSON, JEFF",file: state+party+surname
+IL-14,R,James Marter,H8IL16153,"MARTER, JAMES THOMAS",file: state+party+surname
+IL-14,D,Lauren Underwood,H8IL14174,"UNDERWOOD, LAUREN",file: state+party+surname
+IL-15,R,Mary Miller,H0IL15129,"MILLER, MARY",file: state+party+surname
+IL-15,D,Jennifer Todd,H6IL15092,"TODD, JENNIFER ANN",file: state+party+surname
+IL-16,R,Darin LaHood,H6IL18088,"LAHOOD, DARIN MCKAY",file: state+party+surname
+IL-16,D,Paul Nolley,H6IL16108,"NOLLEY, PAUL",file: state+party+surname
+IL-17,D,Eric Sorensen,H2IL17147,"SORENSEN, ERIC",file: state+party+surname
+IL-17,R,Dillan Vancil,H6IL17247,"VANCIL, DILLAN",file: state+party+surname
+IN-1,D,Frank Mrvan,H0IN01150,"MRVAN, FRANK J.",file: state+party+surname
+IN-1,R,Barb Regnitz,H6IN01231,"REGNITZ, BARB",file: state+party+surname
+IN-2,D,Jamee Decio,H6IN02189,"DECIO, JAMEE MS.",file: state+party+surname
+IN-2,R,Rudy Yakym,H2IN02295,"YAKYM, RUDY C. III",file: state+party+surname
+IN-3,R,Marlin Stutzman,H0IN03198,"STUTZMAN, MARLIN A",file: state+party+surname
+IN-3,D,Kelly Thompson,H6IN03294,"THOMPSON, KELLY ELIZABETH",file: state+party+surname
+IN-4,R,Jim Baird,H8IN04199,"BAIRD, JAMES R DR.",file: state+party+surname
+IN-4,D,Drew Cox,H6IN04193,"COX, DREW",file: state+party+surname
+IN-5,D,J. D. Ford,H6IN05307,"FORD, JAMES (J.D.) DAVID",file: state+party+surname
+IN-5,R,Victoria Spartz,H0IN05326,"SPARTZ, VICTORIA",file: state+party+surname
+IN-6,R,Jefferson Shreve,H4IN06185,"SHREVE, JEFFERSON",file: state+party+surname
+IN-6,D,Cinde Wirth,H6IN06230,"WIRTH, CYNTHIA (CINDE)",file: state+party+surname
+IN-7,D,André Carson,H8IN07184,"CARSON, ANDRE",file: state+party+surname
+IN-7,R,Patrick McAuley,H6IN07444,"MCAULEY, PATRICK",api search
+IN-8,D,Mary Allen,H6IN08293,"ALLEN, MARY THERESA",file: +district
+IN-8,R,Mark Messmer,H4IN08249,"MESSMER, MARK MR.",file: state+party+surname
+IN-9,R,Erin Houchin,H6IN09143,"HOUCHIN, ERIN",file: state+party+surname
+IN-9,D,Brad Meyer,H6IN09242,"MEYER, BRADLEY ALLEN MR.",file: state+party+surname
+IA-1,D,Christina Bohannan,H2IA02111,"BOHANNAN, CHRISTINA",file: state+party+surname
+IA-1,R,Mariannette Miller-Meeks,H8IA02043,"MILLER-MEEKS, MARIANNETTE JANE",file: state+party+surname
+IA-2,D,Lindsay James,H6IA02211,"JAMES, LINDSAY",file: state+party+surname
+IA-2,R,Joe Mitchell,H6IA02237,"MITCHELL, JOE",file: state+party+surname
+IA-3,R,Zach Nunn,H2IA03119,"NUNN, ZACH",file: state+party+surname
+IA-3,D,Sarah Trone Garriott,H6IA03268,"TRONE GARRIOTT, SARAH",file: state+party+surname
+IA-4,D,David Dawson,H6IA04217,"DAWSON, DAVE",file: state+party+surname
+IA-4,R,Chris McGowan,H6IA04167,"MCGOWAN, CHRIS",file: state+party+surname
+KS-1,R,Tracey Mann,H0KS01123,"MANN, TRACEY ROBERT",file: state+party+surname
+KS-1,D,Lauren Reinhold,H6KS01203,"REINHOLD, LAUREN",file: state+party+surname
+KS-2,D,Don Coover,H6KS02276,"COOVER, DON",file: state+party+surname
+KS-2,R,Derek Schmidt,H4KS02164,"SCHMIDT, DEREK",file: state+party+surname
+KS-3,D,Sharice Davids,H8KS03155,"DAVIDS, SHARICE",file: state+party+surname
+KS-3,R,Eric Jenkins,H6KS03308,"JENKINS, ERIC",file: state+party+surname
+KS-4,R,Ron Estes,H8KS04112,"ESTES, RON",file: state+party+surname
+KS-4,D,Katy Tyndell,H6KS04272,"TYNDELL, KATY",file: state+party+surname
+KY-1,R,James Comer,H6KY01110,"COMER, JAMES",file: state+party+surname
+KY-1,D,Drew Williams,H6KY01169,"WILLIAMS, JOHN ANDREW",file: state+party+surname
+KY-2,R,Brett Guthrie,H8KY02031,"GUTHRIE, S. BRETT BRETT HON.",file: state+party+surname
+KY-2,D,Megan Wingfield,H6KY02068,"WINGFIELD, MEGAN",file: state+party+surname
+KY-3,D,Morgan McGarvey,H2KY03206,"MCGARVEY, MORGAN",file: state+party+surname
+KY-3,R,Maria Rodriquez,,,unmatched
+KY-4,R,Ed Gallrein,H6KY04171,"GALLREIN, ED",file: state+party+surname
+KY-4,D,Melissa Strange,H6KY04189,"STRANGE, MELISSA CLAIRE",file: state+party+surname
+KY-5,D,Ned Pillersdorf,H6KY05152,"PILLERSDORF, NED",file: state+party+surname
+KY-5,R,Hal Rogers,H0KY05015,"ROGERS, HAROLD DALLAS",file: state+party+surname
+KY-6,R,Ralph Alvarado,H6KY06192,"ALVARADO, RALPH A",file: state+party+surname
+KY-6,D,Zach Dembo,H6KY06184,"DEMBO, ZACH",file: state+party+surname
+LA-1,R,Randall Arrington,H4LA01162,"ARRINGTON, RANDALL",api search
+LA-1,D,Lauren Jewett,H6LA01258,"JEWETT, LAUREN",file: state+party+surname
+LA-2,D,Troy Carter,H2LA02149,"CARTER, TROY A. SR.",file: state+party+surname
+LA-2,R,Peter Williams,H4LA05171,"WILLIAMS, PETER",api search
+LA-3,R,Kate Cotten,,,unmatched
+LA-3,D,John Day,H6LA03205,"DAY, JOHN DAVID",file: state+party+surname
+LA-4,D,Conrad Cable,H6LA04187,"CABLE, CONRAD ROBERTS",file: state+party+surname
+LA-4,R,Gordon Heslop,,,unmatched
+LA-5,R,Stewart Cathey Jr.,H6LA05184,"CATHEY, STEWART JR.",file: state+party+surname
+LA-5,D,Dan McKay,H6LA05291,"MCKAY, DAN",file: state+party+surname
+LA-6,R,Monique Appeaning,H6LA06158,"APPEANING, ANJANITA MONIQUE",file: state+party+surname
+LA-6,D,Pat Forbes,,,unmatched
+ME-1,D,Chellie Pingree,H8ME01120,"PINGREE, CHELLIE M",file: state+party+surname
+ME-1,R,Ronald Russell,H4ME01160,"RUSSELL, RONALD CHARLES MR.",file: state+party+surname
+ME-2,D,Matthew Dunlap,H6ME02171,"DUNLAP, MATT",file: state+party+surname
+ME-2,R,Paul LePage,H6ME02148,"LEPAGE, PAUL",file: state+party+surname
+MD-1,R,Andy Harris,H8MD01094,"HARRIS, ANDREW P",file: state+party+surname
+MD-1,D,Dan Schwartz,H6MD01320,"SCHWARTZ, DANIEL",file: state+party+surname
+MD-2,D,Johnny Olszewski,H4MD02232,"OLSZEWSKI, JOHN ANTHONY JR.",file: state+party+surname
+MD-2,R,Dave Wallace,H2MD06138,"WALLACE, DAVID DRAIN II",file: state+party+surname
+MD-3,D,Sarah Elfreth,H4MD03156,"ELFRETH, SARAH KELLY",file: state+party+surname
+MD-3,R,Berney Flowers,H4MD03149,"FLOWERS, BERNARD",file: state+party+surname
+MD-4,D,Glenn Ivey,H2MD04232,"IVEY, GLENN FREDERICK",file: state+party+surname
+MD-4,R,George McDermott,,,unmatched
+MD-5,D,Adrian Boafo,H6MD05321,"BOAFO, ADRIAN",file: state+party+surname
+MD-5,R,Chris Chaffee,H4MD05169,"CHAFFEE, CHRISTOPHER PARRY",api search
+MD-6,R,Robin Ficker,H6MD06287,"FICKER, ROBIN",file: state+party+surname
+MD-6,D,April McClain Delaney,H4MD06340,"DELANEY, APRIL MCCLAIN",file: state+party+surname
+MD-7,R,Scott Collier,H0MD02255,"COLLIER, SCOTT M",api search
+MD-7,D,Kweisi Mfume,H6MD07020,"MFUME, KWEISI",file: state+party+surname
+MD-8,D,Jamie Raskin,H6MD08457,"RASKIN, JAMIE",file: state+party+surname
+MD-8,R,Cheryl Riley,H4MD08213,"RILEY, CHERYL",file: state+party+surname
+MA-1,D,Richard Neal,H8MA02041,"NEAL, RICHARD E",file: state+party+surname
+MA-2,D,Jim McGovern,H4MA03022,"MCGOVERN, JAMES P",file: state+party+surname
+MA-3,R,Gary Grossi,H6MA03100,"GROSSI, GARY J.",file: state+party+surname
+MA-3,D,Lori Trahan,H8MA03106,"TRAHAN, LORI",file: state+party+surname
+MA-4,D,Jake Auchincloss,H0MA04192,"AUCHINCLOSS, JAKE",file: state+party+surname
+MA-4,R,Tom Stalcup,H6MA04140,"STALCUP, THOMAS PHD",file: state+party+surname
+MA-5,D,Katherine Clark,H4MA05084,"CLARK, KATHERINE",file: state+party+surname
+MA-6,R,Micah Jones,H6MA06202,"JONES, MICAH Q.",file: state+party+surname
+MA-6,D,Dan Koh,H8MA03072,"KOH, DANIEL ARRIGG",file: state+party+surname
+MA-7,D,Ayanna Pressley,H8MA07032,"PRESSLEY, AYANNA",file: state+party+surname
+MA-8,R,Robert Burke,,,unmatched
+MA-8,D,Stephen Lynch,H2MA09072,"LYNCH, STEPHEN",file: state+party+surname
+MA-9,D,Bill Keating,H0MA10082,"KEATING, WILLIAM R",file: state+party+surname
+MA-9,R,Tyler MacAllister,H6MA09206,"MACALLISTER, ROBERT TYLER",file: state+party+surname
+MI-1,D,Callie Barr,H4MI01155,"BARR, CALLIE",file: state+party+surname
+MI-1,R,Jack Bergman,H6MI01226,"BERGMAN, JOHN",file: state+party+surname
+MI-2,D,Ben Ambrose,H6MI02216,"AMBROSE, BENJAMIN",file: state+party+surname
+MI-2,R,John Moolenaar,H4MI04126,"MOOLENAAR, JOHN MR.",file: state+party+surname
+MI-3,R,Terri DeBoer,H6MI03198,"DEBOER, TERRI",file: state+party+surname
+MI-3,D,Hillary Scholten,H0MI03316,"SCHOLTEN, HILLARY",file: state+party+surname
+MI-4,R,Bill Huizenga,H0MI02094,"HUIZENGA, WILLIAM P",file: state+party+surname
+MI-4,D,Sean McCann,H6MI04204,"MCCANN, SEAN",file: state+party+surname
+MI-5,D,Christian Vukasovich,H6MI05227,"VUKASOVICH, CHRISTIAN A",file: state+party+surname
+MI-5,R,Tim Walberg,H4MI07103,"WALBERG, TIMOTHY L REP",file: state+party+surname
+MI-6,D,Debbie Dingell,H4MI12079,"DINGELL, DEBBIE",file: state+party+surname
+MI-6,R,Heather Smiley,H4MI06154,"SMILEY, HEATHER",api search
+MI-7,R,Tom Barrett,H2MI07123,"BARRETT, THOMAS MORE",file: state+party+surname
+MI-7,D,William Lawrence,H6MI07298,"LAWRENCE, WILLIAM",file: state+party+surname
+MI-8,D,Kristen McDonald Rivet,H4MI08218,"MCDONALD RIVET, KRISTEN",file: state+party+surname
+MI-8,R,Thomas Smith,H6MI08312,"SMITH, THOMAS JAMES MR",file: state+party+surname
+MI-9,R,Lisa McClain,H0MI10287,"MCCLAIN, LISA",file: state+party+surname
+MI-9,D,Ray Pooley,H6MI09245,"POOLEY, STEVEN RAYMOND",file: state+party+surname
+MI-10,R,Mike Bouchard,H6MI10359,"BOUCHARD, MICHAEL",file: state+party+surname
+MI-10,D,Christina Hines,H6MI10276,"HINES, CHRISTINA",file: state+party+surname
+MI-11,R,Ethan Baker,H6MI11290,"BAKER, ETHAN D",file: state+party+surname
+MI-11,D,Jeremy Moss,H6MI11191,"MOSS, JEREMY",file: state+party+surname
+MI-12,R,James Hooper,H2MI12198,"HOOPER, JAMES D",file: state+party+surname
+MI-12,D,Rashida Tlaib,H8MI13250,"TLAIB, RASHIDA",file: state+party+surname
+MI-13,D,Donavan McKinney,H6MI13254,"MCKINNEY, DONAVAN",file: state+party+surname
+MI-13,R,T.P. Nykoriak,H6MI13312,"NYKORIAK, T.P.",api search
+MN-1,R,Brad Finstad,H2MN01223,"FINSTAD, BRAD",file: state+party+surname
+MN-1,D,Jake Johnson,H6MN01190,"JOHNSON, JACOB",file: state+party+surname
+MN-2,D,Matt Little,H6MN02230,"LITTLE, MATT",file: state+party+surname
+MN-2,R,Eric Pratt,H6MN02263,"PRATT, ERIC",file: state+party+surname
+MN-3,R,Tyler Bass,H6MN03170,"BASS, TYLER MICHAEL",api search
+MN-3,D,Kelly Morrison,H4MN03118,"MORRISON, KELLY LOUISE",file: state+party+surname
+MN-4,D,Betty McCollum,H0MN04049,"MCCOLLUM, BETTY",file: state+party+surname
+MN-4,R,Paul Wikstrom,H6MN04293,"WIKSTROM, PAUL",file: state+party+surname
+MN-5,R,John Nagel,H6MN05357,"NAGEL, JOHN",file: state+party+surname
+MN-5,D,Ilhan Omar,H8MN05239,"OMAR, ILHAN",file: state+party+surname
+MN-6,D,Doug Chapin,H6MN06215,"CHAPIN, DOUG",file: state+party+surname
+MN-6,R,Tom Emmer,H4MN06087,"EMMER, THOMAS EARL JR.",file: state+party+surname
+MN-7,R,Michelle Fischbach,H0MN07091,"FISCHBACH, MICHELLE",file: state+party+surname
+MN-7,D,Erik Osberg,H6MN07312,"OSBERG, ERIK",file: state+party+surname
+MN-8,R,Pete Stauber,H8MN08043,"STAUBER, PETER ALLEN",file: state+party+surname
+MN-8,D,Trina Swanson,H6MN08179,"SWANSON, TRINA",file: state+party+surname
+MS-1,D,Cliff Johnson,H6MS01313,"JOHNSON, CLIFF",file: state+party+surname
+MS-1,R,Trent Kelly,H6MS01131,"KELLY, JOHN TRENT",file: state+party+surname
+MS-2,R,Ron Eller,H2MS02203,"ELLER, RON",file: state+party+surname
+MS-2,D,Bennie Thompson,H4MS02068,"THOMPSON, BENNIE G.",file: state+party+surname
+MS-3,D,Michael Chiaradio,H6MS03228,"CHIARADIO, MICHAEL ALEXIS",file: state+party+surname
+MS-3,R,Michael Guest,H8MS03125,"GUEST, MICHAEL PATRICK",file: state+party+surname
+MS-4,R,Mike Ezell,H2MS04258,"EZELL, WALTER MICHAEL",file: state+party+surname
+MS-4,D,Jeffrey Hulum III,H6MS04242,"HULUM, JEFFREY III",file: state+party+surname
+MO-1,D,Wesley Bell,H4MO01134,"BELL, WESLEY",file: state+party+surname
+MO-1,R,Paul Berry,H2MO02219,"BERRY, PAUL",api search
+MO-2,R,Ann Wagner,H2MO02102,"WAGNER, ANN L.",file: state+party+surname
+MO-2,D,Fred Wellman,H6MO02343,"WELLMAN, FREDERICK PAUL",file: state+party+surname
+MO-3,D,Bethany Mann,H2MO03167,"MANN, BETHANY",file: state+party+surname
+MO-3,R,Bob Onder,H4MO03221,"ONDER, ROBERT FOR JR.",file: +district
+MO-4,R,Mark Alford,H2MO04207,"ALFORD, MARK",file: state+party+surname
+MO-4,D,Jordan Herrera,H6MO05254,"HERRERA, JORDAN",file: state+party+surname
+MO-5,R,Rick Brattin,H2MO04199,"BRATTIN, RICHARD",file: state+party+surname
+MO-5,D,Emanuel Cleaver,H4MO05234,"CLEAVER II, EMANUEL",file: state+party+surname
+MO-6,D,Josh Smead,H6MO06260,"SMEAD, JOSH",file: state+party+surname
+MO-6,R,Chris Stigall,H6MO06310,"STIGALL, CHRIS",file: state+party+surname
+MO-7,R,Eric Burlison,H2MO07143,"BURLISON, ERIC",file: state+party+surname
+MO-7,D,Missi Hesketh,H4MO07156,"HESKETH, MISSI",file: state+party+surname
+MO-8,D,Chris Reichard,H6MO08183,"REICHARD, CHRISTOPHER",file: state+party+surname
+MO-8,R,Jason Smith,H4MO08162,"SMITH, JASON T",file: +district
+MT-1,R,Aaron Flint,H6MT01152,"FLINT, AARON",file: state+party+surname
+MT-1,D,Sam Forstag,H6MT01137,"FORSTAG, SAMUEL KELLEY",file: state+party+surname
+MT-2,R,Troy Downing,H4MT02098,"DOWNING, TROY",file: state+party+surname
+MT-2,D,Brian Miller,H6MT02150,"MILLER, BRIAN JAMES",file: state+party+surname
+NE-1,D,Chris Backemeyer,H6NE01143,"BACKEMEYER, CHRISTOPHER",file: state+party+surname
+NE-1,R,Mike Flood,H2NE01118,"FLOOD, MIKE",file: state+party+surname
+NE-2,R,Brinker Harding,H6NE02208,"HARDING, BRINKER",file: state+party+surname
+NE-2,D,Denise Powell,H6NE02174,"POWELL, DENISE",file: state+party+surname
+NE-3,R,Adrian Smith,H6NE03115,"SMITH, ADRIAN",file: state+party+surname
+NE-3,D,Becky Stille,H6NE03180,"STILLE, BECKY LYNN",file: state+party+surname
+NV-1,R,Carrie Buck,H6NV01331,"BUCK, CARRIE",file: state+party+surname
+NV-1,D,Dina Titus,H8NV03036,"TITUS, DINA",file: state+party+surname
+NV-2,D,Teresa Benitez-Thompson,H6NV02362,"BENITEZ-THOMPSON, TERESA",file: state+party+surname
+NV-2,R,David Flippo,H4NV04108,"FLIPPO, DAVID",file: state+party+surname
+NV-3,D,Susie Lee,H6NV04020,"LEE, SUSIE",file: state+party+surname
+NV-3,R,Martin O'Donnell,H4NV03225,"O'DONNELL, MARTY",file: +district
+NV-4,D,Steven Horsford,H2NV04011,"HORSFORD, STEVEN ALEXZANDER",file: state+party+surname
+NV-4,R,Cody Whipple,H6NV04111,"WHIPPLE, CODY K",file: state+party+surname
+NH-1,R,Anthony DiLorenzo,H6NH01420,"DILORENZO, ANTHONY",file: state+party+surname
+NH-1,D,Stefany Shaheen,H6NH01321,"SHAHEEN, STEFANY",file: state+party+surname
+NH-2,D,Maggie Goodlander,H4NH02399,"GOODLANDER, MAGGIE",file: state+party+surname
+NH-2,R,Lily Tang Williams,H2NH02260,"WILLIAMS, LILY TANG",file: state+party+surname
+NJ-1,R,Damon Galdo,H2NJ01187,"GALDO, DAMON",file: state+party+surname
+NJ-1,D,Donald Norcross,H4NJ01084,"NORCROSS, DONALD W",file: state+party+surname
+NJ-2,D,Zack Mullock,H6NJ02251,"MULLOCK, ZACK",file: state+party+surname
+NJ-2,R,Jeff Van Drew,H8NJ02166,"VAN DREW, JEFF MR",file: state+party+surname
+NJ-3,D,Herb Conaway,H4NJ03080,"CONAWAY, HERB MD",file: state+party+surname
+NJ-3,R,Michael McGuire,H6NJ03184,"MCGUIRE, MICHAEL PATRICK",file: state+party+surname
+NJ-4,D,Rachel Peace,H6NJ04257,"PEACE, RACHEL",file: state+party+surname
+NJ-4,R,Chris Smith,H8NJ04014,"SMITH, CHRISTOPHER H",file: state+party+surname
+NJ-5,D,Josh Gottheimer,H6NJ05171,"GOTTHEIMER, JOSH",file: state+party+surname
+NJ-5,R,Sean Kirrane,H6NJ05221,"KIRRANE, SEAN JOSEPH",file: state+party+surname
+NJ-6,R,Hillary Herzig,H6NJ06286,"HERZIG, HILLARY",file: state+party+surname
+NJ-6,D,Frank Pallone,H8NJ03073,"PALLONE, FRANK JR",file: state+party+surname
+NJ-7,D,Rebecca Bennett,H6NJ07201,"BENNETT, REBECCA",file: state+party+surname
+NJ-7,R,Thomas Kean Jr.,H0NJ07261,"KEAN, THOMAS H. JR.",file: state+party+surname
+NJ-8,D,Rob Menendez,H2NJ08232,"MENENDEZ, ROBERT J.",file: +district
+NJ-9,R,Rosie Pino,H6NJ09264,"PINO, ROSEMARY",file: state+party+surname
+NJ-9,D,Nellie Pou,H4NJ09194,"POU, NELIDA",file: state+party+surname
+NJ-10,R,Carmen Bucco,H4NJ10135,"BUCCO, CARMEN",file: state+party+surname
+NJ-10,D,LaMonica McIver,H4NJ10176,"MCIVER, LAMONICA",file: state+party+surname
+NJ-11,R,Joe Hathaway,H6NJ11211,"HATHAWAY, JOE",file: state+party+surname
+NJ-11,D,Analilia Mejia,H6NJ11286,"MEJIA, ANALILIA",file: state+party+surname
+NJ-12,D,Adam Hamawy,H6NJ12417,"HAMAWY, ADAM",file: state+party+surname
+NJ-12,R,Gregg Mele,H2NJ06210,"MELE, GREGG",file: state+party+surname
+NM-1,R,Didi Okpareke,H6NM01129,"OKPAREKE, NDIDIAMAKA",file: state+party+surname
+NM-1,D,Melanie Stansbury,H2NM01144,"STANSBURY, MELANIE",file: state+party+surname
+NM-2,R,Greg Cunningham,H6NM02127,"CUNNINGHAM, GREG",file: state+party+surname
+NM-2,D,Gabe Vasquez,H2NM02191,"VASQUEZ, GABRIEL",file: state+party+surname
+NM-3,D,Teresa Leger Fernández,H0NM03102,"LEGER FERNANDEZ, TERESA",file: state+party+surname
+NM-3,R,Martin Zamora,H6NM03083,"ZAMORA, MARTIN R",file: state+party+surname
+NY-1,D,Chris Gallant,H6NY01159,"GALLANT, CHRISTOPHER",file: state+party+surname
+NY-1,R,Nick LaLota,H2NY01190,"NICK, LALOTA",file: state+party+surname
+NY-2,R,Andrew Garbarino,H0NY02234,"GARBARINO, ANDREW",file: state+party+surname
+NY-2,D,Patrick Halpin,H6NY02140,"HALPIN, PATRICK",file: state+party+surname
+NY-3,R,Mike LiPetri,H0NY02267,"LIPETRI, MIKE",file: state+party+surname
+NY-3,D,Tom Suozzi,H6NY03247,"SUOZZI, THOMAS",file: state+party+surname
+NY-4,R,Jeanine Driscoll,H6NY04211,"DRISCOLL, JEANINE",file: state+party+surname
+NY-4,D,Laura Gillen,H2NY04244,"GILLEN, LAURA",file: state+party+surname
+NY-5,R,George Marsh,H6NY05127,"MARSH, GEORGE",api search
+NY-5,D,Gregory Meeks,H8NY06048,"MEEKS, GREGORY W.",file: state+party+surname
+NY-6,R,Joseph Chou,H4NY06047,"CHOU, JOSEPH",file: state+party+surname
+NY-6,D,Grace Meng,H2NY06116,"MENG, GRACE",file: state+party+surname
+NY-7,R,Melvin Rivera,H6NY07271,"RIVERA, MELVIN",api search
+NY-7,D,Claire Valdez,H6NY07214,"VALDEZ, CLAIRE",file: state+party+surname
+NY-8,D,Hakeem Jeffries,H2NY10092,"JEFFRIES, HAKEEM",file: state+party+surname
+NY-8,R,Lewis Mizrahi,H6NY08188,"MIZRAHI, LEWIS",api search
+NY-9,R,Joel Anabilah-Azumah,H6NY09145,"ANABILAH-AZUMAH, JOEL",api search
+NY-9,D,Yvette Clarke,H4NY11138,"CLARKE, YVETTE D",file: state+party+surname
+NY-10,D,Brad Lander,H6NY10176,"LANDER, BRAD MR.",file: state+party+surname
+NY-10,R,Jennifer Moore,H6NY10218,"MOORE, JENNIFER E",api search
+NY-11,D,Michael DeCillis,H6NY11265,"DECILLIS, MICHAEL",file: state+party+surname
+NY-11,R,Nicole Malliotakis,H0NY11078,"MALLIOTAKIS, NICOLE",file: state+party+surname
+NY-12,D,Micah Lasher,H6NY12172,"LASHER, MICAH CHARLES",file: state+party+surname
+NY-12,R,Caroline Shinkle,H6NY12404,"SHINKLE, CAROLINE",file: state+party+surname
+NY-13,D,Darializa Avila Chevalier,H6NY13279,"AVILA CHEVALIER, DARIALIZA",file: state+party+surname
+NY-13,R,Jomo Williams,H6NY04195,"SUBER WILLIAMS, MARVIN",file: state+party+surname
+NY-14,R,Diamant Hysenaj,H6NY14251,"HYSENAJ, DIAMANT",file: state+party+surname
+NY-14,D,Alexandria Ocasio-Cortez,H8NY15148,"OCASIO-CORTEZ, ALEXANDRIA",file: state+party+surname
+NY-15,R,Stylo Sapaskis,H6NY16140,"SAPASKIS, STYLO ADONIS",api search
+NY-15,D,Ritchie Torres,H0NY15160,"TORRES, RITCHIE JOHN",file: state+party+surname
+NY-16,R,Joseph Cinquemani,H4NY07052,"CINQUEMANI, JOSEPH",api search
+NY-16,D,George Latimer,H4NY16087,"LATIMER, GEORGE",file: state+party+surname
+NY-17,D,Cait Conley,H6NY17171,"CONLEY, CAIT",file: state+party+surname
+NY-17,R,Mike Lawler,H2NY17162,"LAWLER, MICHAEL VINCENT",file: state+party+surname
+NY-18,R,Jacqueline Auringer,H6NY18252,"AURINGER, JACKIE MARY",file: state+party+surname
+NY-18,D,Pat Ryan,H8NY19223,"RYAN, PATRICK",file: state+party+surname
+NY-19,R,Peter Oberacker,H6NY19268,"OBERACKER, PETER KARL JR",file: state+party+surname
+NY-19,D,Josh Riley,H8NY22177,"RILEY, JOSH",file: state+party+surname
+NY-20,R,Ralph Ambrosio,H6NY20225,"AMBROSIO, RALPH",file: state+party+surname
+NY-20,D,Paul Tonko,H8NY21203,"TONKO, PAUL DAVID",file: state+party+surname
+NY-21,R,Anthony Constantino,H6NY21157,"CONSTANTINO, ANTHONY THOMAS",file: state+party+surname
+NY-21,D,Blake Gendebien,H6NY21199,"GENDEBIEN, BLAKE",file: state+party+surname
+NY-22,R,Kailee Buller,H6NY22213,"BULLER, KAILEE",file: state+party+surname
+NY-22,D,John Mannion,H4NY22085,"MANNION, JOHN W",file: state+party+surname
+NY-23,D,Aaron Gies,H6NY23559,"GIES, AARON DR.",file: state+party+surname
+NY-23,R,Nick Langworthy,H2NY23228,"LANGWORTHY, NICK",file: state+party+surname
+NY-24,D,Alissa Ellman,H6NY24219,"ELLMAN, ALISSA",file: state+party+surname
+NY-24,R,Claudia Tenney,H4NY22051,"TENNEY, CLAUDIA",file: state+party+surname
+NY-25,R,Virginia McIntyre,H6NY25208,"MCINTYRE, VIRGINIA",file: state+party+surname
+NY-25,D,Joseph Morelle,H8NY25105,"MORELLE, JOSEPH D",file: state+party+surname
+NY-26,R,Dennis Hannon,H6NY26131,"HANNON, DENNIS",api search
+NY-26,D,Tim Kennedy,H4NY26078,"KENNEDY, TIMOTHY",file: state+party+surname
+NC-1,R,Laurie Buckhout,H4NC01137,"BUCKHOUT, LAURIE",file: state+party+surname
+NC-1,D,Don Davis,H2NC02287,"DAVIS, DON",file: +district
+NC-2,R,Eugene Douglass,H4NC02135,"DOUGLASS, EUGENE FARLEY DR.",api search
+NC-2,D,Deborah Ross,H0NC02125,"ROSS, DEBORAH",file: state+party+surname
+NC-3,R,Greg Murphy,H0NC03172,"MURPHY, GREGORY FRANCIS DR.",file: state+party+surname
+NC-3,D,Raymond Smith Jr.,H6NC03229,"SMITH, RAYMOND EDWARD DR. JR.",file: state+party+surname
+NC-4,D,Valerie Foushee,H2NC06114,"FOUSHEE, VALERIE",file: state+party+surname
+NC-4,R,Max Ganorkar,H4NC02150,"GANORKAR, MAHESH",file: state+party+surname
+NC-5,R,Virginia Foxx,H4NC05146,"FOXX, VIRGINIA ANN",file: state+party+surname
+NC-5,D,Chuck Hubbard,H4NC05294,"HUBBARD, CHUCK",file: state+party+surname
+NC-6,D,Cyril Jefferson,H6NC06164,"JEFFERSON, CYRIL",file: state+party+surname
+NC-6,R,Addison McDowell,H4NC06177,"MCDOWELL, ADDISON",file: state+party+surname
+NC-7,D,Kimberly Hardy,H6NC07196,"HARDY, KIMBERLY DR.",file: state+party+surname
+NC-7,R,David Rouzer,H2NC07096,"ROUZER, DAVID",file: state+party+surname
+NC-8,R,Mark Harris,H4NC08066,"HARRIS, MARK E",file: +district
+NC-8,D,Colby Watson,H6NC08202,"WATSON, COLBY",file: state+party+surname
+NC-9,R,Richard Hudson,H2NC08185,"HUDSON, RICHARD L. JR.",file: state+party+surname
+NC-9,D,Richard Ojeda,H6NC09218,"OJEDA, RICHARD N.",file: state+party+surname
+NC-10,D,Ashley Bell,H6NC10174,"BELL, ASHLEY",file: state+party+surname
+NC-10,R,Pat Harrigan,H2NC13243,"HARRIGAN, PAT",file: state+party+surname
+NC-11,D,Jamie Ager,H6NC11248,"AGER, JAMIE",file: state+party+surname
+NC-11,R,Jennifer Balkcom,H6NC11321,"BALKCOM, JENNIFER",api search
+NC-12,D,Alma Adams,H4NC12100,"ADAMS, ALMA SHEALEY",file: state+party+surname
+NC-12,R,Jack Codiga,H6NC12113,"CODIGA, JOHN JACK",file: state+party+surname
+NC-13,D,Paul Barringer,H6NC13228,"BARRINGER, PAUL",file: state+party+surname
+NC-13,R,Brad Knott,H4NC13116,"KNOTT, BRAD",file: state+party+surname
+NC-14,R,Tim Moore,H4NC14015,"MOORE, TIM",file: state+party+surname
+NC-14,D,Lakesha Womack,H6NC14069,"WOMACK, LAKESHA",file: state+party+surname
+ND-1,R,Julie Fedorchak,H4ND00061,"FEDORCHAK, JULIE",file: state+party+surname
+OH-1,R,Eric Conroy,H6OH01138,"CONROY, ERIC",file: state+party+surname
+OH-1,D,Greg Landsman,H2OH01194,"LANDSMAN, GREG",file: state+party+surname
+OH-2,D,Jennifer Mazzuckelli,,,unmatched
+OH-2,R,David Taylor,H4OH02248,"TAYLOR, DAVID",file: state+party+surname
+OH-3,D,Joyce Beatty,H2OH03125,"BEATTY, JOYCE",file: state+party+surname
+OH-3,R,Cleophus Dulaney,H0OH03137,"DULANEY, CLEOPHUS",api search
+OH-4,R,Jim Jordan,H6OH04082,"JORDAN, JAMES D.",file: state+party+surname
+OH-4,D,Joshua Kolasinski,H6OH04181,"KOLASINSKI, JOSHUA",file: state+party+surname
+OH-5,R,Bob Latta,H8OH05036,"LATTA, ROBERT EDWARD",file: state+party+surname
+OH-5,D,Brian Shaver,H6OH05154,"SHAVER, BRIAN ALAN MR.",file: state+party+surname
+OH-6,D,Elizabeth Kirtley,H6OH06244,"KIRTLEY, ELIZABETH ANN MRS.",file: state+party+surname
+OH-6,R,Michael Rulli,H4OH06165,"RULLI, MICHAEL",file: state+party+surname
+OH-7,R,Max Miller,H2OH16051,"MILLER, MAX",file: state+party+surname
+OH-7,D,Brian Poindexter,H6OH07168,"POINDEXTER, BRIAN",file: state+party+surname
+OH-8,R,Warren Davidson,H6OH08315,"DAVIDSON, WARREN",file: state+party+surname
+OH-8,D,Vanessa Enoch,H8OH08097,"ENOCH, VANESSA L. DR.",file: state+party+surname
+OH-9,D,Marcy Kaptur,H2OH09031,"KAPTUR, MARCY HON. M.C.",file: state+party+surname
+OH-9,R,Derek Merrin,H4OH09169,"MERRIN, DEREK",file: state+party+surname
+OH-10,D,Kristina Knickerbocker,H6OH10121,"KNICKERBOCKER, KRISTINA",file: state+party+surname
+OH-10,R,Mike Turner,H2OH03067,"TURNER, MICHAEL R REP.",file: state+party+surname
+OH-11,D,Shontel Brown,H2OH11169,"BROWN, M SHONTEL",file: state+party+surname
+OH-11,R,Mike Kirchner,H6OH11210,"KIRCHNER, MIKE",api search
+OH-12,R,Troy Balderson,H8OH12180,"BALDERSON, WILLIAM TROY",file: state+party+surname
+OH-12,D,Jerrad Christian,H4OH12080,"CHRISTIAN, JERRAD SHANE",file: state+party+surname
+OH-13,R,Carey Coleman,H6OH13307,"COLEMAN, CAREY",file: state+party+surname
+OH-13,D,Emilia Sykes,H2OH13264,"SYKES, EMILIA",file: state+party+surname
+OH-14,R,David Joyce,H2OH14064,"JOYCE, DAVID P.",file: state+party+surname
+OH-14,D,Maria Jukic,H6OH14248,"JUKIC, MARIA",file: state+party+surname
+OH-15,R,Mike Carey,H2OH15228,"CAREY, MIKE",file: +district
+OH-15,D,Don Leonard,H6OH15112,"LEONARD, DON RALPH",file: state+party+surname
+OK-1,D,John Croisant,H6OK01201,"CROISANT, JOHN THOMAS",file: state+party+surname
+OK-1,R,Mark Tedford,H6OK01235,"TEDFORD, MARK",file: state+party+surname
+OK-2,R,Josh Brecheen,H2OK02315,"BRECHEEN, JOSH",file: state+party+surname
+OK-2,D,Brandon Wade,H4OK02196,"WADE, BRANDON",file: state+party+surname
+OK-3,D,Suzie Byrd,,,unmatched
+OK-3,R,Frank Lucas,H4OK06056,"LUCAS, FRANK D.",file: state+party+surname
+OK-4,R,Tom Cole,H2OK04055,"COLE, TOM",file: state+party+surname
+OK-4,D,Mitchell Jacob,H6OK04155,"JACOB, MITCHELL LEIGH",file: state+party+surname
+OK-5,R,Stephanie Bice,H0OK05205,"BICE, STEPHANIE",file: state+party+surname
+OK-5,D,Jena Nelson,H6OK05293,"NELSON, JENA",file: state+party+surname
+OR-1,D,Suzanne Bonamici,H2OR01133,"BONAMICI, SUZANNE MS.",file: state+party+surname
+OR-1,R,Barbara Kahl,H6OR01308,"KAHL, BARBARA J DR DVM",file: state+party+surname
+OR-2,D,Chris Beck,H6OR02322,"BECK, CHRIS",file: state+party+surname
+OR-2,R,Cliff Bentz,H0OR02127,"BENTZ, CLIFF",file: state+party+surname
+OR-3,R,Loran Ayles,H6OR03197,"AYLES, LORAN",api search
+OR-3,D,Maxine Dexter,H4OR03192,"DEXTER, MAXINE",file: state+party+surname
+OR-4,R,Monique DeSpain,H6OR04260,"DESPAIN, MONIQUE",file: state+party+surname
+OR-4,D,Val Hoyle,H2OR04095,"HOYLE, VALERIE",file: state+party+surname
+OR-5,R,Patti Adair,H6OR05242,"ADAIR, PATTI",file: state+party+surname
+OR-5,D,Janelle Bynum,H4OR05304,"BYNUM, JANELLE",file: state+party+surname
+OR-6,R,David Russ,H2OR01240,"RUSS, DAVID HONORABLE",file: state+party+surname
+OR-6,D,Andrea Salinas,H2OR06066,"SALINAS, ANDREA",file: state+party+surname
+PA-1,R,Brian Fitzpatrick,H6PA08277,"FITZPATRICK, BRIAN",file: state+party+surname
+PA-1,D,Bob Harvie,H6PA01181,"HARVIE, ROBERT J",file: state+party+surname
+PA-2,R,Jessica Arriaga,H6PA02205,"ARRIAGA, JESSICA",api search
+PA-2,D,Brendan Boyle,H4PA13199,"BOYLE, BRENDAN F",file: state+party+surname
+PA-3,D,Chris Rabb,H6PA03203,"RABB, CHRISTOPHER M.",file: state+party+surname
+PA-4,D,Madeleine Dean,H8PA04116,"DEAN, MADELEINE",file: state+party+surname
+PA-4,R,Aurora Stuski,H6PA04169,"STUSKI, AURORA",api search
+PA-5,R,Nicholas Manganaro,H6PA05216,"MANGANARO, NICHOLAS WALN MORRIS",file: state+party+surname
+PA-5,D,Mary Gay Scanlon,H8PA07200,"SCANLON, MARY GAY",file: state+party+surname
+PA-6,D,Chrissy Houlahan,H8PA06087,"HOULAHAN, CHRISSY",file: state+party+surname
+PA-6,R,Marty Young,H6PA06156,"YOUNG, MARTIN",file: state+party+surname
+PA-7,D,Bob Brooks,H6PA07188,"BROOKS, BOB",file: state+party+surname
+PA-7,R,Ryan Mackenzie,H8PA15195,"MACKENZIE, RYAN EDWARD",file: state+party+surname
+PA-8,R,Rob Bresnahan,H4PA08124,"BRESNAHAN, ROB",file: state+party+surname
+PA-8,D,Paige Cognetti,H6PA08293,"COGNETTI, PAIGE",file: state+party+surname
+PA-9,R,Dan Meuser,H8PA10147,"MEUSER, DANIEL",file: state+party+surname
+PA-9,D,Rachel Wallace,H6PA09127,"WALLACE, RACHEL",file: state+party+surname
+PA-10,R,Scott Perry,H2PA04135,"PERRY, SCOTT",file: state+party+surname
+PA-10,D,Janelle Stelson,H4PA10104,"STELSON, JANELLE",file: state+party+surname
+PA-11,D,Nancy Mannion,H6PA11099,"MANNION, NANCY",file: state+party+surname
+PA-11,R,Lloyd Smucker,H6PA16320,"SMUCKER, LLOYD K.",file: state+party+surname
+PA-12,R,James Hayes,H4PA12068,"HAYES, JAMES DR.",file: state+party+surname
+PA-12,D,Summer Lee,H2PA18200,"LEE, SUMMER",file: state+party+surname
+PA-13,D,Beth Farnham,H4PA13298,"FARNHAM, ELIZABETH RHOADS",file: state+party+surname
+PA-13,R,John Joyce,H8PA13125,"JOYCE, JOHN",file: state+party+surname
+PA-14,D,Alan Bradstock,H6PA14200,"BRADSTOCK, DAVID ALAN",file: state+party+surname
+PA-14,R,Guy Reschenthaler,H8PA18199,"RESCHENTHALER, GUY MR.",file: state+party+surname
+PA-15,D,Ray Bilger,H6PA15181,"BILGER, RAYMOND ALLEN",file: state+party+surname
+PA-15,R,Glenn Thompson,H8PA05071,"THOMPSON, GLENN MR.",file: state+party+surname
+PA-16,R,Mike Kelly,H0PA03271,"KELLY, GEORGE J JR",file: state+party+surname
+PA-16,D,Justin Wagner,H6PA16379,"WAGNER, JUSTIN",file: state+party+surname
+PA-17,D,Chris Deluzio,H2PA17103,"DELUZIO, CHRISTOPHER",file: state+party+surname
+PA-17,R,Tony Guy,H6PA17203,"GUY, TONY",file: +district
+RI-1,D,Gabe Amo,H4RI01265,"AMO, GABRIEL F",file: state+party+surname
+RI-1,R,Kellie Keenan,H6RI01153,"KEENAN, KELLIE ELEANOR",file: state+party+surname
+RI-2,D,Seth Magaziner,H2RI02184,"MAGAZINER, SETH",file: state+party+surname
+RI-2,R,Vic Mellor,H6RI02318,"MELLOR, VICTOR G.",file: state+party+surname
+SC-1,R,Jenny Costa Honeycutt,H6SC01334,"HONEYCUTT, JENNY COSTA",file: state+party+surname
+SC-1,D,Nancy Lacore,H6SC01359,"LACORE, NANCY",file: state+party+surname
+SC-2,D,Zyon Khalifa,H6SC02159,"KHALIFA, ZYON DESHON",file: +district
+SC-2,R,Joe Wilson,H2SC02059,"WILSON, JOE THE HON.",file: state+party+surname
+SC-3,R,Sheri Biggs,H4SC01313,"BIGGS, SHERI",file: state+party+surname
+SC-3,D,Eunice Lehmacher,H6SC03090,"LEHMACHER, EUNICE",file: state+party+surname
+SC-4,D,Courtney McClain,H6SC04171,"MCCLAIN, COURTNEY",file: state+party+surname
+SC-4,R,William Timmons,H8SC04250,"TIMMONS, WILLIAM R IV",file: state+party+surname
+SC-5,R,Wes Climer,H6SC05202,"CLIMER, WES",file: state+party+surname
+SC-5,D,Mallory Dittmer,H6SC05228,"DITTMER, MALLORY",file: state+party+surname
+SC-6,D,Jim Clyburn,H2SC02042,"CLYBURN, JAMES E",file: state+party+surname
+SC-6,R,John Peterson,H6SC06184,"PETERSON, JOHN",api search
+SC-7,R,Russell Fry,H2SC07280,"FRY, RUSSELL",file: state+party+surname
+SC-7,D,John Vincent,H6SC07034,"VINCENT, JOHN GREGORY",file: state+party+surname
+SD-1,D,Nikki Gronli,H6SD01141,"GRONLI, NICOLE",file: state+party+surname
+SD-1,R,Marty Jackley,H6SD01109,"JACKLEY, MARTY",file: state+party+surname
+TN-1,D,Kristi Burke,H6TN01537,"BURKE, KRISTI",file: state+party+surname
+TN-1,R,Diana Harshbarger,H0TN01118,"HARSHBARGER, DIANA",file: state+party+surname
+TN-2,D,Michaela Barnett,H6TN02170,"BARNETT, MICHAELA",file: state+party+surname
+TN-2,R,Tim Burchett,H8TN02119,"BURCHETT, TIM",file: state+party+surname
+TN-3,R,Chuck Fleischmann,H0TN03254,"FLEISCHMANN, CHARLES J",file: state+party+surname
+TN-3,D,Anna Golladay,H6TN03228,"GOLLADAY, ANNA",file: state+party+surname
+TN-4,D,Victoria Broderick,H4TN04270,"BRODERICK, VICTORIA",file: state+party+surname
+TN-4,R,Scott DesJarlais,H0TN04195,"DESJARLAIS, SCOTT HON.",file: state+party+surname
+TN-5,R,Charlie Hatcher,H6TN05405,"HATCHER, CHARLIE",file: state+party+surname
+TN-5,D,Chaz Molder,H6TN05397,"MOLDER, CHAZ",file: state+party+surname
+TN-6,D,Mike Croley,H6TN06171,"CROLEY, MIKE",file: state+party+surname
+TN-6,R,Johnny Garrett,H6TN06213,"GARRETT, JOHNNY",file: state+party+surname
+TN-7,D,Darden Copeland,H6TN07286,"COPELAND, DARDEN HUNTER",file: state+party+surname
+TN-7,R,Matt Van Epps,H6TN07161,"VAN EPPS, MATTHEW ROBERT",file: state+party+surname
+TN-8,D,Heidi Kuhn,H6TN08367,"KUHN, HEIDI",file: state+party+surname
+TN-8,R,David Kustoff,H2TN07103,"KUSTOFF, DAVID",file: state+party+surname
+TN-9,D,Justin Pearson,H6TN09449,"PEARSON, JUSTIN J.",file: state+party+surname
+TN-9,R,Brent Taylor,H6TN09464,"TAYLOR, BRENT",file: state+party+surname
+TX-1,R,Nathaniel Moran,H2TX01112,"MORAN, NATHANIEL QUENTIN",file: state+party+surname
+TX-1,D,Yolanda Prince,H6TX01352,"PRINCE, YOLANDA RENA",file: state+party+surname
+TX-2,D,Shaun Finnie,H6TX02251,"FINNIE, SHAUN",file: state+party+surname
+TX-2,R,Steve Toth,H6TX08175,"TOTH, STEVE",file: state+party+surname
+TX-3,D,Evan Hunt,H6TX03234,"HUNT, EVAN",file: state+party+surname
+TX-3,R,Keith Self,H2TX00064,"SELF, KEITH ALAN",file: state+party+surname
+TX-4,R,Pat Fallon,H0TX04219,"FALLON, PATRICK",file: state+party+surname
+TX-4,D,Jason Pearce,H6TX04174,"PEARCE, JASON",file: state+party+surname
+TX-5,R,Lance Gooden,H8TX05144,"GOODEN, LANCE",file: state+party+surname
+TX-5,D,Chelsey Hockett,H6TX05189,"HOCKETT, CHELSEY ALEXANDRA",file: +district
+TX-6,R,Jake Ellzey,H8TX06266,"ELLZEY, JOHN KEVIN SR.",file: state+party+surname
+TX-6,D,Danny Minton,H6TX25203,"MINTON, DANNY",file: state+party+surname
+TX-7,D,Lizzie Fletcher,H8TX07140,"FLETCHER, ELIZABETH",file: state+party+surname
+TX-7,R,Alexander Hale,H6TX07151,"HALE, ALEXANDER",file: state+party+surname
+TX-8,D,Laura Jones,H0TX08145,"JONES, LAURA",file: +district
+TX-8,R,Jessica Hart Steinmann,H6TX08209,"STEINMANN, JESSICA HART",file: state+party+surname
+TX-9,D,Leticia Gutierrez,H6TX09231,"GUTIERREZ, LETICIA",file: state+party+surname
+TX-9,R,Alex Mealer,H6TX09140,"MEALER, ALEXANDRA",file: state+party+surname
+TX-10,R,Chris Gober,H6TX10221,"GOBER, CHRIS",file: state+party+surname
+TX-10,D,Caitlin Rourk,H6TX31102,"ROURK, CAITLIN MCCLAY",file: state+party+surname
+TX-11,R,August Pfluger,H0TX11230,"PFLUGER, AUGUST LEE II",file: state+party+surname
+TX-11,D,Claire Reynolds,H6TX11112,"REYNOLDS, CLAIRE ANNE",file: state+party+surname
+TX-12,R,Craig Goldman,H4TX12065,"GOLDMAN, CRAIG",file: state+party+surname
+TX-12,D,Angela Rodriguez Prilliman,H6TX12169,"RODRIGUEZ PRILLIMAN, ANGELA",api search
+TX-13,R,Ronny Jackson,H0TX13228,"JACKSON, RONNY LYNN",file: +district
+TX-13,D,Mark Nair,H6TX13159,"NAIR, MARK",file: state+party+surname
+TX-14,D,Thurman Bartie,H6TX14181,"BARTIE, THURMAN BILL MR",file: state+party+surname
+TX-14,R,Randy Weber,H2TX14149,"WEBER, RANDY",file: state+party+surname
+TX-15,R,Monica De La Cruz,H0TX15124,"DE LA CRUZ, MONICA",file: +district
+TX-15,D,Bobby Pulido,H6TX15246,"PULIDO, BOBBY",file: state+party+surname
+TX-16,R,Adam Bauman,H6TX16152,"BAUMAN, ADAM",api search
+TX-16,D,Veronica Escobar,H8TX16109,"ESCOBAR, VERONICA",file: state+party+surname
+TX-17,R,Pete Sessions,H2TX03126,"SESSIONS, PETE",file: state+party+surname
+TX-17,D,Casey Shepard,H6TX17168,"SHEPARD, CASEY",file: state+party+surname
+TX-18,D,Christian Menefee,H6TX18232,"MENEFEE, CHRISTIAN",file: state+party+surname
+TX-18,R,Ronald Whitfield,H6TX18497,"WHITFIELD, RONALD DWAYNE",api search
+TX-19,D,Kyle Rable,H6TX19198,"RABLE, KYLE",file: state+party+surname
+TX-19,R,Tom Sell,H6TX19206,"SELL, TOM",file: state+party+surname
+TX-20,D,Joaquin Castro,H2TX35011,"CASTRO, JOAQUIN",file: state+party+surname
+TX-20,R,Edgardo Rafael Baez,H6TX20113,"BAEZ, EDGARDO RAFAEL DR",file: state+party+surname
+TX-21,D,Kristin Hook,H4TX21108,"HOOK, KRISTIN A DR.",file: state+party+surname
+TX-21,R,Mark Teixeira,H6TX21301,"TEIXEIRA, MARK CHARLES",file: state+party+surname
+TX-22,D,Marquette Greene-Scott,H4TX22197,"GREENE-SCOTT, MARQUETTE",file: state+party+surname
+TX-22,R,Trever Nehls,H0TX22302,"NEHLS, TROY",file: +district
+TX-23,R,Brandon Herrera,H4TX23120,"HERRERA, BRANDON",file: state+party+surname
+TX-23,D,Katy Padilla Stout,H6TX23273,"STOUT, KATY PADILLA",file: state+party+surname
+TX-24,D,Kevin Burge,H6TX24172,"BURGE, KEVIN BERYL",file: state+party+surname
+TX-24,R,Beth Van Duyne,H0TX24209,"VAN DUYNE, ELIZABETH ANN",file: state+party+surname
+TX-25,D,Dione Sims,H6TX25237,"SIMS, DIONE MICHELLE MRS",api search
+TX-25,R,Roger Williams,H2TX33040,"WILLIAMS, ROGER",file: +district
+TX-26,R,Brandon Gill,H4TX26149,"GILL, BRANDON",file: state+party+surname
+TX-26,D,Steven Shook,H6TX26144,"SHOOK, STEVEN JAMES",file: state+party+surname
+TX-27,R,Michael Cloud,H8TX27049,"CLOUD, MICHAEL",file: state+party+surname
+TX-27,D,Tanya Lloyd,H4TX27089,"LLOYD, TANYA W",file: +district
+TX-28,D,Henry Cuellar,H2TX23082,"CUELLAR, HENRY R.",file: +district
+TX-28,R,Tano Tijerina,H6TX28124,"TIJERINA, TANO",file: state+party+surname
+TX-29,R,Martha Fierro,H6TX29122,"FIERRO, MARTHA ELENA,",file: state+party+surname
+TX-29,D,Sylvia Garcia,H8TX29052,"GARCIA, SYLVIA R",file: +district
+TX-30,D,Frederick Haynes III,H6TX30245,"HAYNES, FREDERICK III",file: state+party+surname
+TX-30,R,Everett Jackson,H6TX30211,"JACKSON, EVERETT HONORABLE",file: +district
+TX-31,R,John Carter,H2TX31044,"CARTER, JOHN R REP.",file: state+party+surname
+TX-31,D,Justin Early,H6TX31094,"EARLY, JUSTIN",file: state+party+surname
+TX-32,D,Dan Barrios,H6TX32217,"BARRIOS, DAN F.",file: state+party+surname
+TX-32,R,Jace Yarbrough,H6TX32225,"YARBROUGH, JACE",file: state+party+surname
+TX-33,D,Colin Allred,H8TX32098,"ALLRED, COLIN",file: state+party+surname
+TX-33,R,Patrick Gillespie,H2TX33248,"GILLESPIE, PATRICK DAVID",api search
+TX-34,R,Eric Flores,H2TX34113,"FLORES, MAYRA NOHEMI",file: +district
+TX-34,D,Vicente Gonzalez,H6TX15162,"GONZALEZ, VICENTE",file: state+party+surname
+TX-35,R,Carlos De La Cruz,H6TX35087,"DE LA CRUZ, CARLOS JR.",file: +district
+TX-35,D,Johnny Garcia,H6TX35095,"GARCIA, JOHNNY",file: +district
+TX-36,R,Brian Babin,H6TX02079,"BABIN, BRIAN",file: state+party+surname
+TX-36,D,Rhonda Hart,H4TX14111,"HART, RHONDA J",file: state+party+surname
+TX-37,D,Greg Casar,H2TX35144,"CASAR, GREG",file: state+party+surname
+TX-37,R,Lauren Peña,H6TX35038,"PENA, LAUREN B.",file: state+party+surname
+TX-38,R,Jon Bonck,H6TX02244,"BONCK, JON",file: state+party+surname
+TX-38,D,Melissa McDonough,H4TX38011,"MCDONOUGH, MELISSA A",file: state+party+surname
+UT-1,D,Ben McAdams,H8UT04053,"MCADAMS, BEN",file: state+party+surname
+UT-1,R,Riley Owen,H6UT01244,"OWEN, RILEY MONTGOMERY",file: state+party+surname
+UT-2,D,Peter Crosby,H6UT01160,"CROSBY, PETER",file: state+party+surname
+UT-2,R,Blake Moore,H0UT01205,"MOORE, BLAKE",file: state+party+surname
+UT-3,R,Celeste Maloy,H4UT02296,"MALOY, CELESTE",file: state+party+surname
+UT-3,D,Kent Udell,H6UT03182,"UDELL, KENT DR.",file: state+party+surname
+UT-4,R,Mike Kennedy,H4UT03260,"KENNEDY, MIKE",file: state+party+surname
+UT-4,D,Jonny Larsen,H6UT02424,"LARSEN, JONNY",file: state+party+surname
+VT-1,D,Becca Balint,H2VT01076,"BALINT, REBECCA 'BECCA'",file: state+party+surname
+VT-1,R,Gerald Malloy,H6VT01085,"MALLOY, GERALD MR.",file: state+party+surname
+VA-1,D,Shannon Taylor,H6VA01299,"TAYLOR, SHANNON LEIGH",file: state+party+surname
+VA-1,R,Rob Wittman,H8VA01147,"WITTMAN, ROBERT J. MR.",file: state+party+surname
+VA-2,R,Jen Kiggans,H2VA02064,"KIGGANS, JENNIFER",file: state+party+surname
+VA-2,D,Elaine Luria,H6VA02198,"LURIA, ELAINE",file: state+party+surname
+VA-3,R,Edwin Rivera,H6VA03121,"RIVERA, EDWIN MR. JR.",file: state+party+surname
+VA-3,D,Bobby Scott,H6VA01117,"SCOTT, ROBERT C",file: state+party+surname
+VA-4,D,Jennifer McClellan,H4VA04066,"MCCLELLAN, JENNIFER",file: state+party+surname
+VA-4,R,Robert Murray,H6VA04129,"MURRAY, ROBERT P.",api search
+VA-5,R,John McGuire,H0VA07133,"MCGUIRE, JOHN J. MR. III",file: state+party+surname
+VA-5,D,Tom Perriello,H6VA05217,"PERRIELLO, THOMAS",file: state+party+surname
+VA-6,R,Ben Cline,H8VA06104,"CLINE, BENJAMIN LEE",file: state+party+surname
+VA-6,D,Beth Macy,H6VA06173,"MACY, BETH",file: state+party+surname
+VA-7,R,Doug Ollivant,H6VA07205,"OLLIVANT, DOUGLAS",file: state+party+surname
+VA-7,D,Eugene Vindman,H4VA07234,"VINDMAN, YEVGENY 'EUGENE'",file: state+party+surname
+VA-8,D,Don Beyer,H4VA08224,"BEYER, DONALD STERNOFF JR.",file: state+party+surname
+VA-8,R,Tony Sabio,H6VA08252,"SABIO, TONY",file: state+party+surname
+VA-9,R,Morgan Griffith,H0VA09055,"GRIFFITH, H MORGAN",file: state+party+surname
+VA-9,D,Joy Powers,H6VA09136,"POWERS, JOY",file: state+party+surname
+VA-10,R,Dave Beckwith,H2VA10273,"BECKWITH, DAVID",file: state+party+surname
+VA-10,D,Suhas Subramanyam,H4VA10279,"SUBRAMANYAM, SUHAS",file: state+party+surname
+VA-11,R,Arthur Purves,H6VA11249,"PURVES, ARTHUR GRAHAME MR.",file: state+party+surname
+VA-11,D,James Walkinshaw,H6VA11066,"WALKINSHAW, JAMES",file: state+party+surname
+WA-1,D,Suzan DelBene,H0WA08046,"DELBENE, SUZAN K",file: state+party+surname
+WA-1,R,Mary Silva,H4WA01282,"SILVA, MARY",file: state+party+surname
+WA-2,R,Edwin Feller,H6WA02228,"FELLER, EDWIN HAROLD",api search
+WA-2,D,Rick Larsen,H0WA02080,"LARSEN, RICK",file: state+party+surname
+WA-3,R,John Braun,H6WA03275,"BRAUN, JOHN",file: state+party+surname
+WA-3,D,Marie Gluesenkamp Perez,H2WA03217,"GLUESENKAMP PEREZ, MARIE",file: state+party+surname
+WA-4,D,John Duresky,H6WA04190,"DURESKY, JOHN",file: state+party+surname
+WA-4,R,Amanda McKinney,H6WA04216,"MCKINNEY, AMANDA",file: state+party+surname
+WA-5,R,Michael Baumgartner,H4WA05234,"BAUMGARTNER, MICHAEL JAMES",file: state+party+surname
+WA-5,D,Carmela Conroy,H4WA05168,"CONROY, CARMELA",file: state+party+surname
+WA-6,R,Teresa Fox,H6WA06286,"FOX, TERESA",file: state+party+surname
+WA-6,D,Emily Randall,H4WA06117,"RANDALL, EMILY",file: state+party+surname
+WA-7,D,Pramila Jayapal,H6WA07458,"JAYAPAL, PRAMILA",file: state+party+surname
+WA-7,R,Nirav Sheth,H4WA08147,"SHETH, NIRAV",file: state+party+surname
+WA-8,R,Spencer Meline,H6WA08167,"MELINE, SPENCER HARRISON",file: state+party+surname
+WA-8,D,Kim Schrier,H8WA08189,"SCHRIER, KIM DR.",file: state+party+surname
+WA-9,R,Doug Basler,H4WA09061,"BASLER, DOUGLAS MICHAEL",file: state+party+surname
+WA-9,D,Adam Smith,H6WA09025,"SMITH, D. ADAM",file: state+party+surname
+WA-10,R,Chris Chung,H6WA10031,"CHUNG, CHRIS D.",api search
+WA-10,D,Marilyn Strickland,H0WA10034,"STRICKLAND, MARILYN",file: state+party+surname
+WV-1,D,Vince George,H6WV01160,"GEORGE, VINCENT RAYMOND MR.",file: state+party+surname
+WV-1,R,Carol Miller,H8WV03097,"MILLER, CAROL DEVINE",file: state+party+surname
+WV-2,R,Riley Moore,H4WV02205,"MOORE, RILEY",file: state+party+surname
+WV-2,D,Ace Parsi,H6WV02150,"PARSI, AHSAN",file: state+party+surname
+WI-1,D,Mitchell Berman,H6WI01283,"BERMAN, MITCHELL",file: state+party+surname
+WI-1,R,Bryan Steil,H8WI01156,"STEIL, BRYAN GEORGE",file: state+party+surname
+WI-2,D,Mark Pocan,H2WI02124,"POCAN, MARK",file: state+party+surname
+WI-3,D,Rebecca Cooke,H4WI03169,"COOKE, REBECCA",file: state+party+surname
+WI-3,R,Derrick Van Orden,H0WI03175,"VAN ORDEN, DERRICK F. MR.",file: state+party+surname
+WI-4,D,Gwen Moore,H4WI04183,"MOORE, GWEN S",file: state+party+surname
+WI-4,R,Tim Rogers,H4WI04274,"ROGERS, TIM",api search
+WI-5,D,Andrew Beck,H6WI05136,"BECK, ANDREW",file: state+party+surname
+WI-5,R,Scott Fitzgerald,H0WI05113,"FITZGERALD, SCOTT",file: state+party+surname
+WI-6,R,Glenn Grothman,H4WI06048,"GROTHMAN, GLENN S.",file: state+party+surname
+WI-6,D,Brad Smith,H6WI06191,"SMITH, BRADLEY",file: state+party+surname
+WI-7,R,Michael Alfonso,H6WI07223,"ALFONSO, MICHAEL",file: state+party+surname
+WI-7,D,Fred Clark,H6WI07207,"CLARK, FREDERIC",file: state+party+surname
+WI-8,D,Rick Crosson,H6WI08205,"CROSSON, RICK",file: state+party+surname
+WI-8,R,Tony Wied,H4WI08119,"WIED, TONY",file: state+party+surname
+WY-1,R,Chuck Gray,H6WY00217,"GRAY, CHUCK",file: state+party+surname
+WY-1,D,Lisa Kinney,H6WY01173,"KINNEY, LISA",file: state+party+surname

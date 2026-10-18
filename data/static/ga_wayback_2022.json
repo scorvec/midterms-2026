@@ -1,0 +1,1075 @@
+[
+ {
+  "year": 2022,
+  "last_updated": "2022-10-17 21:33",
+  "through": "2022-10-17",
+  "total": 135593,
+  "cmp_year": 2018,
+  "cmp_total": 135662,
+  "race": {
+   "White": 67259,
+   "Black": 52259,
+   "Hispanic": 1876,
+   "Asian": 1709,
+   "Other": 12490
+  },
+  "gender": {
+   "Female": 71357,
+   "Male": 63441,
+   "Unknown": 795
+  },
+  "age": {
+   "18-29": 5432,
+   "30-39": 6979,
+   "40-49": 11454,
+   "50-64": 41945,
+   "65+": 69178,
+   "Unknown": 605
+  },
+  "previous_general": {
+   "early": 96639,
+   "year": 2018,
+   "election_day": 18244,
+   "none": 20710
+  },
+  "wayback": "20221018182413",
+  "days_out": 22,
+  "ev_day": 1
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-17 21:33",
+  "through": "2022-10-17",
+  "total": 135593,
+  "cmp_year": 2018,
+  "cmp_total": 135662,
+  "race": {
+   "White": 67259,
+   "Black": 52259,
+   "Hispanic": 1876,
+   "Asian": 1709,
+   "Other": 12490
+  },
+  "gender": {
+   "Female": 71357,
+   "Male": 63441,
+   "Unknown": 795
+  },
+  "age": {
+   "18-29": 5432,
+   "30-39": 6979,
+   "40-49": 11454,
+   "50-64": 41945,
+   "65+": 69178,
+   "Unknown": 605
+  },
+  "previous_general": {
+   "early": 96639,
+   "year": 2018,
+   "election_day": 18244,
+   "none": 20710
+  },
+  "wayback": "20221018191912",
+  "days_out": 22,
+  "ev_day": 1
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-17 21:33",
+  "through": "2022-10-17",
+  "total": 135593,
+  "cmp_year": 2018,
+  "cmp_total": 135662,
+  "race": {
+   "White": 67259,
+   "Black": 52259,
+   "Hispanic": 1876,
+   "Asian": 1709,
+   "Other": 12490
+  },
+  "gender": {
+   "Female": 71357,
+   "Male": 63441,
+   "Unknown": 795
+  },
+  "age": {
+   "18-29": 5432,
+   "30-39": 6979,
+   "40-49": 11454,
+   "50-64": 41945,
+   "65+": 69178,
+   "Unknown": 605
+  },
+  "previous_general": {
+   "early": 96639,
+   "year": 2018,
+   "election_day": 18244,
+   "none": 20710
+  },
+  "wayback": "20221019012059",
+  "days_out": 22,
+  "ev_day": 1
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-18 22:01",
+  "through": "2022-10-18",
+  "total": 291740,
+  "cmp_year": 2018,
+  "cmp_total": 216018,
+  "race": {
+   "White": 153507,
+   "Black": 104481,
+   "Hispanic": 3916,
+   "Asian": 3544,
+   "Other": 26292
+  },
+  "gender": {
+   "Female": 153781,
+   "Male": 136291,
+   "Unknown": 1668
+  },
+  "age": {
+   "18-29": 11382,
+   "30-39": 15497,
+   "40-49": 25106,
+   "50-64": 89351,
+   "65+": 149113,
+   "Unknown": 1291
+  },
+  "previous_general": {
+   "early": 206435,
+   "year": 2018,
+   "election_day": 41907,
+   "none": 43398
+  },
+  "wayback": "20221019032738",
+  "days_out": 21,
+  "ev_day": 2
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-18 22:01",
+  "through": "2022-10-18",
+  "total": 291740,
+  "cmp_year": 2018,
+  "cmp_total": 216018,
+  "race": {
+   "White": 153507,
+   "Black": 104481,
+   "Hispanic": 3916,
+   "Asian": 3544,
+   "Other": 26292
+  },
+  "gender": {
+   "Female": 153781,
+   "Male": 136291,
+   "Unknown": 1668
+  },
+  "age": {
+   "18-29": 11382,
+   "30-39": 15497,
+   "40-49": 25106,
+   "50-64": 89351,
+   "65+": 149113,
+   "Unknown": 1291
+  },
+  "previous_general": {
+   "early": 206435,
+   "year": 2018,
+   "election_day": 41907,
+   "none": 43398
+  },
+  "wayback": "20221020052046",
+  "days_out": 21,
+  "ev_day": 2
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-20 06:58",
+  "through": "2022-10-19",
+  "total": 434567,
+  "cmp_year": 2018,
+  "cmp_total": 301005,
+  "race": {
+   "White": 235263,
+   "Black": 149167,
+   "Hispanic": 5781,
+   "Asian": 5355,
+   "Other": 39001
+  },
+  "gender": {
+   "Female": 231073,
+   "Male": 201043,
+   "Unknown": 2451
+  },
+  "age": {
+   "18-29": 17048,
+   "30-39": 24464,
+   "40-49": 38469,
+   "50-64": 132483,
+   "65+": 220206,
+   "Unknown": 1897
+  },
+  "previous_general": {
+   "early": 303859,
+   "year": 2018,
+   "election_day": 65595,
+   "none": 65113
+  },
+  "wayback": "20221020161812",
+  "days_out": 20,
+  "ev_day": 3
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-20 22:22",
+  "through": "2022-10-20",
+  "total": 573598,
+  "cmp_year": 2018,
+  "cmp_total": 388001,
+  "race": {
+   "White": 316330,
+   "Black": 191029,
+   "Hispanic": 7659,
+   "Asian": 7233,
+   "Other": 51347
+  },
+  "gender": {
+   "Female": 307454,
+   "Male": 262841,
+   "Unknown": 3303
+  },
+  "age": {
+   "18-29": 23091,
+   "30-39": 33510,
+   "40-49": 52164,
+   "50-64": 175004,
+   "65+": 287246,
+   "Unknown": 2583
+  },
+  "previous_general": {
+   "early": 396076,
+   "year": 2018,
+   "election_day": 90067,
+   "none": 87455
+  },
+  "wayback": "20221021174157",
+  "days_out": 19,
+  "ev_day": 4
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-22 22:33",
+  "through": "2022-10-22",
+  "total": 816884,
+  "cmp_year": 2018,
+  "cmp_total": 520290,
+  "race": {
+   "White": 453651,
+   "Black": 266525,
+   "Hispanic": 12242,
+   "Asian": 11983,
+   "Other": 72483
+  },
+  "gender": {
+   "Female": 443297,
+   "Male": 372292,
+   "Unknown": 1295
+  },
+  "age": {
+   "18-29": 43655,
+   "30-39": 54562,
+   "40-49": 84898,
+   "50-64": 263304,
+   "65+": 370352,
+   "Unknown": 113
+  },
+  "previous_general": {
+   "early": 545726,
+   "year": 2018,
+   "election_day": 137144,
+   "none": 134014
+  },
+  "wayback": "20221023150204",
+  "days_out": 17,
+  "ev_day": 6
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-22 22:33",
+  "through": "2022-10-22",
+  "total": 816884,
+  "cmp_year": 2018,
+  "cmp_total": 520290,
+  "race": {
+   "White": 453651,
+   "Black": 266525,
+   "Hispanic": 12242,
+   "Asian": 11983,
+   "Other": 72483
+  },
+  "gender": {
+   "Female": 443297,
+   "Male": 372292,
+   "Unknown": 1295
+  },
+  "age": {
+   "18-29": 43655,
+   "30-39": 54562,
+   "40-49": 84898,
+   "50-64": 263304,
+   "65+": 370352,
+   "Unknown": 113
+  },
+  "previous_general": {
+   "early": 545726,
+   "year": 2018,
+   "election_day": 137144,
+   "none": 134014
+  },
+  "wayback": "20221023174256",
+  "days_out": 17,
+  "ev_day": 6
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-23 22:12",
+  "through": "2022-10-23",
+  "total": 837628,
+  "cmp_year": 2018,
+  "cmp_total": 526133,
+  "race": {
+   "White": 462237,
+   "Black": 275086,
+   "Hispanic": 12751,
+   "Asian": 12722,
+   "Other": 74832
+  },
+  "gender": {
+   "Female": 455323,
+   "Male": 380931,
+   "Unknown": 1374
+  },
+  "age": {
+   "18-29": 46211,
+   "30-39": 56703,
+   "40-49": 88014,
+   "50-64": 270960,
+   "65+": 375611,
+   "Unknown": 129
+  },
+  "previous_general": {
+   "early": 557723,
+   "year": 2018,
+   "election_day": 141308,
+   "none": 138597
+  },
+  "wayback": "20221024175904",
+  "days_out": 16,
+  "ev_day": 7
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-23 22:12",
+  "through": "2022-10-23",
+  "total": 837628,
+  "cmp_year": 2018,
+  "cmp_total": 526133,
+  "race": {
+   "White": 462237,
+   "Black": 275086,
+   "Hispanic": 12751,
+   "Asian": 12722,
+   "Other": 74832
+  },
+  "gender": {
+   "Female": 455323,
+   "Male": 380931,
+   "Unknown": 1374
+  },
+  "age": {
+   "18-29": 46211,
+   "30-39": 56703,
+   "40-49": 88014,
+   "50-64": 270960,
+   "65+": 375611,
+   "Unknown": 129
+  },
+  "previous_general": {
+   "early": 557723,
+   "year": 2018,
+   "election_day": 141308,
+   "none": 138597
+  },
+  "wayback": "20221025040326",
+  "days_out": 16,
+  "ev_day": 7
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-25 06:54",
+  "through": "2022-10-24",
+  "total": 986597,
+  "cmp_year": 2018,
+  "cmp_total": 638367,
+  "race": {
+   "White": 551256,
+   "Black": 317056,
+   "Hispanic": 14971,
+   "Asian": 14998,
+   "Other": 88316
+  },
+  "gender": {
+   "Female": 537470,
+   "Male": 447482,
+   "Unknown": 1645
+  },
+  "age": {
+   "18-29": 54871,
+   "30-39": 67735,
+   "40-49": 104919,
+   "50-64": 318375,
+   "65+": 440516,
+   "Unknown": 181
+  },
+  "previous_general": {
+   "early": 649450,
+   "year": 2018,
+   "election_day": 171711,
+   "none": 165436
+  },
+  "wayback": "20221025223838",
+  "days_out": 15,
+  "ev_day": 8
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-25 06:54",
+  "through": "2022-10-24",
+  "total": 986597,
+  "cmp_year": 2018,
+  "cmp_total": 638367,
+  "race": {
+   "White": 551256,
+   "Black": 317056,
+   "Hispanic": 14971,
+   "Asian": 14998,
+   "Other": 88316
+  },
+  "gender": {
+   "Female": 537470,
+   "Male": 447482,
+   "Unknown": 1645
+  },
+  "age": {
+   "18-29": 54871,
+   "30-39": 67735,
+   "40-49": 104919,
+   "50-64": 318375,
+   "65+": 440516,
+   "Unknown": 181
+  },
+  "previous_general": {
+   "early": 649450,
+   "year": 2018,
+   "election_day": 171711,
+   "none": 165436
+  },
+  "wayback": "20221026003549",
+  "days_out": 15,
+  "ev_day": 8
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-26 06:55",
+  "through": "2022-10-25",
+  "total": 1123329,
+  "cmp_year": 2018,
+  "cmp_total": 743772,
+  "race": {
+   "White": 636241,
+   "Black": 352292,
+   "Hispanic": 17008,
+   "Asian": 17168,
+   "Other": 100620
+  },
+  "gender": {
+   "Female": 613538,
+   "Male": 507872,
+   "Unknown": 1919
+  },
+  "age": {
+   "18-29": 63045,
+   "30-39": 78441,
+   "40-49": 120425,
+   "50-64": 360966,
+   "65+": 500191,
+   "Unknown": 261
+  },
+  "previous_general": {
+   "early": 731987,
+   "year": 2018,
+   "election_day": 201557,
+   "none": 189785
+  },
+  "wayback": "20221026182337",
+  "days_out": 14,
+  "ev_day": 9
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-26 06:55",
+  "through": "2022-10-25",
+  "total": 1123329,
+  "cmp_year": 2018,
+  "cmp_total": 743772,
+  "race": {
+   "White": 636241,
+   "Black": 352292,
+   "Hispanic": 17008,
+   "Asian": 17168,
+   "Other": 100620
+  },
+  "gender": {
+   "Female": 613538,
+   "Male": 507872,
+   "Unknown": 1919
+  },
+  "age": {
+   "18-29": 63045,
+   "30-39": 78441,
+   "40-49": 120425,
+   "50-64": 360966,
+   "65+": 500191,
+   "Unknown": 261
+  },
+  "previous_general": {
+   "early": 731987,
+   "year": 2018,
+   "election_day": 201557,
+   "none": 189785
+  },
+  "wayback": "20221027011533",
+  "days_out": 14,
+  "ev_day": 9
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-27 06:54",
+  "through": "2022-10-26",
+  "total": 1255773,
+  "cmp_year": 2018,
+  "cmp_total": 849552,
+  "race": {
+   "White": 717992,
+   "Black": 386635,
+   "Hispanic": 19025,
+   "Asian": 19369,
+   "Other": 112752
+  },
+  "gender": {
+   "Female": 687357,
+   "Male": 566201,
+   "Unknown": 2215
+  },
+  "age": {
+   "18-29": 71658,
+   "30-39": 89711,
+   "40-49": 136766,
+   "50-64": 403358,
+   "65+": 553933,
+   "Unknown": 347
+  },
+  "previous_general": {
+   "early": 808852,
+   "year": 2018,
+   "election_day": 232035,
+   "none": 214886
+  },
+  "wayback": "20221027210410",
+  "days_out": 13,
+  "ev_day": 10
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-28 08:07",
+  "through": "2022-10-27",
+  "total": 1382923,
+  "cmp_year": 2018,
+  "cmp_total": 949277,
+  "race": {
+   "White": 795328,
+   "Black": 420276,
+   "Hispanic": 21085,
+   "Asian": 21630,
+   "Other": 124604
+  },
+  "gender": {
+   "Female": 759166,
+   "Male": 621263,
+   "Unknown": 2494
+  },
+  "age": {
+   "18-29": 80839,
+   "30-39": 101255,
+   "40-49": 153379,
+   "50-64": 444048,
+   "65+": 602975,
+   "Unknown": 427
+  },
+  "previous_general": {
+   "early": 879931,
+   "year": 2018,
+   "election_day": 262564,
+   "none": 240428
+  },
+  "wayback": "20221029000937",
+  "days_out": 12,
+  "ev_day": 11
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-29 08:16",
+  "through": "2022-10-28",
+  "total": 1533676,
+  "cmp_year": 2018,
+  "cmp_total": 1058015,
+  "race": {
+   "White": 886599,
+   "Black": 459488,
+   "Hispanic": 23892,
+   "Asian": 24514,
+   "Other": 139183
+  },
+  "gender": {
+   "Female": 843395,
+   "Male": 687436,
+   "Unknown": 2845
+  },
+  "age": {
+   "18-29": 95580,
+   "30-39": 117800,
+   "40-49": 177249,
+   "50-64": 495708,
+   "65+": 646800,
+   "Unknown": 539
+  },
+  "previous_general": {
+   "early": 959596,
+   "year": 2018,
+   "election_day": 300081,
+   "none": 273999
+  },
+  "wayback": "20221029204003",
+  "days_out": 11,
+  "ev_day": 12
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-29 08:16",
+  "through": "2022-10-28",
+  "total": 1533676,
+  "cmp_year": 2018,
+  "cmp_total": 1058015,
+  "race": {
+   "White": 886599,
+   "Black": 459488,
+   "Hispanic": 23892,
+   "Asian": 24514,
+   "Other": 139183
+  },
+  "gender": {
+   "Female": 843395,
+   "Male": 687436,
+   "Unknown": 2845
+  },
+  "age": {
+   "18-29": 95580,
+   "30-39": 117800,
+   "40-49": 177249,
+   "50-64": 495708,
+   "65+": 646800,
+   "Unknown": 539
+  },
+  "previous_general": {
+   "early": 959596,
+   "year": 2018,
+   "election_day": 300081,
+   "none": 273999
+  },
+  "wayback": "20221030033821",
+  "days_out": 11,
+  "ev_day": 12
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-10-31 07:27",
+  "through": "2022-10-30",
+  "total": 1660633,
+  "cmp_year": 2018,
+  "cmp_total": 1192688,
+  "race": {
+   "White": 952117,
+   "Black": 499846,
+   "Hispanic": 27234,
+   "Asian": 28528,
+   "Other": 152908
+  },
+  "gender": {
+   "Female": 915140,
+   "Male": 742179,
+   "Unknown": 3313
+  },
+  "age": {
+   "18-29": 113437,
+   "30-39": 133501,
+   "40-49": 199641,
+   "50-64": 542756,
+   "65+": 670580,
+   "Unknown": 718
+  },
+  "previous_general": {
+   "early": 1019370,
+   "year": 2018,
+   "election_day": 333286,
+   "none": 307977
+  },
+  "wayback": "20221031224717",
+  "days_out": 9,
+  "ev_day": 14
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-11-01 08:29",
+  "through": "2022-10-31",
+  "total": 1810427,
+  "cmp_year": 2018,
+  "cmp_total": 1351476,
+  "race": {
+   "White": 1042197,
+   "Black": 538857,
+   "Hispanic": 30092,
+   "Asian": 31443,
+   "Other": 167838
+  },
+  "gender": {
+   "Female": 996066,
+   "Male": 810678,
+   "Unknown": 3682
+  },
+  "age": {
+   "18-29": 127093,
+   "30-39": 150208,
+   "40-49": 222379,
+   "50-64": 592139,
+   "65+": 717750,
+   "Unknown": 858
+  },
+  "previous_general": {
+   "early": 1093026,
+   "year": 2018,
+   "election_day": 373893,
+   "none": 343508
+  },
+  "wayback": "20221101175357",
+  "days_out": 8,
+  "ev_day": 15
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-11-01 08:29",
+  "through": "2022-10-31",
+  "total": 1810427,
+  "cmp_year": 2018,
+  "cmp_total": 1351476,
+  "race": {
+   "White": 1042197,
+   "Black": 538857,
+   "Hispanic": 30092,
+   "Asian": 31443,
+   "Other": 167838
+  },
+  "gender": {
+   "Female": 996066,
+   "Male": 810678,
+   "Unknown": 3682
+  },
+  "age": {
+   "18-29": 127093,
+   "30-39": 150208,
+   "40-49": 222379,
+   "50-64": 592139,
+   "65+": 717750,
+   "Unknown": 858
+  },
+  "previous_general": {
+   "early": 1093026,
+   "year": 2018,
+   "election_day": 373893,
+   "none": 343508
+  },
+  "wayback": "20221102073814",
+  "days_out": 8,
+  "ev_day": 15
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-11-02 07:55",
+  "through": "2022-11-01",
+  "total": 1947275,
+  "cmp_year": 2018,
+  "cmp_total": 1510155,
+  "race": {
+   "White": 1125250,
+   "Black": 573425,
+   "Hispanic": 32804,
+   "Asian": 34358,
+   "Other": 181438
+  },
+  "gender": {
+   "Female": 1072700,
+   "Male": 870507,
+   "Unknown": 4066
+  },
+  "age": {
+   "18-29": 140465,
+   "30-39": 166456,
+   "40-49": 243743,
+   "50-64": 636133,
+   "65+": 759474,
+   "Unknown": 1004
+  },
+  "previous_general": {
+   "early": 1157049,
+   "year": 2018,
+   "election_day": 413714,
+   "none": 376512
+  },
+  "wayback": "20221102221213",
+  "days_out": 7,
+  "ev_day": 16
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-11-02 07:55",
+  "through": "2022-11-01",
+  "total": 1947275,
+  "cmp_year": 2018,
+  "cmp_total": 1510155,
+  "race": {
+   "White": 1125250,
+   "Black": 573425,
+   "Hispanic": 32804,
+   "Asian": 34358,
+   "Other": 181438
+  },
+  "gender": {
+   "Female": 1072700,
+   "Male": 870507,
+   "Unknown": 4066
+  },
+  "age": {
+   "18-29": 140465,
+   "30-39": 166456,
+   "40-49": 243743,
+   "50-64": 636133,
+   "65+": 759474,
+   "Unknown": 1004
+  },
+  "previous_general": {
+   "early": 1157049,
+   "year": 2018,
+   "election_day": 413714,
+   "none": 376512
+  },
+  "wayback": "20221103050247",
+  "days_out": 7,
+  "ev_day": 16
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-11-03 08:40",
+  "through": "2022-11-02",
+  "total": 2092284,
+  "cmp_year": 2018,
+  "cmp_total": 1667712,
+  "race": {
+   "White": 1210775,
+   "Black": 611393,
+   "Hispanic": 36112,
+   "Asian": 37599,
+   "Other": 196405
+  },
+  "gender": {
+   "Female": 1155523,
+   "Male": 932238,
+   "Unknown": 4521
+  },
+  "age": {
+   "18-29": 156784,
+   "30-39": 186742,
+   "40-49": 268581,
+   "50-64": 682154,
+   "65+": 796843,
+   "Unknown": 1180
+  },
+  "previous_general": {
+   "early": 1220168,
+   "year": 2018,
+   "election_day": 457756,
+   "none": 414360
+  },
+  "wayback": "20221103220742",
+  "days_out": 6,
+  "ev_day": 17
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-11-04 08:20",
+  "through": "2022-11-03",
+  "total": 2261178,
+  "cmp_year": 2018,
+  "cmp_total": 1834713,
+  "race": {
+   "White": 1307467,
+   "Black": 657516,
+   "Hispanic": 40405,
+   "Asian": 41468,
+   "Other": 214322
+  },
+  "gender": {
+   "Female": 1252284,
+   "Male": 1003765,
+   "Unknown": 5127
+  },
+  "age": {
+   "18-29": 178150,
+   "30-39": 212401,
+   "40-49": 299086,
+   "50-64": 734434,
+   "65+": 835654,
+   "Unknown": 1453
+  },
+  "previous_general": {
+   "early": 1288553,
+   "year": 2018,
+   "election_day": 510668,
+   "none": 461957
+  },
+  "wayback": "20221104192740",
+  "days_out": 5,
+  "ev_day": 18
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-11-06 09:10",
+  "through": "2022-11-05",
+  "total": 2507125,
+  "cmp_year": 2018,
+  "cmp_total": 2079972,
+  "race": {
+   "White": 1439969,
+   "Black": 732311,
+   "Hispanic": 47412,
+   "Asian": 47691,
+   "Other": 241865
+  },
+  "gender": {
+   "Female": 1394514,
+   "Male": 1108598,
+   "Unknown": 6133
+  },
+  "age": {
+   "18-29": 219075,
+   "30-39": 256023,
+   "40-49": 348302,
+   "50-64": 807216,
+   "65+": 876733,
+   "Unknown": 1899
+  },
+  "previous_general": {
+   "early": 1378553,
+   "year": 2018,
+   "election_day": 589986,
+   "none": 540709
+  },
+  "wayback": "20221106183951",
+  "days_out": 3,
+  "ev_day": 20
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-11-07 08:30",
+  "through": "2022-11-06",
+  "total": 2507191,
+  "cmp_year": 2018,
+  "cmp_total": 2079972,
+  "race": {
+   "White": 1440192,
+   "Black": 732417,
+   "Hispanic": 47422,
+   "Asian": 47708,
+   "Other": 241910
+  },
+  "gender": {
+   "Female": 1394769,
+   "Male": 1108742,
+   "Unknown": 6135
+  },
+  "age": {
+   "18-29": 219148,
+   "30-39": 256074,
+   "40-49": 348334,
+   "50-64": 807303,
+   "65+": 876890,
+   "Unknown": 1900
+  },
+  "previous_general": {
+   "early": 1378684,
+   "year": 2018,
+   "election_day": 590070,
+   "none": 540895
+  },
+  "wayback": "20221107171951",
+  "days_out": 2,
+  "ev_day": 21
+ },
+ {
+  "year": 2022,
+  "last_updated": "2022-11-08 08:39",
+  "through": "2022-11-07",
+  "total": 2524348,
+  "cmp_year": 2018,
+  "cmp_total": 2100512,
+  "race": {
+   "White": 1448108,
+   "Black": 736515,
+   "Hispanic": 47779,
+   "Asian": 48475,
+   "Other": 243471
+  },
+  "gender": {
+   "Female": 1403585,
+   "Male": 1114550,
+   "Unknown": 6210
+  },
+  "age": {
+   "18-29": 222663,
+   "30-39": 257845,
+   "40-49": 349832,
+   "50-64": 810133,
+   "65+": 881963,
+   "Unknown": 1912
+  },
+  "previous_general": {
+   "early": 1384379,
+   "year": 2018,
+   "election_day": 592849,
+   "none": 547120
+  },
+  "wayback": "20221108152231",
+  "days_out": 1,
+  "ev_day": 22
+ }
+]

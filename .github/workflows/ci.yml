@@ -1,0 +1,65 @@
+name: CI
+
+# ruff (lint and format check, configuration: ruff.toml) and the test suite (tests/, pytest.ini). The tests need only the
+# committed files - no data/raw, no data/cache, no network. Runs when code, tests or their configuration change.
+on:
+  push:
+    paths:
+      - "**.py"
+      - "ruff.toml"
+      - "pytest.ini"
+      - "requirements.txt"
+      - "data/static/**"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    paths:
+      - "**.py"
+      - "ruff.toml"
+      - "pytest.ini"
+      - "requirements.txt"
+      - "data/static/**"
+      - ".github/workflows/ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: Install ruff
+        run: pip install ruff==0.17.1
+
+      - name: ruff check
+        run: ruff check --output-format=github .
+
+      - name: ruff format
+        run: ruff format --check .
+
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt pytest==9.1.1
+
+      - name: pytest
+        run: pytest
