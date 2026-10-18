@@ -82,7 +82,7 @@ the district's 2024 presidential lean, incumbency and the national environment, 
 and a seat error, with multi-member districts, held-over senate seats and tie rules handled per chamber.
 
 **Diagnostics that do not feed the forecast.** Early and mail ballots by race, party or composition in North Carolina,
-Florida, Georgia and Pennsylvania; Texas early-vote turnout (off by default); voter registration in North Carolina and
+Florida, Georgia, Pennsylvania and Nevada's Clark County; Texas early-vote turnout (off by default); voter registration in North Carolina and
 Pennsylvania; same-pollster poll-to-poll changes. Details below.
 
 ## Validation
@@ -148,7 +148,7 @@ Other workflows:
 
 | workflow | what it does |
 |---|---|
-| `early-diag.yml` | daily early-vote composition diagnostics for North Carolina, Florida and Georgia; commits `data/early/` only |
+| `early-diag.yml` | daily early-vote composition diagnostics for North Carolina, Florida, Georgia and Clark County, Nevada; commits `data/early/` only |
 | `stateleg-geo.yml` | builds the district maps `web/data/stateleg_geo/` from Census TIGER/Line when the chamber list or the district leans change |
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
 | `cd-lean.yml` | manual: the congressional-district leans (`cd_lean_build.py`) on the 2026 maps or on the 2018 and 2022 maps |
@@ -229,6 +229,7 @@ Committed inputs (`data/static/`):
 | `race_move_fit.json` | a race's own late movement, pts² of margin a day (the total, its national part, the bootstrap sd) | 538 raw_polls (CC BY 4.0), Senate + governor generals 1998-2022; `python -c "from midterms import early_vote; early_vote.race_move_fit()"` |
 | `nc_tracker/` | North Carolina accepted mail / one-stop ballots of the 2018-2024 generals by days out, method, party, race, age and county, with each year's registered voters, the 2022 early voters' 2018 / 2020 participation, the party paces of 2008-2024 and each county's 2024 presidential margin | NC State Board of Elections absentee files, registration statistics, voter history and precinct results (public records); aggregates only, `python -m midterms.nc_tracker history --src DIR` |
 | `early_gate.json` | the backtest that keeps the early-vote party mix out of the forecast (North Carolina, 5 scoreable cycles) | the tables above and 538 raw_polls; `python -m midterms.nc_tracker gate` |
+| `nv_clark_baseline.csv` | Clark County, Nevada, mail ballots returned by registered party and day in the 2022 and 2024 generals, and 2024 in-person early voters by day (counts only) | Clark County Election Department return files (public records); `nv_clark_early.py` |
 | `tx_early_sources.json`, `tx_county_pres2024.csv` | sources for the Texas tracker; 2024 presidential votes by Texas county | Texas Secretary of State (public records); MIT Election Data and Science Lab 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), summed by county |
 
 `web/data/districts_2026.topo.json` (district shapes) is built by `district_shapes.py` from Census 2020 cartographic block

@@ -21,6 +21,11 @@ name: early vote diagnostics
 #                   gender, 2022 behaviour; 2022 at the same day of in-person voting from the Wayback Machine, fetched once into
 #                   data/static/ga_wayback_2022.json (gaps: dispatch with ga_wayback_fill). The official per-voter files
 #                   have no race or sit behind a browser check.
+#   Nevada          midterms/nv_clark_early.py: Clark County only (the Secretary of State's files turn away automated
+#                   requests; the county's are open): the nightly mail ballot return file and each day's in-person early
+#                   vote file, joined to the county's active voter list for party. The voter-level files stay in the
+#                   Actions cache (the voter list under its own key, saved only when the county rewrites it, weekly);
+#                   2022 / 2024 are reduced once to the counts in data/static/nv_clark_baseline.csv.
 # NCSBE refreshes the absentee file about 05:15 ET; Florida recompiles through the day. 01:50 UTC = 21:50 ET catches both.
 on:
   schedule:
@@ -100,8 +105,17 @@ jobs:
             data/raw/ncsbe
             data/raw/registration/nc
             data/raw/fl_stats
+            data/raw/nv_clark/mbreq2026.zip*
+            data/raw/nv_clark/ev_2026*
           key: early-raw-${{ github.run_id }}
           restore-keys: early-raw-
+
+      - name: Restore the Clark County voter list
+        uses: actions/cache/restore@v6
+        with:
+          path: data/raw/nv_clark/voters_active.zip*
+          key: nv-clark-voters-
+          restore-keys: nv-clark-voters-
 
       - name: North Carolina by race and ethnicity (diagnostic)
         timeout-minutes: 25
@@ -130,6 +144,11 @@ jobs:
           python -m midterms.fl_early || echo "::warning::Florida early-vote diagnostic failed (diagnostic only)"
           echo "Florida step took $(( $(date +%s) - start )) s"
 
+      - name: Clark County, Nevada by party (diagnostic)
+        timeout-minutes: 15
+        continue-on-error: true
+        run: python -m midterms.nv_clark_early || echo "::warning::Clark County early-vote diagnostic failed (diagnostic only)"
+
       # reassembles web/data/early_vote.json from committed files (North Carolina's tables pushed from the session, tonight's
       # Georgia and Florida readings): no download
       - name: Early-vote page data
@@ -152,7 +171,16 @@ jobs:
             data/raw/ncsbe
             data/raw/registration/nc
             data/raw/fl_stats
+            data/raw/nv_clark/mbreq2026.zip*
+            data/raw/nv_clark/ev_2026*
           key: early-raw-${{ github.run_id }}
+
+      - name: Save the Clark County voter list
+        if: ${{ always() && hashFiles('data/raw/nv_clark/voters_active.zip.http.json') != '' }}
+        uses: actions/cache/save@v6
+        with:
+          path: data/raw/nv_clark/voters_active.zip*
+          key: nv-clark-voters-${{ hashFiles('data/raw/nv_clark/voters_active.zip.http.json') }}
 
       # Snapshot the outputs, then on each attempt resync to the newest commit of the branch, restore the snapshot, commit and
       # push (no rebase, no merge of stale trees) - the same pattern as the daily forecast's commit step.
@@ -161,6 +189,7 @@ jobs:
           set -uo pipefail
           paths="data/early web/data/early_vote.json data/static/ga_wayback_2022.json"
           [ -e data/static/ga_wayback_2022.json ] || paths="data/early web/data/early_vote.json"
+          [ -e data/static/nv_clark_baseline.csv ] && paths="$paths data/static/nv_clark_baseline.csv"
           [ -e web/data/early_vote.json ] || paths="${paths/ web\/data\/early_vote.json/}"
           [ -d data/early ] || { echo "nothing written"; exit 0; }
           git config user.name "github-actions[bot]"

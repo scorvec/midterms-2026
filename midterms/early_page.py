@@ -6,11 +6,14 @@
       absentee files): turnout against 2022, metro Atlanta, the county mix, race / age / gender, new voters;
   fl  fl_early's latest reading (data/early/fl_early.json; Division of Elections statistics files): mail ballots returned by
       party against registration, against the ballots sent and against 2024 at the same days out; once in-person early
-      voting opens, its ballots by party the same way (and mail and early together on the same compile).
+      voting opens, its ballots by party the same way (and mail and early together on the same compile);
+  nv  nv_clark_early's latest reading (data/early/nv_clark_early.json; Clark County Election Department files): mail
+      ballots returned by party against registration and against 2022 / 2024 at the same days out, in-person early voters
+      by party (joined to the voter list) and against 2024's turnout on the same day.
 
 How banked ballots enter the forecast (early_vote.py's per-state factors) is read by the page from model.json itself.
 A state whose input is missing is left out; nothing here is needed by the forecast. It reads committed files only (no
-download), so it runs both in the cloud session after nc_tracker and in early-diag.yml after Georgia and Florida.
+download), so it runs both in the cloud session after nc_tracker and in early-diag.yml after Georgia, Florida and Nevada.
 
     python -m midterms.early_page
 """
@@ -82,6 +85,14 @@ def florida() -> dict | None:
     return out
 
 
+def nevada() -> dict | None:
+    v = _read(EARLY / "nv_clark_early.json")
+    if not v:
+        return None
+    keep = ("through", "days_out", "registration", "mail", "in_person", "combined", "source")
+    return {k: v[k] for k in keep if k in v}
+
+
 def _last_matched(f: dict, kind: str) -> dict | None:
     """The matched-days-out comparison with 2024 closest to Election Day for one kind of ballot."""
     m = [x for x in f.get("matched_2024") or [] if x.get("kind") == kind]
@@ -110,10 +121,11 @@ def build() -> dict:
         "nc": nc,
         "ga": georgia(),
         "fl": florida(),
+        "nv": nevada(),
     }
     OUT.write_text(json.dumps(res, separators=(",", ":")))
     print(f"early page: {OUT.relative_to(ROOT)} ({OUT.stat().st_size / 1e3:.0f} kB; " + ", ".join(
-        k for k in ("nc", "ga", "fl") if res[k]) + ")", flush=True)  # fmt: skip
+        k for k in ("nc", "ga", "fl", "nv") if res[k]) + ")", flush=True)  # fmt: skip
     return res
 
 
