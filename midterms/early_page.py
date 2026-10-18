@@ -5,7 +5,8 @@
   ga  ga_early's latest reading (data/early/ga_early.json; compiled by georgiavotes.com from the Secretary of State's
       absentee files): turnout against 2022, metro Atlanta, the county mix, race / age / gender, new voters;
   fl  fl_early's latest reading (data/early/fl_early.json; Division of Elections statistics files): mail ballots returned by
-      party against registration, against the ballots sent and against 2024 at the same days out.
+      party against registration, against the ballots sent and against 2024 at the same days out; once in-person early
+      voting opens, its ballots by party the same way (and mail and early together on the same compile).
 
 How banked ballots enter the forecast (early_vote.py's per-state factors) is read by the page from model.json itself.
 A state whose input is missing is left out; nothing here is needed by the forecast. It reads committed files only (no
@@ -59,17 +60,41 @@ def florida() -> dict | None:
         "vs_requests_pts": v.get("vs_requests_pts"),
         "finals": f.get("finals"),
     }
-    m = [x for x in f.get("matched_2024") or [] if x.get("kind") == "VbmVoted"]
-    if m:
-        b = max(m, key=lambda x: -x["days_out"])  # the matched day closest to Election Day
-        out["vs_2024"] = {
-            "days_out": b["days_out"],
-            "R_minus_D_2024": b["2024"]["R_minus_D_pct"],
-            "R_minus_D_2026": b["2026"]["R_minus_D_pct"],
-            "vs_registration_change_pts": b.get("vs_registration_change_pts"),
-            "returned_change_pct": b.get("returned_change_pct"),
+    if b := _last_matched(f, "VbmVoted"):
+        out["vs_2024"] = b
+    e = f["latest"].get("EarlyVoted")
+    if e:
+        out["early"] = {
+            "compiled": e["compiled"],
+            "days_out": e["days_out"],
+            "voted": {k: e[k] for k in ("DEM", "REP", "NPA", "OTH", "total")},
+            "R_minus_D_pct": e["R_minus_D_pct"],
+            "vs_registration_pts": e.get("vs_registration_pts"),
         }
+        if e["days_out"] == v["days_out"]:  # the same compile day: mail and early together
+            both = {k: e[k] + v[k] for k in ("REP", "DEM", "total")}
+            out["early"]["with_mail"] = {
+                "total": both["total"],
+                "R_minus_D_pct": round(100 * (both["REP"] - both["DEM"]) / both["total"], 2),
+            }
+        if b := _last_matched(f, "EarlyVoted"):
+            out["early"]["vs_2024"] = b
     return out
+
+
+def _last_matched(f: dict, kind: str) -> dict | None:
+    """The matched-days-out comparison with 2024 closest to Election Day for one kind of ballot."""
+    m = [x for x in f.get("matched_2024") or [] if x.get("kind") == kind]
+    if not m:
+        return None
+    b = min(m, key=lambda x: x["days_out"])
+    return {
+        "days_out": b["days_out"],
+        "R_minus_D_2024": b["2024"]["R_minus_D_pct"],
+        "R_minus_D_2026": b["2026"]["R_minus_D_pct"],
+        "vs_registration_change_pts": b.get("vs_registration_change_pts"),
+        "returned_change_pct": b.get("returned_change_pct"),
+    }
 
 
 def build() -> dict:
