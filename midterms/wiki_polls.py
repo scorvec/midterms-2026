@@ -200,7 +200,10 @@ def _parse_date(s, year):
 
 
 def _num(s):
-    m = re.search(r"(\d+(?:\.\d+)?)\s*%?", re.sub(r"\[.*?\]", "", str(s)))
+    """The first number in a table cell: a share ("45%", "45.5") or a sample size, whose thousands separators go first
+    ("2,000 (LV)" is 2000, not 2)."""
+    t = re.sub(r"(?<=\d),(?=\d{3}(?!\d))", "", re.sub(r"\[.*?\]", "", str(s)))
+    m = re.search(r"(\d+(?:\.\d+)?)\s*%?", t)
     return float(m.group(1)) if m else np.nan
 
 

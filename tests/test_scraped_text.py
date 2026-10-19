@@ -93,3 +93,9 @@ def test_pages_escape_with_one_esc():
         html = page.read_text(encoding="utf-8")
         if "innerHTML" in html or "insertAdjacentHTML" in html:
             assert html.count("const esc=") == 1 and ESC in html, f"{page.name}: the shared esc() definition"
+
+
+def test_wikipedia_numbers_keep_their_thousands():
+    assert W._num("2,000 (LV)") == 2000 and W._num("1,021 (RV)") == 1021 and W._num("12,345") == 12345
+    assert W._num("45%") == 45 and W._num("45.5%") == 45.5 and W._num("677 (LV)") == 677
+    assert W._num("48%[a]") == 48 and W._num("–") != W._num("–")  # footnotes dropped; no number is NaN

@@ -1041,7 +1041,7 @@ def collapse_versions(p: pd.DataFrame, race_col="seat") -> pd.DataFrame:
                 gap = abs((p.at[i, "end_date"] - p.at[j, "end_date"]).days)
                 same_n = (
                     "n" in p and pd.notna(p.at[i, "n"]) and p.at[i, "n"] >= 100 and p.at[i, "n"] == p.at[j, "n"]
-                )  # a real sample size (RCV rows carry n = 1)
+                )  # a real sample size, not a missing or implausible one
                 if gap > (SAME_POLL_SAME_N_DAYS if same_n else SAME_POLL_LISTED_TWICE_DAYS):
                     continue
                 same_name = base[i] == base[j] and base[i] != ""
