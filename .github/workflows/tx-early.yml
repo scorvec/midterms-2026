@@ -1,0 +1,92 @@
+name: Texas early vote
+
+# Texas early-vote turnout (midterms/tx_early.py), diagnostic only: nothing here feeds the forecast. The Secretary of State
+# posts each early-voting day's county file (registered voters, in-person and mail votes) the next morning, so this runs
+# late morning Central and again in the afternoon for counties that report late, during early voting and the two weeks
+# after Election Day (tx_early.snapshot is a no-op outside them). It commits data/early/tx_early.json and rebuilds
+# web/data/early_vote.json (midterms/early_page.py, from committed data only), which the site sync publishes. The
+# repository variable TX_EARLY switches it: nothing is requested unless it is "on". One conditional request per county
+# file per day; the per-voter rosters behind the same portal are never requested. Its own job, so the other states'
+# sources (early-diag.yml) are not asked again in the day, in early-diag's concurrency group, so the two never write the
+# page data at once.
+on:
+  schedule:
+    - cron: "20 16 * * *"   # 11:20 CDT
+    - cron: "20 19 * * *"   # 14:20 CDT
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: early-diag
+  cancel-in-progress: false
+
+jobs:
+  texas:
+    if: ${{ vars.TX_EARLY == 'on' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONUNBUFFERED: "1"
+      TZ: America/Chicago
+      TX_EARLY: ${{ vars.TX_EARLY }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore the Texas county files
+        uses: actions/cache/restore@v6
+        with:
+          path: data/raw/tx_stats
+          key: tx-raw-${{ github.run_id }}
+          restore-keys: tx-raw-
+
+      - name: Texas early vote
+        timeout-minutes: 10
+        run: python -m midterms.tx_early
+
+      - name: Early-vote page data
+        timeout-minutes: 5
+        run: python -m midterms.early_page
+
+      - name: Save the Texas county files
+        if: ${{ always() && hashFiles('data/raw/tx_stats/*.json') != '' }}
+        uses: actions/cache/save@v6
+        with:
+          path: data/raw/tx_stats
+          key: tx-raw-${{ github.run_id }}
+
+      # Snapshot the outputs, then on each attempt resync to the newest commit of the branch, restore the snapshot, commit and
+      # push (no rebase, no merge of stale trees) - the same pattern as early-diag.yml.
+      - name: Commit
+        run: |
+          set -uo pipefail
+          paths="data/early/tx_early.json web/data/early_vote.json"
+          [ -e data/early/tx_early.json ] || { echo "no Texas file yet"; exit 0; }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          SNAP=$(mktemp -d)
+          git add -A -- $paths
+          git diff --staged --name-only -z | tar cf "$SNAP/outs.tar" --null -T -
+          git reset -q
+          for i in 1 2 3 4 5; do
+            if ! timeout 120 git fetch -q origin "$GITHUB_REF_NAME"; then echo "fetch $i failed"; sleep 5; continue; fi
+            git reset -q --hard "origin/$GITHUB_REF_NAME"
+            tar xf "$SNAP/outs.tar"
+            git add -A -- $paths
+            if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "Texas early vote $(date +%F)"
+            if timeout 180 git push -q origin "HEAD:$GITHUB_REF_NAME"; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push $i rejected; resyncing and retrying"; sleep $((i * 5))
+          done
+          echo "::error::push failed after 5 attempts"; exit 1

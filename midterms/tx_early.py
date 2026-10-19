@@ -27,11 +27,13 @@ the same weekday and the same number of days before Election Day in both years. 
 12 days before through the day before Election Day, but only after the SOS publishes its implementation report (due by
 Aug 1, 2027); the SOS calendar for Nov 3, 2026 keeps Oct 19-30.
 
-Off by default: nothing runs or fetches unless TX_EARLY=on (repository variable TX_EARLY in daily.yml). The 2022
-comparison is planned as the final 2022 early vote by county (see the TODO in _final_2022); the day-by-day 2022 portal
-blocks automated access.
+Switched by the repository variable TX_EARLY: nothing runs or fetches unless it is "on". tx-early.yml runs it when the
+Secretary of State has posted the day before's county file (late morning Central) and again in the afternoon, commits
+data/early/tx_early.json and rebuilds the early-vote page's data (early_page.py). The 2022 comparison is planned as the
+final 2022 early vote by county (see the TODO in _final_2022); the day-by-day 2022 portal blocks automated access, so
+until then the page shows 2026 alone.
 
-    TX_EARLY=on python -m midterms.tx_early            # daily: snapshot (from Oct 19) + summary -> web/data/tx_early.json
+    TX_EARLY=on python -m midterms.tx_early            # snapshot (from Oct 19) + summary -> data/early/tx_early.json
     TX_EARLY=on python -m midterms.tx_early baseline   # one-time, GitHub Actions only (needs a workflow; none is installed)
 """
 
@@ -55,7 +57,7 @@ STATIC = ROOT / "data" / "static"
 BASE_2022 = STATIC / "tx_early_2022.csv"
 PRES_2024 = STATIC / "tx_county_pres2024.csv"
 SOURCES = STATIC / "tx_early_sources.json"
-OUT = ROOT / "web" / "data" / "tx_early.json"
+OUT = ROOT / "data" / "early" / "tx_early.json"
 
 CIVIX = "https://goelect.txelections.civixapps.com/api-ivis-system/api/v1/getFile"
 CIVIX_UI = "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr"
@@ -179,17 +181,21 @@ def snapshot(today: dt.date | None = None) -> list[Path]:
         {dt.datetime.strptime(x["date"], "%m/%d/%Y").date() for x in el.get("early_voting_dates") or []}
     ) or list(pd.date_range(CAL[2026]["first"], CAL[2026]["last"]).date)
     for d in [d for d in dates if d <= today]:
+        dest = RAW / f"latest_{d:%Y%m%d}.download"
         try:
             raw, changed = F.get(
                 _civix_url(type="EVR_EARLYVOTING", electionId=el["id"], electionDate=_mdy(d)),
-                RAW / f"latest_{d:%Y%m%d}.download",
+                dest,
                 min_age_h=20,
                 timeout=60,
             )
             j = _decode(raw)
         except Exception:
-            continue  # not posted yet (empty body / S3 key error): next run
+            j = None  # not posted yet (empty body / S3 key error)
         if not j or not j.get("turnout_by_county"):
+            # a response saying "not yet" is not kept, or min_age would stop the next run asking again
+            for f in (dest, dest.with_name(dest.name + ".http.json")):
+                f.unlink(missing_ok=True)
             continue
         p = RAW / f"ev{d:%Y%m%d}_got{today:%Y%m%d}.json"
         if changed or not list(RAW.glob(f"ev{d:%Y%m%d}_got*.json")):

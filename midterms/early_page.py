@@ -10,10 +10,12 @@
   nv  nv_clark_early's latest reading (data/early/nv_clark_early.json; Clark County Election Department files): mail
       ballots returned by party against registration and against 2022 / 2024 at the same days out, in-person early voters
       by party (joined to the voter list) and against 2024's turnout on the same day; both by congressional district.
+  tx  tx_early's latest reading (data/early/tx_early.json; the Secretary of State's county early-voting files): turnout
+      only (Texas has no party registration), statewide and for fixed county groups, as a share of registered voters.
 
 How banked ballots enter the forecast (early_vote.py's per-state factors) is read by the page from model.json itself.
 A state whose input is missing is left out; nothing here is needed by the forecast. It reads committed files only (no
-download); early-diag.yml runs it after the North Carolina, Georgia, Florida and Nevada steps.
+download); early-diag.yml runs it after the North Carolina, Georgia, Florida and Nevada steps, tx-early.yml after Texas.
 
     python -m midterms.early_page
 """
@@ -93,6 +95,14 @@ def nevada() -> dict | None:
     return {k: v[k] for k in keep if k in v}
 
 
+def texas() -> dict | None:
+    v = _read(EARLY / "tx_early.json")
+    if not v or not v.get("latest_ev_day"):
+        return None  # before the first county file
+    keep = ("asof", "latest_ev_day", "baseline_2022", "election", "groups", "days", "counties", "sources", "notes")
+    return {k: v[k] for k in keep if k in v}
+
+
 def _last_matched(f: dict, kind: str) -> dict | None:
     """The matched-days-out comparison with 2024 closest to Election Day for one kind of ballot."""
     m = [x for x in f.get("matched_2024") or [] if x.get("kind") == kind]
@@ -122,10 +132,11 @@ def build() -> dict:
         "ga": georgia(),
         "fl": florida(),
         "nv": nevada(),
+        "tx": texas(),
     }
     OUT.write_text(json.dumps(res, separators=(",", ":")))
     print(f"early page: {OUT.relative_to(ROOT)} ({OUT.stat().st_size / 1e3:.0f} kB; " + ", ".join(
-        k for k in ("nc", "ga", "fl", "nv") if res[k]) + ")", flush=True)  # fmt: skip
+        k for k in ("nc", "ga", "fl", "nv", "tx") if res[k]) + ")", flush=True)  # fmt: skip
     return res
 
 
