@@ -71,8 +71,7 @@ jobs:
       - name: Commit
         run: |
           set -uo pipefail
-          paths="data/early/tx_early.json web/data/early_vote.json"
-          [ -e data/early/tx_early.json ] || { echo "no Texas file yet"; exit 0; }
+          paths="data/early web/data/early_vote.json"   # tx_early.json may also be removed (no finished day)
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           SNAP=$(mktemp -d)

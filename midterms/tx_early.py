@@ -60,6 +60,7 @@ SOURCES = STATIC / "tx_early_sources.json"
 OUT = ROOT / "data" / "early" / "tx_early.json"
 
 CIVIX = "https://goelect.txelections.civixapps.com/api-ivis-system/api/v1/getFile"
+MIN_AGE_H = 3  # hours before a day's county file is asked for again (tx-early.yml runs twice a day)
 CIVIX_UI = "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr"
 LEGACY = "https://earlyvoting.texas-election.com/Elections"
 
@@ -155,8 +156,10 @@ def find_2026(index: dict) -> dict | None:
 
 
 def snapshot(today: dt.date | None = None) -> list[Path]:
-    """One conditional request per file per day (fetch.get, min_age 20 h): the election index and the county file of every
-    early-voting date up to today. Quiet no-op before early voting starts or while a file is not up."""
+    """Conditional requests (fetch.get): the election index once a day, and the county file of every early-voting date
+    before today at most every MIN_AGE_H hours, so counties' late updates arrive the same day. Today's file is not asked
+    for: it is posted while the day's voting goes on (on day 1 it held the mail ballots alone). Quiet no-op before early
+    voting starts or while a file is not up."""
     from . import fetch as F
 
     if os.environ.get("TX_EARLY", "off") != "on":
@@ -180,13 +183,13 @@ def snapshot(today: dt.date | None = None) -> list[Path]:
     dates = sorted(
         {dt.datetime.strptime(x["date"], "%m/%d/%Y").date() for x in el.get("early_voting_dates") or []}
     ) or list(pd.date_range(CAL[2026]["first"], CAL[2026]["last"]).date)
-    for d in [d for d in dates if d <= today]:
+    for d in [d for d in dates if d < today]:
         dest = RAW / f"latest_{d:%Y%m%d}.download"
         try:
             raw, changed = F.get(
                 _civix_url(type="EVR_EARLYVOTING", electionId=el["id"], electionDate=_mdy(d)),
                 dest,
-                min_age_h=20,
+                min_age_h=MIN_AGE_H,
                 timeout=60,
             )
             j = _decode(raw)
@@ -219,6 +222,8 @@ def series_2026() -> pd.DataFrame:
     rows = []
     for day, p in sorted(latest.items()):
         d = dt.datetime.strptime(day, "%Y%m%d").date()
+        if p.stem.split("got")[1] <= day:
+            continue  # retrieved on its own day: an unfinished day's file
         rows.extend(
             {
                 "date": d,
@@ -284,7 +289,8 @@ def summary() -> dict | None:
     else:  # the 2026 side still runs; the 2022 fields stay null
         B = pd.DataFrame(columns=["ev_day", "county", "registered", "in_person_cum", "mail_cum", "total_cum"])
     if not len(C) and not len(B):
-        print("  TX: nothing to summarise yet (no 2026 file, no 2022 baseline)")
+        print("  TX: nothing to summarise yet (no finished 2026 day, no 2022 baseline)")
+        OUT.unlink(missing_ok=True)  # an earlier, unfinished reading does not stay on the page
         return None
     pres = _pres_margins()
     groups = {"statewide": ("Statewide", None), **GROUPS}
