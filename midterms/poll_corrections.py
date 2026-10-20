@@ -16,6 +16,8 @@ hand-entered and feed rows join, before versions collapse):
                     may be empty (= every poll of that race)
 National polls: office "generic" or "approval" with seat "US" (generic.merged applies them after the feeds are merged and
 before the hand-entered national polls join; drop / end_date / hold, pollster = the canonical name).
+Office and seat "*" match every race and national series: a pollster that has admitted fabricating its numbers is dropped
+everywhere with one row (action drop, end_date empty).
 Every applied row is printed, so the run log shows what changed.
 """
 
@@ -35,7 +37,7 @@ def _rows(office, seat):
     if not F.exists():
         return pd.DataFrame()
     d = pd.read_csv(F, dtype=str, keep_default_na=False)
-    return d[(d.office == office) & (d.seat == seat)]
+    return d[d.office.isin((office, "*")) & d.seat.isin((seat, "*"))]
 
 
 def apply(polls: pd.DataFrame, seat, office) -> pd.DataFrame:
