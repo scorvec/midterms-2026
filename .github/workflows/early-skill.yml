@@ -1,0 +1,78 @@
+name: early-vote skill test
+
+# Dispatch-only: the pre-registered test of whether the early vote's party mix (against the last cycle of the same kind) has
+# predicted the final polls' misses (midterms/early_skill.py). Reads the daily run's cached fixed inputs (538 raw_polls and
+# poll archives, MIT presidential results; bootstrap fills anything missing), fetches what is not cached (data.pa.gov mail
+# returns counted server-side, 538's presidential poll archive from the Internet Archive, MIT's Senate results from the Harvard
+# Dataverse, the Internet Archive's list of Florida statistics-file captures) and commits data/static/early_skill.json and the
+# aggregate inputs in data/static/early_skill/. Nothing here feeds the forecast.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: early-skill
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore the daily run's data cache (read only)
+        uses: actions/cache/restore@v6
+        with:
+          path: |
+            data/raw
+            data/cache
+          key: midterms-data-${{ github.run_id }}
+          restore-keys: midterms-data-
+
+      - name: Fixed public inputs (only what is missing)
+        run: python -m midterms.bootstrap
+
+      - name: Fetch the test's own inputs
+        run: python -m midterms.early_skill fetch
+
+      - name: Run the test
+        run: python -m midterms.early_skill
+
+      # Snapshot the outputs, then on each attempt resync to the newest commit of the branch, restore the snapshot, commit and
+      # push (no rebase, no merge of stale trees) - the pattern of the daily forecast's commit step.
+      - name: Commit the result
+        run: |
+          set -uo pipefail
+          paths="data/static/early_skill.json data/static/early_skill"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          SNAP=$(mktemp -d)
+          git add -A -- $paths
+          git diff --staged --name-only -z | tar cf "$SNAP/outs.tar" --null -T -
+          git reset -q
+          for i in 1 2 3 4 5; do
+            if ! timeout 120 git fetch -q origin "$GITHUB_REF_NAME"; then echo "fetch $i failed"; sleep 5; continue; fi
+            git reset -q --hard "origin/$GITHUB_REF_NAME"
+            tar xf "$SNAP/outs.tar"
+            git add -A -- $paths
+            if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "Early-vote skill test $(date +%F)"
+            if timeout 180 git push -q origin "HEAD:$GITHUB_REF_NAME"; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push $i rejected; resyncing and retrying"; sleep $((i * 5))
+          done
+          echo "::error::push failed after 5 attempts"; exit 1

@@ -150,6 +150,7 @@ Other workflows:
 | workflow | what it does |
 |---|---|
 | `early-diag.yml` | daily early-vote composition diagnostics for North Carolina, Florida, Georgia and Clark County, Nevada; commits `data/early/` only |
+| `early-skill.yml` | manual: the pre-registered test of whether the early vote's party mix has predicted the polls' misses (`early_skill.py`); commits `data/static/early_skill.json` and `data/static/early_skill/` |
 | `stateleg-geo.yml` | builds the district maps `web/data/stateleg_geo/` from Census TIGER/Line when the chamber list or the district leans change |
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
 | `cd-lean.yml` | manual: the congressional-district leans (`cd_lean_build.py`) on the 2026 maps or on the 2018 and 2022 maps |
@@ -231,6 +232,7 @@ Committed inputs (`data/static/`):
 | `nc_tracker/` | North Carolina accepted mail / one-stop ballots of the 2018-2024 generals by days out, method, party, race, age and county, with each year's registered voters, the 2022 early voters' 2018 / 2020 participation, the party paces of 2008-2024 and each county's 2024 presidential margin | NC State Board of Elections absentee files, registration statistics, voter history and precinct results (public records); aggregates only, `python -m midterms.nc_tracker history --src DIR` |
 | `poll_spread_hist.json` | the herding check's benchmark: for each Senate / governor race of 1998-2022 with >= 4 pollsters in the last 21 days, how far its polls spread against sampling error | 538 raw_polls (CC BY 4.0); `python -m midterms.poll_spread --hist` |
 | `early_gate.json` | the backtest that keeps the early-vote party mix out of the forecast (North Carolina, 5 scoreable cycles) | the tables above and 538 raw_polls; `python -m midterms.nc_tracker gate` |
+| `early_skill.json`, `early_skill/` | the multi-state test of the same question, pre-registered in `early_skill.py` (North Carolina, Pennsylvania, Clark County; the change from the last cycle of the same kind against the final poll average's miss), with its aggregate inputs: Pennsylvania mail returns by party and days out 2020-2024, the Internet Archive's Florida captures, the source versions | data.pa.gov (PA Department of State, public records, counted server-side); the North Carolina and Clark County tables above; 538 raw_polls and poll archives (CC BY 4.0); MIT Election Data and Science Lab President and Senate 1976-2024 (CC0); `early-skill.yml` |
 | `nv_clark_baseline.csv` | Clark County, Nevada, mail ballots returned by registered party and day in the 2022 and 2024 generals, and 2024 in-person early voters by day (counts only) | Clark County Election Department return files (public records); `nv_clark_early.py` |
 | `tx_early_sources.json`, `tx_county_pres2024.csv` | sources for the Texas tracker; 2024 presidential votes by Texas county | Texas Secretary of State (public records); MIT Election Data and Science Lab 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), summed by county |
 
