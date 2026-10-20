@@ -2,8 +2,11 @@
 
 What this does - and what it does not. An early ballot is not counted, so it says nothing about the level (who is ahead): the
 polls already include people who have voted, and composition-based readings of early ballots are diagnostic only
-(pa_early / fl_early). What a banked ballot does change is its exposure to opinion movement between now and
-Election Day: a shock on day t can only move the ballots cast after t.
+(pa_early / fl_early). Tested, and kept out (early_skill.py, 2026-10-20): the change in the early vote's D - R mix from the
+last cycle of the same kind did not predict the final poll average's miss - 7 state-cycles (NC 2012-2024, PA 2024), at 15 days
+out slope -0.06 pts per pt (90 % -0.71..+0.10), p 0.65, leave-one-cycle-out RMSE 6.5 against 2.7 for the polls as published;
+at 7 days out p 0.88, RMSE 2.4 against 2.7 and 2.3 for the polls plus their mean miss. What a banked ballot does change is
+its exposure to opinion movement between now and Election Day: a shock on day t can only move the ballots cast after t.
 
 Model. Let the national opinion follow a random walk with daily variance q, and F_s(tau) be the share of state s's final vote
 cast by tau days before the election. A shock on day tau reaches a fraction 1 - F_s(tau) of the state's ballots, so the

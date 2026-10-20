@@ -49,6 +49,18 @@ Coverage (official sources, free; every request in GitHub Actions; aggregates on
       the 2022 / 2024 public dashboards show no composition (ga_early).
 Not used: UF Election Lab tables (CC BY-NC-ND 4.0: no derived numbers may be published), modelled party scores, third-party
 compilations.
+
+RESULT (first run, 2026-10-20; data/static/early_skill.json): no skill. Florida could not enter: the Internet Archive holds the
+2020 statistics files through October 2020, but 2024's only at 32, 27 and 8 days out and 2022's after the election, so no pair
+matches at 15 or 7 days. Seven four-year units (NC 2012, 2014, 2016, 2020, 2022, 2024; PA 2024):
+  15 days  b -0.055 pts of miss per pt of mix change (90 % -0.71..+0.10), r -0.21, p 0.65, Holm 1.00; leave one cycle out
+           RMSE 6.53 against 2.74 (polls as published) and 2.33 (plus the mean miss) - the 2024 units' large Republican shifts
+           (NC -17, PA -22, the end of 2020's pandemic mail) sit far outside the fitting range.
+   7 days  b -0.016 (90 % -0.59..+0.08), r -0.07, p 0.88, Holm 1.00; RMSE 2.44 against 2.74 / 2.33.
+Beside it: the two-year comparison (10 units, + Clark County 2024) p 0.71 / 0.34, its RMSE above the polls' at both leads;
+North Carolina net of the rolls p 0.36 / 0.58. The mix does move with the change in the actual margin (two-year comparison,
+7 days: r 0.74, p 0.02, n 9; uncorrected for the readings beside the test): the information is real, but the polls already
+carry it.
 """
 
 from __future__ import annotations
