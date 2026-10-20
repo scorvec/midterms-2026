@@ -1,0 +1,138 @@
+{
+ "query": {
+  "url": "electionfiles.floridados.gov/countyballotreportfiles/",
+  "matchType": "prefix",
+  "from": "2016",
+  "to": "2023",
+  "filter": "statuscode:200",
+  "output": "json",
+  "collapse": "digest"
+ },
+ "files": {
+  "CodeDefinitions_EarlyVoting.pdf": [
+   "20201101"
+  ],
+  "FileLayoutSpecifications_EarlyVoting.pdf": [
+   "20201101"
+  ],
+  "Stats_10866_AbsProvided.txt": [
+   "20201017",
+   "20201018",
+   "20201019",
+   "20201020",
+   "20201021",
+   "20201023",
+   "20201024",
+   "20201026",
+   "20201027",
+   "20201029",
+   "20201030",
+   "20201101",
+   "20201102",
+   "20201103",
+   "20201110",
+   "20201115",
+   "20201117",
+   "20201123"
+  ],
+  "Stats_10866_AbsVoted.txt": [
+   "20201017",
+   "20201018",
+   "20201019",
+   "20201020",
+   "20201021",
+   "20201023",
+   "20201024",
+   "20201026",
+   "20201027",
+   "20201028",
+   "20201029",
+   "20201030",
+   "20201101",
+   "20201102",
+   "20201103",
+   "20201110",
+   "20201115",
+   "20201118",
+   "20201123"
+  ],
+  "Stats_10866_EarlyVoted.txt": [
+   "20201020",
+   "20201021",
+   "20201024",
+   "20201026",
+   "20201027",
+   "20201028",
+   "20201029",
+   "20201030",
+   "20201101",
+   "20201102",
+   "20201103"
+  ],
+  "Stats_26905_EarlyVoted.txt": [
+   "20220814"
+  ],
+  "Stats_26905_VbmProvided.txt": [
+   "20220814"
+  ],
+  "Stats_26905_VbmVoted.txt": [
+   "20220814"
+  ],
+  "Stats_26906_VbmProvided.txt": [
+   "20221128"
+  ],
+  "Stats_26906_VbmVoted.txt": [
+   "20221128"
+  ],
+  "Stats_37889_VbmProvided.txt": [
+   "20210917"
+  ],
+  "Stats_37889_VbmVoted.txt": [
+   "20210917"
+  ],
+  "Stats_37890_VbmProvided.txt": [
+   "20211207"
+  ],
+  "Stats_37890_VbmVoted.txt": [
+   "20211207"
+  ],
+  "Stats_40923_VbmProvided.txt": [
+   "20220126",
+   "20220704"
+  ],
+  "Stats_40923_VbmVoted.txt": [
+   "20220126",
+   "20220704"
+  ],
+  "Stats_44918_VbmProvided.txt": [
+   "20230326"
+  ],
+  "Stats_44918_VbmVoted.txt": [
+   "20230326"
+  ],
+  "Stats_44919_VbmProvided.txt": [
+   "20230326"
+  ],
+  "Stats_44919_VbmVoted.txt": [
+   "20230326"
+  ],
+  "Stats_46892_VbmProvided.txt": [
+   "20231128"
+  ],
+  "Stats_46892_VbmVoted.txt": [
+   "20231128"
+  ],
+  "Stats_46893_VbmProvided.txt": [
+   "20231128"
+  ],
+  "Stats_46893_VbmVoted.txt": [
+   "20231128"
+  ],
+  "Stats_46894_VbmProvided.txt": [
+   "20231128"
+  ],
+  "Stats_46894_VbmVoted.txt": [
+   "20231128"
+  ]
+ }
+}

@@ -1,0 +1,614 @@
+{
+ "question": "does the change in the early vote's party mix from the last cycle of the same kind predict the final poll average's miss? (pre-registered: midterms/early_skill.py)",
+ "built": "2026-10-20",
+ "outcome": "mean over the state's President / Senate / Governor D v R races of actual minus the mean poll of the last 21 days, D - R points of the total vote",
+ "predictor": "change from the comparison cycle in 100 x (D - R) / early ballots banked by L days out",
+ "skill": false,
+ "primary": {
+  "15": {
+   "n": 7,
+   "a": -2.3179,
+   "b": -0.0549,
+   "se": 0.1138,
+   "p": 0.6498,
+   "r": -0.2109,
+   "b_ci90_units": [
+    -0.711,
+    0.098
+   ],
+   "b_ci90_cycles": [
+    -0.838,
+    0.095
+   ],
+   "cv": {
+    "n_scored": 7,
+    "rmse_poll_only": 2.735,
+    "rmse_intercept": 2.332,
+    "rmse_with_predictor": 6.527
+   },
+   "states": [
+    "NC",
+    "PA"
+   ],
+   "cycles": [
+    2012,
+    2014,
+    2016,
+    2020,
+    2022,
+    2024
+   ],
+   "vs_actual_change": {
+    "n": 6,
+    "b": 0.182,
+    "r": 0.22,
+    "p": 0.6756
+   },
+   "p_holm": 1.0,
+   "sign": "opposite",
+   "skill": false
+  },
+  "7": {
+   "n": 7,
+   "a": -1.9629,
+   "b": -0.016,
+   "se": 0.0991,
+   "p": 0.8782,
+   "r": -0.072,
+   "b_ci90_units": [
+    -0.592,
+    0.078
+   ],
+   "b_ci90_cycles": [
+    -1.011,
+    0.089
+   ],
+   "cv": {
+    "n_scored": 7,
+    "rmse_poll_only": 2.735,
+    "rmse_intercept": 2.332,
+    "rmse_with_predictor": 2.439
+   },
+   "states": [
+    "NC",
+    "PA"
+   ],
+   "cycles": [
+    2012,
+    2014,
+    2016,
+    2020,
+    2022,
+    2024
+   ],
+   "vs_actual_change": {
+    "n": 6,
+    "b": 0.387,
+    "r": 0.569,
+    "p": 0.2389
+   },
+   "p_holm": 1.0,
+   "sign": "opposite",
+   "skill": false
+  }
+ },
+ "two_year_comparison": {
+  "15": {
+   "n": 10,
+   "a": -1.3387,
+   "b": -0.0227,
+   "se": 0.0588,
+   "p": 0.7101,
+   "r": -0.135,
+   "b_ci90_units": [
+    -0.101,
+    0.079
+   ],
+   "b_ci90_cycles": [
+    -0.103,
+    0.072
+   ],
+   "cv": {
+    "n_scored": 10,
+    "rmse_poll_only": 2.779,
+    "rmse_intercept": 2.924,
+    "rmse_with_predictor": 3.237
+   },
+   "states": [
+    "NC",
+    "NV",
+    "PA"
+   ],
+   "cycles": [
+    2010,
+    2012,
+    2014,
+    2016,
+    2020,
+    2022,
+    2024
+   ],
+   "vs_actual_change": {
+    "n": 9,
+    "b": 0.228,
+    "r": 0.429,
+    "p": 0.2497
+   },
+   "p_holm": 0.7101,
+   "sign": "opposite",
+   "skill": false
+  },
+  "7": {
+   "n": 10,
+   "a": -0.7413,
+   "b": 0.0853,
+   "se": 0.0846,
+   "p": 0.343,
+   "r": 0.3357,
+   "b_ci90_units": [
+    -0.039,
+    0.319
+   ],
+   "b_ci90_cycles": [
+    -0.07,
+    0.374
+   ],
+   "cv": {
+    "n_scored": 10,
+    "rmse_poll_only": 2.779,
+    "rmse_intercept": 2.924,
+    "rmse_with_predictor": 2.93
+   },
+   "states": [
+    "NC",
+    "NV",
+    "PA"
+   ],
+   "cycles": [
+    2010,
+    2012,
+    2014,
+    2016,
+    2020,
+    2022,
+    2024
+   ],
+   "vs_actual_change": {
+    "n": 9,
+    "b": 0.576,
+    "r": 0.735,
+    "p": 0.0241
+   },
+   "p_holm": 0.6859,
+   "sign": "usual",
+   "skill": false
+  }
+ },
+ "nc_net_of_rolls": {
+  "15": {
+   "n": 6,
+   "a": -2.2844,
+   "b": -0.1754,
+   "se": 0.169,
+   "p": 0.3579,
+   "r": -0.4606,
+   "b_ci90_units": [
+    -0.571,
+    0.08
+   ],
+   "b_ci90_cycles": [
+    -0.571,
+    0.08
+   ],
+   "cv": {
+    "n_scored": 6,
+    "rmse_poll_only": 2.788,
+    "rmse_intercept": 2.585,
+    "rmse_with_predictor": 3.076
+   },
+   "states": [
+    "NC"
+   ],
+   "cycles": [
+    2012,
+    2014,
+    2016,
+    2020,
+    2022,
+    2024
+   ],
+   "vs_actual_change": {
+    "n": 5,
+    "b": 0.138,
+    "r": 0.115,
+    "p": 0.8534
+   },
+   "p_holm": 0.7159,
+   "sign": "opposite",
+   "skill": false
+  },
+  "7": {
+   "n": 6,
+   "a": -1.8346,
+   "b": -0.1045,
+   "se": 0.1752,
+   "p": 0.5829,
+   "r": -0.2858,
+   "b_ci90_units": [
+    -0.708,
+    0.091
+   ],
+   "b_ci90_cycles": [
+    -0.708,
+    0.091
+   ],
+   "cv": {
+    "n_scored": 6,
+    "rmse_poll_only": 2.788,
+    "rmse_intercept": 2.585,
+    "rmse_with_predictor": 3.555
+   },
+   "states": [
+    "NC"
+   ],
+   "cycles": [
+    2012,
+    2014,
+    2016,
+    2020,
+    2022,
+    2024
+   ],
+   "vs_actual_change": {
+    "n": 5,
+    "b": 0.76,
+    "r": 0.698,
+    "p": 0.1897
+   },
+   "p_holm": 0.7159,
+   "sign": "opposite",
+   "skill": false
+  }
+ },
+ "sources": {
+  "pa_datasets": {
+   "2020": "mcba-yywm",
+   "2022": "uhfm-zhus",
+   "2024": "3q5t-ddp8"
+  },
+  "pres_archive_capture": "20250306062818 md5 5fccb01d0c03fc508d15f2637972d016",
+  "mit_senate": "doi:10.7910/DVN/PEJ5QU file 13887039"
+ },
+ "units_four_year": [
+  {
+   "state": "NC",
+   "year": 2012,
+   "compare": 2008,
+   "races": "Gov-G,Pres-G",
+   "n_polls": 21,
+   "poll": -7.54,
+   "actual": -6.72,
+   "miss": 0.82,
+   "actual_change": -10.79,
+   "lean_15": 21.16,
+   "lean_15_compare": 29.1,
+   "pred_15": -7.94,
+   "pred_net_15": -6.44,
+   "lean_7": 17.11,
+   "lean_7_compare": 25.34,
+   "pred_7": -8.23,
+   "pred_net_7": -6.73
+  },
+  {
+   "state": "NC",
+   "year": 2014,
+   "compare": 2010,
+   "races": "Sen-G",
+   "n_polls": 21,
+   "poll": 0.52,
+   "actual": -1.56,
+   "miss": -2.09,
+   "actual_change": 10.21,
+   "lean_15": -0.81,
+   "lean_15_compare": 4.35,
+   "pred_15": -5.17,
+   "pred_net_15": -3.49,
+   "lean_7": 16.6,
+   "lean_7_compare": 7.0,
+   "pred_7": 9.6,
+   "pred_net_7": 11.28
+  },
+  {
+   "state": "NC",
+   "year": 2016,
+   "compare": 2012,
+   "races": "Gov-G,Pres-G,Sen-G",
+   "n_polls": 62,
+   "poll": 1.33,
+   "actual": -3.04,
+   "miss": -4.38,
+   "actual_change": 3.68,
+   "lean_15": 19.66,
+   "lean_15_compare": 21.16,
+   "pred_15": -1.5,
+   "pred_net_15": 1.46,
+   "lean_7": 11.58,
+   "lean_7_compare": 17.11,
+   "pred_7": -5.53,
+   "pred_net_7": -2.57
+  },
+  {
+   "state": "NC",
+   "year": 2020,
+   "compare": 2016,
+   "races": "Gov-G,Pres-G,Sen-G",
+   "n_polls": 97,
+   "poll": 5.02,
+   "actual": 0.47,
+   "miss": -4.55,
+   "actual_change": 3.51,
+   "lean_15": 18.66,
+   "lean_15_compare": 19.66,
+   "pred_15": -1.0,
+   "pred_net_15": 3.02,
+   "lean_7": 8.19,
+   "lean_7_compare": 11.58,
+   "pred_7": -3.39,
+   "pred_net_7": 0.64
+  },
+  {
+   "state": "NC",
+   "year": 2022,
+   "compare": 2018,
+   "races": "Sen-G",
+   "n_polls": 10,
+   "poll": -3.92,
+   "actual": -3.23,
+   "miss": 0.69,
+   "actual_change": null,
+   "lean_15": 10.21,
+   "lean_15_compare": 13.45,
+   "pred_15": -3.23,
+   "pred_net_15": 1.17,
+   "lean_7": 7.47,
+   "lean_7_compare": 12.69,
+   "pred_7": -5.22,
+   "pred_net_7": -0.82
+  },
+  {
+   "state": "NC",
+   "year": 2024,
+   "compare": 2020,
+   "races": "Gov-G,Pres-G",
+   "n_polls": 54,
+   "poll": 6.9,
+   "actual": 5.79,
+   "miss": -1.11,
+   "actual_change": 5.32,
+   "lean_15": 1.38,
+   "lean_15_compare": 18.66,
+   "pred_15": -17.28,
+   "pred_net_15": -13.32,
+   "lean_7": -1.27,
+   "lean_7_compare": 8.19,
+   "pred_7": -9.47,
+   "pred_net_7": -5.51
+  },
+  {
+   "state": "PA",
+   "year": 2024,
+   "compare": 2020,
+   "races": "Pres-G,Sen-G",
+   "n_polls": 80,
+   "poll": 1.42,
+   "actual": -0.96,
+   "miss": -2.39,
+   "actual_change": -2.12,
+   "lean_15": 32.76,
+   "lean_15_compare": 55.22,
+   "pred_15": -22.45,
+   "pred_net_15": null,
+   "lean_7": 24.27,
+   "lean_7_compare": 47.73,
+   "pred_7": -23.46,
+   "pred_net_7": null
+  }
+ ],
+ "units_two_year": [
+  {
+   "state": "NC",
+   "year": 2010,
+   "compare": 2008,
+   "races": "Sen-G",
+   "n_polls": 5,
+   "poll": -11.8,
+   "actual": -11.77,
+   "miss": 0.03,
+   "actual_change": -15.84,
+   "lean_15": 4.35,
+   "lean_15_compare": 29.1,
+   "pred_15": -24.75,
+   "pred_net_15": -24.01,
+   "lean_7": 7.0,
+   "lean_7_compare": 25.34,
+   "pred_7": -18.34,
+   "pred_net_7": -17.61
+  },
+  {
+   "state": "NC",
+   "year": 2012,
+   "compare": 2010,
+   "races": "Gov-G,Pres-G",
+   "n_polls": 21,
+   "poll": -7.54,
+   "actual": -6.72,
+   "miss": 0.82,
+   "actual_change": 5.05,
+   "lean_15": 21.16,
+   "lean_15_compare": 4.35,
+   "pred_15": 16.81,
+   "pred_net_15": 17.58,
+   "lean_7": 17.11,
+   "lean_7_compare": 7.0,
+   "pred_7": 10.11,
+   "pred_net_7": 10.88
+  },
+  {
+   "state": "NC",
+   "year": 2014,
+   "compare": 2012,
+   "races": "Sen-G",
+   "n_polls": 21,
+   "poll": 0.52,
+   "actual": -1.56,
+   "miss": -2.09,
+   "actual_change": 5.16,
+   "lean_15": -0.81,
+   "lean_15_compare": 21.16,
+   "pred_15": -21.98,
+   "pred_net_15": -21.06,
+   "lean_7": 16.6,
+   "lean_7_compare": 17.11,
+   "pred_7": -0.51,
+   "pred_net_7": 0.4
+  },
+  {
+   "state": "NC",
+   "year": 2016,
+   "compare": 2014,
+   "races": "Gov-G,Pres-G,Sen-G",
+   "n_polls": 62,
+   "poll": 1.33,
+   "actual": -3.04,
+   "miss": -4.38,
+   "actual_change": -1.48,
+   "lean_15": 19.66,
+   "lean_15_compare": -0.81,
+   "pred_15": 20.47,
+   "pred_net_15": 22.52,
+   "lean_7": 11.58,
+   "lean_7_compare": 16.6,
+   "pred_7": -5.02,
+   "pred_net_7": -2.98
+  },
+  {
+   "state": "NC",
+   "year": 2020,
+   "compare": 2018,
+   "races": "Gov-G,Pres-G,Sen-G",
+   "n_polls": 97,
+   "poll": 5.02,
+   "actual": 0.47,
+   "miss": -4.55,
+   "actual_change": null,
+   "lean_15": 18.66,
+   "lean_15_compare": 13.45,
+   "pred_15": 5.21,
+   "pred_net_15": 8.03,
+   "lean_7": 8.19,
+   "lean_7_compare": 12.69,
+   "pred_7": -4.5,
+   "pred_net_7": -1.68
+  },
+  {
+   "state": "NC",
+   "year": 2022,
+   "compare": 2020,
+   "races": "Sen-G",
+   "n_polls": 10,
+   "poll": -3.92,
+   "actual": -3.23,
+   "miss": 0.69,
+   "actual_change": -3.7,
+   "lean_15": 10.21,
+   "lean_15_compare": 18.66,
+   "pred_15": -8.44,
+   "pred_net_15": -6.86,
+   "lean_7": 7.47,
+   "lean_7_compare": 8.19,
+   "pred_7": -0.72,
+   "pred_net_7": 0.86
+  },
+  {
+   "state": "NC",
+   "year": 2024,
+   "compare": 2022,
+   "races": "Gov-G,Pres-G",
+   "n_polls": 54,
+   "poll": 6.9,
+   "actual": 5.79,
+   "miss": -1.11,
+   "actual_change": 9.02,
+   "lean_15": 1.38,
+   "lean_15_compare": 10.21,
+   "pred_15": -8.84,
+   "pred_net_15": -6.46,
+   "lean_7": -1.27,
+   "lean_7_compare": 7.47,
+   "pred_7": -8.74,
+   "pred_net_7": -6.37
+  },
+  {
+   "state": "NV",
+   "year": 2024,
+   "compare": 2022,
+   "races": "Pres-G,Sen-G",
+   "n_polls": 41,
+   "poll": 2.43,
+   "actual": -0.73,
+   "miss": -3.16,
+   "actual_change": -0.36,
+   "lean_15": 18.24,
+   "lean_15_compare": 23.14,
+   "pred_15": -4.9,
+   "pred_net_15": null,
+   "lean_7": 17.96,
+   "lean_7_compare": 23.86,
+   "pred_7": -5.9,
+   "pred_net_7": null
+  },
+  {
+   "state": "PA",
+   "year": 2022,
+   "compare": 2020,
+   "races": "Gov-G,Sen-G",
+   "n_polls": 47,
+   "poll": 5.99,
+   "actual": 9.84,
+   "miss": 3.86,
+   "actual_change": 8.68,
+   "lean_15": 53.82,
+   "lean_15_compare": 55.22,
+   "pred_15": -1.39,
+   "pred_net_15": null,
+   "lean_7": 50.46,
+   "lean_7_compare": 47.73,
+   "pred_7": 2.73,
+   "pred_net_7": null
+  },
+  {
+   "state": "PA",
+   "year": 2024,
+   "compare": 2022,
+   "races": "Pres-G,Sen-G",
+   "n_polls": 80,
+   "poll": 1.42,
+   "actual": -0.96,
+   "miss": -2.39,
+   "actual_change": -10.8,
+   "lean_15": 32.76,
+   "lean_15_compare": 53.82,
+   "pred_15": -21.06,
+   "pred_net_15": null,
+   "lean_7": 24.27,
+   "lean_7_compare": 50.46,
+   "pred_7": -26.19,
+   "pred_net_7": null
+  }
+ ],
+ "not_covered": {
+  "GA": "SOS files behind a bot check; the voter list with primary history is sold; the 2022 / 2024 dashboards show no composition",
+  "FL": "statistics files exist for the current election only; see data/static/early_skill/fl_captures.json",
+  "NV": "Clark County mail only, 2022 and 2024: no four-year pair"
+ }
+}
