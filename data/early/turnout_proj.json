@@ -1,0 +1,192 @@
+{
+ "generated": "2026-10-20T22:03Z",
+ "election_day": "2026-11-03",
+ "reference": {
+  "chosen": "A",
+  "rms_log": {
+   "A": 0.186,
+   "B": 0.6307,
+   "C": 0.5676
+  },
+  "n": 4,
+  "leads": [
+   15,
+   7
+  ]
+ },
+ "level": 0.8,
+ "min_midterms": 3,
+ "states": [
+  {
+   "state": "NC",
+   "label": "North Carolina",
+   "through": "2026-10-19",
+   "days_out": 15,
+   "banked": 733296,
+   "same_point_2022": 532240,
+   "vs_2022_same_point_pct": 37.8,
+   "total_2022": 3773924,
+   "share_of_2022_total_pct": 19.4,
+   "projection": {
+    "n_midterm": 1,
+    "midterm_errors_pct": {
+     "2022": -12.3
+    },
+    "presidential_errors_pct": {
+     "2012": 26.7,
+     "2016": -5.2,
+     "2020": 146.3,
+     "2024": -28.2
+    },
+    "reason": "1 comparable past midterm at this point: too few to test a projection"
+   },
+   "onestop_opened_days_out": {
+    "2008": 19,
+    "2010": 19,
+    "2012": 19,
+    "2014": 12,
+    "2016": 19,
+    "2018": 20,
+    "2020": 19,
+    "2022": 19,
+    "2024": 19,
+    "2026": 19
+   }
+  },
+  {
+   "state": "PA",
+   "label": "Pennsylvania",
+   "through": "2026-10-19",
+   "days_out": 15,
+   "banked": 636081,
+   "same_point_2022": 629770,
+   "vs_2022_same_point_pct": 1.0,
+   "total_2022": 5368021,
+   "share_of_2022_total_pct": 11.8,
+   "projection": {
+    "n_midterm": 0,
+    "midterm_errors_pct": {},
+    "presidential_errors_pct": {
+     "2024": 0.4
+    },
+    "reason": "0 comparable past midterms at this point: too few to test a projection"
+   }
+  },
+  {
+   "state": "GA",
+   "through": "2026-10-18",
+   "days_out": 16,
+   "banked": 862780,
+   "same_point_2022": 844276,
+   "vs_2022_same_point_pct": 2.2,
+   "total_2022": 3935924,
+   "share_of_2022_total_pct": 21.9,
+   "label": "Georgia"
+  },
+  {
+   "state": "FL",
+   "through": "2026-10-19",
+   "days_out": 14,
+   "banked": 1002234,
+   "same_point_2022": null,
+   "vs_2022_same_point_pct": null,
+   "total_2022": 7758014,
+   "note": "mail and in-person early ballots on their latest compiles; no 2022 file at this point",
+   "share_of_2022_total_pct": 12.9,
+   "label": "Florida"
+  },
+  {
+   "state": "NV",
+   "through": "2026-10-19",
+   "days_out": 15,
+   "banked": 97805,
+   "mail": 61077,
+   "in_person": 36728,
+   "mail_2022_same_point": 40352,
+   "mail_vs_2022_same_point_pct": 51.4,
+   "total_2022": null,
+   "note": "Clark County only; mail is the only part with a 2022 file at the same point",
+   "label": "Clark County, NV"
+  },
+  {
+   "state": "TX",
+   "through": "2026-10-19",
+   "days_out": 15,
+   "banked": 540073,
+   "pct_registered": 2.84,
+   "same_point_2022": null,
+   "total_2022": 7751761,
+   "note": "counties as reported to the Secretary of State; no 2022 file at this point yet",
+   "share_of_2022_total_pct": 7.0,
+   "label": "Texas"
+  }
+ ],
+ "national": null,
+ "pa_2026": {
+  "through": "2026-10-19",
+  "lead": 15,
+  "days_out": {
+   "15": 101352,
+   "16": 7378,
+   "17": 7480,
+   "18": 62720,
+   "19": 65004,
+   "20": 42591,
+   "21": 71862,
+   "22": 8481,
+   "23": 423,
+   "24": 3388,
+   "25": 35401,
+   "26": 39365,
+   "27": 24835,
+   "28": 19829,
+   "29": 39156,
+   "30": 261,
+   "31": 3423,
+   "32": 24477,
+   "33": 14784,
+   "34": 6987,
+   "35": 12155,
+   "36": 14248,
+   "37": 149,
+   "38": 3091,
+   "39": 6331,
+   "40": 6982,
+   "41": 6329,
+   "42": 4138,
+   "43": 873,
+   "44": 308,
+   "45": 202,
+   "46": 356,
+   "47": 471,
+   "48": 508,
+   "49": 361,
+   "50": 263,
+   "53": 33,
+   "54": 5,
+   "55": 3,
+   "56": 15,
+   "60": 1,
+   "61": 3,
+   "62": 18,
+   "63": 2,
+   "64": 5,
+   "69": 4,
+   "76": 1,
+   "77": 5,
+   "78": 3,
+   "82": 1,
+   "85": 1,
+   "90": 2,
+   "98": 1,
+   "104": 5,
+   "109": 1,
+   "112": 1,
+   "116": 2,
+   "118": 3,
+   "120": 2,
+   "138": 1,
+   "139": 1
+  }
+ }
+}
