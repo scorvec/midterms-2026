@@ -78,12 +78,14 @@ METHOD_FILES = [
     "early_vote.py",
     "names.py",
     "rcv.py",
+    "poll_corrections.py",
 ]
 METHOD_DATA = [
     "data/static/national_mood_fit.json",
     "data/static/rcv_rates.json",
-]  # fitted inputs whose change is a methodology change too: the
-# national-mood fit is deterministic from this table + national_mood.py
+    "data/manual/poll_corrections.csv",
+]  # inputs whose change is a methodology change too: the national-mood fit is deterministic from this table +
+# national_mood.py; the corrections decide which polls every past date sees (a dropped pollster leaves the history too)
 
 
 # ------------------------------------------------------------------------------------------------ release dates
@@ -547,7 +549,7 @@ def build(ds, rebuild=False):
 
 
 def ensure_current():
-    """Daily run: rebuild every date when the methodology (METHOD_FILES) changed since the stored backfill; otherwise leave
+    """Daily run: rebuild every date when the methodology (METHOD_FILES, METHOD_DATA) changed since the stored backfill; otherwise leave
     it alone - race_history appends the day's as-issued point after the backfill's last date."""
     mf = OUT / "meta.json"
     meta = json.loads(mf.read_text()) if mf.exists() else {}
