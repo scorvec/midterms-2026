@@ -176,11 +176,11 @@ jobs:
         continue-on-error: true
         run: python -m midterms.nv_clark_early || echo "::warning::Clark County early-vote diagnostic failed (diagnostic only)"
 
-      - name: Turnout inputs (FEC totals, Census CVAP; once)
-        if: ${{ hashFiles('data/static/turnout_totals.csv') == '' || inputs.turnout_inputs }}
+      - name: Turnout inputs (vote totals, Census CVAP; only what is missing)
+        if: ${{ hashFiles('data/static/turnout_totals.csv') == '' || hashFiles('data/static/cvap.csv') == '' || inputs.turnout_inputs }}
         timeout-minutes: 15
         continue-on-error: true
-        run: python -m midterms.turnout_proj fetch || echo "::warning::turnout inputs fetch failed (the turnout table waits for them)"
+        run: python -m midterms.turnout_proj fetch ${{ inputs.turnout_inputs && '--force' || '' }} || echo "::warning::turnout inputs fetch failed (the turnout table waits for them)"
 
       - name: Turnout so far (metric)
         timeout-minutes: 5

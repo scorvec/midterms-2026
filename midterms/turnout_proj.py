@@ -1,6 +1,6 @@
 """How many votes will 2026 have? A projection of each state's total from the ballots already banked, with a backtested range.
 
-    python -m midterms.turnout_proj fetch       # GitHub Actions only (early-diag.yml, once): vote totals, Census CVAP
+    python -m midterms.turnout_proj fetch       # GitHub Actions only (early-diag.yml): the missing fixed inputs (--force: all)
     python -m midterms.turnout_proj             # -> data/early/turnout_proj.json (one small data.pa.gov count)
     python -m midterms.turnout_proj --no-fetch  # the same, reusing the Pennsylvania count already in that file
 
@@ -165,15 +165,22 @@ def fetch_totals() -> pd.DataFrame:
     return d
 
 
+def _census(y: int, q: dict) -> list[list[str]]:
+    """One ACS 1-year query, its header row dropped; anything but the API's JSON table is an error that shows the reply."""
+    url = f"{CENSUS.format(y=y)}?{urllib.parse.urlencode(q, safe=':,')}"
+    b = F.open_url(url, timeout=120)
+    try:
+        return json.loads(b)[1:]
+    except ValueError:
+        raise RuntimeError(f"Census API {url}: {b[:300]!r}") from None
+
+
 def fetch_cvap() -> pd.DataFrame:
     rows = []
     for y in (2022, 2024):
-        base = CENSUS.format(y=y)
-        q = {"get": "NAME,B29001_001E", "for": "state:" + ",".join(FIPS.values())}
-        body = json.loads(F.open_url(f"{base}?{urllib.parse.urlencode(q)}", timeout=120))[1:]
+        body = _census(y, {"get": "NAME,B29001_001E", "for": "state:" + ",".join(FIPS.values())})
         rows.extend({"geo": next(k for k, v in FIPS.items() if v == r[2]), "year": y, "cvap": int(r[1])} for r in body)
-        q = {"get": "NAME,B29001_001E", "for": f"county:{CLARK[1]}", "in": f"state:{CLARK[0]}"}
-        body = json.loads(F.open_url(f"{base}?{urllib.parse.urlencode(q)}", timeout=120))[1:]
+        body = _census(y, {"get": "NAME,B29001_001E", "for": f"county:{CLARK[1]}", "in": f"state:{CLARK[0]}"})
         rows.append({"geo": "NV-Clark", "year": y, "cvap": int(body[0][1])})
     d = pd.DataFrame(rows)
     d.to_csv(CVAP, index=False)
@@ -181,9 +188,12 @@ def fetch_cvap() -> pd.DataFrame:
     return d
 
 
-def fetch() -> None:
-    fetch_totals()
-    fetch_cvap()
+def fetch(force: bool = False) -> None:
+    """The fixed inputs that are missing (all of them with force)."""
+    if force or not TOTALS.exists():
+        fetch_totals()
+    if force or not CVAP.exists():
+        fetch_cvap()
     F.report()
 
 
@@ -493,6 +503,6 @@ def build(refresh_pa: bool = True) -> dict:
 
 if __name__ == "__main__":
     if sys.argv[1:2] == ["fetch"]:
-        fetch()
+        fetch(force="--force" in sys.argv)
     else:
         build(refresh_pa="--no-fetch" not in sys.argv)
