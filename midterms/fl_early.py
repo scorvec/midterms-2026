@@ -144,6 +144,9 @@ def snapshots() -> pd.DataFrame:
     ed = S["year"].map(lambda y: pd.Timestamp(ELECTIONS[y][1]))
     S["days_out"] = (ed - S["day"]).dt.days
     S = S[S["days_out"] >= 0].copy()  # pre-Election-Day compiles only (finals kept separately)
+    # a compile with no ballots carries nothing (the morning of the first early-voting day the EarlyVoted file is all
+    # zeros: compiled before the polls opened), and its 0/0 margin would make the output unwritable
+    S = S[S["total"] > 0].copy()
     S["R_minus_D_pct"] = (100 * (S.REP - S.DEM) / S.total).round(2)
     return S.reset_index(drop=True)
 
