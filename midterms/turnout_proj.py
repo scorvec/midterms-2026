@@ -50,6 +50,12 @@ North Carolina's opening day is read from the in-person ballots where the tracke
 the daily totals alone put 2020's at 29 days out, a pandemic mail surge, against 19 in the in-person ballots.
 A data correction found on the same dry run: the FEC tables' Senate column adds Georgia's runoffs and both of its 2020 races
 (18.8 million "votes"), so the Senate vote is MIT's general-election race total instead (the larger race where two were held).
+
+RESULT (first run, 2026-10-20, early-diag.yml): reference A chosen (RMS log error 0.186 against 0.631 for B and 0.568 for C,
+4 scored targets: North Carolina 2022 and 2024 at 15 and 7 days out). No state publishes a projection. North Carolina has one
+comparable midterm (2022 against 2018: -12 % at 15 days out, -2 % at 7, +2 % at 3); its presidential targets ran +27 % (2012),
+-5 % (2016), +146 % (2020, pandemic mail) and -28 % (2024) at 15 days. Pennsylvania's mail records start in 2020: no midterm
+target (2024 against 2020, +0.4 %). The CVAP shares wait for a CENSUS_API_KEY secret (the API refuses keyless requests).
 """
 
 from __future__ import annotations
