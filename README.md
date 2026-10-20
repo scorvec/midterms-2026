@@ -149,7 +149,7 @@ Other workflows:
 
 | workflow | what it does |
 |---|---|
-| `early-diag.yml` | daily early-vote composition diagnostics for North Carolina, Florida, Georgia and Clark County, Nevada; commits `data/early/` only |
+| `early-diag.yml` | daily early-vote composition diagnostics for North Carolina, Florida, Georgia and Clark County, Nevada, and the turnout table (`turnout_proj.py`); commits `data/early/` (and once, the turnout table's fixed inputs) |
 | `early-skill.yml` | manual: the pre-registered test of whether the early vote's party mix has predicted the polls' misses (`early_skill.py`); commits `data/static/early_skill.json` and `data/static/early_skill/` |
 | `stateleg-geo.yml` | builds the district maps `web/data/stateleg_geo/` from Census TIGER/Line when the chamber list or the district leans change |
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
@@ -234,6 +234,7 @@ Committed inputs (`data/static/`):
 | `early_gate.json` | the backtest that keeps the early-vote party mix out of the forecast (North Carolina, 5 scoreable cycles) | the tables above and 538 raw_polls; `python -m midterms.nc_tracker gate` |
 | `early_skill.json`, `early_skill/` | the multi-state test of the same question, pre-registered in `early_skill.py` (North Carolina, Pennsylvania, Clark County; the change from the last cycle of the same kind against the final poll average's miss), with its aggregate inputs: Pennsylvania mail returns by party and days out 2020-2024, the Internet Archive's Florida captures, the source versions | data.pa.gov (PA Department of State, public records, counted server-side); the North Carolina and Clark County tables above; 538 raw_polls and poll archives (CC BY 4.0); MIT Election Data and Science Lab President and Senate 1976-2024 (CC0); `early-skill.yml` |
 | `nv_clark_baseline.csv` | Clark County, Nevada, mail ballots returned by registered party and day in the 2022 and 2024 generals, and 2024 in-person early voters by day (counts only) | Clark County Election Department return files (public records); `nv_clark_early.py` |
+| `turnout_totals.csv`, `cvap.csv` | each tracked state's votes for President, U.S. Senate and U.S. House 2008-2024 (the largest is the year's total); the citizen voting-age population in 2022 and 2024 (states, Clark County) | FEC *Federal Elections* tables (public domain; 2024 from MIT's presidential returns, CC0, if the FEC's are not out); Census ACS 1-year B29001 (public domain); `python -m midterms.turnout_proj fetch` |
 | `tx_early_sources.json`, `tx_county_pres2024.csv` | sources for the Texas tracker; 2024 presidential votes by Texas county | Texas Secretary of State (public records); MIT Election Data and Science Lab 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), summed by county |
 
 `web/data/districts_2026.topo.json` (district shapes) is built by `district_shapes.py` from Census 2020 cartographic block
@@ -769,6 +770,15 @@ exurbs, the Rio Grande Valley and border, the swing suburbs Tarrant and Fort Ben
 Texas has no party registration, so this is turnout, not vote choice. The 2022 comparison is not built: the SOS's 2022
 day-by-day portal and its results site answered GitHub Actions with a Cloudflare browser challenge, which is not evaded.
 The planned end point, the final 2022 early vote by county, is described in `tx_early._final_2022`.
+
+**Turnout so far** (`turnout_proj.py`, `early-diag.yml` and `tx-early.yml`; a metric, not a forecast input): each tracked
+state's ballots so far against 2022 at the same days out, as shares of 2022's total (the FEC's Senate / House / President
+totals) and of the citizen voting-age population (Census ACS), and a projected total - ballots so far divided by the
+share the last comparable midterm had banked by the same point - only where at least three comparable past midterms give
+it a backtested 80 % range. Pre-registered in the module, with one dated amendment: cycles are compared only if their
+in-person early voting opened within a day of each other. On the first run no state qualifies (North Carolina's 2014 and
+2018 calendars leave one comparable midterm; Pennsylvania's mail records start in 2020), so the page shows the counts and
+says why. Output `data/early/turnout_proj.json`, in `web/data/early_vote.json` as `turnout`.
 
 ### Poll spread (herding check)
 

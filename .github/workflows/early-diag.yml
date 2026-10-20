@@ -27,6 +27,11 @@ name: early vote diagnostics
 #                   vote file, joined to the county's active voter list for party. The voter-level files stay in the
 #                   Actions cache (the voter list under its own key, saved only when the county rewrites it, weekly);
 #                   2022 / 2024 are reduced once to the counts in data/static/nv_clark_baseline.csv.
+#   Turnout         midterms/turnout_proj.py: every state's ballots so far against 2022 at the same point, as shares of
+#                   2022's total and of the citizen voting-age population, and a projected total only where a backtest
+#                   allows one (data/early/turnout_proj.json). One server-side count of Pennsylvania's 2026 mail returns on
+#                   data.pa.gov a run; its fixed inputs (the FEC's 2008-2024 vote totals, the Census Bureau's CVAP) are
+#                   fetched once into data/static/turnout_totals.csv and data/static/cvap.csv.
 # NCSBE refreshes the absentee file about 05:15 ET; Florida recompiles through the day. 01:50 UTC = 21:50 ET catches both.
 on:
   schedule:
@@ -45,6 +50,10 @@ on:
         description: "Only these states this run (nc, ga, fl, nv, comma-separated; empty = all): a daytime refresh of one state without asking the others' sources again"
         type: string
         default: ""
+      turnout_inputs:
+        description: "Fetch the turnout table's fixed inputs again (FEC vote totals 2008-2024, Census CVAP)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -167,6 +176,17 @@ jobs:
         continue-on-error: true
         run: python -m midterms.nv_clark_early || echo "::warning::Clark County early-vote diagnostic failed (diagnostic only)"
 
+      - name: Turnout inputs (FEC totals, Census CVAP; once)
+        if: ${{ hashFiles('data/static/turnout_totals.csv') == '' || inputs.turnout_inputs }}
+        timeout-minutes: 15
+        continue-on-error: true
+        run: python -m midterms.turnout_proj fetch || echo "::warning::turnout inputs fetch failed (the turnout table waits for them)"
+
+      - name: Turnout so far (metric)
+        timeout-minutes: 5
+        continue-on-error: true
+        run: python -m midterms.turnout_proj || echo "::warning::turnout table failed (the page keeps yesterday's)"
+
       # reassembles web/data/early_vote.json from tonight's North Carolina, Georgia, Florida and Clark County readings: no
       # download
       - name: Early-vote page data
@@ -208,6 +228,7 @@ jobs:
           paths="data/early web/data/early_vote.json data/static/ga_wayback_2022.json"
           [ -e data/static/ga_wayback_2022.json ] || paths="data/early web/data/early_vote.json"
           [ -e data/static/nv_clark_baseline.csv ] && paths="$paths data/static/nv_clark_baseline.csv"
+          for f in data/static/turnout_totals.csv data/static/cvap.csv; do [ -e "$f" ] && paths="$paths $f"; done
           [ -e web/data/early_vote.json ] || paths="${paths/ web\/data\/early_vote.json/}"
           [ -d data/early ] || { echo "nothing written"; exit 0; }
           git config user.name "github-actions[bot]"

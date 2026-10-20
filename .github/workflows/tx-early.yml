@@ -3,8 +3,9 @@ name: Texas early vote
 # Texas early-vote turnout (midterms/tx_early.py), diagnostic only: nothing here feeds the forecast. The Secretary of State
 # posts each early-voting day's county file (registered voters, in-person and mail votes) the next morning, so this runs
 # late morning Central and again in the afternoon for counties that report late, during early voting and the two weeks
-# after Election Day (tx_early.snapshot is a no-op outside them). It commits data/early/tx_early.json and rebuilds
-# web/data/early_vote.json (midterms/early_page.py, from committed data only), which the site sync publishes. The
+# after Election Day (tx_early.snapshot is a no-op outside them). It commits data/early/tx_early.json, refreshes the turnout
+# table (midterms/turnout_proj.py, no download) and rebuilds web/data/early_vote.json (midterms/early_page.py, from committed
+# data only), which the site sync publishes. The
 # repository variable TX_EARLY switches it: nothing is requested unless it is "on". One conditional request per county
 # file per day; the per-voter rosters behind the same portal are never requested. Its own job, so the other states'
 # sources (early-diag.yml) are not asked again in the day, in early-diag's concurrency group, so the two never write the
@@ -54,6 +55,12 @@ jobs:
       - name: Texas early vote
         timeout-minutes: 10
         run: python -m midterms.tx_early
+
+      # the turnout table's Texas row from this morning's file; Pennsylvania's count is reused from the nightly run
+      - name: Turnout so far (metric)
+        timeout-minutes: 5
+        continue-on-error: true
+        run: python -m midterms.turnout_proj --no-fetch || echo "::warning::turnout table failed (the page keeps the last one)"
 
       - name: Early-vote page data
         timeout-minutes: 5

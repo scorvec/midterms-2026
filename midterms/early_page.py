@@ -12,6 +12,8 @@
       by party (joined to the voter list) and against 2024's turnout on the same day; both by congressional district.
   tx  tx_early's latest reading (data/early/tx_early.json; the Secretary of State's county early-voting files): turnout
       only (Texas has no party registration), statewide and for fixed county groups, as a share of registered voters.
+  turnout  turnout_proj's table (data/early/turnout_proj.json): each state's ballots so far against 2022 at the same point,
+      as shares of 2022's total and of the citizen voting-age population, and a projected total where a backtest allows.
 
 How banked ballots enter the forecast (early_vote.py's per-state factors) is read by the page from model.json itself.
 A state whose input is missing is left out; nothing here is needed by the forecast. It reads committed files only (no
@@ -103,6 +105,14 @@ def texas() -> dict | None:
     return {k: v[k] for k in keep if k in v}
 
 
+def turnout() -> dict | None:
+    v = _read(EARLY / "turnout_proj.json")
+    if not v or not v.get("states"):
+        return None
+    keep = ("generated", "election_day", "reference", "level", "min_midterms", "states", "national")
+    return {k: v[k] for k in keep if k in v}
+
+
 def _last_matched(f: dict, kind: str) -> dict | None:
     """The matched-days-out comparison with 2024 closest to Election Day for one kind of ballot."""
     m = [x for x in f.get("matched_2024") or [] if x.get("kind") == kind]
@@ -133,10 +143,11 @@ def build() -> dict:
         "fl": florida(),
         "nv": nevada(),
         "tx": texas(),
+        "turnout": turnout(),
     }
     OUT.write_text(json.dumps(res, separators=(",", ":")))
     print(f"early page: {OUT.relative_to(ROOT)} ({OUT.stat().st_size / 1e3:.0f} kB; " + ", ".join(
-        k for k in ("nc", "ga", "fl", "nv", "tx") if res[k]) + ")", flush=True)  # fmt: skip
+        k for k in ("nc", "ga", "fl", "nv", "tx", "turnout") if res[k]) + ")", flush=True)  # fmt: skip
     return res
 
 
