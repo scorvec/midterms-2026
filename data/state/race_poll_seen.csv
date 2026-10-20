@@ -1164,3 +1164,20 @@ governor,AL,The Alabama Poll,2026-10-16,2026-10-20,polls.json
 governor,GA,University of Georgia,2026-10-15,2026-10-20,polls.json
 governor,MA,Suffolk University,2026-10-18,2026-10-20,polls.json
 governor,RI,Embold Research,2026-10-08,2026-10-20,polls.json
+house,AK-1,Data for Progress (D),2026-10-16,2026-10-20,polls.json
+house,FL-7,DCCC (D),2026-10-19,2026-10-20,polls.json
+house,NE-2,National Public Affairs (R),2026-10-05,2026-10-20,polls.json
+house,OH-10,DCCC (D),2026-10-13,2026-10-20,polls.json
+senate,AK,Data for Progress (D),2026-10-16,2026-10-20,polls.json
+senate,MT,Quantus Insights,2026-10-18,2026-10-20,polls.json
+senate,SD,Public Opinion Strategies (R),2026-10-16,2026-10-20,polls.json
+senate,TX,InsiderAdvantage,2026-10-14,2026-10-20,polls.json
+governor,AL,Cygnal Political,2026-10-17,2026-10-20,polls.json
+governor,AK,Data for Progress,2026-10-16,2026-10-20,polls.json
+governor,FL,YouGov,2026-10-15,2026-10-20,polls.json
+governor,GA,Quantus Insights,2026-10-17,2026-10-20,polls.json
+governor,IA,National Public Affairs,2026-10-12,2026-10-20,polls.json
+governor,NY,OnMessage (R),2026-10-14,2026-10-20,polls.json
+governor,OK,Workbench Strategy (D),2026-10-13,2026-10-20,polls.json
+governor,SC,NPA (R),2026-10-16,2026-10-20,polls.json
+governor,TN,Spry Strategies,2026-10-16,2026-10-20,polls.json
