@@ -127,7 +127,8 @@ def fetch_pa() -> dict:
     datasets = {2020: (hits[0]["id"], PA_EXTRA[2020])} | {y: PE.DATASETS[y] for y in (2022, 2024)}
     rows = []
     for y, (ds, ed) in datasets.items():
-        cols = set(_json(f"https://data.pa.gov/resource/{ds}.json?$limit=1")[0])
+        # the view's column list: a row's JSON leaves out its null fields, so a sampled row cannot show the schema
+        cols = {c["fieldName"] for c in _json(f"https://data.pa.gov/api/views/{ds}.json")["columns"]}
         if not {"party", "ballotreturneddate"} <= cols:
             raise RuntimeError(f"data.pa.gov {ds} ({y}): columns {sorted(cols)}")
         r = PE.q(
