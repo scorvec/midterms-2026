@@ -31,7 +31,8 @@ name: early vote diagnostics
 #                   2022's total and of the citizen voting-age population, and a projected total only where a backtest
 #                   allows one (data/early/turnout_proj.json). One server-side count of Pennsylvania's 2026 mail returns on
 #                   data.pa.gov a run; its fixed inputs (the FEC's 2008-2024 vote totals, the Census Bureau's CVAP) are
-#                   fetched once into data/static/turnout_totals.csv and data/static/cvap.csv.
+#                   fetched once into data/static/turnout_totals.csv and data/static/cvap.csv (the Census API needs the
+#                   CENSUS_API_KEY secret; without it the CVAP shares are left out and nothing is requested).
 # NCSBE refreshes the absentee file about 05:15 ET; Florida recompiles through the day. 01:50 UTC = 21:50 ET catches both.
 on:
   schedule:
@@ -180,6 +181,8 @@ jobs:
         if: ${{ hashFiles('data/static/turnout_totals.csv') == '' || hashFiles('data/static/cvap.csv') == '' || inputs.turnout_inputs }}
         timeout-minutes: 15
         continue-on-error: true
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}   # optional: without it the CVAP shares are skipped, no request
         run: python -m midterms.turnout_proj fetch ${{ inputs.turnout_inputs && '--force' || '' }} || echo "::warning::turnout inputs fetch failed (the turnout table waits for them)"
 
       - name: Turnout so far (metric)

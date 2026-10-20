@@ -32,7 +32,8 @@ PRE-REGISTRATION (written 2026-10-20, before any projection or backtest number w
               2022 at the same point only, and says why.
   Also shown  T_hat against 2022's total, and as a share of the citizen voting-age population (Census ACS 1-year,
               B29001_001E: 2024 for 2026, 2022 for 2022; CVAP counts citizens 18 and over, so it is not the eligible
-              electorate: no correction for felony disenfranchisement or overseas voters).
+              electorate: no correction for felony disenfranchisement or overseas voters). The Census API needs a key
+              (CENSUS_API_KEY); without one the CVAP shares are left out.
   Not done    No national figure: no permitted, publishable source gives the banked vote of enough states (UF Election Lab's
               tables are CC BY-NC-ND 4.0 and no figure derived from them may be published), and six states are not a sample
               of fifty. Georgia, Florida, Clark County and Texas have no past cycle at matched days out in an official file
@@ -55,6 +56,7 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import os
 import re
 import sys
 import urllib.parse
@@ -165,22 +167,28 @@ def fetch_totals() -> pd.DataFrame:
     return d
 
 
-def _census(y: int, q: dict) -> list[list[str]]:
+def _census(y: int, q: dict, key: str) -> list[list[str]]:
     """One ACS 1-year query, its header row dropped; anything but the API's JSON table is an error that shows the reply."""
     url = f"{CENSUS.format(y=y)}?{urllib.parse.urlencode(q, safe=':,')}"
-    b = F.open_url(url, timeout=120)
+    b = F.open_url(f"{url}&key={key}", timeout=120)
     try:
         return json.loads(b)[1:]
     except ValueError:
         raise RuntimeError(f"Census API {url}: {b[:300]!r}") from None
 
 
-def fetch_cvap() -> pd.DataFrame:
+def fetch_cvap() -> pd.DataFrame | None:
+    """The Census Bureau's API answers only with a (free) key: CENSUS_API_KEY, a repository secret. Without one, nothing is
+    requested and the table goes without its CVAP shares."""
+    key = os.environ.get("CENSUS_API_KEY", "").strip()
+    if not key:
+        print("  CVAP: no CENSUS_API_KEY, not fetched (the table leaves out the shares of citizens 18+)")
+        return None
     rows = []
     for y in (2022, 2024):
-        body = _census(y, {"get": "NAME,B29001_001E", "for": "state:" + ",".join(FIPS.values())})
+        body = _census(y, {"get": "NAME,B29001_001E", "for": "state:" + ",".join(FIPS.values())}, key)
         rows.extend({"geo": next(k for k, v in FIPS.items() if v == r[2]), "year": y, "cvap": int(r[1])} for r in body)
-        body = _census(y, {"get": "NAME,B29001_001E", "for": f"county:{CLARK[1]}", "in": f"state:{CLARK[0]}"})
+        body = _census(y, {"get": "NAME,B29001_001E", "for": f"county:{CLARK[1]}", "in": f"state:{CLARK[0]}"}, key)
         rows.append({"geo": "NV-Clark", "year": y, "cvap": int(body[0][1])})
     d = pd.DataFrame(rows)
     d.to_csv(CVAP, index=False)

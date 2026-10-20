@@ -119,11 +119,12 @@ the table scores the change in that reading from the previous cycle of the same 
 <h2 id="sources">Method and sources</h2>
 <p><b>Turnout so far.</b> Each state's ballots already cast, from the same official files as its section below, against
 2022 at the same number of days out where a 2022 file exists for that point (Clark County: mail ballots only; Georgia:
-georgiavotes.com's 2022 figures; Florida and Texas: none yet). The share of 2022's total divides by the largest of the
-state's 2022 votes for U.S. Senate and U.S. House in the Federal Election Commission's <i>Federal Elections 2022</i>
-tables, a floor on ballots cast. The share of citizens 18 and over divides by the Census Bureau's American Community
-Survey 1-year estimate of the citizen voting-age population (table B29001: 2024 for this year, 2022 for 2022), which is not
-quite the eligible electorate (it counts citizens barred from voting and misses voters abroad). <b>Why no projected total.</b>
+georgiavotes.com's 2022 figures; Florida and Texas: none yet). The share of 2022's total divides by the larger of the
+state's 2022 general-election votes for U.S. Senate (the MIT Election Data and Science Lab's returns) and U.S. House (the
+Federal Election Commission's <i>Federal Elections 2022</i> tables), a floor on ballots cast. Where a share of
+citizens 18 and over is shown, it divides by the Census Bureau's American Community Survey 1-year estimate of the citizen
+voting-age population (table B29001), which is not quite the eligible electorate (it counts citizens barred from voting and
+misses voters abroad). <b>Why no projected total.</b>
 A projected total would divide the ballots so far by the share of the final vote banked at the same point in the last
 midterm, with a range from how well that rule has done before (<code>midterms/turnout_proj.py</code>, its rules written
 down before any number was computed). It is only fair across elections with the same early-voting calendar, and too few
@@ -539,13 +540,14 @@ for day once 2022's final county early vote is added (<code>midterms/tx_early.py
     if (!T) { $("turntab").innerHTML = ""; $("turnnote").innerHTML = "The turnout table is not available today."; return; }
     var pct = function (v) { return v == null ? "&ndash;" : v.toFixed(1) + "%"; };
     var chgp = function (v) { return v == null ? "&ndash;" : (v >= 0 ? "+" : "&minus;") + Math.abs(v).toFixed(0) + "%"; };
+    var cv = T.states.some(function (r) { return r.banked_pct_cvap != null; });  // the Census shares, when they are on file
     $("turntab").innerHTML = "<tr><th>State</th><th>Ballots so far</th><th>Days out</th><th>Against 2022, same point</th><th>Share of 2022&rsquo;s total</th>" +
-      "<th>Share of citizens 18+</th><th>Projected total</th></tr>" +
+      (cv ? "<th>Share of citizens 18+</th>" : "") + "<th>Projected total</th></tr>" +
       T.states.map(function (r) {
         var vs = r.vs_2022_same_point_pct != null ? chgp(r.vs_2022_same_point_pct) : r.mail_vs_2022_same_point_pct != null ? chgp(r.mail_vs_2022_same_point_pct) + " (mail)" : "&ndash;";
         var P = r.projection || {}, proj = P.total ? n0(P.total) + (P.lo ? " (" + n0(P.lo) + "&ndash;" + n0(P.hi) + ")" : "") : "&ndash;";
         return "<tr><td>" + esc(r.label) + "</td><td>" + (r.banked ? n0(r.banked) : "&ndash;") + "</td><td>" + (r.days_out != null ? r.days_out : "&ndash;") + "</td><td>" + vs +
-          "</td><td>" + pct(r.share_of_2022_total_pct) + "</td><td>" + pct(r.banked_pct_cvap) + "</td><td" + (P.reason ? ' title="' + esc(P.reason) + '"' : "") + ">" + proj + "</td></tr>";
+          "</td><td>" + pct(r.share_of_2022_total_pct) + "</td>" + (cv ? "<td>" + pct(r.banked_pct_cvap) + "</td>" : "") + "<td" + (P.reason ? ' title="' + esc(P.reason) + '"' : "") + ">" + proj + "</td></tr>";
       }).join("");
     var any = T.states.some(function (r) { return r.projection && r.projection.total; });
     $("turnnote").innerHTML = any ? "Projected totals with their " + Math.round(100 * T.level) + "% range from past elections; method and caveats at the bottom." :
