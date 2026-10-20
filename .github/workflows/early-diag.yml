@@ -41,6 +41,10 @@ on:
         description: "Try again the Wayback captures of the 2022 Georgia site that are not in data/static/ga_wayback_2022.json yet"
         type: boolean
         default: false
+      only:
+        description: "Only these states this run (nc, ga, fl, nv, comma-separated; empty = all): a daytime refresh of one state without asking the others' sources again"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -119,6 +123,7 @@ jobs:
           restore-keys: nv-clark-voters-
 
       - name: North Carolina by race and ethnicity (diagnostic)
+        if: ${{ (inputs.only == '' || contains(inputs.only, 'nc')) }}
         timeout-minutes: 25
         continue-on-error: true
         run: |
@@ -127,6 +132,7 @@ jobs:
           echo "North Carolina step took $(( $(date +%s) - start )) s"
 
       - name: North Carolina tracker (the published page)
+        if: ${{ (inputs.only == '' || contains(inputs.only, 'nc')) }}
         timeout-minutes: 25
         continue-on-error: true
         run: |
@@ -135,17 +141,19 @@ jobs:
           echo "North Carolina tracker took $(( $(date +%s) - start )) s"
 
       - name: Georgia 2022 baseline from the Wayback Machine (once, gaps on request)
-        if: ${{ hashFiles('data/static/ga_wayback_2022.json') == '' || inputs.ga_wayback_fill }}
+        if: ${{ (hashFiles('data/static/ga_wayback_2022.json') == '' || inputs.ga_wayback_fill) && (inputs.only == '' || contains(inputs.only, 'ga')) }}
         timeout-minutes: 40
         continue-on-error: true
         run: python -m midterms.ga_early wayback || echo "::warning::Georgia 2022 baseline fetch failed (diagnostic only)"
 
       - name: Georgia composition vs 2022 (diagnostic)
+        if: ${{ (inputs.only == '' || contains(inputs.only, 'ga')) }}
         timeout-minutes: 5
         continue-on-error: true
         run: python -m midterms.ga_early || echo "::warning::Georgia early-vote diagnostic failed (diagnostic only)"
 
       - name: Florida by party (diagnostic)
+        if: ${{ (inputs.only == '' || contains(inputs.only, 'fl')) }}
         timeout-minutes: 10
         continue-on-error: true
         run: |
@@ -154,6 +162,7 @@ jobs:
           echo "Florida step took $(( $(date +%s) - start )) s"
 
       - name: Clark County, Nevada by party (diagnostic)
+        if: ${{ (inputs.only == '' || contains(inputs.only, 'nv')) }}
         timeout-minutes: 15
         continue-on-error: true
         run: python -m midterms.nv_clark_early || echo "::warning::Clark County early-vote diagnostic failed (diagnostic only)"
