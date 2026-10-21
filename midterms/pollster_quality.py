@@ -339,10 +339,12 @@ SPONSOR_ALIAS = {
 }
 
 
-# Editorial ratings that replace the source grade: canonical key -> letter. SurveyMonkey's 2026 polls are the NBC News
-# Decision Desk polls (17-19k a wave on its online panel, full toplines published), rated with YouGov and Ipsos rather than
-# at the D+ pollresults.org gives SurveyMonkey.
-EDITORIAL = {"surveymonkey": "B"}
+# Editorial ratings that replace the source grade: canonical key -> letter (a split grade "A/B" scores the midpoint of the
+# pair, as letter_score does for 538's provisional grades). SurveyMonkey's 2026 polls are the NBC News Decision Desk polls
+# (17-19k a wave on its online panel, full toplines published), rated with YouGov and Ipsos rather than at the D+
+# pollresults.org gives SurveyMonkey. Verasight (probability-based online panel, toplines published) has no 538 or
+# pollresults.org grade and would otherwise take the unrated default; it is rated A/B.
+EDITORIAL = {"surveymonkey": "B", "verasight": "A/B"}
 
 
 def live_rating(pollster: str) -> dict:
@@ -358,7 +360,7 @@ def live_rating(pollster: str) -> dict:
         return memo[s]
     k = R.canon(s)
     if k in EDITORIAL:
-        memo[s] = {"score": LETTER[EDITORIAL[k]], "grade": EDITORIAL[k], "source": "editorial"}
+        memo[s] = {"score": letter_score(EDITORIAL[k]), "grade": EDITORIAL[k], "source": "editorial"}
         return memo[s]
     out = {"score": np.nan, "grade": None, "source": None}
     cands = [k, norm(s), R.canon(norm(s))]

@@ -79,6 +79,7 @@ METHOD_FILES = [
     "names.py",
     "rcv.py",
     "poll_corrections.py",
+    "pollster_quality.py",  # editorial ratings weight every past date's national polls too
 ]
 METHOD_DATA = [
     "data/static/national_mood_fit.json",
