@@ -1200,3 +1200,5 @@ governor,MI,Marist University,2026-10-18,2026-10-21,polls.json
 senate,FL,University of North Florida,2026-10-19,2026-10-21,polls.json
 senate,GA,University of Georgia,2026-10-15,2026-10-21,polls.json
 governor,FL,University of North Florida,2026-10-19,2026-10-21,polls.json
+senate,MI,Marist Poll,2026-10-18,2026-10-21,manual
+governor,MI,Marist Poll,2026-10-18,2026-10-21,manual
