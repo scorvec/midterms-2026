@@ -334,6 +334,12 @@ carries the same evidence.
   time, and moves the trend by -0.9 to +1.2 points. On 17 October 2026 the three moved the generic trend from D+8.6 to
   about D+9.6 and approval from -21.1 to about -22.9, and Morning Consult's share from 0.36 to 0.15 (generic) and from 0.25
   to 0.10 (approval).
+- **Top-rated pollsters count more respondents** (`generic.N_CAP_TOP = 3000`, `TOP_SCORE = 2.8`): polls of a pollster rated
+  A or better count up to 3,000 respondents instead of 1,500; every other pollster keeps the 1,500 cap. Adopted on the rule
+  set before the test (neither score may get worse): same harness, with each cycle's ratings as 538 published them before
+  the election, next polls 2.565 -> 2.564 and margin 3.436 -> 3.427 (2024 only; not significant). A higher share cap for the
+  same pollsters (`SHARE_CAP_TOP` 0.25) made both scores worse (2.567 / 3.447) and is off: every pollster keeps the 15 %
+  cap. On 21 October 2026 the rule applies to Siena, Emerson, Cygnal and TIPP.
 - **Gallup party identification** (tested, not adopted). Gallup's leaned party-ID gap (adults) was tested as a predictor of
   the national House vote alongside the generic-ballot average G, leave-one-election-out 1996-2024 (n 15). Gallup's
   quarterly series is not openly published, so the annual series is the proxy. V ~ G: MAE 1.91 / RMSE 2.29; + the

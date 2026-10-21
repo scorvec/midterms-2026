@@ -155,6 +155,32 @@ def test_generic_share_cap():
     assert F["pw"]["influence"].sum() == pytest.approx(1.0, abs=1e-6)
 
 
+def test_generic_top_rated():
+    """A top-rated pollster's large poll counts up to N_CAP_TOP respondents (others stay at N_CAP), and SHARE_CAP_TOP lets
+    that pollster alone go past SHARE_CAP."""
+    rng = np.random.default_rng(5)
+    start = pd.Timestamp("2026-03-01")
+    rows = [("top", start + pd.Timedelta(days=14 * k), 3500.0) for k in range(14)]
+    rows += [("big", start + pd.Timedelta(days=14 * k + 3), 3500.0) for k in range(14)]
+    rows += [(f"p{j}", start + pd.Timedelta(days=30 * k + 2 * j), 1000.0) for j in range(8) for k in range(7)]
+    df = pd.DataFrame(rows, columns=["pollster", "end_date", "n"])
+    df["pop"], df["internal"], df["partisan"] = "lv", False, None
+    df["q_score"] = np.where(df["pollster"] == "top", 2.8, 2.0)
+    df["y"] = 5 + 0.01 * (df["end_date"] - start).dt.days + rng.normal(0, 2, len(df))
+    t1 = df["end_date"].max()
+
+    def shares(F):
+        pw = F["pw"]
+        return pw["influence"].clip(lower=0).groupby(pw["pollster"]).sum() / pw["influence"].sum()
+
+    off = shares(G.fit(df, t1=t1, n_cap_top=None, share_cap=None, pvar_k0=None))
+    on = shares(G.fit(df, t1=t1, n_cap_top=3000, share_cap=None, pvar_k0=None))
+    assert off["top"] == pytest.approx(off["big"], rel=0.25)  # same size and record: alike under one cap
+    assert on["top"] > 1.2 * off["top"] and on["big"] < off["big"]
+    capped = shares(G.fit(df, t1=t1, n_cap_top=3000, share_cap=0.15, share_cap_top=0.3, pvar_k0=None))
+    assert capped["big"] <= 0.15 + 1e-3 and 0.15 < capped["top"] <= 0.3 + 1e-3
+
+
 def test_race_shock(monkeypatch):
     """Race-level movement split: off -> u x sd; on -> the movement part of each race scaled by its state's k, capped at
     0.9 sd, the total kept where k = 1."""

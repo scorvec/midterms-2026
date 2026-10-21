@@ -80,6 +80,16 @@ AGE_HALF_LIFE = 60
 # 2/4 years; year t -0.4, p 0.72; 2024 2.19 -> 2.50), margin 3.436 (14/28 dates, 2/4 years, p 0.78; 2018 3.09 -> 1.94, 2024
 # 4.10 -> 4.51).
 SHARE_CAP = 0.15
+# Top-rated exception (None = off): polls of a pollster rated A or better (TOP_SCORE: live score >= 2.8, the quality score of
+# pollster_quality.live_rating; in the backtest the 538 rating vintage known before each election) count up to N_CAP_TOP
+# respondents instead of N_CAP, and the pollster may carry up to SHARE_CAP_TOP of today's value instead of SHARE_CAP. Everyone
+# else, Morning Consult included, keeps N_CAP and SHARE_CAP. Rule fixed before the backtest: a switch is adopted only if
+# neither the next-24-day poll RMSE nor the margin RMSE vs the House vote rises (rounded to 0.001) on the 538 archive harness
+# above (7 dates a cycle, 3-day lag, quality from the 538 vintage before each election; 4-10 top-rated pollsters a cycle).
+# Off 2.565 / 3.436. N_CAP_TOP 3000: 2.564 / 3.427 (next better at 7/28 dates, 2/4 years, year t +1.0; margin 8/28, 2/4,
+# t +1.0; 2024 2.495 -> 2.485 and 4.507 -> 4.482, the other years unchanged) -> adopted. SHARE_CAP_TOP 0.25: 2.567 / 3.447
+# (2018 margin 1.94 -> 2.05) -> off; both together 2.565 / 3.440 -> off. Neither difference is significant on four elections.
+TOP_SCORE, N_CAP_TOP, SHARE_CAP_TOP = 2.8, 3000, None
 
 
 # Checked corrections to VoteHub records: (pollster, start, end, population) -> fields. The raw file is re-downloaded daily, so
@@ -413,12 +423,13 @@ def pop_lead_mult(df, t1):
 
 
 def share_cap_scale(X, w, Pen, a, ip, cap, tol=1e-4, iters=100):
-    """Per-pollster weight multipliers (<= 1) that hold every pollster's share of a . beta at or below `cap`. A pollster's share
-    is the summed positive influence of its polls, d(a . beta)/d y_i > 0, over the total influence (1); its older polls enter
-    with negative influence through its own house effect and are not netted against it. Each pollster over the cap has its
-    polls' precision w**2 multiplied by cap / share and the fit re-solved until it sits at the cap; the others rise with the
-    renormalisation."""
+    """Per-pollster weight multipliers (<= 1) that hold every pollster's share of a . beta at or below `cap` (one value, or
+    one per pollster). A pollster's share is the summed positive influence of its polls, d(a . beta)/d y_i > 0, over the total
+    influence (1); its older polls enter with negative influence through its own house effect and are not netted against it.
+    Each pollster over its cap has its polls' precision w**2 multiplied by cap / share and the fit re-solved until it sits at
+    the cap; the others rise with the renormalisation."""
     P = int(ip.max()) + 1
+    cap = np.broadcast_to(np.asarray(cap, float), (P,))
     s = np.ones(P)
     for _ in range(iters):
         ws = w * s[ip]
@@ -426,9 +437,9 @@ def share_cap_scale(X, w, Pen, a, ip, cap, tol=1e-4, iters=100):
         infl = (Xw @ np.linalg.solve(Xw.T @ Xw + Pen, a)) * ws
         sh = np.bincount(ip, weights=np.clip(infl, 0, None), minlength=P) / infl.sum()
         on = (sh > cap) | (s < 1)
-        if not (np.abs(sh[on] - cap) > tol).any():
+        if not (np.abs(sh[on] - cap[on]) > tol).any():
             break
-        s[on] = np.minimum(s[on] * np.sqrt(cap / np.maximum(sh[on], 1e-9)), 1.0)
+        s[on] = np.minimum(s[on] * np.sqrt(cap[on] / np.maximum(sh[on], 1e-9)), 1.0)
     return s
 
 
@@ -454,6 +465,8 @@ def fit(
     pvar_k0="default",
     half_life="default",
     share_cap="default",
+    n_cap_top="default",
+    share_cap_top="default",
 ):
     """Joint fit → dict(trend: DataFrame(date, value), house: Series, pop: dict, resid_sd, n)."""
     wl = WITHIN_GAP_LAMBDA if lam_wg == "default" else lam_wg
@@ -548,9 +561,13 @@ def fit(
     X = np.hstack([B, H, Q, IQ, DR, part])
     y = df["y"].values
     ncap = N_CAP if n_cap == "default" else n_cap
-    w = (
-        np.sqrt(np.clip(df["n"].fillna(600).astype(float), 100, ncap) / 1000.0) * np.where(part.sum(1) > 0, 0.5, 1.0)
-    ).values
+    # top-rated pollsters (TOP_SCORE): their own size cap and share cap when the switches are set
+    top = (df["q_score"].astype(float) >= TOP_SCORE).values if "q_score" in df else np.zeros(len(df), bool)
+    ntop = N_CAP_TOP if n_cap_top == "default" else n_cap_top
+    ncap = np.where(top, ntop, ncap) if ntop is not None else ncap
+    w = np.sqrt(np.clip(df["n"].fillna(600).astype(float).values, 100, ncap) / 1000.0) * np.where(
+        part.sum(1) > 0, 0.5, 1.0
+    )
     fdays = FREQ_DAYS if freq_days == "default" else freq_days
     if fdays:
         fpow = FREQ_POW if freq_pow == "default" else freq_pow
@@ -648,6 +665,9 @@ def fit(
     _drift_vec(a_now, float(T), hn.sum())
     ip = df["pollster"].map(pi).values
     cap = SHARE_CAP if share_cap == "default" else share_cap
+    ctop = SHARE_CAP_TOP if share_cap_top == "default" else share_cap_top
+    if cap is not None and ctop is not None:
+        cap = np.where(np.bincount(ip, weights=top, minlength=P) > 0, ctop, cap)  # a pollster with top-rated polls
     sw = share_cap_scale(X, w, Pen, a_now, ip, cap) if cap is not None else np.ones(P)
     disc = disc * sw[ip]
     w = w * sw[ip]
