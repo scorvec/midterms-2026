@@ -27,3 +27,7 @@ ME,senate,Suffolk University,2026-10-08,2026-10-11,500,lv,Troy Jackson,Susan Col
 ME,governor,Suffolk University,2026-10-08,2026-10-11,500,lv,Hannah Pingree,Robert B. Charles,49.4,38.0,7.6,5.0,https://www.suffolk.edu/-/media/suffolk/documents/academics/research-at-suffolk/suprc/polls/other-states/2026/10_14_2026_maine_statewide_marginals.pdf,1
 TX,senate,CBS News/YouGov,2026-10-08,2026-10-16,,lv,James Talarico,Ken Paxton,51,49,0,0,https://www.cbsnews.com/news/texas-senate-talarico-paxton-poll/,
 TX,governor,CBS News/YouGov,2026-10-08,2026-10-16,,lv,Gina Hinojosa,Greg Abbott,48,52,0,0,https://www.cbsnews.com/news/texas-senate-talarico-paxton-poll/,
+MI,senate,Marist Poll,2026-10-15,2026-10-18,1185,lv,Abdul El-Sayed,Mike Rogers,50,48,1,2,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_MI-NOS-and-Tables_202610191238FFx09@Jal.pdf (likely-voter weight on the 1185 registered voters),
+MI,senate,Marist Poll,2026-10-15,2026-10-18,1185,rv,Abdul El-Sayed,Mike Rogers,52,45,1,2,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_MI-NOS-and-Tables_202610191238FFx09@Jal.pdf,
+MI,governor,Marist Poll,2026-10-15,2026-10-18,1185,lv,Jocelyn Benson,John James,51,45,2,1,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_MI-NOS-and-Tables_202610191238FFx09@Jal.pdf (likely-voter weight on the 1185 registered voters),
+MI,governor,Marist Poll,2026-10-15,2026-10-18,1185,rv,Jocelyn Benson,John James,53,42,2,2,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_MI-NOS-and-Tables_202610191238FFx09@Jal.pdf,
