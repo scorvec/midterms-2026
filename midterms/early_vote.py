@@ -98,8 +98,8 @@ def fetch(day=None):
     return p
 
 
-def banked(asof=None) -> dict:
-    """{state: share of 2022 turnout already voted} from the newest snapshot on or before asof ({} if none)."""
+def counts(asof=None) -> dict:
+    """{state: (ballots cast so far, 2022 ballots)} from the newest snapshot on or before asof ({} if none)."""
     asof = pd.Timestamp(asof or pd.Timestamp.today()).normalize()
     snaps = sorted(p for p in RAW.glob("uf_2026_*.csv") if pd.Timestamp(p.stem[-10:]) <= asof)
     if not snaps:
@@ -111,8 +111,13 @@ def banked(asof=None) -> dict:
         except ValueError:
             continue
         if t > 0:
-            out[r["state_abbv"]] = min(v / t, 1.0)
+            out[r["state_abbv"]] = (v, t)
     return out
+
+
+def banked(asof=None) -> dict:
+    """{state: share of 2022 turnout already voted} from the newest snapshot on or before asof ({} if none)."""
+    return {s: min(v / t, 1.0) for s, (v, t) in counts(asof).items()}
 
 
 def share_2022() -> dict:
