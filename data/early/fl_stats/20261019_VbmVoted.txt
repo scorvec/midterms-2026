@@ -1,5 +1,5 @@
 ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
-49894	11/03/2026	2026 General	State Totals	Voted Vote-by-Mail	302,006	353,299	20,378	155,536	831,219	10/19/2026  8:04AM
+49894	11/03/2026	2026 General	State Totals	Voted Vote-by-Mail	303,299	354,148	20,440	155,962	833,849	10/19/2026  2:01PM
 49894	11/03/2026	2026 General	Alachua	Voted Vote-by-Mail	2,072	5,309	195	1,403	8,979	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Baker	Voted Vote-by-Mail	270	77	3	26	376	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Bay	Voted Vote-by-Mail	2,190	1,300	95	612	4,197	10/19/2026  8:04AM
@@ -13,18 +13,18 @@ ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	T
 49894	11/03/2026	2026 General	Collier	Voted Vote-by-Mail	12,187	6,515	548	4,348	23,598	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Columbia	Voted Vote-by-Mail	900	615	34	163	1,712	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	DeSoto	Voted Vote-by-Mail	261	241	10	94	606	10/19/2026  8:04AM
-49894	11/03/2026	2026 General	Dixie	Voted Vote-by-Mail	306	100	9	45	460	10/18/2026  8:04AM
+49894	11/03/2026	2026 General	Dixie	Voted Vote-by-Mail	306	100	9	45	460	10/19/2026 11:01AM
 49894	11/03/2026	2026 General	Duval	Voted Vote-by-Mail	4,435	6,232	282	1,732	12,681	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Escambia	Voted Vote-by-Mail	4,027	3,696	189	1,261	9,173	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Flagler	Voted Vote-by-Mail	3,015	3,131	181	1,287	7,614	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Franklin	Voted Vote-by-Mail	158	158	16	47	379	10/19/2026  8:04AM
-49894	11/03/2026	2026 General	Gadsden	Voted Vote-by-Mail	183	858	7	62	1,110	10/17/2026  8:04AM
+49894	11/03/2026	2026 General	Gadsden	Voted Vote-by-Mail	183	859	7	62	1,111	10/19/2026 11:01AM
 49894	11/03/2026	2026 General	Gilchrist	Voted Vote-by-Mail	311	133	9	38	491	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Glades	Voted Vote-by-Mail	181	109	4	36	330	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Gulf	Voted Vote-by-Mail	222	122	18	36	398	10/19/2026  8:04AM
-49894	11/03/2026	2026 General	Hamilton	Voted Vote-by-Mail	136	108	5	16	265	10/16/2026  8:04AM
+49894	11/03/2026	2026 General	Hamilton	Voted Vote-by-Mail	145	118	5	18	286	10/19/2026 11:01AM
 49894	11/03/2026	2026 General	Hardee	Voted Vote-by-Mail	102	74	2	21	199	10/19/2026  8:04AM
-49894	11/03/2026	2026 General	Hendry	Voted Vote-by-Mail	224	214	12	54	504	10/17/2026  8:04AM
+49894	11/03/2026	2026 General	Hendry	Voted Vote-by-Mail	224	214	12	54	504	10/19/2026 11:01AM
 49894	11/03/2026	2026 General	Hernando	Voted Vote-by-Mail	4,129	4,183	219	1,838	10,369	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Highlands	Voted Vote-by-Mail	1,354	1,387	102	535	3,378	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Hillsborough	Voted Vote-by-Mail	15,522	19,741	1,118	8,732	45,113	10/19/2026  8:04AM
@@ -36,12 +36,12 @@ ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	T
 49894	11/03/2026	2026 General	Lake	Voted Vote-by-Mail	5,319	5,819	302	2,726	14,166	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Lee	Voted Vote-by-Mail	25,914	17,303	1,408	11,118	55,743	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Leon	Voted Vote-by-Mail	2,653	6,245	174	1,366	10,438	10/19/2026  8:04AM
-49894	11/03/2026	2026 General	Levy	Voted Vote-by-Mail	925	511	43	169	1,648	10/16/2026  8:04AM
-49894	11/03/2026	2026 General	Liberty	Voted Vote-by-Mail	38	34	0	0	72	10/17/2026  8:04AM
+49894	11/03/2026	2026 General	Levy	Voted Vote-by-Mail	1,103	606	48	206	1,963	10/19/2026  2:01PM
+49894	11/03/2026	2026 General	Liberty	Voted Vote-by-Mail	38	34	0	0	72	10/19/2026 11:01AM
 49894	11/03/2026	2026 General	Madison	Voted Vote-by-Mail	117	175	2	30	324	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Manatee	Voted Vote-by-Mail	9,041	8,228	489	3,860	21,618	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Marion	Voted Vote-by-Mail	5,645	6,344	392	2,183	14,564	10/19/2026  8:04AM
-49894	11/03/2026	2026 General	Martin	Voted Vote-by-Mail	3,883	3,182	272	1,300	8,637	10/18/2026  8:04AM
+49894	11/03/2026	2026 General	Martin	Voted Vote-by-Mail	3,883	3,182	272	1,300	8,637	10/19/2026 11:01AM
 49894	11/03/2026	2026 General	Miami-Dade	Voted Vote-by-Mail	24,403	32,486	1,455	19,068	77,412	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Monroe	Voted Vote-by-Mail	1,750	1,721	78	562	4,111	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Nassau	Voted Vote-by-Mail	1,867	1,316	123	695	4,001	10/19/2026  8:04AM
@@ -58,8 +58,8 @@ ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	T
 49894	11/03/2026	2026 General	Sarasota	Voted Vote-by-Mail	13,279	16,098	923	6,358	36,658	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Seminole	Voted Vote-by-Mail	5,168	6,240	392	2,877	14,677	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	St. Johns	Voted Vote-by-Mail	3,813	4,033	223	1,591	9,660	10/19/2026  8:04AM
-49894	11/03/2026	2026 General	St. Lucie	Voted Vote-by-Mail	4,666	6,113	385	2,483	13,647	10/18/2026  8:04AM
-49894	11/03/2026	2026 General	Sumter	Voted Vote-by-Mail	5,092	3,853	280	1,935	11,160	10/16/2026  8:04AM
+49894	11/03/2026	2026 General	St. Lucie	Voted Vote-by-Mail	4,666	6,113	385	2,483	13,647	10/19/2026 11:01AM
+49894	11/03/2026	2026 General	Sumter	Voted Vote-by-Mail	6,198	4,596	337	2,322	13,453	10/19/2026 11:01AM
 49894	11/03/2026	2026 General	Suwannee	Voted Vote-by-Mail	549	303	21	80	953	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Taylor	Voted Vote-by-Mail	165	123	3	21	312	10/19/2026  8:04AM
 49894	11/03/2026	2026 General	Union	Voted Vote-by-Mail	72	35	3	6	116	10/19/2026  8:04AM
