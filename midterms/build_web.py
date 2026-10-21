@@ -62,25 +62,10 @@ def main():
 
     try:
         rho_mv = EV.setup(20000, MOOD["s_house"], SN.STATE_SHARED_MISS / SN.NAT_SLOPE, NMOOD.RHO_STATEWIDE)
-        cnt, sh22 = EV.counts(), EV.share_2022()
         MOOD["early_vote"] = {
             **M.MOVE["meta"],
             "m": round(M.MOVE["m"], 3),
             "k": {s_: round(v, 3) for s_, v in M.MOVE["k"].items()},
-            # what is in so far: ballots cast (UF Election Lab), as a share of the state's 2022 turnout, beside the share
-            # of 2022's ballots that were cast before Election Day (EAVS)
-            "banked": {
-                s_: {
-                    "voted": int(v),
-                    "pct_of_2022": round(100 * v / t, 1),
-                    "pre_ed_2022_pct": round(100 * sh22[s_], 1) if s_ in sh22 else None,
-                }
-                for s_, (v, t) in sorted(cnt.items())
-            },
-            "national": {
-                "voted": int(sum(v for v, _ in cnt.values())),
-                "turnout_2022": int(sum(t for _, t in cnt.values())),
-            },
         }
     except Exception as e:
         print(f"::warning::early-vote movement split off ({e})")
