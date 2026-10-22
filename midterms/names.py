@@ -116,6 +116,9 @@ ALIASES = {
     # (Big Data Poll F, Clarity Campaign Labs B/C; under the short name it was unrated).
     "big data": "big data poll",
     "clarity campaign": "clarity campaign labs",
+    # pollresults.org writes the UMass Lowell Center for Public Opinion's YouGov polls under the centre's full name, other
+    # posts as "UMass Lowell/YouGov" - one pollster, one house effect (the Oct 2-4 2026 generic ballot carried both).
+    "university of massachusetts lowell center for public opinion/yougov": "umass lowell/yougov",
 }
 
 
