@@ -631,6 +631,7 @@ def race_polls(R, refresh=True):
                     "rep_name",
                     "und",
                     "other",
+                    "n",
                     "grade",
                     "src",
                 ]
