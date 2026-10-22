@@ -1,0 +1,69 @@
+ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
+49894	11/03/2026	2026 General	State Totals	Voted Early	149,555	141,075	8,781	60,055	359,466	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Alachua	Voted Early	1,740	3,444	131	893	6,208	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Baker	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Bay	Voted Early	3,058	1,176	113	546	4,893	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Bradford	Voted Early	396	106	16	29	547	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Brevard	Voted Early	9,257	5,506	484	2,832	18,079	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Broward	Voted Early	8,214	19,387	757	6,361	34,719	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Calhoun	Voted Early	112	33	1	6	152	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Charlotte	Voted Early	4,416	1,451	246	1,167	7,280	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Citrus	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Clay	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Collier	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Columbia	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	DeSoto	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Dixie	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Duval	Voted Early	5,812	7,805	359	1,955	15,931	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Escambia	Voted Early	3,488	2,218	126	761	6,593	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Flagler	Voted Early	2,983	1,171	113	693	4,960	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Franklin	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Gadsden	Voted Early	230	586	8	62	886	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Gilchrist	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Glades	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Gulf	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Hamilton	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Hardee	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Hendry	Voted Early	313	197	19	49	578	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Hernando	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Highlands	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Hillsborough	Voted Early	10,498	10,982	633	4,505	26,618	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Holmes	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Indian River	Voted Early	3,279	1,237	153	733	5,402	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Jackson	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Jefferson	Voted Early	241	176	5	46	468	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Lafayette	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Lake	Voted Early	5,348	3,481	256	1,763	10,848	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Lee	Voted Early	8,478	3,854	399	2,677	15,408	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Leon	Voted Early	1,448	3,004	129	697	5,278	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Levy	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Liberty	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Madison	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Manatee	Voted Early	4,835	2,547	230	1,469	9,081	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Marion	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Martin	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Miami-Dade	Voted Early	12,823	14,165	617	7,459	35,064	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Monroe	Voted Early	869	641	53	288	1,851	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Nassau	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Okaloosa	Voted Early	3,550	1,120	123	621	5,414	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Okeechobee	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Orange	Voted Early	7,084	14,024	609	4,969	26,686	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Osceola	Voted Early	1,790	2,789	134	1,084	5,797	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Palm Beach	Voted Early	8,411	11,386	701	4,725	25,223	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Pasco	Voted Early	6,351	3,854	398	2,242	12,845	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Pinellas	Voted Early	4,294	3,698	262	1,856	10,110	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Polk	Voted Early	4,658	4,374	277	1,632	10,941	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Putnam	Voted Early	1,241	561	24	178	2,004	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Santa Rosa	Voted Early	2,571	855	108	408	3,942	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Sarasota	Voted Early	6,189	2,936	319	1,903	11,347	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Seminole	Voted Early	4,638	4,606	307	2,032	11,583	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	St. Johns	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	St. Lucie	Voted Early	3,766	3,384	249	1,343	8,742	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Sumter	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Suwannee	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Taylor	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Union	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Volusia	Voted Early	5,660	4,025	383	1,875	11,943	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Wakulla	Voted Early	0	0	0	0	0	
+49894	11/03/2026	2026 General	Walton	Voted Early	1,514	296	39	196	2,045	10/21/2026  8:05AM
+49894	11/03/2026	2026 General	Washington	Voted Early	0	0	0	0	0	
