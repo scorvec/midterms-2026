@@ -744,7 +744,9 @@ def _pr_date(line):
 
 def pr_national(days=60, kind="generic"):
     """pollresults.org national generic-ballot ("National House") or Trump approval posts -> DataFrame(pollster, sponsor,
-    start_date, end_date, n, pop, dem, rep, partisan, posted, uri); dem/rep = approve/disapprove for approval."""
+    start_date, end_date, n, pop, dem, rep, partisan, posted, uri); dem/rep = approve/disapprove for approval. A repost of
+    one version is dropped; the sample size keeps apart two versions with the same toplines (Economist/YouGov's strict and
+    loose likely-voter screens: approval 41-59 in both on 10/19-20)."""
     head = "National House" if kind == "generic" else "Donald Trump Approval"
     rows = []
     for p in fetch(days, max_pages=20, actor=PR_ACTOR):
@@ -792,4 +794,4 @@ def pr_national(days=60, kind="generic"):
             }
         )
     df = pd.DataFrame(rows)
-    return df.drop_duplicates(subset=["pollster", "end_date", "pop", "dem", "rep"]) if len(df) else df
+    return df.drop_duplicates(subset=["pollster", "end_date", "pop", "n", "dem", "rep"]) if len(df) else df

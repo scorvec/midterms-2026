@@ -932,7 +932,7 @@ def _add_pollresults(M: pd.DataFrame, kind: str) -> pd.DataFrame:
     """pollresults.org's national generic-ballot / Trump-approval posts (bluesky_polls.pr_national) as a fourth source.
     They carry n and population, so a post is the same poll as an existing row when the pollster matches, the
     population matches and the end dates are within 2 days, or any row ending within a day has identical numbers and a
-    sample size within 5 %. Posts accumulate in data/cache/pollresults_{kind}.csv (the feed is read 60 days back)."""
+    sample size within 5 %. Posts accumulate in data/state/pollresults_{kind}.csv (the feed is read 60 days back)."""
     from . import bluesky_polls as B, names as R
 
     cache = ROOT / "data" / "state" / f"pollresults_{kind}.csv"
@@ -941,7 +941,7 @@ def _add_pollresults(M: pd.DataFrame, kind: str) -> pd.DataFrame:
         if cache.exists():
             old = pd.read_csv(cache, parse_dates=["start_date", "end_date"])
             N = pd.concat([old, N], ignore_index=True).drop_duplicates(
-                subset=["pollster", "end_date", "pop", "dem", "rep"]
+                subset=["pollster", "end_date", "pop", "n", "dem", "rep"]  # n: two screens, same toplines (pr_national)
             )
         if len(N):
             N.to_csv(cache, index=False)
