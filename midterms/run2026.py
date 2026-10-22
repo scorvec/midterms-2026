@@ -161,6 +161,23 @@ def _add_bluesky_house(hp):
     return b[cols] if hp is None else pd.concat([hp, b[cols]], ignore_index=True)
 
 
+def _add_manual_house(hp):
+    """Hand-entered district polls no source carries yet: data/manual/race_polls.csv rows with office 'house' and the seat
+    ('TX-35') in the state column. Dropped once a scraped copy exists (same seat and pollster, end date within 3 days)."""
+    try:
+        d = pd.read_csv("data/manual/race_polls.csv", parse_dates=["end_date"])
+    except FileNotFoundError:
+        return hp
+    d = d[d.office == "house"].rename(columns={"state": "seat"})
+    if d.empty:
+        return hp
+    d = d.assign(margin=d.dem - d.rep)
+    if hp is not None and len(hp):
+        d = d[[not M._same_poll(r.pollster, r.end_date, r.margin, hp[hp.seat == r.seat]) for r in d.itertuples()]]
+    cols = ["seat", "pollster", "end_date", "n", "dem", "rep", "margin", "dem_name", "rep_name", "und", "other"]
+    return d[cols] if hp is None else pd.concat([hp, d[cols]], ignore_index=True)
+
+
 def run(E, P=None, n=20000, seed=7, asof=None, nat_z=None):
     asof = asof or pd.Timestamp.today().normalize()
     P = P or M.Params()
@@ -179,6 +196,7 @@ def run(E, P=None, n=20000, seed=7, asof=None, nat_z=None):
     except FileNotFoundError:
         pass
     hp = _add_bluesky_house(hp)
+    hp = _add_manual_house(hp)
     if hp is not None and len(hp):  # VoteHub / Wikipedia rows without a sponsor tag borrow it from the feeds
         from . import wiki_polls as _W
 
