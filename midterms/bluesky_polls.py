@@ -469,6 +469,20 @@ _ORD = {
         1,
     )
 }
+_TENS = {"twenty": 20, "thirty": 30, "forty": 40, "fifty": 50}
+_TENS_ORD = {"thirtieth": 30, "fortieth": 40, "fiftieth": 50}
+
+
+def _ordinal(w: str) -> int:
+    """'second' -> 2, 'thirty-fifth' -> 35, 'fortieth' -> 40 (0 if not an ordinal word): districts past 20 (TX, CA, FL, NY)
+    are written as compound ordinals."""
+    w = w.lower()
+    if w in _ORD or w in _TENS_ORD:
+        return _ORD.get(w) or _TENS_ORD[w]
+    tens, _, unit = w.partition("-")
+    return _TENS[tens] + _ORD[unit] if tens in _TENS and _ORD.get(unit, 10) < 10 else 0
+
+
 _SKIP = re.compile(
     r"^(don'?t know|undecided|someone else|other|refused|would not vote|none|not sure|no answer|skipped)", re.I
 )
@@ -495,11 +509,11 @@ def pr_parse(text):
     elif race.startswith("governor"):
         office, seat = "governor", st
     elif race.startswith("house"):
-        m = re.search(r"\((\w+)[- ]congressional district\)|district (\d+)|\((\d+)", race)
+        m = re.search(r"\(((?:\w+-)?\w+)[- ]congressional district\)|district (\d+)|\((\d+)", race)
         if "at-large" in race or "at large" in race:
             k = 1
         elif m:
-            k = _ORD.get((m.group(1) or "").lower()) or int(m.group(2) or m.group(3) or 0)
+            k = _ordinal(m.group(1) or "") or int(m.group(2) or m.group(3) or 0)
         else:
             return None
         if not k:
