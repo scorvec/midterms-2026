@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-24T18:51Z",
+ "generated": "2026-10-24T19:41Z",
  "election_day": "2026-11-03",
  "reference": {
   "chosen": "A",
@@ -112,12 +112,12 @@
    "state": "TX",
    "through": "2026-10-23",
    "days_out": 11,
-   "banked": 3422568,
-   "pct_registered": 17.97,
+   "banked": 3571296,
+   "pct_registered": 18.76,
    "same_point_2022": null,
    "total_2022": 7751761,
    "note": "counties as reported to the Secretary of State; no 2022 file at this point yet",
-   "share_of_2022_total_pct": 44.2,
+   "share_of_2022_total_pct": 46.1,
    "label": "Texas"
   }
  ],
