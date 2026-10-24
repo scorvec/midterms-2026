@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-23T22:14Z",
+ "generated": "2026-10-24T01:58Z",
  "election_day": "2026-11-03",
  "reference": {
   "chosen": "A",
@@ -20,23 +20,23 @@
   {
    "state": "NC",
    "label": "North Carolina",
-   "through": "2026-10-21",
-   "days_out": 13,
-   "banked": 1101314,
-   "same_point_2022": 798778,
-   "vs_2022_same_point_pct": 37.9,
+   "through": "2026-10-22",
+   "days_out": 12,
+   "banked": 1269914,
+   "same_point_2022": 927708,
+   "vs_2022_same_point_pct": 36.9,
    "total_2022": 3773924,
-   "share_of_2022_total_pct": 29.2,
+   "share_of_2022_total_pct": 33.6,
    "projection": {
     "n_midterm": 1,
     "midterm_errors_pct": {
-     "2022": -8.1
+     "2022": -6.3
     },
     "presidential_errors_pct": {
-     "2012": 20.9,
-     "2016": -8.0,
-     "2020": 118.4,
-     "2024": -20.7
+     "2012": 17.9,
+     "2016": -1.5,
+     "2020": 92.2,
+     "2024": -17.7
     },
     "reason": "1 comparable past midterm at this point: too few to test a projection"
    },
@@ -74,13 +74,13 @@
   },
   {
    "state": "GA",
-   "through": "2026-10-21",
-   "days_out": 13,
-   "banked": 1330455,
-   "same_point_2022": 1268916,
-   "vs_2022_same_point_pct": 4.8,
+   "through": "2026-10-22",
+   "days_out": 12,
+   "banked": 1467780,
+   "same_point_2022": 1393911,
+   "vs_2022_same_point_pct": 5.3,
    "total_2022": 3935924,
-   "share_of_2022_total_pct": 33.8,
+   "share_of_2022_total_pct": 37.3,
    "label": "Georgia"
   },
   {
