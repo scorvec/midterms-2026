@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 from . import data_prep as D
 from . import model as M
+from . import wiki_polls as W
 
 # Hispanic / Asian swing since 2024, measured on the 2025 special and off-year elections.
 # The 2020->24 move toward Trump in Hispanic places was ~ -25 to -44 pts per unit Hispanic CVAP share; in 2025
@@ -100,7 +101,12 @@ def load_seats():
         s["w_load"] = (s["sh_wnc"] - us).fillna(0)
     except FileNotFoundError:
         s["w_load"] = 0.0
-    return ballot_structure(group_loadings(s))
+    s = ballot_structure(group_loadings(s))
+    # seats whose challenger the polls name as someone other than the Democrat (wiki_polls.house_rcv_polls: AK-1, Hill (I))
+    ch = W.house_challengers(2026)
+    s["challenger"] = s["seat"].map(lambda k: ch[k][0] if k in ch else None)
+    s["challenger_party"] = s["seat"].map(lambda k: ch[k][1] if k in ch else "D")
+    return s
 
 
 def ballot_structure(s):
@@ -131,9 +137,8 @@ def ballot_structure(s):
 
 def _add_bluesky_house(hp):
     """District polls from the Polling USA Bluesky feed (midterms/bluesky_polls.py): both names must be the seat's D and R
-    nominees (surname, first five letters); copies of polls already held (same seat, end date +-3 d, margin +-1.5) dropped."""
-    import re as _re
-
+    nominees (surname, first five letters) - the named challenger instead of the Democrat where the polls name another one
+    (wiki_polls.house_challengers); copies of polls already held (same seat, end date +-3 d, margin +-1.5) dropped."""
     try:
         b = pd.read_csv("data/state/bluesky_race_polls.csv", parse_dates=["end_date"])
     except FileNotFoundError:
@@ -145,12 +150,15 @@ def _add_bluesky_house(hp):
 
     b = PC.fix_names(b, "house")  # feed misspellings fixed before the surname match (data/manual/poll_corrections.csv)
     seats = pd.read_csv("data/cache/house2026_seats.csv").set_index("seat")
+    ch = W.house_challengers(2026)
     keep = []
     for r in b.itertuples():
         if r.seat not in seats.index:
             continue
-        c = _re.findall(r"▌([^▌\[]+?)\s*\(([^)]+)\)", str(seats.at[r.seat, "cands"]))
+        c = W.ballot_of(seats.at[r.seat, "cands"])
         dn = {M._sur5(n) for n, pt in c if pt.startswith(("Democratic", "DFL"))}
+        if r.seat in ch:
+            dn = {M._sur5(ch[r.seat][0])}
         rn = {M._sur5(n) for n, pt in c if pt == "Republican"}
         if M._sur5(r.dem_name) in dn and M._sur5(r.rep_name) in rn:
             keep.append(r.Index)
@@ -178,6 +186,28 @@ def _add_manual_house(hp):
     return d[cols] if hp is None else pd.concat([hp, d[cols]], ignore_index=True)
 
 
+def _challenger_rows(hp, s):
+    """Seats whose challenger is not the Democrat (load_seats: challenger, challenger_party): only polls naming that challenger
+    count, and in a ranked-choice race a feed or hand-entered first round is converted with the transfer rates and gives way to
+    the same survey's published final round, as in the Senate (rcv.convert_rows, rcv.final_over_transfer)."""
+    from . import rcv as RC
+
+    ind = s[s["challenger_party"] != "D"]
+    if hp is None or not len(hp) or ind.empty:
+        return hp
+    out = [hp[~hp["seat"].isin(ind["seat"])]]
+    for r in ind.itertuples():
+        q = hp[(hp["seat"] == r.seat) & (hp["dem_name"].map(M._sur5) == M._sur5(r.challenger))]
+        if RC.applies("house", r.seat) and len(q):
+            ballot = W.ballot_of(r.cands)
+            rep = next(
+                (n for n, pt in ballot if pt == "Republican" and M._sur5(n) in set(q["rep_name"].map(M._sur5))), None
+            )
+            q = RC.final_over_transfer(RC.convert_rows(q, RC.other_type_of(ballot, (r.challenger, rep))))
+        out.append(q)
+    return pd.concat(out, ignore_index=True)
+
+
 def run(E, P=None, n=20000, seed=7, asof=None, nat_z=None):
     asof = asof or pd.Timestamp.today().normalize()
     P = P or M.Params()
@@ -197,6 +227,7 @@ def run(E, P=None, n=20000, seed=7, asof=None, nat_z=None):
         pass
     hp = _add_bluesky_house(hp)
     hp = _add_manual_house(hp)
+    hp = _challenger_rows(hp, s)
     if hp is not None and len(hp):  # VoteHub / Wikipedia rows without a sponsor tag borrow it from the feeds
         from . import wiki_polls as _W
 

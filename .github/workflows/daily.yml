@@ -23,6 +23,14 @@ on:
         description: "Re-pull June 30 fundraising from the OpenFEC API first (one-time input; needs the OPENFEC_API_KEY secret)"
         type: boolean
         default: false
+      freeze:
+        description: "Freeze this run's forecast for the scorecard (once, before the polls close; refuses if already frozen)"
+        type: boolean
+        default: false
+      after_freeze:
+        description: "Run even though the forecast is frozen (scheduled and dispatcher runs stop once it is)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -80,6 +88,11 @@ jobs:
           MIDTERMS_STATELEG: ${{ (github.event_name == 'workflow_dispatch' && !inputs.stateleg) && 'off' || 'on' }}
         run: |
           set +e
+          if [ -e data/final/forecast_2026.json ] && [ "${{ github.event_name == 'workflow_dispatch' && inputs.after_freeze }}" != "true" ]; then
+            echo "::notice::the forecast is frozen (data/final/forecast_2026.json): no new run (dispatch with after_freeze to run anyway)"
+            echo "rc=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           if [ "${{ github.event_name == 'workflow_dispatch' && inputs.weekly_report }}" = "true" ]; then
             python -m midterms.weekly
           else
@@ -92,6 +105,14 @@ jobs:
           elif [ "$rc" != "0" ]; then
             exit "$rc"
           fi
+
+      # The scorecard's forecast (midterms/final.py): this run's per-race distributions, frozen with a SHA-256 and the commit, and
+      # the results file's rows (midterms/scorecard.py template)
+      - name: Freeze the forecast for the scorecard
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.freeze && steps.run.outputs.rc == '0' }}
+        run: |
+          python -m midterms.final freeze
+          python -m midterms.scorecard template
 
       - name: Save data cache
         if: ${{ always() && steps.run.outcome != 'cancelled' }}
@@ -115,6 +136,7 @@ jobs:
             paths="$paths web/data/model.json web/data/summary.json web/data/polls.json web/data/race_history.json web/data/whatif.json web/data/history reports"
             [ -e web/data/stateleg_seats.json ] && paths="$paths web/data/stateleg_seats.json"   # state-legislature district maps
             [ -e web/data/poll_spread.json ] && paths="$paths web/data/poll_spread.json"   # the herding check (poll_spread.py)
+            [ -e data/final ] && paths="$paths data/final data/results"   # the frozen forecast and the results file (freeze)
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

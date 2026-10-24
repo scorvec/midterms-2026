@@ -132,6 +132,14 @@ can start scheduled runs late). It runs `python -m midterms.bootstrap`, then `py
    never committed.
 8. On Mondays, `reports/weekly_<date>.md`: which races moved in the past week and why.
 
+`build_web.py` also writes `data/cache/forecast_detail.json`, the scorable forecast (`final.py`): every race's chance and the
+percentiles 1-99 of its simulated margin, the chambers' seat distributions and the national vote.
+
+**Freeze.** Once, before the polls close, dispatch `daily.yml` with `freeze`: `python -m midterms.final freeze` copies that
+run's detail and `model.json` into `data/final/` with a SHA-256 and the commit, and `python -m midterms.scorecard template`
+writes a row per race into `data/results/results_2026.csv`. From then on scheduled and dispatcher runs stop
+(`after_freeze` runs one anyway).
+
 **Publish gate** (`weekly.publish_gate`). The outputs are held when a race that had polls suddenly has none, the race-poll
 count falls by more than 10 %, or the generic-ballot poll count falls - usually a Wikipedia table that stopped parsing. The
 workflow then commits only the poll records in `data/state/` and fails; `force_publish` on a manual run overrides it.
@@ -155,6 +163,7 @@ Other workflows:
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
 | `cd-lean.yml` | manual: the congressional-district leans (`cd_lean_build.py`) on the 2026 maps or on the 2018 and 2022 maps |
 | `district-inputs.yml` | manual: the urbanization index, the House map shapes and (for states back on their old lines) the demographic tables on the maps in force for 2026 (`demog.cd_blocks`); dispatch after a court ruling changes a state's map |
+| `scorecard.yml` | on every change to `data/results/results_2026.csv` (and on demand): scores the frozen forecast against the results (`scorecard.py`, rules in its docstring) and commits `data/results/scorecard_2026.json` |
 
 ## Run it yourself
 
@@ -202,6 +211,7 @@ module constants, each documented where it is defined.
 | `data/state/` | poll records the daily run accumulates (the feeds only reach back a few weeks); committed |
 | `data/manual/` | hand-entered polls (releases not yet in any feed) and checked corrections to scraped polls, with source URLs |
 | `data/early/` | early-vote diagnostics written by `early-diag.yml`; not used by the forecast or the website |
+| `data/final/`, `data/results/` | the frozen forecast (`final.py`), the results as they come in and the scorecard (`scorecard.py`) |
 | `data/raw/`, `data/cache/` | downloads and intermediate files; git-ignored, kept between runs by `actions/cache` |
 | `reports/` | weekly change reports |
 | `site_integration/` | reference copy of the website's sync workflow |
@@ -538,6 +548,11 @@ and Mississippi's 2008 special, Democrats in all but label, aside), against the 
   x2 sd (17.7) covers the spread. Late consolidation toward the stronger anti-Republican candidate is not measured: in the two
   such races in 538's archive (Maine 2018 and 2024) the trailing Democrat gained 3-5 points on the final polls, and third-place
   independents (8 races 2018-2022) lost 3.0 (se 1.5); the earlier three-way races have no poll file here.
+- **The House: Alaska's seat.** AK-1 (ranked choice; Begich (R), Hill (I), Hafner (D), McDermott (L)) is read with the
+  statewide rules (`wiki_polls.house_rcv_polls`): the polls name Hill as the challenger (32.5 % in the August top-four primary,
+  Hafner 3.8 %), each survey's final round is used or its first round converted with the transfer rates, and the seat keeps the
+  D-v-R prior widened x `SPLIT_PRIOR_MULT` without the money term (`model.house_blend`). A Hill win is not a Democratic seat
+  (`model.house_seat_counts`); `data/cache/house2026_challengers.csv` keeps the named challenger when a page fetch fails.
 - **Correlation.** No shared independent error in the simulation: the two funded independents of one cycle (2014) missed in
   opposite directions (+8.3 and -5.2 net of the cycle), and their misses track the same state's D-v-R misses, which the
   simulation's shared statewide shock already gives every race.

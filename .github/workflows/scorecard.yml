@@ -1,0 +1,65 @@
+name: scorecard
+
+# Scores the frozen forecast (data/final/forecast_2026.json, midterms/final.py) against the results file whenever the results
+# change, and on demand: midterms/scorecard.py -> data/results/scorecard_2026.json. Before the freeze there is nothing to score.
+on:
+  push:
+    branches: [main]
+    paths: [data/results/results_2026.csv]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scorecard
+  cancel-in-progress: false
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Score
+        id: score
+        run: |
+          if [ ! -e data/final/forecast_2026.json ]; then
+            echo "::notice::no frozen forecast yet (daily.yml with freeze)"
+            exit 0
+          fi
+          python -m midterms.scorecard
+          echo "scored=true" >> "$GITHUB_OUTPUT"
+
+      # Snapshot the scorecard, resync to the newest main, restore, commit, push (no rebase), as daily.yml does
+      - name: Commit the scorecard
+        if: ${{ steps.score.outputs.scored == 'true' }}
+        run: |
+          set -uo pipefail
+          f=data/results/scorecard_2026.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          SNAP=$(mktemp)
+          cp "$f" "$SNAP"
+          for i in 1 2 3 4 5; do
+            if ! timeout 120 git fetch -q origin main; then echo "fetch $i failed"; sleep 5; continue; fi
+            git reset -q --hard origin/main
+            cp "$SNAP" "$f"
+            git add -- "$f"
+            if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "Scorecard $(date -u +%FT%H:%MZ)"
+            if timeout 180 git push -q origin HEAD:main; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push $i rejected; resyncing and retrying"; sleep $((i * 5))
+          done
+          echo "::error::push failed after 5 attempts"; exit 1

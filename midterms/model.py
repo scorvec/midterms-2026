@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 from dataclasses import dataclass
 from typing import NamedTuple
-from . import data_prep as D
+from . import data_prep as D, rcv as RC
 
 # Poll error splits into a part every poll in a race shares (systematic) and a per-poll part. From
 # 538 raw_polls, polls in the last 60 days, races with >= 3 polls (2014-2022):
@@ -1172,24 +1172,32 @@ def house_blend(
     """The House prior + poll blend, shared by the live run (run2026) and the House backtests, so the two cannot drift
     apart. s: seat table with seat, lean, inc (and optionally group_shift); fit: fit_prior's PriorFit (k0, slopes, prior sd);
     polls: race polls with seat, pollster, end_date, margin, dem, rep (raw - corrected here); money: seat, lr[, money_d, money_r];
-    mcoef: money.coefficients(...) -> (b, c, m, lr0, delta). Adds prior_sd (the sd the blend weighed the polls against)."""
+    mcoef: money.coefficients(...) -> (b, c, m, lr0, delta). Adds prior_sd (the sd the blend weighed the polls against).
+    A seat whose challenger is not the Democrat (challenger_party, wiki_polls.house_rcv_polls: AK-1's independent) keeps the
+    Democrat-v-Republican prior widened x senate2026.SPLIT_PRIOR_MULT, as the Senate does for an independent with a Democrat
+    also on the ballot, and has no money term (the money ratio is the Democrat's)."""
+    from .senate2026 import SPLIT_PRIOR_MULT
+
     s = s.copy()
+    ind = (s["challenger_party"].fillna("D") != "D").values if "challenger_party" in s else np.zeros(len(s), bool)
     s["mu_prior"] = fit.k0 + fit.b_lean * s["lean"] + fit.c_inc * s["inc"] + E
     if money is not None and mcoef is not None:
         bm, cm, mm, lr0, delta = mcoef
         s = s.merge(money, on="seat", how="left")
-        has = s["lr"].notna()
+        has = s["lr"].notna() & ~ind
         s.loc[has, "mu_prior"] = (
             fit.k0 + delta + bm * s.loc[has, "lean"] + cm * s.loc[has, "inc"] + mm * (s.loc[has, "lr"] - lr0) + E
         )
     if "group_shift" in s:
         s["mu_prior"] = s["mu_prior"] + s["group_shift"].fillna(0)  # before the blend: race polls already see the swing
-    s["prior_sd"] = fit.sd
+    s["prior_sd"] = fit.sd * np.where(ind, SPLIT_PRIOR_MULT, 1.0)
     pa = pd.DataFrame(columns=["seat", "poll_margin", "n_eff", "n", "vmult", "spread"])
     if polls is not None and len(polls):
         q = polls.copy()
         q["grade"] = 1.5
-        pq = prepare_race_polls(q)
+        # an independent challenger's own polls are challenger-sponsored (sponsor_of)
+        iq = q["seat"].isin(s.loc[ind, "seat"])
+        pq = pd.concat([prepare_race_polls(g, cp) for g, cp in ((q[~iq], "D"), (q[iq], "I")) if len(g)])
         pa = poll_average(pq, asof)
     s = s.merge(pa, on="seat", how="left")
     poll_var = (
@@ -1197,7 +1205,7 @@ def house_blend(
     )
     has = s["n_eff"].notna().values
     wq = np.where(has, 1.0 / poll_var, 0.0)
-    wp = 1.0 / (fit.sd**2)
+    wp = 1.0 / s["prior_sd"].values ** 2
     s["mu"] = np.where(
         has, (wp * s["mu_prior"] + wq * s["poll_margin"].astype(float).fillna(0)) / (wp + wq), s["mu_prior"]
     )
@@ -1205,13 +1213,14 @@ def house_blend(
     s["E"] = E
     if ROBUST_NU and polls is not None and len(polls):
         for i in np.where(has)[0]:
+            sp = pq[pq["seat"] == s["seat"].iat[i]]
             mu, sd = robust_blend(
                 s["mu_prior"].iat[i],
-                fit.sd,
-                pq[pq["seat"] == s["seat"].iat[i]],
+                s["prior_sd"].iat[i],
+                sp,
                 asof,
                 P.poll_sd,
-                P.poll_sys,
+                float(np.hypot(P.poll_sys, RC.race_sd(sp, asof))),  # + ranked-choice transfer sd (0 without rcv_sd)
                 ROBUST_NU,
             )
             s.iat[i, s.columns.get_loc("mu")] = mu
@@ -1307,9 +1316,21 @@ def simulate(seats: pd.DataFrame, P: Params, n=20000, seed=1, nat_z=None):
     return mg
 
 
+def house_seat_counts(d, seats):
+    """(Democratic seats, independent wins) per simulation from the challenger-wins matrix d [n, seats]. A seat whose
+    challenger is an independent (AK-1 2026: Hill v Begich) is not a Democratic seat when the challenger wins; it does
+    cost the Republicans the seat."""
+    ind = (
+        (seats["challenger_party"].fillna("D") != "D").values
+        if seats is not None and "challenger_party" in seats
+        else np.zeros(d.shape[1], bool)
+    )
+    return d[:, ~ind].sum(1), d[:, ind].sum(1)
+
+
 def summarize(mg, seats, shift=0.0):
     d = (mg + shift) > 0
-    ds = d.sum(1)
+    ds, _ = house_seat_counts(d, seats)
     return {
         "dem_seats_mean": float(ds.mean()),
         "dem_seats_p10": float(np.percentile(ds, 10)),

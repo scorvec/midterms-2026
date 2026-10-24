@@ -86,8 +86,9 @@ def main():
     for e in GRID:
         sh = e - E_now
         d = (mg + sh) > 0
-        ds = d.sum(1)
+        ds, di = M.house_seat_counts(d, s)  # an independent challenger's win (AK-1) is not a Democratic seat
         house["dist"][str(e)] = {
+            **({"ind_mean": round(float(di.mean()), 2)} if di.any() else {}),
             "mean": round(float(ds.mean()), 1),
             "p10": int(np.percentile(ds, 10)),
             "p25": int(np.percentile(ds, 25)),
@@ -97,7 +98,7 @@ def main():
             "p_maj": round(float((ds >= 218).mean()), 3),
             "hist": {str(k): int(v) for k, v in zip(*np.unique(ds, return_counts=True))},
         }
-    dn = (mg > 0).sum(1)
+    dn, _ = M.house_seat_counts(mg > 0, s)
     house["now"] = {
         "mean": round(float(dn.mean()), 1),
         "p10": int(np.percentile(dn, 10)),
@@ -123,6 +124,11 @@ def main():
                 "money_r": None if pd.isna(r.get("money_r")) else round(float(r["money_r"])),
                 "p": [round(float(x), 3) for x in pgrid[i]],
                 **({"rcv": RC.house_note(r)} if RC.applies("house", r["seat"]) else {}),
+                **(
+                    {"challenger": r["challenger"], "challenger_party": r["challenger_party"]}
+                    if r.get("challenger_party", "D") != "D"
+                    else {}
+                ),
             }
         )
     M.RECORD_OFFICE = "senate"
@@ -143,6 +149,7 @@ def main():
         "r_up": sout["r_up"],
         "races": [],
         "dist": {},
+        "late_count": SN.LATE_COUNT,
     }
     d_up = sout["d_up"]
     _s, _i = SN.seat_counts(SS, smg > 0, d_up)
@@ -164,6 +171,8 @@ def main():
             "p_ctrl_ir": round(float(SN.d_controls(seats, ind, "R").mean()), 3),
             "p_ctrl_id": round(float(SN.d_controls(seats, ind, "D").mean()), 3),
             "hist": {str(k): int(v) for k, v in zip(*np.unique(seats, return_counts=True))},
+            # late-counted races that decide control (SN.LATE_COUNT): flipping the race flips who organises the Senate
+            "decides": {st: round(SN.decides_control(SS, d, d_up, st), 3) for st in SN.LATE_COUNT},
             # (Democratic seats, independent seats) pairs: the chart stacks independents on each bar
             "hist2": {
                 f"{a}|{b}": int(v)
@@ -173,7 +182,7 @@ def main():
     # joint control (same national draw, same slider shift): D House = 218+, D Senate = organises it (SN.d_controls; the VP is a Republican)
     joint = {}
     for e in GRID:
-        dh = ((mg + (e - E_now)) > 0).sum(1) >= 218
+        dh = M.house_seat_counts((mg + (e - E_now)) > 0, s)[0] >= 218
         sseats, sind = SN.seat_counts(SS, (smg + (e - E_now) * SN.NAT_SLOPE) > 0, d_up)
         dsn = SN.d_controls(sseats, sind)  # organises the Senate (independents abstain)
         joint[str(e)] = {
@@ -291,6 +300,9 @@ def main():
                 "p_d_majority": round(float((dg >= 26).mean()), 3),
             }
         gp = np.stack([((gmg + (e - E_now) * slope) > 0).mean(0) for e in GRID], 1)
+        from . import majority as MJ
+
+        maj = GS.attrs.get("majority", {})  # majority.py: races that need a majority, with minor-share draws
         for i, r in GS.iterrows():
             gov["races"].append(
                 {
@@ -306,6 +318,19 @@ def main():
                     "mu": round(float(r.mu), 2),
                     "p": [round(float(x), 3) for x in gp[i]],
                     **({"rcv": r.rcv, "rcv_sd": round(float(r.rcv_sd or 0), 2)} if getattr(r, "rcv", "") else {}),
+                    **(
+                        {
+                            "majority": {
+                                "rule": maj[r.state][0],
+                                "p": [
+                                    round(MJ.p_no_majority(gmg[:, i] + (e - E_now) * slope, maj[r.state][1]), 3)
+                                    for e in GRID
+                                ],
+                            }
+                        }
+                        if r.state in maj
+                        else {}
+                    ),
                 }
             )
         out["governor"] = gov
@@ -348,6 +373,11 @@ def main():
             print("::warning::state legislatures skipped:", str(ex)[:160])
     with open("web/data/model.json", "w") as fh:
         json.dump(out, fh, separators=(",", ":"))
+    from . import final as FN  # the scorable forecast (per-race percentiles); frozen once before the polls close
+
+    FN.write_detail(
+        FN.detail(out, s, mg, SS, smg, GS if "governor" in out else None, gmg if "governor" in out else None)
+    )
     polls_page(out, gm, E_now, BIAS)
     try:  # the "What if?" page's ingredients (midterms/whatif.py)
         from . import whatif as WI
@@ -555,7 +585,11 @@ def polls_page(out, gm, E_now, bias):
     for r in (out.get("governor") or {}).get("races", []):
         names[("governor", r["state"])] = f"{r.get('dem') or '?'} (D) v {r.get('rep') or '?'} (R)"
     for r in out["house"]["seats"]:
-        names[("house", r["seat"])] = r.get("member") or ""
+        names[("house", r["seat"])] = (
+            f"{r['challenger']} ({r['challenger_party']}) v {r.get('member') or 'the Republican'} (R)"  # "(I) v": polls.html
+            if r.get("challenger_party")
+            else r.get("member") or ""
+        )
     last = {}
     for r in rec:  # the House blends twice (before and after the demographic-factor update): keep the final pass
         r["label"] = names.get((r["office"], r["seat"]), "")

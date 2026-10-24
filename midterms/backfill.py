@@ -469,9 +469,9 @@ def run_asof(D, n=20000, filtered=True, verbose=False, E_override=None):
 
 
 def _pack(D, E_now, gnow, glast, s, mg, SS, smg, sout, GS, gmg):
-    from . import senate2026 as SN, gov2026 as GV
+    from . import model as M, senate2026 as SN, gov2026 as GV
 
-    dn = (mg > 0).sum(1)
+    dn, _ = M.house_seat_counts(mg > 0, s)
     d_up = sout["d_up"]
     seats, ind = SN.seat_counts(SS, smg > 0, d_up)
     up_d = GS.attrs["summary"]["up_d"]
@@ -494,8 +494,14 @@ def _pack(D, E_now, gnow, glast, s, mg, SS, smg, sout, GS, gmg):
             "both": round(float((dh & dsn).mean()), 4),
         },
         "house": {
-            r: [round(float(p), 4), round(float(m), 2), int(0 if pd.isna(k) else k)]
-            for r, p, m, k in zip(s["seat"], hp, s["mu"], s.get("n", pd.Series([0] * len(s))))
+            r: [round(float(p), 4), round(float(m), 2), int(0 if pd.isna(k) else k)] + ([cp] if cp != "D" else [])
+            for r, p, m, k, cp in zip(
+                s["seat"],
+                hp,
+                s["mu"],
+                s.get("n", pd.Series([0] * len(s))),
+                s.get("challenger_party", pd.Series(["D"] * len(s))).fillna("D"),
+            )
         },
         "senate": {
             st + ("|sp" if sp_ else ""): [round(float(p), 4), round(float(m), 2), int(k), cp or "D"]

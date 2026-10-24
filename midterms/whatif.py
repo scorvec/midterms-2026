@@ -112,6 +112,8 @@ def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
         }
         if fixed:
             row["fix"] = "D" if r.get("winner") == "D" else "R"
+        if str(r.get("challenger_party") or "D") != "D":
+            row["ind"] = True  # an independent challenger's win is not a Democratic seat (model.house_seat_counts)
         k = ("house", r["seat"])
         if k in rec:
             row["bl"] = rec[k]

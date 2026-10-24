@@ -350,6 +350,21 @@ def d_controls(seats, ind, join="abstain"):
     return (seats + (ind if join == "D" else 0)) > (r + (ind if join == "R" else 0))
 
 
+# Races counted late enough to leave control open after election night. Alaska accepts mailed ballots for 15 days and runs the
+# ranked-choice rounds after that (Nov 23 in 2022, Nov 20 in 2024).
+LATE_COUNT = {"AK": "Alaska finishes its count and runs the ranked-choice rounds about November 18"}
+
+
+def decides_control(S, d, d_up, state):
+    """Share of simulations in which the state's race decides who organises the Senate: flipping its result flips control."""
+    j = np.flatnonzero((S["state"] == state).values)
+    if len(j) != 1:
+        return None
+    d2 = d.copy()
+    d2[:, j[0]] = ~d2[:, j[0]]
+    return float((d_controls(*seat_counts(S, d, d_up)) != d_controls(*seat_counts(S, d2, d_up))).mean())
+
+
 # Cross-race common trend (the core of the Linzer / Economist dynamic model, tested alone): the cycle's Senate polls give a smooth
 # common movement g(t) net of race and pollster effects; every poll is moved by g(today) - g(its end date), so a stale poll in a
 # thinly polled race carries the movement measured in the others. Senate harness 2006-2024: log loss -0.0035 (8/10 cycles, boot p

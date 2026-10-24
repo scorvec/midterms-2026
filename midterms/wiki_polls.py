@@ -365,7 +365,16 @@ def _party_of(key):
 
 
 def senate_polls(
-    state_abbr: str, year=2026, special=False, dem=None, rep=None, ballot=None, return_meta=False, title=None
+    state_abbr: str,
+    year=2026,
+    special=False,
+    dem=None,
+    rep=None,
+    ballot=None,
+    return_meta=False,
+    title=None,
+    office=None,
+    seat=None,
 ):
     """General-election polls of the race that is actually on the ballot.
 
@@ -379,8 +388,12 @@ def senate_polls(
       * margin = challenger - Republican.
     Without a ballot it falls back to the first (D) / (R) columns.
     Rows are then collapsed to one per (pollster, end date) and rows with the challenger or the Republican
-    under 15 % are dropped (primary-table debris, ranked-choice round tables)."""
+    under 15 % are dropped (primary-table debris, ranked-choice round tables).
+    office / seat: the race the page is about when it is not a Senate race in state_abbr (default: governor for a
+    gubernatorial title; house_rcv_polls passes ("house", "AK-1")) - they select the ranked-choice rule and the feed tags."""
     title = title or f"{year} United States Senate {'special ' if special else ''}election in {STATES[state_abbr]}"
+    office = office or ("governor" if "gubernatorial" in title else "senate")
+    seat = seat or state_abbr
     html = fetch(title)
     rows = poll_tables(html, year)
     meta = {"challenger": dem, "challenger_party": "D", "majors": [], "dropped_hypothetical": 0, "dropped_partial": 0}
@@ -406,10 +419,7 @@ def senate_polls(
     from . import rcv as RC
 
     # ranked-choice race with more than the two finalists on the ballot (Maine's 2026 Senate ballot has two names: nothing transfers)
-    rcv_on = (
-        RC.applies("governor" if "gubernatorial" in title else "senate", state_abbr)
-        and len([n for n, _ in (ballot or []) if n]) > 2
-    )
+    rcv_on = RC.applies(office, seat) and len([n for n, _ in (ballot or []) if n]) > 2
     if ballot:
         keep = []
         for p_raw in rows:
@@ -499,7 +509,7 @@ def senate_polls(
             if k in df:
                 agg[k] = "mean"
         df = df.groupby(["pollster", "end_date", "dem_name", "rep_name"], as_index=False, sort=False).agg(agg)
-        df = borrow_feed_tags(df, "governor" if "gubernatorial" in title else "senate", lambda r: state_abbr)
+        df = borrow_feed_tags(df, office, lambda r: seat)
     return (df, meta) if return_meta else df
 
 
@@ -580,12 +590,71 @@ def all_house_polls(year=2026):
         if not df.empty:
             frames.append(df)
     out = pd.concat(frames) if frames else pd.DataFrame()
+    rq, who = house_rcv_polls(pd.read_csv(ROOT / "data" / "cache" / f"house{year}_seats.csv"), year)
+    if who:  # those seats' D-v-R rows (the Democrat at 4-11 %) are replaced, not added to
+        out = pd.concat([out[~out["seat"].isin(list(who))] if len(out) else out, rq], ignore_index=True)
+        save_house_challengers(who, year)
     if len(out):
         out = screen_house_polls(out, year)
     if len(out):
         out = borrow_feed_tags(out, "house", lambda r: r["seat"])
     out.to_csv(ROOT / "data" / "cache" / f"house{year}_polls.csv", index=False)
     return out
+
+
+def ballot_of(cands):
+    """[(name, party)] from a seat's Candidates cell ("▌Nick Begich III (Republican) ▌Bill Hill (Independent) ...")."""
+    return [(n.strip(), p) for n, p in re.findall(r"▌([^▌\[]+?)\s*\(([^)]+)\)", str(cands))]
+
+
+def house_rcv_polls(seats, year=2026):
+    """Ranked-choice House seats with more than two names on the ballot (AK-1 2026: Begich (R), Hill (I), Hafner (D), McDermott (L)):
+    the statewide rules of senate_polls on the at-large page - on-ballot candidates only, the challenger is the non-Republican
+    the polls put ahead (Hill: 32.5 % in the August top-four primary, the Democrat on the ballot 3.8 %), each survey's final
+    round or its first round converted with the transfer rates. Districted pages hold every district's tables, so only
+    at-large seats are read this way (Maine's two districts have two names each).
+    -> (rows in house_polls' columns plus rcv / rcv_sd, {seat: (challenger, party letter)})."""
+    from . import rcv as RC
+
+    frames, who = [], {}
+    states = seats["seat"].str.split("-").str[0]
+    for (seat, cands), st in zip(zip(seats["seat"], seats["cands"]), states):
+        ballot = ballot_of(cands)
+        if not RC.applies("house", seat) or len(ballot) <= 2 or (states == st).sum() != 1:
+            continue
+        title = f"{year} United States House of Representatives election in {STATES[st]}"
+        try:
+            df, meta = senate_polls(st, year, ballot=ballot, return_meta=True, title=title, office="house", seat=seat)
+        except Exception as e:
+            print(f"  {seat}: ranked-choice polls failed ({str(e)[:60]})")
+            continue
+        if df.empty:
+            continue
+        frames.append(df.drop(columns=["state", "special", "table"], errors="ignore").assign(seat=seat))
+        who[seat] = (meta["challenger"], meta["challenger_party"])
+        print(f"  {seat}: {len(df)} ranked-choice polls, challenger {meta['challenger']} ({meta['challenger_party']})")
+    return (pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()), who
+
+
+def _challengers_file(year):
+    return ROOT / "data" / "cache" / f"house{year}_challengers.csv"
+
+
+def save_house_challengers(who, year=2026):
+    """Seats whose challenger the polls named (house_rcv_polls); a seat missing from this run (page fetch failed) keeps its row."""
+    old = house_challengers(year)
+    old.update(who)
+    rows = [{"seat": k, "challenger": n, "party": p} for k, (n, p) in sorted(old.items())]
+    pd.DataFrame(rows, columns=["seat", "challenger", "party"]).to_csv(_challengers_file(year), index=False)
+
+
+def house_challengers(year=2026):
+    """{seat: (challenger, party letter)} for the seats house_rcv_polls read; every other seat is the Democrat v the Republican."""
+    f = _challengers_file(year)
+    if not f.exists():
+        return {}
+    d = pd.read_csv(f)
+    return {r.seat: (r.challenger, r.party) for r in d.itertuples()}
 
 
 def _norm(n):

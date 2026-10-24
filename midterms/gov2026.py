@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 from . import poll_overrides as PO
 from . import poll_corrections as PC
-from . import model as M, wiki_polls as W, rcv as RC
+from . import majority as MJ, model as M, wiki_polls as W, rcv as RC
 
 ROOT = Path(__file__).resolve().parents[1]
 TWO_YEAR = {"NH", "VT"}
@@ -143,6 +143,7 @@ def parse_results(y, html):
                 "dn": dn,
                 "rn": rn,
                 "oth_max": max([v for n, p, v in c if not p.startswith((*_DEM, "Republican"))], default=0.0),
+                "minor": round(100 - d - rp, 2),  # everyone but the two nominees, write-ins included (majority.py)
                 "inc_old": ip if ran_old else 0.0,
                 "inc_fix": ip if ran else 0.0,
             }
@@ -795,6 +796,7 @@ def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
                 "heat_oil_shift": b3 * heat,
                 "rcv": RC.NOTE if rcv_on else "",
                 "rcv_sd": rsd,
+                "n_minor": sum(1 for n, pt in r.cands if not pt.startswith((*_DEM, "Republican"))),  # majority.py
             }
         )
     S = pd.DataFrame(rows)
@@ -815,6 +817,7 @@ def run(E, asof=None, n=20000, seed=13, nat_z=None, refresh=True):
         "now_r": NOW_R,
     }
     S.attrs["summary"] = summ
+    S.attrs["majority"] = MJ.races(S, Hh, n)  # majority.py: {state: (rule, minor-share draws)}
     names = PR.names()
     coef = {k: float(v) for k, v in zip(names, np.round(b, 3))}
     coef["lean_now"] = round(coef["lean"] + coef.get("lean_t", 0.0) * (2026 - 2010) / 10, 3)  # the 2026 lean slope

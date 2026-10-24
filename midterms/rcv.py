@@ -532,12 +532,14 @@ NOTE = "final-round estimate, ranked-choice"
 
 
 def house_note(seat_row):
-    """The House model is Democrat v Republican: with only those two on the ballot the head-to-head is the final round; with more,
-    say so (AK-1 2026: Begich (R), Hill (I), Hafner (D), McDermott (L) - the likely final round is Republican v independent)."""
+    """With only two names on the ballot the head-to-head is the final round. With more, the seat's polls name the finalist
+    (wiki_polls.house_rcv_polls: AK-1 2026 is Begich (R) v Hill (I), with Hafner (D) and McDermott (L) transferring); if no
+    challenger could be read, the model falls back to the Democrat v the Republican and says so."""
     n = len(re.findall(r"\u258c", str(seat_row.get("cands", ""))))
+    named = isinstance(seat_row.get("challenger"), str) and seat_row.get("challenger")
     return (
         NOTE
-        if n <= 2
+        if n <= 2 or named
         else "ranked-choice count with more than two candidates; the House model scores the Democrat v the Republican only"
     )
 

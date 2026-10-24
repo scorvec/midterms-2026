@@ -15,11 +15,11 @@ E0 (a fixed half point until 2026-09-28, = E_now since).
 
 Layout (compact; p in per-mille integers):
   {"start", "method": {...}, "dates": [...], "src": ["r" | "i", ...], "nat": {"E": [...], "h": [...], "s": [...]},
-   "house": {"AL-1": [[p...], [mu...]]}, "senate": {"FL|sp": [[p...], [mu...](, [cp...])]}, "gov": {"AL": ...},
+   "house": {"AL-1": [[p...], [mu...](, [cp...])]}, "senate": {"FL|sp": [[p...], [mu...](, [cp...])]}, "gov": {"AL": ...},
    "issued": {"start", "dates", "nat", "house", "senate", "gov"}}
 `h` = House P(D majority), `s` = Senate P(D controls) (issued: P(51+) before 2026-09-26, when control was first counted),
-`E` = E_now. src 'r' = reconstructed, 'i' = as issued (appended by the daily run). Senate/governor races carry "cp" (the
-challenger party per day) when it ever differs from 'D'.
+`E` = E_now. src 'r' = reconstructed, 'i' = as issued (appended by the daily run). Races carry "cp" (the challenger party per
+day) when it ever differs from 'D' (AK-1's independent since 2026-10-24, the Senate independents).
 """
 
 import json
@@ -74,7 +74,11 @@ def _issued_point(d):
     k = _key(grid, gi, H)
     hd = (H.get("dist") or {}).get(k)
     sd = (d.get("senate", {}).get("dist") or {}).get(k)
-    races = {"house": {s["seat"]: (s["p"][gi], s.get("mu"), "D") for s in H["seats"]}, "senate": {}, "gov": {}}
+    races = {
+        "house": {s["seat"]: (s["p"][gi], s.get("mu"), s.get("challenger_party") or "D") for s in H["seats"]},
+        "senate": {},
+        "gov": {},
+    }
     for kind, blk in (("senate", d.get("senate")), ("gov", d.get("governor"))):
         if not blk:
             continue
@@ -91,7 +95,7 @@ def _issued_point(d):
 
 def _recon_point(r):
     races = {
-        "house": {k: (v[0], v[1], "D") for k, v in r["house"].items()},
+        "house": {k: (v[0], v[1], v[3] if len(v) > 3 else "D") for k, v in r["house"].items()},
         "senate": {k: (v[0], v[1], v[3] if len(v) > 3 else "D") for k, v in r["senate"].items()},
         "gov": {k: (v[0], v[1], "D") for k, v in r["gov"].items()},
     }
@@ -104,7 +108,7 @@ def _assemble(points, start):
     n = len(dates)
     nat = {"E": [None] * n, "h": [None] * n, "s": [None] * n}
     sec = {"house": {}, "senate": {}, "gov": {}}
-    party = {"senate": {}, "gov": {}}
+    party = {"house": {}, "senate": {}, "gov": {}}
     for i, day in enumerate(dates):
         E, h, s, races = points[day]
         nat["E"][i], nat["h"][i], nat["s"][i] = r1(E), pm(h), pm(s)
@@ -115,8 +119,8 @@ def _assemble(points, start):
                 v[1][i] = r1(mu)
                 if kind in party:
                     party[kind].setdefault(key, [None] * n)[i] = cp
-    out = {"start": start, "dates": dates, "nat": nat, "house": sec["house"], "senate": {}, "gov": {}}
-    for kind in ("senate", "gov"):
+    out = {"start": start, "dates": dates, "nat": nat, "house": {}, "senate": {}, "gov": {}}
+    for kind in ("house", "senate", "gov"):
         for key, v in sec[kind].items():
             cp = party[kind].get(key)
             out[kind][key] = v + ([cp] if cp and any(x not in (None, "D") for x in cp) else [])
