@@ -1360,3 +1360,6 @@ governor,ME,Beacon Research/Shaw & Co. Research,2026-10-20,2026-10-23,polls.json
 governor,NE,GSG (D),2026-10-18,2026-10-23,polls.json
 governor,NY,ActiVote,2026-10-23,2026-10-23,polls.json
 governor,TX,VoteHub/Verasight,2026-10-20,2026-10-23,polls.json
+house,CO-3,Democratic Congressional Campaign Committee,2026-10-21,2026-10-24,polls.json
+senate,MS,Change Research (D),2026-10-22,2026-10-24,polls.json
+senate,NE,GBAO (D),2026-10-22,2026-10-24,polls.json
