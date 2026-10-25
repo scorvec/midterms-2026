@@ -163,6 +163,7 @@ Other workflows:
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
 | `cd-lean.yml` | manual: the congressional-district leans (`cd_lean_build.py`) on the 2026 maps or on the 2018 and 2022 maps |
 | `district-inputs.yml` | manual: the urbanization index, the House map shapes and (for states back on their old lines) the demographic tables on the maps in force for 2026 (`demog.cd_blocks`); dispatch after a court ruling changes a state's map |
+| `nc-night.yml` | election night, dispatched when the polls close: reads North Carolina's results file every five minutes for five and a half hours and writes the Senate final-margin estimate (`nc_night.py live`) |
 | `scorecard.yml` | on every change to `data/results/results_2026.csv` (and on demand): scores the frozen forecast against the results (`scorecard.py`, rules in its docstring) and commits `data/results/scorecard_2026.json` |
 
 ## Run it yourself
@@ -800,6 +801,19 @@ it a backtested 80 % range. Pre-registered in the module, with one dated amendme
 in-person early voting opened within a day of each other. On the first run no state qualifies (North Carolina's 2014 and
 2018 calendars leave one comparable midterm; Pennsylvania's mail records start in 2020), so the page shows the counts and
 says why. Output `data/early/turnout_proj.json`, in `web/data/early_vote.json` as `turnout`.
+
+**North Carolina on election night** (`nc_night.py`; not on the site, not a forecast input). North Carolina reports its
+early and mail ballots first. A registration accounting - a county's ballots cast one way have each party's net vote,
+fitted on the county x method results of every statewide contest 2016-2024 (`data/static/nc_night/`, built once from the
+voter history and the results files) - turns the reported batch into a level shift and adds the Election Day vote still to
+come (each county's banked ballots by party x its 2022 Election Day to early ratio; the counties that have finished correct
+the turnout and the Election Day level). Replayed on the ten contests, each without its year: RMS error of the final margin
+2.0 points from the batch alone (6.6 for the batch as it stands), 1.5 with a quarter of the counties finished, 1.1 with half
+(random order); mean error 1.2 against the final three weeks of polls' 3.4 on the eight contests 538's archives cover. The
+ratio projection assumes a party that banks fewer ballots turns out less; when a party moves between ways of voting it
+misses (2024: 2.6-3.8 points too Republican), so a second projection - 2022's turnout by party minus the banked ballots - is shown beside it once one-stop voting closes.
+Nightly in `early-diag.yml`: the batch each final Senate margin implies (`data/early/nc_night.json`); on the night
+`nc-night.yml` reads the results file every five minutes and writes `data/results/nc_night_2026.json`.
 
 ### Poll spread (herding check)
 

@@ -1,0 +1,13 @@
+{
+ "rmse": {
+  "err_0": 2.02,
+  "err_25": 1.48,
+  "err_50": 1.12
+ },
+ "contests": 10,
+ "vs_polls": {
+  "contests": 8,
+  "polls_mae": 3.42,
+  "batch_mae": 1.24
+ }
+}

@@ -1,0 +1,72 @@
+name: north carolina election night
+
+# Election night: every `interval` seconds for `minutes`, the State Board's results file -> midterms/nc_night.py live ->
+# data/results/nc_night_2026.json, the Senate final-margin estimate from the reported early, mail and finished Election Day votes
+# (written only when the results file changed). Dispatch once when the polls close (7:30 pm Eastern); one job polls all night,
+# so no scheduled run has to fire on time.
+on:
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "How long to keep reading (minutes)"
+        type: number
+        default: 330
+      interval:
+        description: "Seconds between reads"
+        type: number
+        default: 300
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nc-night
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # each read: estimate, then snapshot the file, resync to the newest main, restore, commit and push (no rebase)
+      - name: Read and estimate until the time is up
+        run: |
+          set -uo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          f=data/results/nc_night_2026.json
+          end=$(( $(date +%s) + 60 * ${{ inputs.minutes }} ))
+          while [ "$(date +%s)" -lt "$end" ]; do
+            if python -m midterms.nc_night live; then
+              if [ -e "$f" ]; then
+                cp "$f" /tmp/night.json
+                for i in 1 2 3; do
+                  timeout 60 git fetch -q origin main || { sleep 5; continue; }
+                  git reset -q --hard origin/main
+                  mkdir -p data/results && cp /tmp/night.json "$f"
+                  git add -- "$f"
+                  if git diff --staged --quiet; then break; fi
+                  git commit -q -m "North Carolina night $(date -u +%H:%MZ)"
+                  if timeout 60 git push -q origin HEAD:main; then break; fi
+                  sleep $((i * 5))
+                done
+              fi
+            else
+              echo "::warning::read failed at $(date -u +%H:%MZ); trying again next interval"
+            fi
+            sleep ${{ inputs.interval }}
+          done

@@ -141,6 +141,14 @@ jobs:
           python -m midterms.nc_early || echo "::warning::North Carolina early-vote diagnostic failed (diagnostic only)"
           echo "North Carolina step took $(( $(date +%s) - start )) s"
 
+      # what North Carolina's first reported batch (early + mail) should be for each final Senate margin (midterms/nc_night.py;
+      # reads the absentee file the step above fetched); data/early/nc_night.json, not on the site
+      - name: North Carolina election-night expectations
+        if: ${{ (inputs.only == '' || contains(inputs.only, 'nc')) }}
+        timeout-minutes: 10
+        continue-on-error: true
+        run: python -m midterms.nc_night expect || echo "::warning::North Carolina election-night expectations failed (diagnostic only)"
+
       - name: North Carolina tracker (the published page)
         if: ${{ (inputs.only == '' || contains(inputs.only, 'nc')) }}
         timeout-minutes: 25
