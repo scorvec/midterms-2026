@@ -83,7 +83,7 @@ the district's 2024 presidential lean, incumbency and the national environment, 
 and a seat error, with multi-member districts, held-over senate seats and tie rules handled per chamber.
 
 **Diagnostics that do not feed the forecast.** Early and mail ballots by race, party or composition in North Carolina,
-Florida, Georgia, Pennsylvania and Nevada's Clark County; Texas early-vote turnout (off by default); voter registration in North Carolina and
+Florida, Georgia, Pennsylvania and Nevada's Clark and Washoe counties; Texas early-vote turnout (off by default); voter registration in North Carolina and
 Pennsylvania; same-pollster poll-to-poll changes. Details below.
 
 ## Validation
@@ -157,7 +157,7 @@ Other workflows:
 
 | workflow | what it does |
 |---|---|
-| `early-diag.yml` | daily early-vote composition diagnostics for North Carolina, Florida, Georgia and Clark County, Nevada, and the turnout table (`turnout_proj.py`); commits `data/early/` (and once, the turnout table's fixed inputs) |
+| `early-diag.yml` | daily early-vote composition diagnostics for North Carolina, Florida, Georgia and Clark and Washoe counties, Nevada, and the turnout table (`turnout_proj.py`); commits `data/early/` (and once, the turnout table's fixed inputs) |
 | `early-skill.yml` | manual: the pre-registered test of whether the early vote's party mix has predicted the polls' misses (`early_skill.py`); commits `data/static/early_skill.json` and `data/static/early_skill/` |
 | `stateleg-geo.yml` | builds the district maps `web/data/stateleg_geo/` from Census TIGER/Line when the chamber list or the district leans change |
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
@@ -814,6 +814,12 @@ ratio projection assumes a party that banks fewer ballots turns out less; when a
 misses (2024: 2.6-3.8 points too Republican), so a second projection - 2022's turnout by party minus the banked ballots - is shown beside it once one-stop voting closes.
 Nightly in `early-diag.yml`: the batch each final Senate margin implies (`data/early/nc_night.json`); on the night
 `nc-night.yml` reads the results file every five minutes and writes `data/results/nc_night_2026.json`.
+
+**Washoe County, Nevada** (`nv_washoe_early.py`): the Registrar of Voters' cumulative daily files - every mailed ballot with
+the voter's party and status (Nevada mails one to every active voter, so the file is also the active rolls) and every early
+in-person voter - counted by party against the county's own rolls. The county keeps no daily files from earlier generals, so
+there is no 2022 comparison. Only counts are committed (`data/early/nv_washoe_early.json`); the voter-level files stay in
+the Actions cache.
 
 ### Poll spread (herding check)
 

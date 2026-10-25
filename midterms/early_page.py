@@ -10,6 +10,8 @@
   nv  nv_clark_early's latest reading (data/early/nv_clark_early.json; Clark County Election Department files): mail
       ballots returned by party against registration and against 2022 / 2024 at the same days out, in-person early voters
       by party (joined to the voter list) and against 2024's turnout on the same day; both by congressional district.
+  nv_washoe  nv_washoe_early's latest reading (data/early/nv_washoe_early.json; Washoe County Registrar of Voters files):
+      mail ballots returned and in-person early voters by party against the county's active rolls (no 2022 daily files).
   tx  tx_early's latest reading (data/early/tx_early.json; the Secretary of State's county early-voting files): turnout
       only (Texas has no party registration), statewide and for fixed county groups, as a share of registered voters.
   turnout  turnout_proj's table (data/early/turnout_proj.json): each state's ballots so far against 2022 at the same point,
@@ -97,6 +99,14 @@ def nevada() -> dict | None:
     return {k: v[k] for k in keep if k in v}
 
 
+def washoe() -> dict | None:
+    v = _read(EARLY / "nv_washoe_early.json")
+    if not v:
+        return None
+    keep = ("through", "days_out", "registration", "mail", "in_person", "combined", "source")
+    return {k: v[k] for k in keep if k in v}
+
+
 def texas() -> dict | None:
     v = _read(EARLY / "tx_early.json")
     if not v or not v.get("latest_ev_day"):
@@ -142,12 +152,13 @@ def build() -> dict:
         "ga": georgia(),
         "fl": florida(),
         "nv": nevada(),
+        "nv_washoe": washoe(),
         "tx": texas(),
         "turnout": turnout(),
     }
     OUT.write_text(json.dumps(res, separators=(",", ":")))
     print(f"early page: {OUT.relative_to(ROOT)} ({OUT.stat().st_size / 1e3:.0f} kB; " + ", ".join(
-        k for k in ("nc", "ga", "fl", "nv", "tx", "turnout") if res[k]) + ")", flush=True)  # fmt: skip
+        k for k in ("nc", "ga", "fl", "nv", "nv_washoe", "tx", "turnout") if res[k]) + ")", flush=True)  # fmt: skip
     return res
 
 
