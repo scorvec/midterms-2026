@@ -1389,3 +1389,10 @@ house,PA-1,New York Times/The Philadelphia Inquirer/Siena University,2026-10-22,
 house,PA-7,New York Times/The Philadelphia Inquirer/Siena University,2026-10-22,2026-10-25,polls.json
 house,PA-8,New York Times/The Philadelphia Inquirer/Siena University,2026-10-22,2026-10-25,polls.json
 house,PA-10,New York Times/The Philadelphia Inquirer/Siena University,2026-10-22,2026-10-25,polls.json
+house,TX-9,DCCC (D),2026-10-22,2026-10-25,polls.json
+house,TX-9,Public Policy Polling (D),2026-09-19,2026-10-25,polls.json
+senate,NE,Concord Public Opinion Partners (D),2026-10-18,2026-10-25,polls.json
+senate,SC,Rasmussen Reports (R),2026-09-14,2026-10-25,polls.json
+governor,NE,Concord Public Opinion Partners (D),2026-10-18,2026-10-25,polls.json
+senate,NE,Concord Public Opinion Partners (D),2026-10-18,2026-10-25,manual
+governor,NE,Concord Public Opinion Partners (D),2026-10-18,2026-10-25,manual
