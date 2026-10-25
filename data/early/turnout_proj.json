@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-25T02:09Z",
+ "generated": "2026-10-25T06:55Z",
  "election_day": "2026-11-03",
  "reference": {
   "chosen": "A",
@@ -97,13 +97,13 @@
   },
   {
    "state": "NV",
-   "through": "2026-10-23",
-   "days_out": 11,
-   "banked": 261320,
-   "mail": 173763,
-   "in_person": 87557,
-   "mail_2022_same_point": 121010,
-   "mail_vs_2022_same_point_pct": 43.6,
+   "through": "2026-10-24",
+   "days_out": 10,
+   "banked": 290041,
+   "mail": 189088,
+   "in_person": 100953,
+   "mail_2022_same_point": 133964,
+   "mail_vs_2022_same_point_pct": 41.1,
    "total_2022": null,
    "note": "Clark County only; mail is the only part with a 2022 file at the same point",
    "label": "Clark County, NV"

@@ -1,5 +1,5 @@
 ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
-49894	11/03/2026	2026 General	State Totals	Vote-by-Mail Provided (Not Yet Returned)	383,824	484,905	32,349	266,636	1,167,714	10/24/2026 11:01AM
+49894	11/03/2026	2026 General	State Totals	Vote-by-Mail Provided (Not Yet Returned)	382,654	484,094	32,279	266,232	1,165,259	10/24/2026  2:01PM
 49894	11/03/2026	2026 General	Alachua	Vote-by-Mail Provided (Not Yet Returned)	2,898	7,929	374	2,658	13,859	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Baker	Vote-by-Mail Provided (Not Yet Returned)	437	172	17	49	675	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Bay	Vote-by-Mail Provided (Not Yet Returned)	3,681	2,163	232	1,257	7,333	10/24/2026  8:06AM
@@ -39,7 +39,7 @@ ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	T
 49894	11/03/2026	2026 General	Levy	Vote-by-Mail Provided (Not Yet Returned)	1,082	667	53	197	1,999	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Liberty	Vote-by-Mail Provided (Not Yet Returned)	107	49	1	9	166	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Madison	Vote-by-Mail Provided (Not Yet Returned)	158	221	4	42	425	10/24/2026  8:06AM
-49894	11/03/2026	2026 General	Manatee	Vote-by-Mail Provided (Not Yet Returned)	11,960	9,920	815	6,328	29,023	10/23/2026  8:05AM
+49894	11/03/2026	2026 General	Manatee	Vote-by-Mail Provided (Not Yet Returned)	10,790	9,109	745	5,924	26,568	10/24/2026  2:01PM
 49894	11/03/2026	2026 General	Marion	Vote-by-Mail Provided (Not Yet Returned)	5,500	5,704	433	2,396	14,033	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Martin	Vote-by-Mail Provided (Not Yet Returned)	3,724	3,007	306	1,581	8,618	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Miami-Dade	Vote-by-Mail Provided (Not Yet Returned)	35,976	54,027	2,756	36,896	129,655	10/24/2026  8:06AM
