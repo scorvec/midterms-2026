@@ -1397,3 +1397,6 @@ governor,NE,Concord Public Opinion Partners (D),2026-10-18,2026-10-25,polls.json
 senate,NE,Concord Public Opinion Partners (D),2026-10-18,2026-10-25,manual
 governor,NE,Concord Public Opinion Partners (D),2026-10-18,2026-10-25,manual
 governor,NV,Concord Public Opinion Partners (D),2026-09-30,2026-10-25,polls.json
+house,MI-4,RedBox Research,2026-10-23,2026-10-26,polls.json
+house,MI-10,RedBox Research,2026-10-23,2026-10-26,polls.json
+senate,MI,RedBox Research,2026-10-23,2026-10-26,polls.json
