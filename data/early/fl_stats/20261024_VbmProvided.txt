@@ -1,11 +1,11 @@
 ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
-49894	11/03/2026	2026 General	State Totals	Vote-by-Mail Provided (Not Yet Returned)	382,654	484,094	32,279	266,232	1,165,259	10/24/2026  2:01PM
+49894	11/03/2026	2026 General	State Totals	Vote-by-Mail Provided (Not Yet Returned)	381,387	479,476	32,113	264,687	1,157,663	10/24/2026  5:02PM
 49894	11/03/2026	2026 General	Alachua	Vote-by-Mail Provided (Not Yet Returned)	2,898	7,929	374	2,658	13,859	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Baker	Vote-by-Mail Provided (Not Yet Returned)	437	172	17	49	675	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Bay	Vote-by-Mail Provided (Not Yet Returned)	3,681	2,163	232	1,257	7,333	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Bradford	Vote-by-Mail Provided (Not Yet Returned)	284	221	6	44	555	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Brevard	Vote-by-Mail Provided (Not Yet Returned)	12,183	13,526	1,047	7,186	33,942	10/24/2026  8:06AM
-49894	11/03/2026	2026 General	Broward	Vote-by-Mail Provided (Not Yet Returned)	19,644	58,522	2,487	26,915	107,568	10/24/2026  8:06AM
+49894	11/03/2026	2026 General	Broward	Vote-by-Mail Provided (Not Yet Returned)	18,377	53,904	2,321	25,370	99,972	10/24/2026  5:02PM
 49894	11/03/2026	2026 General	Calhoun	Vote-by-Mail Provided (Not Yet Returned)	200	117	5	18	340	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Charlotte	Vote-by-Mail Provided (Not Yet Returned)	5,592	3,511	495	2,748	12,346	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Citrus	Vote-by-Mail Provided (Not Yet Returned)	3,943	2,406	298	1,595	8,242	10/24/2026  8:06AM

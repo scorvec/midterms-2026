@@ -1,11 +1,11 @@
 ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
-49894	11/03/2026	2026 General	State Totals	Voted Vote-by-Mail	469,900	561,525	31,637	247,389	1,310,451	10/24/2026 11:01AM
+49894	11/03/2026	2026 General	State Totals	Voted Vote-by-Mail	472,385	566,514	31,871	249,233	1,320,003	10/24/2026  5:02PM
 49894	11/03/2026	2026 General	Alachua	Voted Vote-by-Mail	3,060	8,587	292	2,151	14,090	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Baker	Voted Vote-by-Mail	418	133	5	42	598	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Bay	Voted Vote-by-Mail	3,567	2,136	160	974	6,837	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Bradford	Voted Vote-by-Mail	375	252	12	57	696	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Brevard	Voted Vote-by-Mail	17,221	16,769	1,227	7,906	43,123	10/24/2026  8:06AM
-49894	11/03/2026	2026 General	Broward	Voted Vote-by-Mail	15,771	47,579	1,483	15,022	79,855	10/24/2026  8:06AM
+49894	11/03/2026	2026 General	Broward	Voted Vote-by-Mail	16,911	51,614	1,639	16,350	86,514	10/24/2026  5:02PM
 49894	11/03/2026	2026 General	Calhoun	Voted Vote-by-Mail	240	121	1	15	377	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Charlotte	Voted Vote-by-Mail	9,930	7,441	792	4,214	22,377	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Citrus	Voted Vote-by-Mail	6,829	4,336	400	2,411	13,976	10/24/2026  8:06AM
@@ -39,7 +39,7 @@ ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	T
 49894	11/03/2026	2026 General	Levy	Voted Vote-by-Mail	1,471	826	75	260	2,632	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Liberty	Voted Vote-by-Mail	74	56	0	2	132	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Madison	Voted Vote-by-Mail	191	242	5	44	482	10/24/2026  8:06AM
-49894	11/03/2026	2026 General	Manatee	Voted Vote-by-Mail	12,446	11,820	680	5,463	30,409	10/23/2026  8:05AM
+49894	11/03/2026	2026 General	Manatee	Voted Vote-by-Mail	13,791	12,774	758	5,979	33,302	10/24/2026  2:01PM
 49894	11/03/2026	2026 General	Marion	Voted Vote-by-Mail	8,430	8,911	573	3,103	21,017	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Martin	Voted Vote-by-Mail	5,719	4,653	403	1,964	12,739	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Miami-Dade	Voted Vote-by-Mail	38,402	52,170	2,310	30,712	123,594	10/24/2026  8:06AM

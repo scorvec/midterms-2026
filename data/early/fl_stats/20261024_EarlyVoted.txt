@@ -1,5 +1,5 @@
 ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
-49894	11/03/2026	2026 General	State Totals	Voted Early	442,762	362,723	24,754	170,819	1,001,058	10/24/2026 11:01AM
+49894	11/03/2026	2026 General	State Totals	Voted Early	446,330	364,370	24,929	171,955	1,007,584	10/24/2026  2:01PM
 49894	11/03/2026	2026 General	Alachua	Voted Early	4,278	8,279	324	2,257	15,138	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Baker	Voted Early	0	0	0	0	0	
 49894	11/03/2026	2026 General	Bay	Voted Early	8,316	2,673	308	1,419	12,716	10/24/2026  8:06AM
@@ -39,7 +39,7 @@ ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	T
 49894	11/03/2026	2026 General	Levy	Voted Early	830	232	28	95	1,185	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Liberty	Voted Early	0	0	0	0	0	
 49894	11/03/2026	2026 General	Madison	Voted Early	0	0	0	0	0	
-49894	11/03/2026	2026 General	Manatee	Voted Early	9,593	4,632	464	2,834	17,523	10/23/2026  8:05AM
+49894	11/03/2026	2026 General	Manatee	Voted Early	13,161	6,279	639	3,970	24,049	10/24/2026  2:01PM
 49894	11/03/2026	2026 General	Marion	Voted Early	8,639	4,212	417	2,053	15,321	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Martin	Voted Early	6,480	2,364	353	1,489	10,686	10/24/2026  8:06AM
 49894	11/03/2026	2026 General	Miami-Dade	Voted Early	35,485	34,576	1,750	20,151	91,962	10/24/2026  8:06AM

@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-25T21:50Z",
+ "generated": "2026-10-26T01:59Z",
  "election_day": "2026-11-03",
  "reference": {
   "chosen": "A",
@@ -74,25 +74,25 @@
   },
   {
    "state": "GA",
-   "through": "2026-10-23",
-   "days_out": 11,
-   "banked": 1632981,
-   "same_point_2022": 1544090,
-   "vs_2022_same_point_pct": 5.8,
+   "through": "2026-10-24",
+   "days_out": 10,
+   "banked": 1751157,
+   "same_point_2022": 1643449,
+   "vs_2022_same_point_pct": 6.6,
    "total_2022": 3935924,
-   "share_of_2022_total_pct": 41.5,
+   "share_of_2022_total_pct": 44.5,
    "label": "Georgia"
   },
   {
    "state": "FL",
    "through": "2026-10-24",
    "days_out": 10,
-   "banked": 2311509,
+   "banked": 2327587,
    "same_point_2022": null,
    "vs_2022_same_point_pct": null,
    "total_2022": 7758014,
    "note": "mail and in-person early ballots on their latest compiles; no 2022 file at this point",
-   "share_of_2022_total_pct": 29.8,
+   "share_of_2022_total_pct": 30.0,
    "label": "Florida"
   },
   {
