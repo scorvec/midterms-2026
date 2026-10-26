@@ -1409,3 +1409,7 @@ governor,FL,RedBox Research,2026-10-23,2026-10-26,polls.json
 governor,MI,YouGov/MSU,2026-10-19,2026-10-26,polls.json
 governor,NV,RedBox Research,2026-10-23,2026-10-26,polls.json
 governor,OH,RedBox Research (D),2026-10-23,2026-10-26,polls.json
+senate,SC,Targoz Market Research,2026-10-25,2026-10-26,polls.json
+governor,SC,Targoz Market Research,2026-10-25,2026-10-26,polls.json
+senate,SC,Targoz Market Research,2026-10-25,2026-10-26,manual
+governor,SC,Targoz Market Research,2026-10-25,2026-10-26,manual
