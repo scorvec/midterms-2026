@@ -7,7 +7,8 @@ hand-entered and feed rows join, before versions collapse):
   action = drop     the row is not a poll of its own (e.g. a feed copy dated by its release: Lake Research's Bengs poll,
                     fielded Aug 26-30, appeared again from the Bluesky feed as "9/30" with no sponsor tag and full weight)
   action = sponsor  value D / R / I: the poll was paid for by that side - written as the pollster's "(X)" tag, which
-                    model.sponsor_of turns into the measured sponsor shift and weight (no new adjustment of any kind)
+                    model.sponsor_of turns into the measured sponsor shift and weight (no new adjustment of any kind);
+                    empty: no side paid for it, so a tag a source wrote (a firm's lean label) is removed
   action = end_date value YYYY-MM-DD: the true end of fieldwork
   action = hold     value "<source>:<label>" (e.g. "centersquare:Oct 2026"): dropped until midterms/source_watch.py finds that
                     wave in the pollster's own published series, then kept with the published D and R shares
@@ -59,7 +60,7 @@ def apply(polls: pd.DataFrame, seat, office) -> pd.DataFrame:
         if c.action == "drop":
             keep &= ~hit
         elif c.action == "sponsor":
-            tag = f" ({c.value.strip().upper()})"
+            tag = f" ({c.value.strip().upper()})" if c.value.strip() else ""
             p.loc[hit, "pollster"] = p.loc[hit, "pollster"].map(
                 lambda s, tag=tag: re.sub(r"\s*\((D|R|I)\)", "", str(s)).strip() + tag
             )
