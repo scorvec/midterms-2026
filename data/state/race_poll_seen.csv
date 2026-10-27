@@ -1435,3 +1435,19 @@ governor,CA,SurveyUSA,2026-10-24,2026-10-27,polls.json
 governor,NV,Hart Research Associates/Public Opinion Strategies (D),2026-10-25,2026-10-27,polls.json
 governor,TX,Univision/YouGov,2026-10-21,2026-10-27,polls.json
 governor,VT,State Navigate,2026-10-25,2026-10-27,polls.json
+house,AZ-1,RedBox Research (D),2026-10-23,2026-10-27,polls.json
+house,AZ-6,RedBox Research (D),2026-10-23,2026-10-27,polls.json
+senate,FL,Echelon Insights,2026-10-23,2026-10-27,polls.json
+senate,GA,Echelon Insights,2026-10-23,2026-10-27,polls.json
+senate,ME,Echelon Insights (R),2026-10-23,2026-10-27,polls.json
+senate,NE,Echelon Insights,2026-10-23,2026-10-27,polls.json
+senate,OH,Echelon Insights,2026-10-23,2026-10-27,polls.json
+governor,AZ,RedBox Research (D),2026-10-23,2026-10-27,polls.json
+governor,FL,Echelon Insights,2026-10-23,2026-10-27,polls.json
+governor,GA,Echelon Insights,2026-10-23,2026-10-27,polls.json
+governor,ME,Marist University,2026-10-25,2026-10-27,polls.json
+governor,ME,Echelon Insights (R),2026-10-23,2026-10-27,polls.json
+governor,MI,"Glengariff Group, Inc.",2026-10-22,2026-10-27,polls.json
+governor,NE,Echelon Insights,2026-10-23,2026-10-27,polls.json
+governor,OH,Echelon Insights,2026-10-23,2026-10-27,polls.json
+governor,TX,YouGov,2026-10-21,2026-10-27,polls.json
