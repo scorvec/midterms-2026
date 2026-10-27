@@ -1451,3 +1451,15 @@ governor,MI,"Glengariff Group, Inc.",2026-10-22,2026-10-27,polls.json
 governor,NE,Echelon Insights,2026-10-23,2026-10-27,polls.json
 governor,OH,Echelon Insights,2026-10-23,2026-10-27,polls.json
 governor,TX,YouGov,2026-10-21,2026-10-27,polls.json
+senate,FL,ActiVote,2026-10-27,2026-10-27,polls.json
+senate,FL,Echelon Insights (R),2026-10-23,2026-10-27,polls.json
+senate,GA,Echelon Insights (R),2026-10-23,2026-10-27,polls.json
+senate,IA,Echelon Insights (R),2026-10-23,2026-10-27,polls.json
+senate,NE,Echelon Insights (R),2026-10-23,2026-10-27,polls.json
+senate,OH,Echelon Insights (R),2026-10-23,2026-10-27,polls.json
+senate,TX,Cor Strategies (R),2026-10-15,2026-10-27,polls.json
+governor,AZ,"HighGround, Inc.",2026-10-25,2026-10-27,polls.json
+governor,IA,Echelon Insights,2026-10-23,2026-10-27,polls.json
+governor,ME,Echelon Insights,2026-10-23,2026-10-27,polls.json
+governor,NV,Hart Research (D),2026-10-25,2026-10-27,polls.json
+governor,NV,RedBox Research (D),2026-10-23,2026-10-27,polls.json
