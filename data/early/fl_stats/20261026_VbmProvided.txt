@@ -1,0 +1,69 @@
+ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
+49894	11/03/2026	2026 General	State Totals	Vote-by-Mail Provided (Not Yet Returned)	353,559	441,862	30,123	248,909	1,074,453	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Alachua	Vote-by-Mail Provided (Not Yet Returned)	2,776	7,460	359	2,570	13,165	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Baker	Vote-by-Mail Provided (Not Yet Returned)	404	147	16	48	615	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Bay	Vote-by-Mail Provided (Not Yet Returned)	3,344	1,953	212	1,160	6,669	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Bradford	Vote-by-Mail Provided (Not Yet Returned)	280	216	6	44	546	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Brevard	Vote-by-Mail Provided (Not Yet Returned)	11,078	12,110	959	6,584	30,731	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Broward	Vote-by-Mail Provided (Not Yet Returned)	17,928	50,941	2,250	24,566	95,685	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Calhoun	Vote-by-Mail Provided (Not Yet Returned)	183	109	5	18	315	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Charlotte	Vote-by-Mail Provided (Not Yet Returned)	5,092	3,156	458	2,533	11,239	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Citrus	Vote-by-Mail Provided (Not Yet Returned)	3,554	2,137	255	1,430	7,376	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Clay	Vote-by-Mail Provided (Not Yet Returned)	3,430	2,571	240	1,544	7,785	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Collier	Vote-by-Mail Provided (Not Yet Returned)	13,640	6,678	691	5,611	26,620	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Columbia	Vote-by-Mail Provided (Not Yet Returned)	878	657	43	281	1,859	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	DeSoto	Vote-by-Mail Provided (Not Yet Returned)	253	175	13	107	548	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Dixie	Vote-by-Mail Provided (Not Yet Returned)	398	129	10	53	590	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Duval	Vote-by-Mail Provided (Not Yet Returned)	6,752	10,893	640	4,281	22,566	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Escambia	Vote-by-Mail Provided (Not Yet Returned)	5,153	5,217	340	2,243	12,953	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Flagler	Vote-by-Mail Provided (Not Yet Returned)	2,569	2,405	195	1,299	6,468	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Franklin	Vote-by-Mail Provided (Not Yet Returned)	192	210	11	75	488	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Gadsden	Vote-by-Mail Provided (Not Yet Returned)	200	1,189	15	104	1,508	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Gilchrist	Vote-by-Mail Provided (Not Yet Returned)	398	143	13	76	630	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Glades	Vote-by-Mail Provided (Not Yet Returned)	192	113	12	46	363	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Gulf	Vote-by-Mail Provided (Not Yet Returned)	293	167	13	71	544	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Hamilton	Vote-by-Mail Provided (Not Yet Returned)	172	149	4	26	351	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Hardee	Vote-by-Mail Provided (Not Yet Returned)	153	90	6	50	299	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Hendry	Vote-by-Mail Provided (Not Yet Returned)	335	237	22	102	696	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Hernando	Vote-by-Mail Provided (Not Yet Returned)	3,786	3,266	285	1,948	9,285	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Highlands	Vote-by-Mail Provided (Not Yet Returned)	1,274	1,005	94	517	2,890	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Hillsborough	Vote-by-Mail Provided (Not Yet Returned)	22,502	31,261	2,000	17,195	72,958	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Holmes	Vote-by-Mail Provided (Not Yet Returned)	288	86	2	34	410	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Indian River	Vote-by-Mail Provided (Not Yet Returned)	4,136	2,890	299	1,722	9,047	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Jackson	Vote-by-Mail Provided (Not Yet Returned)	652	545	23	77	1,297	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Jefferson	Vote-by-Mail Provided (Not Yet Returned)	142	278	10	51	481	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Lafayette	Vote-by-Mail Provided (Not Yet Returned)	96	29	0	5	130	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Lake	Vote-by-Mail Provided (Not Yet Returned)	4,514	4,622	366	2,796	12,298	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Lee	Vote-by-Mail Provided (Not Yet Returned)	25,494	15,431	1,660	13,508	56,093	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Leon	Vote-by-Mail Provided (Not Yet Returned)	3,716	9,013	318	2,563	15,610	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Levy	Vote-by-Mail Provided (Not Yet Returned)	1,059	646	52	194	1,951	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Liberty	Vote-by-Mail Provided (Not Yet Returned)	100	45	1	9	155	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Madison	Vote-by-Mail Provided (Not Yet Returned)	157	217	4	41	419	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Manatee	Vote-by-Mail Provided (Not Yet Returned)	10,798	9,114	746	5,925	26,583	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Marion	Vote-by-Mail Provided (Not Yet Returned)	4,942	4,971	391	2,130	12,434	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Martin	Vote-by-Mail Provided (Not Yet Returned)	3,412	2,709	276	1,452	7,849	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Miami-Dade	Vote-by-Mail Provided (Not Yet Returned)	35,986	54,073	2,757	36,908	129,724	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Monroe	Vote-by-Mail Provided (Not Yet Returned)	2,491	1,988	170	1,135	5,784	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Nassau	Vote-by-Mail Provided (Not Yet Returned)	2,180	1,390	175	933	4,678	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Okaloosa	Vote-by-Mail Provided (Not Yet Returned)	3,974	2,596	241	1,791	8,602	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Okeechobee	Vote-by-Mail Provided (Not Yet Returned)	371	289	23	116	799	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Orange	Vote-by-Mail Provided (Not Yet Returned)	13,870	27,372	1,753	14,823	57,818	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Osceola	Vote-by-Mail Provided (Not Yet Returned)	4,395	8,075	531	5,015	18,016	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Palm Beach	Vote-by-Mail Provided (Not Yet Returned)	22,207	38,968	2,685	19,706	83,566	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Pasco	Vote-by-Mail Provided (Not Yet Returned)	7,935	9,306	855	6,010	24,106	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Pinellas	Vote-by-Mail Provided (Not Yet Returned)	31,646	37,822	2,627	21,544	93,639	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Polk	Vote-by-Mail Provided (Not Yet Returned)	9,381	11,471	758	5,932	27,542	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Putnam	Vote-by-Mail Provided (Not Yet Returned)	812	726	43	213	1,794	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Santa Rosa	Vote-by-Mail Provided (Not Yet Returned)	2,847	1,806	164	1,036	5,853	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Sarasota	Vote-by-Mail Provided (Not Yet Returned)	11,605	11,829	898	6,641	30,973	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Seminole	Vote-by-Mail Provided (Not Yet Returned)	6,643	9,421	642	5,403	22,109	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	St. Johns	Vote-by-Mail Provided (Not Yet Returned)	4,733	4,833	328	2,639	12,533	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	St. Lucie	Vote-by-Mail Provided (Not Yet Returned)	4,708	7,269	552	3,540	16,069	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Sumter	Vote-by-Mail Provided (Not Yet Returned)	6,428	3,834	375	2,616	13,253	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Suwannee	Vote-by-Mail Provided (Not Yet Returned)	796	409	48	142	1,395	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Taylor	Vote-by-Mail Provided (Not Yet Returned)	313	185	10	26	534	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Union	Vote-by-Mail Provided (Not Yet Returned)	130	65	7	15	217	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Volusia	Vote-by-Mail Provided (Not Yet Returned)	10,880	11,417	1,044	7,012	30,353	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Wakulla	Vote-by-Mail Provided (Not Yet Returned)	496	413	32	128	1,069	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Walton	Vote-by-Mail Provided (Not Yet Returned)	1,662	748	86	454	2,950	10/26/2026  8:06AM
+49894	11/03/2026	2026 General	Washington	Vote-by-Mail Provided (Not Yet Returned)	355	177	4	42	578	10/26/2026  8:06AM

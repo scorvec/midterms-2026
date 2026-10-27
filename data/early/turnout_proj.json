@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-27T02:07Z",
+ "generated": "2026-10-27T06:52Z",
  "election_day": "2026-11-03",
  "reference": {
   "chosen": "A",
@@ -85,25 +85,25 @@
   },
   {
    "state": "FL",
-   "through": "2026-10-25",
-   "days_out": 9,
-   "banked": 2602813,
+   "through": "2026-10-26",
+   "days_out": 8,
+   "banked": 2785114,
    "same_point_2022": null,
    "vs_2022_same_point_pct": null,
    "total_2022": 7758014,
    "note": "mail and in-person early ballots on their latest compiles; no 2022 file at this point",
-   "share_of_2022_total_pct": 33.5,
+   "share_of_2022_total_pct": 35.9,
    "label": "Florida"
   },
   {
    "state": "NV",
-   "through": "2026-10-25",
-   "days_out": 9,
-   "banked": 305317,
-   "mail": 194765,
-   "in_person": 110552,
-   "mail_2022_same_point": 139238,
-   "mail_vs_2022_same_point_pct": 39.9,
+   "through": "2026-10-26",
+   "days_out": 8,
+   "banked": 338658,
+   "mail": 211866,
+   "in_person": 126792,
+   "mail_2022_same_point": 149404,
+   "mail_vs_2022_same_point_pct": 41.8,
    "total_2022": null,
    "note": "Clark County only; mail is the only part with a 2022 file at the same point",
    "label": "Clark County, NV"
