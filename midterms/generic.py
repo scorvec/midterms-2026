@@ -790,13 +790,18 @@ def trend_at(F, date):
 # Where this average may stand on election day. Refit as of each of the last 45 days before the 2018-2024 elections (538's
 # archive, each fit seeing only the polls 538 had entered by then), its 3 / 7 / 14-day changes had RMS 0.43 / 0.70 / 1.13 (7-day
 # by cycle 0.58-0.81; 2026's reconstructed history 0.58-0.62): a random walk of 0.265 per sqrt(day). Centred on today's value:
-# the change over the final week was +0.24 / +0.01 / -0.22 / +0.35 (2018 / 2020 / 2022 / 2024), no lean either way.
+# the change over the final week was +0.24 / +0.01 / -0.22 / +0.35 (2018 / 2020 / 2022 / 2024), no lean either way. The days
+# are counted from the run date, as in that test, not from the newest poll the value is reported at.
 EDAY_SD_PER_SQRT_DAY = 0.265
 
 
 def eday_fan(now, asof):
-    """[(date, lo95, lo80, hi80, hi95)] for each day from `asof` to ELECTION_DATE: today's value `now` plus that random walk."""
-    days = pd.date_range(pd.Timestamp(asof).normalize(), ELECTION_DATE, freq="D")
+    """[(date, lo95, lo80, hi80, hi95)] for each day from `asof` to ELECTION_DATE: today's value `now` plus that random walk;
+    empty from election day on."""
+    asof = pd.Timestamp(asof).normalize()
+    if asof >= ELECTION_DATE:
+        return []
+    days = pd.date_range(asof, ELECTION_DATE, freq="D")
     sd = EDAY_SD_PER_SQRT_DAY * np.sqrt(np.arange(len(days)))
     return [
         (d.date().isoformat(), *(round(now + z * s, 2) for z in (-1.96, -1.2816, 1.2816, 1.96)))
@@ -1275,7 +1280,7 @@ def main():
         now = trend_at(F, F["t1"])
         out[key]["now_ci"] = [round(now - 1.96 * F["se_now"], 2), round(now + 1.96 * F["se_now"], 2)]
         if key == "generic":
-            out[key]["eday"] = eday_fan(now, F["t1"])
+            out[key]["eday"] = eday_fan(now, pd.Timestamp.today())
         Q = field_prepare(Df) if FIELD_PREP else Df.copy()
         Q = Q[Q["end_date"] >= F["t1"] - pd.Timedelta(days=400)]
         part = ((Q["internal"]) | Q["partisan"].notna()).astype(float)
