@@ -1,100 +1,29 @@
 {
- "generated": "2026-10-26T07:02Z",
+ "generated": "2026-10-27T02:05Z",
  "source": "georgiavotes.com (from GA SOS absentee files)",
  "diagnostic_only": true,
  "feeds_forecast": false,
  "why_not": "no past cycle has both a same-day baseline and an outcome to score (see midterms/ga_early.py)",
  "latest": {
-  "through": "2026-10-24",
-  "days_out": 10,
-  "ev_day": 12,
-  "total": 1751157,
-  "total_2022_same_point": 1643449,
-  "vs_2022_pct": 6.6,
-  "mail": 81593,
-  "in_person": 1669564,
+  "through": "2026-10-25",
+  "days_out": 9,
+  "ev_day": 13,
+  "total": 1780239,
+  "total_2022_same_point": 1671039,
+  "vs_2022_pct": 6.5,
+  "mail": 82623,
+  "in_person": 1697616,
   "county_mix_shift": {
-   "gov22_margin": 1.11,
-   "pres24_margin": 1.18
+   "gov22_margin": 1.04,
+   "pres24_margin": 1.12
   },
   "metro_atlanta_share": {
-   "2026": 0.5046,
-   "2022": 0.4865
+   "2026": 0.5101,
+   "2022": 0.4922
   },
-  "metro_vs_2022_pct": 10.5,
+  "metro_vs_2022_pct": 10.4,
   "rest_vs_2022_pct": 2.8,
-  "composition_vs_2022": {
-   "race": {
-    "White": {
-     "2026": 0.5325,
-     "2022": 0.5781
-    },
-    "Black": {
-     "2026": 0.3293,
-     "2022": 0.2996
-    },
-    "Hispanic": {
-     "2026": 0.0318,
-     "2022": 0.0156
-    },
-    "Asian": {
-     "2026": 0.026,
-     "2022": 0.016
-    },
-    "Other": {
-     "2026": 0.0804,
-     "2022": 0.0908
-    }
-   },
-   "age": {
-    "18-29": {
-     "2026": 0.0839,
-     "2022": 0.0623
-    },
-    "30-39": {
-     "2026": 0.0835,
-     "2022": 0.0768
-    },
-    "40-49": {
-     "2026": 0.1132,
-     "2022": 0.1156
-    },
-    "50-64": {
-     "2026": 0.2898,
-     "2022": 0.3232
-    },
-    "65+": {
-     "2026": 0.429,
-     "2022": 0.4217
-    },
-    "Unknown": {
-     "2026": 0.0006,
-     "2022": 0.0004
-    }
-   },
-   "gender": {
-    "Female": {
-     "2026": 0.5569,
-     "2022": 0.5499
-    },
-    "Male": {
-     "2026": 0.4408,
-     "2022": 0.4482
-    },
-    "Unknown": {
-     "2026": 0.0023,
-     "2022": 0.0019
-    }
-   },
-   "skipped_previous_midterm": {
-    "2026": 0.1792,
-    "2022": 0.1787
-   }
-  },
-  "baseline_2022_through": "2022-10-28",
-  "baseline_2022_ev_day": 12,
-  "total_2022_same_ev_day": 1533676,
-  "vs_2022_same_ev_day_pct": 14.2
+  "composition_vs_2022": null
  },
  "history": [
   {
@@ -1150,6 +1079,27 @@
    "baseline_2022_ev_day": 12,
    "total_2022_same_ev_day": 1533676,
    "vs_2022_same_ev_day_pct": 14.2
+  },
+  {
+   "through": "2026-10-25",
+   "days_out": 9,
+   "ev_day": 13,
+   "total": 1780239,
+   "total_2022_same_point": 1671039,
+   "vs_2022_pct": 6.5,
+   "mail": 82623,
+   "in_person": 1697616,
+   "county_mix_shift": {
+    "gov22_margin": 1.04,
+    "pres24_margin": 1.12
+   },
+   "metro_atlanta_share": {
+    "2026": 0.5101,
+    "2022": 0.4922
+   },
+   "metro_vs_2022_pct": 10.4,
+   "rest_vs_2022_pct": 2.8,
+   "composition_vs_2022": null
   }
  ]
 }
