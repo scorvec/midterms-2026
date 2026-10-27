@@ -787,6 +787,23 @@ def trend_at(F, date):
     return float(np.interp((d - F["t0"]).days, (tr["date"] - F["t0"]).dt.days.values, tr["value"].values))
 
 
+# Where this average may stand on election day. Refit as of each of the last 45 days before the 2018-2024 elections (538's
+# archive, each fit seeing only the polls 538 had entered by then), its 3 / 7 / 14-day changes had RMS 0.43 / 0.70 / 1.13 (7-day
+# by cycle 0.58-0.81; 2026's reconstructed history 0.58-0.62): a random walk of 0.265 per sqrt(day). Centred on today's value:
+# the change over the final week was +0.24 / +0.01 / -0.22 / +0.35 (2018 / 2020 / 2022 / 2024), no lean either way.
+EDAY_SD_PER_SQRT_DAY = 0.265
+
+
+def eday_fan(now, asof):
+    """[(date, lo95, lo80, hi80, hi95)] for each day from `asof` to ELECTION_DATE: today's value `now` plus that random walk."""
+    days = pd.date_range(pd.Timestamp(asof).normalize(), ELECTION_DATE, freq="D")
+    sd = EDAY_SD_PER_SQRT_DAY * np.sqrt(np.arange(len(days)))
+    return [
+        (d.date().isoformat(), *(round(now + z * s, 2) for z in (-1.96, -1.2816, 1.2816, 1.96)))
+        for d, s in zip(days, sd)
+    ]
+
+
 def calibrate_history():
     """Run the estimator on the 538 generic polls of 2018 and 2022 (LV/RV/A, pollster, sample) and compare the
     election-day trend with the actual national House two-party margin."""
@@ -1257,6 +1274,8 @@ def main():
         ]
         now = trend_at(F, F["t1"])
         out[key]["now_ci"] = [round(now - 1.96 * F["se_now"], 2), round(now + 1.96 * F["se_now"], 2)]
+        if key == "generic":
+            out[key]["eday"] = eday_fan(now, F["t1"])
         Q = field_prepare(Df) if FIELD_PREP else Df.copy()
         Q = Q[Q["end_date"] >= F["t1"] - pd.Timedelta(days=400)]
         part = ((Q["internal"]) | Q["partisan"].notna()).astype(float)

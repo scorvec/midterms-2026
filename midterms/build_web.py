@@ -229,6 +229,7 @@ def main():
             "generic_band": gm["generic"].get("band"),
             "approval_band": gm["approval"].get("band"),
             "generic_ci": gm["generic"].get("now_ci"),
+            "generic_eday": gm["generic"].get("eday"),
             "approval_ci": gm["approval"].get("now_ci"),
             "generic_t1": [gm["generic"]["last_poll"], gm["generic"]["diag"]["now"]],
             "approval_t1": [gm["approval"]["last_poll"], gm["approval"]["diag"]["now"]],

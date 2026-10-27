@@ -85,6 +85,7 @@ ALIASES = {
     "quantus insights": "quantus",
     "rmg research": "rmg",
     "echelon insights": "echelon",
+    "pew research center": "pew research",
     "morning consult": "morning consult",
     "quinnipiac": "quinnipiac",
     "quinnipiac university": "quinnipiac",
