@@ -191,6 +191,7 @@ _RATED_AS = {
     "texas public opinion research": "slingshot strategies",  # Slingshot's Texas brand
     "dccc analytics department": "dccc targeting and analytics department",
     "pulse science decision": "pulse decision science",  # the words swapped in a feed
+    "targoz media research": "targoz market research",  # a feed's misnaming (South Carolina, October 2026)
     # sponsors named in place of their pollster (the same identities _PALIAS uses for the duplicate checks): without them a
     # sponsor-named row reads as a brand-new pollster (variance x1.75)
     "pennlive": "bravo group",  # PennLive's Pennsylvania polls are Bravo Group's
@@ -615,6 +616,17 @@ def substate_polls(state, office, poll_sd):
 ROBUST_AGE_HALF = None  # per-poll staleness half-life in the robust blend (None = AGE_HALF 63). Tested: 21 d (the Gaussian path's recency ranking) Senate 0.1551 / House 0.1205, 35 d 0.1517, 63 d 0.1493 / 0.1193 - chasing recent polls loses.
 ROBUST_NU = 10  # None = the Gaussian blend (poll_average + precision weights)
 
+# Top-rated polls at face value: a poll by a pollster rated A or better (generic.TOP_SCORE on 538's star scale) with no sponsor
+# tag is not discounted as an outlier. Its error is normal with the Student-t's scale s_i (TOP_RATED_SD "scale": the spread of a
+# typical poll, without the tail for gross errors), so it carries the weight a poll at the consensus has wherever it lands;
+# "sd" = a normal of the same variance as the Student-t (s_i sqrt(nu / (nu - 2))). Ratings as known on the date:
+# pollster_quality.live_rating in 2026, the 538 vintage released before the cycle in backtests (none before 2016).
+# Backtest (live-path harnesses 2016-24, paired by race-date against every poll Student-t, 95 % race bootstrap): "scale" Senate
+# log loss -0.0000 [-0.0002, +0.0002], governors -0.0000 [-0.0005, +0.0007], race error n.s.; the mean shift is 0.03 pts, as
+# top-rated polls seldom stand apart from the rest. "sd": Senate -0.0003 [-0.0008, +0.0001], governors +0.0001 with race error
+# worse in 5/5 cycles (n.s.). Neutral, so a top-rated pollster's surprise is taken as evidence ("scale").
+TOP_RATED_SD = "scale"  # None = every poll Student-t
+
 
 # Poll-by-poll record for the poll page (web/polls.html: each poll and how it was weighted). build_web sets RECORD to a list
 # and RECORD_OFFICE before each chamber's run; robust_blend then appends what it did with every poll of every race. Off
@@ -652,16 +664,21 @@ def _record(
     gid=None,
     s_own=None,
     tau=None,
+    top=None,
 ):
     """Effective weights of the Student-t blend at the posterior: w_i = (nu+1)/(nu+r_i^2) / s_i^2 with r_i the poll's
     standardised residual from (theta + delta) at the posterior means; 'discount' = (nu+1)/(nu+r^2) (1 = taken at face value).
     With the pollster shared error on (gid, s_own, tau), a pollster's k >= 2 polls are weighted with their own-error scale s_own and
-    their summed weight W_g is cut to 1 / (1 / W_g + tau^2) - the precision of a block that shares one house error."""
+    their summed weight W_g is cut to 1 / (1 / W_g + tau^2) - the precision of a block that shares one house error. A top-rated
+    poll (top, TOP_RATED_SD) has its normal error's precision and no discount."""
     joint = np.exp(ll + lp[:, None] - (ll + lp[:, None]).max())
     joint /= joint.sum()
     dhat = float((joint.sum(0) * de).sum())
     r = (y - mu - dhat) / s
     disc = (nu + 1) / (nu + r**2)
+    top = np.zeros(len(y), bool) if top is None else top
+    face = 1.0 / (np.sqrt(nu / (nu - 2)) if TOP_RATED_SD == "sd" else 1.0) ** 2  # a top-rated poll's weight x s^2
+    disc = np.where(top, face, disc)
     w = disc / s**2
     if gid is not None and tau:
         for g in np.unique(gid):
@@ -669,8 +686,8 @@ def _record(
             if len(ix) < 2:
                 continue
             rg = (y[ix] - mu - dhat) / s_own[ix]
-            wg = (nu + 1) / (nu + rg**2) / s_own[ix] ** 2
-            disc[ix] = (nu + 1) / (nu + rg**2)
+            disc[ix] = np.where(top[ix], face, (nu + 1) / (nu + rg**2))
+            wg = disc[ix] / s_own[ix] ** 2
             w[ix] = wg * (1.0 / (1.0 / wg.sum() + tau**2)) / wg.sum()
     pw = 1.0 / (1.0 / w.sum() + poll_sys**2)
     share_polls = pw / (pw + 1.0 / prior_sd**2)
@@ -699,7 +716,7 @@ def _record(
                 "experience": exp_k,
                 "precision": round(float(q[i]), 3),
                 "sd": round(float(s[i] * np.sqrt(nu / (nu - 2))), 2),  # the poll's error as a standard deviation
-                "discount": round(float(disc[i] * nu / (nu + 1)), 3),
+                "discount": 1.0 if top[i] else round(float(disc[i] * nu / (nu + 1)), 3),
                 "share": round(float(w[i] / w.sum()), 3),
                 **({"pollster_block": int((gid == gid[i]).sum())} if gid is not None and tau else {}),
             }
@@ -761,8 +778,47 @@ def pollster_blocks(names):
     return np.array([find(i) for i in range(n)])
 
 
-def robust_blend(mu_prior, prior_sd, polls, asof, poll_sd, poll_sys, nu):
+_TOP_SCORES = {}
+
+
+def top_rated(p: pd.DataFrame, asof) -> np.ndarray:
+    """Per poll: rated >= generic.TOP_SCORE on `asof` (see TOP_RATED_SD) and no sponsor tag. Synthetic rows ('[...]') never."""
+    from . import pollster_quality as Q
+    from .generic import TOP_SCORE
+
+    year = pd.Timestamp(asof).year
+
+    def score(name):
+        if (year, name) not in _TOP_SCORES:
+            base = re.sub(r"\s*\((?:R|D|I)\)\s*$", "", name).strip()
+            try:
+                if year >= 2026:
+                    sc = Q.live_rating(base)["score"]
+                elif year in Q.VINTAGE_FOR:
+                    sc = Q.score_538(Q.VINTAGE_FOR[year], name=base)
+                else:
+                    sc = np.nan
+            except FileNotFoundError:  # 538's files are a cached download (data/raw/ratings): without them, unrated
+                sc = np.nan
+            _TOP_SCORES[year, name] = sc
+        return _TOP_SCORES[year, name]
+
+    names = p["pollster"].astype(str)
+    sponsor = p["sponsor"] if "sponsor" in p else names.map(sponsor_of)
+    return np.array([sp == "" and "[" not in n and score(n) >= TOP_SCORE for n, sp in zip(names, sponsor)], dtype=bool)
+
+
+def _poll_logpdf(r, s, nu, face_value):
+    """Log density of poll errors r: Student-t(nu) with scale s, or for a top-rated poll the normal TOP_RATED_SD names."""
     from scipy.stats import t as T, norm
+
+    if face_value:
+        return norm.logpdf(r, 0.0, s * (np.sqrt(nu / (nu - 2)) if TOP_RATED_SD == "sd" else 1.0))
+    return T.logpdf(r / s, nu) - np.log(s)
+
+
+def robust_blend(mu_prior, prior_sd, polls, asof, poll_sd, poll_sys, nu):
+    from scipy.stats import norm
 
     if polls is None or not len(polls):
         return float(mu_prior), float(prior_sd)
@@ -781,6 +837,7 @@ def robust_blend(mu_prior, prior_sd, polls, asof, poll_sd, poll_sys, nu):
     # poll_sd is a standard deviation (measured on 538's archive); the Student-t scale with that sd is poll_sd x sqrt((nu-2)/nu)
     # (0.89 at nu 10 - used as the scale directly, every poll's error would have been 12 % wider than measured)
     s = poll_sd * np.sqrt((nu - 2) / nu) * np.sqrt(1.0 / np.clip(q, 1e-3, None))
+    top = top_rated(p, asof) if TOP_RATED_SD else np.zeros(len(p), bool)
     y = p["margin"].values.astype(float)
     th = np.arange(mu_prior - 5 * prior_sd - 20, mu_prior + 5 * prior_sd + 20, 0.25)
     de = np.linspace(-4 * poll_sys, 4 * poll_sys, 49)
@@ -791,7 +848,7 @@ def robust_blend(mu_prior, prior_sd, polls, asof, poll_sd, poll_sys, nu):
     for g in np.unique(gid):
         ix = np.where(gid == g)[0]
         if len(ix) == 1:  # a pollster's only poll in the race: exactly as without the switch
-            ll += T.logpdf((y[ix[0]] - th[:, None] - de[None, :]) / s[ix[0]], nu) - np.log(s[ix[0]])
+            ll += _poll_logpdf(y[ix[0]] - th[:, None] - de[None, :], s[ix[0]], nu, top[ix[0]])
             continue
         # k >= 2 polls from one pollster: poll error = own error (Student-t, scale s_own) + one shared house error b ~ N(0, tau^2),
         # integrated out on a grid. The marginal variance of each poll is unchanged: s_own^2 nu/(nu-2) + tau^2 = s^2 nu/(nu-2).
@@ -802,8 +859,8 @@ def robust_blend(mu_prior, prior_sd, polls, asof, poll_sd, poll_sys, nu):
         bg = np.linspace(-4 * tau, 4 * tau, 41)
         lw = norm.logpdf(bg, 0, tau) + np.log(bg[1] - bg[0])
         L = np.zeros((len(xg), len(bg)))
-        for yi, si in zip(y[ix], so):
-            L += T.logpdf((yi - xg[:, None] - bg[None, :]) / si, nu) - np.log(si)
+        for yi, si, ti in zip(y[ix], so, top[ix]):
+            L += _poll_logpdf(yi - xg[:, None] - bg[None, :], si, nu, ti)
         L += lw[None, :]
         mL = L.max(1)
         Lg = mL + np.log(np.exp(L - mL[:, None]).sum(1))
@@ -820,7 +877,27 @@ def robust_blend(mu_prior, prior_sd, polls, asof, poll_sd, poll_sys, nu):
     if RECORD is not None:
         try:
             _record(
-                mu_prior, prior_sd, p, asof, age, q, s, y, th, de, ll, lp, post, nu, poll_sys, mu, sd, gid, s_own, tau
+                mu_prior,
+                prior_sd,
+                p,
+                asof,
+                age,
+                q,
+                s,
+                y,
+                th,
+                de,
+                ll,
+                lp,
+                post,
+                nu,
+                poll_sys,
+                mu,
+                sd,
+                gid,
+                s_own,
+                tau,
+                top,
             )
         except Exception as e:
             print("  poll record failed:", str(e)[:80])

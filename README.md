@@ -51,7 +51,9 @@ measured lean is removed, polls with many undecided or third-party respondents a
 get more variance, older polls fade (63-day half-life, 150-day window), and several versions of one survey count once.
 The blend is a Student-t (robust) update against the fit's own prior sd, so a poll that disagrees with everything else
 counts for less until other polls confirm it; the measured poll errors enter as standard deviations (the t scale is
-adjusted for the degrees of freedom).
+adjusted for the degrees of freedom). A poll by a pollster rated A or better with no sponsor is taken at face value instead:
+its error is normal with the t's scale (`model.TOP_RATED_SD`; ratings as known before each election, neutral in the
+backtest).
 
 **Senate** (`senate2026.py`). The same pipeline with a prior refitted on every Democrat-v-Republican Senate race
 1982-2024, with linear time trends in the lean and incumbency slopes (the Senate has nationalized). Independent

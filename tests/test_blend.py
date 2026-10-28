@@ -122,10 +122,36 @@ def test_robust_blend_scale_is_a_standard_deviation():
     """poll_sd is a standard deviation: one fresh poll at full grade must tighten the prior by the Gaussian amount
     1 / (1/prior^2 + 1/(poll_sd^2 + poll_sys^2)) within the Student-t's tolerance, not by a scale 12 % wider."""
     prior_sd, poll_sd, poll_sys = 7.0, 5.0, 0.5
-    one = pd.DataFrame({"end_date": [ASOF], "grade": [1.5], "margin": [3.0], "pollster": ["Siena"]})
+    one = pd.DataFrame({"end_date": [ASOF], "grade": [1.5], "margin": [3.0], "pollster": ["Pollster A"]})  # unrated
     _mu, sd = M.robust_blend(2.0, prior_sd, one, ASOF, poll_sd, poll_sys, 10)
     gauss = np.sqrt(1 / (1 / prior_sd**2 + 1 / (poll_sd**2 + poll_sys**2)))
     assert sd == pytest.approx(gauss, rel=0.04)
+
+
+def test_top_rated_poll_is_not_discounted(monkeypatch):
+    """A poll far from the prior: from a top-rated nonpartisan pollster it keeps its weight; unrated, sponsored or with the
+    switch off it is discounted as a likely outlier. TOP_RATED_SD "sd" is exactly the Gaussian update."""
+
+    def blend(name, margin=14.0):
+        one = pd.DataFrame({"end_date": [ASOF], "grade": [1.5], "margin": [margin], "pollster": [name]})
+        return M.robust_blend(2.0, 4.0, one, ASOF, 5.0, 0.5, 10)
+
+    assert list(M.top_rated(pd.DataFrame({"pollster": ["Siena", "Siena (D)", "Pollster A"]}), ASOF)) == [
+        True,
+        False,
+        False,
+    ]
+    top, unrated, sponsored = blend("Siena")[0], blend("Pollster A")[0], blend("Siena (D)")[0]
+    scale_var = 5.0**2 * 8 / 10 + 0.5**2  # the Student-t's scale, squared, plus the shared miss
+    assert top == pytest.approx(2.0 + 4.0**2 / (4.0**2 + scale_var) * (14.0 - 2.0), rel=0.01)  # the normal update
+    assert unrated < top - 0.5 and sponsored == pytest.approx(unrated)
+    monkeypatch.setattr(M, "TOP_RATED_SD", None)
+    assert blend("Siena")[0] == pytest.approx(unrated)
+    monkeypatch.setattr(M, "TOP_RATED_SD", "sd")
+    mu, sd = blend("Siena", 3.0)
+    prior_var, poll_var = 4.0**2, 5.0**2 + 0.5**2
+    assert mu == pytest.approx(2.0 + prior_var / (prior_var + poll_var) * (3.0 - 2.0), rel=0.01)
+    assert sd == pytest.approx(np.sqrt(1 / (1 / prior_var + 1 / poll_var)), rel=0.01)
 
 
 def test_house_blend_moves_toward_polls_and_records_prior_sd(monkeypatch):

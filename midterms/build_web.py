@@ -487,7 +487,7 @@ def methodology_notes(s, SS=None):
         f"mu = {fit.k0:.2f} + {b:.2f}*lean + {c:.1f}*inc + E, prior sd {fit.sd:.1f} (lean = 0.75 x (2024 president - nation) + 0.25 x (2020 president - nation) on the 2026 maps, margin points, from precinct returns; "
         f"fitted on the contested seats of 2018 and 2022 with the same lean on those maps, the intercept = the fitted year intercepts minus those years' national House vote), fundraising: + {mm:.2f} x log(D / R individual contributions "
         f"through June 30, $10k floor) - out of sample it cut competitive-seat error 5.5 % (2018) and 3.8 % (2022), and moves incumbency from "
-        f"{c:.1f} to {cm:.1f}; race polls from the state pages blended by precision (per-poll sd {M.HOUSE_POLL_SD}, shared {M.HOUSE_POLL_SYS}, Student-t with {M.ROBUST_NU} degrees of freedom; a poll's "
+        f"{c:.1f} to {cm:.1f}; race polls from the state pages blended by precision (per-poll sd {M.HOUSE_POLL_SD}, shared {M.HOUSE_POLL_SYS}, Student-t with {M.ROBUST_NU} degrees of freedom, normal for nonpartisan pollsters rated A or better; a poll's "
         f"precision fades with a {M.AGE_HALF:.0f}-day half-life, no hard window); seats with no Democrat or no Republican on the ballot are decided "
         f"(CA-40 R-v-R, D-v-D top-two), an independent incumbent facing only a Democrat (CA-6) keeps incumbency; every race poll (House and Senate) "
         f"is corrected for its pollster's measured lean (538's 2016-22 record, shrunk) or, failing that, its sponsor tag: D-sponsored polls ran "
