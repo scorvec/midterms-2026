@@ -1,117 +1,112 @@
 office,seat,pollster,end_date,dem_name,rep_name,state,challenger_party,dem,rep,other,und,n,grade,posted,released_late,uri,tag_src,margin,src,pop
-senate,TX,Stratus Intelligence (R),2026-09-24,Talarico,Paxton,TX,D,48.0,48.0,0.0,4.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwljkjwios2m,internal,0.0,usapolling,
-governor,FL,Change Research,2026-09-27,Jolly,Donalds,FL,D,48.0,46.0,0.0,6.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwm54y22hk2x,,2.0,usapolling,
-senate,FL,Change Research,2026-09-27,Nixon,Moody,FL,D,47.0,48.0,0.0,5.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwm54y22hk2x,,-1.0,usapolling,
-house,MT-1,American Pulse,2026-09-24,Forstag,Flint,MT,D,45.0,46.0,5.0,4.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwm2fg7yts26,,-1.0,usapolling,
-governor,VT,Braun Research,2026-09-20,Janoo,Scott,VT,D,34.0,44.0,0.0,22.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwljseqmms2m,,-10.0,usapolling,
-house,UT-2,Crosby Internal,2026-09-23,Crosby,Moore,UT,D,35.0,32.0,0.0,33.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwlrjw67os2q,,3.0,usapolling,
-house,NY-23,PPP (D),2026-09-23,Gies,Langworthy,NY,D,35.0,52.0,0.0,13.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwlrbpghtk2q,internal,-17.0,usapolling,
-senate,NC,Fabrizio Ward/Impact Research,2026-09-20,Cooper,Whatley,NC,D,53.0,42.0,0.0,5.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwljt2fdmk2m,,11.0,usapolling,
 senate,MT,American Pulse,2026-09-24,Bodnar,Alme,MT,I,26.0,45.0,19.0,10.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwlwemxwqc25,,-19.0,usapolling,
+governor,FL,Change Research,2026-09-27,Jolly,Donalds,FL,D,48.0,46.0,0.0,6.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwm54y22hk2x,,2.0,usapolling,
+house,MT-1,American Pulse,2026-09-24,Forstag,Flint,MT,D,45.0,46.0,5.0,4.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwm2fg7yts26,,-1.0,usapolling,
+senate,FL,Change Research,2026-09-27,Nixon,Moody,FL,D,47.0,48.0,0.0,5.0,,1.5,2026-09-28,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwm54y22hk2x,,-1.0,usapolling,
 house,OH-9,DCCC (D),2026-09-23,Kaptur,Merrin,OH,D,48.0,48.0,0.0,4.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwoff4cfxc2d,committee,0.0,usapolling,
 senate,MA,MassINC,2026-09-22,Markey,Deaton,MA,D,54.0,28.0,5.0,13.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwofbt3vgs2d,,26.0,usapolling,
 governor,MA,MassINC,2026-09-22,Healey,Minogue,MA,D,54.0,32.0,4.0,10.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwofbt3vgs2d,,22.0,usapolling,
 governor,RI,Opinion Diagnostics (I),2026-09-25,Foulkes,Guckian,RI,D,41.0,19.0,24.0,16.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwof4zob222d,internal,22.0,usapolling,
 governor,NE,Lake Research,2026-09-14,Walz,Pillen,NE,D,40.0,40.0,13.0,7.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwobbuk57s2k,,0.0,usapolling,
+senate,OH,Big Data (R),2026-09-26,Brown,Husted,OH,D,47.0,43.0,0.0,10.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwmk6vka6s2y,label,4.0,usapolling,
 senate,MI,Cygnal/Beacon,2026-09-21,El-Sayed,Rogers,MI,D,45.0,40.0,0.0,15.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwo7atzcac2x,,5.0,usapolling,
 governor,MI,Cygnal/Beacon,2026-09-21,Benson,James,MI,D,45.0,38.0,0.0,17.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwo7atzcac2x,,7.0,usapolling,
 senate,OH,Marist,2026-09-27,Brown,Husted,OH,D,51.0,43.0,0.0,6.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwmxdt4vpc2h,,8.0,usapolling,
 governor,OH,Marist,2026-09-27,Acton,Ramaswamy,OH,D,50.0,44.0,0.0,6.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwmxdt4vpc2h,,6.0,usapolling,
-senate,OH,Big Data (R),2026-09-26,Brown,Husted,OH,D,47.0,43.0,0.0,10.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwmk6vka6s2y,label,4.0,usapolling,
 governor,OH,Suffolk,2026-09-27,Acton,Ramaswamy,OH,D,50.0,41.0,0.0,9.0,,1.5,2026-09-29,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwo7bfarp22x,,9.0,usapolling,
-governor,WI,Marquette,2026-09-23,Crowley,Tiffany,WI,D,49.0,46.0,0.0,5.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqudx6k5c2x,,3.0,usapolling,
 house,TX-9,PPP (D),2026-09-19,Gutierrez,Mealer,TX,D,39.0,45.0,0.0,16.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqxpspjdc2y,internal,-6.0,usapolling,
 house,MT-1,Impact,2026-09-23,Forstag,Flint,MT,D,47.0,44.0,2.0,7.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqxnig55s2y,,3.0,usapolling,
 senate,NC,YouGov,2026-09-15,Cooper,Whatley,NC,D,48.0,37.0,5.0,10.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqxldbu6s2y,,11.0,usapolling,
+governor,WI,Marquette,2026-09-23,Crowley,Tiffany,WI,D,49.0,46.0,0.0,5.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqudx6k5c2x,,3.0,usapolling,
+senate,IA,Quantus (R),2026-09-29,Turek,Hinson,IA,D,47.0,49.0,2.0,2.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqscngkt22y,label,-2.0,usapolling,
 senate,SD,Zenith (I),2026-09-27,Bengs,Rounds,SD,I,38.0,44.0,0.0,18.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqscrqyj22y,internal,-6.0,usapolling,
-senate,MI,Marist,2026-09-27,El-Sayed,Rogers,MI,D,51.0,44.0,0.0,5.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwphvi77l22t,,7.0,usapolling,
-governor,OR,DHM Research,2026-09-27,Kotek,Drazan,OR,D,46.0,47.0,3.0,4.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqsbrlaec2y,,-1.0,usapolling,
 senate,TX,Rasmussen (R),2026-09-29,Talarico,Paxton,TX,D,46.0,45.0,4.0,5.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqs7bd4oc2y,label,1.0,usapolling,
 senate,OH,Suffolk,2026-09-24,Brown,Husted,OH,D,47.0,44.0,0.0,9.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwpz2b5gsc2h,,3.0,usapolling,
+senate,MI,Marist,2026-09-27,El-Sayed,Rogers,MI,D,51.0,44.0,0.0,5.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwphvi77l22t,,7.0,usapolling,
 governor,MI,Marist,2026-09-27,Benson,James,MI,D,53.0,41.0,0.0,6.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwphvi77l22t,,12.0,usapolling,
 senate,MN,InsiderAdvantage (R),2026-09-29,Flanagan,Tafoya,MN,D,46.0,45.0,0.0,9.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwp5lu6gss2z,label,1.0,usapolling,
-senate,IA,Quantus (R),2026-09-29,Turek,Hinson,IA,D,47.0,49.0,2.0,2.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqscngkt22y,label,-2.0,usapolling,
+governor,OR,DHM Research,2026-09-27,Kotek,Drazan,OR,D,46.0,47.0,3.0,4.0,,1.5,2026-09-30,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwqsbrlaec2y,,-1.0,usapolling,
 governor,AK,Cygnal (R),2026-09-27,Kreiss-Tomkins,Wilson,AK,D,44.0,24.0,17.0,15.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtdfommkk2f,label,20.0,usapolling,
-governor,IA,Beacon Research/Shaw & Company Research,2026-09-28,Sand,Lahn,IA,D,53.0,44.0,0.0,3.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtux7unas2j,,9.0,usapolling,
 senate,IA,Beacon Research/Shaw & Company Research,2026-09-28,Turek,Hinson,IA,D,49.0,47.0,0.0,4.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtux7unas2j,,2.0,usapolling,
 senate,TX,Beacon Research/Shaw & Company Research,2026-09-28,Talarico,Paxton,TX,D,51.0,49.0,0.0,0.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtulkfzdc2p,,2.0,usapolling,
-governor,TX,Beacon Research/Shaw & Company Research,2026-09-28,Hinojosa,Abbott,TX,D,47.0,52.0,0.0,1.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtulkfzdc2p,,-5.0,usapolling,
+house,WA-3,DHM Research,2026-09-27,Gluesenkamp Perez,Braun,WA,D,47.0,48.0,0.0,5.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtgfz45fk2m,,-1.0,usapolling,
 senate,OH,InsiderAdvantage (R),2026-09-29,Brown,Husted,OH,D,44.0,43.0,6.0,7.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtevejnu22m,label,1.0,usapolling,
 governor,KS,GSG (D),2026-09-16,Holscher,Masterson,KS,D,49.0,46.0,0.0,5.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtbcakm4c2w,internal,3.0,usapolling,
-house,WA-3,DHM Research,2026-09-27,Gluesenkamp Perez,Braun,WA,D,47.0,48.0,0.0,5.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtgfz45fk2m,,-1.0,usapolling,
+governor,IA,Beacon Research/Shaw & Company Research,2026-09-28,Sand,Lahn,IA,D,53.0,44.0,0.0,3.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtux7unas2j,,9.0,usapolling,
 governor,AL,RMG (R),2026-09-25,Jones,Tuberville,AL,D,37.0,50.0,0.0,13.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwta7ys3ns2z,label,-13.0,usapolling,
-senate,AL,RMG (R),2026-09-25,Wiss,Moore,AL,D,33.0,54.0,0.0,13.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwta7ys3ns2z,label,-21.0,usapolling,
-governor,SD,Lake Research,2026-09-30,Ahlers,Rhoden,SD,D,44.0,51.0,0.0,5.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwrmxcjobk24,,-7.0,usapolling,
-senate,ME,Fabrizio Ward/Impact Research,2026-09-22,Jackson,Collins,ME,D,50.0,47.0,0.0,3.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwta4pjgrs2z,,3.0,usapolling,
-governor,ME,Fabrizio Ward/Impact Research,2026-09-22,Pingree,Charles,ME,D,52.0,39.0,0.0,9.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwta4pjgrs2z,,13.0,usapolling,
-senate,NC,Big Data (R),2026-09-29,Cooper,Whatley,NC,D,51.0,39.0,0.0,10.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwrofveqas24,label,12.0,usapolling,
-senate,SD,Lake Research,2026-09-30,Bengs,Rounds,SD,I,51.0,42.0,0.0,7.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwrmxcjobk24,,9.0,usapolling,
 governor,PA,Bravo,2026-09-22,Shapiro,Garrity,PA,D,55.0,28.0,0.0,17.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtb3iexu22t,,27.0,usapolling,
-senate,ID,Peak Insights (R),2026-09-30,Achillies,Risch,ID,I,24.0,49.0,5.0,22.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwweedcj5s2m,internal,-25.0,usapolling,
-governor,ME,YouGov,2026-10-01,Pingree,Charles,ME,D,56.0,44.0,0.0,0.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwwbs3xzo22m,,12.0,usapolling,
-senate,ME,YouGov,2026-10-01,Jackson,Collins,ME,D,50.0,50.0,0.0,0.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwwboqwgjk2m,,0.0,usapolling,
-senate,NE,co/efficient (R),2026-09-30,Osborn,Ricketts,NE,I,43.0,48.0,0.0,9.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwwaghkeb22m,label,-5.0,usapolling,
-senate,IA,Rasmussen (R),2026-09-30,Turek,Hinson,IA,D,47.0,43.0,3.0,7.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwvyr4nzmk2n,label,4.0,usapolling,
-house,NY-17,Emerson,2026-09-29,Conley,Lawler,NY,D,48.0,46.0,0.0,6.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwuasyc7bs2p,,2.0,usapolling,
-house,NY-23,Cygnal,2026-09-21,Gies,Langworthy,NY,D,33.0,54.0,0.0,13.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwu4zi5mcc2p,,-21.0,usapolling,
+governor,SD,Lake Research,2026-09-30,Ahlers,Rhoden,SD,D,44.0,51.0,0.0,5.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwrmxcjobk24,,-7.0,usapolling,
+senate,SD,Lake Research,2026-09-30,Bengs,Rounds,SD,I,51.0,42.0,0.0,7.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwrmxcjobk24,,9.0,usapolling,
+senate,NC,Big Data (R),2026-09-29,Cooper,Whatley,NC,D,51.0,39.0,0.0,10.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwrofveqas24,label,12.0,usapolling,
+governor,TX,Beacon Research/Shaw & Company Research,2026-09-28,Hinojosa,Abbott,TX,D,47.0,52.0,0.0,1.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwtulkfzdc2p,,-5.0,usapolling,
+governor,ME,Fabrizio Ward/Impact Research,2026-09-22,Pingree,Charles,ME,D,52.0,39.0,0.0,9.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwta4pjgrs2z,,13.0,usapolling,
+senate,ME,Fabrizio Ward/Impact Research,2026-09-22,Jackson,Collins,ME,D,50.0,47.0,0.0,3.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwta4pjgrs2z,,3.0,usapolling,
+senate,AL,RMG (R),2026-09-25,Wiss,Moore,AL,D,33.0,54.0,0.0,13.0,,1.5,2026-10-01,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwta7ys3ns2z,label,-21.0,usapolling,
 house,VA-5,Expedition Strategies (D),2026-09-24,Perriello,McGuire,VA,D,45.0,46.0,6.0,3.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwu4xkeips2p,internal,-1.0,usapolling,
+house,NY-23,Cygnal,2026-09-21,Gies,Langworthy,NY,D,33.0,54.0,0.0,13.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwu4zi5mcc2p,,-21.0,usapolling,
+house,NY-17,Emerson,2026-09-29,Conley,Lawler,NY,D,48.0,46.0,0.0,6.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwuasyc7bs2p,,2.0,usapolling,
+senate,IA,Rasmussen (R),2026-09-30,Turek,Hinson,IA,D,47.0,43.0,3.0,7.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwvyr4nzmk2n,label,4.0,usapolling,
 governor,NE,co/efficient (R),2026-09-30,Walz,Pillen,NE,D,43.0,48.0,0.0,9.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwwaghkeb22m,label,-5.0,usapolling,
+senate,NE,co/efficient (R),2026-09-30,Osborn,Ricketts,NE,I,43.0,48.0,0.0,9.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwwaghkeb22m,label,-5.0,usapolling,
+senate,ME,YouGov,2026-10-01,Jackson,Collins,ME,D,50.0,50.0,0.0,0.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwwboqwgjk2m,,0.0,usapolling,
+governor,ME,YouGov,2026-10-01,Pingree,Charles,ME,D,56.0,44.0,0.0,0.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwwbs3xzo22m,,12.0,usapolling,
+senate,ID,Peak Insights (R),2026-09-30,Achillies,Risch,ID,I,24.0,49.0,5.0,22.0,,1.5,2026-10-02,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwweedcj5s2m,internal,-25.0,usapolling,
 senate,GA,Wedgewood Polls,2026-10-03,Ossoff,Collins,GA,D,55.0,45.0,0.0,0.0,,1.5,2026-10-03,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwyxryjvf22a,,10.0,usapolling,
 governor,GA,Wedgewood Polls,2026-10-03,Bottoms,Jackson,GA,D,49.0,51.0,0.0,0.0,,1.5,2026-10-03,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwyxryjvf22a,,-2.0,usapolling,
 governor,KS,Siena,2026-09-30,Holscher,Masterson,KS,D,44.0,49.0,0.0,7.0,,1.5,2026-10-03,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwy57qep6k2e,,-5.0,usapolling,
 senate,KS,Siena,2026-09-30,Hamilton,Marshall,KS,D,45.0,45.0,0.0,10.0,,1.5,2026-10-03,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwy55utcjk2e,,0.0,usapolling,
-senate,IA,Siena,2026-10-01,Turek,Hinson,IA,D,47.0,48.0,0.0,5.0,,1.5,2026-10-03,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwy4zh2zfc2e,,-1.0,usapolling,
 governor,IA,Siena,2026-09-30,Sand,Lahn,IA,D,52.0,41.0,0.0,7.0,,1.5,2026-10-03,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwy4yvli4k2e,,11.0,usapolling,
+senate,IA,Siena,2026-10-01,Turek,Hinson,IA,D,47.0,48.0,0.0,5.0,,1.5,2026-10-03,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwy4zh2zfc2e,,-1.0,usapolling,
 senate,TX,Siena,2026-09-30,Talarico,Paxton,TX,D,51.0,45.0,0.0,4.0,,1.5,2026-10-03,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwy4opsdms2e,,6.0,usapolling,
 governor,TX,Siena,2026-09-30,Hinojosa,Abbott,TX,D,49.0,46.0,0.0,5.0,,1.5,2026-10-03,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwy4opsdms2e,,3.0,usapolling,
 governor,AK,Siena,2026-09-30,Kreiss-Tomkins,Wilson,AK,D,52.0,48.0,0.0,0.0,,1.5,2026-10-03,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mwy4zoy32c2e,,4.0,usapolling,
-governor,NM,SurveyUSA,2026-09-30,Haaland,Hull,NM,D,47.0,41.0,0.0,12.0,,1.5,2026-10-05,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx57gxydkk2k,,6.0,usapolling,
-governor,CA,IVC Media,2026-10-02,Becerra,Hilton,CA,D,48.0,38.0,0.0,14.0,,1.5,2026-10-05,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx57k5yok22k,,10.0,usapolling,
-senate,ME,Maine People's Resource,2026-09-29,Jackson,Collins,ME,D,50.0,47.0,0.0,3.0,,1.5,2026-10-05,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx5b4l7dds2a,,3.0,usapolling,
 senate,NH,Rasmussen (R),2026-10-02,Pappas,Sununu,NH,D,49.0,44.0,0.0,7.0,,1.5,2026-10-05,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx5mcrb5tc2k,label,5.0,usapolling,
 senate,MI,Mitchell Research,2026-10-01,El-Sayed,Rogers,MI,D,46.0,41.0,0.0,13.0,,1.5,2026-10-05,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx5yvstlyk2c,,5.0,usapolling,
-senate,FL,YouGov,2026-10-05,Nixon,Moody,FL,D,44.0,49.0,0.0,7.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxac6lyj7k2t,,-5.0,usapolling,
-governor,FL,YouGov,2026-10-05,Jolly,Donalds,FL,D,45.0,47.0,0.0,8.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxac6lyj7k2t,,-2.0,usapolling,
-governor,NE,YouGov,2026-10-03,Walz,Pillen,NE,D,43.0,44.0,0.0,13.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxadlzf5lc2t,,-1.0,usapolling,
+governor,CA,IVC Media,2026-10-02,Becerra,Hilton,CA,D,48.0,38.0,0.0,14.0,,1.5,2026-10-05,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx57k5yok22k,,10.0,usapolling,
+governor,NM,SurveyUSA,2026-09-30,Haaland,Hull,NM,D,47.0,41.0,0.0,12.0,,1.5,2026-10-05,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx57gxydkk2k,,6.0,usapolling,
+senate,ME,Maine People's Resource,2026-09-29,Jackson,Collins,ME,D,50.0,47.0,0.0,3.0,,1.5,2026-10-05,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx5b4l7dds2a,,3.0,usapolling,
 governor,MI,Mitchell Research,2026-10-01,Benson,James,MI,D,46.0,39.0,0.0,15.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxalt6li7s2v,,7.0,usapolling,
-governor,AK,Alaska Survey Research,2026-10-03,Kreiss-Tompkins,Wilson,AK,D,54.0,46.0,0.0,0.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxafvkvbuc2v,,8.0,usapolling,
-governor,FL,Mason-Dixon,2026-10-01,Jolly,Donalds,FL,D,41.0,48.0,0.0,11.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxali4gc4c2v,,-7.0,usapolling,
 senate,FL,Mason-Dixon,2026-10-01,Nixon,Moody,FL,D,40.0,50.0,0.0,10.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxali4gc4c2v,,-10.0,usapolling,
+governor,FL,Mason-Dixon,2026-10-01,Jolly,Donalds,FL,D,41.0,48.0,0.0,11.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxali4gc4c2v,,-7.0,usapolling,
+governor,AK,Alaska Survey Research,2026-10-03,Kreiss-Tompkins,Wilson,AK,D,54.0,46.0,0.0,0.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxafvkvbuc2v,,8.0,usapolling,
 governor,AK,Alaska Survey Research,2026-10-03,Kreiss-Tomkins,Wilson,AK,D,48.0,27.0,25.0,0.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxafvkvbuc2v,,21.0,usapolling,
+governor,NE,YouGov,2026-10-03,Walz,Pillen,NE,D,43.0,44.0,0.0,13.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxadlzf5lc2t,,-1.0,usapolling,
+governor,FL,YouGov,2026-10-05,Jolly,Donalds,FL,D,45.0,47.0,0.0,8.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxac6lyj7k2t,,-2.0,usapolling,
+senate,FL,YouGov,2026-10-05,Nixon,Moody,FL,D,44.0,49.0,0.0,7.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxac6lyj7k2t,,-5.0,usapolling,
 senate,NM,SurveyUSA,2026-09-30,Lujan,Marker,NM,D,54.0,36.0,0.0,10.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7ugnkeyk2t,,18.0,usapolling,
-governor,AZ,BSP,2026-09-04,Hobbs,Biggs,AZ,D,47.0,34.0,0.0,19.0,,1.5,2026-10-06,True,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7tr76tyc2t,,13.0,usapolling,
 governor,NH,Fabrizio Ward/Impact Research,2026-09-29,Warmington,Ayotte,NH,D,45.0,52.0,0.0,3.0,1042.0,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7uctkpys2t,,-7.0,usapolling,
-senate,NH,Fabrizio Ward/Impact Research,2026-09-29,Pappas,Sununu,NH,D,51.0,44.0,0.0,5.0,1042.0,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7uctkpys2t,,7.0,usapolling,
-governor,ME,Marist,2026-10-04,Pingree,Charles,ME,D,52.0,40.0,6.0,2.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx6kgspkqk25,,12.0,usapolling,
 senate,ME,Marist,2026-10-04,Jackson,Collins,ME,D,51.0,47.0,0.0,2.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx6kgspkqk25,,4.0,usapolling,
 senate,IL,PPP/Chicago News Weekly,2026-10-01,Stratton,Tracy,IL,D,49.0,36.0,0.0,15.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx6khzz5vs25,,13.0,usapolling,
-governor,NY,co/efficient (R),2026-09-25,Hochul,Blakeman,NY,D,48.0,41.0,0.0,11.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7tpomsik2t,label,7.0,usapolling,
-governor,SC,Resonance Media,2026-10-03,Johnson,Wilson,SC,D,35.0,45.0,0.0,20.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7tr2xiwk2t,,-10.0,usapolling,
-governor,NV,Noble Predictive,2026-09-26,Ford,Lombardo,NV,D,40.0,42.0,7.0,11.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7tqlvf722t,,-2.0,usapolling,
 governor,IL,PPP/Chicago News Weekly,2026-10-01,Pritzker,Bailey,IL,D,54.0,34.0,6.0,6.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx6khzz5vs25,,20.0,usapolling,
+governor,ME,Marist,2026-10-04,Pingree,Charles,ME,D,52.0,40.0,6.0,2.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx6kgspkqk25,,12.0,usapolling,
+governor,NV,Noble Predictive,2026-09-26,Ford,Lombardo,NV,D,40.0,42.0,7.0,11.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7tqlvf722t,,-2.0,usapolling,
+governor,SC,Resonance Media,2026-10-03,Johnson,Wilson,SC,D,35.0,45.0,0.0,20.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7tr2xiwk2t,,-10.0,usapolling,
+governor,AZ,BSP,2026-09-04,Hobbs,Biggs,AZ,D,47.0,34.0,0.0,19.0,,1.5,2026-10-06,True,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7tr76tyc2t,,13.0,usapolling,
+governor,NY,co/efficient (R),2026-09-25,Hochul,Blakeman,NY,D,48.0,41.0,0.0,11.0,,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7tpomsik2t,label,7.0,usapolling,
+senate,NH,Fabrizio Ward/Impact Research,2026-09-29,Pappas,Sununu,NH,D,51.0,44.0,0.0,5.0,1042.0,1.5,2026-10-06,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mx7uctkpys2t,,7.0,usapolling,
+governor,VT,State Navigate,2026-10-04,Janoo,Scott,VT,D,43.0,46.0,0.0,11.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcekjtqhk2j,,-3.0,usapolling,
 senate,MI,Guidant,2026-09-27,El-Sayed,Rogers,MI,D,48.0,43.0,0.0,9.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcrsyfjl22k,,5.0,usapolling,
 governor,MI,Guidant,2026-09-27,Benson,James,MI,D,50.0,45.0,0.0,5.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcrsyfjl22k,,5.0,usapolling,
 senate,TX,Guidant,2026-09-28,Talarico,Paxton,TX,D,47.0,44.0,4.0,5.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcqy4ctyc2r,,3.0,usapolling,
 governor,TX,Guidant,2026-09-28,Hinojosa,Abbott,TX,D,44.0,46.0,4.0,6.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcqy4ctyc2r,,-2.0,usapolling,
-house,NC-1,Neighborhood Research,2026-10-06,Cooper,Whatley,NC,D,49.0,41.0,0.0,10.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcl72sjz22f,,8.0,usapolling,
-governor,VT,State Navigate,2026-10-04,Janoo,Scott,VT,D,43.0,46.0,0.0,11.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcekjtqhk2j,,-3.0,usapolling,
-governor,PA,Quinnipiac,2026-10-05,Shapiro,Garrity,PA,D,59.0,34.0,0.0,7.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcdg7sgrk2o,,25.0,usapolling,
 house,NC-1,Neighborhood Research,2026-10-06,Davies,Buckhout,NC,D,51.0,41.0,0.0,8.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcl72sjz22f,,10.0,usapolling,
+house,NC-1,Neighborhood Research,2026-10-06,Cooper,Whatley,NC,D,49.0,41.0,0.0,10.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcl72sjz22f,,8.0,usapolling,
+senate,AK,Alaska Survey Research,2026-10-03,Peltola,Sullivan,AK,D,51.0,49.0,0.0,0.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcb3a6hwk2z,,2.0,usapolling,
 senate,MI,Quantus (R),2026-10-06,El-Sayed,Rogers,MI,D,48.0,47.0,0.0,5.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcataous22z,label,1.0,usapolling,
 senate,KS,GBAO (D),2026-10-04,Hamilton,Marshall,KS,D,47.5,42.5,3.5,6.5,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcasrofs22z,internal,5.0,usapolling,
 senate,IA,Suffolk,2026-10-02,Turek,Hinson,IA,D,48.0,44.0,0.0,8.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcasjbbic2z,,4.0,usapolling,
 governor,IA,Suffolk,2026-10-02,Sand,Lahn,IA,D,55.0,43.0,0.0,2.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcasjbbic2z,,12.0,usapolling,
 governor,NY,Marist,2026-10-05,Hochul,Blakeman,NY,D,53.0,42.0,0.0,5.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxb2u2ezos2y,,11.0,usapolling,
-senate,AK,Alaska Survey Research,2026-10-03,Peltola,Sullivan,AK,D,51.0,49.0,0.0,0.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcb3a6hwk2z,,2.0,usapolling,
-senate,NC,East Carolina U.,2026-10-03,Cooper,Whately,NC,D,53.0,46.0,2.0,0.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxf2aq6i7k2o,,7.0,usapolling,
+governor,PA,Quinnipiac,2026-10-05,Shapiro,Garrity,PA,D,59.0,34.0,0.0,7.0,,1.5,2026-10-07,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxcdg7sgrk2o,,25.0,usapolling,
 governor,WI,Z to A Research,2026-10-01,Crowley,Tiffany,WI,D,49.0,44.0,0.0,7.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxfjmhtmmk25,,5.0,usapolling,
 senate,MI,Z to A Research,2026-10-01,El-Sayed,Rogers,MI,D,49.0,42.0,0.0,9.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxfjmdoksk25,,7.0,usapolling,
 governor,MI,Z to A Research,2026-10-01,Benson,James,MI,D,50.0,40.0,0.0,10.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxfjmdoksk25,,10.0,usapolling,
 governor,PA,Z to A Research,2026-10-01,Shapiro,Garrity,PA,D,53.0,34.0,3.0,10.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxfjm7dcqs25,,19.0,usapolling,
 house,KY-6,Change Research,2026-10-05,Dembo,Alvarado,KY,D,47.0,38.0,0.0,15.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxfcokbugk27,,9.0,usapolling,
-governor,OH,co/efficient (R),2026-10-06,Acton,Ramaswamy,OH,D,43.0,45.0,0.0,12.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxf4pr5ka22c,label,-2.0,usapolling,
 senate,OH,co/efficient (R),2026-10-06,Brown,Husted,OH,D,43.0,44.0,0.0,13.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxf4pr5ka22c,label,-1.0,usapolling,
+governor,OH,co/efficient (R),2026-10-06,Acton,Ramaswamy,OH,D,43.0,45.0,0.0,12.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxf4pr5ka22c,label,-2.0,usapolling,
 senate,TX,YouGov/UMass,2026-09-28,Talarico,Paxton,TX,D,45.0,45.0,0.0,10.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxexetfukk22,,0.0,usapolling,
+senate,NC,East Carolina U.,2026-10-03,Cooper,Whately,NC,D,53.0,46.0,2.0,0.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxf2aq6i7k2o,,7.0,usapolling,
 senate,OH,SSRS,2026-10-05,Brown,Husted,OH,D,49.0,43.0,0.0,8.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxexenitq222,,6.0,usapolling,
 governor,OH,SSRS,2026-10-05,Acton,Ramaswamy,OH,D,50.0,42.0,0.0,8.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxexenitq222,,8.0,usapolling,
 senate,IA,SSRS,2026-10-05,Turek,Hinson,IA,D,43.0,45.0,0.0,12.0,,1.5,2026-10-08,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxexej533222,,-2.0,usapolling,
@@ -126,9 +121,9 @@ governor,MI,Wedgewood Polls,2026-10-09,Benson,James,MI,D,55.0,45.0,0.0,0.0,,1.5,
 senate,MI,Wedgewood Polls,2026-10-09,El-Sayed,Rogers,MI,D,53.0,47.0,0.0,0.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhz67m35k2j,,6.0,usapolling,
 governor,MN,Morning Consult,2026-10-07,Klobuchar,Demuth,MN,D,48.0,39.0,0.0,13.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhu3cnqkk2n,,9.0,usapolling,
 senate,MN,Morning Consult,2026-10-07,Flanagan,Tafoya,MN,D,45.0,41.0,0.0,14.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhtodyzwc2n,,4.0,usapolling,
-senate,SC,Rasmussen (R),2026-10-08,Andrews,Graham,SC,D,45.0,49.0,0.0,6.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhqhte2d22f,label,-4.0,usapolling,
-senate,ME,Rasmussen (R),2026-10-05,Jackson,Collins,ME,D,49.0,47.0,0.0,4.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhlkrxbjs2h,label,2.0,usapolling,
 house,CA-48,SurveyUSA,2026-10-07,Von Wilpert,Desmond,CA,D,47.0,38.0,0.0,15.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhlrnyoq22h,,9.0,usapolling,
+senate,ME,Rasmussen (R),2026-10-05,Jackson,Collins,ME,D,49.0,47.0,0.0,4.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhlkrxbjs2h,label,2.0,usapolling,
+senate,SC,Rasmussen (R),2026-10-08,Andrews,Graham,SC,D,45.0,49.0,0.0,6.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhqhte2d22f,label,-4.0,usapolling,
 senate,MN,Rasmussen (R),2026-10-07,Flanagan,Tafoya,MN,D,48.0,45.0,0.0,7.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhefhrybs2h,label,3.0,usapolling,
 governor,FL,Targoz,2026-10-04,Jolly,Donalds,FL,D,42.0,52.0,0.0,6.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhd7afges2h,,-10.0,usapolling,
 senate,FL,Targoz,2026-10-04,Nixon,Moody,FL,D,42.0,52.0,0.0,6.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhd7afges2h,,-10.0,usapolling,
@@ -136,87 +131,88 @@ senate,IA,Emerson,2026-10-06,Turek,Hinson,IA,D,45.0,47.0,2.0,6.0,,1.5,2026-10-09
 governor,IA,Emerson,2026-10-06,Sand,Lahn,IA,D,49.0,45.0,0.0,6.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhd7556gs2h,,4.0,usapolling,
 senate,ME,Schar Poll,2026-10-05,Jackson,Collins,ME,D,50.0,46.0,0.0,4.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhd6y5zo22h,,4.0,usapolling,
 senate,AR,Grayhouse (R),2026-10-04,Shoffner,Cotton,AR,D,39.0,50.0,4.0,7.0,,1.5,2026-10-09,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxhiafn5ys2h,label,-11.0,usapolling,
-senate,AK,InsiderAdvantage (R),2026-10-10,Peltola,Sullivan,AK,D,50.0,48.0,0.0,2.0,,1.5,2026-10-11,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxmtnoyvc22b,label,2.0,usapolling,
-senate,KS,InsiderAdvantage (R),2026-10-10,Hamilton,Marshall,KS,D,47.0,46.0,0.0,7.0,,1.5,2026-10-11,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxmtlkjm722b,label,1.0,usapolling,
 house,PA-1,GSG (D),2026-10-08,Harvie,Fitzpatrick,PA,D,46.0,46.0,0.0,8.0,,1.5,2026-10-11,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxmlvodgvk2z,internal,0.0,usapolling,
 senate,MI,InsiderAdvantage (R),2026-10-10,El-Sayed,Rogers,MI,D,48.0,46.0,0.0,6.0,,1.5,2026-10-11,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxmtjstnqc2b,label,2.0,usapolling,
+senate,KS,InsiderAdvantage (R),2026-10-10,Hamilton,Marshall,KS,D,47.0,46.0,0.0,7.0,,1.5,2026-10-11,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxmtlkjm722b,label,1.0,usapolling,
+senate,AK,InsiderAdvantage (R),2026-10-10,Peltola,Sullivan,AK,D,50.0,48.0,0.0,2.0,,1.5,2026-10-11,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxmtnoyvc22b,label,2.0,usapolling,
 governor,FL,Change Research,2026-10-10,Jolly,Donalds,FL,D,47.0,47.0,0.0,6.0,,1.5,2026-10-12,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxp7fac2ps2l,,0.0,usapolling,
-senate,NC,SurveyUSA,2026-10-11,Cooper,Whatley,NC,D,54.0,40.0,0.0,6.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxrg3mwxl22n,,14.0,usapolling,
 governor,TX,Siena,2026-10-08,Hinojosa,Abbott,TX,D,47.0,48.0,0.0,5.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxrg4afcmc2n,,-1.0,usapolling,
 senate,TX,Siena,2026-10-08,Talarico,Paxton,TX,D,48.0,44.0,0.0,8.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxrg4afcmc2n,,4.0,usapolling,
 governor,TX,GBAO (D),2026-10-09,Hinojosa,Abbott,TX,D,47.0,45.0,0.0,8.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxrg4vyaxk2n,internal,2.0,usapolling,
 senate,TX,Quantus (R),2026-10-11,Talarico,Paxton,TX,D,47.0,47.0,2.0,4.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxrlxaduwc22,label,0.0,usapolling,
 governor,AZ,Highground,2026-10-08,Hobbs,Biggs,AZ,D,51.0,34.0,0.0,15.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxroxv3dvs22,,17.0,usapolling,
 senate,FL,Stetson,2026-10-09,Nixon,Moody,FL,D,41.0,52.0,0.0,7.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxrq5ihcs22d,,-11.0,usapolling,
+governor,FL,Stetson,2026-10-09,Jolly,Donalds,FL,D,41.0,52.0,0.0,7.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxrq5ihcs22d,,-11.0,usapolling,
+senate,NC,SurveyUSA,2026-10-11,Cooper,Whatley,NC,D,54.0,40.0,0.0,6.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxrg3mwxl22n,,14.0,usapolling,
 governor,RI,Emerson,2026-10-11,Foulkes,Guckian,RI,D,44.0,10.0,35.0,11.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxs2hlctwk26,,34.0,usapolling,
 governor,AZ,Wick (R),2026-10-06,Hobbs,Biggs,AZ,D,49.0,43.0,0.0,8.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxs2kwvzl226,label,6.0,usapolling,
-governor,FL,Stetson,2026-10-09,Jolly,Donalds,FL,D,41.0,52.0,0.0,7.0,,1.5,2026-10-13,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxrq5ihcs22d,,-11.0,usapolling,
-governor,GA,InsiderAdvantage (R),2026-10-13,Bottoms,Jackson,GA,D,47.0,49.0,0.0,4.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu7xywres2p,label,-2.0,usapolling,
-governor,IA,YouGov,2026-10-12,Sand,Lahn,IA,D,50.0,44.0,0.0,6.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu757crek2a,,6.0,usapolling,
-governor,CT,Quinnipiac,2026-10-12,Lamont,Fazio,CT,D,58.0,38.0,0.0,4.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu55bf24k2p,,20.0,usapolling,
-senate,FL,MDW Communications,2026-10-10,Nixon,Moody,FL,D,42.0,48.0,0.0,10.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu4vrl6nc2v,,-6.0,usapolling,
-governor,FL,MDW Communications,2026-10-10,Jolly,Donalds,FL,D,44.0,46.0,0.0,10.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu4vrl6nc2v,,-2.0,usapolling,
-senate,IA,YouGov,2026-10-12,Turek,Hinson,IA,D,47.0,46.0,0.0,7.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu757crek2a,,1.0,usapolling,
-senate,TX,UT,2026-10-05,Talarico,Paxton,TX,D,50.0,47.0,0.0,3.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxtyf456p22v,,3.0,usapolling,
-governor,TX,UT,2026-10-05,Hinojosa,Abbott,TX,D,49.0,48.0,0.0,3.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxtyf456p22v,,1.0,usapolling,
-senate,ME,Suffolk,2026-10-11,Jackson,Collins,ME,D,49.0,47.0,0.0,4.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxtyetcvik2v,,2.0,usapolling,
-governor,ME,Suffolk,2026-10-11,Pingree,Charles,ME,D,49.0,38.0,8.0,5.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxtyetcvik2v,,11.0,usapolling,
-senate,TX,Marist,2026-10-10,Talarico,Paxton,TX,D,47.0,45.0,0.0,8.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxso7pvuyc2u,,2.0,usapolling,
 governor,TX,Marist,2026-10-10,Hinojosa,Abbott,TX,D,45.0,49.0,0.0,6.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxsonbuyok2u,,-4.0,usapolling,
+governor,ME,Suffolk,2026-10-11,Pingree,Charles,ME,D,49.0,38.0,8.0,5.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxtyetcvik2v,,11.0,usapolling,
+senate,ME,Suffolk,2026-10-11,Jackson,Collins,ME,D,49.0,47.0,0.0,4.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxtyetcvik2v,,2.0,usapolling,
+governor,TX,UT,2026-10-05,Hinojosa,Abbott,TX,D,49.0,48.0,0.0,3.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxtyf456p22v,,1.0,usapolling,
+senate,TX,UT,2026-10-05,Talarico,Paxton,TX,D,50.0,47.0,0.0,3.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxtyf456p22v,,3.0,usapolling,
 house,VA-2,CNU,2026-10-10,Luria,Kiggans,VA,D,46.0,43.0,0.0,11.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxtyisvg4k2v,,3.0,usapolling,
+governor,FL,MDW Communications,2026-10-10,Jolly,Donalds,FL,D,44.0,46.0,0.0,10.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu4vrl6nc2v,,-2.0,usapolling,
+senate,FL,MDW Communications,2026-10-10,Nixon,Moody,FL,D,42.0,48.0,0.0,10.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu4vrl6nc2v,,-6.0,usapolling,
+governor,CT,Quinnipiac,2026-10-12,Lamont,Fazio,CT,D,58.0,38.0,0.0,4.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu55bf24k2p,,20.0,usapolling,
+governor,IA,YouGov,2026-10-12,Sand,Lahn,IA,D,50.0,44.0,0.0,6.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu757crek2a,,6.0,usapolling,
+senate,IA,YouGov,2026-10-12,Turek,Hinson,IA,D,47.0,46.0,0.0,7.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu757crek2a,,1.0,usapolling,
+governor,GA,InsiderAdvantage (R),2026-10-13,Bottoms,Jackson,GA,D,47.0,49.0,0.0,4.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxu7xywres2p,label,-2.0,usapolling,
+senate,TX,Marist,2026-10-10,Talarico,Paxton,TX,D,47.0,45.0,0.0,8.0,,1.5,2026-10-14,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxso7pvuyc2u,,2.0,usapolling,
 senate,MI,Tyson Group (R),2026-10-08,El-Sayed,Rogers,MI,D,44.0,46.0,0.0,10.0,,1.5,2026-10-15,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxwtq7vfn22e,label,-2.0,usapolling,
 house,NM-3,Research & Polling,2026-10-09,Leger Fernandez,Zamora,NM,D,53.0,39.0,0.0,8.0,,1.5,2026-10-15,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxwrz7dxrs2o,,14.0,usapolling,
-house,NM-1,Research & Polling,2026-10-09,Stansbury,Okpareke,NM,D,53.0,35.0,0.0,12.0,,1.5,2026-10-15,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxwrxdyjkk2o,,18.0,usapolling,
 governor,IA,Marist,2026-10-11,Sand,Lahn,IA,D,52.0,45.0,0.0,3.0,,1.5,2026-10-15,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxv6thbmls2x,,7.0,usapolling,
 senate,IA,Marist,2026-10-11,Turek,Hinson,IA,D,48.0,45.0,0.0,7.0,,1.5,2026-10-15,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxv6thbmls2x,,3.0,usapolling,
+house,NM-1,Research & Polling,2026-10-09,Stansbury,Okpareke,NM,D,53.0,35.0,0.0,12.0,,1.5,2026-10-15,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxwrxdyjkk2o,,18.0,usapolling,
 governor,NH,National Public Affairs,2026-10-12,Warmington,Ayotte,NH,D,38.0,54.0,3.0,5.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxz536usr225,,-16.0,usapolling,
+governor,NE,PPP (D),2026-10-14,Walz,Pillen,NE,D,43.0,44.0,0.0,13.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxzjm3mtf22v,internal,-1.0,usapolling,
 governor,CT,Wesleyan U/YouGov,2026-10-07,Lamont,Fazio,CT,D,57.0,34.0,0.0,9.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxzchli3qc2r,,23.0,usapolling,
 senate,MT,Peak Insight,2026-10-12,Bodnar,Alme,MT,I,29.0,44.0,15.0,12.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxz6nthcgs2r,,-15.0,usapolling,
 governor,SD,Concord Public Opinion,2026-10-08,Ahlers,Rhoden,SD,D,38.0,48.0,0.0,14.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxz5fftigc25,,-10.0,usapolling,
 senate,NH,National Public Affairs,2026-10-12,Pappas,Sununu,NH,D,50.0,43.0,4.0,3.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxz536usr225,,7.0,usapolling,
 senate,MI,Rasmussen (R),2026-10-14,El-Sayed,Rogers,MI,D,46.0,44.0,0.0,10.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxz4tvbisc23,label,2.0,usapolling,
-governor,NE,PPP (D),2026-10-14,Walz,Pillen,NE,D,43.0,44.0,0.0,13.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxzjm3mtf22v,internal,-1.0,usapolling,
+senate,KS,InsiderAdvantage (R),2026-10-14,Hamilton,Marshall,KS,D,47.0,48.0,0.0,5.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxxf6xwd2c2v,label,-1.0,usapolling,
 senate,OH,YouGov/BSGU,2026-10-10,Brown,Husted,OH,D,48.0,42.0,0.0,10.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxz4tishbc23,,6.0,usapolling,
 governor,OH,YouGov/BSGU,2026-10-10,Acton,Ramaswamy,OH,D,50.0,44.0,0.0,6.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxz4tishbc23,,6.0,usapolling,
 senate,SD,Concord,2026-10-08,Bengs,Rounds,SD,I,43.0,42.0,0.0,15.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxz4tbwecc23,,1.0,usapolling,
+house,UT-2,Crosby Internal,2026-09-23,Crosby,Moore,UT,D,35.0,32.0,0.0,33.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxz3v6a43c25,,3.0,usapolling,
 senate,ME,InsiderAdvantage (R),2026-10-14,Jackson,Collins,ME,D,49.0,47.0,0.0,4.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxxg2xxf522q,label,2.0,usapolling,
 senate,AR,Hendrix,2026-10-13,Shoffner,Cotton,AR,D,41.0,50.0,5.0,4.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxxfk5qwxs2q,,-9.0,usapolling,
-senate,KS,InsiderAdvantage (R),2026-10-14,Hamilton,Marshall,KS,D,47.0,48.0,0.0,5.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxxf6xwd2c2v,label,-1.0,usapolling,
 house,ME-2,Tulchin (D),2026-10-14,Dunlap,LePage,ME,D,50.0,46.0,0.0,4.0,,1.5,2026-10-16,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mxz4tqssfc23,internal,4.0,usapolling,
 house,PA-10,Susquehanna,2026-10-11,Stelson,Perry,PA,D,49.0,46.0,0.0,5.0,,1.5,2026-10-17,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3my43g2pzjs2x,,3.0,usapolling,
 senate,TX,CBS/YouGov,2026-10-16,Talarico,Paxton,TX,D,51.0,49.0,0.0,0.0,,1.5,2026-10-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3my67ukaoz22e,,2.0,usapolling,
 governor,AR,Hendrix,2026-10-13,Love,Sanders,AR,D,32.0,51.0,11.0,6.0,,1.5,2026-10-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3my67tzgfgc2e,,-19.0,usapolling,
 governor,TX,CBS/YouGov,2026-10-10,Hinojosa,Abbott,TX,D,48.0,52.0,0.0,0.0,,1.5,2026-10-18,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3my67ubcjrs2e,,-4.0,usapolling,
+governor,IA,co/efficient (R),2026-10-19,Sand,Lahn,IA,D,49.0,45.0,0.0,6.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay4oo2i22u,label,4.0,usapolling,
 governor,SD,Mason-Dixon,2026-10-14,Ahlers,Rhoden,SD,D,36.0,56.0,0.0,8.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay6ipb5c2u,,-20.0,usapolling,
 governor,PA,Bravo,2026-10-11,Shapiro,Garrity,PA,D,58.0,28.0,0.0,14.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay6ff5n22u,,30.0,usapolling,
 senate,TX,UH,2026-10-14,Talarico,Paxton,TX,D,48.0,46.0,3.0,3.0,2000.0,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay6c4src2u,,2.0,usapolling,
-governor,GA,Quantus (R),2026-10-17,Bottoms,Jackson,GA,D,48.0,49.0,0.0,3.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay66ou7k2u,label,-1.0,usapolling,
-governor,TX,UH,2026-10-14,Hinojosa,Abbott,TX,D,46.0,49.0,2.0,3.0,2000.0,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay63d7us2u,,-3.0,usapolling,
 senate,GA,Quantus (R),2026-10-17,Ossoff,Collins,GA,D,53.0,45.0,0.0,2.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay66ou7k2u,label,8.0,usapolling,
+governor,TX,UH,2026-10-14,Hinojosa,Abbott,TX,D,46.0,49.0,2.0,3.0,2000.0,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay63d7us2u,,-3.0,usapolling,
+governor,GA,Quantus (R),2026-10-17,Bottoms,Jackson,GA,D,48.0,49.0,0.0,3.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay66ou7k2u,label,-1.0,usapolling,
 governor,IA,NPA,2026-10-12,Sand,Lahn,IA,D,50.0,45.0,0.0,5.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay5xv7ek2u,,5.0,usapolling,
 senate,FL,YouGov/Univision,2026-10-15,Nixon,Moody,FL,D,42.0,51.0,0.0,7.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay5oqvu22u,,-9.0,usapolling,
 senate,OH,Rasmussen (R),2026-10-14,Brown,Husted,OH,D,47.0,49.0,0.0,4.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay5lee7s2u,label,-2.0,usapolling,
 governor,FL,YouGov,2026-10-15,Jolly,Donalds,FL,D,42.0,50.0,0.0,8.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay5hixy22u,,-8.0,usapolling,
 senate,IA,co/efficient (R),2026-10-19,Turek,Hinson,IA,D,45.0,48.0,0.0,7.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay4oo2i22u,label,-3.0,usapolling,
-governor,IA,co/efficient (R),2026-10-19,Sand,Lahn,IA,D,49.0,45.0,0.0,6.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay4oo2i22u,label,4.0,usapolling,
 senate,IA,NPA,2026-10-12,Turek,Hinson,IA,D,44.0,47.0,4.0,5.0,,1.5,2026-10-19,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myay5xv7ek2u,,-3.0,usapolling,
 governor,NY,OnMessage (R),2026-10-14,Hochul,Blakeman,NY,D,48.0,48.0,0.0,4.0,,1.5,2026-10-20,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mydpofefmc23,label,0.0,usapolling,
 governor,AK,Data For Progress,2026-10-16,Kreiss-Tomkins,Wilson,AK,D,53.0,47.0,0.0,0.0,,1.5,2026-10-20,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mydmjlzxac2t,,6.0,usapolling,
-governor,SC,NPA (R),2026-10-16,Johnson,Wilson,SC,D,41.0,51.0,0.0,8.0,,1.5,2026-10-20,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mydm4rylh22t,internal,-10.0,usapolling,
 senate,OH,Marist,2026-10-18,Brown,Husted,OH,D,48.0,44.0,0.0,8.0,,1.5,2026-10-20,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mybrabvdzs2d,,4.0,usapolling,
+governor,AK,Alaska Survey Research,2026-10-18,Kreiss-Tomkins,Wilson,AK,D,55.0,45.0,0.0,0.0,,1.5,2026-10-20,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mybyanooi22e,,10.0,usapolling,
 governor,OH,Marist,2026-10-18,Acton,Ramaswamy,OH,D,50.0,43.0,0.0,7.0,,1.5,2026-10-20,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mybrabvdzs2d,,7.0,usapolling,
 house,FL-9,SEA Polling (D),2026-10-15,Soto,Green,FL,D,44.0,44.0,0.0,12.0,,1.5,2026-10-20,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mybgckm64225,internal,0.0,usapolling,
-governor,AK,Alaska Survey Research,2026-10-18,Kreiss-Tomkins,Wilson,AK,D,55.0,45.0,0.0,0.0,,1.5,2026-10-20,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mybyanooi22e,,10.0,usapolling,
+governor,SC,NPA (R),2026-10-16,Johnson,Wilson,SC,D,41.0,51.0,0.0,8.0,,1.5,2026-10-20,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mydm4rylh22t,internal,-10.0,usapolling,
 governor,OH,Beacon Research/Shaw & Company Research,2026-10-19,Acton,Ramaswamy,OH,D,50.0,48.0,0.0,2.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mygcrqswgk2l,,2.0,usapolling,
 senate,OH,Beacon Research/Shaw & Company Research,2026-10-19,Brown,Husted,OH,D,52.0,47.0,0.0,1.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mygcrqswgk2l,,5.0,usapolling,
 governor,TX,Beacon Research/Shaw & Company Research,2026-10-19,Hinojosa,Abbott,TX,D,47.0,52.0,0.0,1.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mygcp5f4tk2l,,-5.0,usapolling,
-senate,TX,Beacon Research/Shaw & Company Research,2026-10-19,Talarico,Paxton,TX,D,49.0,49.0,0.0,2.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mygcp5f4tk2l,,0.0,usapolling,
-senate,SD,Quantus (R),2026-10-19,Bengs,Rounds,SD,I,37.0,57.0,0.0,6.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myg3hz36l22d,label,-20.0,usapolling,
 senate,TX,New River Strategies,2026-10-13,Talarico,Paxton,TX,D,49.0,44.0,0.0,7.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myfqdfbjys2q,,5.0,usapolling,
+senate,SD,Quantus (R),2026-10-19,Bengs,Rounds,SD,I,37.0,57.0,0.0,6.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myg3hz36l22d,label,-20.0,usapolling,
+house,NC-9,PPP (D),2026-10-20,Ojeda,Hudson,NC,D,42.0,46.0,0.0,12.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myfqubsc3s2q,label,-4.0,usapolling,
 governor,NY,Quinnipiac,2026-10-19,Hochul,Blakeman,NY,D,55.0,41.0,0.0,4.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myfqhorsls2q,,14.0,usapolling,
 governor,TX,New River Strategies,2026-10-13,Hinojosa,Abbott,TX,D,46.0,48.0,0.0,6.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myfqdfbjys2q,,-2.0,usapolling,
 governor,OH,New River Strategies,2026-10-13,Acton,Ramaswamy,OH,D,48.0,43.0,0.0,9.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myfqbeo6q22q,,5.0,usapolling,
-house,NC-9,PPP (D),2026-10-20,Ojeda,Hudson,NC,D,42.0,46.0,0.0,12.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myfqubsc3s2q,label,-4.0,usapolling,
+senate,TX,Beacon Research/Shaw & Company Research,2026-10-19,Talarico,Paxton,TX,D,49.0,49.0,0.0,2.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3mygcp5f4tk2l,,0.0,usapolling,
 governor,IA,New River Strategies,2026-10-13,Sand,Lahn,IA,D,53.0,43.0,0.0,4.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myfq7cs2rc2q,,10.0,usapolling,
 senate,OH,New River Strategies,2026-10-13,Brown,Husted,OH,D,49.0,43.0,0.0,8.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myfqbeo6q22q,,6.0,usapolling,
 senate,MI,Marist,2026-10-18,El-Sayed,Rogers,MI,D,50.0,48.0,0.0,2.0,,1.5,2026-10-21,False,at://did:plc:4bwzn4ayvrvtiukfuwnz2i65/app.bsky.feed.post/3myebn4lb4s2j,,2.0,usapolling,
@@ -303,12 +299,14 @@ governor,CA,Manhattan Institute,2026-10-01,Xavier Becerra,Steve Hilton,CA,D,57.0
 governor,CA,Public Policy Institute of California,2026-10-22,Xavier Becerra,Steve Hilton,CA,D,61.0,37.0,0.0,2.0,1086.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myvv2eosqx2u,,24.0,pollresults,lv
 governor,CA,TrueDot,2026-10-14,Xavier Becerra,Steve Hilton,CA,D,55.0,35.0,0.0,10.0,909.0,1.5,2026-10-21,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myfbcikgdn22,,20.0,pollresults,lv
 governor,CT,Emerson College,2026-10-12,Ned Lamont,Ryan Fazio,CT,D,51.4,37.8,0.0,10.8,800.0,1.5,2026-10-15,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxvtpdooiq2n,,13.600000000000001,pollresults,lv
-governor,CT,GreatBlue Research,2026-10-12,Ned Lamont,Ryan Fazio,CT,D,58.9,33.7,0.0,7.4,1000.0,1.5,2026-10-19,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mya5xhyf4q2w,,25.199999999999996,pollresults,rv
+governor,CT,GreatBlue Research,2026-10-12,Ned Lamont,Ryan Fazio,CT,D,58.9,33.7,0.0,7.4,1000.0,1.5,2026-10-19,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3my7ywj2iff2j,,25.199999999999996,pollresults,rv
 governor,FL,ActiVote,2026-10-19,David Jolly,Byron Donalds,FL,D,48.3,51.7,0.0,0.0,400.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mybh5cosvl2p,,-3.4000000000000057,pollresults,lv
-governor,FL,"Fabrizio, Lee & Associates (R)",2026-10-11,David Jolly,Byron Donalds,FL,D,41.0,47.5,0.0,11.5,1200.0,1.5,2026-10-13,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxruqa3cok2c,nyt,-6.5,pollresults,lv
+governor,FL,"Fabrizio, Lee & Associates (R)",2026-10-11,David Jolly,Byron Donalds,FL,D,41.0,47.5,0.0,11.5,1200.0,1.5,2026-10-13,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxruqatxk227,nyt,-6.5,pollresults,lv
+governor,FL,St. Pete Polls,2026-10-27,David Jolly,Byron Donalds,FL,D,45.5,47.8,0.0,6.7,916.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywr3zu7x527,,-2.299999999999997,pollresults,lv
 governor,FL,The New York Times/Siena University,2026-10-25,David Jolly,Byron Donalds,FL,D,44.4,48.4,0.0,7.2,813.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywfpa2ybt2d,,-4.0,pollresults,lv
 governor,FL,co/efficient,2026-10-20,David Jolly,Byron Donalds,FL,D,40.0,49.0,0.0,11.0,1014.0,1.5,2026-10-21,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myftzjlpvp2q,,-9.0,pollresults,lv
 governor,GA,ActiVote,2026-10-20,Keisha Lance Bottoms,Rick Jackson,GA,D,48.5,51.5,0.0,0.0,400.0,1.5,2026-10-21,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mydwwzmllv23,,-3.0,pollresults,lv
+governor,GA,State Navigate,2026-10-27,Keisha Lance Bottoms,Rick Jackson,GA,D,50.0,47.0,0.0,3.0,741.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywnaozjse2v,,3.0,pollresults,lv
 governor,GA,University of Georgia,2026-10-15,Keisha Lance Bottoms,Rick Jackson,GA,D,45.0,46.0,0.0,9.0,1000.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mycfynhlin2a,,-1.0,pollresults,lv
 governor,IL,ActiVote,2026-10-22,JB Pritzker,Darren Bailey,IL,D,58.7,41.3,0.0,0.0,400.0,1.5,2026-10-22,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myikzlr34o2g,,17.400000000000006,pollresults,lv
 governor,KS,YouGov,2026-10-04,Cindy Holscher,Ty Masterson,KS,D,44.0,47.0,0.0,9.0,2255.0,1.5,2026-10-06,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxabyge4cf27,,-3.0,pollresults,lv
@@ -323,23 +321,27 @@ governor,MI,YouGov,2026-10-04,Jocelyn Benson,John James,MI,D,48.0,45.0,0.0,7.0,3
 governor,MN,"Mason-Dixon Polling & Research, Inc.",2026-10-07,Amy Klobuchar,Lisa Demuth,MN,D,50.0,41.0,0.0,9.0,800.0,1.5,2026-10-13,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxqwxlimu42j,,9.0,pollresults,lv
 governor,MN,SurveyUSA,2026-10-12,Amy Klobuchar,Lisa Demuth,MN,D,48.0,41.0,3.0,8.0,718.0,1.5,2026-10-14,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxunp7ahlt2w,,7.0,pollresults,lv
 governor,MN,The New York Times/Siena University,2026-10-26,Amy Klobuchar,Lisa Demuth,MN,D,55.9,37.9,0.0,6.2,752.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywfp7hgwb2v,,18.0,pollresults,lv
+governor,MN,Victory Insights (R),2026-10-22,Amy Klobuchar,Lisa Demuth,MN,D,50.1,43.1,0.0,6.8,1194.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myx5off62c27,nyt,7.0,pollresults,lv
 governor,NE,National Public Affairs (R),2026-10-05,Lynne Walz,Jim Pillen,NE,D,40.0,44.0,12.0,4.0,800.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mycsxhrofg2j,nyt,-4.0,pollresults,lv
 governor,NH,YouGov,2026-10-05,Cinde Warmington,Kelly Ayotte,NH,D,40.0,49.0,0.0,11.0,1520.0,1.5,2026-10-06,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxacyn37dg2h,,-9.0,pollresults,lv
 governor,NM,Research & Polling Inc.,2026-10-09,Deb Haaland,Gregg Hull,NM,D,49.0,42.0,0.0,9.0,1125.0,1.5,2026-10-11,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxmb62hktb23,,7.0,pollresults,lv
 governor,NV,Hart Research Associates/Public Opinion Strategies (D),2026-10-25,Aaron Ford,Joe Lombardo,NV,I,49.0,45.0,0.0,6.0,950.0,1.5,2026-10-27,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myudcwzlzy2v,nyt,4.0,pollresults,lv
 governor,NY,ActiVote,2026-10-23,Kathy Hochul,Bruce Blakeman,NY,D,59.0,41.0,0.0,0.0,400.0,1.5,2026-10-24,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mylhmivwcj2b,,18.0,pollresults,lv
 governor,NY,Beacon Research,2026-10-06,Kathy Hochul,Bruce Blakeman,NY,D,53.0,31.0,0.0,16.0,820.0,1.5,2026-10-15,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxw3zp6pme2w,,22.0,pollresults,rv
+governor,NY,Marist University,2026-10-25,Kathy Hochul,Bruce Blakeman,NY,D,54.0,41.5,0.0,4.5,1448.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywl32kgzi2c,,12.5,pollresults,lv
+governor,NY,Siena University,2026-10-22,Kathy Hochul,Bruce Blakeman,NY,D,54.0,40.0,0.0,6.0,807.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywmmwfltb2q,,14.0,pollresults,lv
 governor,OH,ActiVote,2026-10-19,Amy Acton,Vivek Ramaswamy,OH,D,48.6,51.4,0.0,0.0,400.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mybh5d5r4l2a,,-2.799999999999997,pollresults,lv
 governor,OH,Big Data Poll,2026-09-27,Amy Acton,Vivek Ramaswamy,OH,D,46.4,47.4,6.2,0.0,735.0,1.5,2026-09-29,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwokj7m3722u,,-1.0,pollresults,rv
+governor,OH,Suffolk University,2026-10-26,Amy Acton,Vivek Ramaswamy,OH,D,48.0,44.0,3.6,4.4,500.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywlommx3h2d,,4.0,pollresults,lv
 governor,OH,The New York Times/Siena University,2026-10-01,Amy Acton,Vivek Ramaswamy,OH,D,49.0,45.0,0.0,6.0,616.0,1.5,2026-10-03,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwxk6g6osp2c,,4.0,pollresults,lv
 governor,OH,YouGov,2026-09-30,Amy Acton,Vivek Ramaswamy,OH,D,48.0,44.0,0.0,8.0,3777.0,1.5,2026-10-06,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxacd6a2du2j,,4.0,pollresults,lv
 governor,OK,Workbench Strategy (D),2026-10-13,Cyndi Munson,Mike Mazzei,OK,D,45.0,49.0,0.0,6.0,600.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mycom2iprt2c,nyt,-4.0,pollresults,lv
 governor,OR,GBAO (D),2026-10-04,Tina Kotek,Christine Drazan,OR,D,46.0,42.0,6.0,6.0,800.0,1.5,2026-10-09,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxgr6v4prc2a,nyt,4.0,pollresults,lv
 governor,PA,ActiVote,2026-10-21,Josh Shapiro,Stacy Garrity,PA,D,61.5,38.5,0.0,0.0,400.0,1.5,2026-10-21,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myg2mjgsjv23,,23.0,pollresults,lv
-governor,PA,Franklin & Marshall College,2026-10-18,Josh Shapiro,Stacy Garrity,PA,D,56.5,34.5,0.0,9.0,808.0,1.5,2026-10-22,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myhj5xxgiv2n,,22.0,pollresults,rv
+governor,PA,Franklin & Marshall College,2026-10-18,Josh Shapiro,Stacy Garrity,PA,D,56.5,34.5,0.0,9.0,808.0,1.5,2026-10-22,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myhj5ykul52b,,22.0,pollresults,rv
 governor,PA,"Susquehanna Polling & Research, Inc.",2026-09-30,Josh Shapiro,Stacy Garrity,PA,D,52.0,31.0,0.0,17.0,700.0,1.5,2026-10-07,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxcbdn2gcd2j,,21.0,pollresults,lv
 governor,RI,Embold Research,2026-10-08,Helena Foulkes,Aaron Guckian,RI,D,39.0,17.0,29.0,15.0,815.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mycdnk6dxs2w,,22.0,pollresults,lv
-governor,SC,The Citadel School of Humanities and Social Sciences,2026-10-25,Jermaine Johnson,Alan Wilson,SC,D,31.5,39.0,1.0,28.5,1009.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myvji5gfxu22,,-7.5,pollresults,rv
+governor,SC,The Citadel School of Humanities and Social Sciences,2026-10-25,Jermaine Johnson,Alan Wilson,SC,D,31.5,39.0,1.0,28.5,890.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myvji5uh4p2n,,-7.5,pollresults,lv
 governor,SC,The New York Times/Siena University,2026-10-26,Jermaine Johnson,Alan Wilson,SC,D,44.2,51.0,0.0,4.8,707.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywfqy37ka22,,-6.799999999999997,pollresults,lv
 governor,SC,Trafalgar Group (R),2026-10-18,Jermaine Johnson,Alan Wilson,SC,D,36.5,52.5,5.8,5.2,1095.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mydmtf3ftg2m,nyt,-16.0,pollresults,lv
 governor,SD,Lake Research Partners (D),2026-08-30,Daniel P. Ahlers,Larry Rhoden,SD,D,44.0,51.0,0.0,5.0,500.0,1.5,2026-10-15,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxx3wmi7272w,nyt,-7.0,pollresults,lv
@@ -347,9 +349,9 @@ governor,TN,Spry Strategies,2026-10-16,Jerri Green,Marsha Blackburn,TN,D,32.0,43
 governor,TX,ActiVote,2026-10-14,Gina Hinojosa,Greg Abbott,TX,D,49.1,50.9,0.0,0.0,400.0,1.5,2026-10-15,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxvtevtxsy2n,,-1.7999999999999972,pollresults,lv
 governor,TX,ActiVote,2026-10-21,Gina Hinojosa,Greg Abbott,TX,D,47.5,52.5,0.0,0.0,400.0,1.5,2026-10-21,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myfuowmmnn23,,-5.0,pollresults,lv
 governor,TX,Slingshot Strategies,2026-10-18,Gina Hinojosa,Greg Abbott,TX,D,48.0,51.0,1.0,0.0,969.0,1.5,2026-10-23,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mykbq67azm2g,,-3.0,pollresults,lv
-governor,TX,Stratus Intelligence,2026-09-24,Gina Hinojosa,Greg Abbott,TX,D,45.0,50.0,0.0,5.0,865.0,1.5,2026-09-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwlg2x6ugn2t,,-5.0,pollresults,lv
 governor,TX,YouGov,2026-10-05,Gina Hinojosa,Greg Abbott,TX,D,48.5,47.5,0.5,3.5,3622.0,1.5,2026-10-06,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxacd6sos52p,,1.0,pollresults,lv
 governor,TX,YouGov,2026-10-16,Gina Hinojosa,Greg Abbott,TX,D,48.0,52.0,0.0,0.0,1460.0,1.5,2026-10-18,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3my5pvg4rsi2c,,-4.0,pollresults,lv
+governor,TX,YouGov Blue,2026-10-26,Gina Hinojosa,Greg Abbott,TX,D,49.0,46.0,0.0,5.0,1000.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myxaatf2m32v,,3.0,pollresults,lv
 governor,WI,YouGov,2026-10-09,David Crowley,Tom Tiffany,WI,D,46.0,42.0,0.0,12.0,1715.0,1.5,2026-10-16,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxz4kmcdqs23,,4.0,pollresults,rv
 house,AR-2,Emerson College,2026-10-14,Chris Jones,French Hill,AR,D,48.0,52.0,0.0,0.0,383.0,1.5,2026-10-22,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myhpp6msf72v,,-4.0,pollresults,lv
 house,AZ-1,FirstStrategic Communications and Public Affairs,2026-10-01,Amish Shah,Jay Feely,AZ,D,44.4,41.6,0.0,14.0,400.0,1.5,2026-10-06,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mx7lfzkdr62k,,2.799999999999997,pollresults,rv
@@ -431,16 +433,16 @@ house,VA-1,Public Policy Polling (D),2026-10-22,Shannon Taylor,Robert Wittman,VA
 house,VA-1,The Washington Post/George Mason University Schar School of Policy and Government,2026-09-28,Shannon Taylor,Robert Wittman,VA,D,50.0,46.0,0.0,4.0,609.0,1.5,2026-10-01,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwsr2ykb6x2e,,4.0,pollresults,lv
 house,VA-5,The Washington Post/George Mason University Schar School of Policy and Government,2026-09-28,Tom Perriello,John McGuire,VA,D,45.0,51.0,0.0,4.0,600.0,1.5,2026-10-01,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwsr2xwbk62q,,-6.0,pollresults,lv
 house,VA-6,co/efficient,2026-09-30,Beth Macy,Ben Cline,VA,D,29.0,59.0,0.0,12.0,791.0,1.5,2026-10-02,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mww5zv3a3y2c,,-30.0,pollresults,lv
-house,VT-1,Braun Research,2026-09-21,Becca Balint,Gerald Malloy,VT,D,45.1,29.3,3.8,21.8,732.0,1.5,2026-09-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwlhaihi272t,,15.8,pollresults,lv
 house,WA-3,Change Research (D),2026-10-21,Marie Gluesenkamp Perez,John Braun,WA,D,45.0,44.0,0.0,11.0,551.0,1.5,2026-10-23,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myk5cw4uhn2n,nyt,1.0,pollresults,lv
 house,WI-1,DCCC Targeting Team (D),2026-09-23,Mitchell Berman,Bryan Steil,WI,D,48.0,48.0,0.0,4.0,495.0,1.5,2026-09-29,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwo2g7wrve22,nyt,0.0,pollresults,lv
 house,WI-1,Impact Research (D),2026-10-01,Mitchell Berman,Bryan Steil,WI,D,48.0,47.0,0.0,5.0,500.0,1.5,2026-10-04,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mx2p3urlgz27,nyt,1.0,pollresults,lv
-senate,AK,Data for Progress,2026-10-16,Mary Peltola,Dan Sullivan,AK,D,49.0,46.3,3.3,1.3,671.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mydb7hjimo2y,,2.700000000000003,pollresults,lv
+senate,AK,Data for Progress,2026-10-16,Mary Peltola,Dan Sullivan,AK,D,49.0,46.3,3.3,1.3,675.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mydb7i4mr727,,2.700000000000003,pollresults,lv
 senate,AK,Quantus Insights,2026-09-30,Mary Peltola,Dan Sullivan,AK,D,46.4,46.6,1.6,5.4,758.0,1.5,2026-10-02,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwvli6f2ar2k,,-0.20000000000000284,pollresults,lv
 senate,AK,The New York Times/Siena University,2026-10-01,Mary Peltola,Dan Sullivan,AK,D,50.1,43.1,0.0,6.9,504.0,1.5,2026-10-03,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwxkbw7xay27,,7.0,pollresults,lv
 senate,AL,The Alabama Poll,2026-10-16,Everett Wess,Barry Moore,AL,D,35.0,56.0,0.0,9.0,600.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myceglogm52n,,-21.0,pollresults,lv
 senate,FL,ActiVote,2026-10-15,Angie Nixon,Ashley Moody,FL,D,46.9,53.1,0.0,0.0,400.0,1.5,2026-10-18,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3my4duerofo2y,,-6.200000000000003,pollresults,lv
 senate,FL,ActiVote,2026-10-27,Angie Nixon,Ashley Moody,FL,D,47.0,53.0,0.0,0.0,400.0,1.5,2026-10-27,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myupmgvhdn2q,,-6.0,pollresults,lv
+senate,FL,St. Pete Polls,2026-10-27,Angie Nixon,Ashley Moody,FL,D,44.7,49.0,0.0,6.3,916.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywr3zau2b2o,,-4.299999999999997,pollresults,lv
 senate,FL,The New York Times/Siena University,2026-10-25,Angie Nixon,Ashley Moody,FL,D,44.3,50.4,0.0,5.3,813.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywfni6sk62v,,-6.100000000000001,pollresults,lv
 senate,FL,co/efficient,2026-10-20,Angie Nixon,Ashley Moody,FL,D,40.0,48.0,2.0,10.0,1014.0,1.5,2026-10-21,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myfu3cti4d2c,,-8.0,pollresults,lv
 senate,GA,ActiVote,2026-10-20,Jon Ossoff,Mike Collins,GA,D,54.0,46.0,0.0,0.0,400.0,1.5,2026-10-21,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mydwysva5c26,,8.0,pollresults,lv
@@ -458,7 +460,6 @@ senate,ME,Trafalgar Group (R),2026-10-23,Troy Jackson,Susan Collins,ME,D,46.5,47
 senate,ME,Wedgewood Polls,2026-10-01,Troy Jackson,Susan Collins,ME,D,52.0,48.0,0.0,0.0,400.0,1.5,2026-10-01,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwtr5ubgq72s,,4.0,pollresults,lv
 senate,ME,co/efficient,2026-09-30,Troy Jackson,Susan Collins,ME,D,46.0,48.0,0.0,6.0,1240.0,1.5,2026-09-30,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwr6ddp37d2u,,-2.0,pollresults,lv
 senate,MI,Beacon Research/Shaw & Company Research,2026-09-28,Abdul El-Sayed,Mike Rogers,MI,D,50.5,48.5,0.0,1.0,1028.0,1.5,2026-09-30,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwrf222ajw2n,,2.0,pollresults,lv
-senate,MI,GBAO,2026-09-22,Abdul El-Sayed,Mike Rogers,MI,D,48.0,44.0,0.0,8.0,800.0,1.5,2026-09-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwlfktmvoi27,,4.0,pollresults,lv
 senate,MI,The Tyson Group (R),2026-09-27,Abdul El-Sayed,Mike Rogers,MI,D,44.0,43.0,0.0,13.0,600.0,1.5,2026-10-15,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxwsvwg2zm2t,nyt,1.0,pollresults,lv
 senate,MI,Trafalgar Group (R),2026-09-30,Abdul El-Sayed,Mike Rogers,MI,D,46.9,45.1,2.9,5.1,1085.0,1.5,2026-10-02,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwvfbqjfha2j,nyt,1.7999999999999972,pollresults,lv
 senate,MI,YouGov,2026-10-04,Abdul El-Sayed,Mike Rogers,MI,D,49.0,48.0,0.0,3.0,3947.0,1.5,2026-10-06,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxacv323kt2w,,1.0,pollresults,lv
@@ -468,6 +469,7 @@ senate,MN,"Mason-Dixon Polling & Research, Inc.",2026-10-07,Peggy Flanagan,Miche
 senate,MN,SurveyUSA,2026-10-12,Peggy Flanagan,Michele Tafoya,MN,D,45.0,42.0,4.0,9.0,718.0,1.5,2026-10-14,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxunukvppz2p,,3.0,pollresults,lv
 senate,MN,The New York Times/Siena University,2026-10-26,Peggy Flanagan,Michele Tafoya,MN,D,54.2,40.3,0.0,5.5,752.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywfnhonne2q,,13.900000000000006,pollresults,lv
 senate,MN,Trafalgar Group (R),2026-10-15,Peggy Flanagan,Michele Tafoya,MN,D,48.1,44.6,1.9,5.4,1079.0,1.5,2026-10-18,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3my4jtoh5fv25,nyt,3.5,pollresults,lv
+senate,MN,Victory Insights (R),2026-10-22,Peggy Flanagan,Michele Tafoya,MN,D,47.8,44.4,0.0,7.8,1194.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myx5oelhzz2d,nyt,3.3999999999999986,pollresults,lv
 senate,MS,Wedgewood Polls,2026-10-14,Scott Colom,Cindy Hyde-Smith,MS,D,48.0,52.0,0.0,0.0,511.0,1.5,2026-10-15,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxuylv3tji2n,,-4.0,pollresults,lv
 senate,MT,Concord Public Opinion Partners (I),2026-10-08,Seth Bodnar,Kurt Alme,MT,I,37.0,35.0,14.0,14.0,405.0,1.5,2026-10-16,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxyjx6qtbg2w,nyt,2.0,pollresults,lv
 senate,MT,Quantus Insights,2026-10-18,Seth Bodnar,Kurt Alme,MT,I,29.4,45.6,23.0,2.0,667.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mycrksilsw2h,,-16.200000000000003,pollresults,lv
@@ -475,14 +477,12 @@ senate,NC,ActiVote,2026-10-20,Roy Cooper,Michael Whatley,NC,D,56.9,43.1,0.0,0.0,
 senate,NC,Change Research (D),2026-10-07,Roy Cooper,Michael Whatley,NC,D,50.0,40.0,3.0,7.0,829.0,1.5,2026-10-13,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxqzn7zxcr2j,nyt,10.0,pollresults,lv
 senate,NC,Trafalgar Group (R),2026-10-10,Roy Cooper,Michael Whatley,NC,D,48.8,40.9,3.4,6.9,1091.0,1.5,2026-10-12,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxoanb4plj2w,nyt,7.899999999999999,pollresults,lv
 senate,NC,YouGov,2026-10-08,Roy Cooper,Michael Whatley,NC,D,52.7,41.0,3.0,3.3,561.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mycerbpdcg2a,,11.700000000000003,pollresults,lv
-senate,NE,GBAO,2026-04-20,Dan Osborn,Pete Ricketts,NE,I,46.0,45.0,0.0,9.0,800.0,1.5,2026-09-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwlmxx4nlk25,,1.0,pollresults,lv
-senate,NE,GBAO,2026-07-26,Dan Osborn,Pete Ricketts,NE,I,47.0,47.0,0.0,6.0,800.0,1.5,2026-09-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwlmn7sxuk2s,,0.0,pollresults,lv
 senate,NE,National Public Affairs (R),2026-10-05,Dan Osborn,Pete Ricketts,NE,I,44.5,47.5,3.0,5.0,800.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mycsvppczx2a,nyt,-3.0,pollresults,lv
 senate,NE,YouGov,2026-10-03,Dan Osborn,Pete Ricketts,NE,I,48.0,47.0,0.0,5.0,1808.0,1.5,2026-10-06,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxackdgw4c2y,,1.0,pollresults,lv
-senate,NH,Trafalgar Group,2026-09-27,Chris Pappas,John Sununu,NH,D,47.4,40.5,1.1,11.0,1090.0,1.5,2026-09-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwl2oobzhp2z,,6.899999999999999,pollresults,lv
 senate,NH,YouGov,2026-10-05,Chris Pappas,John Sununu,NH,D,51.0,43.0,0.0,6.0,1519.0,1.5,2026-10-06,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxacv2htsf2a,,8.0,pollresults,lv
 senate,NM,Research & Polling Inc.,2026-10-09,Ben Ray Luján,Larry Marker,NM,D,53.0,37.0,0.0,10.0,1125.0,1.5,2026-10-14,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxth63az2l2w,,16.0,pollresults,lv
 senate,OH,ActiVote,2026-10-18,Sherrod Brown,Jon Husted,OH,D,49.8,50.2,0.0,0.0,400.0,1.5,2026-10-18,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3my6bguvoam2y,,-0.4000000000000057,pollresults,lv
+senate,OH,Suffolk University,2026-10-26,Sherrod Brown,Jon Husted,OH,D,47.0,44.0,3.2,5.8,500.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mywlolwa5o2v,,3.0,pollresults,lv
 senate,OH,The New York Times/Siena University,2026-10-01,Sherrod Brown,Jon Husted,OH,D,48.8,46.1,0.0,5.2,616.0,1.5,2026-10-03,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwxk6fpejh2p,,2.6999999999999957,pollresults,lv
 senate,OH,YouGov,2026-09-30,Sherrod Brown,Jon Husted,OH,D,49.0,45.0,0.0,6.0,3777.0,1.5,2026-10-06,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxac7mlqpl2w,,4.0,pollresults,lv
 senate,RI,Embold Research,2026-10-08,Jack Reed,Raymond McKay,RI,D,55.0,32.0,4.0,9.0,815.0,1.5,2026-10-20,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mycdr524ar25,,23.0,pollresults,lv
@@ -498,6 +498,7 @@ senate,TX,InsiderAdvantage,2026-10-14,James Talarico,Ken Paxton,TX,D,48.0,49.0,0
 senate,TX,Pulse Decision Science (R),2026-09-27,James Talarico,Ken Paxton,TX,D,45.0,48.0,0.0,7.0,800.0,1.5,2026-09-29,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mwoskpoael2c,nyt,-3.0,pollresults,lv
 senate,TX,Trafalgar Group (R),2026-10-08,James Talarico,Ken Paxton,TX,D,47.1,43.6,1.8,7.5,1086.0,1.5,2026-10-10,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxkgjxsnqr2w,nyt,3.5,pollresults,lv
 senate,TX,YouGov,2026-10-05,James Talarico,Ken Paxton,TX,D,50.0,45.5,0.5,4.0,3623.0,1.5,2026-10-06,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3mxac7n77yn27,,4.5,pollresults,lv
+senate,TX,YouGov Blue,2026-10-26,James Talarico,Ken Paxton,TX,D,51.0,43.0,0.0,6.0,1000.0,1.5,2026-10-28,False,at://did:plc:3dobmrc6cl62xehkuscyv36p/app.bsky.feed.post/3myxaasgdlz2u,,8.0,pollresults,lv
 governor,AK,Fabrizio Ward/Impact Research,2026-09-11,Kreiss-Tomkins,Bernadette Wilson,AK,D,55.0,45.0,0.0,0.0,800.0,1.5,2026-09-11,False,https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-alaska/,,10.0,pollresults_site,lv
 governor,AK,co/efficient (R),2026-09-17,Kreiss-Tomkins,Bernadette Wilson,AK,D,43.0,20.0,17.0,20.0,799.0,1.5,2026-09-17,False,https://battlegrounds.coefficient.org/ak/,,23.0,pollresults_site,lv
 governor,AL,yes. every kid. foundation.,2026-07-11,Doug Jones,Tuberville,AL,D,41.0,49.0,0.0,10.0,601.0,1.5,2026-07-11,False,https://yeseverykidfoundation.org/alabama-likely-voters-support-fully-funding-the-choose-act/,,-8.0,pollresults_site,lv
@@ -652,10 +653,12 @@ governor,TX,ReconMR/Siena Research Institute,2026-09-11,Gina Hinojosa,Abbott,TX,
 governor,TX,Slingshot Strategies (D),2026-07-17,Gina Hinojosa,Abbott,TX,D,42.0,45.0,0.0,13.0,1048.0,1.5,2026-07-17,False,https://texaspublicopinionresearch.substack.com/p/new-poll-james-talaricos-lead-over,,-3.0,pollresults_site,lv
 governor,TX,Slingshot Strategies (D),2026-08-24,Gina Hinojosa,Abbott,TX,D,42.0,49.0,0.0,9.0,1000.0,1.5,2026-08-24,False,https://texaspublicopinionresearch.substack.com/p/new-poll-in-texas-general-election,,-7.0,pollresults_site,lv
 governor,TX,Slingshot Strategies (D),2026-09-22,Gina Hinojosa,Abbott,TX,D,46.0,50.0,0.0,4.0,1007.0,1.5,2026-09-22,False,https://texaspublicopinionresearch.substack.com/p/new-poll-in-texas-general-election-662,,-4.0,pollresults_site,lv
+governor,TX,Stratus Intelligence (R),2026-09-24,Gina Hinojosa,Abbott,TX,D,45.0,50.0,0.0,5.0,865.0,1.5,2026-09-24,False,https://www.politico.com/newsletters/playbook/2026/09/28/trumps-joes-exit-the-front-row-01094720,,-5.0,pollresults_site,lv
 governor,TX,The New York Times/Siena University,2026-06-27,Gina Hinojosa,Abbott,TX,D,44.23,50.64,0.0,5.13,656.0,1.5,2026-06-27,False,https://www.nytimes.com/2026/06/30/us/politics/texas-senate-poll-talarico-paxton.html,,-6.410000000000004,pollresults_site,lv
 governor,TX,YouGov,2026-06-12,Gina Hinojosa,Abbott,TX,D,40.0,47.0,0.0,13.0,1200.0,1.5,2026-06-12,False,https://texaspolitics.utexas.edu/blog/june-poll-finds-a-competitive-u-s-senate-race-in-texas-amid-continuing-economic-concerns-data-center-backlash,,-7.0,pollresults_site,rv
 governor,TX,YouGov,2026-08-13,Gina Hinojosa,Abbott,TX,D,40.0,45.0,0.0,15.0,1200.0,1.5,2026-08-13,False,https://texaspolitics.utexas.edu/blog/new-ut-texas-politics-project-poll-finds-talarico-leading-paxton-abbott-leading-hinojosa-continued-resistance-to-data-centers-2,,-5.0,pollresults_site,rv
 governor,TX,YouGov,2026-09-04,Gina Hinojosa,Abbott,TX,D,47.0,47.0,0.0,6.0,1000.0,1.5,2026-09-04,False,https://www.univision.com/noticias/politica/poll-univision-texas-2026,,0.0,pollresults_site,rv
+governor,VT,Braun Research,2026-09-21,Janoo,Phil Scott,VT,D,34.43,43.73,0.0,21.84,732.0,1.5,2026-09-21,False,https://www.vermontpublic.org/local-news/2026-09-28/vermont-general-election-poll-results-2026,,-9.299999999999997,pollresults_site,lv
 governor,VT,University of New Hampshire,2026-09-21,Janoo,Phil Scott,VT,D,49.0,43.0,0.0,8.0,829.0,1.5,2026-09-21,False,https://scholars.unh.edu/survey_center_polls/1006/,,6.0,pollresults_site,lv
 governor,WI,GBAO (D),2026-08-03,David Crowley,Tiffany,WI,D,47.0,44.0,0.0,9.0,800.0,1.5,2026-08-03,False,https://www.politico.com/newsletters/playbook-pm/2026/08/12/trumps-cost-of-living-crunch-01035189?nname=playbook-pm&amp;nid=0000015a-dd3e-d536-a37b-dd7fd8af0000&amp;nrid=4d735b47-a8a7-41f4-9c35-277919f359ed,,3.0,pollresults_site,lv
 governor,WI,Marquette University Law School,2026-08-20,David Crowley,Tiffany,WI,D,44.0,44.0,0.0,12.0,891.0,1.5,2026-08-20,False,https://law.marquette.edu/poll/2026/08/26/detailed-results-of-the-marquette-law-school-wisconsin-poll-august-12-20-2026/,,0.0,pollresults_site,rv
@@ -730,6 +733,7 @@ house,NY-21,J.L. Partners,2026-08-17,Gendebien,Constantino,NY,D,40.0,53.0,0.0,7.
 house,NY-21,Public Policy Polling,2026-10-13,Gendebien,Constantino,NY,D,44.0,46.0,0.0,10.0,,1.5,2026-10-13,False,https://x.com/cjwarnke/status/2112877284684341727?s=46,,-2.0,pollresults_site,
 house,NY-21,Siena University,2026-10-06,Gendebien,Constantino,NY,D,46.0,42.0,0.0,12.0,496.0,1.5,2026-10-06,False,https://www.mynbc5.com/article/poll-new-york-21-constantino-gendebien/74082680,,4.0,pollresults_site,lv
 house,NY-21,SurveyUSA,2026-08-08,Gendebien,Constantino,NY,D,43.0,39.0,0.0,18.0,612.0,1.5,2026-08-08,False,https://results.surveyusa.com/client/PollReport.aspx?g=7dad7202-08be-4fe4-a687-b52480791639,,4.0,pollresults_site,lv
+house,NY-23,Public Policy Polling,2026-09-23,Gies,Langworthy,NY,D,35.0,52.0,0.0,13.0,626.0,1.5,2026-09-23,False,https://www.politico.com/newsletters/new-york-playbook/2026/09/28/the-jacobs-challenge-01094565,,-17.0,pollresults_site,lv
 house,OH-1,Quantus Insights,2026-08-24,Landsman,Conroy,OH,D,47.9,44.6,0.0,7.5,509.0,1.5,2026-08-24,False,https://quantusinsights.org/f/new-quantus-insights-survey-ohio%E2%80%99s-1st-district-is-up-for-grabs,,3.299999999999997,pollresults_site,lv
 house,OH-10,FM3 Research (D),2026-07-12,Knickerbocker,Turner,OH,D,41.0,48.0,0.0,11.0,,1.5,2026-07-12,False,https://drive.google.com/file/d/1_pK0ssxHljLwr1ZUPFkyb9B70kte7IkI/view,,-7.0,pollresults_site,
 house,OH-10,Global Strategy Group (D),2026-07-23,Knickerbocker,Turner,OH,D,42.0,49.0,0.0,9.0,700.0,1.5,2026-07-23,False,https://punchbowl.news/oh-10-knickerbocker-memo-f07-24-26-3/,,-7.0,pollresults_site,lv
@@ -763,6 +767,7 @@ house,UT-3,Lighthouse Research,2026-09-15,Udell,Maloy,UT,D,26.4,44.5,0.0,29.1,50
 house,VA-1,DCCC Targeting Team (D),2026-09-17,Shannon Taylor,Wittman,VA,D,46.0,47.0,0.0,7.0,519.0,1.5,2026-09-17,False,https://www.virginiascope.com/internal-poll-shows-a-tight-race-between-wittman-and-taylor/,,-1.0,pollresults_site,lv
 house,VA-2,Tulchin Research (D),2026-07-13,Luria,Kiggans,VA,D,47.0,47.0,0.0,6.0,700.0,1.5,2026-07-13,False,https://www.politico.com/newsletters/playbook/2026/07/24/dinner-with-a-side-of-vicious-01011141?template_id=OT5J0E7B7DD7&amp;is_login_link=true,,0.0,pollresults_site,lv
 house,VA-5,Expedition Strategies (D),2026-08-01,Perriello,John McGuire,VA,D,44.0,47.0,0.0,9.0,602.0,1.5,2026-08-01,False,https://www.tomperriello.com/news/new-poll-perriello-moves-virginias-5th-district-into-a-toss-up-race?source=d715b73c-1e5d-4e06-99fb-ef4a95e22fd4,,-3.0,pollresults_site,lv
+house,VT-1,Braun Research,2026-09-21,Balint,Malloy,VT,D,43.28,28.3,0.0,28.42,817.0,1.5,2026-09-21,False,https://www.vermontpublic.org/local-news/2026-09-28/vermont-general-election-poll-results-2026,,14.98,pollresults_site,a
 house,VT-1,University of New Hampshire,2026-09-21,Balint,Malloy,VT,D,66.0,30.0,0.0,4.0,830.0,1.5,2026-09-21,False,https://scholars.unh.edu/survey_center_polls/1006/,,36.0,pollresults_site,lv
 house,WA-3,Emerson College,2026-07-10,Perez,John Braun,WA,D,42.0,43.0,0.0,15.0,500.0,1.5,2026-07-10,False,https://www.nwprogressive.org/weblog/2026/07/wa-03-is-still-washingtons-tossup-district-marie-gluesenkamp-perez-and-john-braun-are-tied-ahead-of-2026-top-two-election.html,,-1.0,pollresults_site,lv
 house,WI-3,FM3 Research (D),2026-06-25,Cooke,Van Orden,WI,D,50.0,46.0,0.0,4.0,535.0,1.5,2026-06-25,False,https://www.thehousemajoritypac.com/news/hmp-poll-rebecca-cooke-leads-derrick-van-orden-in-wi-03,,4.0,pollresults_site,lv
@@ -843,6 +848,7 @@ senate,MI,EPIC-MRA,2026-08-28,El-Sayed,Mike Rogers,MI,D,47.0,43.0,0.0,10.0,600.0
 senate,MI,Emerson College,2026-09-14,El-Sayed,Mike Rogers,MI,D,48.19,45.72,0.0,6.09,1000.0,1.5,2026-09-14,False,https://emersoncollegepolling.com/michigan-2026-poll-el-sayed-and-rogers-locked-in-close-election/,,2.469999999999999,pollresults_site,lv
 senate,MI,Fabrizio Ward/Impact Research,2026-08-11,El-Sayed,Mike Rogers,MI,D,48.0,47.0,0.0,5.0,877.0,1.5,2026-08-11,False,https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-michigan/?CMP=RDRCT-PRI-POLT,,1.0,pollresults_site,lv
 senate,MI,GBAO (D),2026-08-10,El-Sayed,Mike Rogers,MI,D,50.0,44.0,0.0,6.0,800.0,1.5,2026-08-10,False,https://www.politico.com/newsletters/playbook/2026/08/15/what-burritos-tell-us-about-capitalism-01038859,,6.0,pollresults_site,lv
+senate,MI,GBAO (D),2026-09-22,El-Sayed,Mike Rogers,MI,D,48.0,44.0,0.0,8.0,800.0,1.5,2026-09-22,False,https://www.politico.com/newsletters/playbook/2026/09/28/trumps-joes-exit-the-front-row-01094720,,4.0,pollresults_site,lv
 senate,MI,"Glengariff Group, Inc.",2026-07-24,El-Sayed,Mike Rogers,MI,D,38.7,49.0,0.0,12.3,600.0,1.5,2026-07-24,False,https://mea.org/latest-statewide-poll-7-2026/,,-10.299999999999997,pollresults_site,lv
 senate,MI,"Glengariff Group, Inc.",2026-09-03,El-Sayed,Mike Rogers,MI,D,44.4,45.8,9.4,0.4,600.0,1.5,2026-09-03,False,https://www.detroitnews.com/story/news/politics/2026/09/08/michigan-senate-poll-mike-rogers-abdul-el-sayed/91653231007/,,-1.3999999999999986,pollresults_site,lv
 senate,MI,InsiderAdvantage (R),2026-09-17,El-Sayed,Mike Rogers,MI,D,46.6,44.7,0.0,8.7,1200.0,1.5,2026-09-17,False,https://insideradvantage.com/mi-top-line-tabs/,,1.8999999999999986,pollresults_site,lv
@@ -876,6 +882,7 @@ senate,NC,Beacon Research/Shaw & Company Research,2026-07-27,Cooper,Whatley,NC,D
 senate,NC,Change Research (D),2026-08-01,Cooper,Whatley,NC,D,50.0,41.0,0.0,9.0,967.0,1.5,2026-08-01,False,https://garypearcenc.substack.com/p/cooper-up-by-9-trump-still-slumps,,9.0,pollresults_site,rv
 senate,NC,Change Research (D),2026-08-06,Cooper,Whatley,NC,D,50.05,42.93,0.0,7.02,915.0,1.5,2026-08-06,False,https://carolinaforward.org/news/the-august-2026-carolina-forward-poll/,,7.119999999999997,pollresults_site,lv
 senate,NC,East Carolina University Center for Survey Research,2026-09-03,Cooper,Whatley,NC,D,51.7,43.6,2.7,2.0,675.0,1.5,2026-09-03,False,https://surveyresearch-ecu.reportablenews.com/pr/ecu-poll-cooper-leads-whatley-by-7-points,,8.100000000000001,pollresults_site,lv
+senate,NC,Fabrizio Ward/Impact Research,2026-09-20,Cooper,Whatley,NC,D,53.0,42.0,0.0,5.0,1115.0,1.5,2026-09-20,False,https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-north-carolina/,,11.0,pollresults_site,lv
 senate,NC,Harper Polling (R),2026-08-10,Cooper,Whatley,NC,D,51.5,39.0,0.0,9.5,600.0,1.5,2026-08-10,False,https://www.carolinajournal.com/polls/august-2026-coopers-lead-over-whatley-grows-to-12-5-points/,,12.5,pollresults_site,lv
 senate,NC,Harper Polling (R),2026-09-15,Cooper,Whatley,NC,D,49.2,34.1,0.0,16.7,608.0,1.5,2026-09-15,False,https://www.carolinajournal.com/polls/september-2026-roy-coopers-lead-grows-to-15-points-in-nc-senate-race/,,15.100000000000001,pollresults_site,lv
 senate,NC,High Point University,2026-08-12,Cooper,Whatley,NC,D,48.0,41.0,0.0,11.0,800.0,1.5,2026-08-12,False,https://www.highpoint.edu/blog/2026/08/hpu-poll-126-majority-of-north-carolina-voters-say-country-headed-in-wrong-direction/,,7.0,pollresults_site,rv
@@ -889,6 +896,7 @@ senate,NC,Trafalgar Group (R),2026-09-10,Cooper,Whatley,NC,D,48.2,42.3,0.0,9.5,1
 senate,NC,YouGov,2026-06-10,Cooper,Whatley,NC,D,47.73,34.03,0.0,18.24,905.0,1.5,2026-06-10,False,https://www.catawba.edu/news/all-news/2026/yougovsurvey27/,,13.699999999999996,pollresults_site,lv
 senate,NC,YouGov,2026-07-31,Cooper,Whatley,NC,D,53.0,42.0,0.0,5.0,466.0,1.5,2026-07-31,False,https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/08/Elon-Poll-1-fall-2026-NR-V3-8-12-26.pdf,,11.0,pollresults_site,lv
 senate,NC,YouGov,2026-08-31,Cooper,Whatley,NC,D,39.0,29.0,0.0,32.0,800.0,1.5,2026-08-31,False,https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/09/Elon-University-Poll-NR-9-10-26.pdf,,10.0,pollresults_site,a
+senate,NE,GBAO (D),2026-07-26,Osborn,Ricketts,NE,I,47.0,47.0,0.0,6.0,800.0,1.5,2026-07-26,False,https://www.washingtonsun.com/newsletters/panic-week,,0.0,pollresults_site,lv
 senate,NE,GBAO (D),2026-09-08,Osborn,Ricketts,NE,I,47.0,46.0,0.0,7.0,800.0,1.5,2026-09-08,False,https://www.washingtonsun.com/newsletters/panic-week,,1.0,pollresults_site,lv
 senate,NE,Impact Research,2026-08-13,Osborn,Ricketts,NE,I,47.0,47.0,0.0,6.0,600.0,1.5,2026-08-13,False,https://omaha.com/news/state-regional/government-politics/article_666083f7-4e07-45ae-a534-adbb42b64734.html#tncms-source=login,,0.0,pollresults_site,lv
 senate,NE,SurveyUSA,2026-09-13,Osborn,Ricketts,NE,I,46.0,42.0,0.0,12.0,503.0,1.5,2026-09-13,False,https://results.surveyusa.com/client/PollReport.aspx?g=d94236a7-5861-4b7f-9d81-d5a81ab786cc,,4.0,pollresults_site,lv
@@ -898,6 +906,7 @@ senate,NH,Peak Insights (R),2026-06-27,Pappas,John E. Sununu,NH,D,43.0,42.0,0.0,
 senate,NH,St. Anselm,2026-06-25,Pappas,John E. Sununu,NH,D,47.0,41.0,0.0,12.0,1614.0,1.5,2026-06-25,False,https://www.anselm.edu/about/anselmian-hub/news/saint-anselm-college-survey-center-june-poll-finds-democrats-expand-generic-ballot-lead,,6.0,pollresults_site,rv
 senate,NH,St. Anselm,2026-08-18,Pappas,John E. Sununu,NH,D,48.0,41.0,0.0,11.0,1411.0,1.5,2026-08-18,False,https://www.anselm.edu/about/anselmian-hub/news/new-saint-anselm-college-poll-finds-republicans-facing-midterm-headwinds-democratic-lead-widens,,7.0,pollresults_site,lv
 senate,NH,The New York Times/Siena University,2026-09-22,Pappas,John E. Sununu,NH,D,49.82,44.82,0.0,5.36,613.0,1.5,2026-09-22,False,https://www.nytimes.com/interactive/2026/09/24/polls/times-siena-poll-nh-toplines.html,,5.0,pollresults_site,lv
+senate,NH,Trafalgar Group (R),2026-09-27,Pappas,John E. Sununu,NH,D,47.4,40.5,0.0,12.1,1082.0,1.5,2026-09-27,False,https://www.thetrafalgargroup.org/news/nh-gen-senate-0926/,,6.899999999999999,pollresults_site,lv
 senate,NH,University of New Hampshire,2026-06-23,Pappas,John E. Sununu,NH,D,47.0,44.0,0.0,9.0,2157.0,1.5,2026-06-23,False,https://scholars.unh.edu/survey_center_polls/974/,,3.0,pollresults_site,lv
 senate,NH,University of New Hampshire,2026-09-21,Pappas,John E. Sununu,NH,D,50.0,42.0,0.0,8.0,1392.0,1.5,2026-09-21,False,https://scholars.unh.edu/survey_center_polls/1005/,,8.0,pollresults_site,lv
 senate,OH,Abacus Data,2026-08-28,Brown,Husted,OH,D,46.0,41.0,0.0,13.0,306.0,1.5,2026-08-28,False,https://abacusdata.ca/the-trade-war-next-door-what-american-voters-think-about-tariffs-canada-and-the-battle-for-the-u-s-senate/,,5.0,pollresults_site,lv
@@ -943,6 +952,7 @@ senate,TX,ReconMR/Siena Research Institute,2026-09-11,Talarico,Paxton,TX,D,49.0,
 senate,TX,Slingshot Strategies (D),2026-07-17,Talarico,Paxton,TX,D,45.0,40.0,0.0,15.0,1048.0,1.5,2026-07-17,False,https://texaspublicopinionresearch.substack.com/p/new-poll-james-talaricos-lead-over,,5.0,pollresults_site,lv
 senate,TX,Slingshot Strategies (D),2026-08-24,Talarico,Paxton,TX,D,48.0,42.0,0.0,10.0,1000.0,1.5,2026-08-24,False,https://texaspublicopinionresearch.substack.com/p/new-poll-in-texas-general-election,,6.0,pollresults_site,lv
 senate,TX,Slingshot Strategies (D),2026-09-22,Talarico,Paxton,TX,D,49.0,44.0,0.0,7.0,1007.0,1.5,2026-09-22,False,https://texaspublicopinionresearch.substack.com/p/new-poll-in-texas-general-election-662,,5.0,pollresults_site,lv
+senate,TX,Stratus Intelligence (R),2026-09-24,Talarico,Paxton,TX,D,48.0,48.0,0.0,4.0,865.0,1.5,2026-09-24,False,https://www.politico.com/newsletters/playbook/2026/09/28/trumps-joes-exit-the-front-row-01094720,,0.0,pollresults_site,lv
 senate,TX,The New York Times/Siena University,2026-06-27,Talarico,Paxton,TX,D,46.57,46.67,0.0,6.76,656.0,1.5,2026-06-27,False,https://www.nytimes.com/2026/06/30/us/politics/texas-senate-poll-talarico-paxton.html,,-0.10000000000000142,pollresults_site,lv
 senate,TX,Trafalgar Group (R),2026-09-17,Talarico,Paxton,TX,D,46.4,45.2,0.0,8.4,1079.0,1.5,2026-09-17,False,https://www.thetrafalgargroup.org/news/tx-general-0918/,,1.1999999999999957,pollresults_site,lv
 senate,TX,YouGov,2026-06-12,Talarico,Paxton,TX,D,42.0,43.0,0.0,15.0,1200.0,1.5,2026-06-12,False,https://texaspolitics.utexas.edu/blog/june-poll-finds-a-competitive-u-s-senate-race-in-texas-amid-continuing-economic-concerns-data-center-backlash,,-1.0,pollresults_site,rv
