@@ -1,0 +1,674 @@
+{
+ "year": 2026,
+ "last_updated": "2026-10-27 12:22",
+ "through": "2026-10-26",
+ "total": 1954867,
+ "cmp_year": 2022,
+ "cmp_total": 1817615,
+ "mail": 91219,
+ "in_person": 1863648,
+ "race": {
+  "White": 1036916,
+  "Black": 642142,
+  "Hispanic": 63971,
+  "Asian": 53255,
+  "Other": 158583
+ },
+ "gender": {
+  "Female": 1091140,
+  "Male": 858839,
+  "Unknown": 4888
+ },
+ "age": {
+  "18-29": 173196,
+  "30-39": 169803,
+  "40-49": 227336,
+  "50-64": 567885,
+  "65+": 815298,
+  "Unknown": 1349
+ },
+ "previous_general": {
+  "early": 1345198,
+  "year": 2022,
+  "election_day": 243966,
+  "none": 365702
+ },
+ "counties": {
+  "APPLING": {
+   "cur": 2659,
+   "cmp": 2620
+  },
+  "ATKINSON": {
+   "cur": 737,
+   "cmp": 807
+  },
+  "BACON": {
+   "cur": 1732,
+   "cmp": 1904
+  },
+  "BAKER": {
+   "cur": 466,
+   "cmp": 553
+  },
+  "BALDWIN": {
+   "cur": 7692,
+   "cmp": 7647
+  },
+  "BANKS": {
+   "cur": 3318,
+   "cmp": 3352
+  },
+  "BARROW": {
+   "cur": 13717,
+   "cmp": 12345
+  },
+  "BARTOW": {
+   "cur": 15878,
+   "cmp": 14867
+  },
+  "BEN HILL": {
+   "cur": 2465,
+   "cmp": 2840
+  },
+  "BERRIEN": {
+   "cur": 2244,
+   "cmp": 2332
+  },
+  "BIBB": {
+   "cur": 24128,
+   "cmp": 22782
+  },
+  "BLECKLEY": {
+   "cur": 2279,
+   "cmp": 2213
+  },
+  "BRANTLEY": {
+   "cur": 2025,
+   "cmp": 2202
+  },
+  "BROOKS": {
+   "cur": 1990,
+   "cmp": 2123
+  },
+  "BRYAN": {
+   "cur": 8581,
+   "cmp": 8368
+  },
+  "BULLOCH": {
+   "cur": 9437,
+   "cmp": 8863
+  },
+  "BURKE": {
+   "cur": 3256,
+   "cmp": 3047
+  },
+  "BUTTS": {
+   "cur": 5543,
+   "cmp": 5598
+  },
+  "CALHOUN": {
+   "cur": 649,
+   "cmp": 665
+  },
+  "CAMDEN": {
+   "cur": 8983,
+   "cmp": 8587
+  },
+  "CANDLER": {
+   "cur": 1520,
+   "cmp": 1839
+  },
+  "CARROLL": {
+   "cur": 15674,
+   "cmp": 15627
+  },
+  "CATOOSA": {
+   "cur": 10835,
+   "cmp": 10888
+  },
+  "CHARLTON": {
+   "cur": 1274,
+   "cmp": 1390
+  },
+  "CHATHAM": {
+   "cur": 46111,
+   "cmp": 41350
+  },
+  "CHATTAHOOCHEE": {
+   "cur": 431,
+   "cmp": 411
+  },
+  "CHATTOOGA": {
+   "cur": 2826,
+   "cmp": 3077
+  },
+  "CHEROKEE": {
+   "cur": 60019,
+   "cmp": 51071
+  },
+  "CLARKE": {
+   "cur": 19137,
+   "cmp": 15004
+  },
+  "CLAY": {
+   "cur": 520,
+   "cmp": 553
+  },
+  "CLAYTON": {
+   "cur": 49102,
+   "cmp": 44624
+  },
+  "CLINCH": {
+   "cur": 677,
+   "cmp": 777
+  },
+  "COBB": {
+   "cur": 164506,
+   "cmp": 142769
+  },
+  "COFFEE": {
+   "cur": 4907,
+   "cmp": 5425
+  },
+  "COLQUITT": {
+   "cur": 4504,
+   "cmp": 4789
+  },
+  "COLUMBIA": {
+   "cur": 29983,
+   "cmp": 27329
+  },
+  "COOK": {
+   "cur": 2206,
+   "cmp": 2327
+  },
+  "COWETA": {
+   "cur": 30104,
+   "cmp": 27284
+  },
+  "CRAWFORD": {
+   "cur": 1999,
+   "cmp": 1969
+  },
+  "CRISP": {
+   "cur": 2962,
+   "cmp": 3111
+  },
+  "DADE": {
+   "cur": 1928,
+   "cmp": 2118
+  },
+  "DAWSON": {
+   "cur": 7344,
+   "cmp": 7197
+  },
+  "DECATUR": {
+   "cur": 3478,
+   "cmp": 4120
+  },
+  "DEKALB": {
+   "cur": 166071,
+   "cmp": 154342
+  },
+  "DODGE": {
+   "cur": 2653,
+   "cmp": 2420
+  },
+  "DOOLY": {
+   "cur": 1333,
+   "cmp": 1409
+  },
+  "DOUGHERTY": {
+   "cur": 11372,
+   "cmp": 10381
+  },
+  "DOUGLAS": {
+   "cur": 29881,
+   "cmp": 26687
+  },
+  "EARLY": {
+   "cur": 1368,
+   "cmp": 1613
+  },
+  "ECHOLS": {
+   "cur": 361,
+   "cmp": 470
+  },
+  "EFFINGHAM": {
+   "cur": 9734,
+   "cmp": 9357
+  },
+  "ELBERT": {
+   "cur": 2650,
+   "cmp": 2911
+  },
+  "EMANUEL": {
+   "cur": 2580,
+   "cmp": 2705
+  },
+  "EVANS": {
+   "cur": 1451,
+   "cmp": 1650
+  },
+  "FANNIN": {
+   "cur": 5004,
+   "cmp": 5119
+  },
+  "FAYETTE": {
+   "cur": 33494,
+   "cmp": 30983
+  },
+  "FLOYD": {
+   "cur": 13045,
+   "cmp": 12214
+  },
+  "FORSYTH": {
+   "cur": 51198,
+   "cmp": 49150
+  },
+  "FRANKLIN": {
+   "cur": 3289,
+   "cmp": 3275
+  },
+  "FULTON": {
+   "cur": 236371,
+   "cmp": 223470
+  },
+  "GILMER": {
+   "cur": 6103,
+   "cmp": 6177
+  },
+  "GLASCOCK": {
+   "cur": 523,
+   "cmp": 497
+  },
+  "GLYNN": {
+   "cur": 17885,
+   "cmp": 17442
+  },
+  "GORDON": {
+   "cur": 6749,
+   "cmp": 6840
+  },
+  "GRADY": {
+   "cur": 3195,
+   "cmp": 3488
+  },
+  "GREENE": {
+   "cur": 6061,
+   "cmp": 5904
+  },
+  "GWINNETT": {
+   "cur": 161902,
+   "cmp": 133020
+  },
+  "HABERSHAM": {
+   "cur": 8300,
+   "cmp": 8995
+  },
+  "HALL": {
+   "cur": 36817,
+   "cmp": 34682
+  },
+  "HANCOCK": {
+   "cur": 1629,
+   "cmp": 1615
+  },
+  "HARALSON": {
+   "cur": 3780,
+   "cmp": 3809
+  },
+  "HARRIS": {
+   "cur": 6543,
+   "cmp": 6426
+  },
+  "HART": {
+   "cur": 4743,
+   "cmp": 4407
+  },
+  "HEARD": {
+   "cur": 1425,
+   "cmp": 1482
+  },
+  "HENRY": {
+   "cur": 54350,
+   "cmp": 48675
+  },
+  "HOUSTON": {
+   "cur": 33144,
+   "cmp": 30935
+  },
+  "IRWIN": {
+   "cur": 1338,
+   "cmp": 1442
+  },
+  "JACKSON": {
+   "cur": 15270,
+   "cmp": 13356
+  },
+  "JASPER": {
+   "cur": 2670,
+   "cmp": 2726
+  },
+  "JEFF DAVIS": {
+   "cur": 1613,
+   "cmp": 1646
+  },
+  "JEFFERSON": {
+   "cur": 2049,
+   "cmp": 2598
+  },
+  "JENKINS": {
+   "cur": 983,
+   "cmp": 1199
+  },
+  "JOHNSON": {
+   "cur": 1290,
+   "cmp": 1507
+  },
+  "JONES": {
+   "cur": 5353,
+   "cmp": 5284
+  },
+  "LAMAR": {
+   "cur": 3790,
+   "cmp": 3301
+  },
+  "LANIER": {
+   "cur": 1081,
+   "cmp": 1137
+  },
+  "LAURENS": {
+   "cur": 6814,
+   "cmp": 6986
+  },
+  "LEE": {
+   "cur": 5449,
+   "cmp": 5243
+  },
+  "LIBERTY": {
+   "cur": 8797,
+   "cmp": 8241
+  },
+  "LINCOLN": {
+   "cur": 1437,
+   "cmp": 1711
+  },
+  "LONG": {
+   "cur": 1950,
+   "cmp": 1785
+  },
+  "LOWNDES": {
+   "cur": 16271,
+   "cmp": 16914
+  },
+  "LUMPKIN": {
+   "cur": 6535,
+   "cmp": 6586
+  },
+  "MACON": {
+   "cur": 1604,
+   "cmp": 1829
+  },
+  "MADISON": {
+   "cur": 4755,
+   "cmp": 4859
+  },
+  "MARION": {
+   "cur": 1130,
+   "cmp": 1147
+  },
+  "MCDUFFIE": {
+   "cur": 4132,
+   "cmp": 4274
+  },
+  "MCINTOSH": {
+   "cur": 2713,
+   "cmp": 2896
+  },
+  "MERIWETHER": {
+   "cur": 2995,
+   "cmp": 3129
+  },
+  "MILLER": {
+   "cur": 738,
+   "cmp": 930
+  },
+  "MITCHELL": {
+   "cur": 2584,
+   "cmp": 2866
+  },
+  "MONROE": {
+   "cur": 5930,
+   "cmp": 5932
+  },
+  "MONTGOMERY": {
+   "cur": 976,
+   "cmp": 1067
+  },
+  "MORGAN": {
+   "cur": 4933,
+   "cmp": 4670
+  },
+  "MURRAY": {
+   "cur": 4344,
+   "cmp": 3934
+  },
+  "MUSCOGEE": {
+   "cur": 29497,
+   "cmp": 28549
+  },
+  "NEWTON": {
+   "cur": 21519,
+   "cmp": 18173
+  },
+  "OCONEE": {
+   "cur": 11729,
+   "cmp": 11710
+  },
+  "OGLETHORPE": {
+   "cur": 3028,
+   "cmp": 3234
+  },
+  "PAULDING": {
+   "cur": 31659,
+   "cmp": 30576
+  },
+  "PEACH": {
+   "cur": 5493,
+   "cmp": 5483
+  },
+  "PICKENS": {
+   "cur": 7052,
+   "cmp": 6566
+  },
+  "PIERCE": {
+   "cur": 3374,
+   "cmp": 3491
+  },
+  "PIKE": {
+   "cur": 3743,
+   "cmp": 3971
+  },
+  "POLK": {
+   "cur": 6236,
+   "cmp": 6498
+  },
+  "PULASKI": {
+   "cur": 1711,
+   "cmp": 1674
+  },
+  "PUTNAM": {
+   "cur": 5597,
+   "cmp": 5160
+  },
+  "QUITMAN": {
+   "cur": 381,
+   "cmp": 416
+  },
+  "RABUN": {
+   "cur": 4353,
+   "cmp": 5037
+  },
+  "RANDOLPH": {
+   "cur": 976,
+   "cmp": 1134
+  },
+  "RICHMOND": {
+   "cur": 28043,
+   "cmp": 24657
+  },
+  "ROCKDALE": {
+   "cur": 20360,
+   "cmp": 18306
+  },
+  "SCHLEY": {
+   "cur": 786,
+   "cmp": 910
+  },
+  "SCREVEN": {
+   "cur": 2440,
+   "cmp": 2215
+  },
+  "SEMINOLE": {
+   "cur": 785,
+   "cmp": 999
+  },
+  "SPALDING": {
+   "cur": 12819,
+   "cmp": 11528
+  },
+  "STEPHENS": {
+   "cur": 4915,
+   "cmp": 5188
+  },
+  "STEWART": {
+   "cur": 504,
+   "cmp": 682
+  },
+  "SUMTER": {
+   "cur": 4563,
+   "cmp": 4675
+  },
+  "TALBOT": {
+   "cur": 986,
+   "cmp": 1059
+  },
+  "TALIAFERRO": {
+   "cur": 347,
+   "cmp": 400
+  },
+  "TATTNALL": {
+   "cur": 2167,
+   "cmp": 2347
+  },
+  "TAYLOR": {
+   "cur": 1381,
+   "cmp": 1594
+  },
+  "TELFAIR": {
+   "cur": 1185,
+   "cmp": 1303
+  },
+  "TERRELL": {
+   "cur": 1437,
+   "cmp": 1556
+  },
+  "THOMAS": {
+   "cur": 8463,
+   "cmp": 8707
+  },
+  "TIFT": {
+   "cur": 5980,
+   "cmp": 5878
+  },
+  "TOOMBS": {
+   "cur": 3487,
+   "cmp": 4184
+  },
+  "TOWNS": {
+   "cur": 4328,
+   "cmp": 4177
+  },
+  "TREUTLEN": {
+   "cur": 942,
+   "cmp": 1151
+  },
+  "TROUP": {
+   "cur": 8645,
+   "cmp": 8967
+  },
+  "TURNER": {
+   "cur": 1502,
+   "cmp": 1541
+  },
+  "TWIGGS": {
+   "cur": 1297,
+   "cmp": 1327
+  },
+  "UNION": {
+   "cur": 7134,
+   "cmp": 7019
+  },
+  "UPSON": {
+   "cur": 5009,
+   "cmp": 5220
+  },
+  "WALKER": {
+   "cur": 7261,
+   "cmp": 6868
+  },
+  "WALTON": {
+   "cur": 20642,
+   "cmp": 18126
+  },
+  "WARE": {
+   "cur": 4246,
+   "cmp": 4936
+  },
+  "WARREN": {
+   "cur": 1004,
+   "cmp": 1089
+  },
+  "WASHINGTON": {
+   "cur": 3826,
+   "cmp": 3336
+  },
+  "WAYNE": {
+   "cur": 4566,
+   "cmp": 4099
+  },
+  "WEBSTER": {
+   "cur": 446,
+   "cmp": 523
+  },
+  "WHEELER": {
+   "cur": 742,
+   "cmp": 690
+  },
+  "WHITE": {
+   "cur": 5933,
+   "cmp": 5516
+  },
+  "WHITFIELD": {
+   "cur": 9602,
+   "cmp": 8210
+  },
+  "WILCOX": {
+   "cur": 807,
+   "cmp": 909
+  },
+  "WILKES": {
+   "cur": 1929,
+   "cmp": 1754
+  },
+  "WILKINSON": {
+   "cur": 1172,
+   "cmp": 1224
+  },
+  "WORTH": {
+   "cur": 2484,
+   "cmp": 2564
+  }
+ }
+}
