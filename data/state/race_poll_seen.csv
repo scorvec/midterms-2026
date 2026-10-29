@@ -1574,3 +1574,20 @@ governor,AZ,Kreate Strategies (R),2026-10-27,2026-10-29,polls.json
 governor,KS,SSRS,2026-10-26,2026-10-29,polls.json
 governor,ME,SSRS,2026-10-26,2026-10-29,polls.json
 governor,MI,SSRS,2026-10-27,2026-10-29,polls.json
+house,AL-2,Remington Research Group,2026-10-25,2026-10-29,polls.json
+house,MN-8,PPP (D),2026-10-26,2026-10-29,polls.json
+house,MT-1,Montana State,2026-10-21,2026-10-29,polls.json
+house,PA-7,Muhlenberg College Institute of Public Opinion,2026-10-15,2026-10-29,polls.json
+senate,IA,co/efficient (R),2026-10-28,2026-10-29,polls.json
+senate,MI,Upswing Research (D),2026-10-28,2026-10-29,polls.json
+senate,MI,Michigan State University/Verasight,2026-10-23,2026-10-29,polls.json
+senate,MT,Montana State,2026-10-21,2026-10-29,polls.json
+senate,SC,East Carolina University,2026-10-24,2026-10-29,polls.json
+senate,TX,ActiVote,2026-10-28,2026-10-29,polls.json
+senate,TX,A2 Insights,2026-10-27,2026-10-29,polls.json
+governor,IA,co/efficient (R),2026-10-28,2026-10-29,polls.json
+governor,MI,Michigan State University Department of Political Science/Verasight,2026-10-23,2026-10-29,polls.json
+governor,MI,Mitchell Research & Communications,2026-10-27,2026-10-29,polls.json
+governor,NH,University of Massachusetts Lowell Center for Public Opinion/YouGov,2026-10-19,2026-10-29,polls.json
+governor,TX,Texas Southern University Barbara Jordan Public Policy Research and Survey Center,2026-10-25,2026-10-29,polls.json
+governor,TX,ActiVote,2026-10-29,2026-10-29,polls.json
