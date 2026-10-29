@@ -125,12 +125,14 @@ def ballot_structure(s):
     s["uncontested"] = False
     s["winner"] = None
     s["ballot_note"] = ""
+    s["opponent_party"] = "R"  # the Democrat's (or AK-1's independent's) opponent
     r_only = (dem == 0) & (rep >= 1)
     d_only = (rep == 0) & (dem >= 1) & ~ind_inc
     s.loc[r_only, ["uncontested", "winner", "ballot_note"]] = [True, "R", "no Democrat on the ballot"]
     s.loc[d_only, ["uncontested", "winner", "ballot_note"]] = [True, "D", "no Republican on the ballot"]
     ii = ind_inc & (rep == 0)
     s.loc[ii, "inc"] = -1
+    s.loc[ii, "opponent_party"] = "I"
     s.loc[ii, "ballot_note"] = "independent incumbent v Democrat, no Republican: incumbent keeps incumbency"
     return s
 

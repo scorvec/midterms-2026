@@ -234,7 +234,7 @@ def week_ago_snapshot(new: Path) -> Path | None:
 
 def summary():
     """web/data/summary.json: the four headline numbers for the scorvec.com homepage panel (a few hundred bytes, so the
-    homepage never fetches the full model file). Same quantities and wording as the forecast page's outcome boxes."""
+    homepage never fetches the full model file). Same quantities and wording as the forecast page's opening band."""
     d = json.loads((ROOT / "web" / "data" / "model.json").read_text())
     h, s, g = d["house"]["now"], d["senate"]["now"], d["governor"]["now"]
     joint = d["senate"].get("joint") or {}

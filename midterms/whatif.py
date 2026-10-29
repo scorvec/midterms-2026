@@ -184,8 +184,9 @@ def export(s, P, SS, GS, gslope, d_up, gov_up_d, E_now, mood, path=None):
     sen["holdR"] = 100 - sen["holdD"] - len(sen["races"])
     gov = (
         {
-            # gov2026.simulate: shared GOV_SHARED_MISS / NAT_SLOPE, elast b3 / NAT_SLOPE -> the shock reaches a race at b3
-            "races": statewide(GS, "governor", SN.GOV_SHARED_MISS / SN.NAT_SLOPE, SN.NAT_SLOPE),
+            # gov2026.simulate: shared GOV_SHARED_MISS / NAT_SLOPE, times NAT_SLOPE x elast (= SHARED_K x b3 / NAT_SLOPE), so
+            # the shock reaches a race at SHARED_K x b3; GS carries no elast column, so that slope is passed here
+            "races": statewide(GS, "governor", SN.GOV_SHARED_MISS / SN.NAT_SLOPE, GV.SHARED_K * float(gslope)),
             "holdD": GV.NOW_D - gov_up_d,
             "need": 26,
             "sys": sysd["governor"],

@@ -618,7 +618,8 @@ ROBUST_NU = 10  # None = the Gaussian blend (poll_average + precision weights)
 
 # Top-rated polls at face value: a poll by a pollster rated A or better (generic.TOP_SCORE on 538's star scale) with no sponsor
 # tag is not discounted as an outlier. Its error is normal with the Student-t's scale s_i (TOP_RATED_SD "scale": the spread of a
-# typical poll, without the tail for gross errors), so it carries the weight a poll at the consensus has wherever it lands;
+# typical poll, without the tail for gross errors), so wherever it lands it keeps a weight of 1/s_i^2, close to a Student-t poll's
+# at the consensus ((nu + 1) / nu / s_i^2, 10 % more at nu 10);
 # "sd" = a normal of the same variance as the Student-t (s_i sqrt(nu / (nu - 2))). Ratings as known on the date:
 # pollster_quality.live_rating in 2026, the 538 vintage released before the cycle in backtests (none before 2016).
 # Backtest (live-path harnesses 2016-24, paired by race-date against every poll Student-t, 95 % race bootstrap): "scale" Senate

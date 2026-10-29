@@ -250,7 +250,7 @@ def _with_days(D: pd.DataFrame, year: int) -> pd.DataFrame:
 
 
 # ------------------------------------------------------------------------------------------------------------------------
-# summary -> web/data/tx_early.json
+# summary -> data/early/tx_early.json
 
 
 def _agg(D: pd.DataFrame, counties: list[str] | None, state_ev: float | None):

@@ -9,8 +9,10 @@ benchmark the page shows (House race raters, Cook / Sabato for the Senate), and 
 that nobody gets one (majority.py). Chambers: the simulated seat counts and control; the national House vote distribution.
 
 `freeze` copies the newest detail and the published model.json into data/final/ with the code commit, the time and a SHA-256 of
-the forecast, and refuses to overwrite a frozen forecast (--force replaces it, for a freeze made too early). The scorecard
-(scorecard.py) reads only the frozen file."""
+the forecast, and refuses to overwrite a frozen forecast (--force replaces it, for a freeze made too early) or to freeze an
+incomplete one (an office whose block failed in build_web; --force freezes it anyway). It then marks the
+published model.json final (time + SHA-256), so the forecast page says so; a later run (after_freeze) writes it unmarked. The
+scorecard (scorecard.py) reads only the frozen file."""
 
 from __future__ import annotations
 
@@ -20,6 +22,7 @@ import json
 import os
 import subprocess
 import sys
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -29,6 +32,7 @@ DETAIL = ROOT / "data" / "cache" / "forecast_detail.json"
 FINAL_DIR = ROOT / "data" / "final"
 FINAL = FINAL_DIR / "forecast_2026.json"
 FINAL_MODEL = FINAL_DIR / "model_2026.json"
+PUBLISHED = ROOT / "web" / "data" / "model.json"
 PCTS = list(range(1, 100))
 
 
@@ -61,6 +65,9 @@ def detail(out, s, mg, SS, smg, GS=None, gmg=None):
         rep = next((n for n, pt in ballot if pt == "Republican"), None)
         rating = r.get("rating_mean")
         extra = {"rcv": RC.applies("house", r["seat"])}
+        if r.get("opponent_party") == "I":  # an independent incumbent against a Democrat (CA-6): he is the other side
+            rep = next((n for n, pt in ballot if not pt.startswith(("Democratic", "DFL"))), None)
+            extra["opponent_party"] = "I"
         if rating == rating and rating is not None:
             extra["raters"] = round(float(rating), 3)
         races.append(_race("house", r["seat"], dem, rep, "I" if ind else "D", mg[:, i], extra))
@@ -148,12 +155,30 @@ def _commit():
         return None
 
 
+def shortfall(doc):
+    """What a detail lacks against its own run's totals (an office whose block failed in build_web); [] when complete."""
+    n, C, out = Counter(r["office"] for r in doc["races"]), doc.get("chambers", {}), []
+    fixed = sum(doc.get("house_fixed", {}).values())
+    if n["house"] + fixed != doc.get("house_seats_total"):
+        out.append(f"house: {n['house']} races + {fixed} decided of {doc.get('house_seats_total')} seats")
+    S = C.get("senate")
+    if not S or n["senate"] != 100 - S["holdover_d"] - S["holdover_r"]:
+        out.append(f"senate: {n['senate']} races")
+    if "governor" not in C or not n["governor"]:
+        out.append(f"governor: {n['governor']} races")
+    if "national_vote" not in C:
+        out.append("no national vote")
+    return out
+
+
 def freeze(force=False):
     if not DETAIL.exists():
         sys.exit("no forecast detail: run the daily build first (python -m midterms.build_web)")
     if FINAL.exists() and not force:
         sys.exit(f"{FINAL.name} exists (frozen {json.loads(FINAL.read_text())['frozen']['at']}); --force replaces it")
     doc = json.loads(DETAIL.read_text())
+    if (short := shortfall(doc)) and not force:
+        sys.exit("incomplete forecast detail (" + "; ".join(short) + "); --force freezes it anyway")
     body = json.dumps(doc, sort_keys=True, separators=(",", ":"))
     doc["frozen"] = {
         "at": dt.datetime.now(dt.UTC).strftime("%Y-%m-%dT%H:%MZ"),
@@ -162,9 +187,11 @@ def freeze(force=False):
     }
     FINAL_DIR.mkdir(parents=True, exist_ok=True)
     FINAL.write_text(json.dumps(doc, separators=(",", ":")))
-    model = ROOT / "web" / "data" / "model.json"
-    if model.exists():
-        FINAL_MODEL.write_bytes(model.read_bytes())
+    if PUBLISHED.exists():
+        FINAL_MODEL.write_bytes(PUBLISHED.read_bytes())
+        pub = json.loads(PUBLISHED.read_text())
+        pub["final"] = {k: doc["frozen"][k] for k in ("at", "sha256")}
+        PUBLISHED.write_text(json.dumps(pub, separators=(",", ":")))
     print(
         f"frozen: {len(doc['races'])} races, forecast of {doc['asof']} (E {doc['E_now']:+.2f}), sha256 {doc['frozen']['sha256'][:12]}"
     )

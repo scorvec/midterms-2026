@@ -1,4 +1,4 @@
-"""Per-race forecast history for the forecast page's race panels and the national sparklines.
+"""Per-race forecast history for the forecast page's race panels, race cards and odds chart.
 
     python -m midterms.race_history          # -> web/data/race_history.json
 
@@ -146,10 +146,13 @@ def build(write=True):
     issued = {day: _issued_point(d) for day, d in V.items()}
     R, meta = reconstructed()
     last_r = max(R) if R else ""
+    # the build day is reconstructed once, at that run's inputs: the day's own published runs replace it, as they do every
+    # later day, so the series ends on the headline (built is New York time, the snapshots' date)
+    built = (meta.get("built") or "")[:10]
     main = dict(R)
     src = dict.fromkeys(R, "r")
-    for day, pt in issued.items():  # the daily run's own points after the backfill's last day
-        if day > last_r:
+    for day, pt in issued.items():  # the daily run's own points from the backfill's build day on
+        if day > last_r or (built and day >= built):
             main[day] = pt
             src[day] = "i"
     try:

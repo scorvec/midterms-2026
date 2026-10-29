@@ -129,6 +129,7 @@ def main():
                     if r.get("challenger_party", "D") != "D"
                     else {}
                 ),
+                **({"opponent_party": "I"} if r.get("opponent_party") == "I" else {}),  # CA-6: independent incumbent
             }
         )
     M.RECORD_OFFICE = "senate"

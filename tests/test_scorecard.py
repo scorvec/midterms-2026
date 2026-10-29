@@ -75,6 +75,7 @@ def _doc():
         "races": races,
         "chambers": chambers,
         "house_fixed": {"D": 0, "R": 0},
+        "house_seats_total": 2,
         "house_majority": 2,
     }
 
@@ -82,6 +83,26 @@ def _doc():
 def test_outcome_is_the_republican_losing():
     assert SC.outcome("I") == 1 and SC.outcome("D") == 1 and SC.outcome("r") == 0
     assert SC.outcome(float("nan")) is None and SC.outcome("") is None
+    # CA-6: an independent incumbent against a Democrat, p = the Democrat's chance
+    assert SC.outcome("I", "I") == 0 and SC.outcome("D", "I") == 1
+
+
+def test_freeze_refuses_an_incomplete_detail(tmp_path, monkeypatch):
+    monkeypatch.setattr(FN, "DETAIL", tmp_path / "detail.json")
+    monkeypatch.setattr(FN, "FINAL_DIR", tmp_path / "final")
+    monkeypatch.setattr(FN, "FINAL", tmp_path / "final" / "forecast_2026.json")
+    monkeypatch.setattr(FN, "FINAL_MODEL", tmp_path / "final" / "model_2026.json")
+    monkeypatch.setattr(FN, "PUBLISHED", tmp_path / "model.json")
+    doc = {**_doc(), "E_now": 9.0}
+    assert FN.shortfall(doc) == []
+    doc["races"] = [r for r in doc["races"] if r["office"] != "governor"]
+    del doc["chambers"]["governor"]
+    assert FN.shortfall(doc) == ["governor: 0 races"]
+    FN.DETAIL.write_text(json.dumps(doc))
+    with pytest.raises(SystemExit):
+        FN.freeze()
+    FN.freeze(force=True)
+    assert FN.FINAL.exists()
 
 
 def test_brier_and_log_loss():
@@ -190,9 +211,16 @@ def test_freeze_refuses_overwrite_and_verifies(tmp_path, monkeypatch):
     monkeypatch.setattr(FN, "FINAL_DIR", tmp_path / "final")
     monkeypatch.setattr(FN, "FINAL", tmp_path / "final" / "forecast_2026.json")
     monkeypatch.setattr(FN, "FINAL_MODEL", tmp_path / "final" / "model_2026.json")
+    monkeypatch.setattr(FN, "PUBLISHED", tmp_path / "model.json")
     FN.DETAIL.write_text(json.dumps({**_doc(), "E_now": 9.0}))
+    FN.PUBLISHED.write_text(json.dumps({"asof": "2026-11-03"}))
     FN.freeze()
     assert FN.verify()
+    # the archived copy is the page's data as published; the published file is then marked final
+    assert "final" not in json.loads(FN.FINAL_MODEL.read_text())
+    assert (
+        json.loads(FN.PUBLISHED.read_text())["final"]["sha256"] == json.loads(FN.FINAL.read_text())["frozen"]["sha256"]
+    )
     with pytest.raises(SystemExit):
         FN.freeze()
     d = json.loads(FN.FINAL.read_text())

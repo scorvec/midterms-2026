@@ -160,6 +160,7 @@ Other workflows:
 | workflow | what it does |
 |---|---|
 | `early-diag.yml` | daily early-vote composition diagnostics for North Carolina, Florida, Georgia and Clark and Washoe counties, Nevada, and the turnout table (`turnout_proj.py`); commits `data/early/` (and once, the turnout table's fixed inputs) |
+| `tx-early.yml` | twice a day while `TX_EARLY` is `on`: Texas early-vote turnout (`tx_early.py`), then the turnout table and `web/data/early_vote.json`; commits `data/early/` and the page data |
 | `early-skill.yml` | manual: the pre-registered test of whether the early vote's party mix has predicted the polls' misses (`early_skill.py`); commits `data/static/early_skill.json` and `data/static/early_skill/` |
 | `stateleg-geo.yml` | builds the district maps `web/data/stateleg_geo/` from Census TIGER/Line when the chamber list or the district leans change |
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
@@ -786,9 +787,9 @@ cannot be tested for skill - no past cycle has both a same-day baseline and an o
 **Pennsylvania** (`pa_early.py`, daily run): mail-ballot applications and returned ballots by party at matched days out,
 2026 against 2022 and 2024, from the Department of State's datasets on data.pa.gov; uploaded as a workflow artifact.
 
-**Texas** (`tx_early.py`; off by default). Nothing runs or is fetched unless the repository variable `TX_EARLY` is `on`.
-When on, it follows the Texas Secretary of State's daily county early-voting file for the 2026 general (county summary
-only, one conditional request per file per day) and writes `web/data/tx_early.json` (workflow artifact): early votes as a
+**Texas** (`tx_early.py`, `tx-early.yml`). Nothing runs or is fetched unless the repository variable `TX_EARLY` is `on`
+(it is, since 19 October). It follows the Texas Secretary of State's daily county early-voting file for the 2026 general
+(county summary only, one conditional request per file per day) and commits `data/early/tx_early.json`: early votes as a
 share of registered voters, statewide and for fixed county groups (big Democratic counties, Republican-leaning suburbs and
 exurbs, the Rio Grande Valley and border, the swing suburbs Tarrant and Fort Bend; `data/static/tx_county_pres2024.csv`).
 Texas has no party registration, so this is turnout, not vote choice. The 2022 comparison is not built: the SOS's 2022

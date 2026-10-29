@@ -63,7 +63,7 @@ COLS = [
     "updated",
     "note",
 ]
-COMPLETE = ("final", "certified")
+COMPLETE = ("final", "certified", "runoff", "legislature")  # the count is complete; the winner may come later
 BANDS = [0.0, 0.05, 0.15, 0.35, 0.5, 0.65, 0.85, 0.95, 1.0]
 P_CLIP = 0.001
 
@@ -104,10 +104,11 @@ def template(doc):
 
 
 # --- scores ---------------------------------------------------------------------------------------------------------------
-def outcome(winner):
-    """1 = the Republican lost (the event p is about), 0 = the Republican won, None = not called."""
+def outcome(winner, opponent="R"):
+    """1 = the Republican lost (the event p is about), 0 = the Republican won, None = not called. opponent: the party of the
+    side p is against, "I" where an independent incumbent faces only a Democrat (CA-6, whose winner code is then I)."""
     w = str(winner).strip().upper() if isinstance(winner, str) else ""
-    return None if w not in ("D", "R", "I", "O") else int(w != "R")
+    return None if w not in ("D", "R", "I", "O") else int(w != opponent)
 
 
 def brier(p, y):
@@ -188,7 +189,7 @@ def score(doc, res):
     rows = []
     for f in doc["races"]:
         r = by.get((f["office"], str(f["seat"])), {})
-        y = outcome(r.get("winner"))
+        y = outcome(r.get("winner"), f.get("opponent_party", "R"))
         m = actual_margin(r, f.get("rcv", False))
         row = {"office": f["office"], "seat": f["seat"], "p": f["p"], "y": y, "status": r.get("status")}
         if f.get("raters") is not None:
@@ -301,9 +302,9 @@ def chambers(doc, R, by):
         out[office] = blk
     nat = by.get(("national", "US"))
     if nat and str(nat.get("status")) in COMPLETE:
-        dv, rv, t = (pd.to_numeric(nat.get(k), errors="coerce") for k in ("chal_votes", "rep_votes", "total_votes"))
-        if t > 0:
-            m = float(100 * (dv - rv) / t)
+        dv, rv = (pd.to_numeric(nat.get(k), errors="coerce") for k in ("chal_votes", "rep_votes"))
+        if dv + rv > 0:  # the model's national vote is the two-party margin (data_prep.national_house_vote)
+            m = float(100 * (dv - rv) / (dv + rv))
             nv = C["national_vote"]
             g, dens = np.asarray(nv["grid"], float), np.asarray(nv["dens"], float)
             cdf = np.concatenate([[0.0], np.cumsum((dens[1:] + dens[:-1]) / 2 * np.diff(g))])
