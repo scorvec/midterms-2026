@@ -1536,3 +1536,6 @@ governor,TN,GOTV Polling,2026-10-26,2026-10-28,polls.json
 governor,TX,YouGov Blue (D),2026-10-26,2026-10-28,polls.json
 governor,WI,Wick (R),2026-10-23,2026-10-28,polls.json
 governor,WI,YouGov (D),2026-10-09,2026-10-28,polls.json
+senate,AL,Blueprint Polling,2026-10-24,2026-10-28,polls.json
+governor,AL,Blueprint Polling,2026-10-24,2026-10-28,polls.json
+governor,CA,M3 Strategies (R),2026-10-23,2026-10-28,polls.json
