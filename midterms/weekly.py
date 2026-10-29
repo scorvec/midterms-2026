@@ -233,16 +233,36 @@ def week_ago_snapshot(new: Path) -> Path | None:
 
 
 def summary():
-    """web/data/summary.json: the four headline numbers for the scorvec.com homepage panel (a few hundred bytes, so the
-    homepage never fetches the full model file). Same quantities and wording as the forecast page's opening band."""
+    """web/data/summary.json: the headline numbers and every seat's rating for the scorvec.com homepage panel (under a
+    kilobyte, so the homepage never fetches the full model file). Same quantities, ratings and seat order as the forecast
+    page's opening band."""
     d = json.loads((ROOT / "web" / "data" / "model.json").read_text())
     h, s, g = d["house"]["now"], d["senate"]["now"], d["governor"]["now"]
     joint = d["senate"].get("joint") or {}
     jt = joint[min(joint, key=lambda k: abs(float(k) - d["senate"]["E_now"]))] if joint else None
+    # one character per seat, most Democratic first (the page's sort): 0-6 = Solid D .. Solid R (web/index.html cls()),
+    # a-c = an independent's solid/likely/lean, D/R = a Senate seat not up this year
+    H, S = d["house"], d["senate"]
+    gi = min(range(len(H["grid"])), key=lambda i: abs(H["grid"][i] - H["E0"]))
+
+    def rating(x, side):
+        p = x["p"][gi]
+        c = sum((p < 0.95, p < 0.8, p < 0.6, p <= 0.4, p <= 0.2, p <= 0.05))  # solid 95 %+, likely 80, lean 60, toss-up
+        return "abc"[c] if x.get(side) and x[side] != "D" and c < 3 else str(c)
+
+    def order(xs):
+        return sorted(xs, key=lambda x: (-x["p"][gi], -x["mu"]))
+
+    house_seats = "".join(rating(x, "challenger_party") for x in order(H["seats"]))
+    senate_seats = (
+        "D" * (S["now_d"] - S["d_up"])
+        + "".join(rating(x, "dem_party") for x in order(S["races"]))
+        + "R" * (S["now_r"] - S["r_up"])
+    )
     out = {
         "asof": d["asof"],
-        "house": {"p": h["p_maj"], "mean": h["mean"], "p10": h["p10"], "p90": h["p90"]},
-        "senate": {"p": s.get("p_ctrl", s["p51plus"]), "mean": s["mean"]},
+        "house": {"p": h["p_maj"], "mean": h["mean"], "p10": h["p10"], "p90": h["p90"], "seats": house_seats},
+        "senate": {"p": s.get("p_ctrl", s["p51plus"]), "mean": s["mean"], "seats": senate_seats},
         "both": jt["dd"] if jt else None,
         "governors": {"mean": g["mean"], "p10": g["p10"], "p90": g["p90"]},
     }
