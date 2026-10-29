@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-29T02:00Z",
+ "generated": "2026-10-29T07:43Z",
  "election_day": "2026-11-03",
  "reference": {
   "chosen": "A",
@@ -74,8 +74,8 @@
   },
   {
    "state": "GA",
-   "through": "2026-10-27",
-   "days_out": 7,
+   "through": "2026-10-28",
+   "days_out": 6,
    "banked": 2128281,
    "same_point_2022": 1952154,
    "vs_2022_same_point_pct": 9.0,
@@ -86,24 +86,24 @@
   {
    "state": "FL",
    "through": "2026-10-27",
-   "days_out": 7,
-   "banked": 3152685,
+   "days_out": 6,
+   "banked": 3430072,
    "same_point_2022": null,
    "vs_2022_same_point_pct": null,
    "total_2022": 7758014,
    "note": "mail and in-person early ballots on their latest compiles; no 2022 file at this point",
-   "share_of_2022_total_pct": 40.6,
+   "share_of_2022_total_pct": 44.2,
    "label": "Florida"
   },
   {
    "state": "NV",
-   "through": "2026-10-27",
-   "days_out": 7,
-   "banked": 381787,
-   "mail": 237139,
-   "in_person": 144648,
-   "mail_2022_same_point": 173328,
-   "mail_vs_2022_same_point_pct": 36.8,
+   "through": "2026-10-28",
+   "days_out": 6,
+   "banked": 422263,
+   "mail": 258321,
+   "in_person": 163942,
+   "mail_2022_same_point": 183798,
+   "mail_vs_2022_same_point_pct": 40.5,
    "total_2022": null,
    "note": "Clark County only; mail is the only part with a 2022 file at the same point",
    "label": "Clark County, NV"
