@@ -1557,3 +1557,13 @@ governor,KS,CNN/SSRS,2026-10-26,2026-10-29,polls.json
 governor,ME,CNN/SSRS,2026-10-26,2026-10-29,polls.json
 governor,MI,CNN/SSRS,2026-10-27,2026-10-29,polls.json
 governor,TX,CNN/SSRS,2026-10-27,2026-10-29,polls.json
+senate,KS,SSRS,2026-10-26,2026-10-29,polls.json
+senate,ME,SSRS,2026-10-26,2026-10-29,polls.json
+senate,MA,UMass Lowell,2026-10-18,2026-10-29,polls.json
+senate,MI,SSRS,2026-10-26,2026-10-29,polls.json
+senate,TX,SSRS,2026-10-27,2026-10-29,polls.json
+senate,TX,Texas Southern University,2026-10-25,2026-10-29,polls.json
+governor,MA,UMass Lowell,2026-10-18,2026-10-29,polls.json
+governor,MN,State Navigate,2026-10-28,2026-10-29,polls.json
+governor,TX,SSRS,2026-10-27,2026-10-29,polls.json
+governor,TX,Texas Southern University,2026-10-25,2026-10-29,polls.json
