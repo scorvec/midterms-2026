@@ -1602,3 +1602,6 @@ governor,FL,Workbench Strategy (D),2026-10-22,2026-10-30,polls.json
 house,MI-4,RedBox Research (D),2026-10-23,2026-10-30,polls.json
 house,MI-10,RedBox Research (D),2026-10-23,2026-10-30,polls.json
 governor,FL,RedBox Research (D),2026-10-23,2026-10-30,polls.json
+senate,KS,The Washington Post/George Mason University Schar School of Policy and Government,2026-10-26,2026-10-30,polls.json
+senate,TX,Quantus Insights,2026-10-28,2026-10-30,polls.json
+governor,TX,Quantus Insights (R),2026-10-28,2026-10-30,polls.json
