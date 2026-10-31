@@ -1649,3 +1649,12 @@ senate,MN,SurveyUSA,2026-10-28,2026-10-30,polls.json
 governor,FL,Big Data Poll,2026-10-30,2026-10-30,polls.json
 governor,MN,SurveyUSA,2026-10-28,2026-10-30,polls.json
 senate,AK,Alaska Survey Research,2026-10-29,2026-10-30,manual
+house,MN-8,Public Policy Polling (D),2026-10-26,2026-10-30,polls.json
+senate,ME,Data for Progress,2026-10-27,2026-10-30,polls.json
+senate,MI,Data for Progress,2026-10-25,2026-10-30,polls.json
+senate,MN,KSTP/SurveyUSA,2026-10-28,2026-10-30,polls.json
+senate,TX,Data for Progress,2026-10-26,2026-10-30,polls.json
+governor,ME,Data for Progress,2026-10-27,2026-10-30,polls.json
+governor,MI,Data for Progress,2026-10-25,2026-10-30,polls.json
+governor,MN,KSTP/SurveyUSA,2026-10-28,2026-10-30,polls.json
+governor,TX,Data for Progress,2026-10-26,2026-10-30,polls.json
