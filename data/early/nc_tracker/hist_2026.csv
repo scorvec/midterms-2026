@@ -1,101 +1,132 @@
 dbe,method,party,prior,n
-6,In person,DEM,both,38177
-6,In person,DEM,midterm only,502
-6,In person,DEM,neither,5982
-6,In person,DEM,presidential only,15915
-6,In person,OTH,both,286
+5,In person,DEM,both,39197
+5,In person,DEM,midterm only,570
+5,In person,DEM,neither,6906
+5,In person,DEM,presidential only,18177
+5,In person,OTH,both,353
+5,In person,OTH,midterm only,5
+5,In person,OTH,neither,127
+5,In person,OTH,presidential only,294
+5,In person,REP,both,45487
+5,In person,REP,midterm only,282
+5,In person,REP,neither,2966
+5,In person,REP,presidential only,9881
+5,In person,UNA,both,42232
+5,In person,UNA,midterm only,557
+5,In person,UNA,neither,8179
+5,In person,UNA,presidential only,18874
+5,Mail,DEM,both,979
+5,Mail,DEM,midterm only,25
+5,Mail,DEM,neither,234
+5,Mail,DEM,presidential only,528
+5,Mail,OTH,both,7
+5,Mail,OTH,neither,2
+5,Mail,OTH,presidential only,9
+5,Mail,REP,both,647
+5,Mail,REP,midterm only,13
+5,Mail,REP,neither,85
+5,Mail,REP,presidential only,268
+5,Mail,UNA,both,1014
+5,Mail,UNA,midterm only,30
+5,Mail,UNA,neither,274
+5,Mail,UNA,presidential only,607
+6,In person,DEM,both,38505
+6,In person,DEM,midterm only,524
+6,In person,DEM,neither,7071
+6,In person,DEM,presidential only,16281
+6,In person,OTH,both,292
 6,In person,OTH,midterm only,8
-6,In person,OTH,neither,89
-6,In person,OTH,presidential only,242
-6,In person,REP,both,43463
-6,In person,REP,midterm only,291
-6,In person,REP,neither,2601
-6,In person,REP,presidential only,8569
-6,In person,UNA,both,41026
-6,In person,UNA,midterm only,493
-6,In person,UNA,neither,6901
-6,In person,UNA,presidential only,15708
-6,Mail,DEM,both,980
-6,Mail,DEM,midterm only,23
-6,Mail,DEM,neither,241
-6,Mail,DEM,presidential only,562
+6,In person,OTH,neither,98
+6,In person,OTH,presidential only,249
+6,In person,REP,both,43804
+6,In person,REP,midterm only,297
+6,In person,REP,neither,2823
+6,In person,REP,presidential only,8679
+6,In person,UNA,both,41313
+6,In person,UNA,midterm only,503
+6,In person,UNA,neither,7442
+6,In person,UNA,presidential only,15920
+6,Mail,DEM,both,1105
+6,Mail,DEM,midterm only,28
+6,Mail,DEM,neither,275
+6,Mail,DEM,presidential only,625
 6,Mail,OTH,both,14
-6,Mail,OTH,neither,3
-6,Mail,OTH,presidential only,6
-6,Mail,REP,both,728
-6,Mail,REP,midterm only,13
-6,Mail,REP,neither,98
-6,Mail,REP,presidential only,331
-6,Mail,UNA,both,937
-6,Mail,UNA,midterm only,27
-6,Mail,UNA,neither,287
-6,Mail,UNA,presidential only,595
-7,In person,DEM,both,41373
-7,In person,DEM,midterm only,491
-7,In person,DEM,neither,6503
-7,In person,DEM,presidential only,15204
-7,In person,OTH,both,262
+6,Mail,OTH,neither,4
+6,Mail,OTH,presidential only,7
+6,Mail,REP,both,793
+6,Mail,REP,midterm only,16
+6,Mail,REP,neither,115
+6,Mail,REP,presidential only,351
+6,Mail,UNA,both,1062
+6,Mail,UNA,midterm only,32
+6,Mail,UNA,neither,309
+6,Mail,UNA,presidential only,692
+7,In person,DEM,both,41376
+7,In person,DEM,midterm only,492
+7,In person,DEM,neither,6535
+7,In person,DEM,presidential only,15218
+7,In person,OTH,both,263
 7,In person,OTH,midterm only,6
 7,In person,OTH,neither,100
 7,In person,OTH,presidential only,197
-7,In person,REP,both,44489
-7,In person,REP,midterm only,272
-7,In person,REP,neither,2520
-7,In person,REP,presidential only,7821
-7,In person,UNA,both,41185
+7,In person,REP,both,44496
+7,In person,REP,midterm only,273
+7,In person,REP,neither,2530
+7,In person,REP,presidential only,7828
+7,In person,UNA,both,41194
 7,In person,UNA,midterm only,461
-7,In person,UNA,neither,6629
-7,In person,UNA,presidential only,14527
-7,Mail,DEM,both,1125
-7,Mail,DEM,midterm only,42
-7,Mail,DEM,neither,239
-7,Mail,DEM,presidential only,543
+7,In person,UNA,neither,6653
+7,In person,UNA,presidential only,14530
+7,Mail,DEM,both,1138
+7,Mail,DEM,midterm only,44
+7,Mail,DEM,neither,243
+7,Mail,DEM,presidential only,555
 7,Mail,OTH,both,9
 7,Mail,OTH,midterm only,1
 7,Mail,OTH,neither,4
 7,Mail,OTH,presidential only,10
-7,Mail,REP,both,697
+7,Mail,REP,both,698
 7,Mail,REP,midterm only,18
-7,Mail,REP,neither,99
-7,Mail,REP,presidential only,314
-7,Mail,UNA,both,1095
+7,Mail,REP,neither,102
+7,Mail,REP,presidential only,317
+7,Mail,UNA,both,1098
 7,Mail,UNA,midterm only,25
-7,Mail,UNA,neither,282
-7,Mail,UNA,presidential only,614
+7,Mail,UNA,neither,287
+7,Mail,UNA,presidential only,625
 8,In person,DEM,both,44587
 8,In person,DEM,midterm only,470
-8,In person,DEM,neither,6046
+8,In person,DEM,neither,6047
 8,In person,DEM,presidential only,15229
 8,In person,OTH,both,303
 8,In person,OTH,midterm only,12
 8,In person,OTH,neither,105
 8,In person,OTH,presidential only,177
-8,In person,REP,both,45244
+8,In person,REP,both,45243
 8,In person,REP,midterm only,240
 8,In person,REP,neither,2650
-8,In person,REP,presidential only,7761
-8,In person,UNA,both,42575
+8,In person,REP,presidential only,7763
+8,In person,UNA,both,42576
 8,In person,UNA,midterm only,387
 8,In person,UNA,neither,6297
 8,In person,UNA,presidential only,14095
-8,Mail,DEM,both,1210
+8,Mail,DEM,both,1219
 8,Mail,DEM,midterm only,32
-8,Mail,DEM,neither,280
-8,Mail,DEM,presidential only,631
+8,Mail,DEM,neither,284
+8,Mail,DEM,presidential only,640
 8,Mail,OTH,both,9
 8,Mail,OTH,neither,2
 8,Mail,OTH,presidential only,5
-8,Mail,REP,both,724
+8,Mail,REP,both,728
 8,Mail,REP,midterm only,16
-8,Mail,REP,neither,108
-8,Mail,REP,presidential only,304
-8,Mail,UNA,both,1177
+8,Mail,REP,neither,109
+8,Mail,REP,presidential only,307
+8,Mail,UNA,both,1184
 8,Mail,UNA,midterm only,29
-8,Mail,UNA,neither,349
-8,Mail,UNA,presidential only,703
+8,Mail,UNA,neither,352
+8,Mail,UNA,presidential only,712
 9,In person,DEM,both,11894
 9,In person,DEM,midterm only,111
-9,In person,DEM,neither,1978
+9,In person,DEM,neither,1981
 9,In person,DEM,presidential only,4039
 9,In person,OTH,both,51
 9,In person,OTH,midterm only,2
@@ -107,21 +138,21 @@ dbe,method,party,prior,n
 9,In person,REP,presidential only,926
 9,In person,UNA,both,8923
 9,In person,UNA,midterm only,80
-9,In person,UNA,neither,2037
+9,In person,UNA,neither,2036
 9,In person,UNA,presidential only,3771
-9,Mail,DEM,both,39
-9,Mail,DEM,neither,16
-9,Mail,DEM,presidential only,32
+9,Mail,DEM,both,42
+9,Mail,DEM,neither,17
+9,Mail,DEM,presidential only,33
 9,Mail,REP,both,13
 9,Mail,REP,neither,3
-9,Mail,REP,presidential only,5
+9,Mail,REP,presidential only,6
 9,Mail,UNA,both,47
-9,Mail,UNA,midterm only,1
-9,Mail,UNA,neither,22
-9,Mail,UNA,presidential only,23
+9,Mail,UNA,midterm only,2
+9,Mail,UNA,neither,23
+9,Mail,UNA,presidential only,24
 10,In person,DEM,both,24477
 10,In person,DEM,midterm only,246
-10,In person,DEM,neither,3852
+10,In person,DEM,neither,3853
 10,In person,DEM,presidential only,8532
 10,In person,OTH,both,146
 10,In person,OTH,midterm only,3
@@ -135,22 +166,22 @@ dbe,method,party,prior,n
 10,In person,UNA,midterm only,185
 10,In person,UNA,neither,3769
 10,In person,UNA,presidential only,7965
-10,Mail,DEM,both,339
+10,Mail,DEM,both,340
 10,Mail,DEM,midterm only,12
 10,Mail,DEM,neither,75
-10,Mail,DEM,presidential only,156
+10,Mail,DEM,presidential only,157
 10,Mail,OTH,both,3
 10,Mail,REP,both,180
 10,Mail,REP,midterm only,2
 10,Mail,REP,neither,19
 10,Mail,REP,presidential only,67
-10,Mail,UNA,both,393
+10,Mail,UNA,both,394
 10,Mail,UNA,midterm only,13
 10,Mail,UNA,neither,98
-10,Mail,UNA,presidential only,184
+10,Mail,UNA,presidential only,187
 11,In person,DEM,both,45542
 11,In person,DEM,midterm only,423
-11,In person,DEM,neither,5892
+11,In person,DEM,neither,5894
 11,In person,DEM,presidential only,13554
 11,In person,OTH,both,263
 11,In person,OTH,midterm only,5
@@ -162,9 +193,9 @@ dbe,method,party,prior,n
 11,In person,REP,presidential only,6854
 11,In person,UNA,both,43463
 11,In person,UNA,midterm only,376
-11,In person,UNA,neither,6148
+11,In person,UNA,neither,6150
 11,In person,UNA,presidential only,13371
-11,Mail,DEM,both,913
+11,Mail,DEM,both,914
 11,Mail,DEM,midterm only,17
 11,Mail,DEM,neither,163
 11,Mail,DEM,presidential only,379
@@ -175,13 +206,13 @@ dbe,method,party,prior,n
 11,Mail,REP,midterm only,11
 11,Mail,REP,neither,53
 11,Mail,REP,presidential only,186
-11,Mail,UNA,both,853
+11,Mail,UNA,both,856
 11,Mail,UNA,midterm only,22
 11,Mail,UNA,neither,209
-11,Mail,UNA,presidential only,450
+11,Mail,UNA,presidential only,451
 12,In person,DEM,both,43706
 12,In person,DEM,midterm only,398
-12,In person,DEM,neither,4676
+12,In person,DEM,neither,4675
 12,In person,DEM,presidential only,11673
 12,In person,OTH,both,212
 12,In person,OTH,midterm only,5
@@ -194,11 +225,11 @@ dbe,method,party,prior,n
 12,In person,UNA,both,40043
 12,In person,UNA,midterm only,324
 12,In person,UNA,neither,4770
-12,In person,UNA,presidential only,10974
+12,In person,UNA,presidential only,10975
 12,Mail,DEM,both,738
 12,Mail,DEM,midterm only,12
 12,Mail,DEM,neither,120
-12,Mail,DEM,presidential only,358
+12,Mail,DEM,presidential only,359
 12,Mail,OTH,both,6
 12,Mail,OTH,neither,2
 12,Mail,OTH,presidential only,4
@@ -206,13 +237,13 @@ dbe,method,party,prior,n
 12,Mail,REP,midterm only,5
 12,Mail,REP,neither,59
 12,Mail,REP,presidential only,151
-12,Mail,UNA,both,748
+12,Mail,UNA,both,749
 12,Mail,UNA,midterm only,23
 12,Mail,UNA,neither,173
 12,Mail,UNA,presidential only,345
-13,In person,DEM,both,50511
+13,In person,DEM,both,50513
 13,In person,DEM,midterm only,409
-13,In person,DEM,neither,4696
+13,In person,DEM,neither,4694
 13,In person,DEM,presidential only,12201
 13,In person,OTH,both,228
 13,In person,OTH,midterm only,4
@@ -225,10 +256,10 @@ dbe,method,party,prior,n
 13,In person,UNA,both,42842
 13,In person,UNA,midterm only,342
 13,In person,UNA,neither,4605
-13,In person,UNA,presidential only,10881
-13,Mail,DEM,both,865
+13,In person,UNA,presidential only,10880
+13,Mail,DEM,both,869
 13,Mail,DEM,midterm only,17
-13,Mail,DEM,neither,142
+13,Mail,DEM,neither,143
 13,Mail,DEM,presidential only,354
 13,Mail,OTH,both,4
 13,Mail,OTH,neither,1
@@ -240,65 +271,65 @@ dbe,method,party,prior,n
 13,Mail,UNA,both,895
 13,Mail,UNA,midterm only,18
 13,Mail,UNA,neither,188
-13,Mail,UNA,presidential only,394
+13,Mail,UNA,presidential only,395
 14,In person,DEM,both,58166
 14,In person,DEM,midterm only,437
-14,In person,DEM,neither,4792
-14,In person,DEM,presidential only,12229
+14,In person,DEM,neither,4791
+14,In person,DEM,presidential only,12230
 14,In person,OTH,both,239
 14,In person,OTH,midterm only,4
 14,In person,OTH,neither,70
 14,In person,OTH,presidential only,152
-14,In person,REP,both,40948
+14,In person,REP,both,40947
 14,In person,REP,midterm only,191
-14,In person,REP,neither,1734
-14,In person,REP,presidential only,5124
+14,In person,REP,neither,1733
+14,In person,REP,presidential only,5123
 14,In person,UNA,both,47261
 14,In person,UNA,midterm only,354
 14,In person,UNA,neither,4865
 14,In person,UNA,presidential only,10991
-14,Mail,DEM,both,855
+14,Mail,DEM,both,856
 14,Mail,DEM,midterm only,15
 14,Mail,DEM,neither,144
 14,Mail,DEM,presidential only,321
 14,Mail,OTH,both,2
 14,Mail,OTH,presidential only,6
-14,Mail,REP,both,458
+14,Mail,REP,both,460
 14,Mail,REP,midterm only,8
 14,Mail,REP,neither,55
-14,Mail,REP,presidential only,155
-14,Mail,UNA,both,861
+14,Mail,REP,presidential only,156
+14,Mail,UNA,both,863
 14,Mail,UNA,midterm only,10
 14,Mail,UNA,neither,168
-14,Mail,UNA,presidential only,378
+14,Mail,UNA,presidential only,379
 15,In person,DEM,both,67572
 15,In person,DEM,midterm only,455
-15,In person,DEM,neither,5268
+15,In person,DEM,neither,5265
 15,In person,DEM,presidential only,13223
 15,In person,OTH,both,246
 15,In person,OTH,midterm only,3
 15,In person,OTH,neither,56
 15,In person,OTH,presidential only,135
-15,In person,REP,both,41205
+15,In person,REP,both,41204
 15,In person,REP,midterm only,148
-15,In person,REP,neither,1876
-15,In person,REP,presidential only,5020
+15,In person,REP,neither,1877
+15,In person,REP,presidential only,5021
 15,In person,UNA,both,51496
 15,In person,UNA,midterm only,369
-15,In person,UNA,neither,5181
+15,In person,UNA,neither,5177
 15,In person,UNA,presidential only,11412
 15,Mail,DEM,both,985
 15,Mail,DEM,midterm only,19
 15,Mail,DEM,neither,178
-15,Mail,DEM,presidential only,417
-15,Mail,OTH,both,2
+15,Mail,DEM,presidential only,418
+15,Mail,OTH,both,3
 15,Mail,OTH,neither,1
 15,Mail,OTH,presidential only,10
 15,Mail,REP,both,537
 15,Mail,REP,midterm only,4
 15,Mail,REP,neither,71
 15,Mail,REP,presidential only,183
-15,Mail,UNA,both,1020
+15,Mail,UNA,both,1024
 15,Mail,UNA,midterm only,20
 15,Mail,UNA,neither,199
 15,Mail,UNA,presidential only,467
@@ -351,7 +382,7 @@ dbe,method,party,prior,n
 17,Mail,DEM,both,454
 17,Mail,DEM,midterm only,5
 17,Mail,DEM,neither,73
-17,Mail,DEM,presidential only,142
+17,Mail,DEM,presidential only,143
 17,Mail,OTH,both,2
 17,Mail,OTH,neither,2
 17,Mail,REP,both,180
@@ -365,7 +396,7 @@ dbe,method,party,prior,n
 18,In person,DEM,both,68796
 18,In person,DEM,midterm only,436
 18,In person,DEM,neither,5021
-18,In person,DEM,presidential only,11792
+18,In person,DEM,presidential only,11791
 18,In person,OTH,both,216
 18,In person,OTH,midterm only,5
 18,In person,OTH,neither,59
@@ -374,11 +405,11 @@ dbe,method,party,prior,n
 18,In person,REP,midterm only,168
 18,In person,REP,neither,1677
 18,In person,REP,presidential only,4640
-18,In person,UNA,both,51155
+18,In person,UNA,both,51153
 18,In person,UNA,midterm only,378
 18,In person,UNA,neither,5000
-18,In person,UNA,presidential only,11120
-18,Mail,DEM,both,758
+18,In person,UNA,presidential only,11119
+18,Mail,DEM,both,759
 18,Mail,DEM,midterm only,17
 18,Mail,DEM,neither,118
 18,Mail,DEM,presidential only,292
@@ -393,19 +424,19 @@ dbe,method,party,prior,n
 18,Mail,UNA,midterm only,15
 18,Mail,UNA,neither,133
 18,Mail,UNA,presidential only,269
-19,In person,DEM,both,79215
+19,In person,DEM,both,79213
 19,In person,DEM,midterm only,470
-19,In person,DEM,neither,4811
-19,In person,DEM,presidential only,12047
+19,In person,DEM,neither,4810
+19,In person,DEM,presidential only,12048
 19,In person,OTH,both,184
 19,In person,OTH,midterm only,8
 19,In person,OTH,neither,45
 19,In person,OTH,presidential only,125
-19,In person,REP,both,34361
+19,In person,REP,both,34363
 19,In person,REP,midterm only,179
-19,In person,REP,neither,1694
-19,In person,REP,presidential only,4241
-19,In person,UNA,both,51021
+19,In person,REP,neither,1693
+19,In person,REP,presidential only,4240
+19,In person,UNA,both,51020
 19,In person,UNA,midterm only,404
 19,In person,UNA,neither,4436
 19,In person,UNA,presidential only,10056
@@ -432,7 +463,7 @@ dbe,method,party,prior,n
 20,Mail,OTH,both,1
 20,Mail,OTH,neither,2
 20,Mail,OTH,presidential only,2
-20,Mail,REP,both,246
+20,Mail,REP,both,247
 20,Mail,REP,midterm only,4
 20,Mail,REP,neither,28
 20,Mail,REP,presidential only,78
@@ -440,7 +471,7 @@ dbe,method,party,prior,n
 20,Mail,UNA,midterm only,2
 20,Mail,UNA,neither,78
 20,Mail,UNA,presidential only,182
-21,Mail,DEM,both,596
+21,Mail,DEM,both,597
 21,Mail,DEM,midterm only,3
 21,Mail,DEM,neither,89
 21,Mail,DEM,presidential only,207
@@ -454,8 +485,8 @@ dbe,method,party,prior,n
 21,Mail,REP,presidential only,85
 21,Mail,UNA,both,554
 21,Mail,UNA,midterm only,11
-21,Mail,UNA,neither,77
-21,Mail,UNA,presidential only,222
+21,Mail,UNA,neither,78
+21,Mail,UNA,presidential only,223
 22,Mail,DEM,both,316
 22,Mail,DEM,midterm only,9
 22,Mail,DEM,neither,52
@@ -537,7 +568,7 @@ dbe,method,party,prior,n
 28,Mail,DEM,both,447
 28,Mail,DEM,midterm only,11
 28,Mail,DEM,neither,50
-28,Mail,DEM,presidential only,130
+28,Mail,DEM,presidential only,131
 28,Mail,OTH,both,3
 28,Mail,OTH,presidential only,1
 28,Mail,REP,both,179
@@ -559,7 +590,7 @@ dbe,method,party,prior,n
 29,Mail,REP,midterm only,9
 29,Mail,REP,neither,33
 29,Mail,REP,presidential only,99
-29,Mail,UNA,both,669
+29,Mail,UNA,both,670
 29,Mail,UNA,midterm only,11
 29,Mail,UNA,neither,97
 29,Mail,UNA,presidential only,216
@@ -640,7 +671,7 @@ dbe,method,party,prior,n
 36,Mail,REP,midterm only,7
 36,Mail,REP,neither,25
 36,Mail,REP,presidential only,81
-36,Mail,UNA,both,527
+36,Mail,UNA,both,528
 36,Mail,UNA,midterm only,8
 36,Mail,UNA,neither,83
 36,Mail,UNA,presidential only,160
@@ -731,7 +762,7 @@ dbe,method,party,prior,n
 44,Mail,UNA,both,5
 44,Mail,UNA,neither,1
 44,Mail,UNA,presidential only,1
-45,Mail,DEM,both,2160
+45,Mail,DEM,both,2161
 45,Mail,DEM,midterm only,30
 45,Mail,DEM,neither,177
 45,Mail,DEM,presidential only,515
