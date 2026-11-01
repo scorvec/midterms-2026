@@ -983,7 +983,12 @@ def _ptoks(p, first=False):
     return t | set().union(*[_PALIAS.get(x, set()) for x in t])
 
 
+_PPRACTICE = ("yougov blue",)  # a firm's partisan practice is a different pollster from the firm
+
+
 def _same_pollster(a, b):
+    if any((x in str(a).lower()) != (x in str(b).lower()) for x in _PPRACTICE):
+        return False  # TX: YouGov Blue's 10/26 poll for Democratic clients and YouGov's own 10/29 poll are two surveys
     ka, kb = _pkey(a), _pkey(b)
     if ka and ka == kb and ka not in _PSTOP:
         return True  # a shared generic first word ('Data', 'New') is not an identity

@@ -84,6 +84,9 @@ def test_robust_blend_moves_toward_the_polls():
         ("New York Times/Siena", "Siena College", True),
         ("Data Orbital", "Data for Progress", False),  # a shared generic first word is not an identity
         ("Siena", "Emerson", False),
+        ("YouGov Blue (D)", "YouGov", False),  # the firm's partisan practice is not the firm
+        ("YouGov Blue", "YouGov Blue (D)", True),
+        ("YouGov/Economist", "YouGov", True),
     ],
 )
 def test_same_pollster(a, b, same):
