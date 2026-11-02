@@ -1746,3 +1746,23 @@ governor,OH,New York Times/Siena University,2026-11-01,2026-11-01,polls.json
 governor,OH,Concord (D),2026-10-26,2026-11-01,polls.json
 governor,TX,New York Times/Siena University,2026-11-01,2026-11-01,polls.json
 governor,AK,The New York Times/Siena University,2026-10-30,2026-11-01,manual
+house,ME-2,UNH,2026-10-31,2026-11-01,polls.json
+senate,ME,Maine People's Resource,2026-09-29,2026-11-01,polls.json
+senate,ME,Marist,2026-10-04,2026-11-01,polls.json
+senate,ME,Schar Poll,2026-10-05,2026-11-01,polls.json
+senate,ME,Beacon Research/Shaw & Company Research,2026-10-20,2026-11-01,polls.json
+senate,ME,Echelon,2026-10-23,2026-11-01,polls.json
+senate,ME,Marist,2026-10-24,2026-11-01,polls.json
+senate,ME,SSRS,2026-10-27,2026-11-01,polls.json
+senate,ME,UNH,2026-10-31,2026-11-01,polls.json
+senate,ME,The New York Times/Siena University,2026-11-01,2026-11-01,polls.json
+senate,ME,Beacon Research/Shaw & Company Research,2026-08-10,2026-11-01,polls.json
+senate,ME,CNN/SSRS,2026-09-06,2026-11-01,polls.json
+senate,ME,Fabrizio Ward/Impact Research,2026-09-22,2026-11-01,polls.json
+senate,ME,Hart Research Associates (D),2026-08-01,2026-11-01,polls.json
+senate,ME,Quantus Insights,2026-09-15,2026-11-01,polls.json
+senate,ME,The New York Times/Siena University,2026-09-22,2026-11-01,polls.json
+senate,ME,University of Massachusetts Lowell Center for Public Opinion/YouGov,2026-09-14,2026-11-01,polls.json
+senate,ME,YouGov,2026-10-01,2026-11-01,polls.json
+governor,ME,University of New Hampshire,2026-10-31,2026-11-01,polls.json
+governor,VT,UNH,2026-10-31,2026-11-01,polls.json
