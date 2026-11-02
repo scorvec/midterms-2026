@@ -1769,3 +1769,15 @@ governor,ME,University of New Hampshire,2026-10-31,2026-11-01,polls.json
 governor,NH,UNH,2026-10-31,2026-11-01,polls.json
 governor,VT,UNH,2026-10-31,2026-11-01,polls.json
 senate,ME,University of New Hampshire,2026-10-31,2026-11-01,polls.json
+house,NH-1,University of New Hampshire,2026-10-31,2026-11-01,polls.json
+house,NH-2,University of New Hampshire,2026-10-31,2026-11-01,polls.json
+senate,TX,AtlasIntel,2026-11-01,2026-11-01,polls.json
+governor,IA,The New York Times/Siena University,2026-11-01,2026-11-01,polls.json
+governor,KS,The New York Times/Siena University,2026-11-01,2026-11-01,polls.json
+governor,ME,The New York Times/Siena University,2026-11-01,2026-11-01,polls.json
+governor,MI,The New York Times/Siena University,2026-11-01,2026-11-01,polls.json
+governor,OH,The New York Times/Siena University,2026-11-01,2026-11-01,polls.json
+governor,RI,University of New Hampshire,2026-10-31,2026-11-01,polls.json
+governor,TX,The New York Times/Siena University,2026-11-01,2026-11-01,polls.json
+governor,TX,AtlasIntel,2026-11-01,2026-11-01,polls.json
+governor,VT,University of New Hampshire,2026-10-31,2026-11-01,polls.json
