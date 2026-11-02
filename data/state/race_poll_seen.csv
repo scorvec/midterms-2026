@@ -1843,3 +1843,5 @@ senate,ME,Survey 160,2026-11-01,2026-11-02,manual
 governor,ME,Survey 160,2026-11-01,2026-11-02,manual
 senate,MN,Survey 160,2026-11-01,2026-11-02,manual
 governor,MN,Survey 160,2026-11-01,2026-11-02,manual
+senate,GA,InsiderAdvantage (R),2026-11-02,2026-11-02,polls.json
+governor,GA,InsiderAdvantage (R),2026-11-02,2026-11-02,polls.json
