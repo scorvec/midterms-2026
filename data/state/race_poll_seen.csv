@@ -1811,3 +1811,6 @@ senate,IA,GrayHouse (R),2026-10-31,2026-11-02,polls.json
 senate,CO,YouGov,2026-10-20,2026-11-02,polls.json
 senate,NE,GrayHouse (R),2026-11-01,2026-11-02,polls.json
 governor,CO,YouGov,2026-10-20,2026-11-02,polls.json
+senate,AK,InsiderAdvantage (R),2026-11-01,2026-11-02,polls.json
+senate,IA,co/efficient (R),2026-10-31,2026-11-02,polls.json
+governor,CO,YouGov/UC,2026-10-20,2026-11-02,polls.json
