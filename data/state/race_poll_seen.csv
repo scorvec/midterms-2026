@@ -1826,3 +1826,20 @@ senate,SC,Trafalgar Group (R),2026-11-01,2026-11-02,polls.json
 governor,SC,Trafalgar Group (R),2026-11-01,2026-11-02,polls.json
 senate,FL,Targoz Market Research,2026-10-29,2026-11-02,polls.json
 governor,FL,Targoz Market Research,2026-10-29,2026-11-02,polls.json
+senate,KS,Survey 160,2026-11-01,2026-11-02,polls.json
+senate,ME,Survey 160,2026-11-01,2026-11-02,polls.json
+senate,MN,Survey 160,2026-11-01,2026-11-02,polls.json
+senate,NC,East Carolina University,2026-10-29,2026-11-02,polls.json
+senate,OH,Survey 160,2026-11-01,2026-11-02,polls.json
+governor,KS,Survey 160,2026-11-01,2026-11-02,polls.json
+governor,ME,Survey 160,2026-11-01,2026-11-02,polls.json
+governor,MN,Survey 160,2026-11-01,2026-11-02,polls.json
+governor,OH,Survey 160,2026-11-01,2026-11-02,polls.json
+senate,KS,Survey 160,2026-11-01,2026-11-02,manual
+governor,KS,Survey 160,2026-11-01,2026-11-02,manual
+senate,OH,Survey 160,2026-11-01,2026-11-02,manual
+governor,OH,Survey 160,2026-11-01,2026-11-02,manual
+senate,ME,Survey 160,2026-11-01,2026-11-02,manual
+governor,ME,Survey 160,2026-11-01,2026-11-02,manual
+senate,MN,Survey 160,2026-11-01,2026-11-02,manual
+governor,MN,Survey 160,2026-11-01,2026-11-02,manual
