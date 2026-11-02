@@ -1764,5 +1764,7 @@ senate,ME,Quantus Insights,2026-09-15,2026-11-01,polls.json
 senate,ME,The New York Times/Siena University,2026-09-22,2026-11-01,polls.json
 senate,ME,University of Massachusetts Lowell Center for Public Opinion/YouGov,2026-09-14,2026-11-01,polls.json
 senate,ME,YouGov,2026-10-01,2026-11-01,polls.json
+senate,NH,UNH,2026-10-31,2026-11-01,polls.json
 governor,ME,University of New Hampshire,2026-10-31,2026-11-01,polls.json
+governor,NH,UNH,2026-10-31,2026-11-01,polls.json
 governor,VT,UNH,2026-10-31,2026-11-01,polls.json
