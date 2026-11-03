@@ -1,110 +1,144 @@
 dbe,method,party,race,age,n
-3,In person,DEM,Black,18-25,2580
-3,In person,DEM,Black,26-40,7342
-3,In person,DEM,Black,41-65,16209
-3,In person,DEM,Black,66+,5163
-3,In person,DEM,Other,18-25,2126
-3,In person,DEM,Other,26-40,3736
-3,In person,DEM,Other,41-65,3725
-3,In person,DEM,Other,66+,802
-3,In person,DEM,White,18-25,1898
-3,In person,DEM,White,26-40,7772
-3,In person,DEM,White,41-65,9741
-3,In person,DEM,White,66+,3805
-3,In person,OTH,Black,18-25,22
-3,In person,OTH,Black,26-40,45
+2,Mail,DEM,Black,18-25,7
+2,Mail,DEM,Black,26-40,19
+2,Mail,DEM,Black,41-65,20
+2,Mail,DEM,Black,66+,30
+2,Mail,DEM,Other,18-25,13
+2,Mail,DEM,Other,26-40,30
+2,Mail,DEM,Other,41-65,19
+2,Mail,DEM,Other,66+,9
+2,Mail,DEM,White,18-25,16
+2,Mail,DEM,White,26-40,63
+2,Mail,DEM,White,41-65,43
+2,Mail,DEM,White,66+,39
+2,Mail,OTH,White,66+,1
+2,Mail,REP,Black,66+,1
+2,Mail,REP,Other,26-40,6
+2,Mail,REP,Other,41-65,4
+2,Mail,REP,Other,66+,1
+2,Mail,REP,White,18-25,10
+2,Mail,REP,White,26-40,16
+2,Mail,REP,White,41-65,34
+2,Mail,REP,White,66+,34
+2,Mail,UNA,Black,18-25,4
+2,Mail,UNA,Black,26-40,8
+2,Mail,UNA,Black,41-65,16
+2,Mail,UNA,Black,66+,6
+2,Mail,UNA,Other,18-25,20
+2,Mail,UNA,Other,26-40,36
+2,Mail,UNA,Other,41-65,37
+2,Mail,UNA,Other,66+,10
+2,Mail,UNA,White,18-25,44
+2,Mail,UNA,White,26-40,46
+2,Mail,UNA,White,41-65,66
+2,Mail,UNA,White,66+,24
+3,In person,DEM,Black,18-25,2700
+3,In person,DEM,Black,26-40,7442
+3,In person,DEM,Black,41-65,16272
+3,In person,DEM,Black,66+,5170
+3,In person,DEM,Other,18-25,2295
+3,In person,DEM,Other,26-40,3800
+3,In person,DEM,Other,41-65,3753
+3,In person,DEM,Other,66+,811
+3,In person,DEM,White,18-25,2012
+3,In person,DEM,White,26-40,7920
+3,In person,DEM,White,41-65,9769
+3,In person,DEM,White,66+,3816
+3,In person,OTH,Black,18-25,23
+3,In person,OTH,Black,26-40,46
 3,In person,OTH,Black,41-65,50
 3,In person,OTH,Black,66+,5
-3,In person,OTH,Other,18-25,34
+3,In person,OTH,Other,18-25,36
 3,In person,OTH,Other,26-40,63
-3,In person,OTH,Other,41-65,52
+3,In person,OTH,Other,41-65,54
 3,In person,OTH,Other,66+,10
 3,In person,OTH,White,18-25,65
-3,In person,OTH,White,26-40,265
+3,In person,OTH,White,26-40,266
 3,In person,OTH,White,41-65,264
 3,In person,OTH,White,66+,41
-3,In person,REP,Black,18-25,61
+3,In person,REP,Black,18-25,62
 3,In person,REP,Black,26-40,171
-3,In person,REP,Black,41-65,435
+3,In person,REP,Black,41-65,439
 3,In person,REP,Black,66+,113
-3,In person,REP,Other,18-25,346
-3,In person,REP,Other,26-40,1044
-3,In person,REP,Other,41-65,2886
-3,In person,REP,Other,66+,807
-3,In person,REP,White,18-25,2906
-3,In person,REP,White,26-40,7046
-3,In person,REP,White,41-65,28137
-3,In person,REP,White,66+,11384
-3,In person,UNA,Black,18-25,1694
-3,In person,UNA,Black,26-40,3610
-3,In person,UNA,Black,41-65,4893
+3,In person,REP,Other,18-25,357
+3,In person,REP,Other,26-40,1061
+3,In person,REP,Other,41-65,2905
+3,In person,REP,Other,66+,812
+3,In person,REP,White,18-25,2947
+3,In person,REP,White,26-40,7067
+3,In person,REP,White,41-65,28181
+3,In person,REP,White,66+,11397
+3,In person,UNA,Black,18-25,1726
+3,In person,UNA,Black,26-40,3649
+3,In person,UNA,Black,41-65,4911
 3,In person,UNA,Black,66+,605
-3,In person,UNA,Other,18-25,3367
-3,In person,UNA,Other,26-40,4814
-3,In person,UNA,Other,41-65,6362
-3,In person,UNA,Other,66+,946
-3,In person,UNA,White,18-25,4602
-3,In person,UNA,White,26-40,12369
-3,In person,UNA,White,41-65,22810
-3,In person,UNA,White,66+,6157
-3,Mail,DEM,Black,18-25,72
-3,Mail,DEM,Black,26-40,85
-3,Mail,DEM,Black,41-65,125
-3,Mail,DEM,Black,66+,147
-3,Mail,DEM,Other,18-25,68
-3,Mail,DEM,Other,26-40,103
-3,Mail,DEM,Other,41-65,69
-3,Mail,DEM,Other,66+,36
-3,Mail,DEM,White,18-25,190
-3,Mail,DEM,White,26-40,187
-3,Mail,DEM,White,41-65,198
-3,Mail,DEM,White,66+,231
+3,In person,UNA,Other,18-25,3476
+3,In person,UNA,Other,26-40,4876
+3,In person,UNA,Other,41-65,6388
+3,In person,UNA,Other,66+,954
+3,In person,UNA,White,18-25,4707
+3,In person,UNA,White,26-40,12471
+3,In person,UNA,White,41-65,22849
+3,In person,UNA,White,66+,6162
+3,Mail,DEM,Black,18-25,81
+3,Mail,DEM,Black,26-40,95
+3,Mail,DEM,Black,41-65,135
+3,Mail,DEM,Black,66+,157
+3,Mail,DEM,Other,18-25,77
+3,Mail,DEM,Other,26-40,111
+3,Mail,DEM,Other,41-65,78
+3,Mail,DEM,Other,66+,37
+3,Mail,DEM,White,18-25,201
+3,Mail,DEM,White,26-40,202
+3,Mail,DEM,White,41-65,219
+3,Mail,DEM,White,66+,248
 3,Mail,OTH,Other,18-25,3
-3,Mail,OTH,Other,26-40,2
+3,Mail,OTH,Other,26-40,3
 3,Mail,OTH,White,18-25,2
-3,Mail,OTH,White,26-40,5
+3,Mail,OTH,White,26-40,7
 3,Mail,OTH,White,41-65,3
 3,Mail,OTH,White,66+,2
+3,Mail,REP,Black,18-25,1
 3,Mail,REP,Black,26-40,2
 3,Mail,REP,Black,41-65,4
 3,Mail,REP,Black,66+,4
 3,Mail,REP,Other,18-25,10
-3,Mail,REP,Other,26-40,21
-3,Mail,REP,Other,41-65,40
-3,Mail,REP,Other,66+,41
-3,Mail,REP,White,18-25,48
-3,Mail,REP,White,26-40,55
-3,Mail,REP,White,41-65,196
-3,Mail,REP,White,66+,337
-3,Mail,UNA,Black,18-25,35
-3,Mail,UNA,Black,26-40,51
-3,Mail,UNA,Black,41-65,45
-3,Mail,UNA,Black,66+,15
-3,Mail,UNA,Other,18-25,110
-3,Mail,UNA,Other,26-40,109
-3,Mail,UNA,Other,41-65,121
-3,Mail,UNA,Other,66+,57
-3,Mail,UNA,White,18-25,324
-3,Mail,UNA,White,26-40,212
-3,Mail,UNA,White,41-65,311
-3,Mail,UNA,White,66+,269
-4,In person,DEM,Black,18-25,3609
-4,In person,DEM,Black,26-40,8093
-4,In person,DEM,Black,41-65,17355
-4,In person,DEM,Black,66+,8311
-4,In person,DEM,Other,18-25,3275
-4,In person,DEM,Other,26-40,4213
-4,In person,DEM,Other,41-65,4130
-4,In person,DEM,Other,66+,1287
-4,In person,DEM,White,18-25,2795
-4,In person,DEM,White,26-40,9945
-4,In person,DEM,White,41-65,12956
-4,In person,DEM,White,66+,8146
+3,Mail,REP,Other,26-40,23
+3,Mail,REP,Other,41-65,44
+3,Mail,REP,Other,66+,42
+3,Mail,REP,White,18-25,54
+3,Mail,REP,White,26-40,56
+3,Mail,REP,White,41-65,210
+3,Mail,REP,White,66+,353
+3,Mail,UNA,Black,18-25,39
+3,Mail,UNA,Black,26-40,57
+3,Mail,UNA,Black,41-65,48
+3,Mail,UNA,Black,66+,16
+3,Mail,UNA,Other,18-25,119
+3,Mail,UNA,Other,26-40,120
+3,Mail,UNA,Other,41-65,135
+3,Mail,UNA,Other,66+,61
+3,Mail,UNA,White,18-25,336
+3,Mail,UNA,White,26-40,229
+3,Mail,UNA,White,41-65,329
+3,Mail,UNA,White,66+,285
+4,In person,DEM,Black,18-25,3630
+4,In person,DEM,Black,26-40,8115
+4,In person,DEM,Black,41-65,17371
+4,In person,DEM,Black,66+,8313
+4,In person,DEM,Other,18-25,3266
+4,In person,DEM,Other,26-40,4185
+4,In person,DEM,Other,41-65,4125
+4,In person,DEM,Other,66+,1285
+4,In person,DEM,White,18-25,2822
+4,In person,DEM,White,26-40,9978
+4,In person,DEM,White,41-65,12967
+4,In person,DEM,White,66+,8151
 4,In person,OTH,Black,18-25,35
 4,In person,OTH,Black,26-40,52
 4,In person,OTH,Black,41-65,39
 4,In person,OTH,Black,66+,8
-4,In person,OTH,Other,18-25,55
+4,In person,OTH,Other,18-25,56
 4,In person,OTH,Other,26-40,72
 4,In person,OTH,Other,41-65,81
 4,In person,OTH,Other,66+,13
@@ -114,44 +148,45 @@ dbe,method,party,race,age,n
 4,In person,OTH,White,66+,59
 4,In person,REP,Black,18-25,76
 4,In person,REP,Black,26-40,173
-4,In person,REP,Black,41-65,470
-4,In person,REP,Black,66+,191
-4,In person,REP,Other,18-25,420
-4,In person,REP,Other,26-40,1086
-4,In person,REP,Other,41-65,3121
-4,In person,REP,Other,66+,1440
-4,In person,REP,White,18-25,3116
-4,In person,REP,White,26-40,8024
-4,In person,REP,White,41-65,33948
-4,In person,REP,White,66+,23021
-4,In person,UNA,Black,18-25,2077
-4,In person,UNA,Black,26-40,3870
-4,In person,UNA,Black,41-65,5361
-4,In person,UNA,Black,66+,1014
-4,In person,UNA,Other,18-25,4615
-4,In person,UNA,Other,26-40,5758
-4,In person,UNA,Other,41-65,7058
-4,In person,UNA,Other,66+,1601
-4,In person,UNA,White,18-25,5908
-4,In person,UNA,White,26-40,15148
-4,In person,UNA,White,41-65,29366
-4,In person,UNA,White,66+,13241
-4,Mail,DEM,Black,18-25,73
-4,Mail,DEM,Black,26-40,91
-4,Mail,DEM,Black,41-65,176
-4,Mail,DEM,Black,66+,271
-4,Mail,DEM,Other,18-25,78
-4,Mail,DEM,Other,26-40,132
+4,In person,REP,Black,41-65,471
+4,In person,REP,Black,66+,192
+4,In person,REP,Other,18-25,430
+4,In person,REP,Other,26-40,1095
+4,In person,REP,Other,41-65,3129
+4,In person,REP,Other,66+,1445
+4,In person,REP,White,18-25,3132
+4,In person,REP,White,26-40,8037
+4,In person,REP,White,41-65,33964
+4,In person,REP,White,66+,23027
+4,In person,UNA,Black,18-25,2089
+4,In person,UNA,Black,26-40,3884
+4,In person,UNA,Black,41-65,5368
+4,In person,UNA,Black,66+,1015
+4,In person,UNA,Other,18-25,4604
+4,In person,UNA,Other,26-40,5755
+4,In person,UNA,Other,41-65,7049
+4,In person,UNA,Other,66+,1599
+4,In person,UNA,White,18-25,5945
+4,In person,UNA,White,26-40,15175
+4,In person,UNA,White,41-65,29384
+4,In person,UNA,White,66+,13247
+4,Mail,DEM,Black,18-25,77
+4,Mail,DEM,Black,26-40,93
+4,Mail,DEM,Black,41-65,177
+4,Mail,DEM,Black,66+,278
+4,Mail,DEM,Other,18-25,79
+4,Mail,DEM,Other,26-40,133
 4,Mail,DEM,Other,41-65,107
 4,Mail,DEM,Other,66+,90
 4,Mail,DEM,White,18-25,239
-4,Mail,DEM,White,26-40,250
-4,Mail,DEM,White,41-65,273
-4,Mail,DEM,White,66+,470
+4,Mail,DEM,White,26-40,251
+4,Mail,DEM,White,41-65,276
+4,Mail,DEM,White,66+,473
 4,Mail,OTH,Black,18-25,2
 4,Mail,OTH,Black,26-40,2
 4,Mail,OTH,Black,66+,1
 4,Mail,OTH,Other,18-25,1
+4,Mail,OTH,Other,41-65,1
 4,Mail,OTH,White,18-25,1
 4,Mail,OTH,White,26-40,6
 4,Mail,OTH,White,41-65,3
@@ -161,42 +196,42 @@ dbe,method,party,race,age,n
 4,Mail,REP,Black,41-65,8
 4,Mail,REP,Black,66+,6
 4,Mail,REP,Other,18-25,8
-4,Mail,REP,Other,26-40,9
+4,Mail,REP,Other,26-40,10
 4,Mail,REP,Other,41-65,47
 4,Mail,REP,Other,66+,49
-4,Mail,REP,White,18-25,75
+4,Mail,REP,White,18-25,76
 4,Mail,REP,White,26-40,73
 4,Mail,REP,White,41-65,285
-4,Mail,REP,White,66+,578
-4,Mail,UNA,Black,18-25,47
+4,Mail,REP,White,66+,582
+4,Mail,UNA,Black,18-25,48
 4,Mail,UNA,Black,26-40,46
-4,Mail,UNA,Black,41-65,57
-4,Mail,UNA,Black,66+,31
-4,Mail,UNA,Other,18-25,107
-4,Mail,UNA,Other,26-40,141
-4,Mail,UNA,Other,41-65,155
-4,Mail,UNA,Other,66+,83
-4,Mail,UNA,White,18-25,373
-4,Mail,UNA,White,26-40,319
-4,Mail,UNA,White,41-65,434
-4,Mail,UNA,White,66+,490
-5,In person,DEM,Black,18-25,2875
+4,Mail,UNA,Black,41-65,59
+4,Mail,UNA,Black,66+,32
+4,Mail,UNA,Other,18-25,108
+4,Mail,UNA,Other,26-40,143
+4,Mail,UNA,Other,41-65,158
+4,Mail,UNA,Other,66+,85
+4,Mail,UNA,White,18-25,375
+4,Mail,UNA,White,26-40,322
+4,Mail,UNA,White,41-65,446
+4,Mail,UNA,White,66+,495
+5,In person,DEM,Black,18-25,2876
 5,In person,DEM,Black,26-40,5723
 5,In person,DEM,Black,41-65,13645
 5,In person,DEM,Black,66+,7852
-5,In person,DEM,Other,18-25,2220
+5,In person,DEM,Other,18-25,2221
 5,In person,DEM,Other,26-40,2834
 5,In person,DEM,Other,41-65,3040
-5,In person,DEM,Other,66+,1183
+5,In person,DEM,Other,66+,1184
 5,In person,DEM,White,18-25,2042
 5,In person,DEM,White,26-40,6808
-5,In person,DEM,White,41-65,10165
+5,In person,DEM,White,41-65,10167
 5,In person,DEM,White,66+,8654
 5,In person,OTH,Black,18-25,21
 5,In person,OTH,Black,26-40,42
 5,In person,OTH,Black,41-65,41
 5,In person,OTH,Black,66+,3
-5,In person,OTH,Other,18-25,27
+5,In person,OTH,Other,18-25,28
 5,In person,OTH,Other,26-40,58
 5,In person,OTH,Other,41-65,46
 5,In person,OTH,Other,66+,11
@@ -209,37 +244,37 @@ dbe,method,party,race,age,n
 5,In person,REP,Black,41-65,346
 5,In person,REP,Black,66+,174
 5,In person,REP,Other,18-25,269
-5,In person,REP,Other,26-40,720
+5,In person,REP,Other,26-40,722
 5,In person,REP,Other,41-65,2212
-5,In person,REP,Other,66+,1222
+5,In person,REP,Other,66+,1225
 5,In person,REP,White,18-25,1982
 5,In person,REP,White,26-40,5017
-5,In person,REP,White,41-65,24326
-5,In person,REP,White,66+,22921
+5,In person,REP,White,41-65,24331
+5,In person,REP,White,66+,22925
 5,In person,UNA,Black,18-25,1426
 5,In person,UNA,Black,26-40,2557
 5,In person,UNA,Black,41-65,3791
 5,In person,UNA,Black,66+,908
 5,In person,UNA,Other,18-25,3115
 5,In person,UNA,Other,26-40,3590
-5,In person,UNA,Other,41-65,4868
+5,In person,UNA,Other,41-65,4872
 5,In person,UNA,Other,66+,1498
 5,In person,UNA,White,18-25,3999
-5,In person,UNA,White,26-40,10027
+5,In person,UNA,White,26-40,10031
 5,In person,UNA,White,41-65,21512
 5,In person,UNA,White,66+,13876
-5,Mail,DEM,Black,18-25,43
-5,Mail,DEM,Black,26-40,49
-5,Mail,DEM,Black,41-65,131
-5,Mail,DEM,Black,66+,220
+5,Mail,DEM,Black,18-25,44
+5,Mail,DEM,Black,26-40,50
+5,Mail,DEM,Black,41-65,132
+5,Mail,DEM,Black,66+,227
 5,Mail,DEM,Other,18-25,51
 5,Mail,DEM,Other,26-40,96
 5,Mail,DEM,Other,41-65,119
 5,Mail,DEM,Other,66+,84
-5,Mail,DEM,White,18-25,189
-5,Mail,DEM,White,26-40,191
-5,Mail,DEM,White,41-65,297
-5,Mail,DEM,White,66+,501
+5,Mail,DEM,White,18-25,190
+5,Mail,DEM,White,26-40,193
+5,Mail,DEM,White,41-65,298
+5,Mail,DEM,White,66+,507
 5,Mail,OTH,Black,26-40,3
 5,Mail,OTH,Other,26-40,4
 5,Mail,OTH,Other,41-65,1
@@ -251,25 +286,25 @@ dbe,method,party,race,age,n
 5,Mail,REP,Black,41-65,2
 5,Mail,REP,Black,66+,3
 5,Mail,REP,Other,18-25,4
-5,Mail,REP,Other,26-40,16
+5,Mail,REP,Other,26-40,17
 5,Mail,REP,Other,41-65,34
-5,Mail,REP,Other,66+,47
+5,Mail,REP,Other,66+,48
 5,Mail,REP,White,18-25,66
-5,Mail,REP,White,26-40,58
-5,Mail,REP,White,41-65,293
-5,Mail,REP,White,66+,631
+5,Mail,REP,White,26-40,62
+5,Mail,REP,White,41-65,298
+5,Mail,REP,White,66+,634
 5,Mail,UNA,Black,18-25,17
-5,Mail,UNA,Black,26-40,42
+5,Mail,UNA,Black,26-40,43
 5,Mail,UNA,Black,41-65,55
 5,Mail,UNA,Black,66+,37
 5,Mail,UNA,Other,18-25,87
 5,Mail,UNA,Other,26-40,107
-5,Mail,UNA,Other,41-65,165
-5,Mail,UNA,Other,66+,99
-5,Mail,UNA,White,18-25,246
-5,Mail,UNA,White,26-40,289
-5,Mail,UNA,White,41-65,442
-5,Mail,UNA,White,66+,570
+5,Mail,UNA,Other,41-65,167
+5,Mail,UNA,Other,66+,100
+5,Mail,UNA,White,18-25,247
+5,Mail,UNA,White,26-40,290
+5,Mail,UNA,White,41-65,445
+5,Mail,UNA,White,66+,576
 6,In person,DEM,Black,18-25,2463
 6,In person,DEM,Black,26-40,4732
 6,In person,DEM,Black,41-65,12454
@@ -319,25 +354,25 @@ dbe,method,party,race,age,n
 6,In person,UNA,White,41-65,19900
 6,In person,UNA,White,66+,14843
 6,Mail,DEM,Black,18-25,42
-6,Mail,DEM,Black,26-40,71
-6,Mail,DEM,Black,41-65,155
-6,Mail,DEM,Black,66+,274
-6,Mail,DEM,Other,18-25,49
+6,Mail,DEM,Black,26-40,74
+6,Mail,DEM,Black,41-65,159
+6,Mail,DEM,Black,66+,275
+6,Mail,DEM,Other,18-25,50
 6,Mail,DEM,Other,26-40,105
-6,Mail,DEM,Other,41-65,112
+6,Mail,DEM,Other,41-65,113
 6,Mail,DEM,Other,66+,71
 6,Mail,DEM,White,18-25,155
 6,Mail,DEM,White,26-40,196
-6,Mail,DEM,White,41-65,300
-6,Mail,DEM,White,66+,530
+6,Mail,DEM,White,41-65,301
+6,Mail,DEM,White,66+,531
 6,Mail,OTH,Black,18-25,1
 6,Mail,OTH,Black,26-40,1
-6,Mail,OTH,Black,41-65,1
+6,Mail,OTH,Black,41-65,2
 6,Mail,OTH,Other,26-40,4
 6,Mail,OTH,Other,41-65,3
 6,Mail,OTH,Other,66+,2
 6,Mail,OTH,White,18-25,2
-6,Mail,OTH,White,26-40,2
+6,Mail,OTH,White,26-40,3
 6,Mail,OTH,White,41-65,7
 6,Mail,OTH,White,66+,2
 6,Mail,REP,Black,41-65,2
@@ -347,21 +382,21 @@ dbe,method,party,race,age,n
 6,Mail,REP,Other,41-65,46
 6,Mail,REP,Other,66+,39
 6,Mail,REP,White,18-25,52
-6,Mail,REP,White,26-40,74
-6,Mail,REP,White,41-65,286
+6,Mail,REP,White,26-40,75
+6,Mail,REP,White,41-65,287
 6,Mail,REP,White,66+,759
 6,Mail,UNA,Black,18-25,24
 6,Mail,UNA,Black,26-40,36
 6,Mail,UNA,Black,41-65,56
 6,Mail,UNA,Black,66+,36
 6,Mail,UNA,Other,18-25,94
-6,Mail,UNA,Other,26-40,111
-6,Mail,UNA,Other,41-65,152
-6,Mail,UNA,Other,66+,88
-6,Mail,UNA,White,18-25,229
-6,Mail,UNA,White,26-40,243
-6,Mail,UNA,White,41-65,451
-6,Mail,UNA,White,66+,607
+6,Mail,UNA,Other,26-40,112
+6,Mail,UNA,Other,41-65,153
+6,Mail,UNA,Other,66+,89
+6,Mail,UNA,White,18-25,230
+6,Mail,UNA,White,26-40,245
+6,Mail,UNA,White,41-65,454
+6,Mail,UNA,White,66+,608
 7,In person,DEM,Black,18-25,2276
 7,In person,DEM,Black,26-40,4241
 7,In person,DEM,Black,41-65,12508
@@ -392,7 +427,7 @@ dbe,method,party,race,age,n
 7,In person,REP,Black,66+,174
 7,In person,REP,Other,18-25,208
 7,In person,REP,Other,26-40,467
-7,In person,REP,Other,41-65,1816
+7,In person,REP,Other,41-65,1817
 7,In person,REP,Other,66+,1386
 7,In person,REP,White,18-25,1229
 7,In person,REP,White,26-40,3397
@@ -411,17 +446,17 @@ dbe,method,party,race,age,n
 7,In person,UNA,White,41-65,18666
 7,In person,UNA,White,66+,16513
 7,Mail,DEM,Black,18-25,42
-7,Mail,DEM,Black,26-40,69
+7,Mail,DEM,Black,26-40,70
 7,Mail,DEM,Black,41-65,123
-7,Mail,DEM,Black,66+,227
+7,Mail,DEM,Black,66+,230
 7,Mail,DEM,Other,18-25,51
 7,Mail,DEM,Other,26-40,88
-7,Mail,DEM,Other,41-65,99
-7,Mail,DEM,Other,66+,80
+7,Mail,DEM,Other,41-65,101
+7,Mail,DEM,Other,66+,81
 7,Mail,DEM,White,18-25,154
-7,Mail,DEM,White,26-40,195
-7,Mail,DEM,White,41-65,291
-7,Mail,DEM,White,66+,568
+7,Mail,DEM,White,26-40,196
+7,Mail,DEM,White,41-65,293
+7,Mail,DEM,White,66+,571
 7,Mail,OTH,Black,18-25,1
 7,Mail,OTH,Black,26-40,1
 7,Mail,OTH,Black,41-65,1
@@ -441,26 +476,26 @@ dbe,method,party,race,age,n
 7,Mail,REP,Other,66+,51
 7,Mail,REP,White,18-25,40
 7,Mail,REP,White,26-40,45
-7,Mail,REP,White,41-65,243
-7,Mail,REP,White,66+,689
-7,Mail,UNA,Black,18-25,26
+7,Mail,REP,White,41-65,245
+7,Mail,REP,White,66+,693
+7,Mail,UNA,Black,18-25,27
 7,Mail,UNA,Black,26-40,33
 7,Mail,UNA,Black,41-65,39
 7,Mail,UNA,Black,66+,24
-7,Mail,UNA,Other,18-25,81
-7,Mail,UNA,Other,26-40,110
+7,Mail,UNA,Other,18-25,82
+7,Mail,UNA,Other,26-40,111
 7,Mail,UNA,Other,41-65,120
-7,Mail,UNA,Other,66+,104
+7,Mail,UNA,Other,66+,106
 7,Mail,UNA,White,18-25,230
 7,Mail,UNA,White,26-40,236
 7,Mail,UNA,White,41-65,426
-7,Mail,UNA,White,66+,613
-8,In person,DEM,Black,18-25,2040
+7,Mail,UNA,White,66+,615
+8,In person,DEM,Black,18-25,2041
 8,In person,DEM,Black,26-40,4149
 8,In person,DEM,Black,41-65,13967
 8,In person,DEM,Black,66+,10445
 8,In person,DEM,Other,18-25,1568
-8,In person,DEM,Other,26-40,2097
+8,In person,DEM,Other,26-40,2098
 8,In person,DEM,Other,41-65,2910
 8,In person,DEM,Other,66+,1362
 8,In person,DEM,White,18-25,1604
@@ -509,7 +544,7 @@ dbe,method,party,race,age,n
 8,Mail,DEM,Black,66+,206
 8,Mail,DEM,Other,18-25,60
 8,Mail,DEM,Other,26-40,92
-8,Mail,DEM,Other,41-65,122
+8,Mail,DEM,Other,41-65,123
 8,Mail,DEM,Other,66+,94
 8,Mail,DEM,White,18-25,220
 8,Mail,DEM,White,26-40,191
@@ -532,20 +567,20 @@ dbe,method,party,race,age,n
 8,Mail,REP,Other,66+,39
 8,Mail,REP,White,18-25,45
 8,Mail,REP,White,26-40,56
-8,Mail,REP,White,41-65,283
+8,Mail,REP,White,41-65,284
 8,Mail,REP,White,66+,662
 8,Mail,UNA,Black,18-25,36
 8,Mail,UNA,Black,26-40,41
 8,Mail,UNA,Black,41-65,55
 8,Mail,UNA,Black,66+,37
-8,Mail,UNA,Other,18-25,117
+8,Mail,UNA,Other,18-25,118
 8,Mail,UNA,Other,26-40,124
 8,Mail,UNA,Other,41-65,147
 8,Mail,UNA,Other,66+,102
 8,Mail,UNA,White,18-25,314
 8,Mail,UNA,White,26-40,252
-8,Mail,UNA,White,41-65,464
-8,Mail,UNA,White,66+,592
+8,Mail,UNA,White,41-65,465
+8,Mail,UNA,White,66+,594
 9,In person,DEM,Black,18-25,811
 9,In person,DEM,Black,26-40,1295
 9,In person,DEM,Black,41-65,4039
@@ -598,7 +633,7 @@ dbe,method,party,race,age,n
 9,Mail,DEM,Black,26-40,1
 9,Mail,DEM,Black,41-65,4
 9,Mail,DEM,Black,66+,3
-9,Mail,DEM,Other,18-25,5
+9,Mail,DEM,Other,18-25,6
 9,Mail,DEM,Other,26-40,4
 9,Mail,DEM,Other,41-65,8
 9,Mail,DEM,Other,66+,6
@@ -780,7 +815,7 @@ dbe,method,party,race,age,n
 11,Mail,REP,White,41-65,149
 11,Mail,REP,White,66+,442
 11,Mail,UNA,Black,18-25,13
-11,Mail,UNA,Black,26-40,18
+11,Mail,UNA,Black,26-40,19
 11,Mail,UNA,Black,41-65,34
 11,Mail,UNA,Black,66+,22
 11,Mail,UNA,Other,18-25,50
@@ -876,7 +911,7 @@ dbe,method,party,race,age,n
 12,Mail,UNA,Other,66+,72
 12,Mail,UNA,White,18-25,130
 12,Mail,UNA,White,26-40,123
-12,Mail,UNA,White,41-65,265
+12,Mail,UNA,White,41-65,266
 12,Mail,UNA,White,66+,440
 13,In person,DEM,Black,18-25,1380
 13,In person,DEM,Black,26-40,3061
@@ -948,7 +983,7 @@ dbe,method,party,race,age,n
 13,Mail,OTH,White,66+,4
 13,Mail,REP,Black,41-65,1
 13,Mail,REP,Black,66+,1
-13,Mail,REP,Other,18-25,1
+13,Mail,REP,Other,18-25,2
 13,Mail,REP,Other,26-40,6
 13,Mail,REP,Other,41-65,33
 13,Mail,REP,Other,66+,33
@@ -1100,7 +1135,7 @@ dbe,method,party,race,age,n
 15,In person,UNA,Other,41-65,3980
 15,In person,UNA,Other,66+,2299
 15,In person,UNA,White,18-25,2547
-15,In person,UNA,White,26-40,5089
+15,In person,UNA,White,26-40,5090
 15,In person,UNA,White,41-65,17710
 15,In person,UNA,White,66+,26155
 15,Mail,DEM,Black,18-25,17
@@ -1108,7 +1143,7 @@ dbe,method,party,race,age,n
 15,Mail,DEM,Black,41-65,82
 15,Mail,DEM,Black,66+,160
 15,Mail,DEM,Other,18-25,43
-15,Mail,DEM,Other,26-40,64
+15,Mail,DEM,Other,26-40,65
 15,Mail,DEM,Other,41-65,71
 15,Mail,DEM,Other,66+,90
 15,Mail,DEM,White,18-25,125
@@ -1387,7 +1422,7 @@ dbe,method,party,race,age,n
 19,In person,DEM,Black,41-65,15413
 19,In person,DEM,Black,66+,25442
 19,In person,DEM,Other,18-25,806
-19,In person,DEM,Other,26-40,1384
+19,In person,DEM,Other,26-40,1385
 19,In person,DEM,Other,41-65,2899
 19,In person,DEM,Other,66+,2857
 19,In person,DEM,White,18-25,1295
@@ -1417,7 +1452,7 @@ dbe,method,party,race,age,n
 19,In person,REP,White,18-25,567
 19,In person,REP,White,26-40,1365
 19,In person,REP,White,41-65,11030
-19,In person,REP,White,66+,24232
+19,In person,REP,White,66+,24233
 19,In person,UNA,Black,18-25,539
 19,In person,UNA,Black,26-40,1078
 19,In person,UNA,Black,41-65,3876
