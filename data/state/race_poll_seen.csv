@@ -1888,3 +1888,16 @@ governor,IA,AtlasIntel,2026-11-01,2026-11-02,polls.json
 governor,KS,AtlasIntel,2026-11-01,2026-11-02,polls.json
 governor,ME,AtlasIntel,2026-11-01,2026-11-02,polls.json
 governor,SC,Resonance Media Services,2026-10-30,2026-11-02,polls.json
+house,MO-2,Emerson College,2026-11-01,2026-11-02,polls.json
+house,MT-1,Emerson College,2026-11-01,2026-11-02,polls.json
+senate,ME,Emerson College/Poll Vault,2026-11-01,2026-11-02,polls.json
+senate,MI,AtlasIntel,2026-11-01,2026-11-02,polls.json
+senate,NH,AtlasIntel,2026-11-01,2026-11-02,polls.json
+senate,OH,Emerson College/Poll Vault,2026-11-01,2026-11-02,polls.json
+senate,OH,Rasmussen Reports (R),2026-10-31,2026-11-02,polls.json
+senate,SC,Resonance Media Services (R),2026-10-30,2026-11-02,polls.json
+senate,TX,Emerson College,2026-11-01,2026-11-02,polls.json
+governor,IA,Rasmussen Reports (R),2026-10-31,2026-11-02,polls.json
+governor,MI,AtlasIntel,2026-11-01,2026-11-02,polls.json
+governor,NH,AtlasIntel,2026-11-01,2026-11-02,polls.json
+governor,TX,Emerson College,2026-11-01,2026-11-02,polls.json
