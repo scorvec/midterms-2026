@@ -3,23 +3,23 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 427,
+   "called": 429,
    "of": 488,
-   "brier": 0.0263,
-   "log_loss": 0.0906,
+   "brier": 0.0262,
+   "log_loss": 0.0904,
    "favourite_won": 0.97,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 127,
+     "n": 128,
      "forecast": 0.011,
      "won": 0.0
     },
     {
      "band": "0.05-0.15",
-     "n": 30,
-     "forecast": 0.09,
-     "won": 0.067
+     "n": 31,
+     "forecast": 0.089,
+     "won": 0.065
     },
     {
      "band": "0.15-0.35",
@@ -59,9 +59,9 @@
     }
    ],
    "raters": {
-    "n": 95,
-    "brier_model": 0.0855,
-    "brier_raters": 0.0956
+    "n": 97,
+    "brier_model": 0.0838,
+    "brier_raters": 0.0937
    }
   },
   "governor": {
@@ -122,23 +122,23 @@
    ]
   },
   "house": {
-   "called": 360,
+   "called": 362,
    "of": 417,
-   "brier": 0.0226,
-   "log_loss": 0.0782,
+   "brier": 0.0225,
+   "log_loss": 0.0781,
    "favourite_won": 0.972,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 112,
+     "n": 113,
      "forecast": 0.01,
      "won": 0.0
     },
     {
      "band": "0.05-0.15",
-     "n": 24,
-     "forecast": 0.09,
-     "won": 0.083
+     "n": 25,
+     "forecast": 0.089,
+     "won": 0.08
     },
     {
      "band": "0.15-0.35",
@@ -178,9 +178,9 @@
     }
    ],
    "raters": {
-    "n": 95,
-    "brier_model": 0.0855,
-    "brier_raters": 0.0956
+    "n": 97,
+    "brier_model": 0.0838,
+    "brier_raters": 0.0937
    }
   },
   "senate": {
@@ -2954,8 +2954,8 @@
    "office": "house",
    "seat": "TX-27",
    "p": 0.0598,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
@@ -3037,8 +3037,8 @@
    "office": "house",
    "seat": "TX-38",
    "p": 0.042,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
@@ -3807,7 +3807,7 @@
  "chambers": {
   "house": {
    "d_called": 239,
-   "undecided": 57
+   "undecided": 55
   },
   "senate": {
    "d_called": 54,
