@@ -95,7 +95,8 @@ def build(doc: dict, res: pd.DataFrame) -> dict:
 
 def summary(out: dict) -> dict:
     """Each chamber's seats as called, one character per seat in the homepage arcs' order (most Democratic first): 0 = a
-    Democratic win, a = an independent's, 3 = not called, 6 = a Republican win, D / R = a Senate seat not up this year."""
+    Democratic win, a = an independent's, 3 = not called, 6 = a Republican win, D / R = a Senate seat not up this year;
+    and the check of the forecast: how many called races its favourite won."""
     F, res = out["forecast"], {}
     for office, keep_d, keep_r in (("house", "fixed_d", "fixed_r"), ("senate", "holdover_d", "holdover_r")):
         g = [r for r in out["races"] if r["office"] == office]
@@ -112,7 +113,9 @@ def summary(out: dict) -> dict:
             "forecast_d": F[office]["p50"],
             "seats": held * F[office][keep_d] + "0" * d + "a" * i + "3" * n + "6" * r + held_r * F[office][keep_r],
         }
-    return {"generated": out["generated"], **res}
+    a = out["scores"].get("all", {})
+    check = {"called": a["called"], "won": round(a["favourite_won"] * a["called"])} if a.get("called") else None
+    return {"generated": out["generated"], **res, "check": check}
 
 
 def main():
@@ -121,11 +124,14 @@ def main():
     old = json.loads(OUT.read_text()) if OUT.exists() else {}
     n = sum(r["winner"] is not None for r in out["races"])
     if {**old, "generated": None} == {**out, "generated": None}:  # nothing moved: keep the file (and its time) as it is
+        out = old
         print(f"{OUT.relative_to(SC.ROOT)}: unchanged ({n} of {len(out['races'])} races called)")
-        return
-    OUT.write_text(json.dumps(out, separators=(",", ":")))
-    SUMMARY.write_text(json.dumps(summary(out), separators=(",", ":")))
-    print(f"{OUT.relative_to(SC.ROOT)}: {n} of {len(out['races'])} races called")
+    else:
+        OUT.write_text(json.dumps(out, separators=(",", ":")))
+        print(f"{OUT.relative_to(SC.ROOT)}: {n} of {len(out['races'])} races called")
+    s = json.dumps(summary(out), separators=(",", ":"))
+    if not SUMMARY.exists() or SUMMARY.read_text() != s:
+        SUMMARY.write_text(s)
 
 
 if __name__ == "__main__":
