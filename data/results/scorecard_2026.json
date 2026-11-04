@@ -3647,7 +3647,7 @@
    "seat": "KS",
    "p": 0.3578,
    "y": null,
-   "status": null
+   "status": "counting"
   },
   {
    "office": "governor",
