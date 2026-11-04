@@ -3,11 +3,12 @@ name: results
 # The count after the election: midterms/results_wiki.py reads the calls and counts on Wikipedia into
 # data/results/results_2026.csv (rows from official returns are kept as they are), midterms/scorecard.py scores the frozen
 # forecast against them (data/results/scorecard_2026.json) and midterms/results_page.py writes the results page's data
-# (web/data/results.json, and results_summary.json for the scorvec.com homepage). Every two hours while races are counted,
-# on demand, and whenever the results file is edited by hand.
+# (web/data/results.json, and results_summary.json for the scorvec.com homepage); live/remaining.js reweights the frozen
+# forecast's simulations by every call and count for the races still out (web/data/live.json, live_history.json). Hourly
+# while races are counted, on demand, and whenever the results file is edited by hand.
 on:
   schedule:
-    - cron: "40 */2 * * *"
+    - cron: "40 * * * *"
   push:
     branches: [main]
     paths: [data/results/results_2026.csv]
@@ -55,6 +56,12 @@ jobs:
           python -m midterms.scorecard
           python -m midterms.results_page
 
+      # node is on the runner image; the engine is plain JavaScript with no packages
+      - name: Project the races still out
+        run: |
+          python -m midterms.live_obs
+          node live/remaining.js
+
       - name: Save the page cache
         if: ${{ always() }}
         uses: actions/cache/save@v6
@@ -66,7 +73,7 @@ jobs:
       - name: Commit the results
         run: |
           set -uo pipefail
-          files="data/results/results_2026.csv data/results/scorecard_2026.json web/data/results.json web/data/results_summary.json"
+          files="data/results/results_2026.csv data/results/scorecard_2026.json web/data/results.json web/data/results_summary.json web/data/live.json web/data/live_history.json"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           SNAP=$(mktemp -d)

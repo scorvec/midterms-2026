@@ -10,8 +10,10 @@ explanation is [How the forecast works](https://scorvec.com/midterms/about.html)
 
 The election was held on 3 November 2026. The forecast was frozen at 17:04 UTC that day, before the first polls closed
 (`data/final/`, with its SHA-256 and commit; see [The daily run](#the-daily-run)), and the site now
-opens on the results and how the frozen forecast did. `results.yml` reads the calls and counts, scores the forecast and
-writes the results page's data; the daily forecast no longer runs.
+opens on the results and how the frozen forecast did. `results.yml` reads the calls and counts, scores the forecast,
+writes the results page's data and projects the races still out (`live/remaining.js`: the frozen forecast's own simulations,
+from `live/engine.js` and `data/final/whatif_2026.json` at the frozen commit, reweighted by every call and count); the daily
+forecast no longer runs.
 
 Each day the model re-reads the polls, refits a national generic-ballot trend from individual polls, blends every race's
 polls with a fundamentals prior and simulates the elections 20,000 times with correlated errors: a national miss, a
@@ -21,6 +23,7 @@ commits its outputs to `web/`; the pages are static, and every position of the "
 | page | what it shows |
 |---|---|
 | `web/index.html` | the results: each chamber as called, every race next to its frozen forecast, and the scorecard |
+| `web/live.html` | the races still out: projected seat totals and every uncalled race's chance from the calls and counts so far |
 | `web/forecast.html` | the final forecast, as frozen: chamber and governor odds, seat distributions, every race and how each moved |
 | `web/about.html` | how the forecast works, the track record and every source |
 | `web/legislatures.html` | state legislative chambers (experimental), with district maps |
@@ -163,7 +166,7 @@ Other workflows:
 
 | workflow | what it does |
 |---|---|
-| `results.yml` | every two hours, on demand and on every hand edit of `data/results/results_2026.csv`: the calls and counts from Wikipedia (`results_wiki.py`; rows from official returns are kept), the scorecard (`scorecard.py`, rules in its docstring, -> `data/results/scorecard_2026.json`) and the results page's data (`results_page.py` -> `web/data/results.json`) |
+| `results.yml` | hourly, on demand and on every hand edit of `data/results/results_2026.csv`: the calls and counts from Wikipedia (`results_wiki.py`; rows from official returns are kept), the scorecard (`scorecard.py`, rules in its docstring, -> `data/results/scorecard_2026.json`), the results page's data (`results_page.py` -> `web/data/results.json`) and the projection of the races still out (`live_obs.py`, then `node live/remaining.js` -> `web/data/live.json`, `live_history.json`) |
 | `stateleg-geo.yml` | builds the district maps `web/data/stateleg_geo/` from Census TIGER/Line when the chamber list or the district leans change |
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
 | `cd-lean.yml` | manual: the congressional-district leans (`cd_lean_build.py`) on the 2026 maps or on the 2018 and 2022 maps |
