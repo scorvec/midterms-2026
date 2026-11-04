@@ -3,65 +3,65 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 320,
+   "called": 418,
    "of": 488,
-   "brier": 0.0312,
-   "log_loss": 0.1066,
-   "favourite_won": 0.969,
+   "brier": 0.0231,
+   "log_loss": 0.0819,
+   "favourite_won": 0.976,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 83,
+     "n": 126,
      "forecast": 0.011,
-     "won": 0.012
-    },
-    {
-     "band": "0.05-0.15",
-     "n": 22,
-     "forecast": 0.093,
-     "won": 0.182
-    },
-    {
-     "band": "0.15-0.35",
-     "n": 11,
-     "forecast": 0.233,
-     "won": 0.455
-    },
-    {
-     "band": "0.35-0.50",
-     "n": 2,
-     "forecast": 0.443,
      "won": 0.0
     },
     {
+     "band": "0.05-0.15",
+     "n": 30,
+     "forecast": 0.09,
+     "won": 0.067
+    },
+    {
+     "band": "0.15-0.35",
+     "n": 12,
+     "forecast": 0.237,
+     "won": 0.5
+    },
+    {
+     "band": "0.35-0.50",
+     "n": 4,
+     "forecast": 0.439,
+     "won": 0.5
+    },
+    {
      "band": "0.50-0.65",
-     "n": 6,
-     "forecast": 0.563,
+     "n": 9,
+     "forecast": 0.568,
      "won": 1.0
     },
     {
      "band": "0.65-0.85",
-     "n": 18,
-     "forecast": 0.763,
+     "n": 24,
+     "forecast": 0.76,
      "won": 1.0
     },
     {
      "band": "0.85-0.95",
-     "n": 7,
-     "forecast": 0.912,
+     "n": 9,
+     "forecast": 0.914,
      "won": 1.0
     },
     {
      "band": "0.95-1.00",
-     "n": 171,
-     "forecast": 0.996,
+     "n": 204,
+     "forecast": 0.997,
      "won": 1.0
     }
    ],
    "raters": {
-    "n": 61,
-    "brier_model": 0.1143,
-    "brier_raters": 0.1186
+    "n": 87,
+    "brier_model": 0.0763,
+    "brier_raters": 0.088
    }
   },
   "governor": {
@@ -122,59 +122,65 @@
    ]
   },
   "house": {
-   "called": 254,
+   "called": 352,
    "of": 417,
-   "brier": 0.0275,
-   "log_loss": 0.094,
-   "favourite_won": 0.972,
+   "brier": 0.0189,
+   "log_loss": 0.0681,
+   "favourite_won": 0.98,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 68,
+     "n": 111,
      "forecast": 0.01,
-     "won": 0.015
+     "won": 0.0
     },
     {
      "band": "0.05-0.15",
-     "n": 16,
-     "forecast": 0.094,
-     "won": 0.25
+     "n": 24,
+     "forecast": 0.09,
+     "won": 0.083
     },
     {
      "band": "0.15-0.35",
-     "n": 6,
-     "forecast": 0.212,
-     "won": 0.333
+     "n": 7,
+     "forecast": 0.222,
+     "won": 0.429
+    },
+    {
+     "band": "0.35-0.50",
+     "n": 2,
+     "forecast": 0.434,
+     "won": 1.0
     },
     {
      "band": "0.50-0.65",
-     "n": 3,
-     "forecast": 0.547,
+     "n": 6,
+     "forecast": 0.562,
      "won": 1.0
     },
     {
      "band": "0.65-0.85",
-     "n": 12,
-     "forecast": 0.766,
+     "n": 18,
+     "forecast": 0.761,
      "won": 1.0
     },
     {
      "band": "0.85-0.95",
-     "n": 2,
-     "forecast": 0.907,
+     "n": 4,
+     "forecast": 0.915,
      "won": 1.0
     },
     {
      "band": "0.95-1.00",
-     "n": 147,
+     "n": 180,
      "forecast": 0.997,
      "won": 1.0
     }
    ],
    "raters": {
-    "n": 61,
-    "brier_model": 0.1143,
-    "brier_raters": 0.1186
+    "n": 87,
+    "brier_model": 0.0763,
+    "brier_raters": 0.088
    }
   },
   "senate": {
@@ -2118,8 +2124,8 @@
    "office": "house",
    "seat": "NY-17",
    "p": 0.7905,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.618
   },
   {
@@ -2192,8 +2198,8 @@
    "office": "house",
    "seat": "NC-1",
    "p": 0.7658,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.65
   },
   {
@@ -2230,8 +2236,8 @@
    "office": "house",
    "seat": "NC-6",
    "p": 0.0799,
-   "y": 1,
-   "status": "called",
+   "y": null,
+   "status": null,
    "raters": 0.095
   },
   {
@@ -2285,39 +2291,39 @@
    "office": "house",
    "seat": "NC-13",
    "p": 0.1374,
-   "y": 1,
-   "status": "called",
+   "y": null,
+   "status": null,
    "raters": 0.195
   },
   {
    "office": "house",
    "seat": "NC-14",
    "p": 0.0369,
-   "y": 1,
-   "status": "called",
+   "y": null,
+   "status": null,
    "raters": 0.127
   },
   {
    "office": "house",
    "seat": "ND-1",
    "p": 0.0013,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OH-1",
    "p": 0.9394,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.805
   },
   {
    "office": "house",
    "seat": "OH-2",
    "p": 0.0007,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2330,45 +2336,45 @@
    "office": "house",
    "seat": "OH-4",
    "p": 0.0003,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OH-5",
    "p": 0.0138,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OH-6",
    "p": 0.0019,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OH-7",
    "p": 0.5385,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.577
   },
   {
    "office": "house",
    "seat": "OH-8",
    "p": 0.0486,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.095
   },
   {
    "office": "house",
    "seat": "OH-9",
    "p": 0.6869,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.668
   },
   {
@@ -2383,15 +2389,15 @@
    "office": "house",
    "seat": "OH-11",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OH-12",
    "p": 0.0052,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2405,45 +2411,45 @@
    "office": "house",
    "seat": "OH-14",
    "p": 0.0515,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OH-15",
    "p": 0.2828,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.327
   },
   {
    "office": "house",
    "seat": "OK-1",
    "p": 0.0312,
-   "y": null,
-   "status": "counting",
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
    "office": "house",
    "seat": "OK-2",
    "p": 0.0001,
-   "y": null,
-   "status": "counting"
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OK-3",
    "p": 0.0002,
-   "y": null,
-   "status": "counting"
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OK-4",
    "p": 0.0017,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2457,43 +2463,43 @@
    "office": "house",
    "seat": "OR-1",
    "p": 0.9999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OR-2",
    "p": 0.0163,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OR-3",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OR-4",
    "p": 0.9986,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OR-5",
    "p": 0.9971,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "OR-6",
    "p": 0.9993,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2551,8 +2557,8 @@
    "office": "house",
    "seat": "PA-9",
    "p": 0.0033,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2566,8 +2572,8 @@
    "office": "house",
    "seat": "PA-11",
    "p": 0.051,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
@@ -2588,8 +2594,8 @@
    "office": "house",
    "seat": "PA-14",
    "p": 0.0034,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2602,8 +2608,8 @@
    "office": "house",
    "seat": "PA-16",
    "p": 0.034,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
@@ -2617,15 +2623,15 @@
    "office": "house",
    "seat": "RI-1",
    "p": 0.9998,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "RI-2",
    "p": 0.995,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2647,65 +2653,65 @@
    "office": "house",
    "seat": "SC-3",
    "p": 0.0006,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "SC-4",
    "p": 0.0097,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "SC-5",
    "p": 0.0635,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
    "office": "house",
    "seat": "SC-6",
    "p": 0.9999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "SC-7",
    "p": 0.0244,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "SD-1",
    "p": 0.0047,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TN-1",
    "p": 0.0001,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TN-2",
    "p": 0.0016,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TN-3",
    "p": 0.0011,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2718,16 +2724,16 @@
    "office": "house",
    "seat": "TN-5",
    "p": 0.0894,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.105
   },
   {
    "office": "house",
    "seat": "TN-6",
    "p": 0.0127,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2741,8 +2747,8 @@
    "office": "house",
    "seat": "TN-8",
    "p": 0.0168,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2756,8 +2762,8 @@
    "office": "house",
    "seat": "TX-1",
    "p": 0.0003,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2771,15 +2777,15 @@
    "office": "house",
    "seat": "TX-3",
    "p": 0.0378,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-4",
    "p": 0.0149,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2793,22 +2799,22 @@
    "office": "house",
    "seat": "TX-6",
    "p": 0.0114,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-7",
    "p": 0.9997,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-8",
    "p": 0.0169,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2822,88 +2828,88 @@
    "office": "house",
    "seat": "TX-10",
    "p": 0.0744,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.095
   },
   {
    "office": "house",
    "seat": "TX-11",
    "p": 0.0031,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-12",
    "p": 0.0206,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-13",
    "p": 0.0003,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-14",
    "p": 0.0118,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-15",
    "p": 0.6077,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.564
   },
   {
    "office": "house",
    "seat": "TX-16",
    "p": 0.9988,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-17",
    "p": 0.0281,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
    "office": "house",
    "seat": "TX-18",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-19",
    "p": 0.0003,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-20",
    "p": 0.9998,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-21",
    "p": 0.0718,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.095
   },
   {
@@ -2918,31 +2924,31 @@
    "office": "house",
    "seat": "TX-23",
    "p": 0.4546,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.359
   },
   {
    "office": "house",
    "seat": "TX-24",
    "p": 0.0895,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.116
   },
   {
    "office": "house",
    "seat": "TX-25",
    "p": 0.0225,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-26",
    "p": 0.0059,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2956,30 +2962,30 @@
    "office": "house",
    "seat": "TX-28",
    "p": 0.9052,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.788
   },
   {
    "office": "house",
    "seat": "TX-29",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-30",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-31",
    "p": 0.0329,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
@@ -2994,38 +3000,38 @@
    "office": "house",
    "seat": "TX-33",
    "p": 0.9999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-34",
    "p": 0.8236,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.705
   },
   {
    "office": "house",
    "seat": "TX-35",
    "p": 0.5888,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.518
   },
   {
    "office": "house",
    "seat": "TX-36",
    "p": 0.0119,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "TX-37",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -3039,8 +3045,8 @@
    "office": "house",
    "seat": "UT-1",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -3053,8 +3059,8 @@
    "office": "house",
    "seat": "UT-3",
    "p": 0.0005,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -3067,8 +3073,8 @@
    "office": "house",
    "seat": "VT-1",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -3082,23 +3088,23 @@
    "office": "house",
    "seat": "VA-2",
    "p": 0.7682,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.714
   },
   {
    "office": "house",
    "seat": "VA-3",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "VA-4",
    "p": 0.9999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -3112,23 +3118,23 @@
    "office": "house",
    "seat": "VA-6",
    "p": 0.0072,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "VA-7",
    "p": 0.9961,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.895
   },
   {
    "office": "house",
    "seat": "VA-8",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -3141,29 +3147,29 @@
    "office": "house",
    "seat": "VA-10",
    "p": 0.9986,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "VA-11",
    "p": 0.9999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WA-1",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WA-2",
    "p": 0.9998,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -3193,103 +3199,103 @@
    "office": "house",
    "seat": "WA-6",
    "p": 0.9996,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WA-7",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WA-8",
    "p": 0.9964,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WA-9",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WA-10",
    "p": 0.9997,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WV-1",
    "p": 0.0008,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WV-2",
    "p": 0.0015,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WI-1",
    "p": 0.4144,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.427
   },
   {
    "office": "house",
    "seat": "WI-3",
    "p": 0.6701,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.695
   },
   {
    "office": "house",
    "seat": "WI-4",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WI-5",
    "p": 0.0119,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "WI-6",
    "p": 0.1305,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
    "office": "house",
    "seat": "WI-7",
    "p": 0.1489,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.095
   },
   {
    "office": "house",
    "seat": "WI-8",
    "p": 0.1041,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.095
   },
   {
@@ -3800,8 +3806,8 @@
  ],
  "chambers": {
   "house": {
-   "d_called": 188,
-   "undecided": 163
+   "d_called": 232,
+   "undecided": 65
   },
   "senate": {
    "d_called": 54,
