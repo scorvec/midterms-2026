@@ -8,6 +8,11 @@ A Monte Carlo forecast of the 2026 U.S. House, Senate and governor elections, wi
 legislative chambers. It is published at [scorvec.com/midterms](https://scorvec.com/midterms/); the reader-facing
 explanation is [How the forecast works](https://scorvec.com/midterms/about.html) (`web/about.html`).
 
+The election was held on 3 November 2026. The forecast was frozen at 17:04 UTC that day, before the first polls closed
+(`data/final/`, with its SHA-256 and commit; see [The daily run](#the-daily-run)), and the site now
+opens on the results and how the frozen forecast did. `results.yml` reads the calls and counts, scores the forecast and
+writes the results page's data; the daily forecast no longer runs.
+
 Each day the model re-reads the polls, refits a national generic-ballot trend from individual polls, blends every race's
 polls with a fundamentals prior and simulates the elections 20,000 times with correlated errors: a national miss, a
 statewide miss, regional and demographic swings, and each race's own error. The whole run happens in GitHub Actions and
@@ -15,10 +20,9 @@ commits its outputs to `web/`; the pages are static, and every position of the "
 
 | page | what it shows |
 |---|---|
-| `web/index.html` | the forecast: chamber and governor odds, seat distributions, every race and how each has moved |
+| `web/index.html` | the results: each chamber as called, every race next to its frozen forecast, and the scorecard |
+| `web/forecast.html` | the final forecast, as frozen: chamber and governor odds, seat distributions, every race and how each moved |
 | `web/about.html` | how the forecast works, the track record and every source |
-| `web/polls.html` | every poll and the weight it received in its race |
-| `web/whatif.html` + `whatif_engine.js` | re-runs the simulation in the browser under the reader's own assumptions |
 | `web/legislatures.html` | state legislative chambers (experimental), with district maps |
 
 ## How the model works
@@ -159,15 +163,11 @@ Other workflows:
 
 | workflow | what it does |
 |---|---|
-| `early-diag.yml` | daily early-vote composition diagnostics for North Carolina, Florida, Georgia and Clark and Washoe counties, Nevada, and the turnout table (`turnout_proj.py`); commits `data/early/` (and once, the turnout table's fixed inputs) |
-| `tx-early.yml` | twice a day while `TX_EARLY` is `on`: Texas early-vote turnout (`tx_early.py`), then the turnout table and `web/data/early_vote.json`; commits `data/early/` and the page data |
-| `early-skill.yml` | manual: the pre-registered test of whether the early vote's party mix has predicted the polls' misses (`early_skill.py`); commits `data/static/early_skill.json` and `data/static/early_skill/` |
+| `results.yml` | every two hours, on demand and on every hand edit of `data/results/results_2026.csv`: the calls and counts from Wikipedia (`results_wiki.py`; rows from official returns are kept), the scorecard (`scorecard.py`, rules in its docstring, -> `data/results/scorecard_2026.json`) and the results page's data (`results_page.py` -> `web/data/results.json`) |
 | `stateleg-geo.yml` | builds the district maps `web/data/stateleg_geo/` from Census TIGER/Line when the chamber list or the district leans change |
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
 | `cd-lean.yml` | manual: the congressional-district leans (`cd_lean_build.py`) on the 2026 maps or on the 2018 and 2022 maps |
 | `district-inputs.yml` | manual: the urbanization index, the House map shapes and (for states back on their old lines) the demographic tables on the maps in force for 2026 (`demog.cd_blocks`); dispatch after a court ruling changes a state's map |
-| `nc-night.yml` | election night, dispatched when the polls close: reads North Carolina's results file every five minutes for five and a half hours and writes the Senate final-margin estimate (`nc_night.py live`) |
-| `scorecard.yml` | on every change to `data/results/results_2026.csv` (and on demand): scores the frozen forecast against the results (`scorecard.py`, rules in its docstring) and commits `data/results/scorecard_2026.json` |
 
 ## Run it yourself
 
@@ -209,7 +209,7 @@ module constants, each documented where it is defined.
 | path | what |
 |---|---|
 | `midterms/` | the model (Python 3.11; `requirements.txt`); `paths.py` defines the data layout |
-| `web/` | the five pages and `whatif_engine.js`; `web/data/` holds the published outputs |
+| `web/` | the results page, the final forecast, how it works and the state legislatures; `web/data/` holds the published outputs |
 | `tests/` | the test suite: every module imports, the early-vote profile and exposures, release dates, simulation pieces |
 | `data/static/` | small inputs derived once from public sources (below); committed |
 | `data/state/` | poll records the daily run accumulates (the feeds only reach back a few weeks); committed |
@@ -748,10 +748,11 @@ dates with either lean. On the inputs of 16 October 2026 the switch moved the Ho
 
 ### Early vote
 
-None of these feeds the forecast. Votes cast before Election Day enter the model only through the early-vote movement
-split described above (national and race-level). `web/early-vote.html` publishes North Carolina, Georgia and Florida
-(`early_page.py` assembles `web/data/early_vote.json` from committed files; the site sync copies it). All of it runs
-nightly in `early-diag.yml`; only aggregates are committed.
+These ran until election night; their workflows (`early-diag.yml`, `tx-early.yml`, `early-skill.yml`, `nc-night.yml`) were
+retired on 4 November 2026 and their committed outputs stay. None of these fed the forecast. Votes cast before Election Day enter the model only through the early-vote movement
+split described above (national and race-level). Until Election Day an early-vote page published North Carolina, Georgia
+and Florida (`early_page.py` assembled its data from committed files). All of it ran nightly in `early-diag.yml`; only
+aggregates are committed.
 
 **North Carolina, published** (`nc_tracker.py`): accepted mail and one-stop ballots of 2026 against the 2018 and 2022
 midterms and the 2020 and 2024 presidential years on the same number of days out, by party, age, race, county (against
@@ -803,7 +804,7 @@ share the last comparable midterm had banked by the same point - only where at l
 it a backtested 80 % range. Pre-registered in the module, with one dated amendment: cycles are compared only if their
 in-person early voting opened within a day of each other. On the first run no state qualifies (North Carolina's 2014 and
 2018 calendars leave one comparable midterm; Pennsylvania's mail records start in 2020), so the page shows the counts and
-says why. Output `data/early/turnout_proj.json`, in `web/data/early_vote.json` as `turnout`.
+says why. Output `data/early/turnout_proj.json`.
 
 **North Carolina on election night** (`nc_night.py`; not on the site, not a forecast input). North Carolina reports its
 early and mail ballots first. A registration accounting - a county's ballots cast one way have each party's net vote,
@@ -843,13 +844,14 @@ number, which the forecast already allows for by treating a race's polls as shar
 
 ## Credits
 
-Model and code: Shawn Corvec. Poll data belong to their pollsters. Governor results and nominees' offices: Wikipedia
-(CC BY-SA 4.0). Ranked-choice transfer rates are derived from the Maine Secretary of State's and the State of Alaska
+Model and code: Shawn Corvec. Poll data belong to their pollsters. Governor results and nominees' offices, and the 2026
+calls and counts: Wikipedia (CC BY-SA 4.0). Ranked-choice transfer rates are derived from the Maine Secretary of State's and the State of Alaska
 Division of Elections' official tabulations. See `web/about.html` ("Sources and credits") for the full list. Not
 affiliated with or endorsed by any of the sources.
 
 ## License
 
 Code: [MIT](LICENSE). Data keep the terms of their sources, listed above. Race polls taken from Wikipedia's race pages are
-used under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); `web/data/polls.json`, `web/data/whatif.json`
-and the poll page (`web/polls.html`) republish them, as checked, corrected and weighted by the model, under the same licence.
+used under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); the race poll averages in `web/data/model.json`
+are derived from them and published under the same licence. The 2026 calls and counts in `data/results/results_2026.csv` and
+`web/data/results.json` are taken from Wikipedia's election pages under the same licence, until official returns replace them.

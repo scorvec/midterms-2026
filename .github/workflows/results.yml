@@ -1,0 +1,89 @@
+name: results
+
+# The count after the election: midterms/results_wiki.py reads the calls and counts on Wikipedia into
+# data/results/results_2026.csv (rows from official returns are kept as they are), midterms/scorecard.py scores the frozen
+# forecast against them (data/results/scorecard_2026.json) and midterms/results_page.py writes the results page's data
+# (web/data/results.json, and results_summary.json for the scorvec.com homepage). Every two hours while races are counted,
+# on demand, and whenever the results file is edited by hand.
+on:
+  schedule:
+    - cron: "40 */2 * * *"
+  push:
+    branches: [main]
+    paths: [data/results/results_2026.csv]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: results
+  cancel-in-progress: false
+
+jobs:
+  results:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # the Wikipedia page cache: a page is downloaded again only when its revision changed (wiki_polls.fetch)
+      - name: Restore the page cache
+        uses: actions/cache/restore@v6
+        with:
+          path: data/cache/wiki
+          key: midterms-results-wiki-${{ github.run_id }}
+          restore-keys: midterms-results-wiki-
+
+      - name: Read the results
+        run: python -m midterms.results_wiki
+
+      - name: Score and build the page data
+        run: |
+          python -m midterms.scorecard
+          python -m midterms.results_page
+
+      - name: Save the page cache
+        if: ${{ always() }}
+        uses: actions/cache/save@v6
+        with:
+          path: data/cache/wiki
+          key: midterms-results-wiki-${{ github.run_id }}
+
+      # Snapshot the outputs, resync to the newest main, restore, commit, push (no rebase), as daily.yml does
+      - name: Commit the results
+        run: |
+          set -uo pipefail
+          files="data/results/results_2026.csv data/results/scorecard_2026.json web/data/results.json web/data/results_summary.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          SNAP=$(mktemp -d)
+          tar cf "$SNAP/outs.tar" $files
+          read_from=$(git rev-parse HEAD:data/results/results_2026.csv)
+          for i in 1 2 3 4 5; do
+            if ! timeout 120 git fetch -q origin main; then echo "fetch $i failed"; sleep 5; continue; fi
+            if [ "$(git rev-parse origin/main:data/results/results_2026.csv)" != "$read_from" ]; then
+              echo "::notice::the results file changed during this run (a hand edit): the run it triggered reads it again"
+              exit 0
+            fi
+            git reset -q --hard origin/main
+            tar xf "$SNAP/outs.tar"
+            git add -- $files
+            if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "Results $(date -u +%FT%H:%MZ)"
+            if timeout 180 git push -q origin HEAD:main; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push $i rejected; resyncing and retrying"; sleep $((i * 5))
+          done
+          echo "::error::push failed after 5 attempts"; exit 1

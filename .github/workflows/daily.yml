@@ -1,10 +1,8 @@
 name: daily forecast
 
-# Polls are released mostly Wed-Fri, 10:00-17:00 New York time; 94 % are out by 21:00. The run starts at 02:30 UTC
-# (22:30 EDT / 21:30 EST). Scheduled runs can start late when GitHub is busy.
+# The forecast ran daily at 02:30 UTC until it was frozen on 3 November 2026 (data/final/); since the election it runs only
+# when dispatched, with after_freeze.
 on:
-  schedule:
-    - cron: "30 2 * * *"
   workflow_dispatch:
     inputs:
       force_publish:
