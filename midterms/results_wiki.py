@@ -6,10 +6,13 @@ Calls: the winner ticked on the three overview pages (House, Senate, governors: 
 "Democratic gain", "Republican hold", ...). Counts: the general-election box on each race's own page (the House: one page
 per state, one box per district) once editors fill it in; an empty or half-filled box leaves the counts blank. Ranked-choice
 races (Alaska, Maine) get no count here: their boxes carry rounds, and the scorer needs the final round from official returns.
+Calls made elsewhere first (data/results/outside_calls.csv: a race a news organisation has called, NBC News's included, entered
+by hand with its source; NBC's pages are never read by a script) fill in a race Wikipedia has not ticked yet; a winner
+ticked on Wikipedia takes precedence, and a disagreement is printed.
 The national House vote: the overview page's national table (Democratic, Republican and every vote), once editors fill it in.
 Rows read here are status "called" (a winner is ticked) or "counting" (a count, no call); "final" and "certified" come only
 from official returns and are never overwritten. A count entered from another tally (source not Wikipedia: a news count with
-its reported share counted) keeps its numbers; only Wikipedia's call is added to it. The two sides are the results
+its reported share counted) keeps its numbers; only a call is added to it. The two sides are the results
 file's challenger and republican, the forecast's names unless corrected there (Louisiana's incumbents, missed by the forecast).
 Louisiana's House races were one ballot of every candidate in 2026 (a December runoff below 50 %): a side's count there is its
 party's total, the model's party margin.
@@ -35,6 +38,7 @@ AT_LARGE = {"AK", "DE", "ND", "SD", "VT", "WY"}
 ALL_CANDIDATE = {"LA"}  # House races with every candidate on one November ballot
 TICK = "img[contains(@alt, 'tick') or contains(@alt, 'check')]"
 COUNT_COLS = ["chal_votes", "rep_votes", "total_votes"]
+OUTSIDE = SC.ROOT / "data" / "results" / "outside_calls.csv"  # office, seat, winner, source, called_at
 
 
 def _text(el) -> str:
@@ -151,6 +155,19 @@ def national(html: str):
     return None
 
 
+def outside_calls(called: dict, rows: list[dict]) -> list[str]:
+    """Add the hand-entered calls (in place) to races Wikipedia has not called; returns the disagreements."""
+    clash = []
+    for r in rows:
+        key, win = (r["office"], r["seat"]), r["winner"].strip()
+        have = (called.get(key) or {}).get("winner")
+        if have and have != win:
+            clash.append(f"{key[0]} {key[1]}: Wikipedia {have}, {r['source']} {win}")
+        elif not have:
+            called[key] = {"winner": win, "name": None, "by": r["source"]}
+    return clash
+
+
 def race_page(office: str, seat: str, special: bool) -> str:
     st = seat.split("-")[0]
     if office == "senate":
@@ -183,6 +200,8 @@ def update(res: pd.DataFrame, forecast: dict, called: dict, counts: dict, now: s
             sides = {W._surname(r["challenger"]), W._surname(r["republican"])}
             stray = c.get("name") and W._surname(c["name"]) not in sides
             new["note"] = f"winner {c['name']} is neither forecast side" if stray else ""
+            if c.get("by"):
+                new["note"] = f"called by {c['by']}"
         if all(r[k] == v for k, v in new.items()):
             continue
         was, now_ = f"{r['winner'] or '-'}/{r['status'] or '-'}", f"{new['winner'] or '-'}/{new['status'] or '-'}"
@@ -203,6 +222,9 @@ def main():
         overview[office] = W.fetch(page, max_age_h=0)
         for seat, c in calls(office, overview[office]).items():
             called[(office, seat)] = c
+    if OUTSIDE.exists():
+        for line in outside_calls(called, pd.read_csv(OUTSIDE, dtype=str, keep_default_na=False).to_dict("records")):
+            print("  calls disagree: " + line)
     nat = national(overview["house"])
     counts, pages = ({("national", "US"): nat} if nat else {}), {}
     names = {(r.office, r.seat): (r.challenger, r.republican) for r in res.itertuples()}

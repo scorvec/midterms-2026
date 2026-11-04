@@ -151,6 +151,25 @@ def test_a_hand_count_keeps_its_numbers_and_takes_the_call():
     ]
 
 
+def test_outside_calls_fill_gaps_and_wikipedia_wins_a_clash():
+    called = {("house", "CA-22"): {"winner": "R", "name": "David Valadao"}}
+    rows = [
+        {"office": "senate", "seat": "MS", "winner": "D", "source": "NBC News", "called_at": ""},
+        {"office": "house", "seat": "CA-22", "winner": "D", "source": "NBC News", "called_at": ""},
+    ]
+    assert RW.outside_calls(called, rows) == ["house CA-22: Wikipedia R, NBC News D"]
+    assert called[("senate", "MS")] == {"winner": "D", "name": None, "by": "NBC News"}
+    assert called[("house", "CA-22")]["winner"] == "R"
+    forecast = {
+        "races": [{"office": "house", "seat": "KY-6", "challenger": "Zach Dembo", "republican": "Ralph Alvarado"}]
+    }
+    res = pd.DataFrame([dict.fromkeys(SC.COLS, "") | {"office": "house", "seat": "KY-6", "challenger": "Zach Dembo"}])
+    RW.update(
+        res, forecast, {("house", "KY-6"): {"winner": "D", "name": None, "by": "NBC News"}}, {}, "2026-11-04T14:00Z"
+    )
+    assert res.loc[0, ["winner", "status", "note"]].tolist() == ["D", "called", "called by NBC News"]
+
+
 def test_page_titles():
     assert RW.race_page("senate", "OH", True) == "2026 United States Senate special election in Ohio"
     assert RW.race_page("governor", "NV", False) == "2026 Nevada gubernatorial election"

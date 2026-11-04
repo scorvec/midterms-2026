@@ -5,13 +5,13 @@ name: results
 # forecast against them (data/results/scorecard_2026.json) and midterms/results_page.py writes the results page's data
 # (web/data/results.json, and results_summary.json for the scorvec.com homepage); live/remaining.js reweights the frozen
 # forecast's simulations by every call and count for the races still out (web/data/live.json, live_history.json). Hourly
-# while races are counted, on demand, and whenever the results file is edited by hand.
+# while races are counted, on demand, and whenever the results file or the outside calls (outside_calls.csv) are edited by hand.
 on:
   schedule:
     - cron: "40 * * * *"
   push:
     branches: [main]
-    paths: [data/results/results_2026.csv]
+    paths: [data/results/results_2026.csv, data/results/outside_calls.csv]
   workflow_dispatch:
 
 permissions:
