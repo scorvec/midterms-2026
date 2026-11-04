@@ -134,15 +134,17 @@ function run(obs) {
   for (const [key, s] of forced) { const [t, j] = key.split(":"); (t === "H" ? fH : fS)[+j] = s; }
   const won = (f, v) => (f ? f > 0 : v > 0);
   const hSeats = new Float64Array(N), sSeats = new Float64Array(N), gSeats = new Float64Array(N);
+  const hR = new Float64Array(N), sR = new Float64Array(N), gR = new Float64Array(N); // Republican seats
   const hWin = new Float64Array(nH), sWin = new Float64Array(nSG);
   let hMaj = 0, sCtl = 0, gMaj = 0;
   for (let i = 0; i < N; i++) {
     const wi = w[i] / sw;
-    let hd = 0, sd = D.senate.holdD, si = 0, gd = D.governor.holdD;
-    for (let j = 0; j < nH; j++) if (won(fH[j], HM[i * nH + j])) { hWin[j] += wi; if (!H.seats[j].ind) hd++; }
+    let hd = 0, hi = 0, sd = D.senate.holdD, si = 0, gd = D.governor.holdD;
+    for (let j = 0; j < nH; j++) if (won(fH[j], HM[i * nH + j])) { hWin[j] += wi; H.seats[j].ind ? hi++ : hd++; }
     for (let j = 0; j < nS; j++) if (won(fS[j], SM[i * nSG + j])) { sWin[j] += wi; races[j].ind ? si++ : sd++; }
     for (let j = nS; j < nSG; j++) if (won(fS[j], SM[i * nSG + j])) { sWin[j] += wi; gd++; }
     hSeats[i] = hd; sSeats[i] = sd; gSeats[i] = gd;
+    hR[i] = nH - hd - hi; sR[i] = 100 - sd - si; gR[i] = 50 - gd;
     hMaj += wi * (hd >= H.need); sCtl += wi * (sd > 100 - sd - si); gMaj += wi * (gd >= D.governor.need);
   }
   const local = new Map();
@@ -157,13 +159,13 @@ function run(obs) {
     const prec = 1 / (s0 * s0) + 1 / (so * so), pm = (m0 / (s0 * s0) + c.m / (so * so)) / prec, ps = Math.sqrt(1 / prec);
     local.set(c.k.join(":"), { p: Phi(pm / ps), med: pm, lo: pm - 1.2816 * ps, hi: pm + 1.2816 * ps });
   }
-  const chamber = (seats, p) => {
-    const [p10, p50, p90] = weightedQuantiles(seats, w, sw, [0.1, 0.5, 0.9]);
+  const chamber = (seats, p, rSeats) => {
+    const [p10, p50, p90] = weightedQuantiles(seats, w, sw, [0.1, 0.5, 0.9]), [r50] = weightedQuantiles(rSeats, w, sw, [0.5]);
     let mean = 0;
     const hist = {};
     for (let i = 0; i < N; i++) { const wi = w[i] / sw; mean += wi * seats[i]; hist[seats[i]] = (hist[seats[i]] || 0) + wi; }
     for (const s in hist) hist[s] = +hist[s].toFixed(5);
-    return { p_control: +p.toFixed(4), mean: +mean.toFixed(1), p10, p50, p90, hist };
+    return { p_control: +p.toFixed(4), mean: +mean.toFixed(1), p10, p50, p90, r50, hist };
   };
   const rows = [], byRace = new Map(obs.map((o) => [o.race, o]));
   for (const [key, k] of Object.entries(idx)) {
@@ -181,7 +183,7 @@ function run(obs) {
   return {
     ess: Math.round(ess), alpha: +alpha.toFixed(4),
     national: { mean: +(D.E0 + nat).toFixed(2), p10: +(D.E0 + n10).toFixed(2), p90: +(D.E0 + n90).toFixed(2) },
-    house: chamber(hSeats, hMaj), senate: chamber(sSeats, sCtl), governor: chamber(gSeats, gMaj), races: rows,
+    house: chamber(hSeats, hMaj, hR), senate: chamber(sSeats, sCtl, sR), governor: chamber(gSeats, gMaj, gR), races: rows,
   };
 }
 

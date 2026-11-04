@@ -51,16 +51,16 @@ jobs:
       - name: Read the results
         run: python -m midterms.results_wiki
 
-      - name: Score and build the page data
-        run: |
-          python -m midterms.scorecard
-          python -m midterms.results_page
-
       # node is on the runner image; the engine is plain JavaScript with no packages
       - name: Project the races still out
         run: |
           python -m midterms.live_obs
           node live/remaining.js
+
+      - name: Score and build the page data
+        run: |
+          python -m midterms.scorecard
+          python -m midterms.results_page   # after the projection: the homepage panel carries its median outcome
 
       - name: Save the page cache
         if: ${{ always() }}

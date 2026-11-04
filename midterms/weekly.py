@@ -240,7 +240,7 @@ def summary():
     h, s, g = d["house"]["now"], d["senate"]["now"], d["governor"]["now"]
     joint = d["senate"].get("joint") or {}
     jt = joint[min(joint, key=lambda k: abs(float(k) - d["senate"]["E_now"]))] if joint else None
-    # one character per seat, most Democratic first (the page's sort): 0-6 = Solid D .. Solid R (web/index.html cls()),
+    # one character per seat, most Democratic first (the page's sort): 0-6 = Solid D .. Solid R (web/forecast.html cls()),
     # a-c = an independent's solid/likely/lean, D/R = a Senate seat not up this year
     H, S = d["house"], d["senate"]
     gi = min(range(len(H["grid"])), key=lambda i: abs(H["grid"][i] - H["E0"]))

@@ -1,6 +1,6 @@
 """The results page's data: every race's frozen forecast next to its result, the chamber counts and the scorecard.
 
-    python -m midterms.results_page        # -> web/data/results.json (web/index.html), results_summary.json (homepage)
+    python -m midterms.results_page        # -> web/data/results.json (web/results.html), results_summary.json (homepage)
 
 Per race: the forecast (p = the Republican's opponent wins, the median margin and its 80 % range) and the result (the call,
 the status and the margin of the latest count). A margin is "final" only once the count is final or certified (scorecard.py
@@ -21,6 +21,7 @@ from . import scorecard as SC
 from .data_prep import national_house_vote
 
 OUT = SC.ROOT / "web" / "data" / "results.json"
+LIVE = SC.ROOT / "web" / "data" / "live.json"  # the races still out (live/remaining.js): the homepage's median outcome
 SUMMARY = SC.ROOT / "web" / "data" / "results_summary.json"  # the scorvec.com homepage panel, under a kilobyte
 
 
@@ -124,8 +125,10 @@ def build(doc: dict, res: pd.DataFrame) -> dict:
 def summary(out: dict) -> dict:
     """Each chamber's seats as called, one character per seat in the homepage arcs' order (most Democratic first): 0 = a
     Democratic win, a = an independent's, 3 = not called, 6 = a Republican win, D / R = a Senate seat not up this year;
-    and the check of the forecast: how many called races its favourite won."""
+    the median outcome of the races still out (Democratic, Republican seats) when live.json has it; and the check of the
+    forecast: how many called races its favourite won."""
     F, res = out["forecast"], {}
+    live = json.loads(LIVE.read_text()) if LIVE.exists() else {}
     for office, keep_d, keep_r in (("house", "fixed_d", "fixed_r"), ("senate", "holdover_d", "holdover_r")):
         g = [r for r in out["races"] if r["office"] == office]
         d, r = (sum(x["winner"] == w for x in g) for w in "DR")
@@ -139,6 +142,7 @@ def summary(out: dict) -> dict:
             "i": i,
             "open": n,
             "forecast_d": F[office]["p50"],
+            "median": [live[office]["p50"], live[office]["r50"]] if "r50" in live.get(office, {}) else None,
             "seats": held * F[office][keep_d] + "0" * d + "a" * i + "3" * n + "6" * r + held_r * F[office][keep_r],
         }
     a = out["scores"].get("all", {})
