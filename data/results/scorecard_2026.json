@@ -3,15 +3,15 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 418,
+   "called": 419,
    "of": 488,
    "brier": 0.0231,
-   "log_loss": 0.0819,
+   "log_loss": 0.0817,
    "favourite_won": 0.976,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 126,
+     "n": 127,
      "forecast": 0.011,
      "won": 0.0
     },
@@ -59,9 +59,9 @@
     }
    ],
    "raters": {
-    "n": 87,
-    "brier_model": 0.0763,
-    "brier_raters": 0.088
+    "n": 88,
+    "brier_model": 0.0755,
+    "brier_raters": 0.0871
    }
   },
   "governor": {
@@ -122,15 +122,15 @@
    ]
   },
   "house": {
-   "called": 352,
+   "called": 353,
    "of": 417,
    "brier": 0.0189,
-   "log_loss": 0.0681,
+   "log_loss": 0.0679,
    "favourite_won": 0.98,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 111,
+     "n": 112,
      "forecast": 0.01,
      "won": 0.0
     },
@@ -178,9 +178,9 @@
     }
    ],
    "raters": {
-    "n": 87,
-    "brier_model": 0.0763,
-    "brier_raters": 0.088
+    "n": 88,
+    "brier_model": 0.0755,
+    "brier_raters": 0.0871
    }
   },
   "senate": {
@@ -3302,8 +3302,8 @@
    "office": "house",
    "seat": "WY-1",
    "p": 0.0003,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
@@ -3807,7 +3807,7 @@
  "chambers": {
   "house": {
    "d_called": 232,
-   "undecided": 65
+   "undecided": 64
   },
   "senate": {
    "d_called": 54,
