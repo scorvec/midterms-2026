@@ -1,0 +1,3814 @@
+{
+ "asof": "2026-11-03",
+ "races_forecast": 488,
+ "by_office": {
+  "all": {
+   "called": 266,
+   "of": 488,
+   "brier": 0.0373,
+   "log_loss": 0.1251,
+   "favourite_won": 0.962,
+   "calibration": [
+    {
+     "band": "0.00-0.05",
+     "n": 71,
+     "forecast": 0.011,
+     "won": 0.014
+    },
+    {
+     "band": "0.05-0.15",
+     "n": 21,
+     "forecast": 0.091,
+     "won": 0.19
+    },
+    {
+     "band": "0.15-0.35",
+     "n": 10,
+     "forecast": 0.239,
+     "won": 0.5
+    },
+    {
+     "band": "0.35-0.50",
+     "n": 2,
+     "forecast": 0.443,
+     "won": 0.0
+    },
+    {
+     "band": "0.50-0.65",
+     "n": 6,
+     "forecast": 0.563,
+     "won": 1.0
+    },
+    {
+     "band": "0.65-0.85",
+     "n": 18,
+     "forecast": 0.763,
+     "won": 1.0
+    },
+    {
+     "band": "0.85-0.95",
+     "n": 5,
+     "forecast": 0.913,
+     "won": 1.0
+    },
+    {
+     "band": "0.95-1.00",
+     "n": 133,
+     "forecast": 0.996,
+     "won": 1.0
+    }
+   ],
+   "raters": {
+    "n": 50,
+    "brier_model": 0.1381,
+    "brier_raters": 0.1408
+   }
+  },
+  "governor": {
+   "called": 33,
+   "of": 36,
+   "brier": 0.0545,
+   "log_loss": 0.1757,
+   "favourite_won": 0.939,
+   "calibration": [
+    {
+     "band": "0.00-0.05",
+     "n": 6,
+     "forecast": 0.023,
+     "won": 0.0
+    },
+    {
+     "band": "0.05-0.15",
+     "n": 4,
+     "forecast": 0.088,
+     "won": 0.0
+    },
+    {
+     "band": "0.15-0.35",
+     "n": 3,
+     "forecast": 0.264,
+     "won": 0.667
+    },
+    {
+     "band": "0.35-0.50",
+     "n": 1,
+     "forecast": 0.494,
+     "won": 0.0
+    },
+    {
+     "band": "0.50-0.65",
+     "n": 1,
+     "forecast": 0.554,
+     "won": 1.0
+    },
+    {
+     "band": "0.65-0.85",
+     "n": 2,
+     "forecast": 0.721,
+     "won": 1.0
+    },
+    {
+     "band": "0.85-0.95",
+     "n": 3,
+     "forecast": 0.905,
+     "won": 1.0
+    },
+    {
+     "band": "0.95-1.00",
+     "n": 13,
+     "forecast": 0.989,
+     "won": 1.0
+    }
+   ]
+  },
+  "house": {
+   "called": 200,
+   "of": 417,
+   "brier": 0.0346,
+   "log_loss": 0.1152,
+   "favourite_won": 0.965,
+   "calibration": [
+    {
+     "band": "0.00-0.05",
+     "n": 56,
+     "forecast": 0.009,
+     "won": 0.018
+    },
+    {
+     "band": "0.05-0.15",
+     "n": 15,
+     "forecast": 0.091,
+     "won": 0.267
+    },
+    {
+     "band": "0.15-0.35",
+     "n": 5,
+     "forecast": 0.219,
+     "won": 0.4
+    },
+    {
+     "band": "0.50-0.65",
+     "n": 3,
+     "forecast": 0.547,
+     "won": 1.0
+    },
+    {
+     "band": "0.65-0.85",
+     "n": 12,
+     "forecast": 0.766,
+     "won": 1.0
+    },
+    {
+     "band": "0.95-1.00",
+     "n": 109,
+     "forecast": 0.997,
+     "won": 1.0
+    }
+   ],
+   "raters": {
+    "n": 50,
+    "brier_model": 0.1381,
+    "brier_raters": 0.1408
+   }
+  },
+  "senate": {
+   "called": 33,
+   "of": 35,
+   "brier": 0.0364,
+   "log_loss": 0.1345,
+   "favourite_won": 0.97,
+   "calibration": [
+    {
+     "band": "0.00-0.05",
+     "n": 9,
+     "forecast": 0.016,
+     "won": 0.0
+    },
+    {
+     "band": "0.05-0.15",
+     "n": 2,
+     "forecast": 0.097,
+     "won": 0.0
+    },
+    {
+     "band": "0.15-0.35",
+     "n": 2,
+     "forecast": 0.25,
+     "won": 0.5
+    },
+    {
+     "band": "0.35-0.50",
+     "n": 1,
+     "forecast": 0.392,
+     "won": 0.0
+    },
+    {
+     "band": "0.50-0.65",
+     "n": 2,
+     "forecast": 0.591,
+     "won": 1.0
+    },
+    {
+     "band": "0.65-0.85",
+     "n": 4,
+     "forecast": 0.775,
+     "won": 1.0
+    },
+    {
+     "band": "0.85-0.95",
+     "n": 2,
+     "forecast": 0.925,
+     "won": 1.0
+    },
+    {
+     "band": "0.95-1.00",
+     "n": 11,
+     "forecast": 0.99,
+     "won": 1.0
+    }
+   ]
+  }
+ },
+ "races": [
+  {
+   "office": "house",
+   "seat": "AL-1",
+   "p": 0.0047,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AL-2",
+   "p": 0.272,
+   "y": 1,
+   "status": "called",
+   "raters": 0.373
+  },
+  {
+   "office": "house",
+   "seat": "AL-3",
+   "p": 0.0004,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AL-4",
+   "p": 0.0001,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AL-5",
+   "p": 0.0074,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AL-6",
+   "p": 0.001,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AL-7",
+   "p": 0.9993,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AK-1",
+   "p": 0.2124,
+   "y": null,
+   "status": null,
+   "raters": 0.25
+  },
+  {
+   "office": "house",
+   "seat": "AZ-1",
+   "p": 0.7357,
+   "y": null,
+   "status": null,
+   "raters": 0.741
+  },
+  {
+   "office": "house",
+   "seat": "AZ-2",
+   "p": 0.3129,
+   "y": null,
+   "status": null,
+   "raters": 0.359
+  },
+  {
+   "office": "house",
+   "seat": "AZ-4",
+   "p": 0.9917,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AZ-5",
+   "p": 0.0619,
+   "y": null,
+   "status": null,
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "AZ-6",
+   "p": 0.801,
+   "y": null,
+   "status": null,
+   "raters": 0.727
+  },
+  {
+   "office": "house",
+   "seat": "AZ-7",
+   "p": 0.9997,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AZ-8",
+   "p": 0.0625,
+   "y": null,
+   "status": null,
+   "raters": 0.116
+  },
+  {
+   "office": "house",
+   "seat": "AZ-9",
+   "p": 0.0063,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AR-1",
+   "p": 0.0003,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AR-2",
+   "p": 0.2761,
+   "y": null,
+   "status": null,
+   "raters": 0.195
+  },
+  {
+   "office": "house",
+   "seat": "AR-3",
+   "p": 0.0111,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "AR-4",
+   "p": 0.0003,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-1",
+   "p": 0.9991,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-2",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-3",
+   "p": 0.9976,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-5",
+   "p": 0.0479,
+   "y": 0,
+   "status": "called",
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "CA-6",
+   "p": 0.9685,
+   "y": 1,
+   "status": "called",
+   "raters": 0.895
+  },
+  {
+   "office": "house",
+   "seat": "CA-8",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-9",
+   "p": 0.9998,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-10",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-13",
+   "p": 0.9828,
+   "y": null,
+   "status": null,
+   "raters": 0.839
+  },
+  {
+   "office": "house",
+   "seat": "CA-15",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-16",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-17",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-18",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-19",
+   "p": 0.9999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-20",
+   "p": 0.0019,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-21",
+   "p": 0.9908,
+   "y": 1,
+   "status": "called",
+   "raters": 0.905
+  },
+  {
+   "office": "house",
+   "seat": "CA-22",
+   "p": 0.8534,
+   "y": null,
+   "status": null,
+   "raters": 0.704
+  },
+  {
+   "office": "house",
+   "seat": "CA-23",
+   "p": 0.059,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "CA-24",
+   "p": 0.9997,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-25",
+   "p": 0.9859,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-26",
+   "p": 0.9977,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-27",
+   "p": 0.998,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-28",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-30",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-31",
+   "p": 0.9957,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-32",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-33",
+   "p": 0.9958,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-35",
+   "p": 0.997,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-36",
+   "p": 0.9999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-38",
+   "p": 0.996,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-39",
+   "p": 0.9962,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-41",
+   "p": 0.998,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-42",
+   "p": 0.9977,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-43",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-44",
+   "p": 0.9999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-45",
+   "p": 0.9849,
+   "y": 1,
+   "status": "called",
+   "raters": 0.884
+  },
+  {
+   "office": "house",
+   "seat": "CA-46",
+   "p": 0.9982,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-47",
+   "p": 0.998,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "CA-48",
+   "p": 0.9282,
+   "y": null,
+   "status": null,
+   "raters": 0.804
+  },
+  {
+   "office": "house",
+   "seat": "CA-49",
+   "p": 0.9992,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-50",
+   "p": 0.9996,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-51",
+   "p": 0.9993,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CA-52",
+   "p": 0.9993,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CO-1",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CO-2",
+   "p": 0.9999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CO-3",
+   "p": 0.4127,
+   "y": null,
+   "status": null,
+   "raters": 0.364
+  },
+  {
+   "office": "house",
+   "seat": "CO-4",
+   "p": 0.1084,
+   "y": null,
+   "status": null,
+   "raters": 0.268
+  },
+  {
+   "office": "house",
+   "seat": "CO-5",
+   "p": 0.368,
+   "y": null,
+   "status": null,
+   "raters": 0.432
+  },
+  {
+   "office": "house",
+   "seat": "CO-6",
+   "p": 0.9996,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CO-7",
+   "p": 0.9991,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CO-8",
+   "p": 0.7792,
+   "y": 1,
+   "status": "called",
+   "raters": 0.714
+  },
+  {
+   "office": "house",
+   "seat": "CT-1",
+   "p": 0.9997,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CT-2",
+   "p": 0.9962,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CT-3",
+   "p": 0.9996,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CT-4",
+   "p": 0.9999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "CT-5",
+   "p": 0.9939,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "DE-1",
+   "p": 0.9997,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "FL-1",
+   "p": 0.002,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "FL-2",
+   "p": 0.1837,
+   "y": 0,
+   "status": "called",
+   "raters": 0.13
+  },
+  {
+   "office": "house",
+   "seat": "FL-3",
+   "p": 0.023,
+   "y": 0,
+   "status": "called",
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "FL-4",
+   "p": 0.0978,
+   "y": 0,
+   "status": "called",
+   "raters": 0.141
+  },
+  {
+   "office": "house",
+   "seat": "FL-5",
+   "p": 0.0336,
+   "y": 0,
+   "status": "called",
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "FL-6",
+   "p": 0.0034,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "FL-7",
+   "p": 0.4093,
+   "y": null,
+   "status": null,
+   "raters": 0.341
+  },
+  {
+   "office": "house",
+   "seat": "FL-8",
+   "p": 0.0911,
+   "y": 0,
+   "status": "called",
+   "raters": 0.116
+  },
+  {
+   "office": "house",
+   "seat": "FL-9",
+   "p": 0.3368,
+   "y": null,
+   "status": null,
+   "raters": 0.364
+  },
+  {
+   "office": "house",
+   "seat": "FL-11",
+   "p": 0.1085,
+   "y": 0,
+   "status": "called",
+   "raters": 0.127
+  },
+  {
+   "office": "house",
+   "seat": "FL-12",
+   "p": 0.1173,
+   "y": 0,
+   "status": "called",
+   "raters": 0.127
+  },
+  {
+   "office": "house",
+   "seat": "FL-13",
+   "p": 0.1862,
+   "y": null,
+   "status": null,
+   "raters": 0.355
+  },
+  {
+   "office": "house",
+   "seat": "FL-14",
+   "p": 0.8054,
+   "y": 1,
+   "status": "called",
+   "raters": 0.65
+  },
+  {
+   "office": "house",
+   "seat": "FL-15",
+   "p": 0.0375,
+   "y": 0,
+   "status": "called",
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "FL-16",
+   "p": 0.2984,
+   "y": 0,
+   "status": "called",
+   "raters": 0.223
+  },
+  {
+   "office": "house",
+   "seat": "FL-17",
+   "p": 0.0246,
+   "y": 0,
+   "status": "called",
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "FL-18",
+   "p": 0.051,
+   "y": 0,
+   "status": "called",
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "FL-19",
+   "p": 0.0036,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "FL-20",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "FL-21",
+   "p": 0.0478,
+   "y": 0,
+   "status": "called",
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "FL-22",
+   "p": 0.6555,
+   "y": 1,
+   "status": "called",
+   "raters": 0.555
+  },
+  {
+   "office": "house",
+   "seat": "FL-23",
+   "p": 0.9993,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "FL-24",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "FL-25",
+   "p": 0.7925,
+   "y": 1,
+   "status": "called",
+   "raters": 0.668
+  },
+  {
+   "office": "house",
+   "seat": "FL-26",
+   "p": 0.2617,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "FL-27",
+   "p": 0.2425,
+   "y": null,
+   "status": null,
+   "raters": 0.277
+  },
+  {
+   "office": "house",
+   "seat": "FL-28",
+   "p": 0.0805,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "GA-1",
+   "p": 0.1808,
+   "y": 0,
+   "status": "called",
+   "raters": 0.105
+  },
+  {
+   "office": "house",
+   "seat": "GA-2",
+   "p": 0.9961,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "GA-3",
+   "p": 0.0044,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "GA-4",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "GA-5",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "GA-6",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "GA-7",
+   "p": 0.0671,
+   "y": 0,
+   "status": "called",
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "GA-8",
+   "p": 0.0045,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "GA-9",
+   "p": 0.0017,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "GA-10",
+   "p": 0.0331,
+   "y": 0,
+   "status": "called",
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "GA-11",
+   "p": 0.0571,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "GA-12",
+   "p": 0.1201,
+   "y": 0,
+   "status": "called",
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "GA-13",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "GA-14",
+   "p": 0.0031,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "HI-1",
+   "p": 0.9993,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "HI-2",
+   "p": 0.9999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "ID-1",
+   "p": 0.0007,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "ID-2",
+   "p": 0.0118,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-1",
+   "p": 0.9999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-2",
+   "p": 0.9998,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-3",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-4",
+   "p": 0.9998,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-5",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-6",
+   "p": 0.9945,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-7",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-8",
+   "p": 0.9907,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-9",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-10",
+   "p": 0.9994,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-11",
+   "p": 0.9981,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-12",
+   "p": 0.0004,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-13",
+   "p": 0.9981,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-14",
+   "p": 0.9974,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-15",
+   "p": 0.0013,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-16",
+   "p": 0.0401,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IL-17",
+   "p": 0.9958,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IN-1",
+   "p": 0.9777,
+   "y": 1,
+   "status": "called",
+   "raters": 0.873
+  },
+  {
+   "office": "house",
+   "seat": "IN-2",
+   "p": 0.0126,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IN-3",
+   "p": 0.0061,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IN-4",
+   "p": 0.0042,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IN-5",
+   "p": 0.158,
+   "y": 1,
+   "status": "called",
+   "raters": 0.236
+  },
+  {
+   "office": "house",
+   "seat": "IN-6",
+   "p": 0.0019,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IN-7",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IN-8",
+   "p": 0.0043,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IN-9",
+   "p": 0.0091,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "IA-1",
+   "p": 0.8379,
+   "y": 1,
+   "status": "called",
+   "raters": 0.727
+  },
+  {
+   "office": "house",
+   "seat": "IA-2",
+   "p": 0.7097,
+   "y": 1,
+   "status": "called",
+   "raters": 0.573
+  },
+  {
+   "office": "house",
+   "seat": "IA-3",
+   "p": 0.8301,
+   "y": 1,
+   "status": "called",
+   "raters": 0.714
+  },
+  {
+   "office": "house",
+   "seat": "IA-4",
+   "p": 0.0169,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "KS-1",
+   "p": 0.0046,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "KS-2",
+   "p": 0.0848,
+   "y": 0,
+   "status": "called",
+   "raters": 0.149
+  },
+  {
+   "office": "house",
+   "seat": "KS-3",
+   "p": 0.9976,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "KS-4",
+   "p": 0.0283,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "KY-1",
+   "p": 0.0003,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "KY-2",
+   "p": 0.0006,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "KY-3",
+   "p": 0.9997,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "KY-4",
+   "p": 0.0019,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "KY-5",
+   "p": 0.0001,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "KY-6",
+   "p": 0.5153,
+   "y": 1,
+   "status": "called",
+   "raters": 0.482
+  },
+  {
+   "office": "house",
+   "seat": "LA-1",
+   "p": 0.0003,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "LA-2",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "LA-3",
+   "p": 0.0009,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "LA-4",
+   "p": 0.0026,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "LA-5",
+   "p": 0.0268,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "LA-6",
+   "p": 0.0032,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "ME-1",
+   "p": 0.9999,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "ME-2",
+   "p": 0.5669,
+   "y": null,
+   "status": null,
+   "raters": 0.427
+  },
+  {
+   "office": "house",
+   "seat": "MD-1",
+   "p": 0.0534,
+   "y": 0,
+   "status": "called",
+   "raters": 0.116
+  },
+  {
+   "office": "house",
+   "seat": "MD-2",
+   "p": 0.9997,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MD-3",
+   "p": 0.9998,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MD-4",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MD-5",
+   "p": 0.9999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MD-6",
+   "p": 0.9975,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MD-7",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MD-8",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MA-3",
+   "p": 0.9998,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MA-4",
+   "p": 0.9999,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MA-6",
+   "p": 0.9997,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MA-8",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MA-9",
+   "p": 0.9976,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MI-1",
+   "p": 0.1273,
+   "y": null,
+   "status": null,
+   "raters": 0.105
+  },
+  {
+   "office": "house",
+   "seat": "MI-2",
+   "p": 0.0078,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MI-3",
+   "p": 0.996,
+   "y": null,
+   "status": null,
+   "raters": 0.916
+  },
+  {
+   "office": "house",
+   "seat": "MI-4",
+   "p": 0.4249,
+   "y": null,
+   "status": null,
+   "raters": 0.573
+  },
+  {
+   "office": "house",
+   "seat": "MI-5",
+   "p": 0.01,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MI-6",
+   "p": 0.9998,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MI-7",
+   "p": 0.8379,
+   "y": null,
+   "status": null,
+   "raters": 0.686
+  },
+  {
+   "office": "house",
+   "seat": "MI-8",
+   "p": 0.9938,
+   "y": null,
+   "status": null,
+   "raters": 0.895
+  },
+  {
+   "office": "house",
+   "seat": "MI-9",
+   "p": 0.0013,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MI-10",
+   "p": 0.4352,
+   "y": null,
+   "status": null,
+   "raters": 0.6
+  },
+  {
+   "office": "house",
+   "seat": "MI-11",
+   "p": 0.9989,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MI-12",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MI-13",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MN-1",
+   "p": 0.4721,
+   "y": null,
+   "status": null,
+   "raters": 0.355
+  },
+  {
+   "office": "house",
+   "seat": "MN-2",
+   "p": 0.9763,
+   "y": null,
+   "status": null,
+   "raters": 0.884
+  },
+  {
+   "office": "house",
+   "seat": "MN-3",
+   "p": 0.9996,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MN-4",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MN-5",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MN-6",
+   "p": 0.0441,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MN-7",
+   "p": 0.0049,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MN-8",
+   "p": 0.1807,
+   "y": null,
+   "status": null,
+   "raters": 0.116
+  },
+  {
+   "office": "house",
+   "seat": "MS-1",
+   "p": 0.0025,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MS-2",
+   "p": 0.9997,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MS-3",
+   "p": 0.008,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MS-4",
+   "p": 0.0006,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "MO-1",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MO-2",
+   "p": 0.5569,
+   "y": 1,
+   "status": "called",
+   "raters": 0.371
+  },
+  {
+   "office": "house",
+   "seat": "MO-3",
+   "p": 0.0049,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MO-4",
+   "p": 0.0006,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MO-5",
+   "p": 0.9996,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MO-6",
+   "p": 0.0024,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MO-7",
+   "p": 0.0003,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MO-8",
+   "p": 0.0001,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "MT-1",
+   "p": 0.6573,
+   "y": null,
+   "status": null,
+   "raters": 0.555
+  },
+  {
+   "office": "house",
+   "seat": "MT-2",
+   "p": 0.0034,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NE-1",
+   "p": 0.2631,
+   "y": null,
+   "status": null,
+   "raters": 0.185
+  },
+  {
+   "office": "house",
+   "seat": "NE-2",
+   "p": 0.9503,
+   "y": 1,
+   "status": "called",
+   "raters": 0.848
+  },
+  {
+   "office": "house",
+   "seat": "NE-3",
+   "p": 0.0001,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NV-1",
+   "p": 0.9739,
+   "y": null,
+   "status": null,
+   "raters": 0.837
+  },
+  {
+   "office": "house",
+   "seat": "NV-2",
+   "p": 0.2429,
+   "y": null,
+   "status": null,
+   "raters": 0.332
+  },
+  {
+   "office": "house",
+   "seat": "NV-3",
+   "p": 0.9306,
+   "y": null,
+   "status": null,
+   "raters": 0.848
+  },
+  {
+   "office": "house",
+   "seat": "NV-4",
+   "p": 0.9817,
+   "y": null,
+   "status": null,
+   "raters": 0.862
+  },
+  {
+   "office": "house",
+   "seat": "NH-1",
+   "p": 0.9535,
+   "y": 1,
+   "status": "called",
+   "raters": 0.826
+  },
+  {
+   "office": "house",
+   "seat": "NH-2",
+   "p": 0.9966,
+   "y": 1,
+   "status": "called",
+   "raters": 0.905
+  },
+  {
+   "office": "house",
+   "seat": "NJ-1",
+   "p": 0.9996,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NJ-2",
+   "p": 0.0866,
+   "y": 1,
+   "status": "called",
+   "raters": 0.23
+  },
+  {
+   "office": "house",
+   "seat": "NJ-3",
+   "p": 0.9958,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NJ-4",
+   "p": 0.0043,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NJ-5",
+   "p": 0.996,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NJ-6",
+   "p": 0.9981,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NJ-7",
+   "p": 0.846,
+   "y": 1,
+   "status": "called",
+   "raters": 0.755
+  },
+  {
+   "office": "house",
+   "seat": "NJ-9",
+   "p": 0.9947,
+   "y": 1,
+   "status": "called",
+   "raters": 0.895
+  },
+  {
+   "office": "house",
+   "seat": "NJ-10",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NJ-11",
+   "p": 0.9963,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NJ-12",
+   "p": 0.9998,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NM-1",
+   "p": 0.9974,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NM-2",
+   "p": 0.8842,
+   "y": null,
+   "status": null,
+   "raters": 0.768
+  },
+  {
+   "office": "house",
+   "seat": "NM-3",
+   "p": 0.9918,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-1",
+   "p": 0.4567,
+   "y": null,
+   "status": null,
+   "raters": 0.215
+  },
+  {
+   "office": "house",
+   "seat": "NY-2",
+   "p": 0.355,
+   "y": null,
+   "status": null,
+   "raters": 0.141
+  },
+  {
+   "office": "house",
+   "seat": "NY-3",
+   "p": 0.9806,
+   "y": null,
+   "status": null,
+   "raters": 0.824
+  },
+  {
+   "office": "house",
+   "seat": "NY-4",
+   "p": 0.9946,
+   "y": null,
+   "status": null,
+   "raters": 0.85
+  },
+  {
+   "office": "house",
+   "seat": "NY-5",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-6",
+   "p": 0.998,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-7",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-8",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-9",
+   "p": 0.9999,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-10",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-11",
+   "p": 0.0272,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-12",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-13",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-14",
+   "p": 0.9999,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-15",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-16",
+   "p": 0.9999,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-17",
+   "p": 0.7905,
+   "y": null,
+   "status": null,
+   "raters": 0.618
+  },
+  {
+   "office": "house",
+   "seat": "NY-18",
+   "p": 0.9957,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-19",
+   "p": 0.988,
+   "y": null,
+   "status": null,
+   "raters": 0.895
+  },
+  {
+   "office": "house",
+   "seat": "NY-20",
+   "p": 0.9993,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-21",
+   "p": 0.2648,
+   "y": null,
+   "status": null,
+   "raters": 0.295
+  },
+  {
+   "office": "house",
+   "seat": "NY-22",
+   "p": 0.9981,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-23",
+   "p": 0.0122,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "NY-24",
+   "p": 0.0396,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-25",
+   "p": 0.9997,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NY-26",
+   "p": 0.9998,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "NC-1",
+   "p": 0.7658,
+   "y": null,
+   "status": null,
+   "raters": 0.65
+  },
+  {
+   "office": "house",
+   "seat": "NC-2",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NC-3",
+   "p": 0.1709,
+   "y": null,
+   "status": null,
+   "raters": 0.216
+  },
+  {
+   "office": "house",
+   "seat": "NC-4",
+   "p": 0.9999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NC-5",
+   "p": 0.0945,
+   "y": null,
+   "status": null,
+   "raters": 0.127
+  },
+  {
+   "office": "house",
+   "seat": "NC-6",
+   "p": 0.0799,
+   "y": 1,
+   "status": "called",
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "NC-7",
+   "p": 0.1364,
+   "y": null,
+   "status": null,
+   "raters": 0.16
+  },
+  {
+   "office": "house",
+   "seat": "NC-8",
+   "p": 0.0251,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "NC-9",
+   "p": 0.1386,
+   "y": 1,
+   "status": "called",
+   "raters": 0.185
+  },
+  {
+   "office": "house",
+   "seat": "NC-10",
+   "p": 0.0588,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "NC-11",
+   "p": 0.7594,
+   "y": 1,
+   "status": "called",
+   "raters": 0.682
+  },
+  {
+   "office": "house",
+   "seat": "NC-12",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "NC-13",
+   "p": 0.1374,
+   "y": 1,
+   "status": "called",
+   "raters": 0.195
+  },
+  {
+   "office": "house",
+   "seat": "NC-14",
+   "p": 0.0369,
+   "y": 1,
+   "status": "called",
+   "raters": 0.127
+  },
+  {
+   "office": "house",
+   "seat": "ND-1",
+   "p": 0.0013,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OH-1",
+   "p": 0.9394,
+   "y": null,
+   "status": null,
+   "raters": 0.805
+  },
+  {
+   "office": "house",
+   "seat": "OH-2",
+   "p": 0.0007,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OH-3",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "OH-4",
+   "p": 0.0003,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OH-5",
+   "p": 0.0138,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OH-6",
+   "p": 0.0019,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OH-7",
+   "p": 0.5385,
+   "y": null,
+   "status": null,
+   "raters": 0.577
+  },
+  {
+   "office": "house",
+   "seat": "OH-8",
+   "p": 0.0486,
+   "y": null,
+   "status": null,
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "OH-9",
+   "p": 0.6869,
+   "y": null,
+   "status": null,
+   "raters": 0.668
+  },
+  {
+   "office": "house",
+   "seat": "OH-10",
+   "p": 0.2976,
+   "y": null,
+   "status": null,
+   "raters": 0.295
+  },
+  {
+   "office": "house",
+   "seat": "OH-11",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OH-12",
+   "p": 0.0052,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OH-13",
+   "p": 0.9939,
+   "y": 1,
+   "status": "called",
+   "raters": 0.884
+  },
+  {
+   "office": "house",
+   "seat": "OH-14",
+   "p": 0.0515,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OH-15",
+   "p": 0.2828,
+   "y": null,
+   "status": null,
+   "raters": 0.327
+  },
+  {
+   "office": "house",
+   "seat": "OK-1",
+   "p": 0.0312,
+   "y": null,
+   "status": "counting",
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "OK-2",
+   "p": 0.0001,
+   "y": null,
+   "status": "counting"
+  },
+  {
+   "office": "house",
+   "seat": "OK-3",
+   "p": 0.0002,
+   "y": null,
+   "status": "counting"
+  },
+  {
+   "office": "house",
+   "seat": "OK-4",
+   "p": 0.0017,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OK-5",
+   "p": 0.0474,
+   "y": null,
+   "status": "counting",
+   "raters": 0.116
+  },
+  {
+   "office": "house",
+   "seat": "OR-1",
+   "p": 0.9999,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OR-2",
+   "p": 0.0163,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OR-3",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OR-4",
+   "p": 0.9986,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OR-5",
+   "p": 0.9971,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "OR-6",
+   "p": 0.9993,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "PA-1",
+   "p": 0.5675,
+   "y": 1,
+   "status": "called",
+   "raters": 0.55
+  },
+  {
+   "office": "house",
+   "seat": "PA-2",
+   "p": 1.0,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "PA-4",
+   "p": 0.999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "PA-5",
+   "p": 0.9999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "PA-6",
+   "p": 0.9985,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "PA-7",
+   "p": 0.8229,
+   "y": 1,
+   "status": "called",
+   "raters": 0.727
+  },
+  {
+   "office": "house",
+   "seat": "PA-8",
+   "p": 0.7006,
+   "y": 1,
+   "status": "called",
+   "raters": 0.65
+  },
+  {
+   "office": "house",
+   "seat": "PA-9",
+   "p": 0.0033,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "PA-10",
+   "p": 0.6579,
+   "y": 1,
+   "status": "called",
+   "raters": 0.668
+  },
+  {
+   "office": "house",
+   "seat": "PA-11",
+   "p": 0.051,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "PA-12",
+   "p": 0.9996,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "PA-13",
+   "p": 0.0003,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "PA-14",
+   "p": 0.0034,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "PA-15",
+   "p": 0.0015,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "PA-16",
+   "p": 0.034,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "PA-17",
+   "p": 0.9956,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "RI-1",
+   "p": 0.9998,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "RI-2",
+   "p": 0.995,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "SC-1",
+   "p": 0.4365,
+   "y": null,
+   "status": null,
+   "raters": 0.364
+  },
+  {
+   "office": "house",
+   "seat": "SC-2",
+   "p": 0.0772,
+   "y": null,
+   "status": null,
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "SC-3",
+   "p": 0.0006,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "SC-4",
+   "p": 0.0097,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "SC-5",
+   "p": 0.0635,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "SC-6",
+   "p": 0.9999,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "SC-7",
+   "p": 0.0244,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "SD-1",
+   "p": 0.0047,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TN-1",
+   "p": 0.0001,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TN-2",
+   "p": 0.0016,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TN-3",
+   "p": 0.0011,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TN-4",
+   "p": 0.0331,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TN-5",
+   "p": 0.0894,
+   "y": null,
+   "status": null,
+   "raters": 0.105
+  },
+  {
+   "office": "house",
+   "seat": "TN-6",
+   "p": 0.0127,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TN-7",
+   "p": 0.0257,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "TN-8",
+   "p": 0.0168,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TN-9",
+   "p": 0.1492,
+   "y": null,
+   "status": null,
+   "raters": 0.149
+  },
+  {
+   "office": "house",
+   "seat": "TX-1",
+   "p": 0.0003,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-2",
+   "p": 0.0519,
+   "y": null,
+   "status": null,
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "TX-3",
+   "p": 0.0378,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-4",
+   "p": 0.0149,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-5",
+   "p": 0.0233,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "TX-6",
+   "p": 0.0114,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-7",
+   "p": 0.9997,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-8",
+   "p": 0.0169,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-9",
+   "p": 0.1804,
+   "y": null,
+   "status": null,
+   "raters": 0.185
+  },
+  {
+   "office": "house",
+   "seat": "TX-10",
+   "p": 0.0744,
+   "y": null,
+   "status": null,
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "TX-11",
+   "p": 0.0031,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-12",
+   "p": 0.0206,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-13",
+   "p": 0.0003,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-14",
+   "p": 0.0118,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-15",
+   "p": 0.6077,
+   "y": null,
+   "status": null,
+   "raters": 0.564
+  },
+  {
+   "office": "house",
+   "seat": "TX-16",
+   "p": 0.9988,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-17",
+   "p": 0.0281,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "TX-18",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-19",
+   "p": 0.0003,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-20",
+   "p": 0.9998,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-21",
+   "p": 0.0718,
+   "y": null,
+   "status": null,
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "TX-22",
+   "p": 0.0945,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "TX-23",
+   "p": 0.4546,
+   "y": null,
+   "status": null,
+   "raters": 0.359
+  },
+  {
+   "office": "house",
+   "seat": "TX-24",
+   "p": 0.0895,
+   "y": null,
+   "status": null,
+   "raters": 0.116
+  },
+  {
+   "office": "house",
+   "seat": "TX-25",
+   "p": 0.0225,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-26",
+   "p": 0.0059,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-27",
+   "p": 0.0598,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "TX-28",
+   "p": 0.9052,
+   "y": null,
+   "status": null,
+   "raters": 0.788
+  },
+  {
+   "office": "house",
+   "seat": "TX-29",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-30",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-31",
+   "p": 0.0329,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "TX-32",
+   "p": 0.148,
+   "y": null,
+   "status": null,
+   "raters": 0.116
+  },
+  {
+   "office": "house",
+   "seat": "TX-33",
+   "p": 0.9999,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-34",
+   "p": 0.8236,
+   "y": null,
+   "status": null,
+   "raters": 0.705
+  },
+  {
+   "office": "house",
+   "seat": "TX-35",
+   "p": 0.5888,
+   "y": null,
+   "status": null,
+   "raters": 0.518
+  },
+  {
+   "office": "house",
+   "seat": "TX-36",
+   "p": 0.0119,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-37",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "TX-38",
+   "p": 0.042,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "UT-1",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "UT-2",
+   "p": 0.0118,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "UT-3",
+   "p": 0.0005,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "UT-4",
+   "p": 0.0028,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "VT-1",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "VA-1",
+   "p": 0.5211,
+   "y": null,
+   "status": null,
+   "raters": 0.509
+  },
+  {
+   "office": "house",
+   "seat": "VA-2",
+   "p": 0.7682,
+   "y": null,
+   "status": null,
+   "raters": 0.714
+  },
+  {
+   "office": "house",
+   "seat": "VA-3",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "VA-4",
+   "p": 0.9999,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "VA-5",
+   "p": 0.247,
+   "y": null,
+   "status": null,
+   "raters": 0.327
+  },
+  {
+   "office": "house",
+   "seat": "VA-6",
+   "p": 0.0072,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "VA-7",
+   "p": 0.9961,
+   "y": null,
+   "status": null,
+   "raters": 0.895
+  },
+  {
+   "office": "house",
+   "seat": "VA-8",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "VA-9",
+   "p": 0.0009,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "house",
+   "seat": "VA-10",
+   "p": 0.9986,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "VA-11",
+   "p": 0.9999,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WA-1",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WA-2",
+   "p": 0.9998,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WA-3",
+   "p": 0.7802,
+   "y": null,
+   "status": null,
+   "raters": 0.705
+  },
+  {
+   "office": "house",
+   "seat": "WA-4",
+   "p": 0.1127,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "WA-5",
+   "p": 0.2827,
+   "y": null,
+   "status": null,
+   "raters": 0.174
+  },
+  {
+   "office": "house",
+   "seat": "WA-6",
+   "p": 0.9996,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WA-7",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WA-8",
+   "p": 0.9964,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WA-9",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WA-10",
+   "p": 0.9997,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WV-1",
+   "p": 0.0008,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WV-2",
+   "p": 0.0015,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WI-1",
+   "p": 0.4144,
+   "y": null,
+   "status": null,
+   "raters": 0.427
+  },
+  {
+   "office": "house",
+   "seat": "WI-3",
+   "p": 0.6701,
+   "y": null,
+   "status": null,
+   "raters": 0.695
+  },
+  {
+   "office": "house",
+   "seat": "WI-4",
+   "p": 1.0,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WI-5",
+   "p": 0.0119,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "house",
+   "seat": "WI-6",
+   "p": 0.1305,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "house",
+   "seat": "WI-7",
+   "p": 0.1489,
+   "y": null,
+   "status": null,
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "WI-8",
+   "p": 0.1041,
+   "y": null,
+   "status": null,
+   "raters": 0.095
+  },
+  {
+   "office": "house",
+   "seat": "WY-1",
+   "p": 0.0003,
+   "y": null,
+   "status": null,
+   "raters": 0.084
+  },
+  {
+   "office": "senate",
+   "seat": "AL",
+   "p": 0.0095,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "AK",
+   "p": 0.5997,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "senate",
+   "seat": "AR",
+   "p": 0.0305,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "CO",
+   "p": 0.9975,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "DE",
+   "p": 0.9925,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "FL",
+   "p": 0.1574,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "GA",
+   "p": 0.9736,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "ID",
+   "p": 0.0303,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "IL",
+   "p": 0.9899,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "IA",
+   "p": 0.6152,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "KS",
+   "p": 0.5671,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "KY",
+   "p": 0.0276,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "LA",
+   "p": 0.1283,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "ME",
+   "p": 0.813,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "MA",
+   "p": 0.9998,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "MI",
+   "p": 0.8436,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "MN",
+   "p": 0.9063,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "MS",
+   "p": 0.0984,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "senate",
+   "seat": "MT",
+   "p": 0.0297,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "NE",
+   "p": 0.392,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "NH",
+   "p": 0.9441,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "NJ",
+   "p": 0.9871,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "NM",
+   "p": 0.9946,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "NC",
+   "p": 0.9748,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "OH",
+   "p": 0.6929,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "OK",
+   "p": 0.0064,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "OR",
+   "p": 0.9912,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "RI",
+   "p": 0.9993,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "SC",
+   "p": 0.3422,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "SD",
+   "p": 0.0658,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "TN",
+   "p": 0.003,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "TX",
+   "p": 0.7523,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "VA",
+   "p": 0.9917,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "WV",
+   "p": 0.0026,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "senate",
+   "seat": "WY",
+   "p": 0.0031,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "AL",
+   "p": 0.0462,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "AK",
+   "p": 0.9134,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "governor",
+   "seat": "AZ",
+   "p": 0.9635,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "AR",
+   "p": 0.0158,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "CA",
+   "p": 0.9987,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "CO",
+   "p": 0.992,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "CT",
+   "p": 0.9971,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "FL",
+   "p": 0.2526,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "GA",
+   "p": 0.5545,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "HI",
+   "p": 0.9845,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "ID",
+   "p": 0.0125,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "IL",
+   "p": 0.9972,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "IA",
+   "p": 0.8963,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "KS",
+   "p": 0.3578,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "governor",
+   "seat": "ME",
+   "p": 0.9653,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "MD",
+   "p": 0.9982,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "MA",
+   "p": 0.999,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "MI",
+   "p": 0.9161,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "MN",
+   "p": 0.9718,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "NE",
+   "p": 0.0858,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "NV",
+   "p": 0.2863,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "NH",
+   "p": 0.0795,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "NM",
+   "p": 0.9033,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "NY",
+   "p": 0.9896,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "OH",
+   "p": 0.7306,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "OK",
+   "p": 0.113,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "OR",
+   "p": 0.7385,
+   "y": null,
+   "status": null
+  },
+  {
+   "office": "governor",
+   "seat": "PA",
+   "p": 0.9987,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "RI",
+   "p": 0.9992,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "SC",
+   "p": 0.0442,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "SD",
+   "p": 0.0056,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "TN",
+   "p": 0.0143,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "TX",
+   "p": 0.2536,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "VT",
+   "p": 0.4945,
+   "y": 0,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "WI",
+   "p": 0.7107,
+   "y": 1,
+   "status": "called"
+  },
+  {
+   "office": "governor",
+   "seat": "WY",
+   "p": 0.0732,
+   "y": 0,
+   "status": "called"
+  }
+ ],
+ "chambers": {
+  "house": {
+   "d_called": 148,
+   "undecided": 217
+  },
+  "senate": {
+   "d_called": 54,
+   "undecided": 2
+  },
+  "governor": {
+   "d_called": 27,
+   "undecided": 3
+  }
+ },
+ "frozen": {
+  "at": "2026-11-03T17:04Z",
+  "commit": "6877451db9e886e39f6907d6b42d8941dafacf7a",
+  "sha256": "dd6aaaeec0385e77be675d505eadab68dcb290f853b2fe13edeba82d55c058c4"
+ }
+}
