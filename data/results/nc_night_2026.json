@@ -1,12 +1,12 @@
 {
- "generated": "2026-11-04T04:19Z",
+ "generated": "2026-11-04T04:25Z",
  "contest": "US SENATE",
- "counties_batch": 99,
+ "counties_batch": 100,
  "counties_complete": 91,
  "reported_votes": {
   "early": 2705893,
   "eday": 927231,
-  "mail": 103946
+  "mail": 104207
  },
  "reported_margin": 18.75,
  "forecast": {
@@ -29,7 +29,7 @@
   }
  },
  "ratio": {
-  "estimate": 20.27,
+  "estimate": 20.28,
   "theta": 12.03,
   "kappa": 0.875
  },
