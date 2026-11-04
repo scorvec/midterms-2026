@@ -1,6 +1,6 @@
 """Does the early vote's party mix predict where the final polls miss? A pre-registered backtest over states and cycles.
 
-    python -m midterms.early_skill fetch     # GitHub Actions only (early-skill.yml): the inputs that are not committed
+    python -m midterms.early_skill fetch     # GitHub Actions only (early-skill.yml, retired): the inputs that are not committed
     python -m midterms.early_skill           # the test -> data/static/early_skill.json
 
 An early ballot is not counted, so its party mix adds to the forecast only if it says something the polls do not: where they
@@ -46,7 +46,7 @@ Coverage (official sources, free; every request in GitHub Actions; aggregates on
   FL  the Division of Elections' statistics files exist only for the current election; a past cycle could enter only where
       the Internet Archive holds captures at exactly L days out in both years of a pair (fetch lists them).
   GA  not testable: the Secretary of State's files sit behind a bot check, the voter list with primary history is sold, and
-      the 2022 / 2024 public dashboards show no composition (ga_early).
+      the 2022 / 2024 public dashboards show no composition.
 Not used: UF Election Lab tables (CC BY-NC-ND 4.0: no derived numbers may be published), modelled party scores, third-party
 compilations.
 

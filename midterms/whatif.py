@@ -1,6 +1,8 @@
-"""Data for the "What if?" page (web/whatif.html): an educational tool for seeing how the forecast changes under other assumptions.
+"""Data for the forecast's re-runnable simulation (whatif.json): the "What if?" page's, until the election, and now the
+projection of the races still out (live/remaining.js runs the copy frozen with the forecast, data/final/whatif_2026.json,
+through live/engine.js).
 
-The page re-runs the simulation in the browser. It needs each race's ingredients, not just its odds:
+The engine re-runs the simulation. It needs each race's ingredients, not just its odds:
   * every race's published mean and the pieces of its error (shared statewide / national shock, the early-vote movement split
     of that shock, group factors, own error), as model.simulate (House) and senate2026.simulate_senate (Senate, governors)
     draw them, so the page's defaults reproduce the published forecast (the page draws 5,000 simulations to the model's 20,000);

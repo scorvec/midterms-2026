@@ -133,7 +133,7 @@ can start scheduled runs late). It runs `python -m midterms.bootstrap`, then `py
 4. Wikipedia: the House seat table (2026 maps, incumbents, nominees), race ratings, every Senate and governor race page and the
    50 state House-election pages; VoteHub and pollresults.org race polls; the Bluesky feeds (`refresh.py`).
 5. `build_web.py`: the House, Senate, governor and state-legislature simulations -> `web/data/model.json`, `polls.json`,
-   `whatif.json`, `stateleg_seats.json`, and the herding check `poll_spread.json` (diagnostic, see [Poll spread](#poll-spread-herding-check)).
+   `whatif.json` and `stateleg_seats.json`.
 6. The daily snapshot `web/data/history/model_<date>.json`; the reconstructed history (`backfill.py`, rebuilt only when the
    methodology files change), `web/data/race_history.json` and `web/data/summary.json` (the site's homepage panel).
 7. Diagnostics that do not feed the forecast (Florida and Pennsylvania early / mail vote, North Carolina and Pennsylvania
@@ -217,7 +217,7 @@ module constants, each documented where it is defined.
 | `data/static/` | small inputs derived once from public sources (below); committed |
 | `data/state/` | poll records the daily run accumulates (the feeds only reach back a few weeks); committed |
 | `data/manual/` | hand-entered polls (releases not yet in any feed) and checked corrections to scraped polls, with source URLs |
-| `data/early/` | early-vote diagnostics written by `early-diag.yml`; not used by the forecast or the website |
+| `data/early/` | early-vote diagnostics, written nightly until election night; not used by the forecast or the website |
 | `data/final/`, `data/results/` | the frozen forecast (`final.py`), the results as they come in and the scorecard (`scorecard.py`) |
 | `data/raw/`, `data/cache/` | downloads and intermediate files; git-ignored, kept between runs by `actions/cache` |
 | `reports/` | weekly change reports |
@@ -244,15 +244,11 @@ Committed inputs (`data/static/`):
 | `stateleg/` | state-legislature leans, results, sitting legislators, fitted parameters, backtest and audits | see [State legislatures](#state-legislatures-experimental) |
 | `nc_early_baseline.csv` (+ `.qc.json`) | North Carolina accepted mail / one-stop ballots of the 2022 and 2024 generals by days out and race / ethnicity group, with propensity counts and the registered voters of each group | NC State Board of Elections absentee files, voter-history file and registration statistics (public records); aggregates only, `python -m midterms.nc_early baseline --src DIR` |
 | `fl_wayback/`, `fl_registration.csv` | Florida statistics files of the 2024 and 2022 generals; active registered voters by party at month ends | Florida Division of Elections (public records); the 2024 / 2022 files as captured by the Internet Archive's Wayback Machine, the registration figures from the monthly county-and-party reports |
-| `ga_wayback_2022.json`, `ga_county_baselines.csv` | Georgia 2022 early-vote composition at each day of in-person voting; each county's 2022 governor and 2024 presidential margin | georgiavotes.com 2022 pages as captured by the Wayback Machine; MEDSL 2022 returns and 2024 county presidential results |
 | `race_move_fit.json` | a race's own late movement, pts² of margin a day (the total, its national part, the bootstrap sd) | 538 raw_polls (CC BY 4.0), Senate + governor generals 1998-2022; `python -c "from midterms import early_vote; early_vote.race_move_fit()"` |
 | `nc_tracker/` | North Carolina accepted mail / one-stop ballots of the 2018-2024 generals by days out, method, party, race, age and county, with each year's registered voters, the 2022 early voters' 2018 / 2020 participation, the party paces of 2008-2024 and each county's 2024 presidential margin | NC State Board of Elections absentee files, registration statistics, voter history and precinct results (public records); aggregates only, `python -m midterms.nc_tracker history --src DIR` |
-| `poll_spread_hist.json` | the herding check's benchmark: for each Senate / governor race of 1998-2022 with >= 4 pollsters in the last 21 days, how far its polls spread against sampling error | 538 raw_polls (CC BY 4.0); `python -m midterms.poll_spread --hist` |
 | `early_gate.json` | the backtest that keeps the early-vote party mix out of the forecast (North Carolina, 5 scoreable cycles) | the tables above and 538 raw_polls; `python -m midterms.nc_tracker gate` |
 | `early_skill.json`, `early_skill/` | the multi-state test of the same question, pre-registered in `early_skill.py` (North Carolina, Pennsylvania, Clark County; the change from the last cycle of the same kind against the final poll average's miss), with its aggregate inputs: Pennsylvania mail returns by party and days out 2020-2024, the Internet Archive's Florida captures, the source versions | data.pa.gov (PA Department of State, public records, counted server-side); the North Carolina and Clark County tables above; 538 raw_polls and poll archives (CC BY 4.0); MIT Election Data and Science Lab President and Senate 1976-2024 (CC0); `early-skill.yml` |
 | `nv_clark_baseline.csv` | Clark County, Nevada, mail ballots returned by registered party and day in the 2022 and 2024 generals, and 2024 in-person early voters by day (counts only) | Clark County Election Department return files (public records); `nv_clark_early.py` |
-| `turnout_totals.csv`, `cvap.csv` | each tracked state's votes for President, U.S. Senate and U.S. House 2008-2024 (the largest is the year's total); the citizen voting-age population in 2022 and 2024 (states, Clark County) | FEC *Federal Elections* tables (public domain; 2024 from MIT's presidential returns, CC0, if the FEC's are not out); Census ACS 1-year B29001 (public domain); `python -m midterms.turnout_proj fetch` |
-| `tx_early_sources.json`, `tx_county_pres2024.csv` | sources for the Texas tracker; 2024 presidential votes by Texas county | Texas Secretary of State (public records); MIT Election Data and Science Lab 2024 precinct returns (doi:10.7910/DVN/NYTPDU, CC0), summed by county |
 
 `web/data/districts_2026.topo.json` (district shapes) is built by `district_shapes.py` from Census 2020 cartographic block
 groups and the block equivalency file of the map in force (`demog.cd_blocks`; public domain).
@@ -751,13 +747,13 @@ dates with either lean. On the inputs of 16 October 2026 the switch moved the Ho
 
 ### Early vote
 
-These ran until election night; their workflows (`early-diag.yml`, `tx-early.yml`, `early-skill.yml`, `nc-night.yml`) were
-retired on 4 November 2026 and their committed outputs stay. None of these fed the forecast. Votes cast before Election Day enter the model only through the early-vote movement
-split described above (national and race-level). Until Election Day an early-vote page published North Carolina, Georgia
-and Florida (`early_page.py` assembled its data from committed files). All of it ran nightly in `early-diag.yml`; only
-aggregates are committed.
+These ran until election night and were retired with the early-vote page on 4 November 2026. The trackers behind the
+tests of the early vote's skill (North Carolina, Florida, Pennsylvania, Clark County) keep their code and committed
+aggregates; the Georgia, Texas and Washoe County trackers, the turnout projection and North Carolina's election-night
+tracker were removed with their data. None of these fed the forecast. Votes cast before Election Day enter the model only
+through the early-vote movement split described above (national and race-level).
 
-**North Carolina, published** (`nc_tracker.py`): accepted mail and one-stop ballots of 2026 against the 2018 and 2022
+**North Carolina, the tracker and the gate** (`nc_tracker.py`): accepted mail and one-stop ballots of 2026 against the 2018 and 2022
 midterms and the 2020 and 2024 presidential years on the same number of days out, by party, age, race, county (against
 each county's 2024 presidential margin) and whether the voters voted in the previous two generals; rates are per
 registered voter of the same group on that year's rolls (2018-2024 committed in `data/static/nc_tracker/`; 2026 from the
@@ -767,7 +763,7 @@ same on the rolls, change from the previous cycle of the same kind) against Nort
 5 scoreable cycles, r -0.72 at 17 days (p 0.17), -0.27 at 10, -0.22 at 5, the sign opposite to the usual reading. No skill,
 so it stays out of the forecast (`data/static/early_gate.json`); rerun after 2026.
 
-**North Carolina** (`nc_early.py`, `early-diag.yml`; race and ethnicity are self-reported on the NC voter record): accepted
+**North Carolina by race and ethnicity** (`nc_early.py`; race and ethnicity are self-reported on the NC voter record): accepted
 mail and one-stop ballots by days before Election Day, 2026 against 2022 and 2024, for white, Black, other, undesignated
 and Hispanic voters - each group's share of ballots, that share against its share of registered voters on the same days
 out, ballots per 1,000 registered, the share who skipped at least two of the three previous generals, and what the same
@@ -782,68 +778,8 @@ captures at the same days out, as the returns' R-D margin, that margin minus the
 and minus the R-D of all mail ballots sent. Output `data/early/fl_early.json`. Hurricanes Helene (Sep 26, 2024) and Milton
 (Oct 9, 2024) fall on the 2024 baseline dates.
 
-**Georgia** (`ga_early.py`): georgiavotes.com's home page once a day (compiled from the Georgia Secretary of State's
-absentee files; its pages are open to crawlers, its `/api/` is not and is never used): ballots so far against 2022 at the
-same point, statewide and by county, the county mix weighted by each county's past margin, and the race, age and gender of
-2026 voters against 2022 at the same day of in-person voting (Wayback captures, `data/static/ga_wayback_2022.json`). It
-cannot be tested for skill - no past cycle has both a same-day baseline and an outcome to score - so it stays a diagnostic.
-
 **Pennsylvania** (`pa_early.py`, daily run): mail-ballot applications and returned ballots by party at matched days out,
 2026 against 2022 and 2024, from the Department of State's datasets on data.pa.gov; uploaded as a workflow artifact.
-
-**Texas** (`tx_early.py`, `tx-early.yml`). Nothing runs or is fetched unless the repository variable `TX_EARLY` is `on`
-(it is, since 19 October). It follows the Texas Secretary of State's daily county early-voting file for the 2026 general
-(county summary only, one conditional request per file per day) and commits `data/early/tx_early.json`: early votes as a
-share of registered voters, statewide and for fixed county groups (big Democratic counties, Republican-leaning suburbs and
-exurbs, the Rio Grande Valley and border, the swing suburbs Tarrant and Fort Bend; `data/static/tx_county_pres2024.csv`).
-Texas has no party registration, so this is turnout, not vote choice. The 2022 comparison is not built: the SOS's 2022
-day-by-day portal and its results site answered GitHub Actions with a Cloudflare browser challenge, which is not evaded.
-The planned end point, the final 2022 early vote by county, is described in `tx_early._final_2022`.
-
-**Turnout so far** (`turnout_proj.py`, `early-diag.yml` and `tx-early.yml`; a metric, not a forecast input): each tracked
-state's ballots so far against 2022 at the same days out, as shares of 2022's total (the FEC's Senate / House / President
-totals) and of the citizen voting-age population (Census ACS), and a projected total - ballots so far divided by the
-share the last comparable midterm had banked by the same point - only where at least three comparable past midterms give
-it a backtested 80 % range. Pre-registered in the module, with one dated amendment: cycles are compared only if their
-in-person early voting opened within a day of each other. On the first run no state qualifies (North Carolina's 2014 and
-2018 calendars leave one comparable midterm; Pennsylvania's mail records start in 2020), so the page shows the counts and
-says why. Output `data/early/turnout_proj.json`.
-
-**North Carolina on election night** (`nc_night.py`; not on the site, not a forecast input). North Carolina reports its
-early and mail ballots first. A registration accounting - a county's ballots cast one way have each party's net vote,
-fitted on the county x method results of every statewide contest 2016-2024 (`data/static/nc_night/`, built once from the
-voter history and the results files) - turns the reported batch into a level shift and adds the Election Day vote still to
-come (each county's banked ballots by party x its 2022 Election Day to early ratio; the counties that have finished correct
-the turnout and the Election Day level). Replayed on the ten contests, each without its year: RMS error of the final margin
-2.0 points from the batch alone (6.6 for the batch as it stands), 1.5 with a quarter of the counties finished, 1.1 with half
-(random order); mean error 1.2 against the final three weeks of polls' 3.4 on the eight contests 538's archives cover. The
-ratio projection assumes a party that banks fewer ballots turns out less; when a party moves between ways of voting it
-misses (2024: 2.6-3.8 points too Republican), so a second projection - 2022's turnout by party minus the banked ballots - is shown beside it once one-stop voting closes.
-Nightly in `early-diag.yml`: the batch each final Senate margin implies (`data/early/nc_night.json`); on the night
-`nc-night.yml` reads the results file every five minutes and writes `data/results/nc_night_2026.json`.
-
-**Washoe County, Nevada** (`nv_washoe_early.py`): the Registrar of Voters' cumulative daily files - every mailed ballot with
-the voter's party and status (Nevada mails one to every active voter, so the file is also the active rolls) and every early
-in-person voter - counted by party against the county's own rolls. The county keeps no daily files from earlier generals, so
-there is no 2022 comparison. Only counts are committed (`data/early/nv_washoe_early.json`); the voter-level files stay in
-the Actions cache.
-
-### Poll spread (herding check)
-
-`poll_spread.py`, a diagnostic that does not feed the forecast. Herding is pollsters steering toward the average (weighting
-choices, or holding back a result that looks like an outlier); its mark is polls that agree more closely than their sample
-sizes allow, as in the 2024 presidential swing states. For each Senate and governor race with at least 4 pollsters in the
-last 21 days (each pollster's newest poll, published D-R margin), the sum of squared gaps from the race's weighted mean in
-units of each poll's sampling variance, `1e4 (d + r - (d - r)^2) / n`, divided by k - 1, is 1 when the polls differ by
-sampling error only. Real polls differ more (house effects, likely-voter screens, timing): over 1998-2022 the pooled ratio was
-1.48 for Senate races and 1.83 for governor races, and no cycle's Senate polls pooled below 1.08 (2020).
-`web/data/poll_spread.json` gives each race's ratio and `p_low` (the chance of polls this close under sampling error alone)
-and, per office, the pooled ratio and `p_hist`, the share of same-size draws of 1998-2022 races that pool at least as low.
-
-A tight race is not a warning of a miss by itself: over the 342 benchmark races the ratio is unrelated to how far the
-average missed (Spearman 0.02; tightest third 4.2 points, widest third 4.2), and a cycle's pooled ratio is unrelated to
-that cycle's average miss. What herding costs is information: polls that lean on each other count for less than their
-number, which the forecast already allows for by treating a race's polls as sharing one systematic error.
 
 ## Credits
 

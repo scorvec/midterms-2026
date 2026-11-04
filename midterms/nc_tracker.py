@@ -31,8 +31,8 @@ the D v R polls of the last 21 days, 538 raw_polls; President, Senate, Governor)
 than last time came before polls that ran too Democratic, 2016 and 2020). The gate stays shut; data/static/early_gate.json
 keeps the table and the page shows today's reading beside it. Rerun after 2026 adds a sixth cycle.
 
-Where it runs: nightly in early-diag.yml, after nc_early.py (which has fetched the morning's absentee file), then
-early_page.py; the workflow commits data/early/nc_tracker/ and web/data/early_vote.json - aggregates only.
+Where it ran: nightly until election night, after nc_early.py (which had fetched the morning's absentee file); the
+tables in data/early/nc_tracker/ are aggregates only.
 
     python -m midterms.nc_tracker                      # daily: 2026 tables (data/early/nc_tracker/)
     python -m midterms.nc_tracker history --src DIR    # one-time: 2008-2024 into data/static/nc_tracker/ (NCSBE zips in DIR)

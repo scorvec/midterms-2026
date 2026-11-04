@@ -133,7 +133,6 @@ jobs:
           if [ "$HELD" != "true" ]; then
             paths="$paths web/data/model.json web/data/summary.json web/data/polls.json web/data/race_history.json web/data/whatif.json web/data/history reports"
             [ -e web/data/stateleg_seats.json ] && paths="$paths web/data/stateleg_seats.json"   # state-legislature district maps
-            [ -e web/data/poll_spread.json ] && paths="$paths web/data/poll_spread.json"   # the herding check (poll_spread.py)
             [ -e data/final ] && paths="$paths data/final data/results"   # the frozen forecast and the results file (freeze)
           fi
           git config user.name "github-actions[bot]"

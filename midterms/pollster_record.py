@@ -1,4 +1,4 @@
-"""Leak-free pollster track record, used by the "What if?" page's "trust the best pollsters" tool.
+"""Leak-free pollster track record, in whatif.json for the "What if?" page's "trust the best pollsters" tool (retired).
 
 538's Jan-2024 ratings were built partly from the 2018-22 results a backtest would score, so they cannot be tested fairly.
 Here a pollster is rated only on general-election polls from cycles before the year being forecast (538 raw_polls,

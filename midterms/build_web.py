@@ -381,7 +381,7 @@ def main():
         FN.detail(out, s, mg, SS, smg, GS if "governor" in out else None, gmg if "governor" in out else None)
     )
     polls_page(out, gm, E_now, BIAS)
-    try:  # the "What if?" page's ingredients (midterms/whatif.py)
+    try:  # the re-runnable simulation's ingredients (midterms/whatif.py; frozen copy in data/final/whatif_2026.json)
         from . import whatif as WI
 
         WI.export(
@@ -636,12 +636,6 @@ def polls_page(out, gm, E_now, bias):
 
     with open("web/data/polls.json", "w") as fh:
         json.dump(clean(doc), fh, separators=(",", ":"), allow_nan=False)
-    try:  # the herding check (diagnostic only)
-        from . import poll_spread
-
-        poll_spread.build(clean(doc))
-    except Exception as e:  # never blocks the publish
-        print("  poll spread failed:", str(e)[:120])
     print(
         f"polls page: {len(races)} races with polls, {sum(len(r['polls']) for r in races)} race polls; "
         f"{len(doc['national']['generic']['polls'])} generic, {len(doc['national']['approval']['polls'])} approval polls"

@@ -272,8 +272,7 @@ def summary():
 
 def main(argv):
     """The daily run. Polls are released mostly Wed-Fri, 10:00-17:00 ET (VoteHub + Bluesky timestamps, Aug-Sep 2026; 94 % out by
-    21:00 ET), so the workflow runs at 22:30 ET. Diagnostics (FL/PA early vote, registration) never stop the run. The Texas
-    early-vote tracker (tx_early.py) is a separate step of the daily workflow, after this run."""
+    21:00 ET), so the workflow runs at 22:30 ET. Diagnostics (FL/PA early vote, registration) never stop the run."""
     import os
     import time
 
