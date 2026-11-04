@@ -3,17 +3,17 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 300,
+   "called": 320,
    "of": 488,
-   "brier": 0.0333,
-   "log_loss": 0.1133,
-   "favourite_won": 0.967,
+   "brier": 0.0312,
+   "log_loss": 0.1066,
+   "favourite_won": 0.969,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 80,
+     "n": 83,
      "forecast": 0.011,
-     "won": 0.013
+     "won": 0.012
     },
     {
      "band": "0.05-0.15",
@@ -53,15 +53,15 @@
     },
     {
      "band": "0.95-1.00",
-     "n": 154,
+     "n": 171,
      "forecast": 0.996,
      "won": 1.0
     }
    ],
    "raters": {
-    "n": 59,
-    "brier_model": 0.1182,
-    "brier_raters": 0.1223
+    "n": 61,
+    "brier_model": 0.1143,
+    "brier_raters": 0.1186
    }
   },
   "governor": {
@@ -122,16 +122,16 @@
    ]
   },
   "house": {
-   "called": 234,
+   "called": 254,
    "of": 417,
-   "brier": 0.0299,
-   "log_loss": 0.1015,
-   "favourite_won": 0.97,
+   "brier": 0.0275,
+   "log_loss": 0.094,
+   "favourite_won": 0.972,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 65,
-     "forecast": 0.009,
+     "n": 68,
+     "forecast": 0.01,
      "won": 0.015
     },
     {
@@ -166,15 +166,15 @@
     },
     {
      "band": "0.95-1.00",
-     "n": 130,
+     "n": 147,
      "forecast": 0.997,
      "won": 1.0
     }
    ],
    "raters": {
-    "n": 59,
-    "brier_model": 0.1182,
-    "brier_raters": 0.1223
+    "n": 61,
+    "brier_model": 0.1143,
+    "brier_raters": 0.1186
    }
   },
   "senate": {
@@ -2034,85 +2034,85 @@
    "office": "house",
    "seat": "NY-5",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-6",
    "p": 0.998,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-7",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-8",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-9",
    "p": 0.9999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-10",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-11",
    "p": 0.0272,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-12",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-13",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-14",
    "p": 0.9999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-15",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-16",
    "p": 0.9999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2126,23 +2126,23 @@
    "office": "house",
    "seat": "NY-18",
    "p": 0.9957,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-19",
    "p": 0.988,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.895
   },
   {
    "office": "house",
    "seat": "NY-20",
    "p": 0.9993,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -2156,37 +2156,37 @@
    "office": "house",
    "seat": "NY-22",
    "p": 0.9981,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-23",
    "p": 0.0122,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
    "office": "house",
    "seat": "NY-24",
    "p": 0.0396,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-25",
    "p": 0.9997,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "NY-26",
    "p": 0.9998,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -3800,8 +3800,8 @@
  ],
  "chambers": {
   "house": {
-   "d_called": 171,
-   "undecided": 183
+   "d_called": 188,
+   "undecided": 163
   },
   "senate": {
    "d_called": 54,
