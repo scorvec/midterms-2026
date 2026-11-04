@@ -3,10 +3,10 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 425,
+   "called": 426,
    "of": 488,
-   "brier": 0.026,
-   "log_loss": 0.0894,
+   "brier": 0.0261,
+   "log_loss": 0.0899,
    "favourite_won": 0.969,
    "calibration": [
     {
@@ -41,8 +41,8 @@
     },
     {
      "band": "0.65-0.85",
-     "n": 25,
-     "forecast": 0.763,
+     "n": 26,
+     "forecast": 0.762,
      "won": 1.0
     },
     {
@@ -65,11 +65,11 @@
    }
   },
   "governor": {
-   "called": 33,
+   "called": 34,
    "of": 36,
-   "brier": 0.0545,
-   "log_loss": 0.1757,
-   "favourite_won": 0.939,
+   "brier": 0.0549,
+   "log_loss": 0.1794,
+   "favourite_won": 0.941,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -103,8 +103,8 @@
     },
     {
      "band": "0.65-0.85",
-     "n": 2,
-     "forecast": 0.721,
+     "n": 3,
+     "forecast": 0.727,
      "won": 1.0
     },
     {
@@ -3737,8 +3737,8 @@
    "office": "governor",
    "seat": "OR",
    "p": 0.7385,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
@@ -3814,8 +3814,8 @@
    "undecided": 2
   },
   "governor": {
-   "d_called": 27,
-   "undecided": 3
+   "d_called": 28,
+   "undecided": 2
   }
  },
  "frozen": {
