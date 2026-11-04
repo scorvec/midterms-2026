@@ -1,14 +1,14 @@
 {
- "generated": "2026-11-04T02:49Z",
+ "generated": "2026-11-04T02:54Z",
  "contest": "US SENATE",
- "counties_batch": 92,
- "counties_complete": 52,
+ "counties_batch": 93,
+ "counties_complete": 54,
  "reported_votes": {
-  "early": 2645145,
-  "eday": 347283,
-  "mail": 67493
+  "early": 2649296,
+  "eday": 414024,
+  "mail": 67544
  },
- "reported_margin": 23.34,
+ "reported_margin": 22.68,
  "forecast": {
   "challenger": "Roy Cooper",
   "republican": "Michael Whatley",
@@ -29,13 +29,13 @@
   }
  },
  "ratio": {
-  "estimate": 19.22,
-  "theta": 12.11,
-  "kappa": 0.937
+  "estimate": 19.36,
+  "theta": 12.1,
+  "kappa": 0.927
  },
  "totals": {
-  "estimate": 12.06,
-  "theta": 12.11,
-  "kappa": 1.034
+  "estimate": 12.99,
+  "theta": 12.1,
+  "kappa": 1.051
  }
 }
