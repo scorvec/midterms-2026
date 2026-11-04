@@ -7,7 +7,8 @@
 data/results/results_2026.csv, one row per race (office house / senate / governor, seat "AK-1" / "GA"; plus office national,
 seat US for the national House vote):
   challenger, republican   the forecast's two sides (filled by `template`; the challenger is the Republican's opponent the
-                           model scored - Hill (I) in AK-1, the independents in NE / ID / SD / MT, otherwise the Democrat)
+                           model scored - Hill (I) in AK-1, the independents in NE / ID / SD / MT, otherwise the Democrat);
+                           a name the forecast got wrong is corrected here (Louisiana's incumbents), the side kept
   winner                   D / R / I / O once the race is called (the eventual winner: Georgia's runoff, Vermont's legislature)
   status                   counting / called / final / certified / runoff / legislature / rcv_pending
   chal_votes, rep_votes, total_votes   the count for the two sides and every ballot cast in the race (a candidate on several

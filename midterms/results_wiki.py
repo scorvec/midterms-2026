@@ -7,7 +7,10 @@ Calls: the winner ticked on the three overview pages (House, Senate, governors: 
 per state, one box per district) once editors fill it in; an empty or half-filled box leaves the counts blank. Ranked-choice
 races (Alaska, Maine) get no count here: their boxes carry rounds, and the scorer needs the final round from official returns.
 Rows read here are status "called" (a winner is ticked) or "counting" (a count, no call); "final" and "certified" come only
-from official returns, and a row whose source is anything but Wikipedia is never overwritten.
+from official returns, and a row whose source is anything but Wikipedia is never overwritten. The two sides are the results
+file's challenger and republican, the forecast's names unless corrected there (Louisiana's incumbents, missed by the forecast).
+Louisiana's House races were one ballot of every candidate in 2026 (a December runoff below 50 %): a side's count there is its
+party's total, the model's party margin.
 """
 
 from __future__ import annotations
@@ -27,6 +30,7 @@ GOV_PAGE = "2026 United States gubernatorial elections"
 SOURCE = "Wikipedia"
 NAME = {v: k for k, v in _ST.items()}
 AT_LARGE = {"AK", "DE", "ND", "SD", "VT", "WY"}
+ALL_CANDIDATE = {"LA"}  # House races with every candidate on one November ballot
 TICK = "img[contains(@alt, 'tick') or contains(@alt, 'check')]"
 COUNT_COLS = ["chal_votes", "rep_votes", "total_votes"]
 
@@ -102,9 +106,9 @@ def boxes(html: str):
             yield cap, rows, total
 
 
-def count(bx: list, challenger: str, republican: str):
+def count(bx: list, challenger: str, republican: str, parties: tuple | None = None):
     """(challenger votes, Republican votes, total) from the last of a page's boxes naming both, or None while it is not
-    filled in."""
+    filled in. With `parties` (the challenger's party code, "R"), every line of a side's party counts for that side."""
     sc, sr = W._surname(challenger), W._surname(republican)
     found = None
     for _cap, rows, total in bx:
@@ -116,8 +120,11 @@ def count(bx: list, challenger: str, republican: str):
     rows, total = found
     if not total or any(v is None for _p, _n, v in rows):
         return None
-    c = sum(v for _p, n, v in rows if W._surname(n) == sc)  # a candidate on several lines (fusion) is summed
-    r = sum(v for _p, n, v in rows if W._surname(n) == sr)
+
+    def side(surname, party):  # a candidate on several lines (fusion) is summed
+        return sum(v for p, n, v in rows if W._surname(n) == surname or (parties and party_code(p) == party))
+
+    c, r = side(sc, parties and parties[0]), side(sr, parties and parties[1])
     return (c, r, total) if 0 < c + r <= total else None
 
 
@@ -132,17 +139,17 @@ def race_page(office: str, seat: str, special: bool) -> str:
 
 def update(res: pd.DataFrame, forecast: dict, called: dict, counts: dict, now: str) -> list[str]:
     """Write the calls and counts into the results rows (in place); returns one line per row that changed."""
-    by = {(f["office"], f["seat"]): f for f in forecast["races"]}
+    races = {(f["office"], f["seat"]) for f in forecast["races"]}
     moved = []
     for i, r in res.iterrows():
         key = (r["office"], r["seat"])
-        if key not in by or r["source"] not in ("", SOURCE):  # official returns and hand entries stay as they are
+        if key not in races or r["source"] not in ("", SOURCE):  # official returns and hand entries stay as they are
             continue
         c, n = called.get(key, {}), counts.get(key)
         new = {"winner": c.get("winner") or "", "status": "called" if c.get("winner") else ("counting" if n else "")}
         new.update(zip(COUNT_COLS, [str(v) for v in n] if n else ["", "", ""]))
         note = ""
-        sides = {W._surname(by[key]["challenger"]), W._surname(by[key]["republican"])}
+        sides = {W._surname(r["challenger"]), W._surname(r["republican"])}
         if c.get("name") and W._surname(c["name"]) not in sides:
             note = f"winner {c['name']} is neither forecast side"
         new["note"] = note
@@ -165,6 +172,7 @@ def main():
         for seat, c in calls(office, W.fetch(page, max_age_h=0)).items():
             called[(office, seat)] = c
     counts, pages = {}, {}
+    names = {(r.office, r.seat): (r.challenger, r.republican) for r in res.itertuples()}
     for f in forecast["races"]:
         if f.get("rcv"):
             continue
@@ -175,9 +183,15 @@ def main():
             except Exception as e:  # a page that does not exist (yet) leaves its counts blank
                 print(f"  {title}: {str(e)[:80]}")
                 pages[title] = []
-        n = count(pages[title], f["challenger"], f["republican"])
+        key = (f["office"], f["seat"])
+        jungle = f["office"] == "house" and f["seat"].split("-")[0] in ALL_CANDIDATE
+        n = count(
+            pages[title],
+            *names.get(key, (f["challenger"], f["republican"])),
+            (f["challenger_party"], "R") if jungle else None,
+        )
         if n:
-            counts[(f["office"], f["seat"])] = n
+            counts[key] = n
     moved = update(res, forecast, called, counts, time.strftime("%Y-%m-%dT%H:%MZ", time.gmtime()))
     res.to_csv(SC.RESULTS, index=False)
     print(

@@ -56,9 +56,9 @@ def build(doc: dict, res: pd.DataFrame) -> dict:
             {
                 "office": f["office"],
                 "seat": f["seat"],
-                "challenger": f["challenger"],
-                "party": f["challenger_party"],
-                "republican": f["republican"],
+                "challenger": _str(r.get("challenger")) or f["challenger"],  # the results file corrects a name the
+                "party": f["challenger_party"],  # forecast got wrong (Louisiana's incumbents)
+                "republican": _str(r.get("republican")) or f["republican"],
                 "opp": f.get("opponent_party", "R"),  # the side p is against: CA-6's incumbent is an independent
                 "p": f["p"],
                 "med": SC.quantile(f["q"], 0.5),

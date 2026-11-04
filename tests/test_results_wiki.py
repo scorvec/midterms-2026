@@ -47,6 +47,20 @@ def test_counts_take_the_general_box_and_sum_fusion_lines():
         "",
     )
     assert RW.count(list(RW.boxes(empty)), "Ann Smith", "Bob Jones") is None
+    one_ballot = _box(
+        "Louisiana's 3rd congressional district, 2026",
+        [
+            ("Republican", "Clay Higgins (incumbent)", "150,000"),
+            ("Democratic", "John Day", "60,000"),
+            ("Republican", "Kate Cotten", "20,000"),
+            ("Democratic", "Caleb Walker", "15,000"),
+            ("Independent", "Tia LeBrun", "5,000"),
+        ],
+        "250,000",
+    )
+    bx = list(RW.boxes(one_ballot))
+    assert RW.count(bx, "John Day", "Clay Higgins") == (60000, 150000, 250000)
+    assert RW.count(bx, "John Day", "Clay Higgins", ("D", "R")) == (75000, 170000, 250000)
 
 
 def test_update_keeps_official_rows_and_flags_a_stray_winner():
@@ -62,7 +76,12 @@ def test_update_keeps_official_rows_and_flags_a_stray_winner():
         ]
     }
     res = pd.DataFrame(
-        [dict.fromkeys(SC.COLS, "") | {"office": "house", "seat": s} for s in ("KY-6", "CA-22", "NY-4", "OR-5")]
+        [
+            dict.fromkeys(SC.COLS, "")
+            | {"office": "house", "seat": f["seat"], "challenger": f["challenger"]}
+            | {"republican": f["republican"]}
+            for f in forecast["races"]
+        ]
     )
     res.loc[3, ["winner", "status", "source"]] = ["D", "certified", "Oregon Secretary of State"]
     called = {
