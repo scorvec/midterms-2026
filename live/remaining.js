@@ -5,20 +5,22 @@
 // The simulations are the forecast's: live/engine.js and data/final/whatif_2026.json are the published what-if engine and its
 // data from the forecast's frozen commit, with the same seed, so the margins below are the forecast's own draws. They share
 // national, state, urban and demographic-group shocks, so a call or a count in one race moves every race tied to it.
-//   observations  [{race: "H:IN-3" | "S:KY" | "G:FL", call: "D" | "R", d, r, pct, skew, skew_sd}]: call = the side that won
-//                 ("D" the Republican's opponent); d, r = each side's share of the ballots counted; pct = share counted
-//   count error   final margin = counted margin - skew + Student-t (4 df) error, sd 2 + 28 (1 - f)^1.5 at share counted f,
-//                 plus skew_sd in quadrature: wide early, tight once most of the vote is in, heavy tails so one odd count
-//                 cannot take over
+//   observations  [{race: "H:IN-3" | "S:KY" | "G:FL", call: "D" | "R", d, r, pct, est, skew, skew_sd}]: call = the side
+//                 that won ("D" the Republican's opponent); d, r = each side's share of the ballots counted; pct = share
+//                 counted, est = that share is estimated (a Wikipedia count says nothing of how much is in)
+//   count error   final margin = counted margin - skew + Student-t (4 df) error, plus skew_sd in quadrature; heavy tails so
+//                 one odd count cannot take over. With a reported share counted f the error is the vote still out, sd
+//                 hypot(0.5, REST_SD (1 - f)); with an estimated share, 2 + 28 (1 - f)^1.5, never under 2 points, since
+//                 the share itself can be well off
 //   calls         a called race counts for its winner in every seat total; in the weights it enters softly, as
 //                 log Phi(+-margin / CALL_SD), so a simulation where the winner lost by more than a few points is
 //                 down-weighted rather than dropped (dropping left too few simulations once a dozen upsets were called)
 //   tempering     with hundreds of observations the weights collapse onto a few simulations, so their joint log-likelihood
 //                 is scaled by the largest a <= 1 that keeps an effective sample of ESS_TARGET
 //   race odds     an uncalled race with a count reads its own count directly: prior = its margin under the weights without
-//                 its own count (leave-one-out, normal approximation), likelihood = the count at 60 % of the count error
-//                 plus skew_sd; normal posterior
-// The calls and counts are Wikipedia's (midterms/results_wiki.py) unless the results file holds official returns.
+//                 its own count (leave-one-out, normal approximation), likelihood = the count at its count error (60 % of
+//                 it for an estimated share) plus skew_sd; normal posterior
+// The calls and counts are Wikipedia's (midterms/results_wiki.py) unless the results file holds official returns or a news count.
 "use strict";
 const fs = require("fs");
 const path = require("path");
@@ -42,7 +44,9 @@ function Phi(x) {
 }
 const logPhi = (x) => (x > -5 ? Math.log(Math.max(Phi(x), 1e-300)) : -0.5 * x * x - Math.log(-x) - 0.9189385);
 const logT4 = (z) => -2.5 * Math.log(1 + z * z / 4); // Student-t, 4 df, up to a constant
-const countSd = (f) => 2 + 28 * Math.pow(Math.max(0, 1 - f), 1.5);
+const REST_SD = 25; // points: how far the uncounted ballots' margin can run from the counted ballots'
+const countSd = (f, est) =>
+  est ? 2 + 28 * Math.pow(Math.max(0, 1 - f), 1.5) : Math.hypot(0.5, REST_SD * Math.max(0, 1 - f));
 
 function simulate() {
   // Engine.run's arithmetic at the published settings, keeping every simulation's margins
@@ -105,10 +109,10 @@ function run(obs) {
       for (let i = 0; i < N; i++) lw[i] += logPhi(s * margin(i, k) / CALL_SD);
     }
     if (!(o.pct > 0)) continue;
-    const f = Math.min(1, o.pct / 100), m = o.d - o.r - (o.skew || 0), sd = Math.hypot(countSd(f), o.skew_sd || 0);
+    const f = Math.min(1, o.pct / 100), m = o.d - o.r - (o.skew || 0), sd = Math.hypot(countSd(f, o.est), o.skew_sd || 0);
     const ow = new Float32Array(N);
     for (let i = 0; i < N; i++) { ow[i] = logT4((margin(i, k) - m) / sd); lw[i] += ow[i]; }
-    if (!o.call) own.push({ k, m, f, ssd: o.skew_sd || 0, ow });
+    if (!o.call) own.push({ k, m, f, est: o.est, ssd: o.skew_sd || 0, ow });
   }
   let mx = -Infinity;
   for (const v of lw) if (v > mx) mx = v;
@@ -149,7 +153,7 @@ function run(obs) {
       z += wi; a += wi * v; b += wi * v * v;
     }
     if (!(z > 0)) continue;
-    const m0 = a / z, s0 = Math.sqrt(Math.max(b / z - m0 * m0, 1)), so = Math.hypot(0.6 * countSd(c.f), c.ssd);
+    const m0 = a / z, s0 = Math.sqrt(Math.max(b / z - m0 * m0, 1)), so = Math.hypot((c.est ? 0.6 : 1) * countSd(c.f, c.est), c.ssd);
     const prec = 1 / (s0 * s0) + 1 / (so * so), pm = (m0 / (s0 * s0) + c.m / (so * so)) / prec, ps = Math.sqrt(1 / prec);
     local.set(c.k.join(":"), { p: Phi(pm / ps), med: pm, lo: pm - 1.2816 * ps, hi: pm + 1.2816 * ps });
   }
@@ -168,7 +172,7 @@ function run(obs) {
     const vals = Float64Array.from({ length: N }, (_, i) => margin(i, k));
     const [lo, med, hi] = weightedQuantiles(vals, w, sw, [0.1, 0.5, 0.9]);
     const r = local.get(k.join(":")) || { p: (t === "H" ? hWin : sWin)[j], med, lo, hi };
-    const o = byRace.get(key), count = o && o.pct > 0 ? { margin: +(o.d - o.r).toFixed(2), pct: o.pct } : null;
+    const o = byRace.get(key), count = o && o.pct > 0 ? { margin: +(o.d - o.r).toFixed(2), pct: o.pct, est: !!o.est } : null;
     rows.push({ race: key, p: +r.p.toFixed(4), med: +r.med.toFixed(1), lo: +r.lo.toFixed(1), hi: +r.hi.toFixed(1), count });
   }
   const [n10, n90] = weightedQuantiles(NAT, w, sw, [0.1, 0.9]);
@@ -181,7 +185,7 @@ function run(obs) {
   };
 }
 
-const sig = crypto.createHash("sha256").update(JSON.stringify(OBS)).digest("hex").slice(0, 16);
+const sig = crypto.createHash("sha256").update(JSON.stringify(OBS)).update(fs.readFileSync(__filename)).digest("hex").slice(0, 16);
 let old = null;
 try { old = JSON.parse(fs.readFileSync(OUT, "utf8")); } catch (e) { /* first run */ }
 if (old && old.obs_hash === sig) {

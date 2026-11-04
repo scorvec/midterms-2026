@@ -22,7 +22,7 @@ commits its outputs to `web/`; the pages are static, and every position of the "
 
 | page | what it shows |
 |---|---|
-| `web/index.html` | the results: each chamber as called, every race next to its frozen forecast, and the scorecard |
+| `web/index.html` | the results: each chamber as called, the national House vote against every election since 1946, every race next to its frozen forecast, and the scorecard |
 | `web/live.html` | the races still out: projected seat totals and every uncalled race's chance from the calls and counts so far |
 | `web/forecast.html` | the final forecast, as frozen: chamber and governor odds, seat distributions, every race and how each moved |
 | `web/about.html` | how the forecast works, the track record and every source |
@@ -166,7 +166,7 @@ Other workflows:
 
 | workflow | what it does |
 |---|---|
-| `results.yml` | hourly, on demand and on every hand edit of `data/results/results_2026.csv`: the calls and counts from Wikipedia (`results_wiki.py`; rows from official returns are kept), the scorecard (`scorecard.py`, rules in its docstring, -> `data/results/scorecard_2026.json`), the results page's data (`results_page.py` -> `web/data/results.json`) and the projection of the races still out (`live_obs.py`, then `node live/remaining.js` -> `web/data/live.json`, `live_history.json`) |
+| `results.yml` | hourly, on demand and on every hand edit of `data/results/results_2026.csv`: the calls, counts and national House vote from Wikipedia (`results_wiki.py`; rows from official returns are kept, a count entered from a news tally keeps its numbers and takes Wikipedia's call), the scorecard (`scorecard.py`, rules in its docstring, -> `data/results/scorecard_2026.json`), the results page's data (`results_page.py` -> `web/data/results.json`) and the projection of the races still out (`live_obs.py`, then `node live/remaining.js` -> `web/data/live.json`, `live_history.json`) |
 | `stateleg-geo.yml` | builds the district maps `web/data/stateleg_geo/` from Census TIGER/Line when the chamber list or the district leans change |
 | `stateleg-data.yml` | one-time builds of the state-legislature tables in `data/static/stateleg/` (triggered from a feature branch) |
 | `cd-lean.yml` | manual: the congressional-district leans (`cd_lean_build.py`) on the 2026 maps or on the 2018 and 2022 maps |

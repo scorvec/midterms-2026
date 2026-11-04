@@ -5,9 +5,9 @@
 Calls: a race with a winner is called for the side that won (the Republican's opponent, or the Republican - CA-6's
 independent incumbent in its place); a winner of neither side is left out. Counts: every race with a count, called or not,
 in the model's unit (each side's share of every ballot, as scorecard.py scores it); ranked-choice races carry no count until
-their final round is official. The share counted is the results file's own when it has one (official returns); otherwise it
-is estimated from the race's 2024 presidential vote (D + R, on the 2026 map), scaled by TURNOUT, and capped at F_CAP, since a
-Wikipedia box does not say how much of the vote is in. States that count most ballots after Election Day get extra count
+their final round is official. The share counted is the results file's own when it has one (official returns, or a news count
+with its reported share of the expected vote); otherwise it is estimated (est) from the race's 2024 presidential vote (D + R,
+on the 2026 map), scaled by TURNOUT, and capped at F_CAP, since a Wikipedia box does not say how much of the vote is in. States that count most ballots after Election Day get extra count
 noise (LATE_SD): their late ballots can run well apart from the early count either way.
 """
 
@@ -61,6 +61,8 @@ def observations(doc: dict, res: pd.DataFrame, base: dict) -> list[dict]:
             st = f["seat"].split("-")[0]
             share = pct / 100 if pct is not None else min(F_CAP, t / (TURNOUT * base[f["seat"]]))
             o |= {"d": round(100 * c / t, 2), "r": round(100 * rv / t, 2), "pct": round(100 * share, 1)}
+            if pct is None:
+                o["est"] = True
             if st in LATE:
                 o["skew_sd"] = LATE_SD
         if len(o) > 1:

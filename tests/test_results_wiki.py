@@ -106,6 +106,51 @@ def test_update_keeps_official_rows_and_flags_a_stray_winner():
     assert RW.update(res, forecast, called, counts, "2026-11-04T13:00Z") == []
 
 
+def _national(d, r, total):
+    party = (
+        '<tr><td style="background:#00f">&nbsp;</td><td><a>{}</a></td><td>{}</td><td></td><td></td><td>215</td></tr>'
+    )
+    return (
+        '<table class="wikitable"><tr><th colspan="2">Parties</th><th colspan="3">Popular vote</th><th>Seats</th></tr>'
+        "<tr><th>Vote</th><th>%</th><th>Change</th><th>2024</th></tr>"
+        + party.format("Republican Party", r)
+        + party.format("Democratic Party", d)
+        + f"<tr><th colspan=2>Totals</th><th>{total}</th><th>100.00%</th><th>—</th><th>435</th></tr></table>"
+    )
+
+
+def test_national_vote_waits_for_the_table():
+    assert RW.national(OVERVIEW + _national("", "", "")) is None
+    assert RW.national(_national("60,500,000[a]", "48,000,000", "110,000,000")) == (60500000, 48000000, 110000000)
+    assert RW.national(_national("60,500,000", "48,000,000", "100,000,000")) is None  # sides beyond the total
+
+
+def test_a_hand_count_keeps_its_numbers_and_takes_the_call():
+    forecast = {
+        "races": [{"office": "senate", "seat": "MS", "challenger": "Scott Colom", "republican": "Cindy Hyde-Smith"}]
+    }
+    row = dict.fromkeys(SC.COLS, "") | {"office": "senate", "seat": "MS", "status": "counting", "source": "news count"}
+    res = pd.DataFrame([row | {"chal_votes": "462821", "rep_votes": "462778", "total_votes": "945534"}])
+    res = pd.concat([res, pd.DataFrame([dict.fromkeys(SC.COLS, "") | {"office": "national", "seat": "US"}])])
+    res = res.reset_index(drop=True)
+    counts = {("senate", "MS"): (1, 2, 3), ("national", "US"): (60500000, 48000000, 110000000)}
+    assert len(RW.update(res, forecast, {}, counts, "2026-11-04T13:00Z")) == 1  # the national row only
+    assert res.loc[0, ["status", "chal_votes", "source"]].tolist() == ["counting", "462821", "news count"]
+    assert res.loc[1, ["status", "chal_votes", "total_votes", "source"]].tolist() == [
+        "counting",
+        "60500000",
+        "110000000",
+        "Wikipedia",
+    ]
+    RW.update(res, forecast, {("senate", "MS"): {"winner": "D", "name": "Scott Colom"}}, counts, "2026-11-04T14:00Z")
+    assert res.loc[0, ["winner", "status", "chal_votes", "updated"]].tolist() == [
+        "D",
+        "called",
+        "462821",
+        "2026-11-04T14:00Z",
+    ]
+
+
 def test_page_titles():
     assert RW.race_page("senate", "OH", True) == "2026 United States Senate special election in Ohio"
     assert RW.race_page("governor", "NV", False) == "2026 Nevada gubernatorial election"

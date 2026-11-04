@@ -4,7 +4,9 @@
 
 Per race: the forecast (p = the Republican's opponent wins, the median margin and its 80 % range) and the result (the call,
 the status and the margin of the latest count). A margin is "final" only once the count is final or certified (scorecard.py
-scores those); before that it is the latest count's, shown as provisional and never scored.
+scores those); before that it is the latest count's, shown as provisional and never scored. The national House vote: the
+count so far (the results file's national row), the forecast's and every House election's since 1946, all as the model's
+two-party margin (data_prep.national_house_vote).
 """
 
 from __future__ import annotations
@@ -16,6 +18,7 @@ import numpy as np
 import pandas as pd
 
 from . import scorecard as SC
+from .data_prep import national_house_vote
 
 OUT = SC.ROOT / "web" / "data" / "results.json"
 SUMMARY = SC.ROOT / "web" / "data" / "results_summary.json"  # the scorvec.com homepage panel, under a kilobyte
@@ -43,6 +46,30 @@ def spread(hist: dict) -> dict:
     k, c = k[o], np.cumsum(w[o]) / w.sum()
     q = [float(k[np.searchsorted(c, p)]) for p in (0.1, 0.5, 0.9)]
     return {"mean": round(float((k * w[o]).sum() / w.sum()), 1), "p10": q[0], "p50": q[1], "p90": q[2]}
+
+
+def national(doc: dict, res: pd.DataFrame) -> dict:
+    """The national House vote: the count so far (votes, shares of every vote, two-party margin), the forecast's margin with
+    its 80 % range, and [year, margin] for every House election since 1946."""
+    r = next((x for x in res.to_dict("records") if x["office"] == "national"), {})
+    d, rv, t = (_num(r.get(k)) for k in ("chal_votes", "rep_votes", "total_votes"))
+    count = None
+    if d and rv and t:
+        count = {
+            "dem": int(d),
+            "rep": int(rv),
+            "total": int(t),
+            "dem_pct": round(100 * d / t, 2),
+            "rep_pct": round(100 * rv / t, 2),
+            "margin": round(100 * (d - rv) / (d + rv), 2),
+            "final": _str(r.get("status")) in SC.COMPLETE,
+        }
+    nv = doc["chambers"]["national_vote"]
+    return {
+        "count": count,
+        "forecast": {"center": nv["center"], "p10": nv["q"]["10"], "p90": nv["q"]["90"]},
+        "history": [[int(y), round(float(m), 2)] for y, m in national_house_vote().items()],
+    }
 
 
 def build(doc: dict, res: pd.DataFrame) -> dict:
@@ -89,6 +116,7 @@ def build(doc: dict, res: pd.DataFrame) -> dict:
         "forecast": forecast,
         "scores": sc["by_office"],
         "chambers": sc["chambers"],
+        "national": national(doc, res),
         "races": races,
     }
 

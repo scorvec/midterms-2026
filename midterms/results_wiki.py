@@ -6,8 +6,10 @@ Calls: the winner ticked on the three overview pages (House, Senate, governors: 
 "Democratic gain", "Republican hold", ...). Counts: the general-election box on each race's own page (the House: one page
 per state, one box per district) once editors fill it in; an empty or half-filled box leaves the counts blank. Ranked-choice
 races (Alaska, Maine) get no count here: their boxes carry rounds, and the scorer needs the final round from official returns.
+The national House vote: the overview page's national table (Democratic, Republican and every vote), once editors fill it in.
 Rows read here are status "called" (a winner is ticked) or "counting" (a count, no call); "final" and "certified" come only
-from official returns, and a row whose source is anything but Wikipedia is never overwritten. The two sides are the results
+from official returns and are never overwritten. A count entered from another tally (source not Wikipedia: a news count with
+its reported share counted) keeps its numbers; only Wikipedia's call is added to it. The two sides are the results
 file's challenger and republican, the forecast's names unless corrected there (Louisiana's incumbents, missed by the forecast).
 Louisiana's House races were one ballot of every candidate in 2026 (a December runoff below 50 %): a side's count there is its
 party's total, the model's party margin.
@@ -128,6 +130,27 @@ def count(bx: list, challenger: str, republican: str, parties: tuple | None = No
     return (c, r, total) if 0 < c + r <= total else None
 
 
+def national(html: str):
+    """(Democratic, Republican, every) House vote from the overview page's national table (Parties | Popular vote | Seats),
+    or None while its vote cells are empty."""
+    for t in lxml.html.fromstring(html).xpath("//table[contains(@class, 'wikitable')]"):
+        trs = t.xpath(".//tr")
+        head = _text(trs[0]) if trs else ""
+        if "Parties" not in head or "Popular vote" not in head:
+            continue
+        got = {}
+        for tr in trs:
+            cells = [_text(c) for c in tr.xpath("./th|./td")]
+            for i, c in enumerate(cells[:-1]):
+                if c in ("Democratic Party", "Republican Party", "Totals"):
+                    got[c[0]] = _int(cells[i + 1])  # the vote is the cell after the party's name
+                    break
+        d, r, total = got.get("D"), got.get("R"), got.get("T")
+        if d and r and total and d + r <= total:
+            return d, r, total
+    return None
+
+
 def race_page(office: str, seat: str, special: bool) -> str:
     st = seat.split("-")[0]
     if office == "senate":
@@ -138,40 +161,50 @@ def race_page(office: str, seat: str, special: bool) -> str:
 
 
 def update(res: pd.DataFrame, forecast: dict, called: dict, counts: dict, now: str) -> list[str]:
-    """Write the calls and counts into the results rows (in place); returns one line per row that changed."""
-    races = {(f["office"], f["seat"]) for f in forecast["races"]}
+    """Write the calls and counts into the results rows (in place; counts may hold ("national", "US")); returns one line per
+    row that changed."""
+    races = {(f["office"], f["seat"]) for f in forecast["races"]} | {("national", "US")}
     moved = []
     for i, r in res.iterrows():
         key = (r["office"], r["seat"])
-        if key not in races or r["source"] not in ("", SOURCE):  # official returns and hand entries stay as they are
+        if key not in races or r["status"] in SC.COMPLETE:  # official returns stay as they are
             continue
+        hand = r["source"] not in ("", SOURCE)  # a count from another tally: its numbers and note stay, a call is added
         c, n = called.get(key, {}), counts.get(key)
-        new = {"winner": c.get("winner") or "", "status": "called" if c.get("winner") else ("counting" if n else "")}
-        new.update(zip(COUNT_COLS, [str(v) for v in n] if n else ["", "", ""]))
-        note = ""
-        sides = {W._surname(r["challenger"]), W._surname(r["republican"])}
-        if c.get("name") and W._surname(c["name"]) not in sides:
-            note = f"winner {c['name']} is neither forecast side"
-        new["note"] = note
+        if hand:
+            win = c.get("winner") or r["winner"]
+            new = {"winner": win, "status": "called" if win else r["status"]}
+        else:
+            new = {
+                "winner": c.get("winner") or "",
+                "status": "called" if c.get("winner") else ("counting" if n else ""),
+            }
+            new.update(zip(COUNT_COLS, [str(v) for v in n] if n else ["", "", ""]))
+            sides = {W._surname(r["challenger"]), W._surname(r["republican"])}
+            stray = c.get("name") and W._surname(c["name"]) not in sides
+            new["note"] = f"winner {c['name']} is neither forecast side" if stray else ""
         if all(r[k] == v for k, v in new.items()):
             continue
         was, now_ = f"{r['winner'] or '-'}/{r['status'] or '-'}", f"{new['winner'] or '-'}/{new['status'] or '-'}"
         moved.append(f"{key[0]:8s} {key[1]:6s} {was} -> {now_}")
         for k, v in new.items():
             res.at[i, k] = v
-        res.at[i, "source"] = SOURCE if (new["winner"] or n) else ""
-        res.at[i, "updated"] = now if (new["winner"] or n) else ""
+        if not hand:
+            res.at[i, "source"] = SOURCE if (new["winner"] or n) else ""
+        res.at[i, "updated"] = now if (new["winner"] or n or hand) else ""
     return moved
 
 
 def main():
     forecast, _frozen = SC.load_forecast()
     res = pd.read_csv(SC.RESULTS, dtype=str, keep_default_na=False)[SC.COLS]
-    called = {}
+    called, overview = {}, {}
     for office, page in (("house", HOUSE_PAGE), ("senate", SENATE_PAGE), ("governor", GOV_PAGE)):
-        for seat, c in calls(office, W.fetch(page, max_age_h=0)).items():
+        overview[office] = W.fetch(page, max_age_h=0)
+        for seat, c in calls(office, overview[office]).items():
             called[(office, seat)] = c
-    counts, pages = {}, {}
+    nat = national(overview["house"])
+    counts, pages = ({("national", "US"): nat} if nat else {}), {}
     names = {(r.office, r.seat): (r.challenger, r.republican) for r in res.itertuples()}
     for f in forecast["races"]:
         if f.get("rcv"):
@@ -195,8 +228,9 @@ def main():
     moved = update(res, forecast, called, counts, time.strftime("%Y-%m-%dT%H:%MZ", time.gmtime()))
     res.to_csv(SC.RESULTS, index=False)
     print(
-        f"{sum(1 for c in called.values() if c['winner'])} races called, {len(counts)} with a count; {len(moved)} rows changed"
+        f"{sum(1 for c in called.values() if c['winner'])} races called, {len(counts) - bool(nat)} with a count; {len(moved)} rows changed"
     )
+    print("national House vote: " + ("D {}, R {} of {}".format(*nat) if nat else "not filled in yet"))
     for line in moved:
         print("  " + line)
 
