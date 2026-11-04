@@ -3,23 +3,23 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 266,
+   "called": 282,
    "of": 488,
-   "brier": 0.0373,
-   "log_loss": 0.1251,
-   "favourite_won": 0.962,
+   "brier": 0.0352,
+   "log_loss": 0.1186,
+   "favourite_won": 0.965,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 71,
+     "n": 74,
      "forecast": 0.011,
      "won": 0.014
     },
     {
      "band": "0.05-0.15",
-     "n": 21,
-     "forecast": 0.091,
-     "won": 0.19
+     "n": 22,
+     "forecast": 0.093,
+     "won": 0.182
     },
     {
      "band": "0.15-0.35",
@@ -53,15 +53,15 @@
     },
     {
      "band": "0.95-1.00",
-     "n": 133,
+     "n": 145,
      "forecast": 0.996,
      "won": 1.0
     }
    ],
    "raters": {
-    "n": 50,
-    "brier_model": 0.1381,
-    "brier_raters": 0.1408
+    "n": 53,
+    "brier_model": 0.1306,
+    "brier_raters": 0.1334
    }
   },
   "governor": {
@@ -122,23 +122,23 @@
    ]
   },
   "house": {
-   "called": 200,
+   "called": 216,
    "of": 417,
-   "brier": 0.0346,
-   "log_loss": 0.1152,
-   "favourite_won": 0.965,
+   "brier": 0.0321,
+   "log_loss": 0.1074,
+   "favourite_won": 0.968,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 56,
+     "n": 59,
      "forecast": 0.009,
-     "won": 0.018
+     "won": 0.017
     },
     {
      "band": "0.05-0.15",
-     "n": 15,
-     "forecast": 0.091,
-     "won": 0.267
+     "n": 16,
+     "forecast": 0.094,
+     "won": 0.25
     },
     {
      "band": "0.15-0.35",
@@ -160,15 +160,15 @@
     },
     {
      "band": "0.95-1.00",
-     "n": 109,
+     "n": 121,
      "forecast": 0.997,
      "won": 1.0
     }
    ],
    "raters": {
-    "n": 50,
-    "brier_model": 0.1381,
-    "brier_raters": 0.1408
+    "n": 53,
+    "brier_model": 0.1306,
+    "brier_raters": 0.1334
    }
   },
   "senate": {
@@ -1460,8 +1460,8 @@
    "office": "house",
    "seat": "ME-1",
    "p": 0.9999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -1532,58 +1532,58 @@
    "office": "house",
    "seat": "MA-3",
    "p": 0.9998,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "MA-4",
    "p": 0.9999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "MA-6",
    "p": 0.9997,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "MA-8",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "MA-9",
    "p": 0.9976,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "MI-1",
    "p": 0.1273,
-   "y": null,
-   "status": null,
+   "y": 0,
+   "status": "called",
    "raters": 0.105
   },
   {
    "office": "house",
    "seat": "MI-2",
    "p": 0.0078,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "MI-3",
    "p": 0.996,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.916
   },
   {
@@ -1598,15 +1598,15 @@
    "office": "house",
    "seat": "MI-5",
    "p": 0.01,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "MI-6",
    "p": 0.9998,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -1620,16 +1620,16 @@
    "office": "house",
    "seat": "MI-8",
    "p": 0.9938,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.895
   },
   {
    "office": "house",
    "seat": "MI-9",
    "p": 0.0013,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "house",
@@ -1643,22 +1643,22 @@
    "office": "house",
    "seat": "MI-11",
    "p": 0.9989,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "MI-12",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
    "seat": "MI-13",
    "p": 1.0,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -3794,8 +3794,8 @@
  ],
  "chambers": {
   "house": {
-   "d_called": 148,
-   "undecided": 217
+   "d_called": 160,
+   "undecided": 201
   },
   "senate": {
    "d_called": 54,
