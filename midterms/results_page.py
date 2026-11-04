@@ -125,8 +125,8 @@ def build(doc: dict, res: pd.DataFrame) -> dict:
 def summary(out: dict) -> dict:
     """Each chamber's seats as called, one character per seat in the homepage arcs' order (most Democratic first): 0 = a
     Democratic win, a = an independent's, 3 = not called, 6 = a Republican win, D / R = a Senate seat not up this year;
-    the median outcome of the races still out (Democratic, Republican seats) when live.json has it; and the check of the
-    forecast: how many called races its favourite won."""
+    the median outcome of the races still out (Democratic, Republican seats) and of the national House vote (the
+    two-party margin) when live.json has them; and the check of the forecast: how many called races its favourite won."""
     F, res = out["forecast"], {}
     live = json.loads(LIVE.read_text()) if LIVE.exists() else {}
     for office, keep_d, keep_r in (("house", "fixed_d", "fixed_r"), ("senate", "holdover_d", "holdover_r")):
@@ -147,7 +147,8 @@ def summary(out: dict) -> dict:
         }
     a = out["scores"].get("all", {})
     check = {"called": a["called"], "won": round(a["favourite_won"] * a["called"])} if a.get("called") else None
-    return {"generated": out["generated"], **res, "check": check}
+    national = live.get("national", {}).get("p50")
+    return {"generated": out["generated"], **res, "national": national, "check": check}
 
 
 def main():

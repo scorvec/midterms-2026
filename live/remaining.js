@@ -177,12 +177,12 @@ function run(obs) {
     const o = byRace.get(key), count = o && o.pct > 0 ? { margin: +(o.d - o.r).toFixed(2), pct: o.pct, est: !!o.est } : null;
     rows.push({ race: key, p: +r.p.toFixed(4), med: +r.med.toFixed(1), lo: +r.lo.toFixed(1), hi: +r.hi.toFixed(1), count });
   }
-  const [n10, n90] = weightedQuantiles(NAT, w, sw, [0.1, 0.9]);
+  const [n10, n50, n90] = weightedQuantiles(NAT, w, sw, [0.1, 0.5, 0.9]);
   let nat = 0;
   for (let i = 0; i < N; i++) nat += (w[i] / sw) * NAT[i];
   return {
     ess: Math.round(ess), alpha: +alpha.toFixed(4),
-    national: { mean: +(D.E0 + nat).toFixed(2), p10: +(D.E0 + n10).toFixed(2), p90: +(D.E0 + n90).toFixed(2) },
+    national: { mean: +(D.E0 + nat).toFixed(2), p50: +(D.E0 + n50).toFixed(2), p10: +(D.E0 + n10).toFixed(2), p90: +(D.E0 + n90).toFixed(2) },
     house: chamber(hSeats, hMaj, hR), senate: chamber(sSeats, sCtl, sR), governor: chamber(gSeats, gMaj, gR), races: rows,
   };
 }
@@ -209,7 +209,7 @@ hist.push(row);
 fs.writeFileSync(HIST, JSON.stringify(hist));
 const pc = (x) => (100 * x).toFixed(1) + "%";
 console.log(`${OBS.length} observations (${calls} calls, ${counts} counts): effective sample ${now.ess}, tempering ${now.alpha}`);
-console.log(`national ${now.national.mean} (80% ${now.national.p10} to ${now.national.p90})`);
+console.log(`national median ${now.national.p50} (80% ${now.national.p10} to ${now.national.p90})`);
 for (const c of ["house", "senate", "governor"]) {
   const x = now[c];
   console.log(`${c.padEnd(8)} control ${pc(x.p_control)}  D seats ${x.p50} (80% ${x.p10}-${x.p90})`);
