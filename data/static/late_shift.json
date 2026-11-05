@@ -1,0 +1,1554 @@
+{
+ "fit": {
+  "AZ": {
+   "n": 9,
+   "k": 6.36,
+   "se": 1.86,
+   "t": 3.42,
+   "mean_out": 0.172
+  },
+  "CA": {
+   "n": 0
+  },
+  "CO": {
+   "n": 14,
+   "k": 15.14,
+   "se": 0.65,
+   "t": 23.27,
+   "mean_out": 0.05
+  },
+  "NV": {
+   "n": 2
+  },
+  "OR": {
+   "n": 8,
+   "k": 1.22,
+   "se": 1.81,
+   "t": 0.67,
+   "mean_out": 0.037
+  },
+  "UT": {
+   "n": 5,
+   "k": 3.44,
+   "se": 4.32,
+   "t": 0.79,
+   "mean_out": 0.082
+  },
+  "WA": {
+   "n": 17,
+   "k": 6.0,
+   "se": 2.22,
+   "t": 2.71,
+   "mean_out": 0.078
+  },
+  "all": {
+   "n": 55,
+   "k": 7.52,
+   "se": 1.01,
+   "t": 7.43,
+   "mean_out": 0.079
+  }
+ },
+ "races": [
+  {
+   "state": "AZ",
+   "year": 2018,
+   "district": 1,
+   "days": 3.5,
+   "share": 0.8398,
+   "margin_first": 6.77,
+   "margin_final": 7.69,
+   "total_final": 266089
+  },
+  {
+   "state": "AZ",
+   "year": 2018,
+   "district": 2,
+   "days": 3.5,
+   "share": 0.8506,
+   "margin_first": 7.91,
+   "margin_final": 9.48,
+   "total_final": 294152
+  },
+  {
+   "state": "AZ",
+   "year": 2018,
+   "district": 3,
+   "days": 3.5,
+   "share": 0.7829,
+   "margin_first": 24.08,
+   "margin_final": 27.73,
+   "total_final": 179518
+  },
+  {
+   "state": "AZ",
+   "year": 2018,
+   "district": 4,
+   "days": 3.5,
+   "share": 0.8638,
+   "margin_first": -38.65,
+   "margin_final": -37.66,
+   "total_final": 277035
+  },
+  {
+   "state": "AZ",
+   "year": 2018,
+   "district": 5,
+   "days": 3.5,
+   "share": 0.7608,
+   "margin_first": -18.76,
+   "margin_final": -18.85,
+   "total_final": 313064
+  },
+  {
+   "state": "AZ",
+   "year": 2018,
+   "district": 6,
+   "days": 3.5,
+   "share": 0.7831,
+   "margin_first": -11.38,
+   "margin_final": -10.39,
+   "total_final": 313699
+  },
+  {
+   "state": "AZ",
+   "year": 2018,
+   "district": 7,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 85.38,
+   "margin_final": 85.38,
+   "total_final": 132051
+  },
+  {
+   "state": "AZ",
+   "year": 2018,
+   "district": 8,
+   "days": 5.5,
+   "share": 0.8328,
+   "margin_first": -11.62,
+   "margin_final": -10.93,
+   "total_final": 304417
+  },
+  {
+   "state": "AZ",
+   "year": 2018,
+   "district": 9,
+   "days": 3.5,
+   "share": 0.7488,
+   "margin_first": 20.78,
+   "margin_final": 22.17,
+   "total_final": 261245
+  },
+  {
+   "state": "CO",
+   "year": 2018,
+   "district": 1,
+   "days": 6.5,
+   "share": 0.6939,
+   "margin_first": 46.09,
+   "margin_final": 50.77,
+   "total_final": 369693
+  },
+  {
+   "state": "CO",
+   "year": 2018,
+   "district": 2,
+   "days": 6.5,
+   "share": 0.9759,
+   "margin_first": 26.08,
+   "margin_final": 26.64,
+   "total_final": 430614
+  },
+  {
+   "state": "CO",
+   "year": 2018,
+   "district": 3,
+   "days": 6.5,
+   "share": 0.9728,
+   "margin_first": -8.27,
+   "margin_final": -7.97,
+   "total_final": 336189
+  },
+  {
+   "state": "CO",
+   "year": 2018,
+   "district": 4,
+   "days": 6.5,
+   "share": 0.9642,
+   "margin_first": -21.77,
+   "margin_final": -21.24,
+   "total_final": 369582
+  },
+  {
+   "state": "CO",
+   "year": 2018,
+   "district": 5,
+   "days": 6.5,
+   "share": 0.8497,
+   "margin_first": -20.06,
+   "margin_final": -17.71,
+   "total_final": 322645
+  },
+  {
+   "state": "CO",
+   "year": 2018,
+   "district": 6,
+   "days": 6.5,
+   "share": 0.9832,
+   "margin_first": 11.16,
+   "margin_final": 11.23,
+   "total_final": 346817
+  },
+  {
+   "state": "CO",
+   "year": 2018,
+   "district": 7,
+   "days": 6.5,
+   "share": 0.9749,
+   "margin_first": 24.72,
+   "margin_final": 25.01,
+   "total_final": 338006
+  },
+  {
+   "state": "NV",
+   "year": 2018,
+   "district": 1,
+   "days": 6.5,
+   "share": 0.9995,
+   "margin_first": 35.29,
+   "margin_final": 35.3,
+   "total_final": 152201
+  },
+  {
+   "state": "NV",
+   "year": 2018,
+   "district": 2,
+   "days": 6.5,
+   "share": 0.9999,
+   "margin_first": -16.46,
+   "margin_final": -16.46,
+   "total_final": 287537
+  },
+  {
+   "state": "NV",
+   "year": 2018,
+   "district": 3,
+   "days": 6.5,
+   "share": 0.9996,
+   "margin_first": 9.06,
+   "margin_final": 9.06,
+   "total_final": 286168
+  },
+  {
+   "state": "NV",
+   "year": 2018,
+   "district": 4,
+   "days": 6.5,
+   "share": 0.9985,
+   "margin_first": 8.25,
+   "margin_final": 8.18,
+   "total_final": 234868
+  },
+  {
+   "state": "OR",
+   "year": 2018,
+   "district": 1,
+   "days": 7.5,
+   "share": 0.9771,
+   "margin_first": 31.39,
+   "margin_final": 31.59,
+   "total_final": 363249
+  },
+  {
+   "state": "OR",
+   "year": 2018,
+   "district": 2,
+   "days": 7.5,
+   "share": 0.9765,
+   "margin_first": -17.37,
+   "margin_final": -16.9,
+   "total_final": 368709
+  },
+  {
+   "state": "OR",
+   "year": 2018,
+   "district": 3,
+   "days": 7.5,
+   "share": 0.9827,
+   "margin_first": 52.68,
+   "margin_final": 52.78,
+   "total_final": 384326
+  },
+  {
+   "state": "OR",
+   "year": 2018,
+   "district": 4,
+   "days": 7.5,
+   "share": 0.9792,
+   "margin_first": 14.9,
+   "margin_final": 15.1,
+   "total_final": 372893
+  },
+  {
+   "state": "OR",
+   "year": 2018,
+   "district": 5,
+   "days": 7.5,
+   "share": 0.9617,
+   "margin_first": 13.09,
+   "margin_final": 13.2,
+   "total_final": 358469
+  },
+  {
+   "state": "UT",
+   "year": 2018,
+   "district": 1,
+   "days": 10.5,
+   "share": 0.9603,
+   "margin_first": -37.35,
+   "margin_final": -36.72,
+   "total_final": 254333
+  },
+  {
+   "state": "UT",
+   "year": 2018,
+   "district": 2,
+   "days": 10.5,
+   "share": 0.9409,
+   "margin_first": -18.74,
+   "margin_final": -17.2,
+   "total_final": 270044
+  },
+  {
+   "state": "UT",
+   "year": 2018,
+   "district": 3,
+   "days": 10.5,
+   "share": 0.875,
+   "margin_first": -40.75,
+   "margin_final": -40.24,
+   "total_final": 258858
+  },
+  {
+   "state": "UT",
+   "year": 2018,
+   "district": 4,
+   "days": 10.5,
+   "share": 0.8993,
+   "margin_first": 0.36,
+   "margin_final": 0.26,
+   "total_final": 269271
+  },
+  {
+   "state": "WA",
+   "year": 2018,
+   "district": 1,
+   "days": 3.5,
+   "share": 0.7432,
+   "margin_first": 17.28,
+   "margin_final": 18.54,
+   "total_final": 332743
+  },
+  {
+   "state": "WA",
+   "year": 2018,
+   "district": 3,
+   "days": 7.5,
+   "share": 0.9713,
+   "margin_first": -5.73,
+   "margin_final": -5.34,
+   "total_final": 307226
+  },
+  {
+   "state": "WA",
+   "year": 2018,
+   "district": 4,
+   "days": 7.5,
+   "share": 0.8297,
+   "margin_first": -28.95,
+   "margin_final": -25.64,
+   "total_final": 225336
+  },
+  {
+   "state": "WA",
+   "year": 2018,
+   "district": 5,
+   "days": 7.5,
+   "share": 0.8691,
+   "margin_first": -10.21,
+   "margin_final": -9.52,
+   "total_final": 320347
+  },
+  {
+   "state": "WA",
+   "year": 2018,
+   "district": 6,
+   "days": 7.5,
+   "share": 0.9167,
+   "margin_first": 26.82,
+   "margin_final": 27.77,
+   "total_final": 323086
+  },
+  {
+   "state": "WA",
+   "year": 2018,
+   "district": 7,
+   "days": 7.5,
+   "share": 0.9727,
+   "margin_first": 66.88,
+   "margin_final": 67.12,
+   "total_final": 394681
+  },
+  {
+   "state": "WA",
+   "year": 2018,
+   "district": 8,
+   "days": 7.5,
+   "share": 0.9175,
+   "margin_first": 5.28,
+   "margin_final": 4.83,
+   "total_final": 313057
+  },
+  {
+   "state": "WA",
+   "year": 2018,
+   "district": 10,
+   "days": 7.5,
+   "share": 0.8614,
+   "margin_first": 22.64,
+   "margin_final": 23.09,
+   "total_final": 270075
+  },
+  {
+   "state": "AZ",
+   "year": 2020,
+   "district": 1,
+   "days": 10.5,
+   "share": 0.992,
+   "margin_first": 3.36,
+   "margin_final": 3.22,
+   "total_final": 365178
+  },
+  {
+   "state": "AZ",
+   "year": 2020,
+   "district": 2,
+   "days": 28.5,
+   "share": 1.0,
+   "margin_first": 10.23,
+   "margin_final": 10.23,
+   "total_final": 381054
+  },
+  {
+   "state": "AZ",
+   "year": 2020,
+   "district": 3,
+   "days": 10.5,
+   "share": 0.9926,
+   "margin_first": 29.21,
+   "margin_final": 29.15,
+   "total_final": 269837
+  },
+  {
+   "state": "AZ",
+   "year": 2020,
+   "district": 4,
+   "days": 10.5,
+   "share": 0.9876,
+   "margin_first": -39.39,
+   "margin_final": -39.52,
+   "total_final": 398623
+  },
+  {
+   "state": "AZ",
+   "year": 2020,
+   "district": 5,
+   "days": 10.5,
+   "share": 0.9978,
+   "margin_first": -17.78,
+   "margin_final": -17.78,
+   "total_final": 445657
+  },
+  {
+   "state": "AZ",
+   "year": 2020,
+   "district": 6,
+   "days": 10.5,
+   "share": 0.9981,
+   "margin_first": -4.36,
+   "margin_final": -4.35,
+   "total_final": 417427
+  },
+  {
+   "state": "AZ",
+   "year": 2020,
+   "district": 7,
+   "days": 10.5,
+   "share": 0.9972,
+   "margin_first": 53.42,
+   "margin_final": 53.41,
+   "total_final": 215732
+  },
+  {
+   "state": "AZ",
+   "year": 2020,
+   "district": 8,
+   "days": 13.5,
+   "share": 0.9998,
+   "margin_first": -19.13,
+   "margin_final": -19.13,
+   "total_final": 422467
+  },
+  {
+   "state": "AZ",
+   "year": 2020,
+   "district": 9,
+   "days": 10.5,
+   "share": 0.9976,
+   "margin_first": 23.24,
+   "margin_final": 23.25,
+   "total_final": 352274
+  },
+  {
+   "state": "CO",
+   "year": 2020,
+   "district": 1,
+   "days": 13.5,
+   "share": 0.9994,
+   "margin_first": 50.12,
+   "margin_final": 50.12,
+   "total_final": 450290
+  },
+  {
+   "state": "CO",
+   "year": 2020,
+   "district": 2,
+   "days": 13.5,
+   "share": 0.9793,
+   "margin_first": 25.7,
+   "margin_final": 26.06,
+   "total_final": 515663
+  },
+  {
+   "state": "CO",
+   "year": 2020,
+   "district": 3,
+   "days": 13.5,
+   "share": 0.9822,
+   "margin_first": -5.83,
+   "margin_final": -6.18,
+   "total_final": 429319
+  },
+  {
+   "state": "CO",
+   "year": 2020,
+   "district": 4,
+   "days": 13.5,
+   "share": 0.9876,
+   "margin_first": -23.66,
+   "margin_final": -23.5,
+   "total_final": 475107
+  },
+  {
+   "state": "CO",
+   "year": 2020,
+   "district": 5,
+   "days": 13.5,
+   "share": 0.9921,
+   "margin_first": -20.28,
+   "margin_final": -20.22,
+   "total_final": 432407
+  },
+  {
+   "state": "CO",
+   "year": 2020,
+   "district": 6,
+   "days": 13.5,
+   "share": 0.9931,
+   "margin_first": 17.1,
+   "margin_final": 17.13,
+   "total_final": 438473
+  },
+  {
+   "state": "CO",
+   "year": 2020,
+   "district": 7,
+   "days": 13.5,
+   "share": 0.9976,
+   "margin_first": 21.54,
+   "margin_final": 21.53,
+   "total_final": 423691
+  },
+  {
+   "state": "NV",
+   "year": 2020,
+   "district": 1,
+   "days": 13.5,
+   "share": 1.0,
+   "margin_first": 28.39,
+   "margin_final": 28.39,
+   "total_final": 223213
+  },
+  {
+   "state": "NV",
+   "year": 2020,
+   "district": 2,
+   "days": 13.5,
+   "share": 1.0,
+   "margin_first": -15.76,
+   "margin_final": -15.76,
+   "total_final": 382673
+  },
+  {
+   "state": "NV",
+   "year": 2020,
+   "district": 3,
+   "days": 13.5,
+   "share": 0.9469,
+   "margin_first": 3.81,
+   "margin_final": 2.98,
+   "total_final": 417252
+  },
+  {
+   "state": "NV",
+   "year": 2020,
+   "district": 4,
+   "days": 13.5,
+   "share": 1.0,
+   "margin_first": 4.86,
+   "margin_final": 4.86,
+   "total_final": 332469
+  },
+  {
+   "state": "OR",
+   "year": 2020,
+   "district": 1,
+   "days": 31.5,
+   "share": 1.0,
+   "margin_first": 29.39,
+   "margin_final": 29.39,
+   "total_final": 459899
+  },
+  {
+   "state": "OR",
+   "year": 2020,
+   "district": 2,
+   "days": 31.5,
+   "share": 1.0,
+   "margin_first": -22.94,
+   "margin_final": -22.94,
+   "total_final": 457433
+  },
+  {
+   "state": "OR",
+   "year": 2020,
+   "district": 3,
+   "days": 13.5,
+   "share": 0.9947,
+   "margin_first": 49.68,
+   "margin_final": 49.52,
+   "total_final": 470506
+  },
+  {
+   "state": "OR",
+   "year": 2020,
+   "district": 4,
+   "days": 25.5,
+   "share": 1.0302,
+   "margin_first": 4.69,
+   "margin_final": 5.32,
+   "total_final": 467705
+  },
+  {
+   "state": "OR",
+   "year": 2020,
+   "district": 5,
+   "days": 31.5,
+   "share": 1.0,
+   "margin_first": 6.74,
+   "margin_final": 6.74,
+   "total_final": 452646
+  },
+  {
+   "state": "UT",
+   "year": 2020,
+   "district": 1,
+   "days": 19.5,
+   "share": 0.9996,
+   "margin_first": -39.1,
+   "margin_final": -39.08,
+   "total_final": 342351
+  },
+  {
+   "state": "UT",
+   "year": 2020,
+   "district": 2,
+   "days": 19.5,
+   "share": 1.0,
+   "margin_first": -22.37,
+   "margin_final": -22.37,
+   "total_final": 354224
+  },
+  {
+   "state": "UT",
+   "year": 2020,
+   "district": 3,
+   "days": 19.5,
+   "share": 0.9993,
+   "margin_first": -41.99,
+   "margin_final": -41.96,
+   "total_final": 358927
+  },
+  {
+   "state": "UT",
+   "year": 2020,
+   "district": 4,
+   "days": 10.5,
+   "share": 0.9168,
+   "margin_first": -0.52,
+   "margin_final": -1.0,
+   "total_final": 376730
+  },
+  {
+   "state": "WA",
+   "year": 2020,
+   "district": 1,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 17.23,
+   "margin_final": 17.23,
+   "total_final": 426862
+  },
+  {
+   "state": "WA",
+   "year": 2020,
+   "district": 2,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 26.41,
+   "margin_final": 26.41,
+   "total_final": 404598
+  },
+  {
+   "state": "WA",
+   "year": 2020,
+   "district": 3,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": -12.98,
+   "margin_final": -12.98,
+   "total_final": 417903
+  },
+  {
+   "state": "WA",
+   "year": 2020,
+   "district": 4,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": -32.58,
+   "margin_final": -32.58,
+   "total_final": 305263
+  },
+  {
+   "state": "WA",
+   "year": 2020,
+   "district": 5,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": -22.77,
+   "margin_final": -22.77,
+   "total_final": 404360
+  },
+  {
+   "state": "WA",
+   "year": 2020,
+   "district": 6,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 18.85,
+   "margin_final": 18.85,
+   "total_final": 417216
+  },
+  {
+   "state": "WA",
+   "year": 2020,
+   "district": 7,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 66.22,
+   "margin_final": 66.22,
+   "total_final": 466462
+  },
+  {
+   "state": "WA",
+   "year": 2020,
+   "district": 8,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 3.57,
+   "margin_final": 3.57,
+   "total_final": 412112
+  },
+  {
+   "state": "WA",
+   "year": 2020,
+   "district": 9,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 48.44,
+   "margin_final": 48.44,
+   "total_final": 349050
+  },
+  {
+   "state": "AZ",
+   "year": 2022,
+   "district": 1,
+   "days": 16.5,
+   "share": 1.0,
+   "margin_first": -0.88,
+   "margin_final": -0.88,
+   "total_final": 361477
+  },
+  {
+   "state": "AZ",
+   "year": 2022,
+   "district": 2,
+   "days": 10.5,
+   "share": 0.9955,
+   "margin_first": -7.8,
+   "margin_final": -7.74,
+   "total_final": 323396
+  },
+  {
+   "state": "AZ",
+   "year": 2022,
+   "district": 3,
+   "days": 10.5,
+   "share": 0.994,
+   "margin_first": 53.96,
+   "margin_final": 53.96,
+   "total_final": 141074
+  },
+  {
+   "state": "AZ",
+   "year": 2022,
+   "district": 4,
+   "days": 10.5,
+   "share": 0.9942,
+   "margin_first": 12.27,
+   "margin_final": 12.21,
+   "total_final": 265498
+  },
+  {
+   "state": "AZ",
+   "year": 2022,
+   "district": 5,
+   "days": 13.5,
+   "share": 0.9982,
+   "margin_first": -19.35,
+   "margin_final": -19.34,
+   "total_final": 321590
+  },
+  {
+   "state": "AZ",
+   "year": 2022,
+   "district": 6,
+   "days": 16.5,
+   "share": 0.9997,
+   "margin_first": -1.5,
+   "margin_final": -1.48,
+   "total_final": 349283
+  },
+  {
+   "state": "AZ",
+   "year": 2022,
+   "district": 7,
+   "days": 16.5,
+   "share": 1.0,
+   "margin_first": 29.09,
+   "margin_final": 29.09,
+   "total_final": 195862
+  },
+  {
+   "state": "AZ",
+   "year": 2022,
+   "district": 8,
+   "days": 28.5,
+   "share": 1.0,
+   "margin_first": -93.01,
+   "margin_final": -93.01,
+   "total_final": 204713
+  },
+  {
+   "state": "AZ",
+   "year": 2022,
+   "district": 9,
+   "days": 28.5,
+   "share": 1.0,
+   "margin_first": -95.55,
+   "margin_final": -95.55,
+   "total_final": 197185
+  },
+  {
+   "state": "CO",
+   "year": 2022,
+   "district": 1,
+   "days": 10.5,
+   "share": 0.9968,
+   "margin_first": 62.71,
+   "margin_final": 62.75,
+   "total_final": 282686
+  },
+  {
+   "state": "CO",
+   "year": 2022,
+   "district": 2,
+   "days": 10.5,
+   "share": 0.9871,
+   "margin_first": 41.8,
+   "margin_final": 41.95,
+   "total_final": 348839
+  },
+  {
+   "state": "CO",
+   "year": 2022,
+   "district": 3,
+   "days": 6.5,
+   "share": 0.9868,
+   "margin_first": -0.35,
+   "margin_final": -0.17,
+   "total_final": 327285
+  },
+  {
+   "state": "CO",
+   "year": 2022,
+   "district": 4,
+   "days": 10.5,
+   "share": 0.9874,
+   "margin_first": -24.3,
+   "margin_final": -24.37,
+   "total_final": 354513
+  },
+  {
+   "state": "CO",
+   "year": 2022,
+   "district": 5,
+   "days": 10.5,
+   "share": 0.9948,
+   "margin_first": -15.8,
+   "margin_final": -15.67,
+   "total_final": 277964
+  },
+  {
+   "state": "CO",
+   "year": 2022,
+   "district": 6,
+   "days": 10.5,
+   "share": 0.9971,
+   "margin_first": 23.13,
+   "margin_final": 23.17,
+   "total_final": 280755
+  },
+  {
+   "state": "CO",
+   "year": 2022,
+   "district": 7,
+   "days": 10.5,
+   "share": 0.9935,
+   "margin_first": 14.97,
+   "margin_final": 14.98,
+   "total_final": 363601
+  },
+  {
+   "state": "CO",
+   "year": 2022,
+   "district": 8,
+   "days": 10.5,
+   "share": 0.9806,
+   "margin_first": 0.73,
+   "margin_final": 0.69,
+   "total_final": 236501
+  },
+  {
+   "state": "NV",
+   "year": 2022,
+   "district": 1,
+   "days": 10.5,
+   "share": 0.993,
+   "margin_first": 5.64,
+   "margin_final": 5.61,
+   "total_final": 224349
+  },
+  {
+   "state": "NV",
+   "year": 2022,
+   "district": 2,
+   "days": 10.5,
+   "share": 0.9795,
+   "margin_first": -21.85,
+   "margin_final": -21.92,
+   "total_final": 310678
+  },
+  {
+   "state": "NV",
+   "year": 2022,
+   "district": 3,
+   "days": 10.5,
+   "share": 0.9927,
+   "margin_first": 4.05,
+   "margin_final": 3.97,
+   "total_final": 252169
+  },
+  {
+   "state": "NV",
+   "year": 2022,
+   "district": 4,
+   "days": 10.5,
+   "share": 0.9927,
+   "margin_first": 4.89,
+   "margin_final": 4.83,
+   "total_final": 222487
+  },
+  {
+   "state": "OR",
+   "year": 2022,
+   "district": 1,
+   "days": 40.5,
+   "share": 1.0,
+   "margin_first": 35.98,
+   "margin_final": 35.98,
+   "total_final": 310243
+  },
+  {
+   "state": "OR",
+   "year": 2022,
+   "district": 2,
+   "days": 10.5,
+   "share": 0.958,
+   "margin_first": -35.05,
+   "margin_final": -35.15,
+   "total_final": 308676
+  },
+  {
+   "state": "OR",
+   "year": 2022,
+   "district": 3,
+   "days": 10.5,
+   "share": 1.0647,
+   "margin_first": 40.49,
+   "margin_final": 43.63,
+   "total_final": 303334
+  },
+  {
+   "state": "OR",
+   "year": 2022,
+   "district": 5,
+   "days": 10.5,
+   "share": 0.9399,
+   "margin_first": -2.1,
+   "margin_final": -2.08,
+   "total_final": 351233
+  },
+  {
+   "state": "OR",
+   "year": 2022,
+   "district": 6,
+   "days": 40.5,
+   "share": 1.0,
+   "margin_first": 2.45,
+   "margin_final": 2.45,
+   "total_final": 294377
+  },
+  {
+   "state": "UT",
+   "year": 2022,
+   "district": 1,
+   "days": 37.5,
+   "share": 1.0,
+   "margin_first": -33.95,
+   "margin_final": -33.95,
+   "total_final": 266420
+  },
+  {
+   "state": "UT",
+   "year": 2022,
+   "district": 2,
+   "days": 37.5,
+   "share": 1.0,
+   "margin_first": -25.7,
+   "margin_final": -25.7,
+   "total_final": 259399
+  },
+  {
+   "state": "UT",
+   "year": 2022,
+   "district": 3,
+   "days": 37.5,
+   "share": 1.0,
+   "margin_first": -34.87,
+   "margin_final": -34.87,
+   "total_final": 283380
+  },
+  {
+   "state": "UT",
+   "year": 2022,
+   "district": 4,
+   "days": 16.5,
+   "share": 0.997,
+   "margin_first": -28.53,
+   "margin_final": -28.71,
+   "total_final": 254056
+  },
+  {
+   "state": "WA",
+   "year": 2022,
+   "district": 1,
+   "days": 10.5,
+   "share": 0.9753,
+   "margin_first": 26.78,
+   "margin_final": 27.09,
+   "total_final": 286684
+  },
+  {
+   "state": "WA",
+   "year": 2022,
+   "district": 2,
+   "days": 10.5,
+   "share": 0.9474,
+   "margin_first": 21.26,
+   "margin_final": 20.31,
+   "total_final": 337923
+  },
+  {
+   "state": "WA",
+   "year": 2022,
+   "district": 3,
+   "days": 10.5,
+   "share": 0.9847,
+   "margin_first": 1.07,
+   "margin_final": 0.82,
+   "total_final": 319759
+  },
+  {
+   "state": "WA",
+   "year": 2022,
+   "district": 4,
+   "days": 10.5,
+   "share": 0.944,
+   "margin_first": -35.43,
+   "margin_final": -35.26,
+   "total_final": 226647
+  },
+  {
+   "state": "WA",
+   "year": 2022,
+   "district": 6,
+   "days": 10.5,
+   "share": 0.927,
+   "margin_first": 21.83,
+   "margin_final": 20.11,
+   "total_final": 347873
+  },
+  {
+   "state": "WA",
+   "year": 2022,
+   "district": 7,
+   "days": 10.5,
+   "share": 0.9373,
+   "margin_first": 70.92,
+   "margin_final": 71.19,
+   "total_final": 346647
+  },
+  {
+   "state": "WA",
+   "year": 2022,
+   "district": 8,
+   "days": 10.5,
+   "share": 0.9725,
+   "margin_first": 6.29,
+   "margin_final": 6.85,
+   "total_final": 336038
+  },
+  {
+   "state": "WA",
+   "year": 2022,
+   "district": 9,
+   "days": 10.5,
+   "share": 0.9565,
+   "margin_first": 43.16,
+   "margin_final": 43.41,
+   "total_final": 239848
+  },
+  {
+   "state": "WA",
+   "year": 2022,
+   "district": 10,
+   "days": 10.5,
+   "share": 0.9413,
+   "margin_first": 13.58,
+   "margin_final": 14.11,
+   "total_final": 267748
+  },
+  {
+   "state": "AZ",
+   "year": 2024,
+   "district": 1,
+   "days": 16.5,
+   "share": 1.0,
+   "margin_first": -3.81,
+   "margin_final": -3.81,
+   "total_final": 434504
+  },
+  {
+   "state": "AZ",
+   "year": 2024,
+   "district": 2,
+   "days": 16.5,
+   "share": 0.9999,
+   "margin_first": -8.97,
+   "margin_final": -8.97,
+   "total_final": 406431
+  },
+  {
+   "state": "AZ",
+   "year": 2024,
+   "district": 3,
+   "days": 16.5,
+   "share": 0.9999,
+   "margin_first": 44.36,
+   "margin_final": 44.36,
+   "total_final": 202065
+  },
+  {
+   "state": "AZ",
+   "year": 2024,
+   "district": 4,
+   "days": 16.5,
+   "share": 1.0,
+   "margin_first": 7.29,
+   "margin_final": 7.29,
+   "total_final": 334545
+  },
+  {
+   "state": "AZ",
+   "year": 2024,
+   "district": 5,
+   "days": 16.5,
+   "share": 1.0,
+   "margin_first": -20.78,
+   "margin_final": -20.78,
+   "total_final": 423308
+  },
+  {
+   "state": "AZ",
+   "year": 2024,
+   "district": 6,
+   "days": 16.5,
+   "share": 0.9998,
+   "margin_first": -2.51,
+   "margin_final": -2.51,
+   "total_final": 431220
+  },
+  {
+   "state": "AZ",
+   "year": 2024,
+   "district": 7,
+   "days": 16.5,
+   "share": 1.0,
+   "margin_first": 26.9,
+   "margin_final": 26.9,
+   "total_final": 271011
+  },
+  {
+   "state": "AZ",
+   "year": 2024,
+   "district": 8,
+   "days": 16.5,
+   "share": 1.0,
+   "margin_first": -13.0,
+   "margin_final": -13.0,
+   "total_final": 368613
+  },
+  {
+   "state": "AZ",
+   "year": 2024,
+   "district": 9,
+   "days": 16.5,
+   "share": 1.0,
+   "margin_first": -30.6,
+   "margin_final": -30.6,
+   "total_final": 382223
+  },
+  {
+   "state": "CO",
+   "year": 2024,
+   "district": 1,
+   "days": 19.5,
+   "share": 0.9997,
+   "margin_first": 54.97,
+   "margin_final": 54.96,
+   "total_final": 345735
+  },
+  {
+   "state": "CO",
+   "year": 2024,
+   "district": 2,
+   "days": 19.5,
+   "share": 0.9993,
+   "margin_first": 39.41,
+   "margin_final": 39.42,
+   "total_final": 416908
+  },
+  {
+   "state": "CO",
+   "year": 2024,
+   "district": 3,
+   "days": 19.5,
+   "share": 0.9999,
+   "margin_first": -4.98,
+   "margin_final": -4.98,
+   "total_final": 397553
+  },
+  {
+   "state": "CO",
+   "year": 2024,
+   "district": 5,
+   "days": 19.5,
+   "share": 0.9998,
+   "margin_first": -13.8,
+   "margin_final": -13.8,
+   "total_final": 362085
+  },
+  {
+   "state": "CO",
+   "year": 2024,
+   "district": 6,
+   "days": 19.5,
+   "share": 0.9998,
+   "margin_first": 20.52,
+   "margin_final": 20.51,
+   "total_final": 343721
+  },
+  {
+   "state": "CO",
+   "year": 2024,
+   "district": 7,
+   "days": 19.5,
+   "share": 0.9999,
+   "margin_first": 14.18,
+   "margin_final": 14.18,
+   "total_final": 425966
+  },
+  {
+   "state": "CO",
+   "year": 2024,
+   "district": 8,
+   "days": 19.5,
+   "share": 1.0,
+   "margin_first": -0.73,
+   "margin_final": -0.73,
+   "total_final": 333616
+  },
+  {
+   "state": "NV",
+   "year": 2024,
+   "district": 1,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 7.51,
+   "margin_final": 7.51,
+   "total_final": 322899
+  },
+  {
+   "state": "NV",
+   "year": 2024,
+   "district": 3,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 2.74,
+   "margin_final": 2.74,
+   "total_final": 372388
+  },
+  {
+   "state": "NV",
+   "year": 2024,
+   "district": 4,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 8.09,
+   "margin_final": 8.09,
+   "total_final": 332206
+  },
+  {
+   "state": "OR",
+   "year": 2024,
+   "district": 1,
+   "days": 40.5,
+   "share": 1.0,
+   "margin_first": 40.53,
+   "margin_final": 40.53,
+   "total_final": 351991
+  },
+  {
+   "state": "OR",
+   "year": 2024,
+   "district": 2,
+   "days": 40.5,
+   "share": 1.0,
+   "margin_first": -31.09,
+   "margin_final": -31.09,
+   "total_final": 351489
+  },
+  {
+   "state": "OR",
+   "year": 2024,
+   "district": 3,
+   "days": 40.5,
+   "share": 1.0,
+   "margin_first": 42.49,
+   "margin_final": 42.49,
+   "total_final": 334369
+  },
+  {
+   "state": "OR",
+   "year": 2024,
+   "district": 4,
+   "days": 40.5,
+   "share": 1.0,
+   "margin_first": 7.77,
+   "margin_final": 7.77,
+   "total_final": 378765
+  },
+  {
+   "state": "OR",
+   "year": 2024,
+   "district": 5,
+   "days": 7.5,
+   "share": 0.9274,
+   "margin_first": 2.81,
+   "margin_final": 2.73,
+   "total_final": 401293
+  },
+  {
+   "state": "OR",
+   "year": 2024,
+   "district": 6,
+   "days": 40.5,
+   "share": 1.0,
+   "margin_first": 6.85,
+   "margin_final": 6.85,
+   "total_final": 339065
+  },
+  {
+   "state": "UT",
+   "year": 2024,
+   "district": 1,
+   "days": 25.5,
+   "share": 1.0,
+   "margin_first": -31.06,
+   "margin_final": -31.06,
+   "total_final": 365895
+  },
+  {
+   "state": "UT",
+   "year": 2024,
+   "district": 2,
+   "days": 25.5,
+   "share": 1.0,
+   "margin_first": -23.77,
+   "margin_final": -23.77,
+   "total_final": 353838
+  },
+  {
+   "state": "UT",
+   "year": 2024,
+   "district": 3,
+   "days": 25.5,
+   "share": 1.0,
+   "margin_first": -32.77,
+   "margin_final": -32.77,
+   "total_final": 365276
+  },
+  {
+   "state": "UT",
+   "year": 2024,
+   "district": 4,
+   "days": 25.5,
+   "share": 1.0,
+   "margin_first": -33.21,
+   "margin_final": -33.21,
+   "total_final": 363668
+  },
+  {
+   "state": "WA",
+   "year": 2024,
+   "district": 1,
+   "days": 31.5,
+   "share": 1.0,
+   "margin_first": 26.25,
+   "margin_final": 26.25,
+   "total_final": 360658
+  },
+  {
+   "state": "WA",
+   "year": 2024,
+   "district": 2,
+   "days": 46.5,
+   "share": 1.0,
+   "margin_first": 27.97,
+   "margin_final": 27.97,
+   "total_final": 413220
+  },
+  {
+   "state": "WA",
+   "year": 2024,
+   "district": 5,
+   "days": 31.5,
+   "share": 1.0,
+   "margin_first": -21.28,
+   "margin_final": -21.28,
+   "total_final": 397286
+  },
+  {
+   "state": "WA",
+   "year": 2024,
+   "district": 6,
+   "days": 19.5,
+   "share": 0.9943,
+   "margin_first": 13.66,
+   "margin_final": 13.61,
+   "total_final": 422622
+  },
+  {
+   "state": "WA",
+   "year": 2024,
+   "district": 7,
+   "days": 31.5,
+   "share": 1.0,
+   "margin_first": 68.14,
+   "margin_final": 68.14,
+   "total_final": 419819
+  },
+  {
+   "state": "WA",
+   "year": 2024,
+   "district": 8,
+   "days": 31.5,
+   "share": 1.0,
+   "margin_first": 8.15,
+   "margin_final": 8.15,
+   "total_final": 416277
+  },
+  {
+   "state": "WA",
+   "year": 2024,
+   "district": 10,
+   "days": 31.5,
+   "share": 1.0,
+   "margin_first": 17.31,
+   "margin_final": 17.31,
+   "total_final": 348044
+  }
+ ]
+}
