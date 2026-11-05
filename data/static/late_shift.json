@@ -9,7 +9,11 @@
     "mean_out": 0.172
    },
    "CA": {
-    "n": 0
+    "n": 89,
+    "k": 3.44,
+    "se": 1.37,
+    "t": 2.52,
+    "mean_out": 0.261
    },
    "CO": {
     "n": 14,
@@ -45,42 +49,42 @@
   },
   "by_year": {
    "2018": {
-    "n": 32,
-    "k": 8.36,
-    "se": 1.14,
-    "t": 7.35,
-    "mean_out": 0.109
+    "n": 75,
+    "k": 11.39,
+    "se": 0.49,
+    "t": 23.33,
+    "mean_out": 0.247
    },
    "2020": {
-    "n": 6,
-    "k": -7.63,
-    "se": 3.29,
-    "t": -2.32,
-    "mean_out": 0.033
+    "n": 45,
+    "k": -13.41,
+    "se": 1.03,
+    "t": -13.07,
+    "mean_out": 0.183
    },
    "2022": {
-    "n": 16,
-    "k": -3.12,
-    "se": 3.26,
-    "t": -0.96,
-    "mean_out": 0.037
+    "n": 23,
+    "k": -3.42,
+    "se": 2.59,
+    "t": -1.32,
+    "mean_out": 0.033
    },
    "2024": {
     "n": 1
    }
   },
   "pooled": {
-   "n": 55,
-   "k": 7.52,
-   "se": 1.01,
-   "t": 7.43,
-   "mean_out": 0.079
+   "n": 144,
+   "k": 3.74,
+   "se": 1.05,
+   "t": 3.56,
+   "mean_out": 0.192
   },
   "across_years": {
    "years": 3,
-   "k": -0.8,
-   "se": 4.76,
-   "t": -0.17
+   "k": -1.81,
+   "se": 7.2,
+   "t": -0.25
   }
  },
  "races": [
@@ -173,6 +177,436 @@
    "margin_first": 20.78,
    "margin_final": 22.17,
    "total_final": 261245
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 1,
+   "days": 4.5,
+   "share": 0.7196,
+   "margin_first": -13.27,
+   "margin_final": -9.77,
+   "total_final": 291594
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 2,
+   "days": 4.5,
+   "share": 0.5944,
+   "margin_first": 48.65,
+   "margin_final": 54.02,
+   "total_final": 315657
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 3,
+   "days": 4.5,
+   "share": 0.7417,
+   "margin_first": 14.87,
+   "margin_final": 16.15,
+   "total_final": 232251
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 4,
+   "days": 4.5,
+   "share": 0.7591,
+   "margin_first": -10.26,
+   "margin_final": -8.26,
+   "total_final": 340654
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 7,
+   "days": 4.5,
+   "share": 0.5073,
+   "margin_first": 8.03,
+   "margin_final": 10.09,
+   "total_final": 281617
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 9,
+   "days": 4.5,
+   "share": 0.5652,
+   "margin_first": 9.69,
+   "margin_final": 12.98,
+   "total_final": 200763
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 10,
+   "days": 4.5,
+   "share": 0.7873,
+   "margin_first": 1.84,
+   "margin_final": 4.5,
+   "total_final": 221900
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 11,
+   "days": 5.5,
+   "share": 0.7029,
+   "margin_first": 46.32,
+   "margin_final": 48.26,
+   "total_final": 275681
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 12,
+   "days": 5.5,
+   "share": 0.7351,
+   "margin_first": 72.13,
+   "margin_final": 73.65,
+   "total_final": 317072
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 14,
+   "days": 5.5,
+   "share": 0.4479,
+   "margin_first": 53.77,
+   "margin_final": 58.45,
+   "total_final": 266823
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 15,
+   "days": 5.5,
+   "share": 0.646,
+   "margin_first": 43.2,
+   "margin_final": 45.94,
+   "total_final": 243929
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 16,
+   "days": 5.5,
+   "share": 0.6315,
+   "margin_first": 9.96,
+   "margin_final": 15.09,
+   "total_final": 142959
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 17,
+   "days": 5.5,
+   "share": 0.5798,
+   "margin_first": 46.47,
+   "margin_final": 50.69,
+   "total_final": 211162
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 18,
+   "days": 5.5,
+   "share": 0.4943,
+   "margin_first": 43.11,
+   "margin_final": 48.98,
+   "total_final": 302238
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 19,
+   "days": 5.5,
+   "share": 0.5665,
+   "margin_first": 42.12,
+   "margin_final": 47.51,
+   "total_final": 220319
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 22,
+   "days": 5.5,
+   "share": 0.6647,
+   "margin_first": -10.33,
+   "margin_final": -5.44,
+   "total_final": 222379
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 23,
+   "days": 5.5,
+   "share": 0.6597,
+   "margin_first": -32.76,
+   "margin_final": -27.43,
+   "total_final": 205774
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 24,
+   "days": 5.5,
+   "share": 0.6908,
+   "margin_first": 13.23,
+   "margin_final": 17.11,
+   "total_final": 284431
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 25,
+   "days": 2.5,
+   "share": 0.6661,
+   "margin_first": 2.52,
+   "margin_final": 8.73,
+   "total_final": 245022
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 26,
+   "days": 5.5,
+   "share": 0.6934,
+   "margin_first": 19.87,
+   "margin_final": 23.88,
+   "total_final": 255426
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 28,
+   "days": 5.5,
+   "share": 0.7098,
+   "margin_first": 53.33,
+   "margin_final": 56.74,
+   "total_final": 250934
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 29,
+   "days": 5.5,
+   "share": 0.6812,
+   "margin_first": 58.38,
+   "margin_final": 61.22,
+   "total_final": 154692
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 30,
+   "days": 5.5,
+   "share": 0.7186,
+   "margin_first": 43.43,
+   "margin_final": 46.8,
+   "total_final": 260993
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 31,
+   "days": 5.5,
+   "share": 0.6708,
+   "margin_first": 13.78,
+   "margin_final": 17.49,
+   "total_final": 187495
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 32,
+   "days": 5.5,
+   "share": 0.7098,
+   "margin_first": 33.5,
+   "margin_final": 37.56,
+   "total_final": 177031
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 33,
+   "days": 5.5,
+   "share": 0.7267,
+   "margin_first": 36.82,
+   "margin_final": 40.06,
+   "total_final": 312860
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 35,
+   "days": 5.5,
+   "share": 0.6539,
+   "margin_first": 34.83,
+   "margin_final": 38.8,
+   "total_final": 149024
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 36,
+   "days": 5.5,
+   "share": 0.5086,
+   "margin_first": 12.74,
+   "margin_final": 18.03,
+   "total_final": 207008
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 37,
+   "days": 5.5,
+   "share": 0.6869,
+   "margin_first": 76.5,
+   "margin_final": 78.15,
+   "total_final": 236378
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 38,
+   "days": 5.5,
+   "share": 0.7082,
+   "margin_first": 33.75,
+   "margin_final": 37.7,
+   "total_final": 202156
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 39,
+   "days": 5.5,
+   "share": 0.7096,
+   "margin_first": -1.4,
+   "margin_final": 3.11,
+   "total_final": 244393
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 41,
+   "days": 5.5,
+   "share": 0.4543,
+   "margin_first": 20.77,
+   "margin_final": 30.2,
+   "total_final": 166248
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 42,
+   "days": 5.5,
+   "share": 0.4736,
+   "margin_first": -18.66,
+   "margin_final": -13.0,
+   "total_final": 231932
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 43,
+   "days": 5.5,
+   "share": 0.6919,
+   "margin_first": 51.67,
+   "margin_final": 55.34,
+   "total_final": 196052
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 45,
+   "days": 5.5,
+   "share": 0.6953,
+   "margin_first": -0.95,
+   "margin_final": 4.1,
+   "total_final": 305289
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 46,
+   "days": 5.5,
+   "share": 0.6133,
+   "margin_first": 29.63,
+   "margin_final": 38.25,
+   "total_final": 147961
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 47,
+   "days": 5.5,
+   "share": 0.6889,
+   "margin_first": 25.15,
+   "margin_final": 29.71,
+   "total_final": 221036
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 48,
+   "days": 5.5,
+   "share": 0.7148,
+   "margin_first": 4.04,
+   "margin_final": 7.1,
+   "total_final": 294736
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 49,
+   "days": 5.5,
+   "share": 0.7034,
+   "margin_first": 9.27,
+   "margin_final": 12.84,
+   "total_final": 295030
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 50,
+   "days": 5.5,
+   "share": 0.6749,
+   "margin_first": -6.65,
+   "margin_final": -3.43,
+   "total_final": 259810
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 51,
+   "days": 5.5,
+   "share": 0.5852,
+   "margin_first": 36.7,
+   "margin_final": 42.4,
+   "total_final": 153828
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 52,
+   "days": 5.5,
+   "share": 0.6682,
+   "margin_first": 24.01,
+   "margin_final": 27.69,
+   "total_final": 296007
+  },
+  {
+   "state": "CA",
+   "year": 2018,
+   "district": 53,
+   "days": 5.5,
+   "share": 0.6308,
+   "margin_first": 33.3,
+   "margin_final": 38.15,
+   "total_final": 268794
   },
   {
    "state": "CO",
@@ -543,6 +977,466 @@
    "margin_first": 23.24,
    "margin_final": 23.25,
    "total_final": 352274
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 1,
+   "days": 6.5,
+   "share": 0.8796,
+   "margin_first": -13.17,
+   "margin_final": -13.99,
+   "total_final": 358263
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 2,
+   "days": 10.5,
+   "share": 0.8157,
+   "margin_first": 55.67,
+   "margin_final": 51.48,
+   "total_final": 388755
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 3,
+   "days": 10.5,
+   "share": 0.876,
+   "margin_first": 9.45,
+   "margin_final": 9.35,
+   "total_final": 321977
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 4,
+   "days": 6.5,
+   "share": 0.8659,
+   "margin_first": -9.9,
+   "margin_final": -11.89,
+   "total_final": 442022
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 5,
+   "days": 28.5,
+   "share": 0.6213,
+   "margin_first": 60.5,
+   "margin_final": 52.18,
+   "total_final": 356460
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 6,
+   "days": 28.5,
+   "share": 0.4417,
+   "margin_first": 53.26,
+   "margin_final": 46.69,
+   "total_final": 313114
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 7,
+   "days": 13.5,
+   "share": 0.9252,
+   "margin_first": 13.68,
+   "margin_final": 13.25,
+   "total_final": 383965
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 8,
+   "days": 7.5,
+   "share": 0.7959,
+   "margin_first": -11.06,
+   "margin_final": -12.12,
+   "total_final": 283111
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 9,
+   "days": 28.5,
+   "share": 0.4934,
+   "margin_first": 24.67,
+   "margin_final": 15.17,
+   "total_final": 302610
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 10,
+   "days": 28.5,
+   "share": 0.5882,
+   "margin_first": 18.62,
+   "margin_final": 10.33,
+   "total_final": 302494
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 11,
+   "days": 10.5,
+   "share": 0.9802,
+   "margin_first": 46.2,
+   "margin_final": 45.99,
+   "total_final": 371356
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 13,
+   "days": 31.5,
+   "share": 1.0,
+   "margin_first": 80.73,
+   "margin_final": 80.73,
+   "total_final": 362818
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 14,
+   "days": 28.5,
+   "share": 0.6356,
+   "margin_first": 65.41,
+   "margin_final": 58.57,
+   "total_final": 350911
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 15,
+   "days": 10.5,
+   "share": 0.9782,
+   "margin_first": 42.18,
+   "margin_final": 41.81,
+   "total_final": 342701
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 16,
+   "days": 10.5,
+   "share": 0.9421,
+   "margin_first": 19.1,
+   "margin_final": 18.76,
+   "total_final": 216729
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 17,
+   "days": 10.5,
+   "share": 0.9612,
+   "margin_first": 42.72,
+   "margin_final": 42.69,
+   "total_final": 297336
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 19,
+   "days": 10.5,
+   "share": 0.9478,
+   "margin_first": 43.52,
+   "margin_final": 43.36,
+   "total_final": 313027
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 20,
+   "days": 28.5,
+   "share": 0.719,
+   "margin_first": 58.12,
+   "margin_final": 53.55,
+   "total_final": 308554
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 21,
+   "days": 19.5,
+   "share": 0.9717,
+   "margin_first": -0.98,
+   "margin_final": -0.89,
+   "total_final": 170334
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 22,
+   "days": 6.5,
+   "share": 0.8899,
+   "margin_first": -8.31,
+   "margin_final": -8.45,
+   "total_final": 315139
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 23,
+   "days": 16.5,
+   "share": 0.932,
+   "margin_first": -23.17,
+   "margin_final": -24.28,
+   "total_final": 306118
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 24,
+   "days": 28.5,
+   "share": 0.7168,
+   "margin_first": 25.73,
+   "margin_final": 17.33,
+   "total_final": 362345
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 25,
+   "days": 19.5,
+   "share": 0.9964,
+   "margin_first": -0.12,
+   "margin_final": -0.1,
+   "total_final": 338943
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 26,
+   "days": 13.5,
+   "share": 0.9931,
+   "margin_first": 21.25,
+   "margin_final": 21.17,
+   "total_final": 344733
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 27,
+   "days": 28.5,
+   "share": 0.7355,
+   "margin_first": 43.15,
+   "margin_final": 39.55,
+   "total_final": 317318
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 28,
+   "days": 13.5,
+   "share": 0.9841,
+   "margin_first": 45.56,
+   "margin_final": 45.35,
+   "total_final": 336399
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 30,
+   "days": 13.5,
+   "share": 0.9862,
+   "margin_first": 39.21,
+   "margin_final": 38.97,
+   "total_final": 345464
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 31,
+   "days": 13.5,
+   "share": 0.9561,
+   "margin_first": 22.48,
+   "margin_final": 22.58,
+   "total_final": 286050
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 32,
+   "days": 28.5,
+   "share": 0.6727,
+   "margin_first": 33.96,
+   "margin_final": 33.16,
+   "total_final": 259760
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 33,
+   "days": 19.5,
+   "share": 0.9926,
+   "margin_first": 35.26,
+   "margin_final": 35.16,
+   "total_final": 380428
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 35,
+   "days": 28.5,
+   "share": 0.511,
+   "margin_first": 42.65,
+   "margin_final": 38.66,
+   "total_final": 244346
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 36,
+   "days": 28.5,
+   "share": 0.4841,
+   "margin_first": 24.76,
+   "margin_final": 20.68,
+   "total_final": 306691
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 37,
+   "days": 28.5,
+   "share": 0.7309,
+   "margin_first": 74.25,
+   "margin_final": 71.88,
+   "total_final": 296621
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 39,
+   "days": 10.5,
+   "share": 0.9627,
+   "margin_first": -1.26,
+   "margin_final": -1.2,
+   "total_final": 343783
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 40,
+   "days": 28.5,
+   "share": 0.6318,
+   "margin_first": 46.98,
+   "margin_final": 45.48,
+   "total_final": 186381
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 41,
+   "days": 19.5,
+   "share": 0.9805,
+   "margin_first": 28.12,
+   "margin_final": 28.09,
+   "total_final": 262227
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 42,
+   "days": 7.5,
+   "share": 0.6313,
+   "margin_first": -12.01,
+   "margin_final": -14.25,
+   "total_final": 367741
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 43,
+   "days": 28.5,
+   "share": 0.6711,
+   "margin_first": 47.83,
+   "margin_final": 43.37,
+   "total_final": 277898
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 45,
+   "days": 28.5,
+   "share": 0.8511,
+   "margin_first": 8.64,
+   "margin_final": 6.93,
+   "total_final": 414939
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 46,
+   "days": 28.5,
+   "share": 0.6371,
+   "margin_first": 44.56,
+   "margin_final": 37.51,
+   "total_final": 229519
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 47,
+   "days": 28.5,
+   "share": 0.6675,
+   "margin_first": 33.84,
+   "margin_final": 26.54,
+   "total_final": 311399
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 48,
+   "days": 7.5,
+   "share": 0.9799,
+   "margin_first": -1.9,
+   "margin_final": -2.12,
+   "total_final": 395100
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 49,
+   "days": 19.5,
+   "share": 0.9985,
+   "margin_first": 6.25,
+   "margin_final": 6.26,
+   "total_final": 386506
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 50,
+   "days": 7.5,
+   "share": 0.9344,
+   "margin_first": -7.59,
+   "margin_final": -7.91,
+   "total_final": 362369
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 51,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 36.61,
+   "margin_final": 36.61,
+   "total_final": 242437
+  },
+  {
+   "state": "CA",
+   "year": 2020,
+   "district": 52,
+   "days": 19.5,
+   "share": 0.9994,
+   "margin_first": 23.16,
+   "margin_final": 23.15,
+   "total_final": 396495
   },
   {
    "state": "CO",
@@ -923,6 +1817,456 @@
    "margin_first": -95.55,
    "margin_final": -95.55,
    "total_final": 197185
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 1,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": -24.15,
+   "margin_final": -24.15,
+   "total_final": 246225
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 2,
+   "days": 25.5,
+   "share": 0.9579,
+   "margin_first": 49.37,
+   "margin_final": 48.81,
+   "total_final": 308749
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 3,
+   "days": 25.5,
+   "share": 0.9817,
+   "margin_first": -7.26,
+   "margin_final": -7.3,
+   "total_final": 338199
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 4,
+   "days": 34.5,
+   "share": 1.0,
+   "margin_first": 35.6,
+   "margin_final": 35.6,
+   "total_final": 260907
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 5,
+   "days": 25.5,
+   "share": 0.9958,
+   "margin_first": -22.65,
+   "margin_final": -22.62,
+   "total_final": 283030
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 6,
+   "days": 25.5,
+   "share": 0.9808,
+   "margin_first": 11.79,
+   "margin_final": 11.89,
+   "total_final": 216383
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 7,
+   "days": 49.5,
+   "share": 1.0,
+   "margin_first": 36.52,
+   "margin_final": 36.52,
+   "total_final": 220651
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 8,
+   "days": 25.5,
+   "share": 0.9993,
+   "margin_first": 51.45,
+   "margin_final": 51.46,
+   "total_final": 192135
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 9,
+   "days": 25.5,
+   "share": 0.9908,
+   "margin_first": 9.74,
+   "margin_final": 9.63,
+   "total_final": 174400
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 11,
+   "days": 25.5,
+   "share": 1.0,
+   "margin_first": 67.9,
+   "margin_final": 67.9,
+   "total_final": 263065
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 12,
+   "days": 25.5,
+   "share": 0.9991,
+   "margin_first": 80.95,
+   "margin_final": 80.95,
+   "total_final": 239969
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 13,
+   "days": 25.5,
+   "share": 0.9972,
+   "margin_first": -0.44,
+   "margin_final": -0.42,
+   "total_final": 133556
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 14,
+   "days": 25.5,
+   "share": 0.9991,
+   "margin_first": 38.67,
+   "margin_final": 38.68,
+   "total_final": 198464
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 17,
+   "days": 25.5,
+   "share": 0.9989,
+   "margin_first": 41.87,
+   "margin_final": 41.86,
+   "total_final": 180253
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 18,
+   "days": 25.5,
+   "share": 0.9991,
+   "margin_first": 31.69,
+   "margin_final": 31.71,
+   "total_final": 151513
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 19,
+   "days": 25.5,
+   "share": 0.9935,
+   "margin_first": 37.55,
+   "margin_final": 37.3,
+   "total_final": 283310
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 20,
+   "days": 25.5,
+   "share": 0.9892,
+   "margin_first": -34.6,
+   "margin_final": -34.49,
+   "total_final": 228781
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 21,
+   "days": 25.5,
+   "share": 0.9804,
+   "margin_first": 8.06,
+   "margin_final": 8.36,
+   "total_final": 125647
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 22,
+   "days": 25.5,
+   "share": 0.9884,
+   "margin_first": -3.22,
+   "margin_final": -3.05,
+   "total_final": 102856
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 23,
+   "days": 25.5,
+   "share": 0.9958,
+   "margin_first": -22.02,
+   "margin_final": -22.05,
+   "total_final": 169105
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 24,
+   "days": 25.5,
+   "share": 0.9566,
+   "margin_first": 21.42,
+   "margin_final": 21.13,
+   "total_final": 262552
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 25,
+   "days": 25.5,
+   "share": 0.9987,
+   "margin_first": 14.76,
+   "margin_final": 14.76,
+   "total_final": 152742
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 26,
+   "days": 25.5,
+   "share": 0.9964,
+   "margin_first": 9.07,
+   "margin_final": 9.06,
+   "total_final": 246789
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 27,
+   "days": 25.5,
+   "share": 0.999,
+   "margin_first": -6.5,
+   "margin_final": -6.48,
+   "total_final": 196516
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 28,
+   "days": 25.5,
+   "share": 0.9993,
+   "margin_first": 32.48,
+   "margin_final": 32.47,
+   "total_final": 226557
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 31,
+   "days": 25.5,
+   "share": 0.9994,
+   "margin_first": 19.09,
+   "margin_final": 19.08,
+   "total_final": 153625
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 32,
+   "days": 25.5,
+   "share": 0.9994,
+   "margin_first": 38.35,
+   "margin_final": 38.34,
+   "total_final": 242029
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 33,
+   "days": 25.5,
+   "share": 0.9961,
+   "margin_first": 15.48,
+   "margin_final": 15.42,
+   "total_final": 132707
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 35,
+   "days": 25.5,
+   "share": 0.9969,
+   "margin_first": 14.75,
+   "margin_final": 14.73,
+   "total_final": 130953
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 36,
+   "days": 25.5,
+   "share": 0.9995,
+   "margin_first": 39.5,
+   "margin_final": 39.5,
+   "total_final": 278563
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 38,
+   "days": 25.5,
+   "share": 0.9994,
+   "margin_first": 16.19,
+   "margin_final": 16.18,
+   "total_final": 174311
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 39,
+   "days": 25.5,
+   "share": 0.9981,
+   "margin_first": 15.33,
+   "margin_final": 15.35,
+   "total_final": 131597
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 40,
+   "days": 25.5,
+   "share": 0.9995,
+   "margin_first": -13.67,
+   "margin_final": -13.67,
+   "total_final": 284311
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 41,
+   "days": 25.5,
+   "share": 0.9957,
+   "margin_first": -4.66,
+   "margin_final": -4.69,
+   "total_final": 236638
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 42,
+   "days": 25.5,
+   "share": 0.9992,
+   "margin_first": 36.73,
+   "margin_final": 36.74,
+   "total_final": 145120
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 43,
+   "days": 25.5,
+   "share": 0.9993,
+   "margin_first": 54.66,
+   "margin_final": 54.66,
+   "total_final": 123447
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 44,
+   "days": 25.5,
+   "share": 0.9993,
+   "margin_first": 44.4,
+   "margin_final": 44.41,
+   "total_final": 138714
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 45,
+   "days": 25.5,
+   "share": 0.9997,
+   "margin_first": -4.83,
+   "margin_final": -4.83,
+   "total_final": 217426
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 46,
+   "days": 25.5,
+   "share": 0.9995,
+   "margin_first": 23.57,
+   "margin_final": 23.58,
+   "total_final": 126298
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 47,
+   "days": 25.5,
+   "share": 0.9996,
+   "margin_first": 3.44,
+   "margin_final": 3.43,
+   "total_final": 265635
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 48,
+   "days": 25.5,
+   "share": 0.9975,
+   "margin_first": -20.74,
+   "margin_final": -20.72,
+   "total_final": 257071
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 49,
+   "days": 19.5,
+   "share": 0.9956,
+   "margin_first": 5.23,
+   "margin_final": 5.26,
+   "total_final": 291735
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 50,
+   "days": 25.5,
+   "share": 0.9979,
+   "margin_first": 25.66,
+   "margin_final": 25.68,
+   "total_final": 268635
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 51,
+   "days": 25.5,
+   "share": 0.9978,
+   "margin_first": 23.71,
+   "margin_final": 23.73,
+   "total_final": 233072
+  },
+  {
+   "state": "CA",
+   "year": 2022,
+   "district": 52,
+   "days": 25.5,
+   "share": 0.9968,
+   "margin_first": 33.31,
+   "margin_final": 33.34,
+   "total_final": 151016
   },
   {
    "state": "CO",
@@ -1313,6 +2657,476 @@
    "margin_first": -30.6,
    "margin_final": -30.6,
    "total_final": 382223
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 1,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": -30.69,
+   "margin_final": -30.69,
+   "total_final": 319228
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 2,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 43.77,
+   "margin_final": 43.77,
+   "total_final": 379617
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 3,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": -10.93,
+   "margin_final": -10.93,
+   "total_final": 422313
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 4,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 32.91,
+   "margin_final": 32.91,
+   "total_final": 342680
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 5,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": -23.53,
+   "margin_final": -23.53,
+   "total_final": 368562
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 6,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 15.24,
+   "margin_final": 15.24,
+   "total_final": 287072
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 7,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 33.5,
+   "margin_final": 33.5,
+   "total_final": 295770
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 8,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 47.94,
+   "margin_final": 47.94,
+   "total_final": 273030
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 9,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 3.58,
+   "margin_final": 3.58,
+   "total_final": 251357
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 10,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 32.95,
+   "margin_final": 32.95,
+   "total_final": 364544
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 11,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 62.07,
+   "margin_final": 62.07,
+   "total_final": 339111
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 13,
+   "days": 31.5,
+   "share": 1.0,
+   "margin_first": 0.09,
+   "margin_final": 0.09,
+   "total_final": 210921
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 14,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 35.51,
+   "margin_final": 35.51,
+   "total_final": 276388
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 15,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 46.19,
+   "margin_final": 46.19,
+   "total_final": 289544
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 17,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 35.33,
+   "margin_final": 35.33,
+   "total_final": 254877
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 18,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 29.25,
+   "margin_final": 29.25,
+   "total_final": 228506
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 19,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 38.59,
+   "margin_final": 38.59,
+   "total_final": 364320
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 21,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 5.15,
+   "margin_final": 5.15,
+   "total_final": 195531
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 22,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": -6.84,
+   "margin_final": -6.84,
+   "total_final": 167507
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 23,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": -20.28,
+   "margin_final": -20.28,
+   "total_final": 264849
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 24,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 25.39,
+   "margin_final": 25.39,
+   "total_final": 342479
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 25,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 12.51,
+   "margin_final": 12.51,
+   "total_final": 245031
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 26,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 12.11,
+   "margin_final": 12.11,
+   "total_final": 334306
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 27,
+   "days": 40.5,
+   "share": 1.0,
+   "margin_first": 2.66,
+   "margin_final": 2.66,
+   "total_final": 300090
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 28,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 29.86,
+   "margin_final": 29.86,
+   "total_final": 314944
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 29,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 39.55,
+   "margin_final": 39.55,
+   "total_final": 209686
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 30,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 36.75,
+   "margin_final": 36.75,
+   "total_final": 311659
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 31,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 19.46,
+   "margin_final": 19.46,
+   "total_final": 247951
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 32,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 32.4,
+   "margin_final": 32.4,
+   "total_final": 321645
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 33,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 17.63,
+   "margin_final": 17.63,
+   "total_final": 233275
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 35,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 16.81,
+   "margin_final": 16.81,
+   "total_final": 233555
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 36,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 37.44,
+   "margin_final": 37.44,
+   "total_final": 357987
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 38,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 19.68,
+   "margin_final": 19.68,
+   "total_final": 275928
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 39,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 13.38,
+   "margin_final": 13.38,
+   "total_final": 229660
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 40,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": -10.52,
+   "margin_final": -10.52,
+   "total_final": 383635
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 41,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": -3.38,
+   "margin_final": -3.38,
+   "total_final": 354445
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 42,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 36.28,
+   "margin_final": 36.28,
+   "total_final": 233563
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 43,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 50.15,
+   "margin_final": 50.15,
+   "total_final": 213232
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 44,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 42.75,
+   "margin_final": 42.75,
+   "total_final": 230852
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 45,
+   "days": 25.5,
+   "share": 0.9982,
+   "margin_first": 0.19,
+   "margin_final": 0.21,
+   "total_final": 315875
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 46,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 26.85,
+   "margin_final": 26.85,
+   "total_final": 211292
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 47,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 2.88,
+   "margin_final": 2.88,
+   "total_final": 353275
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 48,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": -18.59,
+   "margin_final": -18.59,
+   "total_final": 360290
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 49,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 4.35,
+   "margin_final": 4.35,
+   "total_final": 378347
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 50,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 28.55,
+   "margin_final": 28.55,
+   "total_final": 360695
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 51,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 21.39,
+   "margin_final": 21.39,
+   "total_final": 327584
+  },
+  {
+   "state": "CA",
+   "year": 2024,
+   "district": 52,
+   "days": 43.5,
+   "share": 1.0,
+   "margin_first": 32.62,
+   "margin_final": 32.62,
+   "total_final": 259718
   },
   {
    "state": "CO",
