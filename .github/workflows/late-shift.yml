@@ -1,0 +1,52 @@
+name: late shift
+
+# How far a House count moves after it first appears on Wikipedia, in the states that count most ballots after Election Day
+# (midterms/late_shift.py: each district's first filled-in count from 2018 to 2024 against its certified count, from the state
+# pages' revision history). Commits data/static/late_shift.json. On demand.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: late-shift
+  cancel-in-progress: false
+
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Read the revision histories and fit the shift
+        run: python -m midterms.late_shift
+      # Snapshot the output, resync to the newest main, restore, commit, push (no rebase)
+      - name: Commit the study
+        run: |
+          set -uo pipefail
+          f=data/static/late_shift.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          SNAP=$(mktemp -d); cp "$f" "$SNAP/"
+          for i in 1 2 3 4 5; do
+            if ! timeout 120 git fetch -q origin main; then echo "fetch $i failed"; sleep 5; continue; fi
+            git reset -q --hard origin/main
+            cp "$SNAP/late_shift.json" "$f"
+            git add -- "$f"
+            if git diff --staged --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -q -m "Late-count shift study $(date -u +%FT%H:%MZ)"
+            if timeout 180 git push -q origin HEAD:main; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push $i rejected; resyncing and retrying"; sleep $((i * 5))
+          done
+          exit 1
