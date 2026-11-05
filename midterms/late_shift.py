@@ -8,8 +8,8 @@ then every third day to the end of the year, and as it stood on 1 February (the 
 election box is taken the first time it is filled in (every candidate's vote and the total): the margin then (Democratic
 minus Republican, points of every ballot, the model's unit) against the final margin, and the share of the final total
 counted then. The shift is final minus first; a race without both a Democrat and a Republican is left out. The fit is the
-shift over the share still out, k in shift = k (1 - share counted), by state (least squares through the origin, with its
-standard error), the form a count's centre would be moved by in live_obs.
+shift over the share still out, k in shift = k (1 - share counted): the late ballots' margin less the first count's. It is
+fitted by state and by election, and tested across elections (see fit).
 Revisions come from the MediaWiki API (serial requests with the project User-Agent).
 """
 
@@ -38,7 +38,7 @@ SAMPLE_DAYS = [
 BOX = re.compile(r"\{\{\s*Election box begin(.*?)\{\{\s*Election box end", re.S | re.I)
 CAND = re.compile(r"\{\{\s*Election box (?:winning )?candidate(?: with party link)?[^|]*\|(.*?)\}\}", re.S | re.I)
 TOTAL = re.compile(r"\{\{\s*Election box total[^|]*\|(.*?)\}\}", re.S | re.I)
-DISTRICT = re.compile(r"^=+\s*District\s+(\d+)\s*=+\s*$", re.M | re.I)
+DISTRICT = re.compile(r"^=+\s*(?:\[\[[^|\]]*\|)?District\s+(\d+)(?:\]\])?\s*=+\s*$", re.M | re.I)  # may be a link
 
 
 def _api(**q) -> dict:
@@ -159,27 +159,40 @@ def collect() -> list[dict]:
     return rows
 
 
+def _slope(g: list[dict]) -> dict:
+    """k in shift = k (1 - share counted), least squares through the origin, with its standard error and t."""
+    if len(g) < 5:
+        return {"n": len(g)}
+    x = np.array([1 - r["share"] for r in g])
+    y = np.array([r["margin_final"] - r["margin_first"] for r in g])
+    k = float(x @ y / (x @ x))
+    se = float(np.sqrt(((y - k * x) ** 2).sum() / (len(g) - 1) / (x @ x)))
+    return {
+        "n": len(g),
+        "k": round(k, 2),
+        "se": round(se, 2),
+        "t": round(k / se, 2),
+        "mean_out": round(float(x.mean()), 3),
+    }
+
+
 def fit(rows: list[dict]) -> dict:
-    """k (points per unit share still out) with its standard error and t, by state and pooled; only counts with at least
-    1 % of the final total still out inform the slope."""
-    out = {}
-    for key in [*STATES, "all"]:
-        g = [r for r in rows if key in ("all", r["state"]) and r["share"] <= 0.99]
-        if len(g) < 5:
-            out[key] = {"n": len(g)}
-            continue
-        x = np.array([1 - r["share"] for r in g])
-        y = np.array([r["margin_final"] - r["margin_first"] for r in g])
-        k = float(x @ y / (x @ x))
-        se = float(np.sqrt(((y - k * x) ** 2).sum() / (len(g) - 1) / (x @ x)))
-        out[key] = {
-            "n": len(g),
-            "k": round(k, 2),
-            "se": round(se, 2),
-            "t": round(k / se, 2),
-            "mean_out": round(x.mean(), 3),
-        }
-    return out
+    """The slope by state, by election and pooled, from counts with at least 1 % of the final total still out. The shift
+    moves with the election (who votes late changes), so the test is across elections: the mean of the yearly slopes over
+    its standard error (as many degrees of freedom as elections less one)."""
+    g = [r for r in rows if r["share"] <= 0.99]
+    by_year = {y: _slope([r for r in g if r["year"] == y]) for y in ELECTION}
+    ks = [f["k"] for f in by_year.values() if "k" in f]
+    across = {"years": len(ks)}
+    if len(ks) >= 2:
+        se = float(np.std(ks, ddof=1) / np.sqrt(len(ks)))
+        across |= {"k": round(float(np.mean(ks)), 2), "se": round(se, 2), "t": round(float(np.mean(ks)) / se, 2)}
+    return {
+        "by_state": {st: _slope([r for r in g if r["state"] == st]) for st in STATES},
+        "by_year": by_year,
+        "pooled": _slope(g),
+        "across_years": across,
+    }
 
 
 def main():
@@ -187,12 +200,12 @@ def main():
     res = fit(rows)
     OUT.write_text(json.dumps({"fit": res, "races": rows}, indent=1) + "\n")
     print(f"{OUT.relative_to(STATIC.parent.parent)}: {len(rows)} district counts")
-    print(f"{'state':6s} {'n':>4s} {'k':>7s} {'se':>6s} {'t':>6s} {'out':>6s}")
-    for st, f in res.items():
-        print(
-            f"{st:6s} {f['n']:4d} "
-            + (f"{f['k']:7.2f} {f['se']:6.2f} {f['t']:6.2f} {f['mean_out']:6.3f}" if "k" in f else "")
-        )
+    for part in ("by_state", "by_year"):
+        for key, f in res[part].items():
+            line = f"{f['k']:7.2f} {f['se']:6.2f} {f['t']:6.2f} {f['mean_out']:6.3f}" if "k" in f else ""
+            print(f"{key!s:6s} {f['n']:4d} {line}")
+    print("pooled", res["pooled"])
+    print("across elections", res["across_years"])
 
 
 if __name__ == "__main__":
