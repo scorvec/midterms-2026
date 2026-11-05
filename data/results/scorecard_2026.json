@@ -305,7 +305,7 @@
    "seat": "AZ-1",
    "p": 0.7357,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.741
   },
   {
@@ -313,7 +313,7 @@
    "seat": "AZ-2",
    "p": 0.3129,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.359
   },
   {
@@ -328,7 +328,7 @@
    "seat": "AZ-5",
    "p": 0.0619,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.095
   },
   {
@@ -351,7 +351,7 @@
    "seat": "AZ-8",
    "p": 0.0625,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.116
   },
   {
@@ -373,7 +373,7 @@
    "seat": "AR-2",
    "p": 0.2761,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.195
   },
   {
@@ -519,7 +519,7 @@
    "seat": "CA-23",
    "p": 0.059,
    "y": null,
-   "status": null
+   "status": "counting"
   },
   {
    "office": "house",
@@ -717,7 +717,7 @@
    "seat": "CO-3",
    "p": 0.4127,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.364
   },
   {
@@ -725,7 +725,7 @@
    "seat": "CO-4",
    "p": 0.1084,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.268
   },
   {
@@ -733,7 +733,7 @@
    "seat": "CO-5",
    "p": 0.368,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.432
   },
   {
@@ -851,7 +851,7 @@
    "seat": "FL-7",
    "p": 0.4093,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.341
   },
   {
@@ -867,7 +867,7 @@
    "seat": "FL-9",
    "p": 0.3368,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.364
   },
   {
@@ -891,7 +891,7 @@
    "seat": "FL-13",
    "p": 0.1862,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.355
   },
   {
@@ -991,7 +991,7 @@
    "seat": "FL-26",
    "p": 0.2617,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.084
   },
   {
@@ -999,7 +999,7 @@
    "seat": "FL-27",
    "p": 0.2425,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.277
   },
   {
@@ -1459,14 +1459,14 @@
    "seat": "LA-5",
    "p": 0.0268,
    "y": null,
-   "status": null
+   "status": "counting"
   },
   {
    "office": "house",
    "seat": "LA-6",
    "p": 0.0032,
    "y": null,
-   "status": null
+   "status": "counting"
   },
   {
    "office": "house",
@@ -1677,7 +1677,7 @@
    "seat": "MN-1",
    "p": 0.4721,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.355
   },
   {
@@ -2009,7 +2009,7 @@
    "seat": "NY-1",
    "p": 0.4567,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.215
   },
   {
@@ -2017,7 +2017,7 @@
    "seat": "NY-2",
    "p": 0.355,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.141
   },
   {
@@ -2155,7 +2155,7 @@
    "seat": "NY-21",
    "p": 0.2648,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.295
   },
   {
@@ -2214,7 +2214,7 @@
    "seat": "NC-3",
    "p": 0.1709,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.216
   },
   {
@@ -2229,7 +2229,7 @@
    "seat": "NC-5",
    "p": 0.0945,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.127
   },
   {
@@ -2245,7 +2245,7 @@
    "seat": "NC-7",
    "p": 0.1364,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.16
   },
   {
@@ -2253,7 +2253,7 @@
    "seat": "NC-8",
    "p": 0.0251,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.084
   },
   {
@@ -2269,7 +2269,7 @@
    "seat": "NC-10",
    "p": 0.0588,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.084
   },
   {
@@ -2646,7 +2646,7 @@
    "seat": "SC-2",
    "p": 0.0772,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.095
   },
   {
@@ -2740,7 +2740,7 @@
    "seat": "TN-7",
    "p": 0.0257,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.084
   },
   {
@@ -2755,7 +2755,7 @@
    "seat": "TN-9",
    "p": 0.1492,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.149
   },
   {
@@ -3053,7 +3053,7 @@
    "seat": "UT-2",
    "p": 0.0118,
    "y": null,
-   "status": null
+   "status": "counting"
   },
   {
    "office": "house",
@@ -3067,7 +3067,7 @@
    "seat": "UT-4",
    "p": 0.0028,
    "y": null,
-   "status": null
+   "status": "counting"
   },
   {
    "office": "house",
@@ -3111,7 +3111,7 @@
    "seat": "VA-5",
    "p": 0.247,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.327
   },
   {
@@ -3184,7 +3184,7 @@
    "seat": "WA-4",
    "p": 0.1127,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.084
   },
   {
@@ -3192,7 +3192,7 @@
    "seat": "WA-5",
    "p": 0.2827,
    "y": null,
-   "status": null,
+   "status": "counting",
    "raters": 0.174
   },
   {
