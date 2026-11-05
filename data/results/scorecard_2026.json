@@ -3,17 +3,17 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 447,
+   "called": 449,
    "of": 488,
-   "brier": 0.0337,
-   "log_loss": 0.1136,
-   "favourite_won": 0.96,
+   "brier": 0.0367,
+   "log_loss": 0.1234,
+   "favourite_won": 0.955,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 131,
+     "n": 132,
      "forecast": 0.012,
-     "won": 0.008
+     "won": 0.015
     },
     {
      "band": "0.05-0.15",
@@ -23,9 +23,9 @@
     },
     {
      "band": "0.15-0.35",
-     "n": 15,
-     "forecast": 0.236,
-     "won": 0.533
+     "n": 16,
+     "forecast": 0.24,
+     "won": 0.562
     },
     {
      "band": "0.35-0.50",
@@ -59,9 +59,9 @@
     }
    ],
    "raters": {
-    "n": 114,
-    "brier_model": 0.105,
-    "brier_raters": 0.1118
+    "n": 115,
+    "brier_model": 0.1084,
+    "brier_raters": 0.1152
    }
   },
   "governor": {
@@ -122,17 +122,17 @@
    ]
   },
   "house": {
-   "called": 380,
+   "called": 382,
    "of": 417,
-   "brier": 0.0316,
-   "log_loss": 0.1059,
-   "favourite_won": 0.961,
+   "brier": 0.0351,
+   "log_loss": 0.1174,
+   "favourite_won": 0.955,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 116,
+     "n": 117,
      "forecast": 0.011,
-     "won": 0.009
+     "won": 0.017
     },
     {
      "band": "0.05-0.15",
@@ -142,9 +142,9 @@
     },
     {
      "band": "0.15-0.35",
-     "n": 10,
-     "forecast": 0.224,
-     "won": 0.5
+     "n": 11,
+     "forecast": 0.231,
+     "won": 0.545
     },
     {
      "band": "0.35-0.50",
@@ -178,9 +178,9 @@
     }
    ],
    "raters": {
-    "n": 114,
-    "brier_model": 0.105,
-    "brier_raters": 0.1118
+    "n": 115,
+    "brier_model": 0.1084,
+    "brier_raters": 0.1152
    }
   },
   "senate": {
@@ -2381,8 +2381,8 @@
    "office": "house",
    "seat": "OH-10",
    "p": 0.2976,
-   "y": null,
-   "status": null,
+   "y": 1,
+   "status": "called",
    "raters": 0.295
   },
   {
@@ -2717,8 +2717,8 @@
    "office": "house",
    "seat": "TN-4",
    "p": 0.0331,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "house",
@@ -3806,8 +3806,8 @@
  ],
  "chambers": {
   "house": {
-   "d_called": 251,
-   "undecided": 37
+   "d_called": 253,
+   "undecided": 35
   },
   "senate": {
    "d_called": 54,
