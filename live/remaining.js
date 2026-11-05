@@ -19,7 +19,8 @@
 //                 is scaled by the largest a <= 1 that keeps an effective sample of ESS_TARGET
 //   race odds     an uncalled race with a count reads its own count directly: prior = its margin under the weights without
 //                 its own count (leave-one-out, normal approximation), likelihood = the count at its count error (60 % of
-//                 it for an estimated share) plus skew_sd; normal posterior
+//                 it for an estimated share) plus skew_sd; normal posterior. With a reported share of OWN_ONLY or more the
+//                 count alone sets the odds: the prior knows nothing of which ballots are still out
 // The calls and counts are Wikipedia's (midterms/results_wiki.py) unless the results file holds official returns or a news count.
 "use strict";
 const fs = require("fs");
@@ -47,6 +48,7 @@ const logT4 = (z) => -2.5 * Math.log(1 + z * z / 4); // Student-t, 4 df, up to a
 const REST_SD = 25; // points: how far the uncounted ballots' margin can run from the counted ballots'
 const countSd = (f, est) =>
   est ? 2 + 28 * Math.pow(Math.max(0, 1 - f), 1.5) : Math.hypot(0.5, REST_SD * Math.max(0, 1 - f));
+const OWN_ONLY = 0.95; // reported share counted from which a race's odds come from its own count alone
 
 function simulate() {
   // Engine.run's arithmetic at the published settings, keeping every simulation's margins
@@ -149,13 +151,18 @@ function run(obs) {
   }
   const local = new Map();
   for (const c of own) {
+    const so = Math.hypot((c.est ? 0.6 : 1) * countSd(c.f, c.est), c.ssd);
+    if (!c.est && c.f >= OWN_ONLY) {
+      local.set(c.k.join(":"), { p: Phi(c.m / so), med: c.m, lo: c.m - 1.2816 * so, hi: c.m + 1.2816 * so });
+      continue;
+    }
     let z = 0, a = 0, b = 0;
     for (let i = 0; i < N; i++) {
       const wi = w[i] * Math.exp(-alpha * c.ow[i]), v = margin(i, c.k);
       z += wi; a += wi * v; b += wi * v * v;
     }
     if (!(z > 0)) continue;
-    const m0 = a / z, s0 = Math.sqrt(Math.max(b / z - m0 * m0, 1)), so = Math.hypot((c.est ? 0.6 : 1) * countSd(c.f, c.est), c.ssd);
+    const m0 = a / z, s0 = Math.sqrt(Math.max(b / z - m0 * m0, 1));
     const prec = 1 / (s0 * s0) + 1 / (so * so), pm = (m0 / (s0 * s0) + c.m / (so * so)) / prec, ps = Math.sqrt(1 / prec);
     local.set(c.k.join(":"), { p: Phi(pm / ps), med: pm, lo: pm - 1.2816 * ps, hi: pm + 1.2816 * ps });
   }
