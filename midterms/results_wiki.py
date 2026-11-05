@@ -225,7 +225,7 @@ def popular_vote(nat: dict | None, states: dict) -> dict:
         "source": "states",
         "parties": [["Democratic", d], ["Republican", r], ["Others", total - d - r]],
         "total": total,
-        "states": len(have),
+        "states": sorted(have),
         "missing": sorted(st for st, v in states.items() if not v),
     }
 
@@ -347,7 +347,7 @@ def main():
     if {**old, "as_of": None} != {**pop, "as_of": None}:  # a run that changes nothing keeps the file and its time
         POPULAR.write_text(json.dumps({**pop, "as_of": now}, indent=1) + "\n")
     print(
-        "popular vote ({}): ".format(pop["source"] if nat else f"{pop['states']} of {len(states)} states")
+        "popular vote ({}): ".format(pop["source"] if nat else f"{len(pop['states'])} of {len(states)} states")
         + ", ".join(f"{k} {v:,}" for k, v in pop["parties"])
         + f" of {pop['total']:,}"
         + (f"; no infobox count yet: {' '.join(pop['missing'])}" if pop.get("missing") else "")
