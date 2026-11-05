@@ -3,10 +3,10 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 451,
+   "called": 452,
    "of": 488,
    "brier": 0.0366,
-   "log_loss": 0.1228,
+   "log_loss": 0.1233,
    "favourite_won": 0.956,
    "calibration": [
     {
@@ -41,8 +41,8 @@
     },
     {
      "band": "0.65-0.85",
-     "n": 29,
-     "forecast": 0.761,
+     "n": 30,
+     "forecast": 0.76,
      "won": 1.0
     },
     {
@@ -59,9 +59,9 @@
     }
    ],
    "raters": {
-    "n": 115,
-    "brier_model": 0.1084,
-    "brier_raters": 0.1152
+    "n": 116,
+    "brier_model": 0.108,
+    "brier_raters": 0.1148
    }
   },
   "governor": {
@@ -122,10 +122,10 @@
    ]
   },
   "house": {
-   "called": 384,
+   "called": 385,
    "of": 417,
-   "brier": 0.035,
-   "log_loss": 0.1168,
+   "brier": 0.0351,
+   "log_loss": 0.1173,
    "favourite_won": 0.956,
    "calibration": [
     {
@@ -160,8 +160,8 @@
     },
     {
      "band": "0.65-0.85",
-     "n": 22,
-     "forecast": 0.763,
+     "n": 23,
+     "forecast": 0.761,
      "won": 1.0
     },
     {
@@ -178,9 +178,9 @@
     }
    ],
    "raters": {
-    "n": 115,
-    "brier_model": 0.1084,
-    "brier_raters": 0.1152
+    "n": 116,
+    "brier_model": 0.108,
+    "brier_raters": 0.1148
    }
   },
   "senate": {
@@ -304,8 +304,8 @@
    "office": "house",
    "seat": "AZ-1",
    "p": 0.7357,
-   "y": null,
-   "status": "counting",
+   "y": 1,
+   "status": "called",
    "raters": 0.741
   },
   {
@@ -3806,8 +3806,8 @@
  ],
  "chambers": {
   "house": {
-   "d_called": 253,
-   "undecided": 33
+   "d_called": 254,
+   "undecided": 32
   },
   "senate": {
    "d_called": 54,
