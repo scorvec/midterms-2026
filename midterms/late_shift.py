@@ -93,29 +93,35 @@ def _votes(s: str):
 
 
 def districts(text: str) -> dict[int, tuple[float, int]]:
-    """district -> (Democratic minus Republican margin, points of every ballot; total votes) from the last filled-in
-    general election box under each District heading; a box titled as a primary is skipped."""
+    """district -> (Democratic minus Republican margin, points of every ballot; total votes) from the general election
+    under each District heading, once filled in: the part after a top-two box's general-election line (California's
+    "open primary" boxes run from the primary into the general), else the section's last box not titled as a primary."""
     heads = [(m.start(), int(m[1])) for m in DISTRICT.finditer(text)]
     out = {}
-    for b in BOX.finditer(text):
-        title = _param(b[1].split("}}")[0], "title")
-        if re.search(r"primary|runoff|special|convention", title, re.I):
-            continue
-        dist = next((n for pos, n in reversed(heads) if pos < b.start()), None)
-        if dist is None:
-            continue
-        rows = [(_param(c, "party"), _votes(_param(c, "votes"))) for c in CAND.findall(b[0])]
-        tot = TOTAL.search(b[0])
+    for i, (pos, dist) in enumerate(heads):
+        sec = text[pos : heads[i + 1][0] if i + 1 < len(heads) else len(text)]
+        if (g := sec.rfind("Election box open primary general election")) >= 0:
+            part = sec[g:]
+        else:
+            general = [
+                b[0]
+                for b in BOX.finditer(sec)
+                if not re.search(r"primary|runoff|special|convention", _param(b[1].split("}}")[0], "title"), re.I)
+            ]
+            if not general:
+                continue
+            part = general[-1]
+        tot = TOTAL.search(part)
+        rows = [
+            (_param(c, "party"), _votes(_param(c, "votes"))) for c in CAND.findall(part[: tot.start()] if tot else part)
+        ]
         total = _votes(_param(tot[1], "votes")) if tot else None
         if not rows or not total or any(v is None for _p, v in rows):
-            out.pop(dist, None)  # the district's latest box is not filled in yet
-            continue
+            continue  # not filled in yet
         d = sum(v for p, v in rows if p.startswith("Democratic"))
         r = sum(v for p, v in rows if p.startswith("Republican"))
         if d and r and d + r <= total:
             out[dist] = (100 * (d - r) / total, total)
-        else:
-            out.pop(dist, None)
     return out
 
 
