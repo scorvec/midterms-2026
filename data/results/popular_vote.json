@@ -1,0 +1,68 @@
+{
+ "source": "states",
+ "parties": [
+  [
+   "Democratic",
+   7867379
+  ],
+  [
+   "Republican",
+   6352865
+  ],
+  [
+   "Others",
+   162644
+  ]
+ ],
+ "total": 14382888,
+ "states": 4,
+ "missing": [
+  "AL",
+  "AR",
+  "AZ",
+  "CA",
+  "CO",
+  "CT",
+  "DE",
+  "FL",
+  "GA",
+  "HI",
+  "IA",
+  "ID",
+  "IL",
+  "IN",
+  "KS",
+  "KY",
+  "LA",
+  "MA",
+  "ME",
+  "MI",
+  "MO",
+  "MS",
+  "MT",
+  "NC",
+  "ND",
+  "NE",
+  "NH",
+  "NJ",
+  "NM",
+  "NV",
+  "NY",
+  "OH",
+  "OK",
+  "OR",
+  "PA",
+  "RI",
+  "SC",
+  "SD",
+  "TN",
+  "UT",
+  "VA",
+  "VT",
+  "WA",
+  "WI",
+  "WV",
+  "WY"
+ ],
+ "as_of": "2026-11-05T12:06Z"
+}
