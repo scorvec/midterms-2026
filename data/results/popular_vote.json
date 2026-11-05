@@ -1,73 +1,36 @@
 {
- "source": "states",
+ "source": "civicAPI",
+ "url": "https://civicapi.org",
  "parties": [
   [
    "Democratic",
-   7867379
+   59800773
   ],
   [
    "Republican",
-   6352865
+   47282696
+  ],
+  [
+   "Independent",
+   665718
+  ],
+  [
+   "Libertarian",
+   444700
+  ],
+  [
+   "Nonpartisan",
+   175045
+  ],
+  [
+   "Green",
+   104608
   ],
   [
    "Others",
-   162644
+   209946
   ]
  ],
- "total": 14382888,
- "states": [
-  "AK",
-  "MD",
-  "MN",
-  "TX"
- ],
- "missing": [
-  "AL",
-  "AR",
-  "AZ",
-  "CA",
-  "CO",
-  "CT",
-  "DE",
-  "FL",
-  "GA",
-  "HI",
-  "IA",
-  "ID",
-  "IL",
-  "IN",
-  "KS",
-  "KY",
-  "LA",
-  "MA",
-  "ME",
-  "MI",
-  "MO",
-  "MS",
-  "MT",
-  "NC",
-  "ND",
-  "NE",
-  "NH",
-  "NJ",
-  "NM",
-  "NV",
-  "NY",
-  "OH",
-  "OK",
-  "OR",
-  "PA",
-  "RI",
-  "SC",
-  "SD",
-  "TN",
-  "UT",
-  "VA",
-  "VT",
-  "WA",
-  "WI",
-  "WV",
-  "WY"
- ],
- "as_of": "2026-11-05T12:08Z"
+ "total": 108683486,
+ "as_of": "2026-11-05T13:41Z"
 }
