@@ -7,7 +7,8 @@ the status and the margin of the latest count). A margin is "final" only once th
 scores those); before that it is the latest count's, shown as provisional and never scored. The national House vote: the
 count so far (the results file's national row), the forecast's and every House election's since 1946, all as the model's
 two-party margin (data_prep.national_house_vote). The House popular vote by party, the pages' headline, is
-data/results/popular_vote.json as results_wiki.py wrote it.
+data/results/popular_vote.json as civic.py wrote it (civicAPI's national tally), which also stands in for the national
+count until the results file's national row has one.
 """
 
 from __future__ import annotations
@@ -24,7 +25,7 @@ from .data_prep import national_house_vote
 OUT = SC.ROOT / "web" / "data" / "results.json"
 LIVE = SC.ROOT / "web" / "data" / "live.json"  # the races still out (live/remaining.js): the homepage's median outcome
 SUMMARY = SC.ROOT / "web" / "data" / "results_summary.json"  # the scorvec.com homepage panel, under a kilobyte
-POPULAR = SC.ROOT / "data" / "results" / "popular_vote.json"  # the House popular vote by party (results_wiki.py)
+POPULAR = SC.ROOT / "data" / "results" / "popular_vote.json"  # the House popular vote by party (civic.py)
 
 
 def _num(x):
@@ -51,11 +52,16 @@ def spread(hist: dict) -> dict:
     return {"mean": round(float((k * w[o]).sum() / w.sum()), 1), "p10": q[0], "p50": q[1], "p90": q[2]}
 
 
-def national(doc: dict, res: pd.DataFrame) -> dict:
-    """The national House vote: the count so far (votes, shares of every vote, two-party margin), the forecast's margin with
-    its 80 % range, and [year, margin] for every House election since 1946."""
+def national(doc: dict, res: pd.DataFrame, pop: dict | None) -> dict:
+    """The national House vote: the count so far (votes, shares of every vote, two-party margin, its source: the results
+    file's national row, else the popular vote's tally), the forecast's margin with its 80 % range, and [year, margin] for
+    every House election since 1946."""
     r = next((x for x in res.to_dict("records") if x["office"] == "national"), {})
     d, rv, t = (_num(r.get(k)) for k in ("chal_votes", "rep_votes", "total_votes"))
+    source = _str(r.get("source"))
+    if not (d and rv and t) and pop:
+        by = dict(pop["parties"])
+        d, rv, t, source = by.get("Democratic"), by.get("Republican"), pop["total"], pop["source"]
     count = None
     if d and rv and t:
         count = {
@@ -66,6 +72,7 @@ def national(doc: dict, res: pd.DataFrame) -> dict:
             "rep_pct": round(100 * rv / t, 2),
             "margin": round(100 * (d - rv) / (d + rv), 2),
             "final": _str(r.get("status")) in SC.COMPLETE,
+            "source": source,
         }
     nv = doc["chambers"]["national_vote"]
     return {
@@ -77,6 +84,7 @@ def national(doc: dict, res: pd.DataFrame) -> dict:
 
 def build(doc: dict, res: pd.DataFrame) -> dict:
     by = {(r["office"], str(r["seat"])): r for r in res.to_dict("records")}
+    pop = json.loads(POPULAR.read_text()) if POPULAR.exists() else None
     sc = SC.score(doc, res)
     races = []
     for f in doc["races"]:
@@ -119,8 +127,8 @@ def build(doc: dict, res: pd.DataFrame) -> dict:
         "forecast": forecast,
         "scores": sc["by_office"],
         "chambers": sc["chambers"],
-        "national": national(doc, res),
-        "popular_vote": json.loads(POPULAR.read_text()) if POPULAR.exists() else None,
+        "national": national(doc, res, pop),
+        "popular_vote": pop,
         "races": races,
     }
 

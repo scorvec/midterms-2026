@@ -1,8 +1,8 @@
 name: results
 
 # The count after the election: midterms/results_wiki.py reads the calls and counts on Wikipedia into
-# data/results/results_2026.csv (rows from official returns are kept as they are) and the House popular vote by party into
-# data/results/popular_vote.json, midterms/scorecard.py scores the frozen
+# data/results/results_2026.csv (rows from official returns are kept as they are), midterms/civic.py the House popular vote by
+# party from civicAPI's national tally into data/results/popular_vote.json, midterms/scorecard.py scores the frozen
 # forecast against them (data/results/scorecard_2026.json) and midterms/results_page.py writes the results page's data
 # (web/data/results.json, and results_summary.json for the scorvec.com homepage); live/remaining.js reweights the frozen
 # forecast's simulations by every call and count for the races still out (web/data/live.json, live_history.json). Hourly
@@ -51,6 +51,10 @@ jobs:
 
       - name: Read the results
         run: python -m midterms.results_wiki
+
+      # the House popular vote by party (civicAPI's national tally); a failed read keeps the last file
+      - name: Read the popular vote
+        run: python -m midterms.civic || echo "::warning::civicAPI's national House tally could not be read; the last one stays"
 
       # node is on the runner image; the engine is plain JavaScript with no packages
       - name: Project the races still out
