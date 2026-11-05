@@ -12,7 +12,8 @@ ticked on Wikipedia takes precedence, and a disagreement is printed.
 The national House vote: the overview page's national table (Democratic, Republican and every vote), once editors fill it in.
 Rows read here are status "called" (a winner is ticked) or "counting" (a count, no call); "final" and "certified" come only
 from official returns and are never overwritten. A count entered from another tally (source not Wikipedia: a news count with
-its reported share counted) keeps its numbers; only a call is added to it. The two sides are the results
+its reported share counted) keeps its numbers; only a call is added to it. civicAPI's counts (civic.py, which runs next and
+puts in any count of its own that is newer) give way once Wikipedia's has more votes. The two sides are the results
 file's challenger and republican, the forecast's names unless corrected there (Louisiana's incumbents, missed by the forecast).
 Louisiana's House races were one ballot of every candidate in 2026 (a December runoff below 50 %): a side's count there is its
 party's total, the model's party margin.
@@ -33,6 +34,7 @@ from .wiki_inputs import HOUSE_PAGE, SENATE_PAGE, _seat
 
 GOV_PAGE = "2026 United States gubernatorial elections"
 SOURCE = "Wikipedia"
+CIVIC = "civicAPI"  # counts from civic.py, replaced once Wikipedia's has more votes
 NAME = {v: k for k, v in _ST.items()}
 AT_LARGE = {"AK", "DE", "ND", "SD", "VT", "WY"}
 ALL_CANDIDATE = {"LA"}  # House races with every candidate on one November ballot
@@ -199,8 +201,10 @@ def update(res: pd.DataFrame, forecast: dict, called: dict, counts: dict, now: s
         key = (r["office"], r["seat"])
         if key not in races or r["status"] in SC.COMPLETE:  # official returns stay as they are
             continue
-        hand = r["source"] not in ("", SOURCE)  # a count from another tally: its numbers and note stay, a call is added
         c, n = called.get(key, {}), counts.get(key)
+        # a count from another tally keeps its numbers and note (a call is added), but civicAPI's gives way to a newer one
+        newer = r["source"] == CIVIC and n and n[2] > int(r["total_votes"] or 0)
+        hand = r["source"] not in ("", SOURCE) and not newer
         if hand:
             win = c.get("winner") or r["winner"]
             new = {"winner": win, "status": "called" if win else r["status"]}

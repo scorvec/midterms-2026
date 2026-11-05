@@ -669,7 +669,7 @@ def _surname(n):
     import unicodedata
 
     n = unicodedata.normalize("NFKD", re.sub(r"\(.*?\)", "", str(n))).encode("ascii", "ignore").decode().lower()
-    n = re.sub(r"\b(jr\.?|sr\.?|iii|ii|iv)\b", "", n).split()
+    n = re.sub(r"\b(jr|sr|iii|ii|iv)\b\.?", "", n).split()  # the suffix's full stop too ("Kean Jr." -> "kean")
     return n[-1] if n else ""
 
 
