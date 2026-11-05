@@ -1,7 +1,8 @@
 name: results
 
 # The count after the election: midterms/results_wiki.py reads the calls and counts on Wikipedia into
-# data/results/results_2026.csv (rows from official returns are kept as they are), midterms/scorecard.py scores the frozen
+# data/results/results_2026.csv (rows from official returns are kept as they are) and the House popular vote by party into
+# data/results/popular_vote.json, midterms/scorecard.py scores the frozen
 # forecast against them (data/results/scorecard_2026.json) and midterms/results_page.py writes the results page's data
 # (web/data/results.json, and results_summary.json for the scorvec.com homepage); live/remaining.js reweights the frozen
 # forecast's simulations by every call and count for the races still out (web/data/live.json, live_history.json). Hourly
@@ -73,7 +74,7 @@ jobs:
       - name: Commit the results
         run: |
           set -uo pipefail
-          files="data/results/results_2026.csv data/results/scorecard_2026.json web/data/results.json web/data/results_summary.json web/data/live.json web/data/live_history.json"
+          files="data/results/results_2026.csv data/results/popular_vote.json data/results/scorecard_2026.json web/data/results.json web/data/results_summary.json web/data/live.json web/data/live_history.json"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           SNAP=$(mktemp -d)

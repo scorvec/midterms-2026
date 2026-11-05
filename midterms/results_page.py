@@ -6,7 +6,8 @@ Per race: the forecast (p = the Republican's opponent wins, the median margin an
 the status and the margin of the latest count). A margin is "final" only once the count is final or certified (scorecard.py
 scores those); before that it is the latest count's, shown as provisional and never scored. The national House vote: the
 count so far (the results file's national row), the forecast's and every House election's since 1946, all as the model's
-two-party margin (data_prep.national_house_vote).
+two-party margin (data_prep.national_house_vote). The House popular vote by party, the pages' headline, is
+data/results/popular_vote.json as results_wiki.py wrote it.
 """
 
 from __future__ import annotations
@@ -23,6 +24,7 @@ from .data_prep import national_house_vote
 OUT = SC.ROOT / "web" / "data" / "results.json"
 LIVE = SC.ROOT / "web" / "data" / "live.json"  # the races still out (live/remaining.js): the homepage's median outcome
 SUMMARY = SC.ROOT / "web" / "data" / "results_summary.json"  # the scorvec.com homepage panel, under a kilobyte
+POPULAR = SC.ROOT / "data" / "results" / "popular_vote.json"  # the House popular vote by party (results_wiki.py)
 
 
 def _num(x):
@@ -118,6 +120,7 @@ def build(doc: dict, res: pd.DataFrame) -> dict:
         "scores": sc["by_office"],
         "chambers": sc["chambers"],
         "national": national(doc, res),
+        "popular_vote": json.loads(POPULAR.read_text()) if POPULAR.exists() else None,
         "races": races,
     }
 

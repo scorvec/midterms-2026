@@ -10,6 +10,9 @@ Calls made elsewhere first (data/results/outside_calls.csv: a race a news organi
 by hand with its source; NBC's pages are never read by a script) fill in a race Wikipedia has not ticked yet; a winner
 ticked on Wikipedia takes precedence, and a disagreement is printed.
 The national House vote: the overview page's national table (Democratic, Republican and every vote), once editors fill it in.
+The House popular vote by party (data/results/popular_vote.json, the pages' headline): every row of that national table once
+it is filled in; until then the sum of the state House pages' infoboxes (each state's Democratic and Republican vote, its
+total being the largest party's vote over its percentage), with the states whose infobox is still empty named.
 Rows read here are status "called" (a winner is ticked) or "counting" (a count, no call); "final" and "certified" come only
 from official returns and are never overwritten. A count entered from another tally (source not Wikipedia: a news count with
 its reported share counted) keeps its numbers; only a call is added to it. The two sides are the results
@@ -20,6 +23,7 @@ party's total, the model's party margin.
 
 from __future__ import annotations
 
+import json
 import re
 import time
 
@@ -39,6 +43,18 @@ ALL_CANDIDATE = {"LA"}  # House races with every candidate on one November ballo
 TICK = "img[contains(@alt, 'tick') or contains(@alt, 'check')]"
 COUNT_COLS = ["chal_votes", "rep_votes", "total_votes"]
 OUTSIDE = SC.ROOT / "data" / "results" / "outside_calls.csv"  # office, seat, winner, source, called_at
+POPULAR = SC.ROOT / "data" / "results" / "popular_vote.json"  # the House popular vote by party (results_page.py)
+NAT_ROWS = {  # the national table's rows: the start of the row's name -> the party's name here
+    "Democratic": "Democratic",
+    "Republican": "Republican",
+    "Independent": "Independent",
+    "Libertarian": "Libertarian",
+    "Green": "Green",
+    "Constitution": "Constitution",
+    "Other": "Other parties",
+    "Write-in": "Write-ins",
+    "Total": "Total",
+}
 
 
 def _text(el) -> str:
@@ -135,8 +151,8 @@ def count(bx: list, challenger: str, republican: str, parties: tuple | None = No
 
 
 def national(html: str):
-    """(Democratic, Republican, every) House vote from the overview page's national table (Parties | Popular vote | Seats),
-    or None while its vote cells are empty."""
+    """{party: votes} with "Total" from the overview page's national table (Parties | Popular vote | Seats), a row whose vote
+    cell is empty left out, or None while the Democratic, Republican or total cell is empty or the parties exceed the total."""
     for t in lxml.html.fromstring(html).xpath("//table[contains(@class, 'wikitable')]"):
         trs = t.xpath(".//tr")
         head = _text(trs[0]) if trs else ""
@@ -146,13 +162,72 @@ def national(html: str):
         for tr in trs:
             cells = [_text(c) for c in tr.xpath("./th|./td")]
             for i, c in enumerate(cells[:-1]):
-                if c in ("Democratic Party", "Republican Party", "Totals"):
-                    got[c[0]] = _int(cells[i + 1])  # the vote is the cell after the party's name
+                name = next((v for k, v in NAT_ROWS.items() if c.startswith(k)), None)
+                if name:
+                    if (v := _int(cells[i + 1])) is not None:  # the vote is the cell after the party's name
+                        got[name] = v
                     break
-        d, r, total = got.get("D"), got.get("R"), got.get("T")
-        if d and r and total and d + r <= total:
-            return d, r, total
+        d, r, total = got.get("Democratic"), got.get("Republican"), got.get("Total")
+        if d and r and total and sum(v for k, v in got.items() if k != "Total") <= total:
+            return got
     return None
+
+
+def state_vote(html: str):
+    """(Democratic, Republican, total) House vote from a state House page's first infobox (its Party, Popular vote and
+    Percentage rows; an at-large race's candidates count as their parties, a ranked-choice race's first round as its vote),
+    the total being the largest party's vote over its percentage; None while the vote rows are empty or a party's percentage disagrees with its vote over that total."""
+    box = lxml.html.fromstring(html).xpath("(//table[contains(@class, 'infobox')])[1]")
+    rows = {"Party": [], "Popular vote": [], "Percentage": []}
+    for tr in box[0].xpath(".//tr") if box else []:
+        tds = tr.xpath("./th|./td")
+        cells = [_text(c) for c in tds]
+        if cells and cells[0] in rows:
+            rows[cells[0]] += cells[1:]
+        elif (
+            cells and cells[0].replace(" ", "") == "Firstround"
+        ):  # ranked choice: each cell is a vote over a percentage
+            for td in tds[1:]:
+                m = re.fullmatch(r"([\d,]+) (\S+)", re.sub(r"\s+", " ", " ".join(td.itertext())).strip())
+                rows["Popular vote"].append(m[1] if m else "")
+                rows["Percentage"].append(m[2] if m else "")
+    party, votes = rows["Party"], [_int(v) for v in rows["Popular vote"]]
+    pct = [re.fullmatch(r"(\d+(?:\.(\d+))?) ?%", p) for p in rows["Percentage"]]
+    if not party or not len(party) == len(votes) == len(pct) or None in votes or None in pct:
+        return None
+    share = [float(m[1]) for m in pct]
+    tol = 10.0 ** -min(len(m[2] or "") for m in pct)  # the percentages' rounding: one unit of their last digit
+    top = max(range(len(votes)), key=votes.__getitem__)
+    total = max(round(100 * votes[top] / share[top]), sum(votes)) if share[top] else 0
+    if not total or any(abs(100 * v / total - s) > tol for v, s in zip(votes, share)):
+        return None
+    side = {"D": 0, "R": 0}
+    for p, v in zip(party, votes):
+        if party_code(p) in side:
+            side[party_code(p)] += v
+    return side["D"], side["R"], total
+
+
+def popular_vote(nat: dict | None, states: dict) -> dict:
+    """The House popular vote by party: every row of the national table once it is filled in (the total less the rows
+    still empty as "Not listed"), else the states' sum (Democratic, Republican, everyone else) with the states missing."""
+    if nat:
+        parties = [[k, v] for k, v in nat.items() if k != "Total"]
+        rest = nat["Total"] - sum(v for _k, v in parties)  # rows whose vote cell is still empty
+        return {
+            "source": "national",
+            "parties": [*parties, *([["Not listed", rest]] if rest else [])],
+            "total": nat["Total"],
+        }
+    have = {st: v for st, v in states.items() if v}
+    d, r, total = (sum(v[i] for v in have.values()) for i in range(3))
+    return {
+        "source": "states",
+        "parties": [["Democratic", d], ["Republican", r], ["Others", total - d - r]],
+        "total": total,
+        "states": len(have),
+        "missing": sorted(st for st, v in states.items() if not v),
+    }
 
 
 def outside_calls(called: dict, rows: list[dict]) -> list[str]:
@@ -226,33 +301,57 @@ def main():
         for line in outside_calls(called, pd.read_csv(OUTSIDE, dtype=str, keep_default_na=False).to_dict("records")):
             print("  calls disagree: " + line)
     nat = national(overview["house"])
-    counts, pages = ({("national", "US"): nat} if nat else {}), {}
+    counts = {("national", "US"): (nat["Democratic"], nat["Republican"], nat["Total"])} if nat else {}
+    html, parsed = {}, {}
+
+    # every page once (a state's House page serves all its districts); one that does not exist reads as blank
+    def read(title):
+        if title not in html:
+            try:
+                html[title] = W.fetch(title, max_age_h=0)
+            except Exception as e:
+                print(f"  {title}: {str(e)[:80]}")
+                html[title] = ""
+        return html[title]
+
+    house = sorted({f["seat"].split("-")[0] for f in forecast["races"] if f["office"] == "house"})
+    states = {} if nat else {st: state_vote(read(race_page("house", st, False))) for st in house}
     names = {(r.office, r.seat): (r.challenger, r.republican) for r in res.itertuples()}
     for f in forecast["races"]:
         if f.get("rcv"):
             continue
         title = race_page(f["office"], f["seat"], f.get("special", False))
-        if title not in pages:  # a state's House page serves all its districts
-            try:
-                pages[title] = list(boxes(W.fetch(title, max_age_h=0)))
-            except Exception as e:  # a page that does not exist (yet) leaves its counts blank
-                print(f"  {title}: {str(e)[:80]}")
-                pages[title] = []
+        if title not in parsed:
+            parsed[title] = list(boxes(read(title))) if read(title) else []
         key = (f["office"], f["seat"])
         jungle = f["office"] == "house" and f["seat"].split("-")[0] in ALL_CANDIDATE
         n = count(
-            pages[title],
+            parsed[title],
             *names.get(key, (f["challenger"], f["republican"])),
             (f["challenger_party"], "R") if jungle else None,
         )
         if n:
             counts[key] = n
-    moved = update(res, forecast, called, counts, time.strftime("%Y-%m-%dT%H:%MZ", time.gmtime()))
+    now = time.strftime("%Y-%m-%dT%H:%MZ", time.gmtime())
+    moved = update(res, forecast, called, counts, now)
     res.to_csv(SC.RESULTS, index=False)
     print(
         f"{sum(1 for c in called.values() if c['winner'])} races called, {len(counts) - bool(nat)} with a count; {len(moved)} rows changed"
     )
-    print("national House vote: " + ("D {}, R {} of {}".format(*nat) if nat else "not filled in yet"))
+    print(
+        "national House vote: "
+        + ("D {Democratic}, R {Republican} of {Total}".format(**nat) if nat else "not filled in yet")
+    )
+    pop = popular_vote(nat, states)
+    old = json.loads(POPULAR.read_text()) if POPULAR.exists() else {}
+    if {**old, "as_of": None} != {**pop, "as_of": None}:  # a run that changes nothing keeps the file and its time
+        POPULAR.write_text(json.dumps({**pop, "as_of": now}, indent=1) + "\n")
+    print(
+        "popular vote ({}): ".format(pop["source"] if nat else f"{pop['states']} of {len(states)} states")
+        + ", ".join(f"{k} {v:,}" for k, v in pop["parties"])
+        + f" of {pop['total']:,}"
+        + (f"; no infobox count yet: {' '.join(pop['missing'])}" if pop.get("missing") else "")
+    )
     for line in moved:
         print("  " + line)
 
