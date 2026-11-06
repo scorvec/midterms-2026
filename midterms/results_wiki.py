@@ -75,25 +75,34 @@ def party_code(party: str) -> str:
 
 
 def overview_rows(html: str):
-    """(first cell, result cell, [(name, party, ticked)]) for every table row whose last cell lists candidates, each
-    "Name (Party)", with or without a vote share after it."""
-    for tr in lxml.html.fromstring(html).xpath("//table[contains(@class, 'wikitable')]//tr"):
-        cells = tr.xpath("./th|./td")
-        lis = cells[-1].xpath(".//li") if len(cells) >= 3 else []
-        cands = []
-        for li in lis:
-            ticked = bool(li.xpath(".//" + TICK))
-            m = re.match(r"^(.*?)\s*\(([^()]*)\)(?:\s*[\d.]+\s*%)?$", _text(li).lstrip("▌ "))
-            if m:
-                cands.append((m.group(1).strip(), m.group(2).strip(), ticked))
-        if cands:
-            yield _text(cells[0]), _text(cells[-2]), cands
+    """(special, first cell, result cell, [(name, party, ticked)]) for every table row whose last cell lists candidates,
+    each "Name (Party)", with or without a vote share after it; special: the table sits in a section on special elections."""
+    heads = {}
+    for el in lxml.html.fromstring(html).iter():
+        if el.tag in ("h2", "h3", "h4"):  # the section a table sits in: the headings above it, one per level
+            level = int(el.tag[1])
+            heads = {k: v for k, v in heads.items() if k < level} | {level: _text(el)}
+            continue
+        if el.tag != "table" or "wikitable" not in (el.get("class") or ""):
+            continue
+        special = any("special" in h.lower() for h in heads.values())
+        for tr in el.xpath(".//tr"):
+            cells = tr.xpath("./th|./td")
+            lis = cells[-1].xpath(".//li") if len(cells) >= 3 else []
+            cands = []
+            for li in lis:
+                ticked = bool(li.xpath(".//" + TICK))
+                m = re.match(r"^(.*?)\s*\(([^()]*)\)(?:\s*[\d.]+\s*%)?$", _text(li).lstrip("▌ "))
+                if m:
+                    cands.append((m.group(1).strip(), m.group(2).strip(), ticked))
+            if cands:
+                yield special, _text(cells[0]), _text(cells[-2]), cands
 
 
 def calls(office: str, html: str) -> dict:
     """seat -> {"winner": party code or None, "name": the ticked candidate, "result": the result cell, "cands": [...]}."""
-    out = {}
-    for first, result, cands in overview_rows(html):
+    out, rank = {}, {}
+    for special, first, result, cands in overview_rows(html):
         seat = _seat(first) if office == "house" else _ST.get(re.sub(r"\s*\(.*?\)", "", first).strip())
         if not seat:
             continue
@@ -104,8 +113,11 @@ def calls(office: str, html: str) -> dict:
             "result": result,
             "cands": cands,
         }
-        if seat not in out or (row["winner"] and not out[seat]["winner"]):  # a race listed twice: keep the called row
-            out[seat] = row
+        # a race listed twice: a regular election's row wins over a special election's (one held earlier for the seat),
+        # then a called row over an uncalled one
+        r = (special, not row["winner"])
+        if seat not in out or r < rank[seat]:
+            out[seat], rank[seat] = row, r
     return out
 
 

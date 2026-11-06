@@ -35,6 +35,18 @@ def test_calls_read_the_tick_not_the_sort_key():
     assert c["IA-1"]["winner"] == "R" and c["IA-1"]["name"] == "Mariannette Miller-Meeks"
 
 
+def test_a_special_election_held_earlier_gives_way_to_the_regular_row():
+    special = f"""<div class="mw-heading"><h2>Special elections</h2></div><table class="wikitable">
+<tr><td>Kentucky 6</td><td>Incumbent died. Republican hold.</td><td><ul>
+<li>{TICK}<b>Ann Gray</b> (Republican) 61.0%</li><li>Zach Dembo (Democratic) 39.0%</li></ul></td></tr>
+<tr><td>Texas 18</td><td>Incumbent died. Democratic hold.</td><td><ul>
+<li>{TICK}<b>Christian Menefee</b> (Democratic) 68.4%</li><li>Ron Pope (Republican) 31.6%</li></ul></td></tr>
+</table><div class="mw-heading"><h2>Results</h2></div>"""
+    c = RW.calls("house", special + OVERVIEW)
+    assert c["KY-6"]["winner"] == "D" and c["KY-6"]["name"] == "Zach Dembo"
+    assert c["TX-18"]["winner"] == "D"  # listed only under special elections: still read
+
+
 def test_counts_take_the_general_box_and_sum_fusion_lines():
     page = _box("Democratic primary results", [("Democratic", "Ann Smith", "9,000")], "9,000") + _box(
         "New York's 4th congressional district, 2026",
