@@ -3,7 +3,7 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 460,
+   "called": 461,
    "of": 488,
    "brier": 0.038,
    "log_loss": 0.1277,
@@ -17,9 +17,9 @@
     },
     {
      "band": "0.05-0.15",
-     "n": 37,
-     "forecast": 0.092,
-     "won": 0.108
+     "n": 38,
+     "forecast": 0.093,
+     "won": 0.105
     },
     {
      "band": "0.15-0.35",
@@ -59,9 +59,9 @@
     }
    ],
    "raters": {
-    "n": 124,
-    "brier_model": 0.1086,
-    "brier_raters": 0.1129
+    "n": 125,
+    "brier_model": 0.1078,
+    "brier_raters": 0.1121
    }
   },
   "governor": {
@@ -122,9 +122,9 @@
    ]
   },
   "house": {
-   "called": 393,
+   "called": 394,
    "of": 417,
-   "brier": 0.0367,
+   "brier": 0.0366,
    "log_loss": 0.1227,
    "favourite_won": 0.954,
    "calibration": [
@@ -136,9 +136,9 @@
     },
     {
      "band": "0.05-0.15",
-     "n": 31,
+     "n": 32,
      "forecast": 0.093,
-     "won": 0.129
+     "won": 0.125
     },
     {
      "band": "0.15-0.35",
@@ -178,9 +178,9 @@
     }
    ],
    "raters": {
-    "n": 124,
-    "brier_model": 0.1086,
-    "brier_raters": 0.1129
+    "n": 125,
+    "brier_model": 0.1078,
+    "brier_raters": 0.1121
    }
   },
   "senate": {
@@ -3183,8 +3183,8 @@
    "office": "house",
    "seat": "WA-4",
    "p": 0.1127,
-   "y": null,
-   "status": "counting",
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
@@ -3807,7 +3807,7 @@
  "chambers": {
   "house": {
    "d_called": 255,
-   "undecided": 24
+   "undecided": 23
   },
   "senate": {
    "d_called": 54,
