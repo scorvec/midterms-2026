@@ -3,59 +3,59 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 429,
+   "called": 462,
    "of": 488,
-   "brier": 0.0374,
-   "log_loss": 0.1257,
-   "favourite_won": 0.953,
+   "brier": 0.0407,
+   "log_loss": 0.1442,
+   "favourite_won": 0.95,
    "calibration": [
     {
      "band": "0.00-0.05",
-     "n": 129,
-     "forecast": 0.011,
-     "won": 0.016
+     "n": 135,
+     "forecast": 0.012,
+     "won": 0.015
     },
     {
      "band": "0.05-0.15",
-     "n": 34,
-     "forecast": 0.094,
-     "won": 0.118
+     "n": 38,
+     "forecast": 0.093,
+     "won": 0.105
     },
     {
      "band": "0.15-0.35",
-     "n": 16,
-     "forecast": 0.234,
-     "won": 0.438
+     "n": 19,
+     "forecast": 0.239,
+     "won": 0.474
     },
     {
      "band": "0.35-0.50",
-     "n": 9,
-     "forecast": 0.415,
-     "won": 0.667
+     "n": 10,
+     "forecast": 0.423,
+     "won": 0.6
     },
     {
      "band": "0.50-0.65",
-     "n": 10,
-     "forecast": 0.565,
-     "won": 0.9
+     "n": 11,
+     "forecast": 0.564,
+     "won": 0.909
     },
     {
      "band": "0.65-0.85",
-     "n": 28,
-     "forecast": 0.763,
+     "n": 30,
+     "forecast": 0.76,
      "won": 1.0
     },
     {
      "band": "0.85-0.95",
-     "n": 8,
-     "forecast": 0.911,
+     "n": 11,
+     "forecast": 0.91,
      "won": 1.0
     },
     {
      "band": "0.95-1.00",
-     "n": 195,
-     "forecast": 0.997,
-     "won": 1.0
+     "n": 208,
+     "forecast": 0.996,
+     "won": 0.995
     }
    ],
    "raters": {
@@ -65,16 +65,58 @@
    }
   },
   "governor": {
-   "called": 1,
+   "called": 34,
    "of": 36,
-   "brier": 0.0684,
-   "log_loss": 0.3031,
-   "favourite_won": 1.0,
+   "brier": 0.0549,
+   "log_loss": 0.1794,
+   "favourite_won": 0.941,
    "calibration": [
     {
-     "band": "0.65-0.85",
+     "band": "0.00-0.05",
+     "n": 6,
+     "forecast": 0.023,
+     "won": 0.0
+    },
+    {
+     "band": "0.05-0.15",
+     "n": 4,
+     "forecast": 0.088,
+     "won": 0.0
+    },
+    {
+     "band": "0.15-0.35",
+     "n": 3,
+     "forecast": 0.264,
+     "won": 0.667
+    },
+    {
+     "band": "0.35-0.50",
      "n": 1,
-     "forecast": 0.739,
+     "forecast": 0.494,
+     "won": 0.0
+    },
+    {
+     "band": "0.50-0.65",
+     "n": 1,
+     "forecast": 0.554,
+     "won": 1.0
+    },
+    {
+     "band": "0.65-0.85",
+     "n": 3,
+     "forecast": 0.727,
+     "won": 1.0
+    },
+    {
+     "band": "0.85-0.95",
+     "n": 3,
+     "forecast": 0.905,
+     "won": 1.0
+    },
+    {
+     "band": "0.95-1.00",
+     "n": 13,
+     "forecast": 0.989,
      "won": 1.0
     }
    ]
@@ -82,9 +124,9 @@
   "house": {
    "called": 395,
    "of": 417,
-   "brier": 0.0374,
-   "log_loss": 0.1245,
-   "favourite_won": 0.952,
+   "brier": 0.0399,
+   "log_loss": 0.142,
+   "favourite_won": 0.949,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -132,7 +174,7 @@
      "band": "0.95-1.00",
      "n": 184,
      "forecast": 0.997,
-     "won": 1.0
+     "won": 0.995
     }
    ],
    "raters": {
@@ -352,7 +394,7 @@
    "office": "house",
    "seat": "CA-1",
    "p": 0.9991,
-   "y": 1,
+   "y": 0,
    "status": "called"
   },
   {
@@ -3513,8 +3555,8 @@
    "office": "governor",
    "seat": "AL",
    "p": 0.0462,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
@@ -3527,78 +3569,78 @@
    "office": "governor",
    "seat": "AZ",
    "p": 0.9635,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "AR",
    "p": 0.0158,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "CA",
    "p": 0.9987,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "CO",
    "p": 0.992,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "CT",
    "p": 0.9971,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "FL",
    "p": 0.2526,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "GA",
    "p": 0.5545,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "HI",
    "p": 0.9845,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "ID",
    "p": 0.0125,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "IL",
    "p": 0.9972,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "IA",
    "p": 0.8963,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
@@ -3611,85 +3653,85 @@
    "office": "governor",
    "seat": "ME",
    "p": 0.9653,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "MD",
    "p": 0.9982,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "MA",
    "p": 0.999,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "MI",
    "p": 0.9161,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "MN",
    "p": 0.9718,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "NE",
    "p": 0.0858,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "NV",
    "p": 0.2863,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "NH",
    "p": 0.0795,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "NM",
    "p": 0.9033,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "NY",
    "p": 0.9896,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "OH",
    "p": 0.7306,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "OK",
    "p": 0.113,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
@@ -3702,69 +3744,69 @@
    "office": "governor",
    "seat": "PA",
    "p": 0.9987,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "RI",
    "p": 0.9992,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "SC",
    "p": 0.0442,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "SD",
    "p": 0.0056,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "TN",
    "p": 0.0143,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "TX",
    "p": 0.2536,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "VT",
    "p": 0.4945,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "WI",
    "p": 0.7107,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
    "seat": "WY",
    "p": 0.0732,
-   "y": null,
-   "status": null
+   "y": 0,
+   "status": "called"
   }
  ],
  "chambers": {
   "house": {
-   "d_called": 255,
+   "d_called": 254,
    "undecided": 22
   },
   "senate": {
@@ -3772,8 +3814,8 @@
    "undecided": 2
   },
   "governor": {
-   "d_called": 7,
-   "undecided": 35
+   "d_called": 28,
+   "undecided": 2
   }
  },
  "frozen": {
