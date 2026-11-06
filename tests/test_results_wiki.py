@@ -11,6 +11,9 @@ OVERVIEW = f"""<table class="wikitable"><tr><th>Location</th><th>Member</th><th>
 <li><span>▌</span>David Valadao (Republican)</li><li><span>▌</span>Randy Villegas (Democratic)</li></ul></div></td></tr>
 <tr><td>Alaska at-large</td><td>Nick Begich</td><td>Incumbent re-elected.</td><td><div><ul>
 <li><span>▌</span>{TICK}<b>Nick Begich III</b> (Republican)</li><li><span>▌</span>Bill Hill (Independent)</li></ul></div></td></tr>
+<tr><td>Iowa 1</td><td>Mariannette Miller-Meeks</td><td>Incumbent re-elected.</td><td><div><ul>
+<li><span>▌</span>{TICK}<b>Mariannette Miller-Meeks</b> (Republican) 51.2%</li>
+<li><span>▌</span>Christina Bohannan (Democratic) 48.8%</li></ul></div></td></tr>
 </table>"""
 
 
@@ -28,6 +31,8 @@ def test_calls_read_the_tick_not_the_sort_key():
     assert c["KY-6"]["winner"] == "D" and c["KY-6"]["name"] == "Zach Dembo"
     assert c["CA-22"]["winner"] is None
     assert c["AK-1"]["winner"] == "R" and c["AK-1"]["name"] == "Nick Begich III"
+    # a vote share after the party
+    assert c["IA-1"]["winner"] == "R" and c["IA-1"]["name"] == "Mariannette Miller-Meeks"
 
 
 def test_counts_take_the_general_box_and_sum_fusion_lines():

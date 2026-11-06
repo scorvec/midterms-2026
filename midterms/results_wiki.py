@@ -75,14 +75,15 @@ def party_code(party: str) -> str:
 
 
 def overview_rows(html: str):
-    """(first cell, result cell, [(name, party, ticked)]) for every table row whose last cell lists candidates."""
+    """(first cell, result cell, [(name, party, ticked)]) for every table row whose last cell lists candidates, each
+    "Name (Party)", with or without a vote share after it."""
     for tr in lxml.html.fromstring(html).xpath("//table[contains(@class, 'wikitable')]//tr"):
         cells = tr.xpath("./th|./td")
         lis = cells[-1].xpath(".//li") if len(cells) >= 3 else []
         cands = []
         for li in lis:
             ticked = bool(li.xpath(".//" + TICK))
-            m = re.match(r"^(.*?)\s*\(([^()]*)\)$", _text(li).lstrip("▌ "))
+            m = re.match(r"^(.*?)\s*\(([^()]*)\)(?:\s*[\d.]+\s*%)?$", _text(li).lstrip("▌ "))
             if m:
                 cands.append((m.group(1).strip(), m.group(2).strip(), ticked))
         if cands:
