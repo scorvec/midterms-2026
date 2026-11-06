@@ -5,9 +5,9 @@
   "all": {
    "called": 462,
    "of": 488,
-   "brier": 0.0407,
-   "log_loss": 0.1442,
-   "favourite_won": 0.95,
+   "brier": 0.0386,
+   "log_loss": 0.1293,
+   "favourite_won": 0.952,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -55,7 +55,7 @@
      "band": "0.95-1.00",
      "n": 208,
      "forecast": 0.996,
-     "won": 0.995
+     "won": 1.0
     }
    ],
    "raters": {
@@ -124,9 +124,9 @@
   "house": {
    "called": 395,
    "of": 417,
-   "brier": 0.0399,
-   "log_loss": 0.142,
-   "favourite_won": 0.949,
+   "brier": 0.0374,
+   "log_loss": 0.1245,
+   "favourite_won": 0.952,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -174,7 +174,7 @@
      "band": "0.95-1.00",
      "n": 184,
      "forecast": 0.997,
-     "won": 0.995
+     "won": 1.0
     }
    ],
    "raters": {
@@ -394,7 +394,7 @@
    "office": "house",
    "seat": "CA-1",
    "p": 0.9991,
-   "y": 0,
+   "y": 1,
    "status": "called"
   },
   {
@@ -3806,7 +3806,7 @@
  ],
  "chambers": {
   "house": {
-   "d_called": 254,
+   "d_called": 255,
    "undecided": 22
   },
   "senate": {
