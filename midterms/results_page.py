@@ -54,12 +54,13 @@ def spread(hist: dict) -> dict:
 
 def national(doc: dict, res: pd.DataFrame, pop: dict | None) -> dict:
     """The national House vote: the count so far (votes, shares of every vote, two-party margin, its source: the results
-    file's national row, else the popular vote's tally), the forecast's margin with its 80 % range, and [year, margin] for
-    every House election since 1946."""
+    file's national row once it is official or holds at least the popular vote's total, else the popular vote's tally),
+    the forecast's margin with its 80 % range, and [year, margin] for every House election since 1946."""
     r = next((x for x in res.to_dict("records") if x["office"] == "national"), {})
     d, rv, t = (_num(r.get(k)) for k in ("chal_votes", "rep_votes", "total_votes"))
-    source = _str(r.get("source"))
-    if not (d and rv and t) and pop:
+    source, final = _str(r.get("source")), _str(r.get("status")) in SC.COMPLETE
+    # Wikipedia's national table fills in state by state: a partial row gives way to the fuller tally
+    if pop and not final and not (d and rv and t and t >= pop["total"]):
         by = dict(pop["parties"])
         d, rv, t, source = by.get("Democratic"), by.get("Republican"), pop["total"], pop["source"]
     count = None
@@ -71,7 +72,7 @@ def national(doc: dict, res: pd.DataFrame, pop: dict | None) -> dict:
             "dem_pct": round(100 * d / t, 2),
             "rep_pct": round(100 * rv / t, 2),
             "margin": round(100 * (d - rv) / (d + rv), 2),
-            "final": _str(r.get("status")) in SC.COMPLETE,
+            "final": final,
             "source": source,
         }
     nv = doc["chambers"]["national_vote"]
