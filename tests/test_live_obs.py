@@ -37,3 +37,42 @@ def test_calls_follow_the_sides_and_counts_estimate_the_share_in():
     assert obs["H:OK-5"]["pct"] == 100 * LO.F_CAP  # more votes than the turnout estimate: capped, never complete
     assert "H:TX-9" not in obs  # a winner of neither side says nothing about either
     assert obs["S:MS"] == {"race": "S:MS", "d": 49.0, "r": 48.0, "pct": 95.6}  # a reported share counted: not estimated
+
+
+def test_the_count_history_records_each_new_count_and_gives_the_late_ballots():
+    first = pd.DataFrame(
+        [
+            _row(
+                "MS",
+                office="senate",
+                chal_votes="490",
+                rep_votes="480",
+                total_votes="1000",
+                pct_counted="95",
+                updated="t0",
+            )
+        ]
+    )
+    hist = LO.record(first, pd.DataFrame(columns=LO.HIST_COLS))
+    assert len(LO.record(first, hist)) == 1  # the same votes again: nothing appended
+    later = pd.DataFrame(
+        [
+            _row(
+                "MS",
+                office="senate",
+                chal_votes="560",
+                rep_votes="510",
+                total_votes="1100",
+                pct_counted="96",
+                updated="t1",
+            ),
+            _row("OK-5", chal_votes="48", rep_votes="50", total_votes="100"),
+        ]
+    )
+    hist = LO.record(later, hist)
+    assert hist.updated.tolist() == ["t0", "t1"]  # a count with an estimated share is not recorded
+    doc = {"races": [{"office": "senate", "seat": "MS", "challenger_party": "D"}]}
+    (ms,) = LO.observations(doc, later, {"OK-5": 100}, hist)
+    assert (ms["late_n"], ms["late"]) == (100, 40.0)  # 70 more for the challenger, 30 for the Republican, of 100
+    (first_only,) = LO.observations(doc, first, {}, hist.iloc[:1])
+    assert "late" not in first_only  # nothing counted since the first entry

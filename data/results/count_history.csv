@@ -1,0 +1,14 @@
+office,seat,chal_votes,rep_votes,total_votes,pct_counted,updated,source
+senate,MS,462821,462778,945534,95.6,2026-11-04T09:00Z,"AP count as reported, 3 a.m. CT Nov 4; share counted NBC News"
+senate,MS,462857,462792,945587,96,2026-11-04T18:05Z,"AP count as of 1:05 p.m. ET Nov 4, as reported by Breezyscroll; about 96 % counted (same report)"
+governor,KS,546587,541030,1087617,97.9,2026-11-04T17:00Z,"unofficial count as of 11 a.m. CT Nov 4, as reported by WIBW; 97.9 % counted (same report)"
+senate,MS,464926,463788,948652,96,2026-11-04T23:30Z,"AP count as reported by the Mississippi Free Press at 5:30 p.m. CT Nov 4 (Colom +1,138, about 96 % counted); totals and 96 % of the expected vote from ABC News's results table (updated 8:33 p.m. ET); Pinkins's 19,938 from the 11:30 a.m. count, which the newer table omits"
+senate,MS,466246,464526,950722,96.2,2026-11-05T13:58Z,civicAPI
+senate,MS,466253,464526,950729,96.2,2026-11-05T16:21Z,civicAPI
+senate,MS,466328,464533,950855,96.2,2026-11-05T16:51Z,civicAPI
+senate,MS,466849,464956,951826,96.3,2026-11-05T22:06Z,civicAPI
+senate,MS,466877,464993,951893,96.3,2026-11-05T22:36Z,civicAPI
+governor,KS,549974,542929,1092903,99,2026-11-05T01:00Z,"unofficial count as of 7 p.m. CT Nov 4, as reported by the Salina Post (Kansas Reflector story); about 99 % counted per the AP estimate at the same 7,045-vote lead (AP story as published by the Hanford Sentinel)"
+senate,MS,467168,465087,952282,96.4,2026-11-06T18:23Z,civicAPI
+senate,MS,467948,465379,953371,96.5,2026-11-06T22:09Z,civicAPI
+senate,MS,468032,465387,953463,96.5,2026-11-07T00:41Z,civicAPI

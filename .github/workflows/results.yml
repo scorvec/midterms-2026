@@ -78,7 +78,7 @@ jobs:
       - name: Commit the results
         run: |
           set -uo pipefail
-          files="data/results/results_2026.csv data/results/popular_vote.json data/results/scorecard_2026.json web/data/results.json web/data/results_summary.json web/data/live.json web/data/live_history.json"
+          files="data/results/results_2026.csv data/results/count_history.csv data/results/popular_vote.json data/results/scorecard_2026.json web/data/results.json web/data/results_summary.json web/data/live.json web/data/live_history.json"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           SNAP=$(mktemp -d)

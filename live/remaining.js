@@ -5,13 +5,16 @@
 // The simulations are the forecast's: live/engine.js and data/final/whatif_2026.json are the published what-if engine and its
 // data from the forecast's frozen commit, with the same seed, so the margins below are the forecast's own draws. They share
 // national, state, urban and demographic-group shocks, so a call or a count in one race moves every race tied to it.
-//   observations  [{race: "H:IN-3" | "S:KY" | "G:FL", call: "D" | "R", d, r, pct, est, skew, skew_sd}]: call = the side
-//                 that won ("D" the Republican's opponent); d, r = each side's share of the ballots counted; pct = share
-//                 counted, est = that share is estimated (a Wikipedia count says nothing of how much is in)
-//   count error   final margin = counted margin - skew + Student-t (4 df) error, plus skew_sd in quadrature; heavy tails so
-//                 one odd count cannot take over. With a reported share counted f the error is the vote still out, sd
-//                 hypot(0.5, REST_SD (1 - f)); with an estimated share, 2 + 28 (1 - f)^1.5, never under 2 points, since
-//                 the share itself can be well off
+//   observations  [{race: "H:IN-3" | "S:KY" | "G:FL", call: "D" | "R", d, r, pct, est, late, late_n, skew, skew_sd}]:
+//                 call = the side that won ("D" the Republican's opponent); d, r = each side's share of the ballots counted;
+//                 pct = share counted, est = that share is estimated (a Wikipedia count says nothing of how much is in);
+//                 late_n, late = the ballots counted since the race's first reported count and their margin
+//   count error   final margin = f counted margin + (1 - f) uncounted margin - skew + Student-t (4 df) error, plus skew_sd
+//                 in quadrature; heavy tails so one odd count cannot take over. The uncounted ballots are centred on the
+//                 counted ones' margin, moved toward the late ballots' by late_n / (late_n + (100 / REST_SD)^2) (their
+//                 sampling variance, 100^2 / late_n, against REST_SD^2). With a reported share counted f the error is the
+//                 vote still out, sd hypot(COUNT_FLOOR, REST_SD (1 - f)); with an estimated share, 2 + 28 (1 - f)^1.5,
+//                 never under 2 points, since the share itself can be well off
 //   calls         a called race counts for its winner in every seat total; in the weights it enters softly, as
 //                 log Phi(+-margin / CALL_SD), so a simulation where the winner lost by more than a few points is
 //                 down-weighted rather than dropped (dropping left too few simulations once a dozen upsets were called)
@@ -45,9 +48,11 @@ function Phi(x) {
 }
 const logPhi = (x) => (x > -5 ? Math.log(Math.max(Phi(x), 1e-300)) : -0.5 * x * x - Math.log(-x) - 0.9189385);
 const logT4 = (z) => -2.5 * Math.log(1 + z * z / 4); // Student-t, 4 df, up to a constant
-const REST_SD = 25; // points: how far the uncounted ballots' margin can run from the counted ballots'
+const REST_SD = 25; // points: how far the uncounted ballots' margin can run from the margin they are centred on
+const COUNT_FLOOR = 0.1; // points: a full count's error (36 statewide recounts 2000-23: 0.03 on average, 0.11 at most)
 const countSd = (f, est) =>
-  est ? 2 + 28 * Math.pow(Math.max(0, 1 - f), 1.5) : Math.hypot(0.5, REST_SD * Math.max(0, 1 - f));
+  est ? 2 + 28 * Math.pow(Math.max(0, 1 - f), 1.5) : Math.hypot(COUNT_FLOOR, REST_SD * Math.max(0, 1 - f));
+const lateW = (n) => n / (n + (100 / REST_SD) ** 2); // the late ballots' weight in the uncounted ballots' margin
 const OWN_ONLY = 0.95; // reported share counted from which a race's odds come from its own count alone
 
 function simulate() {
@@ -111,7 +116,8 @@ function run(obs) {
       for (let i = 0; i < N; i++) lw[i] += logPhi(s * margin(i, k) / CALL_SD);
     }
     if (!(o.pct > 0)) continue;
-    const f = Math.min(1, o.pct / 100), m = o.d - o.r - (o.skew || 0), sd = Math.hypot(countSd(f, o.est), o.skew_sd || 0);
+    const f = Math.min(1, o.pct / 100), mc = o.d - o.r, rest = o.late_n > 0 ? mc + lateW(o.late_n) * (o.late - mc) : mc;
+    const m = f * mc + (1 - f) * rest - (o.skew || 0), sd = Math.hypot(countSd(f, o.est), o.skew_sd || 0);
     const ow = new Float32Array(N);
     for (let i = 0; i < N; i++) { ow[i] = logT4((margin(i, k) - m) / sd); lw[i] += ow[i]; }
     if (!o.call) own.push({ k, m, f, est: o.est, ssd: o.skew_sd || 0, ow });
