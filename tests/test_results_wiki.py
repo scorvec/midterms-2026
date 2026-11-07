@@ -138,7 +138,11 @@ def _national(d, r, total):
 
 def test_national_vote_waits_for_the_table():
     assert RW.national(OVERVIEW + _national("", "", "")) is None
-    assert RW.national(_national("60,500,000[a]", "48,000,000", "110,000,000")) == (60500000, 48000000, 110000000)
+    assert RW.national(_national("60,500,000[a]", "48,000,000", "110,000,000")) == {
+        "Republican": 48000000,
+        "Democratic": 60500000,
+        "Total": 110000000,
+    }
     assert RW.national(_national("60,500,000", "48,000,000", "100,000,000")) is None  # sides beyond the total
 
 
