@@ -3,11 +3,11 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 468,
+   "called": 469,
    "of": 488,
-   "brier": 0.0396,
-   "log_loss": 0.132,
-   "favourite_won": 0.951,
+   "brier": 0.0403,
+   "log_loss": 0.134,
+   "favourite_won": 0.949,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -29,9 +29,9 @@
     },
     {
      "band": "0.35-0.50",
-     "n": 11,
-     "forecast": 0.422,
-     "won": 0.545
+     "n": 12,
+     "forecast": 0.417,
+     "won": 0.583
     },
     {
      "band": "0.50-0.65",
@@ -65,11 +65,11 @@
    }
   },
   "governor": {
-   "called": 34,
+   "called": 35,
    "of": 36,
-   "brier": 0.0549,
-   "log_loss": 0.1794,
-   "favourite_won": 0.941,
+   "brier": 0.0651,
+   "log_loss": 0.2036,
+   "favourite_won": 0.914,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -91,9 +91,9 @@
     },
     {
      "band": "0.35-0.50",
-     "n": 1,
-     "forecast": 0.494,
-     "won": 0.0
+     "n": 2,
+     "forecast": 0.426,
+     "won": 0.5
     },
     {
      "band": "0.50-0.65",
@@ -3646,8 +3646,8 @@
    "office": "governor",
    "seat": "KS",
    "p": 0.3578,
-   "y": null,
-   "status": "counting"
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "governor",
@@ -3814,8 +3814,8 @@
    "undecided": 2
   },
   "governor": {
-   "d_called": 28,
-   "undecided": 2
+   "d_called": 29,
+   "undecided": 1
   }
  },
  "frozen": {
