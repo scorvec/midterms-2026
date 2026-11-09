@@ -3,11 +3,11 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 471,
+   "called": 473,
    "of": 488,
-   "brier": 0.0408,
-   "log_loss": 0.1353,
-   "favourite_won": 0.947,
+   "brier": 0.0425,
+   "log_loss": 0.1402,
+   "favourite_won": 0.945,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -17,15 +17,15 @@
     },
     {
      "band": "0.05-0.15",
-     "n": 41,
+     "n": 42,
      "forecast": 0.093,
-     "won": 0.098
+     "won": 0.119
     },
     {
      "band": "0.15-0.35",
-     "n": 21,
-     "forecast": 0.245,
-     "won": 0.476
+     "n": 22,
+     "forecast": 0.248,
+     "won": 0.455
     },
     {
      "band": "0.35-0.50",
@@ -59,9 +59,9 @@
     }
    ],
    "raters": {
-    "n": 134,
-    "brier_model": 0.1103,
-    "brier_raters": 0.1141
+    "n": 136,
+    "brier_model": 0.1153,
+    "brier_raters": 0.1173
    }
   },
   "governor": {
@@ -122,11 +122,11 @@
    ]
   },
   "house": {
-   "called": 403,
+   "called": 405,
    "of": 417,
-   "brier": 0.0391,
-   "log_loss": 0.1294,
-   "favourite_won": 0.948,
+   "brier": 0.0411,
+   "log_loss": 0.1352,
+   "favourite_won": 0.946,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -136,15 +136,15 @@
     },
     {
      "band": "0.05-0.15",
-     "n": 35,
+     "n": 36,
      "forecast": 0.093,
-     "won": 0.114
+     "won": 0.139
     },
     {
      "band": "0.15-0.35",
-     "n": 16,
-     "forecast": 0.241,
-     "won": 0.438
+     "n": 17,
+     "forecast": 0.245,
+     "won": 0.412
     },
     {
      "band": "0.35-0.50",
@@ -178,9 +178,9 @@
     }
    ],
    "raters": {
-    "n": 134,
-    "brier_model": 0.1103,
-    "brier_raters": 0.1141
+    "n": 136,
+    "brier_model": 0.1153,
+    "brier_raters": 0.1173
    }
   },
   "senate": {
@@ -312,8 +312,8 @@
    "office": "house",
    "seat": "AZ-2",
    "p": 0.3129,
-   "y": null,
-   "status": "counting",
+   "y": 0,
+   "status": "called",
    "raters": 0.359
   },
   {
@@ -724,8 +724,8 @@
    "office": "house",
    "seat": "CO-4",
    "p": 0.1084,
-   "y": null,
-   "status": "counting",
+   "y": 1,
+   "status": "called",
    "raters": 0.268
   },
   {
@@ -3806,8 +3806,8 @@
  ],
  "chambers": {
   "house": {
-   "d_called": 257,
-   "undecided": 14
+   "d_called": 258,
+   "undecided": 12
   },
   "senate": {
    "d_called": 54,
