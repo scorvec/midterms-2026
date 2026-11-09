@@ -3,10 +3,10 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 473,
+   "called": 474,
    "of": 488,
-   "brier": 0.0425,
-   "log_loss": 0.1402,
+   "brier": 0.0426,
+   "log_loss": 0.1406,
    "favourite_won": 0.945,
    "calibration": [
     {
@@ -23,9 +23,9 @@
     },
     {
      "band": "0.15-0.35",
-     "n": 22,
-     "forecast": 0.248,
-     "won": 0.455
+     "n": 23,
+     "forecast": 0.249,
+     "won": 0.435
     },
     {
      "band": "0.35-0.50",
@@ -59,9 +59,9 @@
     }
    ],
    "raters": {
-    "n": 136,
-    "brier_model": 0.1153,
-    "brier_raters": 0.1173
+    "n": 137,
+    "brier_model": 0.1149,
+    "brier_raters": 0.1165
    }
   },
   "governor": {
@@ -122,10 +122,10 @@
    ]
   },
   "house": {
-   "called": 405,
+   "called": 406,
    "of": 417,
    "brier": 0.0411,
-   "log_loss": 0.1352,
+   "log_loss": 0.1356,
    "favourite_won": 0.946,
    "calibration": [
     {
@@ -142,9 +142,9 @@
     },
     {
      "band": "0.15-0.35",
-     "n": 17,
-     "forecast": 0.245,
-     "won": 0.412
+     "n": 18,
+     "forecast": 0.246,
+     "won": 0.389
     },
     {
      "band": "0.35-0.50",
@@ -178,9 +178,9 @@
     }
    ],
    "raters": {
-    "n": 136,
-    "brier_model": 0.1153,
-    "brier_raters": 0.1173
+    "n": 137,
+    "brier_model": 0.1149,
+    "brier_raters": 0.1165
    }
   },
   "senate": {
@@ -990,8 +990,8 @@
    "office": "house",
    "seat": "FL-26",
    "p": 0.2617,
-   "y": null,
-   "status": "counting",
+   "y": 0,
+   "status": "called",
    "raters": 0.084
   },
   {
@@ -3807,7 +3807,7 @@
  "chambers": {
   "house": {
    "d_called": 258,
-   "undecided": 12
+   "undecided": 11
   },
   "senate": {
    "d_called": 54,
