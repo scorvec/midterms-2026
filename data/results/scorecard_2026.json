@@ -3,11 +3,11 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 469,
+   "called": 471,
    "of": 488,
-   "brier": 0.0403,
-   "log_loss": 0.134,
-   "favourite_won": 0.949,
+   "brier": 0.0408,
+   "log_loss": 0.1353,
+   "favourite_won": 0.947,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -17,9 +17,9 @@
     },
     {
      "band": "0.05-0.15",
-     "n": 40,
-     "forecast": 0.091,
-     "won": 0.1
+     "n": 41,
+     "forecast": 0.093,
+     "won": 0.098
     },
     {
      "band": "0.15-0.35",
@@ -29,9 +29,9 @@
     },
     {
      "band": "0.35-0.50",
-     "n": 12,
-     "forecast": 0.417,
-     "won": 0.583
+     "n": 13,
+     "forecast": 0.421,
+     "won": 0.615
     },
     {
      "band": "0.50-0.65",
@@ -59,9 +59,9 @@
     }
    ],
    "raters": {
-    "n": 132,
-    "brier_model": 0.1097,
-    "brier_raters": 0.1125
+    "n": 134,
+    "brier_model": 0.1103,
+    "brier_raters": 0.1141
    }
   },
   "governor": {
@@ -122,11 +122,11 @@
    ]
   },
   "house": {
-   "called": 401,
+   "called": 403,
    "of": 417,
-   "brier": 0.0385,
-   "log_loss": 0.1278,
-   "favourite_won": 0.95,
+   "brier": 0.0391,
+   "log_loss": 0.1294,
+   "favourite_won": 0.948,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -136,9 +136,9 @@
     },
     {
      "band": "0.05-0.15",
-     "n": 34,
-     "forecast": 0.092,
-     "won": 0.118
+     "n": 35,
+     "forecast": 0.093,
+     "won": 0.114
     },
     {
      "band": "0.15-0.35",
@@ -148,9 +148,9 @@
     },
     {
      "band": "0.35-0.50",
-     "n": 9,
-     "forecast": 0.418,
-     "won": 0.667
+     "n": 10,
+     "forecast": 0.423,
+     "won": 0.7
     },
     {
      "band": "0.50-0.65",
@@ -178,9 +178,9 @@
     }
    ],
    "raters": {
-    "n": 132,
-    "brier_model": 0.1097,
-    "brier_raters": 0.1125
+    "n": 134,
+    "brier_model": 0.1103,
+    "brier_raters": 0.1141
    }
   },
   "senate": {
@@ -1676,8 +1676,8 @@
    "office": "house",
    "seat": "MN-1",
    "p": 0.4721,
-   "y": null,
-   "status": "counting",
+   "y": 1,
+   "status": "called",
    "raters": 0.355
   },
   {
@@ -2244,8 +2244,8 @@
    "office": "house",
    "seat": "NC-7",
    "p": 0.1364,
-   "y": null,
-   "status": "counting",
+   "y": 0,
+   "status": "called",
    "raters": 0.16
   },
   {
@@ -3806,8 +3806,8 @@
  ],
  "chambers": {
   "house": {
-   "d_called": 256,
-   "undecided": 16
+   "d_called": 257,
+   "undecided": 14
   },
   "senate": {
    "d_called": 54,
