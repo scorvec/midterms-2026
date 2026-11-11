@@ -64,10 +64,9 @@ function simulate() {
   const sRest = races.map((x) => (mv ? split(x.ssh, mv.m).rest : x.ssh) * x.sl);
   const sMove = races.map((x, j) => (mv ? split(x.ssh, mv.m).m : 0) * E.kS[j] * x.sl);
   const hsp = mv ? split(hs.nat, mv.m) : { rest: hs.nat, m: 0 };
-  const HM = new Float32Array(N * nH), SM = new Float32Array(N * nSG), NAT = new Float32Array(N);
+  const HM = new Float32Array(N * nH), SM = new Float32Array(N * nSG);
   for (let i = 0; i < N; i++) {
     const natRest = E.hNat[i] * hsp.rest, natMove = E.hMv[i] * hsp.m, urb = E.hUrb[i] * hs.urban, g = E.hG;
-    NAT[i] = natRest + natMove;
     for (let j = 0; j < nH; j++) {
       const s = H.seats[j];
       HM[i * nH + j] = s.fix ? (s.fix === "D" ? 50 : -50)
@@ -83,11 +82,11 @@ function simulate() {
         + sg[1][i] * gs.cuban * x.c + sg[2][i] * gs.asian * x.a + wz * x.z + E.sRes[i * nSG + j] * sOwn[j];
     }
   }
-  return { HM, SM, NAT, races };
+  return { HM, SM, races };
 }
 
 const H = D.house, nH = E.nH, nS = E.nS, nSG = E.nS + E.nG;
-const { HM, SM, NAT, races } = simulate();
+const { HM, SM, races } = simulate();
 const idx = {};
 H.seats.forEach((s, j) => (idx["H:" + s.seat] = ["H", j]));
 races.forEach((x, j) => (idx[(j < nS ? "S:" : "G:") + x.st] = ["S", j]));
@@ -190,12 +189,8 @@ function run(obs) {
     const o = byRace.get(key), count = o && o.pct > 0 ? { margin: +(o.d - o.r).toFixed(2), pct: o.pct, est: !!o.est } : null;
     rows.push({ race: key, p: +r.p.toFixed(4), med: +r.med.toFixed(1), lo: +r.lo.toFixed(1), hi: +r.hi.toFixed(1), count });
   }
-  const [n10, n50, n90] = weightedQuantiles(NAT, w, sw, [0.1, 0.5, 0.9]);
-  let nat = 0;
-  for (let i = 0; i < N; i++) nat += (w[i] / sw) * NAT[i];
   return {
     ess: Math.round(ess), alpha: +alpha.toFixed(4),
-    national: { mean: +(D.E0 + nat).toFixed(2), p50: +(D.E0 + n50).toFixed(2), p10: +(D.E0 + n10).toFixed(2), p90: +(D.E0 + n90).toFixed(2) },
     house: chamber(hSeats, hMaj, hR), senate: chamber(sSeats, sCtl, sR), governor: chamber(gSeats, gMaj, gR), races: rows,
   };
 }
@@ -213,7 +208,7 @@ const calls = OBS.filter((o) => o.call).length, counts = OBS.filter((o) => o.pct
 fs.writeFileSync(OUT, JSON.stringify({ generated: at, obs_hash: sig, n_sims: N, calls, counts, ...now }));
 let hist = [];
 try { hist = JSON.parse(fs.readFileSync(HIST, "utf8")); } catch (e) { /* first run */ }
-const row = { at, calls, counts, ess: now.ess, national: now.national.mean };
+const row = { at, calls, counts, ess: now.ess };
 for (const c of ["house", "senate", "governor"]) {
   const x = now[c];
   Object.assign(row, { [c + "_p"]: x.p_control, [c + "_p10"]: x.p10, [c + "_p50"]: x.p50, [c + "_p90"]: x.p90 });
@@ -222,7 +217,6 @@ hist.push(row);
 fs.writeFileSync(HIST, JSON.stringify(hist));
 const pc = (x) => (100 * x).toFixed(1) + "%";
 console.log(`${OBS.length} observations (${calls} calls, ${counts} counts): effective sample ${now.ess}, tempering ${now.alpha}`);
-console.log(`national median ${now.national.p50} (80% ${now.national.p10} to ${now.national.p90})`);
 for (const c of ["house", "senate", "governor"]) {
   const x = now[c];
   console.log(`${c.padEnd(8)} control ${pc(x.p_control)}  D seats ${x.p50} (80% ${x.p10}-${x.p90})`);
