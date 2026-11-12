@@ -3,11 +3,11 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 480,
+   "called": 481,
    "of": 488,
-   "brier": 0.0458,
-   "log_loss": 0.1499,
-   "favourite_won": 0.942,
+   "brier": 0.0474,
+   "log_loss": 0.1544,
+   "favourite_won": 0.94,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -17,9 +17,9 @@
     },
     {
      "band": "0.05-0.15",
-     "n": 44,
+     "n": 45,
      "forecast": 0.093,
-     "won": 0.136
+     "won": 0.156
     },
     {
      "band": "0.15-0.35",
@@ -184,11 +184,11 @@
    }
   },
   "senate": {
-   "called": 33,
+   "called": 34,
    "of": 35,
-   "brier": 0.0364,
-   "log_loss": 0.1345,
-   "favourite_won": 0.97,
+   "brier": 0.0592,
+   "log_loss": 0.1987,
+   "favourite_won": 0.941,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -198,9 +198,9 @@
     },
     {
      "band": "0.05-0.15",
-     "n": 2,
+     "n": 3,
      "forecast": 0.097,
-     "won": 0.0
+     "won": 0.333
     },
     {
      "band": "0.15-0.35",
@@ -3429,8 +3429,8 @@
    "office": "senate",
    "seat": "MS",
    "p": 0.0984,
-   "y": null,
-   "status": "counting"
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "senate",
@@ -3810,8 +3810,8 @@
    "undecided": 5
   },
   "senate": {
-   "d_called": 54,
-   "undecided": 2
+   "d_called": 55,
+   "undecided": 1
   },
   "governor": {
    "d_called": 29,
