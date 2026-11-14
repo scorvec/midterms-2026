@@ -1,5 +1,5 @@
 office,seat,challenger,republican,winner,status,chal_votes,rep_votes,total_votes,pct_counted,rcv_chal,rcv_rep,rcv_first_round,source,updated,note
-national,US,Democrats,Republicans,,counting,57712576,45521736,104661736,,,,,Wikipedia,2026-11-13T17:35Z,
+national,US,Democrats,Republicans,,counting,59825068,46629496,108013481,,,,,Wikipedia,2026-11-14T14:27Z,
 senate,AK,Mary Peltola,Dan S. Sullivan,D,called,,,,,,,,Wikipedia,2026-11-14T12:03Z,called by VoteHub
 senate,AL,Everett Wess,Barry Moore,R,called,759336,917347,1676683,,,,,civicAPI,2026-11-05T13:58Z,
 senate,AR,Hallie Shoffner,Tom Cotton,R,called,376680,481345,887545,,,,,civicAPI,2026-11-14T04:50Z,
@@ -10,9 +10,9 @@ senate,GA,Jon Ossoff,Mike Collins,D,called,2469037,1713664,4182701,,,,,civicAPI,
 senate,IA,Josh Turek,Ashley Hinson,D,called,688302,631232,1361527,,,,,Wikipedia,2026-11-09T19:49Z,
 senate,ID,Todd Achilles,Jim Risch,R,called,239422,402983,713281,,,,,civicAPI,2026-11-11T05:49Z,
 senate,IL,Juliana Stratton,Don Tracy,D,called,2587035,1524275,4177628,,,,,civicAPI,2026-11-13T23:50Z,
-senate,KS,Adam Hamilton,Roger Marshall,D,called,561143,505558,1099896,,,,,civicAPI,2026-11-07T01:41Z,
+senate,KS,Adam Hamilton,Roger Marshall,D,called,562076,506752,1102154,,,,,Wikipedia,2026-11-14T14:27Z,
 senate,KY,Charles Booker,Andy Barr,R,called,611987,784000,1425885,,,,,civicAPI,2026-11-05T13:58Z,
-senate,LA,Jamie Davis,Julia Letlow,R,called,720217,746014,1466231,,,,,civicAPI,2026-11-10T12:37Z,
+senate,LA,Jamie Davis,Julia Letlow,R,called,720521,746476,1466997,,,,,Wikipedia,2026-11-14T14:27Z,
 senate,MA,Ed Markey,John Deaton,D,called,1653828,838035,2608451,,,,,civicAPI,2026-11-12T21:04Z,
 senate,ME,Troy Jackson,Susan Collins,D,called,,,,,,,,Wikipedia,2026-11-04T11:38Z,
 senate,MI,Abdul El-Sayed,Mike Rogers,D,called,2520883,2181108,4798074,,,,,Wikipedia,2026-11-11T14:49Z,
