@@ -1,6 +1,6 @@
 office,seat,challenger,republican,winner,status,chal_votes,rep_votes,total_votes,pct_counted,rcv_chal,rcv_rep,rcv_first_round,source,updated,note
 national,US,Democrats,Republicans,,counting,57712576,45521736,104661736,,,,,Wikipedia,2026-11-13T17:35Z,
-senate,AK,Mary Peltola,Dan S. Sullivan,,,,,,,,,,,,
+senate,AK,Mary Peltola,Dan S. Sullivan,D,called,,,,,,,,Wikipedia,2026-11-14T12:03Z,called by VoteHub
 senate,AL,Everett Wess,Barry Moore,R,called,759336,917347,1676683,,,,,civicAPI,2026-11-05T13:58Z,
 senate,AR,Hallie Shoffner,Tom Cotton,R,called,376680,481345,887545,,,,,civicAPI,2026-11-14T04:50Z,
 senate,CO,John Hickenlooper,Mark Baisley,D,called,1629507,942089,2693511,,,,,civicAPI,2026-11-13T23:59Z,

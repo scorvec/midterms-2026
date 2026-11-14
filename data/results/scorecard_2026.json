@@ -3,10 +3,10 @@
  "races_forecast": 488,
  "by_office": {
   "all": {
-   "called": 483,
+   "called": 484,
    "of": 488,
-   "brier": 0.0473,
-   "log_loss": 0.1541,
+   "brier": 0.0475,
+   "log_loss": 0.1549,
    "favourite_won": 0.94,
    "calibration": [
     {
@@ -35,9 +35,9 @@
     },
     {
      "band": "0.50-0.65",
-     "n": 11,
-     "forecast": 0.564,
-     "won": 0.909
+     "n": 12,
+     "forecast": 0.567,
+     "won": 0.917
     },
     {
      "band": "0.65-0.85",
@@ -184,11 +184,11 @@
    }
   },
   "senate": {
-   "called": 34,
+   "called": 35,
    "of": 35,
-   "brier": 0.0592,
-   "log_loss": 0.1987,
-   "favourite_won": 0.941,
+   "brier": 0.0621,
+   "log_loss": 0.2077,
+   "favourite_won": 0.943,
    "calibration": [
     {
      "band": "0.00-0.05",
@@ -216,8 +216,8 @@
     },
     {
      "band": "0.50-0.65",
-     "n": 2,
-     "forecast": 0.591,
+     "n": 3,
+     "forecast": 0.594,
      "won": 1.0
     },
     {
@@ -3317,8 +3317,8 @@
    "office": "senate",
    "seat": "AK",
    "p": 0.5997,
-   "y": null,
-   "status": null
+   "y": 1,
+   "status": "called"
   },
   {
    "office": "senate",
@@ -3810,8 +3810,14 @@
    "undecided": 4
   },
   "senate": {
-   "d_called": 55,
-   "undecided": 1
+   "d_called": 56,
+   "undecided": 0,
+   "d_seats": 56,
+   "independents": 0,
+   "pit": 0.924,
+   "p_ctrl": 0.802,
+   "d_controls": true,
+   "brier_ctrl": 0.0392
   },
   "governor": {
    "d_called": 30,
